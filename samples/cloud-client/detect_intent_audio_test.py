@@ -13,15 +13,20 @@
 import os
 import pytest
 
-from detect_intent_texts import detect_intent_texts
+from detect_intent_audio import detect_intent_audio
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-TEXTS = ["hello", "book a meeting room", "Mountain View",
-    "tomorrow", "10am", "2 hours", "10 people", "A", "yes"]
+AUDIOS = [
+    'resources/book_a_room.wav',
+    'resources/mountain_view.wav',
+    'resources/today.wav'
+]
 
 
-def test_detect_intent_texts(capsys):
-    detect_intent_texts(TEXTS, PROJECT_ID)
+def test_detect_intent_audio(capsys):
+    session_id = 'test-session-id'
+    for audio_file_path in AUDIOS:
+        detect_intent_audio(audio_file_path, PROJECT_ID, session_id=session_id)
     out, _ = capsys.readouterr()
 
-    assert 'Fulfillment text: All set!' in out
+    assert 'Fulfillment text: What time will the meeting start?' in out
