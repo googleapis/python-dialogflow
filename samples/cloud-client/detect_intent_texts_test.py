@@ -22,7 +22,7 @@ TEXTS = ["hello", "book a meeting room", "Mountain View",
 
 
 def test_detect_intent_texts(capsys):
-    detect_intent_texts(PROJECT_ID, TEXTS)
+    detect_intent_texts(TEXTS, PROJECT_ID)
     out, _ = capsys.readouterr()
 
     assert 'Fulfillment text: All set!' in out

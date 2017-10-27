@@ -17,22 +17,24 @@
 
 Examples:
   python detect_intent_texts.py -h
-  python detect_intent_texts.py --project-id [PROJECT_ID] "hello" "book a meeting room" "Mountain View" "tomorrow" "10am" "2 hours" "10 people" "A" "yes"
+  python detect_intent_texts.py "hello" "book a meeting room" "Mountain View" "tomorrow" "10am" "2 hours" "10 people" "A" "yes"
 """
 
 # [START import_libraries]
+import argparse
+import os
+import uuid
+
 from google.cloud import dialogflow
 from google.cloud.dialogflow import types
-
-import argparse
-import uuid
 # [END import_libraries]
 
 
-def detect_intent_texts(project_id, texts, session_id=None, language_code=None):
+def detect_intent_texts(texts, project_id=None, session_id=None, language_code=None):
     """Returns the result of DetectIntent() with a text input."""
     session_client = dialogflow.SessionsClient()
 
+    project_id = project_id or os.getenv('GCLOUD_PROJECT') or os.getenv('GOOGLE_CLOUD_PROJECT')
     session_id = session_id or str(uuid.uuid4())
     language_code = language_code or 'en-US'
 
@@ -60,8 +62,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--project-id',
         help='Project/agent id. Defaults to the value of the GCLOUD_PROJECT or '
-        'GOOGLE_CLOUD_PROJECT environment variables.  Required.',
-        required=True)
+        'GOOGLE_CLOUD_PROJECT environment variables.')
     parser.add_argument(
         '--session-id',
         help='Identifier of the DetectIntent session. '
@@ -76,5 +77,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    detect_intent_texts(args.project_id, args.texts, args.session_id, args.language_code)
+    detect_intent_texts(args.texts, args.project_id, args.session_id, args.language_code)
 
