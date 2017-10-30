@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Entity Type Python sample with text inputs.
+"""DialogFlow API Entity Type Python sample.
 
 Examples:
   python entity_type_service.py -h
@@ -33,8 +33,7 @@ from google.cloud.dialogflow import types
 
 
 def list_entity_types(project_id=None):
-    """List entity types.
-    """
+    """List entity types."""
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
@@ -44,16 +43,14 @@ def list_entity_types(project_id=None):
     entity_types = entity_types_client.list_entity_types(parent)
 
     for entity_type in entity_types:
-        print(entity_type)
         print('Entity type name: {}'.format(entity_type.name))
         print('Entity type display name: {}'.format(entity_type.display_name))
         print('Number of entities: {}\n'.format(len(entity_type.entities)))
 
 
 
-def create_entity_type(display_name, project_id=None, kind=None):
-    """Create an entity type with the given display name.
-    """
+def create_entity_type(display_name, kind=None, project_id=None):
+    """Create an entity type with the given display name."""
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
@@ -69,8 +66,7 @@ def create_entity_type(display_name, project_id=None, kind=None):
 
 
 def delete_entity_type(entity_type, project_id=None):
-    """Delete entity type with the given entity type name.
-    """
+    """Delete entity type with the given entity type name."""
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))

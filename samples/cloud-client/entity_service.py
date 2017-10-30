@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Entity Type Python sample with text inputs.
+"""DialogFlow API Entity Python sample.
 
 Examples:
   python entity_service.py -h
@@ -34,8 +34,7 @@ from google.cloud.dialogflow import types
 
 
 def list_entities(entity_type_id, project_id=None):
-    """List entities.
-    """
+    """List entities."""
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
@@ -49,9 +48,8 @@ def list_entities(entity_type_id, project_id=None):
         print('Entity synonyms: {}\n'.format(entity.synonyms))
 
 
-def create_entity(entity_type_id, entity_value, project_id=None, synonyms=[]):
-    """Create an entity of the given entity type.
-    """
+def create_entity(entity_type_id, entity_value, synonyms=[], project_id=None):
+    """Create an entity of the given entity type."""
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
@@ -68,8 +66,7 @@ def create_entity(entity_type_id, entity_value, project_id=None, synonyms=[]):
 
 
 def delete_entity(entity_type_id, entity_value, project_id=None):
-    """Delete entity with the given entity type and entity value.
-    """
+    """Delete entity with the given entity type and entity value."""
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
@@ -125,7 +122,7 @@ if __name__ == '__main__':
     if args.command == 'list':
         list_entities(args.entity_type_id, args.project_id)
     elif args.command == 'create':
-        create_entity(args.entity_type_id, args.entity_value, args.project_id, args.synonyms)
+        create_entity(args.entity_type_id, args.entity_value, args.synonyms, args.project_id)
     elif args.command == 'delete':
         delete_entity(args.entity_type_id, args.entity_value, args.project_id)
 

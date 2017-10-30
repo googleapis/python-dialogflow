@@ -15,7 +15,6 @@ import pytest
 
 from detect_intent_audio import detect_intent_audio
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
 AUDIOS = [
     'resources/book_a_room.wav',
     'resources/mountain_view.wav',
@@ -26,7 +25,7 @@ AUDIOS = [
 def test_detect_intent_audio(capsys):
     session_id = 'test-session-id'
     for audio_file_path in AUDIOS:
-        detect_intent_audio(audio_file_path, PROJECT_ID, session_id=session_id)
+        detect_intent_audio(audio_file_path, session_id=session_id)
     out, _ = capsys.readouterr()
 
     assert 'Fulfillment text: What time will the meeting start?' in out

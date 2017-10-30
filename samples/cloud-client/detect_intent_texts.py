@@ -30,7 +30,7 @@ from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def detect_intent_texts(texts, project_id=None, session_id=None, language_code=None):
+def detect_intent_texts(texts, language_code=None, session_id=None, project_id=None):
     """Returns the result of DetectIntent() with a text input."""
     session_client = dialogflow.SessionsClient()
 
@@ -77,5 +77,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    detect_intent_texts(args.texts, args.project_id, args.session_id, args.language_code)
+    detect_intent_texts(args.texts, args.language_code, args.session_id, args.project_id)
 

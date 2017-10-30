@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Detect Intent Python sample with text inputs.
+"""DialogFlow API Detect Intent Python sample with audio files.
 
 Examples:
   python detect_intent_audio.py -h
@@ -48,7 +48,7 @@ from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def detect_intent_audio(audio_file_path, project_id=None, session_id=None, language_code=None, audio_encoding=None, sample_rate_hertz=None):
+def detect_intent_audio(audio_file_path, language_code=None, audio_encoding=None, sample_rate_hertz=None, session_id=None, project_id=None):
     """Returns the result of DetectIntent() with a text input."""
     session_client = dialogflow.SessionsClient()
 
@@ -109,5 +109,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    detect_intent_audio(args.audio_file_path, args.project_id, args.session_id, args.language_code, args.audio_encoding, args.sample_rate_hertz)
+    detect_intent_audio(args.audio_file_path, args.language_code, args.audio_encoding, args.sample_rate_hertz, args.session_id, args.project_id, )
 

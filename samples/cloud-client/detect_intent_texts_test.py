@@ -15,13 +15,13 @@ import pytest
 
 from detect_intent_texts import detect_intent_texts
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
 TEXTS = ["hello", "book a meeting room", "Mountain View",
     "tomorrow", "10am", "2 hours", "10 people", "A", "yes"]
 
 
 def test_detect_intent_texts(capsys):
-    detect_intent_texts(TEXTS, PROJECT_ID)
+    session_id = 'test-session-id'
+    detect_intent_texts(TEXTS, session_id=session_id)
     out, _ = capsys.readouterr()
 
     assert 'Fulfillment text: All set!' in out
