@@ -17,9 +17,9 @@
 
 Examples:
   python context_service.py -h
-  python context_service.py list --session-id ...
-  python context_service.py create employee
-  python context_service.py delete e57238e2-e692-44ea-9216-6be1b2332e2a
+  python context_service.py list --session-id mysession
+  python context_service.py create --session-id mysession --context-id mycontext
+  python context_service.py delete --session-id mysession --context-id mycontext
 """
 
 # [START import_libraries]
