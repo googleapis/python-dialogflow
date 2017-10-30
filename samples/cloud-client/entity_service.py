@@ -55,7 +55,7 @@ def create_entity(entity_type_id, entity_value, project_id=None, synonyms=[]):
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    # synonyms are required
+    # Note: synonyms must be exactly [entity_value] if the entity_type's kind is KIND_LIST
     synonyms = synonyms or [entity_value]
     
     entity_type_path = entity_types_client.entity_type_path(project_id, entity_type_id)
