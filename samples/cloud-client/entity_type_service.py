@@ -65,13 +65,13 @@ def create_entity_type(display_name, kind=None, project_id=None):
     print('Entity type created: \n{}'.format(response))
 
 
-def delete_entity_type(entity_type, project_id=None):
+def delete_entity_type(entity_type_id, project_id=None):
     """Delete entity type with the given entity type name."""
     entity_types_client = dialogflow.EntityTypesClient()
 
     project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
     
-    entity_type_path = entity_types_client.entity_type_path(project_id, entity_type)
+    entity_type_path = entity_types_client.entity_type_path(project_id, entity_type_id)
 
     response = entity_types_client.delete_entity_type(entity_type_path)
 
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     delete_parser = subparsers.add_parser(
         'delete', help=delete_entity_type.__doc__)
     delete_parser.add_argument(
-        'entity_type',
+        'entity_type_id',
         help='The id of the entity_type.')
 
     args = parser.parse_args()
@@ -125,7 +125,7 @@ if __name__ == '__main__':
     if args.command == 'list':
         list_entity_types(args.project_id)
     elif args.command == 'create':
-        create_entity_type(args.display_name, args.project_id)
+        create_entity_type(args.display_name, args.kind, args.project_id)
     elif args.command == 'delete':
-        delete_entity_type(args.entity_type, args.project_id)
+        delete_entity_type(args.entity_type_id, args.project_id)
 
