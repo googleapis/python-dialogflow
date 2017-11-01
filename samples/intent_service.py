@@ -19,7 +19,7 @@ Examples:
   python intent_service.py -h
   python intent_service.py list
   python intent_service.py create "room.cancellation - yes" \
-  --action room.cancel
+  --action room.cancel --input-context-ids today tomorrow
   python intent_service.py delete 74892d81-7901-496a-bb0a-c769eda5180e
 """
 
@@ -63,16 +63,25 @@ def list_intents(project_id=None):
             print('\tName: {}'.format(output_context.name))
 
 
-def create_intent(display_name, action=None, project_id=None):
+def create_intent(display_name, action=None, input_context_ids=[],
+                  project_id=None):
     """Create an intent of the given intent type."""
     intents_client = dialogflow.IntentsClient()
+    contexts_client = dialogflow.ContextsClient()
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
         or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = intents_client.project_agent_path(project_id)
-    intent = types.Intent(display_name=display_name, action=action)
+    # Setting session_id as '-' for contexts which are not
+    # session-bound.
+    input_context_names = [
+        contexts_client.context_path(project_id, '-', context_id)
+        for context_id in input_context_ids]
+    intent = types.Intent(
+        display_name=display_name, action=action,
+        input_context_names=input_context_names)
 
     response = intents_client.create_intent(parent, intent)
 
@@ -134,6 +143,11 @@ if __name__ == '__main__':
         'display_name')
     create_parser.add_argument(
         '--action')
+    create_parser.add_argument(
+        '--input-context-ids',
+        nargs='*',
+        type=str,
+        help='Input context ids.')
 
     delete_parser = subparsers.add_parser(
         'delete', help=delete_intent.__doc__)
@@ -146,6 +160,8 @@ if __name__ == '__main__':
     if args.command == 'list':
         list_intents(args.project_id)
     elif args.command == 'create':
-        create_intent(args.display_name, args.action, args.project_id)
+        create_intent(
+            args.display_name, args.action, args.input_context_ids,
+            args.project_id)
     elif args.command == 'delete':
         delete_intent(args.intent_id, args.project_id)
