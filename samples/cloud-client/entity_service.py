@@ -17,18 +17,19 @@
 
 Examples:
   python entity_service.py -h
-  python entity_service.py list --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
-  python entity_service.py create new_room --synonyms basement cellar --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a 
-  python entity_service.py delete new_room --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
+  python entity_service.py list \
+  --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
+  python entity_service.py create new_room --synonyms basement cellar \
+  --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
+  python entity_service.py delete new_room \
+  --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
 """
 
 # [START import_libraries]
 import argparse
 import os
-import time
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import enums
 from google.cloud.dialogflow import types
 # [END import_libraries]
 
@@ -37,10 +38,13 @@ def list_entities(entity_type_id, project_id=None):
     """List entities."""
     entity_types_client = dialogflow.EntityTypesClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    
-    parent = entity_types_client.entity_type_path(project_id, entity_type_id)
-    
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+
+    parent = entity_types_client.entity_type_path(
+        project_id, entity_type_id)
+
     entities = entity_types_client.get_entity_type(parent).entities
 
     for entity in entities:
@@ -48,32 +52,44 @@ def list_entities(entity_type_id, project_id=None):
         print('Entity synonyms: {}\n'.format(entity.synonyms))
 
 
-def create_entity(entity_type_id, entity_value, synonyms=[], project_id=None):
+def create_entity(entity_type_id, entity_value, synonyms=[],
+                  project_id=None):
     """Create an entity of the given entity type."""
     entity_types_client = dialogflow.EntityTypesClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    # Note: synonyms must be exactly [entity_value] if the entity_type's kind is KIND_LIST
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+    # Note: synonyms must be exactly [entity_value] if the
+    # entity_type's kind is KIND_LIST
     synonyms = synonyms or [entity_value]
-    
-    entity_type_path = entity_types_client.entity_type_path(project_id, entity_type_id)
+
+    entity_type_path = entity_types_client.entity_type_path(
+        project_id, entity_type_id)
 
     entity = types.EntityType.Entity()
     entity.value = entity_value
     entity.synonyms.extend(synonyms)
 
-    operation = entity_types_client.batch_create_entities(entity_type_path, [entity])
+    response = entity_types_client.batch_create_entities(
+        entity_type_path, [entity])
+
+    print('Entity created: {}'.format(response))
 
 
 def delete_entity(entity_type_id, entity_value, project_id=None):
     """Delete entity with the given entity type and entity value."""
     entity_types_client = dialogflow.EntityTypesClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    
-    entity_type_path = entity_types_client.entity_type_path(project_id, entity_type_id)
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
 
-    operation = entity_types_client.batch_delete_entities(entity_type_path, [entity_value])
+    entity_type_path = entity_types_client.entity_type_path(
+        project_id, entity_type_id)
+
+    entity_types_client.batch_delete_entities(
+        entity_type_path, [entity_value])
 
 
 if __name__ == '__main__':
@@ -82,8 +98,9 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the GCLOUD_PROJECT or '
-        'GOOGLE_CLOUD_PROJECT environment variables.')
+        help='Project/agent id. Defaults to the value of the '
+        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
+        'variables.')
 
     subparsers = parser.add_subparsers(dest='command')
 
@@ -122,7 +139,9 @@ if __name__ == '__main__':
     if args.command == 'list':
         list_entities(args.entity_type_id, args.project_id)
     elif args.command == 'create':
-        create_entity(args.entity_type_id, args.entity_value, args.synonyms, args.project_id)
+        create_entity(
+            args.entity_type_id, args.entity_value, args.synonyms,
+            args.project_id)
     elif args.command == 'delete':
-        delete_entity(args.entity_type_id, args.entity_value, args.project_id)
-
+        delete_entity(
+            args.entity_type_id, args.entity_value, args.project_id)

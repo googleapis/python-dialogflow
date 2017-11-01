@@ -19,7 +19,8 @@ Examples:
   python entity_type_service.py -h
   python entity_type_service.py list
   python entity_type_service.py create employee
-  python entity_type_service.py delete e57238e2-e692-44ea-9216-6be1b2332e2a
+  python entity_type_service.py delete \
+  e57238e2-e692-44ea-9216-6be1b2332e2a
 """
 
 # [START import_libraries]
@@ -36,10 +37,12 @@ def list_entity_types(project_id=None):
     """List entity types."""
     entity_types_client = dialogflow.EntityTypesClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+
     parent = entity_types_client.project_agent_path(project_id)
-    
+
     entity_types = entity_types_client.list_entity_types(parent)
 
     for entity_type in entity_types:
@@ -48,16 +51,16 @@ def list_entity_types(project_id=None):
         print('Number of entities: {}\n'.format(len(entity_type.entities)))
 
 
-
 def create_entity_type(display_name, kind=None, project_id=None):
     """Create an entity type with the given display name."""
     entity_types_client = dialogflow.EntityTypesClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
     kind = kind or enums.EntityType.Kind.KIND_MAP
-    
-    parent = entity_types_client.project_agent_path(project_id)
 
+    parent = entity_types_client.project_agent_path(project_id)
     entity_type = types.EntityType(display_name=display_name, kind=kind)
 
     response = entity_types_client.create_entity_type(parent, entity_type)
@@ -69,24 +72,33 @@ def delete_entity_type(entity_type_id, project_id=None):
     """Delete entity type with the given entity type name."""
     entity_types_client = dialogflow.EntityTypesClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    
-    entity_type_path = entity_types_client.entity_type_path(project_id, entity_type_id)
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
 
-    response = entity_types_client.delete_entity_type(entity_type_path)
+    entity_type_path = entity_types_client.entity_type_path(
+        project_id, entity_type_id)
+
+    entity_types_client.delete_entity_type(entity_type_path)
 
 
 # Helper to get entity_type_id from display name.
 def _get_entity_type_ids(display_name, project_id=None):
     entity_types_client = dialogflow.EntityTypesClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
 
     parent = entity_types_client.project_agent_path(project_id)
     entity_types = entity_types_client.list_entity_types(parent)
-    entity_type_names = [entity_type.name for entity_type in entity_types if entity_type.display_name == display_name]
+    entity_type_names = [
+        entity_type.name for entity_type in entity_types
+        if entity_type.display_name == display_name]
 
-    entity_type_ids = [entity_type_name.split('/')[-1] for entity_type_name in entity_type_names]
+    entity_type_ids = [
+        entity_type_name.split('/')[-1] for entity_type_name
+        in entity_type_names]
 
     return entity_type_ids
 
@@ -97,8 +109,9 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the GCLOUD_PROJECT or '
-        'GOOGLE_CLOUD_PROJECT environment variables.')
+        help='Project/agent id. Defaults to the value of the '
+        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
+        'variables.')
 
     subparsers = parser.add_subparsers(dest='command')
 
@@ -128,4 +141,3 @@ if __name__ == '__main__':
         create_entity_type(args.display_name, args.kind, args.project_id)
     elif args.command == 'delete':
         delete_entity_type(args.entity_type_id, args.project_id)
-

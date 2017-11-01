@@ -18,8 +18,10 @@
 Examples:
   python context_service.py -h
   python context_service.py list --session-id mysession
-  python context_service.py create --session-id mysession --context-id mycontext
-  python context_service.py delete --session-id mysession --context-id mycontext
+  python context_service.py create --session-id mysession \
+  --context-id mycontext
+  python context_service.py delete --session-id mysession \
+  --context-id mycontext
 """
 
 # [START import_libraries]
@@ -27,7 +29,6 @@ import argparse
 import os
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import enums
 from google.cloud.dialogflow import types
 # [END import_libraries]
 
@@ -36,10 +37,12 @@ def list_contexts(session_id, project_id=None):
     """List contexts."""
     contexts_client = dialogflow.ContextsClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+
     session_path = contexts_client.session_path(project_id, session_id)
-    
+
     contexts = contexts_client.list_contexts(session_path)
 
     print('Contexts for session {}:\n'.format(session_path))
@@ -52,17 +55,20 @@ def list_contexts(session_id, project_id=None):
                 print('\t{}: {}'.format(field, string_value))
 
 
-def create_context(context_id, session_id, lifespan_count=None, project_id=None):
+def create_context(context_id, session_id, lifespan_count=None,
+                   project_id=None):
     """Create an entity type with the given display name."""
     contexts_client = dialogflow.ContextsClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
     lifespan_count = lifespan_count or 1
-    
-    session_path = contexts_client.session_path(project_id, session_id)
-    context_name = contexts_client.context_path(project_id, session_id, context_id)
 
-    # Note: A context has additional parameters that actually specify the context.
+    session_path = contexts_client.session_path(project_id, session_id)
+    context_name = contexts_client.context_path(
+        project_id, session_id, context_id)
+
     context = types.Context(name=context_name, lifespan_count=lifespan_count)
 
     response = contexts_client.create_context(session_path, context)
@@ -75,11 +81,14 @@ def delete_context(context_id, session_id, project_id=None):
     """
     contexts_client = dialogflow.ContextsClient()
 
-    project_id = project_id or os.getenv('GCLOUD_PROJECT') or (os.getenv('GOOGLE_CLOUD_PROJECT'))
-    
-    context_name = contexts_client.context_path(project_id, session_id, context_id)
+    project_id = (
+        project_id or os.getenv('GCLOUD_PROJECT')
+        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
 
-    response = contexts_client.delete_context(context_name)
+    context_name = contexts_client.context_path(
+        project_id, session_id, context_id)
+
+    contexts_client.delete_context(context_name)
 
 
 if __name__ == '__main__':
@@ -88,8 +97,9 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the GCLOUD_PROJECT or '
-        'GOOGLE_CLOUD_PROJECT environment variables.')
+        help='Project/agent id. Defaults to the value of the '
+        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
+        'variables.')
 
     subparsers = parser.add_subparsers(dest='command')
 
@@ -127,7 +137,8 @@ if __name__ == '__main__':
     if args.command == 'list':
         list_contexts(args.session_id, args.project_id)
     elif args.command == 'create':
-        create_context(args.context_id, args.session_id, args.lifespan_count, args.project_id)
+        create_context(
+            args.context_id, args.session_id, args.lifespan_count,
+            args.project_id)
     elif args.command == 'delete':
         delete_context(args.context_id, args.session_id, args.project_id)
-
