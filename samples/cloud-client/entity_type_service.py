@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Entity Type Python sample.
+"""DialogFlow API EntityType Python sample.
 
 Examples:
   python entity_type_service.py -h
