@@ -39,7 +39,7 @@ def list_contexts(session_id, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     session_path = contexts_client.session_path(project_id, session_id)
 
@@ -62,7 +62,7 @@ def create_context(context_id, session_id, lifespan_count=None,
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
     lifespan_count = lifespan_count or 1
 
     session_path = contexts_client.session_path(project_id, session_id)
@@ -83,7 +83,7 @@ def delete_context(context_id, session_id, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     context_name = contexts_client.context_path(
         project_id, session_id, context_id)

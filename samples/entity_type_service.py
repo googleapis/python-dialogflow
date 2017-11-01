@@ -39,7 +39,7 @@ def list_entity_types(project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = entity_types_client.project_agent_path(project_id)
 
@@ -57,7 +57,7 @@ def create_entity_type(display_name, kind=None, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
     kind = kind or enums.EntityType.Kind.KIND_MAP
 
     parent = entity_types_client.project_agent_path(project_id)
@@ -74,7 +74,7 @@ def delete_entity_type(entity_type_id, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     entity_type_path = entity_types_client.entity_type_path(
         project_id, entity_type_id)
@@ -88,7 +88,7 @@ def _get_entity_type_ids(display_name, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = entity_types_client.project_agent_path(project_id)
     entity_types = entity_types_client.list_entity_types(parent)

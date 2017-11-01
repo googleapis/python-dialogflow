@@ -40,7 +40,7 @@ def detect_intent_texts(texts, language_code=None, session_id=None,
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
     session_id = session_id or str(uuid.uuid4())
     language_code = language_code or 'en-US'
 

@@ -38,7 +38,7 @@ def list_intents(project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = intents_client.project_agent_path(project_id)
 
@@ -69,7 +69,7 @@ def create_intent(display_name, action=None, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = intents_client.project_agent_path(project_id)
     intent = types.Intent(display_name=display_name, action=action)
@@ -85,7 +85,7 @@ def delete_intent(intent_id, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     intent_path = intents_client.intent_path(project_id, intent_id)
 
@@ -98,7 +98,7 @@ def _get_intent_ids(display_name, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = intents_client.project_agent_path(project_id)
     intents = intents_client.list_intents(parent)

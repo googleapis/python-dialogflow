@@ -13,22 +13,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Detect Intent Python sample with audio files.
+"""DialogFlow API Detect Intent Python sample with audio files processed
+as an audio stream.
 
 Examples:
-  python detect_intent_audio.py -h
-  python detect_intent_audio.py --session-id mysession \
+  python detect_intent_stream.py -h
+  python detect_intent_stream.py --session-id mysession \
   --audio-file-path resources/book_a_room.wav
-  python detect_intent_audio.py --session-id mysession \
+  python detect_intent_stream.py --session-id mysession \
   --audio-file-path resources/mountain_view.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/today.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/230pm.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/half_an_hour.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/two_people.wav
 """
 
 # [START import_libraries]
@@ -42,9 +35,9 @@ from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def detect_intent_audio(audio_file_path, language_code=None,
-                        audio_encoding=None, sample_rate_hertz=None,
-                        session_id=None, project_id=None):
+def detect_intent_stream(audio_file_path, language_code=None,
+                         audio_encoding=None, sample_rate_hertz=None,
+                         session_id=None, project_id=None):
     """Returns the result of DetectIntent() with a text input."""
     session_client = dialogflow.SessionsClient()
 
@@ -65,14 +58,35 @@ def detect_intent_audio(audio_file_path, language_code=None,
         audio_config = types.InputAudioConfig(
             audio_encoding=audio_encoding, language_code=language_code,
             sample_rate_hertz=sample_rate_hertz)
-        query_input = types.QueryInput(audio_config=audio_config)
 
-        input_audio = audio_file.read()
+        def request_iterator():
+            query_input = types.QueryInput(audio_config=audio_config)
 
-        response = session_client.detect_intent(
-            session=session, query_input=query_input,
-            input_audio=input_audio)
-        query_result = response.query_result
+            # The first request contains the configuration.
+            yield types.StreamingDetectIntentRequest(
+                session=session, query_input=query_input)
+
+            # Here we are reading small chunks of audio data from a local
+            # audio file.  In practice these chunks should come from
+            # an audio input device.
+            while True:
+                chunk = audio_file.read(4096)
+                if not chunk:
+                    break
+                # The later requests contains audio data.
+                yield types.StreamingDetectIntentRequest(input_audio=chunk)
+
+        response_iterator = session_client.streaming_detect_intent(
+            request_iterator())
+        last_response = None
+
+        print('=' * 20)
+        for response in response_iterator:
+            last_response = response
+            print('Intermediate transcript: "{}".'.format(
+                    response.recognition_result.transcript))
+
+        query_result = last_response.query_result
 
         print('=' * 20)
         print('Query text: {}'.format(query_result.query_text))
@@ -117,6 +131,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    detect_intent_audio(
+    detect_intent_stream(
         args.audio_file_path, args.language_code, args.audio_encoding,
         args.sample_rate_hertz, args.session_id, args.project_id)

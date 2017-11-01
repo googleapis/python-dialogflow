@@ -40,7 +40,7 @@ def list_entities(entity_type_id, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = entity_types_client.entity_type_path(
         project_id, entity_type_id)
@@ -59,7 +59,7 @@ def create_entity(entity_type_id, entity_value, synonyms=[],
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
     # Note: synonyms must be exactly [entity_value] if the
     # entity_type's kind is KIND_LIST
     synonyms = synonyms or [entity_value]
@@ -83,7 +83,7 @@ def delete_entity(entity_type_id, entity_value, project_id=None):
 
     project_id = (
         project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
+        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     entity_type_path = entity_types_client.entity_type_path(
         project_id, entity_type_id)
