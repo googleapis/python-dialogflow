@@ -21,10 +21,18 @@ import intent_service
 # NOTE: This will actually affect the project's agent during the test.
 INTENT_DISPLAY_NAME = 'fake_display_name_for_testing'
 ACTION = 'fake_action_for_testing'
+INPUT_CONTEXT_IDS = [
+    'fake_context_id_for_testing_1',
+    'fake_context_id_for_testing_2'
+]
+TRAINING_PHRASE_PARTS = [
+    'fake_training_phrase_part_1',
+    'fake_training_phease_part_2'
+]
 
 
 def test_create_intent(capsys):
-    intent_service.create_intent(INTENT_DISPLAY_NAME, ACTION)
+    intent_service.create_intent(INTENT_DISPLAY_NAME, ACTION, TRAINING_PHRASE_PARTS, INPUT_CONTEXT_IDS)
 
     intent_ids = intent_service._get_intent_ids(INTENT_DISPLAY_NAME)
 
@@ -36,6 +44,8 @@ def test_create_intent(capsys):
 
     assert INTENT_DISPLAY_NAME in out
     assert ACTION in out
+    for intent_content_id in INPUT_CONTEXT_IDS:
+        assert intent_content_id in out
 
 
 def test_delete_session_entity_type(capsys):

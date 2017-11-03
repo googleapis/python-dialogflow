@@ -19,7 +19,8 @@ Examples:
   python intent_service.py -h
   python intent_service.py list
   python intent_service.py create "room.cancellation - yes" \
-  --action room.cancel --input-context-ids today tomorrow
+  --action room.cancel --input-context-ids today tomorrow \
+  --training-phrases-parts "cancel" "cancellation"
   python intent_service.py delete 74892d81-7901-496a-bb0a-c769eda5180e
 """
 
@@ -63,8 +64,8 @@ def list_intents(project_id=None):
             print('\tName: {}'.format(output_context.name))
 
 
-def create_intent(display_name, action=None, input_context_ids=[],
-                  project_id=None):
+def create_intent(display_name, action=None, training_phrases_parts=[],
+                  input_context_ids=[], project_id=None):
     """Create an intent of the given intent type."""
     intents_client = dialogflow.IntentsClient()
     contexts_client = dialogflow.ContextsClient()
@@ -79,8 +80,16 @@ def create_intent(display_name, action=None, input_context_ids=[],
     input_context_names = [
         contexts_client.context_path(project_id, '-', context_id)
         for context_id in input_context_ids]
+    training_phrases = []
+    for training_phrases_part in training_phrases_parts:
+        part = types.Intent.TrainingPhrase.Part(text=training_phrases_part)
+        # Here we create a new training phrase for each provided part.
+        training_phrase = types.Intent.TrainingPhrase(parts=[part])
+        training_phrases.append(training_phrase)
+
     intent = types.Intent(
         display_name=display_name, action=action,
+        training_phrases=training_phrases,
         input_context_names=input_context_names)
 
     response = intents_client.create_intent(parent, intent)
@@ -144,6 +153,11 @@ if __name__ == '__main__':
     create_parser.add_argument(
         '--action')
     create_parser.add_argument(
+        '--training-phrases-parts',
+        nargs='*',
+        type=str,
+        help='Training phrases.')
+    create_parser.add_argument(
         '--input-context-ids',
         nargs='*',
         type=str,
@@ -161,7 +175,7 @@ if __name__ == '__main__':
         list_intents(args.project_id)
     elif args.command == 'create':
         create_intent(
-            args.display_name, args.action, args.input_context_ids,
-            args.project_id)
+            args.display_name, args.action, args.training_phrases_parts,
+            args.input_context_ids, args.project_id)
     elif args.command == 'delete':
         delete_intent(args.intent_id, args.project_id)
