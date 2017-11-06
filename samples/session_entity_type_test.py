@@ -14,8 +14,8 @@
 
 import os
 
-import entity_type_service
-import session_entity_type_service
+import entity_type_management
+import session_entity_type_management
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 SESSION_ID = 'fake_session_for_testing'
@@ -25,13 +25,13 @@ ENTITY_VALUES = ['fake_entity_value_1', 'fake_entity_value_2']
 
 def test_create_session_entity_type(capsys):
     # Create an entity type
-    entity_type_service.create_entity_type(
+    entity_type_management.create_entity_type(
         PROJECT_ID, ENTITY_TYPE_DISPLAY_NAME, 'KIND_MAP')
 
-    session_entity_type_service.create_session_entity_type(
+    session_entity_type_management.create_session_entity_type(
         PROJECT_ID, SESSION_ID, ENTITY_VALUES, ENTITY_TYPE_DISPLAY_NAME,
         'ENTITY_OVERRIDE_MODE_SUPPLEMENT')
-    session_entity_type_service.list_session_entity_types(
+    session_entity_type_management.list_session_entity_types(
         PROJECT_ID, SESSION_ID)
 
     out, _ = capsys.readouterr()
@@ -43,9 +43,9 @@ def test_create_session_entity_type(capsys):
 
 
 def test_delete_session_entity_type(capsys):
-    session_entity_type_service.delete_session_entity_type(
+    session_entity_type_management.delete_session_entity_type(
         PROJECT_ID, SESSION_ID, ENTITY_TYPE_DISPLAY_NAME)
-    session_entity_type_service.list_session_entity_types(
+    session_entity_type_management.list_session_entity_types(
         PROJECT_ID, SESSION_ID)
 
     out, _ = capsys.readouterr()
@@ -54,8 +54,8 @@ def test_delete_session_entity_type(capsys):
         assert entity_value not in out
 
     # Clean up entity type
-    entity_type_ids = entity_type_service._get_entity_type_ids(
+    entity_type_ids = entity_type_management._get_entity_type_ids(
         PROJECT_ID, ENTITY_TYPE_DISPLAY_NAME)
     for entity_type_id in entity_type_ids:
-        entity_type_service.delete_entity_type(
+        entity_type_management.delete_entity_type(
             PROJECT_ID, entity_type_id)

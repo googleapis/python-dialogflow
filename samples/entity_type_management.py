@@ -17,10 +17,10 @@
 """DialogFlow API EntityType Python sample showing how to manage entity types.
 
 Examples:
-  python entity_type_service.py -h
-  python entity_type_service.py --project-id PROJECT_ID list
-  python entity_type_service.py --project-id PROJECT_ID create employee
-  python entity_type_service.py --project-id PROJECT_ID delete \
+  python entity_type_management.py -h
+  python entity_type_management.py --project-id PROJECT_ID list
+  python entity_type_management.py --project-id PROJECT_ID create employee
+  python entity_type_management.py --project-id PROJECT_ID delete \
   e57238e2-e692-44ea-9216-6be1b2332e2a
 """
 

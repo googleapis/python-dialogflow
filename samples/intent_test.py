@@ -14,7 +14,7 @@
 
 import os
 
-import intent_service
+import intent_management
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 INTENT_DISPLAY_NAME = 'fake_display_name_for_testing'
@@ -30,16 +30,16 @@ TRAINING_PHRASE_PARTS = [
 
 
 def test_create_intent(capsys):
-    intent_service.create_intent(
+    intent_management.create_intent(
         PROJECT_ID, INTENT_DISPLAY_NAME, ACTION, TRAINING_PHRASE_PARTS,
         INPUT_CONTEXT_IDS)
 
-    intent_ids = intent_service._get_intent_ids(
+    intent_ids = intent_management._get_intent_ids(
         PROJECT_ID, INTENT_DISPLAY_NAME)
 
     assert len(intent_ids) == 1
 
-    intent_service.list_intents(PROJECT_ID)
+    intent_management.list_intents(PROJECT_ID)
 
     out, _ = capsys.readouterr()
 
@@ -50,18 +50,18 @@ def test_create_intent(capsys):
 
 
 def test_delete_session_entity_type(capsys):
-    intent_ids = intent_service._get_intent_ids(
+    intent_ids = intent_management._get_intent_ids(
         PROJECT_ID, INTENT_DISPLAY_NAME)
 
     for intent_id in intent_ids:
-        intent_service.delete_intent(PROJECT_ID, intent_id)
+        intent_management.delete_intent(PROJECT_ID, intent_id)
 
-    intent_service.list_intents(PROJECT_ID)
+    intent_management.list_intents(PROJECT_ID)
     out, _ = capsys.readouterr()
 
     assert INTENT_DISPLAY_NAME not in out
 
-    intent_ids = intent_service._get_intent_ids(
+    intent_ids = intent_management._get_intent_ids(
         PROJECT_ID, INTENT_DISPLAY_NAME)
 
     assert len(intent_ids) == 0

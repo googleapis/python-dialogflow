@@ -17,13 +17,13 @@
 """DialogFlow API Entity Python sample showing how to manage entities.
 
 Examples:
-  python entity_service.py -h
-  python entity_service.py --project-id PROJECT_ID \
+  python entity_management.py -h
+  python entity_management.py --project-id PROJECT_ID \
   list --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
-  python entity_service.py --project-id PROJECT_ID \
+  python entity_management.py --project-id PROJECT_ID \
   create new_room --synonyms basement cellar \
   --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
-  python entity_service.py --project-id PROJECT_ID \
+  python entity_management.py --project-id PROJECT_ID \
   delete new_room \
   --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
 """

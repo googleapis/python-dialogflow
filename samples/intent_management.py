@@ -17,12 +17,12 @@
 """DialogFlow API Intent Python sample showing how to manage intents.
 
 Examples:
-  python intent_service.py -h
-  python intent_service.py --project-id PROJECT_ID list
-  python intent_service.py create "room.cancellation - yes" \
+  python intent_management.py -h
+  python intent_management.py --project-id PROJECT_ID list
+  python intent_management.py create "room.cancellation - yes" \
   --action room.cancel --input-context-ids today tomorrow \
   --training-phrases-parts "cancel" "cancellation"
-  python intent_service.py delete 74892d81-7901-496a-bb0a-c769eda5180e
+  python intent_management.py delete 74892d81-7901-496a-bb0a-c769eda5180e
 """
 
 # [START import_libraries]

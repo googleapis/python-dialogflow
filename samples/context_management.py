@@ -18,12 +18,12 @@
 contexts.
 
 Examples:
-  python context_service.py -h
-  python context_service.py --project-id PROJECT_ID \
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID \
   list --session-id SESSION_ID
-  python context_service.py --project-id PROJECT_ID \
+  python context_management.py --project-id PROJECT_ID \
   create --session-id SESSION_ID --context-id CONTEXT_ID
-  python context_service.py --project-id PROJECT_ID \
+  python context_management.py --project-id PROJECT_ID \
   delete --session-id SESSION_ID --context-id CONTEXT_ID
 """
 

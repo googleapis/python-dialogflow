@@ -15,7 +15,7 @@
 import os
 
 import detect_intent_texts
-import context_service
+import context_management
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 SESSION_ID = 'fake_session_for_testing'
@@ -27,16 +27,16 @@ def test_create_context(capsys):
     detect_intent_texts.detect_intent_texts(
         PROJECT_ID, SESSION_ID, ['hi'], 'en-US')
 
-    context_service.create_context(PROJECT_ID, SESSION_ID, CONTEXT_ID, 1)
-    context_service.list_contexts(PROJECT_ID, SESSION_ID)
+    context_management.create_context(PROJECT_ID, SESSION_ID, CONTEXT_ID, 1)
+    context_management.list_contexts(PROJECT_ID, SESSION_ID)
 
     out, _ = capsys.readouterr()
     assert CONTEXT_ID in out
 
 
 def test_delete_context(capsys):
-    context_service.delete_context(PROJECT_ID, SESSION_ID, CONTEXT_ID)
-    context_service.list_contexts(PROJECT_ID, SESSION_ID)
+    context_management.delete_context(PROJECT_ID, SESSION_ID, CONTEXT_ID)
+    context_management.list_contexts(PROJECT_ID, SESSION_ID)
 
     out, _ = capsys.readouterr()
     assert CONTEXT_ID not in out

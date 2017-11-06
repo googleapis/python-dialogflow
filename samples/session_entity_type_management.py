@@ -18,14 +18,13 @@
 session entity types.
 
 Examples:
-  python session_entity_type_service.py -h
-
-  python session_entity_type_service.py --project-id PROJECT_ID list \
+  python session_entity_type_management.py -h
+  python session_entity_type_management.py --project-id PROJECT_ID list \
   --session-id SESSION_ID
-  python session_entity_type_service.py --project-id PROJECT_ID create \
+  python session_entity_type_management.py --project-id PROJECT_ID create \
   --session-id SESSION_ID \
   --entity-type-display-name room --entity-values C D E F
-  python session_entity_type_service.py --project-id PROJECT_ID delete \
+  python session_entity_type_management.py --project-id PROJECT_ID delete \
   --session-id SESSION_ID \
   --entity-type-display-name room
 """
