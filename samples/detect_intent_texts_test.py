@@ -11,17 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import os
-import pytest
 
 from detect_intent_texts import detect_intent_texts
 
+PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+SESSION_ID = 'fake_session_for_testing'
 TEXTS = ["hello", "book a meeting room", "Mountain View",
     "tomorrow", "10am", "2 hours", "10 people", "A", "yes"]
 
 
 def test_detect_intent_texts(capsys):
-    session_id = 'test-session-id'
-    detect_intent_texts(TEXTS, session_id=session_id)
+    detect_intent_texts(PROJECT_ID, SESSION_ID, TEXTS, 'en-US')
     out, _ = capsys.readouterr()
 
     assert 'Fulfillment text: All set!' in out

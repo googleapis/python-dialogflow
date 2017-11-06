@@ -13,14 +13,11 @@
 # limitations under the License.
 
 import os
-import re
-import pytest
 
 import entity_type_service
 import session_entity_type_service
 
-# NOTE: This will actually affect the project's agent during the test.
-
+PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 SESSION_ID = 'fake_session_for_testing'
 ENTITY_TYPE_DISPLAY_NAME = 'fake_display_name_for_testing'
 ENTITY_VALUES = ['fake_entity_value_1', 'fake_entity_value_2']
@@ -28,10 +25,14 @@ ENTITY_VALUES = ['fake_entity_value_1', 'fake_entity_value_2']
 
 def test_create_session_entity_type(capsys):
     # Create an entity type
-    entity_type_service.create_entity_type(ENTITY_TYPE_DISPLAY_NAME)
+    entity_type_service.create_entity_type(
+        PROJECT_ID, ENTITY_TYPE_DISPLAY_NAME, 'KIND_MAP')
 
-    session_entity_type_service.create_session_entity_type(ENTITY_VALUES, ENTITY_TYPE_DISPLAY_NAME, SESSION_ID)
-    session_entity_type_service.list_session_entity_types(SESSION_ID)
+    session_entity_type_service.create_session_entity_type(
+        PROJECT_ID, SESSION_ID, ENTITY_VALUES, ENTITY_TYPE_DISPLAY_NAME,
+        'ENTITY_OVERRIDE_MODE_SUPPLEMENT')
+    session_entity_type_service.list_session_entity_types(
+        PROJECT_ID, SESSION_ID)
 
     out, _ = capsys.readouterr()
 
@@ -42,8 +43,10 @@ def test_create_session_entity_type(capsys):
 
 
 def test_delete_session_entity_type(capsys):
-    session_entity_type_service.delete_session_entity_type(ENTITY_TYPE_DISPLAY_NAME, SESSION_ID)
-    session_entity_type_service.list_session_entity_types(SESSION_ID)
+    session_entity_type_service.delete_session_entity_type(
+        PROJECT_ID, SESSION_ID, ENTITY_TYPE_DISPLAY_NAME)
+    session_entity_type_service.list_session_entity_types(
+        PROJECT_ID, SESSION_ID)
 
     out, _ = capsys.readouterr()
     assert ENTITY_TYPE_DISPLAY_NAME not in out
@@ -51,6 +54,8 @@ def test_delete_session_entity_type(capsys):
         assert entity_value not in out
 
     # Clean up entity type
-    entity_type_ids = entity_type_service._get_entity_type_ids(ENTITY_TYPE_DISPLAY_NAME)
+    entity_type_ids = entity_type_service._get_entity_type_ids(
+        PROJECT_ID, ENTITY_TYPE_DISPLAY_NAME)
     for entity_type_id in entity_type_ids:
-        entity_type_service.delete_entity_type(entity_type_id)
+        entity_type_service.delete_entity_type(
+            PROJECT_ID, entity_type_id)

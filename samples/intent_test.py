@@ -13,12 +13,10 @@
 # limitations under the License.
 
 import os
-import re
-import pytest
 
 import intent_service
 
-# NOTE: This will actually affect the project's agent during the test.
+PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 INTENT_DISPLAY_NAME = 'fake_display_name_for_testing'
 ACTION = 'fake_action_for_testing'
 INPUT_CONTEXT_IDS = [
@@ -32,13 +30,16 @@ TRAINING_PHRASE_PARTS = [
 
 
 def test_create_intent(capsys):
-    intent_service.create_intent(INTENT_DISPLAY_NAME, ACTION, TRAINING_PHRASE_PARTS, INPUT_CONTEXT_IDS)
+    intent_service.create_intent(
+        PROJECT_ID, INTENT_DISPLAY_NAME, ACTION, TRAINING_PHRASE_PARTS,
+        INPUT_CONTEXT_IDS)
 
-    intent_ids = intent_service._get_intent_ids(INTENT_DISPLAY_NAME)
+    intent_ids = intent_service._get_intent_ids(
+        PROJECT_ID, INTENT_DISPLAY_NAME)
 
     assert len(intent_ids) == 1
 
-    intent_service.list_intents()
+    intent_service.list_intents(PROJECT_ID)
 
     out, _ = capsys.readouterr()
 
@@ -49,17 +50,19 @@ def test_create_intent(capsys):
 
 
 def test_delete_session_entity_type(capsys):
-    intent_ids = intent_service._get_intent_ids(INTENT_DISPLAY_NAME)
+    intent_ids = intent_service._get_intent_ids(
+        PROJECT_ID, INTENT_DISPLAY_NAME)
 
     for intent_id in intent_ids:
-        intent_service.delete_intent(intent_id)
+        intent_service.delete_intent(PROJECT_ID, intent_id)
 
-    intent_service.list_intents()
+    intent_service.list_intents(PROJECT_ID)
     out, _ = capsys.readouterr()
 
     assert INTENT_DISPLAY_NAME not in out
 
-    intent_ids = intent_service._get_intent_ids(INTENT_DISPLAY_NAME)
+    intent_ids = intent_service._get_intent_ids(
+        PROJECT_ID, INTENT_DISPLAY_NAME)
 
     assert len(intent_ids) == 0
 

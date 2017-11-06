@@ -11,10 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import os
-import pytest
 
 from detect_intent_audio import detect_intent_audio
 
+PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+SESSION_ID = 'fake_session_for_testing'
 AUDIOS = [
     'resources/book_a_room.wav',
     'resources/mountain_view.wav',
@@ -25,7 +26,7 @@ AUDIOS = [
 def test_detect_intent_audio(capsys):
     session_id = 'test-session-id'
     for audio_file_path in AUDIOS:
-        detect_intent_audio(audio_file_path, session_id=session_id)
+        detect_intent_audio(PROJECT_ID, SESSION_ID, audio_file_path, 'en-US')
     out, _ = capsys.readouterr()
 
     assert 'Fulfillment text: What time will the meeting start?' in out

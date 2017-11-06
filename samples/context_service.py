@@ -13,33 +13,29 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Context Python sample.
+
+"""DialogFlow API Context Python sample showing how to manage session
+contexts.
 
 Examples:
   python context_service.py -h
-  python context_service.py list --session-id mysession
-  python context_service.py create --session-id mysession \
-  --context-id mycontext
-  python context_service.py delete --session-id mysession \
-  --context-id mycontext
+  python context_service.py --project-id PROJECT_ID \
+  list --session-id SESSION_ID
+  python context_service.py --project-id PROJECT_ID \
+  create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_service.py --project-id PROJECT_ID \
+  delete --session-id SESSION_ID --context-id CONTEXT_ID
 """
 
 # [START import_libraries]
 import argparse
-import os
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def list_contexts(session_id, project_id=None):
-    """List contexts."""
+def list_contexts(project_id, session_id):
     contexts_client = dialogflow.ContextsClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     session_path = contexts_client.session_path(project_id, session_id)
 
@@ -50,40 +46,28 @@ def list_contexts(session_id, project_id=None):
         print('Context name: {}'.format(context.name))
         print('Lifespan count: {}'.format(context.lifespan_count))
         print('Fields:')
-        for field, string_value in context.parameters.fields.items():
-            if string_value.string_value:
-                print('\t{}: {}'.format(field, string_value))
+        for field, value in context.parameters.fields.items():
+            if value.string_value:
+                print('\t{}: {}'.format(field, value))
 
 
-def create_context(context_id, session_id, lifespan_count=None,
-                   project_id=None):
-    """Create an entity type with the given display name."""
+def create_context(project_id, session_id, context_id, lifespan_count):
     contexts_client = dialogflow.ContextsClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
-    lifespan_count = lifespan_count or 1
 
     session_path = contexts_client.session_path(project_id, session_id)
     context_name = contexts_client.context_path(
         project_id, session_id, context_id)
 
-    context = types.Context(name=context_name, lifespan_count=lifespan_count)
+    context = dialogflow.types.Context(
+        name=context_name, lifespan_count=lifespan_count)
 
     response = contexts_client.create_context(session_path, context)
 
     print('Context created: \n{}'.format(response))
 
 
-def delete_context(context_id, session_id, project_id=None):
-    """Delete entity type with the given entity type name.
-    """
+def delete_context(project_id, session_id, context_id):
     contexts_client = dialogflow.ContextsClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     context_name = contexts_client.context_path(
         project_id, session_id, context_id)
@@ -97,9 +81,8 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the '
-        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
-        'variables.')
+        help='Project/agent id.  Required.',
+        required=True)
 
     subparsers = parser.add_subparsers(dest='command')
 
@@ -120,7 +103,8 @@ if __name__ == '__main__':
         required=True)
     create_parser.add_argument(
         '--lifespan-count',
-        help='The lifespan_count of the context.  Defaults to 1.')
+        help='The lifespan_count of the context.  Defaults to 1.',
+        default=1)
 
     delete_parser = subparsers.add_parser(
         'delete', help=delete_context.__doc__)
@@ -135,10 +119,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.command == 'list':
-        list_contexts(args.session_id, args.project_id)
+        list_contexts(args.project_id, args.session_id, )
     elif args.command == 'create':
         create_context(
-            args.context_id, args.session_id, args.lifespan_count,
-            args.project_id)
+            args.project_id, args.session_id, args.context_id,
+            args.lifespan_count)
     elif args.command == 'delete':
-        delete_context(args.context_id, args.session_id, args.project_id)
+        delete_context(args.project_id, args.session_id, args.context_id)

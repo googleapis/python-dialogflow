@@ -13,74 +13,61 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Detect Intent Python sample with audio files.
+
+"""DialogFlow API Detect Intent Python sample with audio file.
 
 Examples:
   python detect_intent_audio.py -h
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/book_a_room.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/mountain_view.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/today.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/230pm.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/half_an_hour.wav
-  python detect_intent_audio.py --session-id mysession \
-  --audio-file-path resources/two_people.wav
+  python detect_intent_audio.py --project-id PROJECT_ID \
+  --session-id SESSION_ID --audio-file-path resources/book_a_room.wav
+  python detect_intent_audio.py --project-id PROJECT_ID \
+  --session-id SESSION_ID --audio-file-path resources/mountain_view.wav
+  python detect_intent_audio.py --project-id PROJECT_ID \
+  --session-id SESSION_ID --audio-file-path resources/today.wav
 """
 
 # [START import_libraries]
 import argparse
-import os
 import uuid
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import enums
-from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def detect_intent_audio(audio_file_path, language_code=None,
-                        audio_encoding=None, sample_rate_hertz=None,
-                        session_id=None, project_id=None):
-    """Returns the result of DetectIntent() with a text input."""
+def detect_intent_audio(project_id, session_id, audio_file_path,
+                        language_code):
+    """Returns the result of detect intent with an audio file as input.
+
+    Using the same `session_id` between requests allows continuation
+    of the conversaion."""
     session_client = dialogflow.SessionsClient()
 
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
-    session_id = session_id or str(uuid.uuid4())
-    language_code = language_code or 'en-US'
-    audio_encoding = (
-        audio_encoding
-        or enums.AudioEncoding.AUDIO_ENCODING_LINEAR_16)
-    sample_rate_hertz = sample_rate_hertz or 16000
+    # Note: hard coding audio_encoding and sample_rate_hertz for simplicity.
+    audio_encoding = dialogflow.enums.AudioEncoding.AUDIO_ENCODING_LINEAR_16
+    sample_rate_hertz = 16000
 
     session = session_client.session_path(project_id, session_id)
     print('Session path: {}\n'.format(session))
 
     with open(audio_file_path, 'rb') as audio_file:
-        audio_config = types.InputAudioConfig(
-            audio_encoding=audio_encoding, language_code=language_code,
-            sample_rate_hertz=sample_rate_hertz)
-        query_input = types.QueryInput(audio_config=audio_config)
-
         input_audio = audio_file.read()
 
-        response = session_client.detect_intent(
-            session=session, query_input=query_input,
-            input_audio=input_audio)
-        query_result = response.query_result
+    audio_config = dialogflow.types.InputAudioConfig(
+        audio_encoding=audio_encoding, language_code=language_code,
+        sample_rate_hertz=sample_rate_hertz)
+    query_input = dialogflow.types.QueryInput(audio_config=audio_config)
 
-        print('=' * 20)
-        print('Query text: {}'.format(query_result.query_text))
-        print('Detected intent: {} (confidence: {})\n'.format(
-            query_result.intent.display_name,
-            query_result.intent_detection_confidence))
-        print('Fulfillment text: {}\n'.format(
-            query_result.fulfillment_text))
+    response = session_client.detect_intent(
+        session=session, query_input=query_input,
+        input_audio=input_audio)
+
+    print('=' * 20)
+    print('Query text: {}'.format(response.query_result.query_text))
+    print('Detected intent: {} (confidence: {})\n'.format(
+        response.query_result.intent.display_name,
+        response.query_result.intent_detection_confidence))
+    print('Fulfillment text: {}\n'.format(
+        response.query_result.fulfillment_text))
 
 
 if __name__ == '__main__':
@@ -89,27 +76,17 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the '
-        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
-        'variables.')
+        help='Project/agent id.  Required.',
+        required=True)
     parser.add_argument(
         '--session-id',
         help='Identifier of the DetectIntent session. '
-        'Defaults to a random UUID.')
+        'Defaults to a random UUID.',
+        default=str(uuid.uuid4()))
     parser.add_argument(
         '--language-code',
-        help='Language code of the query. Defaults to "en-US".')
-    parser.add_argument(
-        '--audio-encoding',
-        help='Encoding of the input audio. Defaults to '
-        'AUDIO_ENCODING_LINEAR_16. See '
-        'https://cloud.google.com/speech/docs/basics#audio-encodings.')
-    parser.add_argument(
-        '--sample-rate-hertz',
-        help='Sample rate of the input audio. Only required if the input '
-        'audio is in raw format. Defaults to 16000. See '
-        'https://cloud.google.com/speech/docs/basics#sample-rates.',
-        type=int)
+        help='Language code of the query. Defaults to "en-US".',
+        default='en-US')
     parser.add_argument(
         '--audio-file-path',
         help='Path to the audio file.',
@@ -118,5 +95,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     detect_intent_audio(
-        args.audio_file_path, args.language_code, args.audio_encoding,
-        args.sample_rate_hertz, args.session_id, args.project_id)
+        args.project_id, args.session_id, args.audio_file_path,
+        args.language_code)

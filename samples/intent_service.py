@@ -13,11 +13,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API Intent Python sample.
+
+"""DialogFlow API Intent Python sample showing how to manage intents.
 
 Examples:
   python intent_service.py -h
-  python intent_service.py list
+  python intent_service.py --project-id PROJECT_ID list
   python intent_service.py create "room.cancellation - yes" \
   --action room.cancel --input-context-ids today tomorrow \
   --training-phrases-parts "cancel" "cancellation"
@@ -26,20 +27,13 @@ Examples:
 
 # [START import_libraries]
 import argparse
-import os
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def list_intents(project_id=None):
-    """List intents."""
+def list_intents(project_id):
     intents_client = dialogflow.IntentsClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = intents_client.project_agent_path(project_id)
 
@@ -64,15 +58,11 @@ def list_intents(project_id=None):
             print('\tName: {}'.format(output_context.name))
 
 
-def create_intent(display_name, action=None, training_phrases_parts=[],
-                  input_context_ids=[], project_id=None):
+def create_intent(project_id, display_name, action, training_phrases_parts,
+                  input_context_ids):
     """Create an intent of the given intent type."""
     intents_client = dialogflow.IntentsClient()
     contexts_client = dialogflow.ContextsClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = intents_client.project_agent_path(project_id)
     # Setting session_id as '-' for contexts which are not
@@ -82,12 +72,13 @@ def create_intent(display_name, action=None, training_phrases_parts=[],
         for context_id in input_context_ids]
     training_phrases = []
     for training_phrases_part in training_phrases_parts:
-        part = types.Intent.TrainingPhrase.Part(text=training_phrases_part)
+        part = dialogflow.types.Intent.TrainingPhrase.Part(
+            text=training_phrases_part)
         # Here we create a new training phrase for each provided part.
-        training_phrase = types.Intent.TrainingPhrase(parts=[part])
+        training_phrase = dialogflow.types.Intent.TrainingPhrase(parts=[part])
         training_phrases.append(training_phrase)
 
-    intent = types.Intent(
+    intent = dialogflow.types.Intent(
         display_name=display_name, action=action,
         training_phrases=training_phrases,
         input_context_names=input_context_names)
@@ -97,13 +88,9 @@ def create_intent(display_name, action=None, training_phrases_parts=[],
     print('Intent created: {}'.format(response))
 
 
-def delete_intent(intent_id, project_id=None):
+def delete_intent(project_id, intent_id):
     """Delete intent with the given intent type and intent value."""
     intents_client = dialogflow.IntentsClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     intent_path = intents_client.intent_path(project_id, intent_id)
 
@@ -111,12 +98,8 @@ def delete_intent(intent_id, project_id=None):
 
 
 # Helper to get intent from display name.
-def _get_intent_ids(display_name, project_id=None):
+def _get_intent_ids(project_id, display_name):
     intents_client = dialogflow.IntentsClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
 
     parent = intents_client.project_agent_path(project_id)
     intents = intents_client.list_intents(parent)
@@ -137,9 +120,8 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the '
-        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
-        'variables.')
+        help='Project/agent id.  Required.',
+        required=True)
 
     subparsers = parser.add_subparsers(dest='command')
 
@@ -156,12 +138,14 @@ if __name__ == '__main__':
         '--training-phrases-parts',
         nargs='*',
         type=str,
-        help='Training phrases.')
+        help='Training phrases.',
+        default=[])
     create_parser.add_argument(
         '--input-context-ids',
         nargs='*',
         type=str,
-        help='Input context ids.')
+        help='Input context ids.',
+        default=[])
 
     delete_parser = subparsers.add_parser(
         'delete', help=delete_intent.__doc__)
@@ -175,7 +159,8 @@ if __name__ == '__main__':
         list_intents(args.project_id)
     elif args.command == 'create':
         create_intent(
-            args.display_name, args.action, args.training_phrases_parts,
-            args.input_context_ids, args.project_id)
+            args.project_id, args.display_name, args.action,
+            args.training_phrases_parts,
+            args.input_context_ids, )
     elif args.command == 'delete':
-        delete_intent(args.intent_id, args.project_id)
+        delete_intent(args.project_id, args.intent_id)

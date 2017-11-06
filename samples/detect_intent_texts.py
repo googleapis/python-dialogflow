@@ -13,57 +13,53 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """DialogFlow API Detect Intent Python sample with text inputs.
 
 Examples:
   python detect_intent_texts.py -h
-  python detect_intent_texts.py --session-id mysession \
+  python detect_intent_texts.py --project-id PROJECT_ID \
+  --session-id SESSION_ID \
   "hello" "book a meeting room" "Mountain View"
-  python detect_intent_textx.py --session-id mysession \
+  python detect_intent_text.py --project-id PROJECT_ID \
+  --session-id SESSION_ID \
   "tomorrow" "10am" "2 hours" "10 people" "A" "yes"
 """
 
 # [START import_libraries]
 import argparse
-import os
 import uuid
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def detect_intent_texts(texts, language_code=None, session_id=None,
-                        project_id=None):
-    """Returns the result of DetectIntent() with a text input."""
-    session_client = dialogflow.SessionsClient()
+def detect_intent_texts(project_id, session_id, texts, language_code):
+    """Returns the result of detect intent with texts as inputs.
 
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or os.getenv('GOOGLE_CLOUD_PROJECT'))
-    session_id = session_id or str(uuid.uuid4())
-    language_code = language_code or 'en-US'
+    Using the same `session_id` between requests allows continuation
+    of the conversaion."""
+    session_client = dialogflow.SessionsClient()
 
     session = session_client.session_path(project_id, session_id)
     print('Session path: {}\n'.format(session))
 
     for text in texts:
-        text_input = types.TextInput(
+        text_input = dialogflow.types.TextInput(
             text=text, language_code=language_code)
 
-        query_input = types.QueryInput(text=text_input)
+        query_input = dialogflow.types.QueryInput(text=text_input)
 
         response = session_client.detect_intent(
             session=session, query_input=query_input)
-        query_result = response.query_result
 
         print('=' * 20)
-        print('Query text: {}'.format(query_result.query_text))
+        print('Query text: {}'.format(response.query_result.query_text))
         print('Detected intent: {} (confidence: {})\n'.format(
-            query_result.intent.display_name,
-            query_result.intent_detection_confidence))
+            response.query_result.intent.display_name,
+            response.query_result.intent_detection_confidence))
         print('Fulfillment text: {}\n'.format(
-            query_result.fulfillment_text))
+            response.query_result.fulfillment_text))
 
 
 if __name__ == '__main__':
@@ -72,16 +68,17 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the '
-        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
-        'variables.')
+        help='Project/agent id.  Required.',
+        required=True)
     parser.add_argument(
         '--session-id',
         help='Identifier of the DetectIntent session. '
-             'Defaults to a random UUID.')
+        'Defaults to a random UUID.',
+        default=str(uuid.uuid4()))
     parser.add_argument(
         '--language-code',
-        help='Language code of the query. Defaults to "en-US".')
+        help='Language code of the query. Defaults to "en-US".',
+        default='en-US')
     parser.add_argument(
         'texts',
         nargs='+',
@@ -91,4 +88,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     detect_intent_texts(
-        args.texts, args.language_code, args.session_id, args.project_id)
+        args.project_id, args.session_id, args.texts, args.language_code)

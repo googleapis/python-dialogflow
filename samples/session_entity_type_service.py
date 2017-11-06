@@ -13,37 +13,32 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""DialogFlow API SessionEntityType Python sample.
+
+"""DialogFlow API SessionEntityType Python sample showing how to manage
+session entity types.
 
 Examples:
   python session_entity_type_service.py -h
 
-  python session_entity_type_service.py list --session-id mysession
-
-  python session_entity_type_service.py create --session-id mysession \
+  python session_entity_type_service.py --project-id PROJECT_ID list \
+  --session-id SESSION_ID
+  python session_entity_type_service.py --project-id PROJECT_ID create \
+  --session-id SESSION_ID \
   --entity-type-display-name room --entity-values C D E F
-
-  python session_entity_type_service.py delete --session-id mysession \
+  python session_entity_type_service.py --project-id PROJECT_ID delete \
+  --session-id SESSION_ID \
   --entity-type-display-name room
 """
 
 # [START import_libraries]
 import argparse
-import os
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import enums
-from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
-def list_session_entity_types(session_id, project_id=None):
-    """List session_entity_types."""
+def list_session_entity_types(project_id, session_id):
     session_entity_types_client = dialogflow.SessionEntityTypesClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
 
     session_path = session_entity_types_client.session_path(
         project_id, session_id)
@@ -59,19 +54,10 @@ def list_session_entity_types(session_id, project_id=None):
             len(session_entity_type.entities)))
 
 
-def create_session_entity_type(entity_values, entity_type_display_name,
-                               session_id, entity_override_mode=None,
-                               project_id=None):
-    """Create an entity type with the given display name."""
+def create_session_entity_type(project_id, session_id, entity_values,
+                               entity_type_display_name, entity_override_mode):
+    """Create a session entity type with the given display name."""
     session_entity_types_client = dialogflow.SessionEntityTypesClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
-    entity_override_mode = (
-        entity_override_mode
-        or (enums.SessionEntityType.EntityOverrideMode.
-            ENTITY_OVERRIDE_MODE_OVERRIDE))
 
     session_path = session_entity_types_client.session_path(
         project_id, session_id)
@@ -81,9 +67,9 @@ def create_session_entity_type(entity_values, entity_type_display_name,
 
     # Here we use the entity value as the only synonym.
     entities = [
-        types.EntityType.Entity(value=value, synonyms=[value])
+        dialogflow.types.EntityType.Entity(value=value, synonyms=[value])
         for value in entity_values]
-    session_entity_type = types.SessionEntityType(
+    session_entity_type = dialogflow.types.SessionEntityType(
         name=session_entity_type_name,
         entity_override_mode=entity_override_mode,
         entities=entities)
@@ -94,15 +80,10 @@ def create_session_entity_type(entity_values, entity_type_display_name,
     print('SessionEntityType created: \n\n{}'.format(response))
 
 
-def delete_session_entity_type(entity_type_display_name, session_id,
-                               project_id=None):
-    """Delete entity type with the given entity type name.
-    """
+def delete_session_entity_type(project_id, session_id,
+                               entity_type_display_name):
+    """Delete session entity type with the given entity type display name."""
     session_entity_types_client = dialogflow.SessionEntityTypesClient()
-
-    project_id = (
-        project_id or os.getenv('GCLOUD_PROJECT')
-        or (os.getenv('GOOGLE_CLOUD_PROJECT')))
 
     session_entity_type_name = (
         session_entity_types_client.session_entity_type_path(
@@ -118,9 +99,8 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '--project-id',
-        help='Project/agent id. Defaults to the value of the '
-        'GCLOUD_PROJECT or GOOGLE_CLOUD_PROJECT environment '
-        'variables.')
+        help='Project/agent id.  Required.',
+        required=True)
 
     subparsers = parser.add_subparsers(dest='command')
 
@@ -148,7 +128,9 @@ if __name__ == '__main__':
     create_parser.add_argument(
         '--entity-override-mode',
         help='ENTITY_OVERRIDE_MODE_OVERRIDE (default) or '
-        'ENTITY_OVERRIDE_MODE_SUPPLEMENT')
+        'ENTITY_OVERRIDE_MODE_SUPPLEMENT',
+        default=(dialogflow.enums.SessionEntityType.EntityOverrideMode.
+                 ENTITY_OVERRIDE_MODE_OVERRIDE))
 
     delete_parser = subparsers.add_parser(
         'delete', help=delete_session_entity_type.__doc__)
@@ -163,11 +145,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.command == 'list':
-        list_session_entity_types(args.session_id, args.project_id)
+        list_session_entity_types(args.project_id, args.session_id)
     elif args.command == 'create':
         create_session_entity_type(
-            args.entity_values, args.entity_type_display_name,
-            args.session_id, args.entity_override_mode, args.project_id)
+            args.project_id, args.session_id, args.entity_values,
+            args.entity_type_display_name, args.entity_override_mode)
     elif args.command == 'delete':
         delete_session_entity_type(
-            args.entity_type_display_name, args.session_id, args.project_id)
+            args.project_id, args.session_id, args.entity_type_display_name)

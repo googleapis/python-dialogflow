@@ -11,16 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import os
-import pytest
 
 from detect_intent_stream import detect_intent_stream
 
+PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+SESSION_ID = 'fake_session_for_testing'
 AUDIO_FILE_PATH = 'resources/book_a_room.wav'
 
 
 def test_detect_intent_stream(capsys):
-    detect_intent_stream(AUDIO_FILE_PATH)
+    detect_intent_stream(PROJECT_ID, SESSION_ID, AUDIO_FILE_PATH, 'en-US')
     out, _ = capsys.readouterr()
 
     assert 'Intermediate transcript: "book"' in out
-    assert 'Fulfillment text: I can help with that.' in out
+    assert 'Fulfillment text: What time will the meeting start?' in out
