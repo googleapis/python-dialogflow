@@ -17,7 +17,7 @@ from detect_intent_texts import detect_intent_texts
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 SESSION_ID = 'fake_session_for_testing'
 TEXTS = ["hello", "book a meeting room", "Mountain View",
-    "tomorrow", "10am", "2 hours", "10 people", "A", "yes"]
+    "tomorrow", "10 AM", "2 hours", "10 people", "A", "yes"]
 
 
 def test_detect_intent_texts(capsys):
