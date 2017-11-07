@@ -1,4 +1,4 @@
-# Copyright 2017, Google Inc. All rights reserved.
+# Copyright 2017, Google LLC All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,10 +13,8 @@
 # limitations under the License.
 """Unit tests."""
 
-import mock
-import unittest
+import pytest
 
-from google.gax import errors
 from google.rpc import status_pb2
 
 from google.cloud import dialogflow_v2beta1
@@ -25,23 +23,48 @@ from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 
 
+class MultiCallableStub(object):
+    """Stub for the grpc.UnaryUnaryMultiCallable interface."""
+
+    def __init__(self, method, channel_stub):
+        self.method = method
+        self.channel_stub = channel_stub
+
+    def __call__(self, request, timeout=None, metadata=None, credentials=None):
+        self.channel_stub.requests.append((self.method, request))
+
+        response = None
+        if self.channel_stub.responses:
+            response = self.channel_stub.responses.pop()
+
+        if isinstance(response, Exception):
+            raise response
+
+        if response:
+            return response
+
+
+class ChannelStub(object):
+    """Stub for the grpc.Channel interface."""
+
+    def __init__(self, responses=[]):
+        self.responses = responses
+        self.requests = []
+
+    def unary_unary(self,
+                    method,
+                    request_serializer=None,
+                    response_deserializer=None):
+        return MultiCallableStub(method, self)
+
+
 class CustomException(Exception):
     pass
 
 
-class TestIntentsClient(unittest.TestCase):
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_list_intents(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
-        parent = client.project_agent_path('[PROJECT]')
-
-        # Mock response
+class TestIntentsClient(object):
+    def test_list_intents(self):
+        # Setup Expected Response
         next_page_token = ''
         intents_element = {}
         intents = [intents_element]
@@ -50,53 +73,38 @@ class TestIntentsClient(unittest.TestCase):
             'intents': intents
         }
         expected_response = intent_pb2.ListIntentsResponse(**expected_response)
-        grpc_stub.ListIntents.return_value = expected_response
+
+        # Mock the API response
+        channel = ChannelStub(responses=[expected_response])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
+
+        # Setup Request
+        parent = client.project_agent_path('[PROJECT]')
 
         paged_list_response = client.list_intents(parent)
         resources = list(paged_list_response)
-        self.assertEqual(1, len(resources))
-        self.assertEqual(expected_response.intents[0], resources[0])
+        assert len(resources) == 1
 
-        grpc_stub.ListIntents.assert_called_once()
-        args, kwargs = grpc_stub.ListIntents.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        assert expected_response.intents[0] == resources[0]
 
+        assert len(channel.requests) == 1
         expected_request = intent_pb2.ListIntentsRequest(parent=parent)
-        self.assertEqual(expected_request, actual_request)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
 
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_list_intents_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
+    def test_list_intents_exception(self):
+        channel = ChannelStub(responses=[CustomException()])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
+        # Setup request
         parent = client.project_agent_path('[PROJECT]')
 
-        # Mock exception response
-        grpc_stub.ListIntents.side_effect = CustomException()
-
         paged_list_response = client.list_intents(parent)
-        self.assertRaises(errors.GaxError, list, paged_list_response)
+        with pytest.raises(CustomException):
+            list(paged_list_response)
 
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_get_intent(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
-        name = client.intent_path('[PROJECT]', '[INTENT]')
-
-        # Mock response
+    def test_get_intent(self):
+        # Setup Expected Response
         name_2 = 'name2-1052831874'
         display_name = 'displayName1615086568'
         priority = -1165461084
@@ -118,51 +126,35 @@ class TestIntentsClient(unittest.TestCase):
             'parent_followup_intent_name': parent_followup_intent_name
         }
         expected_response = intent_pb2.Intent(**expected_response)
-        grpc_stub.GetIntent.return_value = expected_response
 
-        response = client.get_intent(name)
-        self.assertEqual(expected_response, response)
+        # Mock the API response
+        channel = ChannelStub(responses=[expected_response])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        grpc_stub.GetIntent.assert_called_once()
-        args, kwargs = grpc_stub.GetIntent.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
-
-        expected_request = intent_pb2.GetIntentRequest(name=name)
-        self.assertEqual(expected_request, actual_request)
-
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_get_intent_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
+        # Setup Request
         name = client.intent_path('[PROJECT]', '[INTENT]')
 
-        # Mock exception response
-        grpc_stub.GetIntent.side_effect = CustomException()
+        response = client.get_intent(name)
+        assert expected_response == response
 
-        self.assertRaises(errors.GaxError, client.get_intent, name)
+        assert len(channel.requests) == 1
+        expected_request = intent_pb2.GetIntentRequest(name=name)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
 
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_create_intent(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
+    def test_get_intent_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        client = dialogflow_v2beta1.IntentsClient()
+        # Setup request
+        name = client.intent_path('[PROJECT]', '[INTENT]')
 
-        # Mock request
-        parent = client.project_agent_path('[PROJECT]')
-        intent = {}
+        with pytest.raises(CustomException):
+            client.get_intent(name)
 
-        # Mock response
+    def test_create_intent(self):
+        # Setup Expected Response
         name = 'name3373707'
         display_name = 'displayName1615086568'
         priority = -1165461084
@@ -184,54 +176,38 @@ class TestIntentsClient(unittest.TestCase):
             'parent_followup_intent_name': parent_followup_intent_name
         }
         expected_response = intent_pb2.Intent(**expected_response)
-        grpc_stub.CreateIntent.return_value = expected_response
+
+        # Mock the API response
+        channel = ChannelStub(responses=[expected_response])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
+
+        # Setup Request
+        parent = client.project_agent_path('[PROJECT]')
+        intent = {}
 
         response = client.create_intent(parent, intent)
-        self.assertEqual(expected_response, response)
+        assert expected_response == response
 
-        grpc_stub.CreateIntent.assert_called_once()
-        args, kwargs = grpc_stub.CreateIntent.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
-
+        assert len(channel.requests) == 1
         expected_request = intent_pb2.CreateIntentRequest(
             parent=parent, intent=intent)
-        self.assertEqual(expected_request, actual_request)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
 
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_create_intent_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
+    def test_create_intent_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
+        # Setup request
         parent = client.project_agent_path('[PROJECT]')
         intent = {}
 
-        # Mock exception response
-        grpc_stub.CreateIntent.side_effect = CustomException()
+        with pytest.raises(CustomException):
+            client.create_intent(parent, intent)
 
-        self.assertRaises(errors.GaxError, client.create_intent, parent,
-                          intent)
-
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_update_intent(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
-        intent = {}
-        language_code = 'languageCode-412800396'
-
-        # Mock response
+    def test_update_intent(self):
+        # Setup Expected Response
         name = 'name3373707'
         display_name = 'displayName1615086568'
         priority = -1165461084
@@ -253,190 +229,148 @@ class TestIntentsClient(unittest.TestCase):
             'parent_followup_intent_name': parent_followup_intent_name
         }
         expected_response = intent_pb2.Intent(**expected_response)
-        grpc_stub.UpdateIntent.return_value = expected_response
 
-        response = client.update_intent(intent, language_code)
-        self.assertEqual(expected_response, response)
+        # Mock the API response
+        channel = ChannelStub(responses=[expected_response])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        grpc_stub.UpdateIntent.assert_called_once()
-        args, kwargs = grpc_stub.UpdateIntent.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
-
-        expected_request = intent_pb2.UpdateIntentRequest(
-            intent=intent, language_code=language_code)
-        self.assertEqual(expected_request, actual_request)
-
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_update_intent_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
+        # Setup Request
         intent = {}
         language_code = 'languageCode-412800396'
 
-        # Mock exception response
-        grpc_stub.UpdateIntent.side_effect = CustomException()
+        response = client.update_intent(intent, language_code)
+        assert expected_response == response
 
-        self.assertRaises(errors.GaxError, client.update_intent, intent,
-                          language_code)
+        assert len(channel.requests) == 1
+        expected_request = intent_pb2.UpdateIntentRequest(
+            intent=intent, language_code=language_code)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
 
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_delete_intent(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
+    def test_update_intent_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        client = dialogflow_v2beta1.IntentsClient()
+        # Setup request
+        intent = {}
+        language_code = 'languageCode-412800396'
 
-        # Mock request
+        with pytest.raises(CustomException):
+            client.update_intent(intent, language_code)
+
+    def test_delete_intent(self):
+        channel = ChannelStub()
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
+
+        # Setup Request
         name = client.intent_path('[PROJECT]', '[INTENT]')
 
         client.delete_intent(name)
 
-        grpc_stub.DeleteIntent.assert_called_once()
-        args, kwargs = grpc_stub.DeleteIntent.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
-
+        assert len(channel.requests) == 1
         expected_request = intent_pb2.DeleteIntentRequest(name=name)
-        self.assertEqual(expected_request, actual_request)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
 
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_delete_intent_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
+    def test_delete_intent_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
+        # Setup request
         name = client.intent_path('[PROJECT]', '[INTENT]')
 
-        # Mock exception response
-        grpc_stub.DeleteIntent.side_effect = CustomException()
+        with pytest.raises(CustomException):
+            client.delete_intent(name)
 
-        self.assertRaises(errors.GaxError, client.delete_intent, name)
-
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_batch_update_intents(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
-        parent = client.agent_path('[PROJECT]', '[AGENT]')
-        language_code = 'languageCode-412800396'
-
-        # Mock response
+    def test_batch_update_intents(self):
+        # Setup Expected Response
         expected_response = {}
         expected_response = intent_pb2.BatchUpdateIntentsResponse(
             **expected_response)
         operation = operations_pb2.Operation(
             name='operations/test_batch_update_intents', done=True)
         operation.response.Pack(expected_response)
-        grpc_stub.BatchUpdateIntents.return_value = operation
 
-        response = client.batch_update_intents(parent, language_code)
-        self.assertEqual(expected_response, response.result())
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        grpc_stub.BatchUpdateIntents.assert_called_once()
-        args, kwargs = grpc_stub.BatchUpdateIntents.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
-
-        expected_request = intent_pb2.BatchUpdateIntentsRequest(
-            parent=parent, language_code=language_code)
-        self.assertEqual(expected_request, actual_request)
-
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_batch_update_intents_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
+        # Setup Request
         parent = client.agent_path('[PROJECT]', '[AGENT]')
         language_code = 'languageCode-412800396'
 
-        # Mock exception response
+        response = client.batch_update_intents(parent, language_code)
+        result = response.result()
+        assert expected_response == result
+
+        assert len(channel.requests) == 1
+        expected_request = intent_pb2.BatchUpdateIntentsRequest(
+            parent=parent, language_code=language_code)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_batch_update_intents_exception(self):
+        # Setup Response
         error = status_pb2.Status()
         operation = operations_pb2.Operation(
             name='operations/test_batch_update_intents_exception', done=True)
         operation.error.CopyFrom(error)
-        grpc_stub.BatchUpdateIntents.return_value = operation
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
+
+        # Setup Request
+        parent = client.agent_path('[PROJECT]', '[AGENT]')
+        language_code = 'languageCode-412800396'
 
         response = client.batch_update_intents(parent, language_code)
-        self.assertEqual(error, response.exception())
+        exception = response.exception()
+        assert exception.errors[0] == error
 
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_batch_delete_intents(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
-        parent = client.project_path('[PROJECT]')
-        intents = []
-
-        # Mock response
+    def test_batch_delete_intents(self):
+        # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
         operation = operations_pb2.Operation(
             name='operations/test_batch_delete_intents', done=True)
         operation.response.Pack(expected_response)
-        grpc_stub.BatchDeleteIntents.return_value = operation
 
-        response = client.batch_delete_intents(parent, intents)
-        self.assertEqual(expected_response, response.result())
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
-        grpc_stub.BatchDeleteIntents.assert_called_once()
-        args, kwargs = grpc_stub.BatchDeleteIntents.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
-
-        expected_request = intent_pb2.BatchDeleteIntentsRequest(
-            parent=parent, intents=intents)
-        self.assertEqual(expected_request, actual_request)
-
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_batch_delete_intents_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.IntentsClient()
-
-        # Mock request
+        # Setup Request
         parent = client.project_path('[PROJECT]')
         intents = []
 
-        # Mock exception response
+        response = client.batch_delete_intents(parent, intents)
+        result = response.result()
+        assert expected_response == result
+
+        assert len(channel.requests) == 1
+        expected_request = intent_pb2.BatchDeleteIntentsRequest(
+            parent=parent, intents=intents)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_batch_delete_intents_exception(self):
+        # Setup Response
         error = status_pb2.Status()
         operation = operations_pb2.Operation(
             name='operations/test_batch_delete_intents_exception', done=True)
         operation.error.CopyFrom(error)
-        grpc_stub.BatchDeleteIntents.return_value = operation
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        client = dialogflow_v2beta1.IntentsClient(channel=channel)
+
+        # Setup Request
+        parent = client.project_path('[PROJECT]')
+        intents = []
 
         response = client.batch_delete_intents(parent, intents)
-        self.assertEqual(error, response.exception())
+        exception = response.exception()
+        assert exception.errors[0] == error

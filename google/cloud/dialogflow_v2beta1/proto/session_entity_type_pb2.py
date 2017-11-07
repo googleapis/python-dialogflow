@@ -356,7 +356,7 @@ SessionEntityType = _reflection.GeneratedProtocolMessageType('SessionEntityType'
       name:
           Required. The unique identifier of this session entity type.
           Format: ``projects/<Project ID>/agent/sessions/<Session
-          ID>/entityTypes/<Entity Type ID>``.
+          ID>/entityTypes/<Entity Type Display Name>``.
       entity_override_mode:
           Required. Indicates whether the additional data should
           override or supplement the developer entity type definition.
@@ -421,7 +421,7 @@ GetSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('GetSessi
       name:
           Required. The name of the session entity type. Format:
           ``projects/<Project ID>/agent/sessions/<Session
-          ID>/entityTypes/<Session Entity Type ID>``.
+          ID>/entityTypes/<Entity Type Display Name>``.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.GetSessionEntityTypeRequest)
   ))
@@ -456,7 +456,7 @@ UpdateSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('Updat
       session_entity_type:
           Required. The entity type to update. Format:
           ``projects/<Project ID>/agent/sessions/<Session
-          ID>/entityTypes/<Session Entity Type ID>``.
+          ID>/entityTypes/<Entity Type Display Name>``.
       update_mask:
           Optional. The mask to control which fields get updated.
   """,
@@ -475,7 +475,7 @@ DeleteSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('Delet
       name:
           Required. The name of the entity type to delete. Format:
           ``projects/<Project ID>/agent/sessions/<Session
-          ID>/entityTypes/<Session Entity Type ID>``.
+          ID>/entityTypes/<Entity Type Display Name>``.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest)
   ))

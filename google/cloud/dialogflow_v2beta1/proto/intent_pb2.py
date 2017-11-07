@@ -2420,7 +2420,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
           the intent is matched. Context messages in this collection
           should not set the parameters field. Format:
           ``projects/<Project ID>/agents/<Agent
-          ID>/sessions/*/contexts/<Context ID>``.
+          ID>/sessions/-/contexts/<Context ID>``.
       reset_contexts:
           Optional. Indicates whether to delete all contexts in the
           current session when this intent is matched.

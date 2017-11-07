@@ -1,4 +1,4 @@
-# Copyright 2017, Google Inc. All rights reserved.
+# Copyright 2017, Google LLC All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,126 +13,135 @@
 # limitations under the License.
 """Unit tests."""
 
-import mock
-import unittest
-
-from google.gax import errors
+import pytest
 
 from google.cloud import dialogflow_v2beta1
 from google.cloud.dialogflow_v2beta1.proto import session_pb2
+
+
+class MultiCallableStub(object):
+    """Stub for the grpc.UnaryUnaryMultiCallable interface."""
+
+    def __init__(self, method, channel_stub):
+        self.method = method
+        self.channel_stub = channel_stub
+
+    def __call__(self, request, timeout=None, metadata=None, credentials=None):
+        self.channel_stub.requests.append((self.method, request))
+
+        response = None
+        if self.channel_stub.responses:
+            response = self.channel_stub.responses.pop()
+
+        if isinstance(response, Exception):
+            raise response
+
+        if response:
+            return response
+
+
+class ChannelStub(object):
+    """Stub for the grpc.Channel interface."""
+
+    def __init__(self, responses=[]):
+        self.responses = responses
+        self.requests = []
+
+    def unary_unary(self,
+                    method,
+                    request_serializer=None,
+                    response_deserializer=None):
+        return MultiCallableStub(method, self)
+
+    def stream_stream(self,
+                      method,
+                      request_serializer=None,
+                      response_deserializer=None):
+        return MultiCallableStub(method, self)
 
 
 class CustomException(Exception):
     pass
 
 
-class TestSessionsClient(unittest.TestCase):
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_detect_intent(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.SessionsClient()
-
-        # Mock request
-        session = client.session_path('[PROJECT]', '[SESSION]')
-        query_input = {}
-
-        # Mock response
+class TestSessionsClient(object):
+    def test_detect_intent(self):
+        # Setup Expected Response
         response_id = 'responseId1847552473'
         expected_response = {'response_id': response_id}
         expected_response = session_pb2.DetectIntentResponse(
             **expected_response)
-        grpc_stub.DetectIntent.return_value = expected_response
 
-        response = client.detect_intent(session, query_input)
-        self.assertEqual(expected_response, response)
+        # Mock the API response
+        channel = ChannelStub(responses=[expected_response])
+        client = dialogflow_v2beta1.SessionsClient(channel=channel)
 
-        grpc_stub.DetectIntent.assert_called_once()
-        args, kwargs = grpc_stub.DetectIntent.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
-
-        expected_request = session_pb2.DetectIntentRequest(
-            session=session, query_input=query_input)
-        self.assertEqual(expected_request, actual_request)
-
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_detect_intent_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.SessionsClient()
-
-        # Mock request
+        # Setup Request
         session = client.session_path('[PROJECT]', '[SESSION]')
         query_input = {}
 
-        # Mock exception response
-        grpc_stub.DetectIntent.side_effect = CustomException()
+        response = client.detect_intent(session, query_input)
+        assert expected_response == response
 
-        self.assertRaises(errors.GaxError, client.detect_intent, session,
-                          query_input)
+        assert len(channel.requests) == 1
+        expected_request = session_pb2.DetectIntentRequest(
+            session=session, query_input=query_input)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
 
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_streaming_detect_intent(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
+    def test_detect_intent_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        client = dialogflow_v2beta1.SessionsClient(channel=channel)
 
-        client = dialogflow_v2beta1.SessionsClient()
-
-        # Mock request
-        session = 'session1984987798'
+        # Setup request
+        session = client.session_path('[PROJECT]', '[SESSION]')
         query_input = {}
-        request = {'session': session, 'query_input': query_input}
-        requests = [request]
 
-        # Mock response
+        with pytest.raises(CustomException):
+            client.detect_intent(session, query_input)
+
+    def test_streaming_detect_intent(self):
+        # Setup Expected Response
         response_id = 'responseId1847552473'
         expected_response = {'response_id': response_id}
         expected_response = session_pb2.StreamingDetectIntentResponse(
             **expected_response)
-        grpc_stub.StreamingDetectIntent.return_value = iter(
-            [expected_response])
 
-        response = client.streaming_detect_intent(requests)
-        resources = list(response)
-        self.assertEqual(1, len(resources))
-        self.assertEqual(expected_response, resources[0])
+        # Mock the API response
+        channel = ChannelStub(responses=[iter([expected_response])])
+        client = dialogflow_v2beta1.SessionsClient(channel=channel)
 
-        grpc_stub.StreamingDetectIntent.assert_called_once()
-        args, kwargs = grpc_stub.StreamingDetectIntent.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_requests = args[0]
-        self.assertEqual(1, len(actual_requests))
-        actual_request = list(actual_requests)[0]
-        self.assertEqual(request, actual_request)
-
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_streaming_detect_intent_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = dialogflow_v2beta1.SessionsClient()
-
-        # Mock request
+        # Setup Request
         session = 'session1984987798'
         query_input = {}
         request = {'session': session, 'query_input': query_input}
+        request = session_pb2.StreamingDetectIntentRequest(**request)
         requests = [request]
 
-        # Mock exception response
-        grpc_stub.StreamingDetectIntent.side_effect = CustomException()
+        response = client.streaming_detect_intent(requests)
+        resources = list(response)
+        assert len(resources) == 1
+        assert expected_response == resources[0]
 
-        self.assertRaises(errors.GaxError, client.streaming_detect_intent,
-                          requests)
+        assert len(channel.requests) == 1
+        actual_requests = channel.requests[0][1]
+        assert len(actual_requests) == 1
+        actual_request = list(actual_requests)[0]
+        assert request == actual_request
+
+    def test_streaming_detect_intent_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        client = dialogflow_v2beta1.SessionsClient(channel=channel)
+
+        # Setup request
+        session = 'session1984987798'
+        query_input = {}
+        request = {'session': session, 'query_input': query_input}
+
+        request = session_pb2.StreamingDetectIntentRequest(**request)
+        requests = [request]
+
+        with pytest.raises(CustomException):
+            client.streaming_detect_intent(requests)
