@@ -19,9 +19,10 @@
 Examples:
   python intent_management.py -h
   python intent_management.py --project-id PROJECT_ID list
-  python intent_management.py create "room.cancellation - yes" \
-  --action room.cancel --input-context-ids today tomorrow \
-  --training-phrases-parts "cancel" "cancellation"
+  python intent_management.py --project-id PROJECT_ID create \
+  "room.cancellation - yes" \
+  --training-phrases-parts "cancel" "cancellation" \
+  --message-texts "Are you sure you want to cancel?" "Cancelled."
   python intent_management.py delete 74892d81-7901-496a-bb0a-c769eda5180e
 """
 
