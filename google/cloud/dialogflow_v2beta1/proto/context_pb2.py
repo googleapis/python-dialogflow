@@ -357,17 +357,13 @@ Context = _reflection.GeneratedProtocolMessageType('Context', (_message.Message,
       lifespan_count:
           Optional. The number of conversational query requests after
           which the context expires. If set to ``0`` (the default) the
-          context expires when an intent is detected for a query.
-          Contexts expire automatically after 10 minutes even if there
-          are no matching queries. If a context is added to a
-          ``DetectIntent`` query (``QueryParameters.contexts``) and the
-          ``lifespan_count`` for the context is less than or equal to
-          ``1``, the context can expire immediately if the
-          ``DetectIntent`` query matches an intent.
+          context expires immediately. Contexts expire automatically
+          after 10 minutes even if there are no matching queries.
       parameters:
           Optional. The collection of parameters associated with this
-          context. Refer to `this doc <https://api.ai/docs/actions-and-
-          parameters>`__ for syntax.
+          context. Refer to `this doc
+          <https://dialogflow.com/docs/actions-and-parameters>`__ for
+          syntax.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.Context)
   ))
@@ -516,8 +512,8 @@ try:
     """Manages contexts.
 
 
-    Refer to [documentation](https://api.ai/docs/contexts) for more details about
-    # contexts.
+    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
+    # details about contexts.
 
     Standard methods.
     """
@@ -564,8 +560,8 @@ try:
     """Manages contexts.
 
 
-    Refer to [documentation](https://api.ai/docs/contexts) for more details about
-    # contexts.
+    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
+    # details about contexts.
 
     Standard methods.
     """
@@ -660,8 +656,8 @@ try:
     """Manages contexts.
 
 
-    Refer to [documentation](https://api.ai/docs/contexts) for more details about
-    # contexts.
+    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
+    # details about contexts.
 
     Standard methods.
     """
@@ -700,8 +696,8 @@ try:
     """Manages contexts.
 
 
-    Refer to [documentation](https://api.ai/docs/contexts) for more details about
-    # contexts.
+    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
+    # details about contexts.
 
     Standard methods.
     """

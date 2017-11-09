@@ -10,8 +10,8 @@ class EntityTypesStub(object):
   """Manages agent entity types.
 
 
-  Refer to [documentation](https://api.ai/docs/entities) for more details about
-  # entity types.
+  Refer to [documentation](https://dialogflow.com/docs/entities) for more
+  # details about entity types.
 
   Standard methods.
   """
@@ -78,8 +78,8 @@ class EntityTypesServicer(object):
   """Manages agent entity types.
 
 
-  Refer to [documentation](https://api.ai/docs/entities) for more details about
-  # entity types.
+  Refer to [documentation](https://dialogflow.com/docs/entities) for more
+  # details about entity types.
 
   Standard methods.
   """
@@ -122,7 +122,8 @@ class EntityTypesServicer(object):
   def BatchUpdateEntityTypes(self, request, context):
     """Updates/Creates multiple entity types in the specified agent.
 
-    Operation<response: BatchUpdateEntityTypesResponse>
+    Operation<response: BatchUpdateEntityTypesResponse,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -131,7 +132,8 @@ class EntityTypesServicer(object):
   def BatchDeleteEntityTypes(self, request, context):
     """Deletes entity types in the specified agent.
 
-    Operation<response: google.protobuf.Empty>
+    Operation<response: google.protobuf.Empty,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -151,7 +153,8 @@ class EntityTypesServicer(object):
     """Updates entities in the specified entity type (replaces the existing
     collection of entries).
 
-    Operation<response: google.protobuf.Empty>
+    Operation<response: google.protobuf.Empty,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -160,7 +163,8 @@ class EntityTypesServicer(object):
   def BatchDeleteEntities(self, request, context):
     """Deletes entities in the specified entity type.
 
-    Operation<response: google.protobuf.Empty>
+    Operation<response: google.protobuf.Empty,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')

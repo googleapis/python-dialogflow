@@ -9,8 +9,8 @@ class ContextsStub(object):
   """Manages contexts.
 
 
-  Refer to [documentation](https://api.ai/docs/contexts) for more details about
-  # contexts.
+  Refer to [documentation](https://dialogflow.com/docs/contexts) for more
+  # details about contexts.
 
   Standard methods.
   """
@@ -57,8 +57,8 @@ class ContextsServicer(object):
   """Manages contexts.
 
 
-  Refer to [documentation](https://api.ai/docs/contexts) for more details about
-  # contexts.
+  Refer to [documentation](https://dialogflow.com/docs/contexts) for more
+  # details about contexts.
 
   Standard methods.
   """

@@ -9,8 +9,8 @@ class AgentsStub(object):
   """Manages conversational agents.
 
 
-  Refer to [documentation](https://api.ai/docs/agents) for more details about
-  # agents.
+  Refer to [documentation](https://dialogflow.com/docs/agents) for more details
+  # about agents.
 
   Standard methods.
   """
@@ -57,8 +57,8 @@ class AgentsServicer(object):
   """Manages conversational agents.
 
 
-  Refer to [documentation](https://api.ai/docs/agents) for more details about
-  # agents.
+  Refer to [documentation](https://dialogflow.com/docs/agents) for more details
+  # about agents.
 
   Standard methods.
   """
@@ -87,7 +87,8 @@ class AgentsServicer(object):
     """Trains the specified agent.
 
 
-    Operation<response: google.protobuf.Empty>
+    Operation<response: google.protobuf.Empty,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -97,7 +98,8 @@ class AgentsServicer(object):
     """Exports the specified agent to a ZIP file.
 
 
-    Operation<response: ExportAgentResponse>
+    Operation<response: ExportAgentResponse,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -111,7 +113,8 @@ class AgentsServicer(object):
     versions from ImportAgentRequest.
 
 
-    Operation<response: google.protobuf.Empty>
+    Operation<response: google.protobuf.Empty,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -124,7 +127,8 @@ class AgentsServicer(object):
     entity types in the older version are deleted.
 
 
-    Operation<response: google.protobuf.Empty>
+    Operation<response: google.protobuf.Empty,
+    metadata: google.protobuf.Struct>
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')

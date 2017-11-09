@@ -519,9 +519,9 @@ Agent = _reflection.GeneratedProtocolMessageType('Agent', (_message.Message,), d
       default_language_code:
           Required. The default language of the agent as a language tag.
           See `Language Support
-          <https://api.ai/docs/reference/language>`__ for a list of the
-          currently supported language codes. This field cannot be set
-          by the ``Update`` method.
+          <https://dialogflow.com/docs/reference/language>`__ for a list
+          of the currently supported language codes. This field cannot
+          be set by the ``Update`` method.
       supported_language_codes:
           Optional. The list of all languages supported by this agent
           (except for the ``default_language_code``).
@@ -535,7 +535,8 @@ Agent = _reflection.GeneratedProtocolMessageType('Agent', (_message.Message,), d
       avatar_uri:
           Optional. The URI of the agent's avatar. Avatars are used
           throughout API.AI console and in the self-hosted `Web Demo
-          <https://api.ai/docs/integrations/web-demo>`__ integration.
+          <https://dialogflow.com/docs/integrations/web-demo>`__
+          integration.
       enable_logging:
           Optional. Determines whether this agent should log
           conversation queries.
@@ -565,8 +566,8 @@ GetAgentRequest = _reflection.GeneratedProtocolMessageType('GetAgentRequest', (_
   
   Attributes:
       parent:
-          Required. The name of the agent. Format: ``projects/<Project
-          ID>``.
+          Required. The project that the agent to fetch is associated
+          with. Format: ``projects/<Project ID>``.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.GetAgentRequest)
   ))
@@ -622,8 +623,8 @@ TrainAgentRequest = _reflection.GeneratedProtocolMessageType('TrainAgentRequest'
   
   Attributes:
       parent:
-          Required. The name of the agent to train. Format:
-          ``projects/<Project ID>``.
+          Required. The project that the agent to train is associated
+          with. Format: ``projects/<Project ID>``.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.TrainAgentRequest)
   ))
@@ -638,8 +639,8 @@ ExportAgentRequest = _reflection.GeneratedProtocolMessageType('ExportAgentReques
   
   Attributes:
       parent:
-          Required. The name of the agent to export. Format:
-          ``projects/<Project ID>``.
+          Required. The project that the agent to export is associated
+          with. Format: ``projects/<Project ID>``.
       agent_uri:
           Optional. The URI to export the agent to. Note: The URI must
           start with "gs://". If left unspecified, the serialized agent
@@ -678,8 +679,8 @@ ImportAgentRequest = _reflection.GeneratedProtocolMessageType('ImportAgentReques
   
   Attributes:
       parent:
-          Required. The name of the agent to import. Format:
-          ``projects/<Project ID>``.
+          Required. The project that the agent to import is associated
+          with. Format: ``projects/<Project ID>``.
       agent:
           Required. The agent to import.
       agent_uri:
@@ -701,8 +702,8 @@ RestoreAgentRequest = _reflection.GeneratedProtocolMessageType('RestoreAgentRequ
   
   Attributes:
       parent:
-          Required. The name of the agent to restore. Format:
-          ``projects/<Project ID>``.
+          Required. The project that the agent to restore is associated
+          with. Format: ``projects/<Project ID>``.
       agent:
           Required. The agent to restore.
       agent_uri:
@@ -732,8 +733,8 @@ try:
     """Manages conversational agents.
 
 
-    Refer to [documentation](https://api.ai/docs/agents) for more details about
-    # agents.
+    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
+    # about agents.
 
     Standard methods.
     """
@@ -780,8 +781,8 @@ try:
     """Manages conversational agents.
 
 
-    Refer to [documentation](https://api.ai/docs/agents) for more details about
-    # agents.
+    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
+    # about agents.
 
     Standard methods.
     """
@@ -810,7 +811,8 @@ try:
       """Trains the specified agent.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -820,7 +822,8 @@ try:
       """Exports the specified agent to a ZIP file.
 
 
-      Operation<response: ExportAgentResponse>
+      Operation<response: ExportAgentResponse,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -834,7 +837,8 @@ try:
       versions from ImportAgentRequest.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -847,7 +851,8 @@ try:
       entity types in the older version are deleted.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -901,8 +906,8 @@ try:
     """Manages conversational agents.
 
 
-    Refer to [documentation](https://api.ai/docs/agents) for more details about
-    # agents.
+    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
+    # about agents.
 
     Standard methods.
     """
@@ -924,14 +929,16 @@ try:
       """Trains the specified agent.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def ExportAgent(self, request, context):
       """Exports the specified agent to a ZIP file.
 
 
-      Operation<response: ExportAgentResponse>
+      Operation<response: ExportAgentResponse,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def ImportAgent(self, request, context):
@@ -942,7 +949,8 @@ try:
       versions from ImportAgentRequest.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def RestoreAgent(self, request, context):
@@ -952,7 +960,8 @@ try:
       entity types in the older version are deleted.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
@@ -966,8 +975,8 @@ try:
     """Manages conversational agents.
 
 
-    Refer to [documentation](https://api.ai/docs/agents) for more details about
-    # agents.
+    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
+    # about agents.
 
     Standard methods.
     """
@@ -991,7 +1000,8 @@ try:
       """Trains the specified agent.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     TrainAgent.future = None
@@ -999,7 +1009,8 @@ try:
       """Exports the specified agent to a ZIP file.
 
 
-      Operation<response: ExportAgentResponse>
+      Operation<response: ExportAgentResponse,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     ExportAgent.future = None
@@ -1011,7 +1022,8 @@ try:
       versions from ImportAgentRequest.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     ImportAgent.future = None
@@ -1022,7 +1034,8 @@ try:
       entity types in the older version are deleted.
 
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     RestoreAgent.future = None

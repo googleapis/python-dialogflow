@@ -832,8 +832,9 @@ ListEntityTypesRequest = _reflection.GeneratedProtocolMessageType('ListEntityTyp
       language_code:
           Optional. The language to list entity synonyms for. If not
           specified, the agent's default language is used. `More than a
-          dozen languages <https://api.ai/docs/reference/language>`__
-          are supported. Note: languages must be enabled in the agent,
+          dozen languages
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
           before they can be used.
       page_size:
           Optional. The maximum number of items to return in a single
@@ -880,8 +881,9 @@ GetEntityTypeRequest = _reflection.GeneratedProtocolMessageType('GetEntityTypeRe
       language_code:
           Optional. The language to retrieve entity synonyms for. If not
           specified, the agent's default language is used. `More than a
-          dozen languages <https://api.ai/docs/reference/language>`__
-          are supported. Note: languages must be enabled in the agent,
+          dozen languages
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
           before they can be used.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.GetEntityTypeRequest)
@@ -905,9 +907,9 @@ CreateEntityTypeRequest = _reflection.GeneratedProtocolMessageType('CreateEntity
           Optional. The language of entity synonyms defined in
           ``entity_type``. If not specified, the agent's default
           language is used. `More than a dozen languages
-          <https://api.ai/docs/reference/language>`__ are supported.
-          Note: languages must be enabled in the agent, before they can
-          be used.
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
+          before they can be used.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.CreateEntityTypeRequest)
   ))
@@ -928,9 +930,9 @@ UpdateEntityTypeRequest = _reflection.GeneratedProtocolMessageType('UpdateEntity
           Optional. The language of entity synonyms defined in
           ``entity_type``. If not specified, the agent's default
           language is used. `More than a dozen languages
-          <https://api.ai/docs/reference/language>`__ are supported.
-          Note: languages must be enabled in the agent, before they can
-          be used.
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
+          before they can be used.
       update_mask:
           Optional. The mask to control which fields get updated.
   """,
@@ -964,7 +966,7 @@ BatchUpdateEntityTypesRequest = _reflection.GeneratedProtocolMessageType('BatchU
   Attributes:
       parent:
           Required. The name of the agent to update or create entity
-          types in. Format: ``projects/<Project ID>/agents/<Agent ID>``.
+          types in. Format: ``projects/<Project ID>/agent``.
       entity_type_batch:
           Required. The source of the entity type batch.  For each
           entity type in the batch: \* If ``name`` is specified, we
@@ -981,9 +983,9 @@ BatchUpdateEntityTypesRequest = _reflection.GeneratedProtocolMessageType('BatchU
           Optional. The language of entity synonyms defined in
           ``entity_types``. If not specified, the agent's default
           language is used. `More than a dozen languages
-          <https://api.ai/docs/reference/language>`__ are supported.
-          Note: languages must be enabled in the agent, before they can
-          be used.
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
+          before they can be used.
       update_mask:
           Optional. The mask to control which fields get updated.
   """,
@@ -1043,9 +1045,9 @@ BatchCreateEntitiesRequest = _reflection.GeneratedProtocolMessageType('BatchCrea
           Optional. The language of entity synonyms defined in
           ``entities``. If not specified, the agent's default language
           is used. `More than a dozen languages
-          <https://api.ai/docs/reference/language>`__ are supported.
-          Note: languages must be enabled in the agent, before they can
-          be used.
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
+          before they can be used.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest)
   ))
@@ -1070,9 +1072,9 @@ BatchUpdateEntitiesRequest = _reflection.GeneratedProtocolMessageType('BatchUpda
           Optional. The language of entity synonyms defined in
           ``entities``. If not specified, the agent's default language
           is used. `More than a dozen languages
-          <https://api.ai/docs/reference/language>`__ are supported.
-          Note: languages must be enabled in the agent, before they can
-          be used.
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
+          before they can be used.
       update_mask:
           Optional. The mask to control which fields get updated.
   """,
@@ -1100,9 +1102,9 @@ BatchDeleteEntitiesRequest = _reflection.GeneratedProtocolMessageType('BatchDele
           Optional. The language of entity synonyms defined in
           ``entities``. If not specified, the agent's default language
           is used. `More than a dozen languages
-          <https://api.ai/docs/reference/language>`__ are supported.
-          Note: languages must be enabled in the agent, before they can
-          be used.
+          <https://dialogflow.com/docs/reference/language>`__ are
+          supported. Note: languages must be enabled in the agent,
+          before they can be used.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.BatchDeleteEntitiesRequest)
   ))
@@ -1140,8 +1142,8 @@ try:
     """Manages agent entity types.
 
 
-    Refer to [documentation](https://api.ai/docs/entities) for more details about
-    # entity types.
+    Refer to [documentation](https://dialogflow.com/docs/entities) for more
+    # details about entity types.
 
     Standard methods.
     """
@@ -1208,8 +1210,8 @@ try:
     """Manages agent entity types.
 
 
-    Refer to [documentation](https://api.ai/docs/entities) for more details about
-    # entity types.
+    Refer to [documentation](https://dialogflow.com/docs/entities) for more
+    # details about entity types.
 
     Standard methods.
     """
@@ -1252,7 +1254,8 @@ try:
     def BatchUpdateEntityTypes(self, request, context):
       """Updates/Creates multiple entity types in the specified agent.
 
-      Operation<response: BatchUpdateEntityTypesResponse>
+      Operation<response: BatchUpdateEntityTypesResponse,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -1261,7 +1264,8 @@ try:
     def BatchDeleteEntityTypes(self, request, context):
       """Deletes entity types in the specified agent.
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -1281,7 +1285,8 @@ try:
       """Updates entities in the specified entity type (replaces the existing
       collection of entries).
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -1290,7 +1295,8 @@ try:
     def BatchDeleteEntities(self, request, context):
       """Deletes entities in the specified entity type.
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -1364,8 +1370,8 @@ try:
     """Manages agent entity types.
 
 
-    Refer to [documentation](https://api.ai/docs/entities) for more details about
-    # entity types.
+    Refer to [documentation](https://dialogflow.com/docs/entities) for more
+    # details about entity types.
 
     Standard methods.
     """
@@ -1392,13 +1398,15 @@ try:
     def BatchUpdateEntityTypes(self, request, context):
       """Updates/Creates multiple entity types in the specified agent.
 
-      Operation<response: BatchUpdateEntityTypesResponse>
+      Operation<response: BatchUpdateEntityTypesResponse,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def BatchDeleteEntityTypes(self, request, context):
       """Deletes entity types in the specified agent.
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def BatchCreateEntities(self, request, context):
@@ -1412,13 +1420,15 @@ try:
       """Updates entities in the specified entity type (replaces the existing
       collection of entries).
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def BatchDeleteEntities(self, request, context):
       """Deletes entities in the specified entity type.
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
@@ -1432,8 +1442,8 @@ try:
     """Manages agent entity types.
 
 
-    Refer to [documentation](https://api.ai/docs/entities) for more details about
-    # entity types.
+    Refer to [documentation](https://dialogflow.com/docs/entities) for more
+    # details about entity types.
 
     Standard methods.
     """
@@ -1465,14 +1475,16 @@ try:
     def BatchUpdateEntityTypes(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Updates/Creates multiple entity types in the specified agent.
 
-      Operation<response: BatchUpdateEntityTypesResponse>
+      Operation<response: BatchUpdateEntityTypesResponse,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     BatchUpdateEntityTypes.future = None
     def BatchDeleteEntityTypes(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Deletes entity types in the specified agent.
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     BatchDeleteEntityTypes.future = None
@@ -1488,14 +1500,16 @@ try:
       """Updates entities in the specified entity type (replaces the existing
       collection of entries).
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     BatchUpdateEntities.future = None
     def BatchDeleteEntities(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Deletes entities in the specified entity type.
 
-      Operation<response: google.protobuf.Empty>
+      Operation<response: google.protobuf.Empty,
+      metadata: google.protobuf.Struct>
       """
       raise NotImplementedError()
     BatchDeleteEntities.future = None

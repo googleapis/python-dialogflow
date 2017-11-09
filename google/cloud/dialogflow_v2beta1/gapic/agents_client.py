@@ -50,8 +50,8 @@ class AgentsClient(object):
     Manages conversational agents.
 
 
-    Refer to `documentation <https://api.ai/docs/agents>`_ for more details about
-    # agents.
+    Refer to `documentation <https://dialogflow.com/docs/agents>`_ for more details
+    # about agents.
 
     Standard methods.
     """
@@ -177,7 +177,7 @@ class AgentsClient(object):
             >>> response = client.get_agent(parent)
 
         Args:
-            parent (str): Required. The name of the agent.
+            parent (str): Required. The project that the agent to fetch is associated with.
                 Format: ``projects/<Project ID>``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
@@ -280,7 +280,8 @@ class AgentsClient(object):
         Trains the specified agent.
 
 
-        Operation<response: google.protobuf.Empty>
+        Operation<response: google.protobuf.Empty,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -301,7 +302,7 @@ class AgentsClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            parent (str): Required. The name of the agent to train.
+            parent (str): Required. The project that the agent to train is associated with.
                 Format: ``projects/<Project ID>``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
@@ -337,7 +338,8 @@ class AgentsClient(object):
         Exports the specified agent to a ZIP file.
 
 
-        Operation<response: ExportAgentResponse>
+        Operation<response: ExportAgentResponse,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -358,7 +360,7 @@ class AgentsClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            parent (str): Required. The name of the agent to export.
+            parent (str): Required. The project that the agent to export is associated with.
                 Format: ``projects/<Project ID>``.
             agent_uri (str): Optional. The URI to export the agent to. Note: The URI must start with
                 \"gs://\". If left unspecified, the serialized agent is returned inline.
@@ -402,7 +404,8 @@ class AgentsClient(object):
         versions from ImportAgentRequest.
 
 
-        Operation<response: google.protobuf.Empty>
+        Operation<response: google.protobuf.Empty,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -423,7 +426,7 @@ class AgentsClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            parent (str): Required. The name of the agent to import.
+            parent (str): Required. The project that the agent to import is associated with.
                 Format: ``projects/<Project ID>``.
             agent_uri (str): The URI to a file containing the agent to import. Note: The URI must
                 start with \"gs://\".
@@ -473,7 +476,8 @@ class AgentsClient(object):
         entity types in the older version are deleted.
 
 
-        Operation<response: google.protobuf.Empty>
+        Operation<response: google.protobuf.Empty,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -494,7 +498,7 @@ class AgentsClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            parent (str): Required. The name of the agent to restore.
+            parent (str): Required. The project that the agent to restore is associated with.
                 Format: ``projects/<Project ID>``.
             agent_uri (str): The URI to a file containing the agent to restore. Note: The URI must
                 start with \"gs://\".

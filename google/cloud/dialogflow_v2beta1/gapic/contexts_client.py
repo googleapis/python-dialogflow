@@ -49,8 +49,8 @@ class ContextsClient(object):
     Manages contexts.
 
 
-    Refer to `documentation <https://api.ai/docs/contexts>`_ for more details about
-    # contexts.
+    Refer to `documentation <https://dialogflow.com/docs/contexts>`_ for more
+    # details about contexts.
 
     Standard methods.
     """

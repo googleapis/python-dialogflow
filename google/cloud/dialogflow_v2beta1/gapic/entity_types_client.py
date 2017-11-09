@@ -53,8 +53,8 @@ class EntityTypesClient(object):
     Manages agent entity types.
 
 
-    Refer to `documentation <https://api.ai/docs/entities>`_ for more details about
-    # entity types.
+    Refer to `documentation <https://dialogflow.com/docs/entities>`_ for more
+    # details about entity types.
 
     Standard methods.
     """
@@ -224,8 +224,8 @@ class EntityTypesClient(object):
                 Format: ``projects/<Project ID>/agent``.
             language_code (str): Optional. The language to list entity synonyms for. If not specified,
                 the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
@@ -286,8 +286,8 @@ class EntityTypesClient(object):
                 Format: ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
             language_code (str): Optional. The language to retrieve entity synonyms for. If not specified,
                 the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
@@ -337,8 +337,8 @@ class EntityTypesClient(object):
                 message :class:`~google.cloud.dialogflow_v2beta1.types.EntityType`
             language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If not
                 specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
@@ -388,8 +388,8 @@ class EntityTypesClient(object):
                 message :class:`~google.cloud.dialogflow_v2beta1.types.EntityType`
             language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If not
                 specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
@@ -465,7 +465,8 @@ class EntityTypesClient(object):
         """
         Updates/Creates multiple entity types in the specified agent.
 
-        Operation<response: BatchUpdateEntityTypesResponse>
+        Operation<response: BatchUpdateEntityTypesResponse,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -487,7 +488,7 @@ class EntityTypesClient(object):
 
         Args:
             parent (str): Required. The name of the agent to update or create entity types in.
-                Format: ``projects/<Project ID>/agents/<Agent ID>``.
+                Format: ``projects/<Project ID>/agent``.
             entity_type_batch_uri (str): The URI to a file containing entity types to update or create. The file
                 format can be either a serialized proto (of EntityBatch type) or a JSON
                 object. Note: The URI must start with \"gs://\".
@@ -496,8 +497,8 @@ class EntityTypesClient(object):
                 message :class:`~google.cloud.dialogflow_v2beta1.types.EntityTypeBatch`
             language_code (str): Optional. The language of entity synonyms defined in ``entity_types``. If not
                 specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
@@ -548,7 +549,8 @@ class EntityTypesClient(object):
         """
         Deletes entity types in the specified agent.
 
-        Operation<response: google.protobuf.Empty>
+        Operation<response: google.protobuf.Empty,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -640,8 +642,8 @@ class EntityTypesClient(object):
                 message :class:`~google.cloud.dialogflow_v2beta1.types.Entity`
             language_code (str): Optional. The language of entity synonyms defined in ``entities``. If not
                 specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
@@ -681,7 +683,8 @@ class EntityTypesClient(object):
         Updates entities in the specified entity type (replaces the existing
         collection of entries).
 
-        Operation<response: google.protobuf.Empty>
+        Operation<response: google.protobuf.Empty,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -710,8 +713,8 @@ class EntityTypesClient(object):
                 message :class:`~google.cloud.dialogflow_v2beta1.types.Entity`
             language_code (str): Optional. The language of entity synonyms defined in ``entities``. If not
                 specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
@@ -755,7 +758,8 @@ class EntityTypesClient(object):
         """
         Deletes entities in the specified entity type.
 
-        Operation<response: google.protobuf.Empty>
+        Operation<response: google.protobuf.Empty,
+        metadata: google.protobuf.Struct>
 
         Example:
             >>> from google.cloud import dialogflow_v2beta1
@@ -784,8 +788,8 @@ class EntityTypesClient(object):
                 ``projects/<Project ID>``.
             language_code (str): Optional. The language of entity synonyms defined in ``entities``. If not
                 specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not

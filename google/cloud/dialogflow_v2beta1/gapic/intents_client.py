@@ -54,8 +54,8 @@ class IntentsClient(object):
     Manages agent intents.
 
 
-    Refer to `documentation <https://api.ai/docs/intents>`_ for more details about
-    # agent intents.
+    Refer to `documentation <https://dialogflow.com/docs/intents>`_ for more
+    # details about agent intents.
 
     Standard methods.
     """
@@ -219,8 +219,8 @@ class IntentsClient(object):
                 Format: ``projects/<Project ID>/agent``.
             language_code (str): Optional. The language to list training phrases, parameters and rich
                 messages for. If not specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent before they can be used.
             intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             page_size (int): The maximum number of resources contained in the
@@ -286,8 +286,8 @@ class IntentsClient(object):
                 Format: ``projects/<Project ID>/agent/intents/<Intent ID>``.
             language_code (str): Optional. The language to retrieve training phrases, parameters and rich
                 messages for. If not specified, the agent's default language is used.
-                `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
@@ -339,8 +339,8 @@ class IntentsClient(object):
                 message :class:`~google.cloud.dialogflow_v2beta1.types.Intent`
             language_code (str): Optional. The language of training phrases, parameters and rich messages
                 defined in ``intent``. If not specified, the agent's default language is
-                used. `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                used. [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
@@ -394,8 +394,8 @@ class IntentsClient(object):
                 message :class:`~google.cloud.dialogflow_v2beta1.types.Intent`
             language_code (str): Optional. The language of training phrases, parameters and rich messages
                 defined in ``intent``. If not specified, the agent's default language is
-                used. `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                used. [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
@@ -496,11 +496,11 @@ class IntentsClient(object):
 
         Args:
             parent (str): Required. The name of the agent to update or create intents in.
-                Format: ``projects/<Project ID>/agents/<Agent ID>``.
+                Format: ``projects/<Project ID>/agent``.
             language_code (str): Optional. The language of training phrases, parameters and rich messages
                 defined in ``intents``. If not specified, the agent's default language is
-                used. `More than a dozen languages <https://api.ai/docs/reference/language>`_
-                are supported.
+                used. [More than a dozen
+                languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
             intent_batch_uri (str): The URI to a file containing intents to update or create. The file
                 format can be either a serialized proto (of IntentBatch type) or JSON
@@ -582,8 +582,8 @@ class IntentsClient(object):
         Args:
             parent (str): Required. The name of the agent to delete all entities types for. Format:
                 ``projects/<Project ID>/agent``.
-            intents (list[Union[dict, ~google.cloud.dialogflow_v2beta1.types.Intent]]): Required. The collection of entities to delete. Only the canonical ``value``
-                must be filled in.
+            intents (list[Union[dict, ~google.cloud.dialogflow_v2beta1.types.Intent]]): Required. The collection of intents to delete. Only intent ``name`` must be
+                filled in.
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.Intent`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used

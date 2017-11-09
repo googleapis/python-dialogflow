@@ -10,8 +10,8 @@ class IntentsStub(object):
   """Manages agent intents.
 
 
-  Refer to [documentation](https://api.ai/docs/intents) for more details about
-  # agent intents.
+  Refer to [documentation](https://dialogflow.com/docs/intents) for more
+  # details about agent intents.
 
   Standard methods.
   """
@@ -63,8 +63,8 @@ class IntentsServicer(object):
   """Manages agent intents.
 
 
-  Refer to [documentation](https://api.ai/docs/intents) for more details about
-  # agent intents.
+  Refer to [documentation](https://dialogflow.com/docs/intents) for more
+  # details about agent intents.
 
   Standard methods.
   """
