@@ -3,14 +3,17 @@
 Google Cloud Dialogflow Enterprise: Python Client
 =================================================
 
-|release level| |circleci| |appveyor| |coverage|
+|release level| |circleci| |appveyor| |codecov|
 
-`Google Cloud Dialogflow Enterprise`_ is an enterprise-grade NLU platform that
-makes it easy for developers to design and integrate conversational user
-interfaces into mobile apps, web applications, devices, and bots.
+    Python idiomatic client for Google Cloud Dialogflow Enterprise
 
-    * `Dialogflow Enterprise Python Client API Reference <https://cloud.google.com/dialogflow-enterprise>`_
-    * `Dialogflow Enterprise Documentation <https://cloud.google.com/dialogflow-enterprise>`_
+`Google Cloud Dialogflow Enterprise <https://cloud.google.com/dialogflow-enterprise>`_
+is an enterprise-grade NLU platform that makes it easy for developers to
+design and integrate conversational user interfaces into mobile apps, web
+applications, devices, and bots.
+
+* `Dialogflow Enterprise Python Client API Reference <https://cloud.google.com/dialogflow-enterprise>`_
+* `Dialogflow Enterprise Documentation <https://cloud.google.com/dialogflow-enterprise>`_
 
 Read more about the client libraries for Cloud APIs, including the older
 Google APIs Client Libraries, in
@@ -22,11 +25,11 @@ Quickstart
 Before you begin
 ~~~~~~~~~~~~~~~~
 
-    #. Select or create a Cloud Platform `project`_.
-    #. `Enable billing`_ for your project.
-    #.  `Enable the Google Cloud Dialogflow API`_.
-    #.  `Set up authentication`_ with a service account so you can access the
-        API from your local workstation.
+#. Select or create a Cloud Platform `project`_.
+#. `Enable billing`_ for your project.
+#.  `Enable the Google Cloud Dialogflow API`_.
+#.  `Set up authentication`_ with a service account so you can access the
+    API from your local workstation.
 
 .. _project: https://console.cloud.google.com/project
 .. _Enable billing: https://support.google.com/cloud/answer/6293499#enable-billing
@@ -59,11 +62,13 @@ against beta libraries with a high priority.
 
 More Information: `Google Cloud Platform Launch Stages <https://cloud.google.com/terms/launch-stages>`_
 
-## Contributing
+Contributing
+~~~~~~~~~~~~
 
 Contributions welcome! See the `Contributing Guide <https://github.com/googleapis/python-dialogflow/blob/master/.github/CONTRIBUTING.rst>`_.
 
-## License
+License
+~~~~~~~
 
 Apache Version 2.0
 
