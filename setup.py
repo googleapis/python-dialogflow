@@ -7,7 +7,6 @@ https://github.com/pypa/sampleproject
 
 from setuptools import setup, find_packages
 import io
-import sys
 
 install_requires = [
     'google-api-core >= 0.1.1, < 0.2dev'
