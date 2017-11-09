@@ -2,7 +2,6 @@
     :align: right
     :alt: Google Cloud Platform logo
     :height: 96px
-    :title: Google Cloud Platform
     :width: 96px
 
 Google Cloud Dialogflow Enterprise: Python Client
