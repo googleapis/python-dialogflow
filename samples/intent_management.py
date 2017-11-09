@@ -23,7 +23,8 @@ Examples:
   "room.cancellation - yes" \
   --training-phrases-parts "cancel" "cancellation" \
   --message-texts "Are you sure you want to cancel?" "Cancelled."
-  python intent_management.py delete 74892d81-7901-496a-bb0a-c769eda5180e
+  python intent_management.py --project-id PROJECT_ID delete \
+  74892d81-7901-496a-bb0a-c769eda5180e
 """
 
 # [START import_libraries]
