@@ -48,6 +48,7 @@ def list_entities(project_id, entity_type_id):
         print('Entity synonyms: {}\n'.format(entity.synonyms))
 
 
+# [START dialogflow_create_entity]
 def create_entity(project_id, entity_type_id, entity_value, synonyms):
     """Create an entity of the given entity type."""
     entity_types_client = dialogflow.EntityTypesClient()
@@ -67,8 +68,10 @@ def create_entity(project_id, entity_type_id, entity_value, synonyms):
         entity_type_path, [entity])
 
     print('Entity created: {}'.format(response))
+# [END dialogflow_create_entity]
 
 
+# [START dialogflow_delete_entity]
 def delete_entity(project_id, entity_type_id, entity_value):
     """Delete entity with the given entity type and entity value."""
     entity_types_client = dialogflow.EntityTypesClient()
@@ -78,6 +81,7 @@ def delete_entity(project_id, entity_type_id, entity_value):
 
     entity_types_client.batch_delete_entities(
         entity_type_path, [entity_value])
+# [END dialogflow_delete_entity]
 
 
 if __name__ == '__main__':

@@ -33,6 +33,7 @@ from google.cloud import dialogflow
 # [END import_libraries]
 
 
+# [START dialogflow_detect_intent_streaming]
 def detect_intent_stream(project_id, session_id, audio_file_path,
                          language_code):
     """Returns the result of detect intent with streaming audio as input.
@@ -90,6 +91,7 @@ def detect_intent_stream(project_id, session_id, audio_file_path,
         query_result.intent_detection_confidence))
     print('Fulfillment text: {}\n'.format(
         query_result.fulfillment_text))
+# [END dialogflow_detect_intent_streaming]
 
 
 if __name__ == '__main__':

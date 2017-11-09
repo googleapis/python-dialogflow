@@ -44,6 +44,7 @@ def list_entity_types(project_id):
         print('Number of entities: {}\n'.format(len(entity_type.entities)))
 
 
+# [START dialogflow_create_entity_type]
 def create_entity_type(project_id, display_name, kind):
     """Create an entity type with the given display name."""
     entity_types_client = dialogflow.EntityTypesClient()
@@ -55,8 +56,10 @@ def create_entity_type(project_id, display_name, kind):
     response = entity_types_client.create_entity_type(parent, entity_type)
 
     print('Entity type created: \n{}'.format(response))
+# [END dialogflow_create_entity_type]
 
 
+# [START dialogflow_delete_entity_type]
 def delete_entity_type(project_id, entity_type_id):
     """Delete entity type with the given entity type name."""
     entity_types_client = dialogflow.EntityTypesClient()
@@ -65,6 +68,7 @@ def delete_entity_type(project_id, entity_type_id):
         project_id, entity_type_id)
 
     entity_types_client.delete_entity_type(entity_type_path)
+# [END dialogflow_delete_entity_type]
 
 
 # Helper to get entity_type_id from display name.

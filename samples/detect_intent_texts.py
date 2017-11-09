@@ -34,6 +34,7 @@ from google.cloud import dialogflow
 # [END import_libraries]
 
 
+# [START dialogflow_detect_intent_text]
 def detect_intent_texts(project_id, session_id, texts, language_code):
     """Returns the result of detect intent with texts as inputs.
 
@@ -60,6 +61,7 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
             response.query_result.intent_detection_confidence))
         print('Fulfillment text: {}\n'.format(
             response.query_result.fulfillment_text))
+# [END dialogflow_detect_intent_text]
 
 
 if __name__ == '__main__':

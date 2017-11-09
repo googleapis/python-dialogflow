@@ -34,6 +34,7 @@ from google.cloud import dialogflow
 # [END import_libraries]
 
 
+# [START dialogflow_detect_intent_audio]
 def detect_intent_audio(project_id, session_id, audio_file_path,
                         language_code):
     """Returns the result of detect intent with an audio file as input.
@@ -68,6 +69,7 @@ def detect_intent_audio(project_id, session_id, audio_file_path,
         response.query_result.intent_detection_confidence))
     print('Fulfillment text: {}\n'.format(
         response.query_result.fulfillment_text))
+# [END dialogflow_detect_intent_audio]
 
 
 if __name__ == '__main__':

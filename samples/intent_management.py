@@ -60,6 +60,7 @@ def list_intents(project_id):
             print('\tName: {}'.format(output_context.name))
 
 
+# [START dialogflow_create_intent]
 def create_intent(project_id, display_name, training_phrases_parts,
                   message_texts):
     """Create an intent of the given intent type."""
@@ -85,8 +86,10 @@ def create_intent(project_id, display_name, training_phrases_parts,
     response = intents_client.create_intent(parent, intent)
 
     print('Intent created: {}'.format(response))
+# [END dialogflow_create_intent]
 
 
+# [START dialogflow_delete_intent]
 def delete_intent(project_id, intent_id):
     """Delete intent with the given intent type and intent value."""
     intents_client = dialogflow.IntentsClient()
@@ -94,6 +97,7 @@ def delete_intent(project_id, intent_id):
     intent_path = intents_client.intent_path(project_id, intent_id)
 
     intents_client.delete_intent(intent_path)
+# [END dialogflow_delete_intent]
 
 
 # Helper to get intent from display name.
