@@ -19,10 +19,12 @@
 Examples:
   python intent_management.py -h
   python intent_management.py --project-id PROJECT_ID list
-  python intent_management.py create "room.cancellation - yes" \
-  --action room.cancel --input-context-ids today tomorrow \
-  --training-phrases-parts "cancel" "cancellation"
-  python intent_management.py delete 74892d81-7901-496a-bb0a-c769eda5180e
+  python intent_management.py --project-id PROJECT_ID create \
+  "room.cancellation - yes" \
+  --training-phrases-parts "cancel" "cancellation" \
+  --message-texts "Are you sure you want to cancel?" "Cancelled."
+  python intent_management.py --project-id PROJECT_ID delete \
+  74892d81-7901-496a-bb0a-c769eda5180e
 """
 
 # [START import_libraries]
@@ -58,18 +60,13 @@ def list_intents(project_id):
             print('\tName: {}'.format(output_context.name))
 
 
-def create_intent(project_id, display_name, action, training_phrases_parts,
-                  input_context_ids):
+# [START dialogflow_create_intent]
+def create_intent(project_id, display_name, training_phrases_parts,
+                  message_texts):
     """Create an intent of the given intent type."""
     intents_client = dialogflow.IntentsClient()
-    contexts_client = dialogflow.ContextsClient()
 
     parent = intents_client.project_agent_path(project_id)
-    # Setting session_id as '-' for contexts which are not
-    # session-bound.
-    input_context_names = [
-        contexts_client.context_path(project_id, '-', context_id)
-        for context_id in input_context_ids]
     training_phrases = []
     for training_phrases_part in training_phrases_parts:
         part = dialogflow.types.Intent.TrainingPhrase.Part(
@@ -78,16 +75,21 @@ def create_intent(project_id, display_name, action, training_phrases_parts,
         training_phrase = dialogflow.types.Intent.TrainingPhrase(parts=[part])
         training_phrases.append(training_phrase)
 
+    text = dialogflow.types.Intent.Message.Text(text=message_texts)
+    message = dialogflow.types.Intent.Message(text=text)
+
     intent = dialogflow.types.Intent(
-        display_name=display_name, action=action,
+        display_name=display_name,
         training_phrases=training_phrases,
-        input_context_names=input_context_names)
+        messages=[message])
 
     response = intents_client.create_intent(parent, intent)
 
     print('Intent created: {}'.format(response))
+# [END dialogflow_create_intent]
 
 
+# [START dialogflow_delete_intent]
 def delete_intent(project_id, intent_id):
     """Delete intent with the given intent type and intent value."""
     intents_client = dialogflow.IntentsClient()
@@ -95,6 +97,7 @@ def delete_intent(project_id, intent_id):
     intent_path = intents_client.intent_path(project_id, intent_id)
 
     intents_client.delete_intent(intent_path)
+# [END dialogflow_delete_intent]
 
 
 # Helper to get intent from display name.
@@ -133,18 +136,17 @@ if __name__ == '__main__':
     create_parser.add_argument(
         'display_name')
     create_parser.add_argument(
-        '--action')
-    create_parser.add_argument(
         '--training-phrases-parts',
         nargs='*',
         type=str,
         help='Training phrases.',
         default=[])
     create_parser.add_argument(
-        '--input-context-ids',
+        '--message-texts',
         nargs='*',
         type=str,
-        help='Input context ids.',
+        help='Message texts for the agent\'s response when the intent '
+        'is detected.',
         default=[])
 
     delete_parser = subparsers.add_parser(
@@ -159,8 +161,7 @@ if __name__ == '__main__':
         list_intents(args.project_id)
     elif args.command == 'create':
         create_intent(
-            args.project_id, args.display_name, args.action,
-            args.training_phrases_parts,
-            args.input_context_ids, )
+            args.project_id, args.display_name, args.training_phrases_parts,
+            args.message_texts, )
     elif args.command == 'delete':
         delete_intent(args.project_id, args.intent_id)

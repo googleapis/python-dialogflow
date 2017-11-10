@@ -51,6 +51,7 @@ def list_contexts(project_id, session_id):
                 print('\t{}: {}'.format(field, value))
 
 
+# [START dialogflow_create_context]
 def create_context(project_id, session_id, context_id, lifespan_count):
     contexts_client = dialogflow.ContextsClient()
 
@@ -64,8 +65,10 @@ def create_context(project_id, session_id, context_id, lifespan_count):
     response = contexts_client.create_context(session_path, context)
 
     print('Context created: \n{}'.format(response))
+# [END dialogflow_create_context]
 
 
+# [START dialogflow_delete_context]
 def delete_context(project_id, session_id, context_id):
     contexts_client = dialogflow.ContextsClient()
 
@@ -73,6 +76,7 @@ def delete_context(project_id, session_id, context_id):
         project_id, session_id, context_id)
 
     contexts_client.delete_context(context_name)
+# [END dialogflow_delete_context]
 
 
 if __name__ == '__main__':

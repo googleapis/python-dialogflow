@@ -27,17 +27,15 @@ Examples:
 
 # [START import_libraries]
 import argparse
-import os
 import uuid
 
 from google.cloud import dialogflow
-from google.cloud.dialogflow import enums
-from google.cloud.dialogflow import types
 # [END import_libraries]
 
 
+# [START dialogflow_detect_intent_streaming]
 def detect_intent_stream(project_id, session_id, audio_file_path,
-                        language_code):
+                         language_code):
     """Returns the result of detect intent with streaming audio as input.
 
     Using the same `session_id` between requests allows continuation
@@ -52,10 +50,10 @@ def detect_intent_stream(project_id, session_id, audio_file_path,
     print('Session path: {}\n'.format(session))
 
     def request_generator(audio_config, audio_file_path):
-        query_input = types.QueryInput(audio_config=audio_config)
+        query_input = dialogflow.types.QueryInput(audio_config=audio_config)
 
         # The first request contains the configuration.
-        yield types.StreamingDetectIntentRequest(
+        yield dialogflow.types.StreamingDetectIntentRequest(
             session=session, query_input=query_input)
 
         # Here we are reading small chunks of audio data from a local
@@ -67,16 +65,15 @@ def detect_intent_stream(project_id, session_id, audio_file_path,
                 if not chunk:
                     break
                 # The later requests contains audio data.
-                yield types.StreamingDetectIntentRequest(input_audio=chunk)
+                yield dialogflow.types.StreamingDetectIntentRequest(
+                    input_audio=chunk)
 
-    audio_config = types.InputAudioConfig(
+    audio_config = dialogflow.types.InputAudioConfig(
         audio_encoding=audio_encoding, language_code=language_code,
         sample_rate_hertz=sample_rate_hertz)
 
     requests = request_generator(audio_config, audio_file_path)
     responses = session_client.streaming_detect_intent(requests)
-
-    last_response = None
 
     print('=' * 20)
     for response in responses:
@@ -94,6 +91,7 @@ def detect_intent_stream(project_id, session_id, audio_file_path,
         query_result.intent_detection_confidence))
     print('Fulfillment text: {}\n'.format(
         query_result.fulfillment_text))
+# [END dialogflow_detect_intent_streaming]
 
 
 if __name__ == '__main__':

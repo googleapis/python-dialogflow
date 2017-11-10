@@ -18,10 +18,9 @@ import intent_management
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 INTENT_DISPLAY_NAME = 'fake_display_name_for_testing'
-ACTION = 'fake_action_for_testing'
-INPUT_CONTEXT_IDS = [
-    'fake_context_id_for_testing_1',
-    'fake_context_id_for_testing_2'
+MESSAGE_TEXTS = [
+    'fake_message_text_for_testing_1',
+    'fake_message_text_for_testing_2'
 ]
 TRAINING_PHRASE_PARTS = [
     'fake_training_phrase_part_1',
@@ -31,8 +30,8 @@ TRAINING_PHRASE_PARTS = [
 
 def test_create_intent(capsys):
     intent_management.create_intent(
-        PROJECT_ID, INTENT_DISPLAY_NAME, ACTION, TRAINING_PHRASE_PARTS,
-        INPUT_CONTEXT_IDS)
+        PROJECT_ID, INTENT_DISPLAY_NAME, TRAINING_PHRASE_PARTS,
+        MESSAGE_TEXTS)
 
     intent_ids = intent_management._get_intent_ids(
         PROJECT_ID, INTENT_DISPLAY_NAME)
@@ -44,9 +43,9 @@ def test_create_intent(capsys):
     out, _ = capsys.readouterr()
 
     assert INTENT_DISPLAY_NAME in out
-    assert ACTION in out
-    for intent_content_id in INPUT_CONTEXT_IDS:
-        assert intent_content_id in out
+
+    for message_text in MESSAGE_TEXTS:
+        assert message_text in out
 
 
 def test_delete_session_entity_type(capsys):

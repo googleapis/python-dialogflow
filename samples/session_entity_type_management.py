@@ -53,6 +53,7 @@ def list_session_entity_types(project_id, session_id):
             len(session_entity_type.entities)))
 
 
+# [START dialogflow_create_session_entity_type]
 def create_session_entity_type(project_id, session_id, entity_values,
                                entity_type_display_name, entity_override_mode):
     """Create a session entity type with the given display name."""
@@ -77,8 +78,10 @@ def create_session_entity_type(project_id, session_id, entity_values,
         session_path, session_entity_type)
 
     print('SessionEntityType created: \n\n{}'.format(response))
+# [END dialogflow_create_session_entity_type]
 
 
+# [START dialogflow_delete_session_entity_type]
 def delete_session_entity_type(project_id, session_id,
                                entity_type_display_name):
     """Delete session entity type with the given entity type display name."""
@@ -90,6 +93,7 @@ def delete_session_entity_type(project_id, session_id,
 
     session_entity_types_client.delete_session_entity_type(
         session_entity_type_name)
+# [END dialogflow_delete_session_entity_type]
 
 
 if __name__ == '__main__':
