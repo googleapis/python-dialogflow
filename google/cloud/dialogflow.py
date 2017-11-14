@@ -31,4 +31,5 @@ __all__ = (
     'EntityTypesClient',
     'IntentsClient',
     'SessionEntityTypesClient',
-    'SessionsClient', )
+    'SessionsClient',
+)
