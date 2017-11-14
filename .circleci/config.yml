@@ -157,7 +157,7 @@ jobs:
                 -k "${SYSTEM_TESTS_ENCRYPTION_KEY}"
       - run:
           name: Run sample tests.
-          command: nox -s samples
+          command: nox -s samples_test
           environment:
             GCLOUD_PROJECT: precise-truck-742
             GOOGLE_APPLICATION_CREDENTIALS: /var/dialogflow/.circleci/key.json
