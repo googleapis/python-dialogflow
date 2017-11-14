@@ -147,6 +147,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install nox.
+          command: pip install nox-automation
+      - run:
           name: Decrypt credentials.
           command: |
             openssl aes-256-cbc -d -in .circleci/key.json.enc \
