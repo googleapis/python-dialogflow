@@ -1,14 +1,13 @@
-Google Cloud Dialogflow: Python Client
-======================================
+Dialogflow: Python Client
+=========================
 
 |release level| |circleci| |appveyor| |codecov|
 
-    Python idiomatic client for Google Cloud Dialogflow Enterprise
+    Python idiomatic client for `Dialogflow`_
 
-`Google Cloud Dialogflow Enterprise <https://cloud.google.com/dialogflow-enterprise>`_
-is an enterprise-grade NLU platform that makes it easy for developers to
-design and integrate conversational user interfaces into mobile apps, web
-applications, devices, and bots.
+`Dialogflow`_ is an enterprise-grade NLU platform that makes it easy for
+developers to design and integrate conversational user interfaces int
+mobile apps, web applications, devices, and bots.
 
 * `Dialogflow Enterprise Python Client API Reference <https://cloud.google.com/dialogflow-enterprise>`_
 * `Dialogflow Enterprise Documentation <https://cloud.google.com/dialogflow-enterprise>`_
@@ -16,6 +15,8 @@ applications, devices, and bots.
 Read more about the client libraries for Cloud APIs, including the older
 Google APIs Client Libraries, in
 `Client Libraries Explained <https://cloud.google.com/apis/docs/client-libraries-explained>`_.
+
+.. _Dialogflow: https://dialogflow.com/
 
 Quickstart
 ----------
@@ -40,7 +41,7 @@ Installation
 
 .. code-block:: shell
 
-    pip install google-cloud-dialogflow
+    pip install dialogflow
 
 .. note::
 
@@ -75,9 +76,9 @@ See `LICENSE <https://github.com/googleapis/python-dialogflow/blob/master/LICENS
 
 .. |release level| image:: https://img.shields.io/badge/release%20level-beta-yellow.svg?style&#x3D;flat
     :target: https://cloud.google.com/terms/launch-stages
-.. |circleci| image:: https://img.shields.io/circleci/project/github/googleapis/python-dialogflow.svg?style=flat)
-    :target: https://circleci.com/gh/googleapis/python-dialogflow
-.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/googleapis/python-dialogflow?branch=master&svg=true)
-    :target: https://ci.appveyor.com/project/googleapis/python-dialogflow
-.. |codecov| image:: https://img.shields.io/codecov/c/github/googleapis/python-dialogflow/master.svg?style=flat)
-    :target: https://codecov.io/gh/googleapis/python-dialogflow
+.. |circleci| image:: https://img.shields.io/circleci/project/github/dialogflow/dialogflow-python-client-v2.svg?style=flat)
+    :target: https://circleci.com/gh/dialogflow/dialogflow-python-client-v2
+.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/dialogflow/dialogflow-python-client-v2?branch=master&svg=true)
+    :target: https://ci.appveyor.com/project/dialogflow/dialogflow-python-client-v2
+.. |codecov| image:: https://img.shields.io/codecov/c/github/dialogflow/dialogflow-python-client-v2/master.svg?style=flat)
+    :target: https://codecov.io/gh/dialogflow/dialogflow-python-client-v2
