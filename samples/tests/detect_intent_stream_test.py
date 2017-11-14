@@ -18,7 +18,9 @@ from ..detect_intent_stream import detect_intent_stream
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 SESSION_ID = 'fake_session_for_testing'
-AUDIO_FILE_PATH = 'resources/book_a_room.wav'
+AUDIO_FILE_PATH = '{0}/resources/book_a_room.wav'.format(
+    os.path.realpath(os.path.dirname(__file__)),
+)
 
 
 def test_detect_intent_stream(capsys):
