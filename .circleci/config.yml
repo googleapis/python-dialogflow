@@ -126,6 +126,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install nox.
+          command: pip install nox-automation
+      - run:
           name: Run linting.
           command: nox -s lint_setup_py
 
