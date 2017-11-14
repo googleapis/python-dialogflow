@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import absolute_import
 import os
 
-import intent_management
+from .. import intent_management
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 INTENT_DISPLAY_NAME = 'fake_display_name_for_testing'
@@ -64,4 +65,3 @@ def test_delete_session_entity_type(capsys):
         PROJECT_ID, INTENT_DISPLAY_NAME)
 
     assert len(intent_ids) == 0
-

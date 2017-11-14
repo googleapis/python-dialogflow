@@ -12,10 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import absolute_import
 import os
 
-import entity_type_management
-import entity_management
+from .. import entity_type_management
+from .. import entity_management
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 ENTITY_TYPE_DISPLAY_NAME = 'fake_entity_type_for_testing'
@@ -45,7 +46,7 @@ def test_create_entity_type(capsys):
 def test_create_entity(capsys):
     entity_type_id = entity_type_management._get_entity_type_ids(
         PROJECT_ID, ENTITY_TYPE_DISPLAY_NAME)[0]
-    
+
     entity_management.create_entity(
         PROJECT_ID, entity_type_id, ENTITY_VALUE_1, [])
     entity_management.create_entity(
@@ -58,12 +59,12 @@ def test_create_entity(capsys):
     assert 'Entity value: {}'.format(ENTITY_VALUE_2) in out
     for synonym in SYNONYMS:
         assert synonym in out
-    
+
 
 def test_delete_entity(capsys):
     entity_type_id = entity_type_management._get_entity_type_ids(
         PROJECT_ID, ENTITY_TYPE_DISPLAY_NAME)[0]
-    
+
     entity_management.delete_entity(
         PROJECT_ID, entity_type_id, ENTITY_VALUE_1)
     entity_management.delete_entity(

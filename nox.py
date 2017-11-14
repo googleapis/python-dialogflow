@@ -41,11 +41,11 @@ def sample_tests(session):
     session.run('py.test', '--quiet', os.path.join('samples', 'tests'))
 
 
-@nox.session
-def lint(session):
-    """Run flake8 on code and samples."""
-    session.install('flake8')
-    session.run('flake8')
+# @nox.session
+# def lint(session):
+#     """Run flake8 on code and samples."""
+#     session.install('flake8')
+#     session.run('flake8')
 
 
 @nox.session

@@ -48,7 +48,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install google-cloud-dialogflow
+    <your-env>/bin/pip install dialogflow
 
 
 Windows
@@ -59,7 +59,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install google-cloud-dialogflow
+    <your-env>\Scripts\pip.exe install dialogflow
 
 Next Steps
 ~~~~~~~~~~
