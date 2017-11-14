@@ -44,8 +44,7 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
 
-_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow').version
 
 
 class EntityTypesClient(object):
@@ -241,7 +240,7 @@ class EntityTypesClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~google.cloud.dialogflow_v2beta1.types.EntityType` instances.
+            is an iterable of :class:`~dialogflow_v2beta1.types.EntityType` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -297,7 +296,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.EntityType` instance.
+            A :class:`~dialogflow_v2beta1.types.EntityType` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -332,9 +331,9 @@ class EntityTypesClient(object):
         Args:
             parent (str): Required. The agent to create a entity type for.
                 Format: ``projects/<Project ID>/agent``.
-            entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.EntityType]): Required. The entity type to create.
+            entity_type (Union[dict, ~dialogflow_v2beta1.types.EntityType]): Required. The entity type to create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.EntityType`
+                message :class:`~dialogflow_v2beta1.types.EntityType`
             language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If not
                 specified, the agent's default language is used.
                 [More than a dozen
@@ -348,7 +347,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.EntityType` instance.
+            A :class:`~dialogflow_v2beta1.types.EntityType` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -382,18 +381,18 @@ class EntityTypesClient(object):
             >>> response = client.update_entity_type(entity_type)
 
         Args:
-            entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.EntityType]): Required. The entity type to update.
+            entity_type (Union[dict, ~dialogflow_v2beta1.types.EntityType]): Required. The entity type to update.
                 Format: ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.EntityType`
+                message :class:`~dialogflow_v2beta1.types.EntityType`
             language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If not
                 specified, the agent's default language is used.
                 [More than a dozen
                 languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -402,7 +401,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.EntityType` instance.
+            A :class:`~dialogflow_v2beta1.types.EntityType` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -492,17 +491,17 @@ class EntityTypesClient(object):
             entity_type_batch_uri (str): The URI to a file containing entity types to update or create. The file
                 format can be either a serialized proto (of EntityBatch type) or a JSON
                 object. Note: The URI must start with \"gs://\".
-            entity_type_batch_inline (Union[dict, ~google.cloud.dialogflow_v2beta1.types.EntityTypeBatch]): The collection of entity type to update or create.
+            entity_type_batch_inline (Union[dict, ~dialogflow_v2beta1.types.EntityTypeBatch]): The collection of entity type to update or create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.EntityTypeBatch`
+                message :class:`~dialogflow_v2beta1.types.EntityTypeBatch`
             language_code (str): Optional. The language of entity synonyms defined in ``entity_types``. If not
                 specified, the agent's default language is used.
                 [More than a dozen
                 languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -511,7 +510,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -584,7 +583,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -637,9 +636,9 @@ class EntityTypesClient(object):
         Args:
             parent (str): Required. The name of the entity type to create entities in. Format:
                 ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
-            entities (list[Union[dict, ~google.cloud.dialogflow_v2beta1.types.Entity]]): Required. The collection of entities to create.
+            entities (list[Union[dict, ~dialogflow_v2beta1.types.Entity]]): Required. The collection of entities to create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Entity`
+                message :class:`~dialogflow_v2beta1.types.Entity`
             language_code (str): Optional. The language of entity synonyms defined in ``entities``. If not
                 specified, the agent's default language is used.
                 [More than a dozen
@@ -653,7 +652,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -708,17 +707,17 @@ class EntityTypesClient(object):
         Args:
             parent (str): Required. The name of the entity type to update the entities in. Format:
                 ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
-            entities (list[Union[dict, ~google.cloud.dialogflow_v2beta1.types.Entity]]): Required. The collection of new entities to replace the existing entities.
+            entities (list[Union[dict, ~dialogflow_v2beta1.types.Entity]]): Required. The collection of new entities to replace the existing entities.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Entity`
+                message :class:`~dialogflow_v2beta1.types.Entity`
             language_code (str): Optional. The language of entity synonyms defined in ``entities``. If not
                 specified, the agent's default language is used.
                 [More than a dozen
                 languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -727,7 +726,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -799,7 +798,7 @@ class EntityTypesClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request

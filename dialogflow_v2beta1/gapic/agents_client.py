@@ -41,8 +41,7 @@ from dialogflow_v2beta1.proto import agent_pb2
 from google.protobuf import empty_pb2
 from google.protobuf import struct_pb2
 
-_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow').version
 
 
 class AgentsClient(object):
@@ -187,7 +186,7 @@ class AgentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Agent` instance.
+            A :class:`~dialogflow_v2beta1.types.Agent` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -249,7 +248,7 @@ class AgentsClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~google.cloud.dialogflow_v2beta1.types.Agent` instances.
+            is an iterable of :class:`~dialogflow_v2beta1.types.Agent` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -312,7 +311,7 @@ class AgentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -372,7 +371,7 @@ class AgentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -439,7 +438,7 @@ class AgentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -511,7 +510,7 @@ class AgentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request

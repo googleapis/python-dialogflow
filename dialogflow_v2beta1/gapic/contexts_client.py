@@ -40,8 +40,7 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
 
-_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow').version
 
 
 class ContextsClient(object):
@@ -208,7 +207,7 @@ class ContextsClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~google.cloud.dialogflow_v2beta1.types.Context` instances.
+            is an iterable of :class:`~dialogflow_v2beta1.types.Context` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -258,7 +257,7 @@ class ContextsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Context` instance.
+            A :class:`~dialogflow_v2beta1.types.Context` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -291,9 +290,9 @@ class ContextsClient(object):
         Args:
             parent (str): Required. The session to create a context for.
                 Format: ``projects/<Project ID>/agent/sessions/<Session ID>``.
-            context (Union[dict, ~google.cloud.dialogflow_v2beta1.types.Context]): Required. The context to create.
+            context (Union[dict, ~dialogflow_v2beta1.types.Context]): Required. The context to create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Context`
+                message :class:`~dialogflow_v2beta1.types.Context`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -302,7 +301,7 @@ class ContextsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Context` instance.
+            A :class:`~dialogflow_v2beta1.types.Context` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -333,13 +332,13 @@ class ContextsClient(object):
             >>> response = client.update_context(context)
 
         Args:
-            context (Union[dict, ~google.cloud.dialogflow_v2beta1.types.Context]): Required. The context to update. Format:
+            context (Union[dict, ~dialogflow_v2beta1.types.Context]): Required. The context to update. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>``.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Context`
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+                message :class:`~dialogflow_v2beta1.types.Context`
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -348,7 +347,7 @@ class ContextsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Context` instance.
+            A :class:`~dialogflow_v2beta1.types.Context` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request

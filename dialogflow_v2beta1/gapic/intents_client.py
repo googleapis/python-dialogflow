@@ -45,8 +45,7 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
 
-_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+_GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow').version
 
 
 class IntentsClient(object):
@@ -222,7 +221,7 @@ class IntentsClient(object):
                 [More than a dozen
                 languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent before they can be used.
-            intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
+            intent_view (~dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -237,7 +236,7 @@ class IntentsClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~google.cloud.dialogflow_v2beta1.types.Intent` instances.
+            is an iterable of :class:`~dialogflow_v2beta1.types.Intent` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -289,7 +288,7 @@ class IntentsClient(object):
                 [More than a dozen
                 languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
-            intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
+            intent_view (~dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -298,7 +297,7 @@ class IntentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Intent` instance.
+            A :class:`~dialogflow_v2beta1.types.Intent` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -334,15 +333,15 @@ class IntentsClient(object):
         Args:
             parent (str): Required. The agent to create a intent for.
                 Format: ``projects/<Project ID>/agent``.
-            intent (Union[dict, ~google.cloud.dialogflow_v2beta1.types.Intent]): Required. The intent to create.
+            intent (Union[dict, ~dialogflow_v2beta1.types.Intent]): Required. The intent to create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Intent`
+                message :class:`~dialogflow_v2beta1.types.Intent`
             language_code (str): Optional. The language of training phrases, parameters and rich messages
                 defined in ``intent``. If not specified, the agent's default language is
                 used. [More than a dozen
                 languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
-            intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
+            intent_view (~dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -351,7 +350,7 @@ class IntentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Intent` instance.
+            A :class:`~dialogflow_v2beta1.types.Intent` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -388,19 +387,19 @@ class IntentsClient(object):
             >>> response = client.update_intent(intent, language_code)
 
         Args:
-            intent (Union[dict, ~google.cloud.dialogflow_v2beta1.types.Intent]): Required. The intent to update.
+            intent (Union[dict, ~dialogflow_v2beta1.types.Intent]): Required. The intent to update.
                 Format: ``projects/<Project ID>/agent/intents/<Intent ID>``.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Intent`
+                message :class:`~dialogflow_v2beta1.types.Intent`
             language_code (str): Optional. The language of training phrases, parameters and rich messages
                 defined in ``intent``. If not specified, the agent's default language is
                 used. [More than a dozen
                 languages](https://dialogflow.com/docs/reference/language) are supported.
                 Note: languages must be enabled in the agent, before they can be used.
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
-            intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
+            intent_view (~dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -409,7 +408,7 @@ class IntentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Intent` instance.
+            A :class:`~dialogflow_v2beta1.types.Intent` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -505,13 +504,13 @@ class IntentsClient(object):
             intent_batch_uri (str): The URI to a file containing intents to update or create. The file
                 format can be either a serialized proto (of IntentBatch type) or JSON
                 object. Note: The URI must start with \"gs://\".
-            intent_batch_inline (Union[dict, ~google.cloud.dialogflow_v2beta1.types.IntentBatch]): The collection of intents to update or create.
+            intent_batch_inline (Union[dict, ~dialogflow_v2beta1.types.IntentBatch]): The collection of intents to update or create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.IntentBatch`
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+                message :class:`~dialogflow_v2beta1.types.IntentBatch`
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
-            intent_view (~google.cloud.dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
+            intent_view (~dialogflow_v2beta1.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -520,7 +519,7 @@ class IntentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -582,10 +581,10 @@ class IntentsClient(object):
         Args:
             parent (str): Required. The name of the agent to delete all entities types for. Format:
                 ``projects/<Project ID>/agent``.
-            intents (list[Union[dict, ~google.cloud.dialogflow_v2beta1.types.Intent]]): Required. The collection of intents to delete. Only intent ``name`` must be
+            intents (list[Union[dict, ~dialogflow_v2beta1.types.Intent]]): Required. The collection of intents to delete. Only intent ``name`` must be
                 filled in.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Intent`
+                message :class:`~dialogflow_v2beta1.types.Intent`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -594,7 +593,7 @@ class IntentsClient(object):
                 specified, the timeout applies to each individual attempt.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
