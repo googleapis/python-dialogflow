@@ -29,7 +29,7 @@ Examples:
 import argparse
 import uuid
 
-from google.cloud import dialogflow
+import dialogflow
 # [END import_libraries]
 
 

@@ -196,7 +196,7 @@ class IntentsClient(object):
         Returns the list of all intents in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -273,7 +273,7 @@ class IntentsClient(object):
         Retrieves the specified intent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -322,7 +322,7 @@ class IntentsClient(object):
         Creates an intent in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -378,7 +378,7 @@ class IntentsClient(object):
         Updates the specified intent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -433,7 +433,7 @@ class IntentsClient(object):
         Deletes the specified intent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -476,7 +476,7 @@ class IntentsClient(object):
         Operation<response: BatchUpdateIntentsResponse>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -561,7 +561,7 @@ class IntentsClient(object):
         Operation<response: google.protobuf.Empty>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>

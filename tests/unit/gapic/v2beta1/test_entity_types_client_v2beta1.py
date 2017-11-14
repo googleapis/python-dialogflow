@@ -17,7 +17,7 @@ import pytest
 
 from google.rpc import status_pb2
 
-from google.cloud import dialogflow_v2beta1
+import dialogflow_v2beta1
 from google.cloud.dialogflow_v2beta1.proto import entity_type_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2

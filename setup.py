@@ -19,7 +19,7 @@ with io.open('README.rst', 'r', encoding='utf-8') as readme_file:
     long_description = readme_file.read()
 
 setup(
-    name='google-cloud-dialogflow',
+    name='dialogflow',
     version='0.1.0',
     author='Google LLC',
     author_email='googleapis-packages@google.com',
@@ -37,14 +37,11 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    description='GAPIC library for the Dialogflow API',
+    description='Client library for the Dialogflow API',
     include_package_data=True,
     long_description=long_description,
     install_requires=install_requires,
     license='Apache 2.0',
     packages=find_packages(),
-    namespace_packages=[
-        'google',
-        'google.cloud',
-    ],
-    url='https://github.com/googleapis/googleapis')
+    url='https://github.com/dialogflow/dialogflow-python-client-v2',
+)

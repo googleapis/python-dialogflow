@@ -201,7 +201,7 @@ class EntityTypesClient(object):
         Returns the list of all entity types in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -273,7 +273,7 @@ class EntityTypesClient(object):
         Retrieves the specified entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -320,7 +320,7 @@ class EntityTypesClient(object):
         Creates an entity type in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -373,7 +373,7 @@ class EntityTypesClient(object):
         Updates the specified entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -425,7 +425,7 @@ class EntityTypesClient(object):
         Deletes the specified entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -469,7 +469,7 @@ class EntityTypesClient(object):
         metadata: google.protobuf.Struct>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -553,7 +553,7 @@ class EntityTypesClient(object):
         metadata: google.protobuf.Struct>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -616,7 +616,7 @@ class EntityTypesClient(object):
         Operation<response: google.protobuf.Empty>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -687,7 +687,7 @@ class EntityTypesClient(object):
         metadata: google.protobuf.Struct>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -762,7 +762,7 @@ class EntityTypesClient(object):
         metadata: google.protobuf.Struct>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>

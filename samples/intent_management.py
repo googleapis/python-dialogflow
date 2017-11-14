@@ -30,7 +30,7 @@ Examples:
 # [START import_libraries]
 import argparse
 
-from google.cloud import dialogflow
+import dialogflow
 # [END import_libraries]
 
 
