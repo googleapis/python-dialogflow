@@ -71,7 +71,7 @@ License
 
 Apache Version 2.0
 
-See `LICENSE <https://github.com/googleapis/python-dialogflow/blob/master/LICENSE>`_
+See `the LICENSE file <https://github.com/googleapis/python-dialogflow/blob/master/LICENSE>`_ for more information.
 
 
 .. |release level| image:: https://img.shields.io/badge/release%20level-beta-yellow.svg?style&#x3D;flat
