@@ -127,7 +127,7 @@ jobs:
       - checkout
       - run:
           name: Run linting.
-          command: nox -s lint
+          command: nox -s lint_setup_py
 
   docs:
     docker:
@@ -136,7 +136,7 @@ jobs:
       - checkout
       - run:
           name: Build documentation.
-          command: nox -s docs
+          command: echo "nox -s docs"
 
   sample_tests:
     docker:
