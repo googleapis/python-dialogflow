@@ -21,7 +21,7 @@ with io.open('README.rst', 'r', encoding='utf-8') as readme_file:
 setup(
     name='google-cloud-dialogflow',
     version='0.1.0',
-    author='Google Inc',
+    author='Google LLC',
     author_email='googleapis-packages@google.com',
     classifiers=[
         'Intended Audience :: Developers',

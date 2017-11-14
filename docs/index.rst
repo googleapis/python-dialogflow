@@ -1,4 +1,4 @@
-Python Client for Dialogflow API (`Alpha`_)
+Python Client for Dialogflow API (`Beta`_)
 ===========================================
 
 `Dialogflow API`_: Dialogflow is an enterprise-grade NLU platform that makes it easy for
@@ -8,7 +8,7 @@ mobile apps, web applications, devices, and bots.
 - `Client Library Documentation`_
 - `Product Documentation`_
 
-.. _Alpha: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst
+.. _Beta: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst
 .. _Dialogflow API: https://cloud.google.com/dialogflow
 .. _Client Library Documentation: https://googlecloudplatform.github.io/google-cloud-python/stable/dialogflow-usage
 .. _Product Documentation:  https://cloud.google.com/dialogflow
