@@ -35,12 +35,12 @@ import google.api_core.page_iterator
 import google.api_core.path_template
 import google.api_core.protobuf_helpers
 
-from google.cloud.dialogflow_v2beta1.gapic import enums
-from google.cloud.dialogflow_v2beta1.gapic import intents_client_config
-from google.cloud.dialogflow_v2beta1.proto import agent_pb2
-from google.cloud.dialogflow_v2beta1.proto import context_pb2
-from google.cloud.dialogflow_v2beta1.proto import entity_type_pb2
-from google.cloud.dialogflow_v2beta1.proto import intent_pb2
+from dialogflow_v2beta1.gapic import enums
+from dialogflow_v2beta1.gapic import intents_client_config
+from dialogflow_v2beta1.proto import agent_pb2
+from dialogflow_v2beta1.proto import context_pb2
+from dialogflow_v2beta1.proto import entity_type_pb2
+from dialogflow_v2beta1.proto import intent_pb2
 from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2

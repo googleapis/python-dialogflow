@@ -18,16 +18,16 @@ import sys
 from google.api_core.protobuf_helpers import get_messages
 
 from google.api import http_pb2
-from google.cloud.dialogflow_v2beta1.proto import agent_pb2
-from google.cloud.dialogflow_v2beta1.proto import context_pb2
-from google.cloud.dialogflow_v2beta1.proto import entity_type_pb2
-from google.cloud.dialogflow_v2beta1.proto import intent_pb2
-from google.cloud.dialogflow_v2beta1.proto import runtime_pb2
-from google.cloud.dialogflow_v2beta1.proto import session_entity_type_pb2
-from google.cloud.dialogflow_v2beta1.proto import session_pb2
-from google.cloud.dialogflow_v2beta1.proto import tier_pb2
-from google.cloud.dialogflow_v2beta1.proto import version_pb2
-from google.cloud.dialogflow_v2beta1.proto import webhook_pb2
+from dialogflow_v2beta1.proto import agent_pb2
+from dialogflow_v2beta1.proto import context_pb2
+from dialogflow_v2beta1.proto import entity_type_pb2
+from dialogflow_v2beta1.proto import intent_pb2
+from dialogflow_v2beta1.proto import runtime_pb2
+from dialogflow_v2beta1.proto import session_entity_type_pb2
+from dialogflow_v2beta1.proto import session_pb2
+from dialogflow_v2beta1.proto import tier_pb2
+from dialogflow_v2beta1.proto import version_pb2
+from dialogflow_v2beta1.proto import webhook_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import any_pb2
 from google.protobuf import descriptor_pb2

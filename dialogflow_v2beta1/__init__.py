@@ -14,14 +14,14 @@
 
 from __future__ import absolute_import
 
-from google.cloud.dialogflow_v2beta1 import types
-from google.cloud.dialogflow_v2beta1.gapic import agents_client
-from google.cloud.dialogflow_v2beta1.gapic import contexts_client
-from google.cloud.dialogflow_v2beta1.gapic import entity_types_client
-from google.cloud.dialogflow_v2beta1.gapic import enums
-from google.cloud.dialogflow_v2beta1.gapic import intents_client
-from google.cloud.dialogflow_v2beta1.gapic import session_entity_types_client
-from google.cloud.dialogflow_v2beta1.gapic import sessions_client
+from dialogflow_v2beta1 import types
+from dialogflow_v2beta1.gapic import agents_client
+from dialogflow_v2beta1.gapic import contexts_client
+from dialogflow_v2beta1.gapic import entity_types_client
+from dialogflow_v2beta1.gapic import enums
+from dialogflow_v2beta1.gapic import intents_client
+from dialogflow_v2beta1.gapic import session_entity_types_client
+from dialogflow_v2beta1.gapic import sessions_client
 
 
 class AgentsClient(agents_client.AgentsClient):

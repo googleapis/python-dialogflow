@@ -14,14 +14,14 @@
 
 from __future__ import absolute_import
 
-from google.cloud.dialogflow_v2beta1 import AgentsClient
-from google.cloud.dialogflow_v2beta1 import ContextsClient
-from google.cloud.dialogflow_v2beta1 import EntityTypesClient
-from google.cloud.dialogflow_v2beta1 import IntentsClient
-from google.cloud.dialogflow_v2beta1 import SessionEntityTypesClient
-from google.cloud.dialogflow_v2beta1 import SessionsClient
-from google.cloud.dialogflow_v2beta1 import enums
-from google.cloud.dialogflow_v2beta1 import types
+from dialogflow_v2beta1 import AgentsClient
+from dialogflow_v2beta1 import ContextsClient
+from dialogflow_v2beta1 import EntityTypesClient
+from dialogflow_v2beta1 import IntentsClient
+from dialogflow_v2beta1 import SessionEntityTypesClient
+from dialogflow_v2beta1 import SessionsClient
+from dialogflow_v2beta1 import enums
+from dialogflow_v2beta1 import types
 
 __all__ = (
     'enums',
