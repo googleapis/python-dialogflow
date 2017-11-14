@@ -34,9 +34,23 @@ def unit_tests(session, python_version):
 
 
 @nox.session
+def sample_tests(session):
+    """Run the sample tests."""
+    session.install('mock', 'pytest')
+    session.install('-e', '.')
+    session.run('py.test', '--quiet', os.path.join('samples', 'tests'))
+
+
+@nox.session
+def lint(session):
+    """Run flake8 on code and samples."""
+    session.install('flake8')
+    session.run('flake8')
+
+
+@nox.session
 def lint_setup_py(session):
     """Verify that setup.py is valid (including RST check)."""
-    session.interpreter = 'python3.6'
     session.install('docutils', 'pygments')
     session.run('python', 'setup.py', 'check', '--restructuredtext',
                 '--strict')
