@@ -27,10 +27,19 @@ def unit_tests(session, python_version):
 
     session.virtualenv_dirname = 'unit-' + python_version
 
-    session.install('mock', 'pytest')
+    session.install('mock', 'pytest', 'pytest-cov')
     session.install('-e', '.')
 
-    session.run('py.test', '--quiet', os.path.join('tests', 'unit'))
+    session.run(
+        'py.test',
+        '--quiet',
+        '--cov=dialogflow',
+        '--cov=dialogflow_v2beta1',
+        '--cov-append',
+        '--cov-config=.coveragerc',
+        '--cov-report=',
+        os.path.join('tests', 'unit'),
+    )
 
 
 @nox.session
@@ -41,16 +50,21 @@ def sample_tests(session):
     session.run('py.test', '--quiet', os.path.join('samples', 'tests'))
 
 
-# @nox.session
-# def lint(session):
-#     """Run flake8 on code and samples."""
-#     session.install('flake8')
-#     session.run('flake8')
-
-
 @nox.session
 def lint_setup_py(session):
     """Verify that setup.py is valid (including RST check)."""
     session.install('docutils', 'pygments')
     session.run('python', 'setup.py', 'check', '--restructuredtext',
                 '--strict')
+
+
+@nox.session
+def cover(session):
+    """Run the final coverage report.
+
+    This outputs the coverage report aggregating coverage from the unit
+    test runs (not system test runs), and then erases coverage data.
+    """
+    session.install('coverage', 'pytest-cov')
+    session.run('coverage', 'report', '--show-missing')
+    session.run('coverage', 'erase')
