@@ -10,6 +10,7 @@ developers to design and integrate conversational user interfaces int
 mobile apps, web applications, devices, and bots.
 
 * `Dialogflow Enterprise Python Client API Reference <https://cloud.google.com/dialogflow-enterprise>`_
+* `Dialogflow Standard Documentation <https://www.dialogflow.com>`_
 * `Dialogflow Enterprise Documentation <https://cloud.google.com/dialogflow-enterprise/docs>`_
 
 Read more about the client libraries for Cloud APIs, including the older
