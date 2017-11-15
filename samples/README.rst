@@ -21,18 +21,20 @@ Table of Contents
 Before you begin
 ----------------
 
-#. Before running the samples, make sure you’ve followed the steps in the
-`Before you begin section <../README.rst#before-you-begin>`__ of the
-client library’s README.
+#. Before running the samples, make sure you’ve followed the steps in
+   the `Before you begin section <../README.rst#before-you-begin>`__ of
+   the client library’s README.
 
-#. If your project does not already have an agent, create one following the instructions:
+#. If your project does not already have an agent, create one following
+   the `instructions <https://dialogflow.com/docs/getting-started/building-your-first-agent#create_an_agent>`__.
 
-	- `Create a standard edition agent <https://dialogflow.com/docs/getting-started/building-your-first-agent#create_an_agent>`__
-	- `Create an enterprise edition agent <https://cloud.google.com/dialogflow-enterprise/docs/quickstart>`__
+   (If you want to create an enterprise agent, follow `these instructions <https://cloud.google.com/dialogflow-enterprise/docs/quickstart>`__.)
 
-#. This sample comes with a `sample agent <./resources/RoomReservation.zip>`__ which you can use to try the samples with.  Following the instructions on `this page <https://dialogflow.com/docs/best-practices/import-export-for-versions>`__ to import the agent from the `console <https://console.dialogflow.com>`__.
+#. This sample comes with a `sample agent <./resources/RoomReservation.zip>`__
+   which you can use to try the samples with.  Following the instructions on `this page <https://dialogflow.com/docs/best-practices/import-export-for-versions>`__
+   to import the agent from the `console <https://console.dialogflow.com>`__.
 
-	- **WARNING: Importing the sample agent will add intents and entities to your Dialogflow agent. You might want to use a different Google Cloud Platform Project, or export your Dialogflow agent before importing the sample agent to save a version of your agent before the sample agent was imported.**
+	**WARNING: Importing the sample agent will add intents and entities to your Dialogflow agent. You might want to use a different Google Cloud Platform Project, or export your Dialogflow agent before importing the sample agent to save a version of your agent before the sample agent was imported.**
 
 Samples
 -------
