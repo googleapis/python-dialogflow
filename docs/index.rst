@@ -51,6 +51,22 @@ Installation
 Using Dialogflow
 ----------------
 
+Importing the Library
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    import dialogflow
+
+Detecting Intent (Texts)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use the Dialogflow API to detect the intent from texts:
+
+.. literalinclude:: ../samples/detect_intent_texts.py
+    :start-after: # [START dialogflow_detect_intent_texts]
+    :end-before: # [END dialogflow_detect_intent_texts]
+
 Detecting Intent (Audio)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -61,6 +77,75 @@ audio file:
     :start-after: # [START dialogflow_detect_intent_audio]
     :end-before: # [END dialogflow_detect_intent_audio]
 
+Detecting Intent (Streaming Audio)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use the Dialogflow API to detect the intent of a speaker given a
+stream of audio:
+
+.. literalinclude:: ../samples/detect_intent_stream.py
+    :start-after: # [START dialogflow_detect_intent_streaming]
+    :end-before: # [END dialogflow_detect_intent_streaming]
+
+Managing Intents
+~~~~~~~~~~~~~~~~
+
+You can use the Dialogflow API to create intents:
+
+.. literalinclude:: ../samples/intent_management.py
+    :start-after: # [START dialogflow_create_intent]
+    :end-before: # [END dialogflow_create_intent]
+
+To delete intents:
+
+.. literalinclude:: ../samples/intent_management.py
+    :start-after: # [START dialogflow_delete_intent]
+    :end-before: # [END dialogflow_delete_intent]
+
+Managing Entity Types
+~~~~~~~~~~~~~~~~~~~~~
+
+You can use the Dialogflow API to create entity types:
+
+.. literalinclude:: ../samples/entity_type_management.py
+    :start-after: # [START dialogflow_create_entity_type]
+    :end-before: # [END dialogflow_create_entity_type]
+
+To delete entity types:
+
+.. literalinclude:: ../samples/entity_type_management.py
+    :start-after: # [START dialogflow_delete_entity_type]
+    :end-before: # [END dialogflow_delete_entity_type]
+
+Managing Entities
+~~~~~~~~~~~~~~~~~
+
+You can use the Dialogflow API to create entities:
+
+.. literalinclude:: ../samples/entity_management.py
+    :start-after: # [START dialogflow_create_entity]
+    :end-before: # [END dialogflow_create_entity]
+
+To delete entities:
+
+.. literalinclude:: ../samples/entity_management.py
+    :start-after: # [START dialogflow_delete_entity]
+    :end-before: # [END dialogflow_delete_entity]
+
+Managing Session Entity Types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use the Dialogflow API to create session entity types:
+
+.. literalinclude:: ../samples/session_entity_type_management.py
+    :start-after: # [START dialogflow_create_session_entity_type]
+    :end-before: # [END dialogflow_create_session_entity_type]
+
+To delete session entity types:
+
+.. literalinclude:: ../samples/session_entity_type_management.py
+    :start-after: # [START dialogflow_delete_session_entity_type]
+    :end-before: # [END dialogflow_delete_session_entity_type]
 
 Versioning
 ----------
