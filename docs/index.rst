@@ -52,7 +52,7 @@ Using Dialogflow
 ----------------
 
 Importing the Library
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -64,8 +64,8 @@ Detecting Intent (Texts)
 You can use the Dialogflow API to detect the intent from texts:
 
 .. literalinclude:: ../samples/detect_intent_texts.py
-    :start-after: # [START dialogflow_detect_intent_texts]
-    :end-before: # [END dialogflow_detect_intent_texts]
+    :start-after: # [START dialogflow_detect_intent_text]
+    :end-before: # [END dialogflow_detect_intent_text]
 
 Detecting Intent (Audio)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,7 +78,7 @@ audio file:
     :end-before: # [END dialogflow_detect_intent_audio]
 
 Detecting Intent (Streaming Audio)
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the Dialogflow API to detect the intent of a speaker given a
 stream of audio:
