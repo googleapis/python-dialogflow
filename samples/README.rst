@@ -17,7 +17,6 @@ Table of Contents
    -  `Entity management <#entity-management>`__
    -  `Session entity type management <#session-entity-type-management>`__
 
-
 Before you begin
 ----------------
 
