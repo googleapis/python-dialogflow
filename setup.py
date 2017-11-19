@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 import io
 
 install_requires = [
-    'google-api-core >= 0.1.1, < 0.2dev'
+    'google-api-core >= 0.1.1, < 0.2dev',
     'google-auth>=1.0.2, <2.0dev',
     'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
     'requests>=2.18.4, <3.0dev',
