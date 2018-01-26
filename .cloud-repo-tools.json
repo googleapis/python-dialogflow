@@ -1,0 +1,73 @@
+{
+  "product": "dialogflow",
+  "requiresKeyFile": true,
+  "requiresProjectId": true,
+  "client_reference_url": "https://googlecloudplatform.github.io/google-cloud-python/latest/dialogflow/index.html",
+  "client_name": "dialogflow",
+  "release_quality": "alpha",
+  "samples": [
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "file": "context_management.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python context_management.py --help"
+    },
+    {
+      "id": "detect-intent-audio",
+      "name": "Detect Intent Audio",
+      "file": "detect_intent_audio.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python detect_intent_audio.py --help"
+    },
+    {
+      "id": "detect-intent-stream",
+      "name": "Detect Intent Stream",
+      "file": "detect_intent_stream.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python detect_intent_stream.py --help"
+    },
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "file": "context_management.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python context_management.py --help"
+    },
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "file": "context_management.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python context_management.py --help"
+    },
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "file": "context_management.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python context_management.py --help"
+    },
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "file": "context_management.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python context_management.py --help"
+    },
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "file": "context_management.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python context_management.py --help"
+    },
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "file": "context_management.py",
+      "docs_link": "https://cloud.google.com/dialogflow-enterprise/docs/",
+      "usage": "python context_management.py --help"
+    }
+  ]
+}

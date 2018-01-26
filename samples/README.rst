@@ -1,271 +1,414 @@
+.. image:: https://avatars2.githubusercontent.com/u/2810941?v=3&s=96
+   :height: 96px
+   :width: 96px
+   :alt: Google Cloud Platform logo
+   :align: right
+
 Dialogflow: Python Samples
 =============================
 
-Dialogflow samples using python client.
+|Open in Cloud Shell|
+
+[Dialogflow](https://dialogflow.com/docs/) is a natural language understanding platform that makes it easy for you to design and integrate a conversational user interface into your mobile app, web application, device, bot, and so on.
 
 Table of Contents
 -----------------
 
 -  `Before you begin <#before-you-begin>`__
 -  `Samples <#samples>`__
-
-   -  `Detect intent (texts) <#detect-intent-texts>`__
-   -  `Detect intent (audio) <#detect-intent-audio>`__
-   -  `Detect intent (streaming) <#detect-intent-streaming>`__
-   -  `Intent management <#intent-management>`__
-   -  `Entity type management <#entity-type-management>`__
-   -  `Entity management <#entity-management>`__
-   -  `Session entity type management <#session-entity-type-management>`__
+   -  `Context Management <#context-management>`__
+   -  `Detect Intent Audio <#detect-intent-audio>`__
+   -  `Detect Intent Stream <#detect-intent-stream>`__
+   -  `Context Management <#context-management>`__
+   -  `Context Management <#context-management>`__
+   -  `Context Management <#context-management>`__
+   -  `Context Management <#context-management>`__
+   -  `Context Management <#context-management>`__
+   -  `Context Management <#context-management>`__
 
 Before you begin
 ----------------
 
-#. Before running the samples, make sure you’ve followed the steps in
-   the `Before you begin section <../README.rst#before-you-begin>`__ of
-   the client library’s README.
-
-#. If your project does not already have an agent, create one following
-   the `instructions <https://dialogflow.com/docs/getting-started/building-your-first-agent#create_an_agent>`__.
-
-   (If you want to create an enterprise agent, follow `these instructions <https://cloud.google.com/dialogflow-enterprise/docs/quickstart>`__.)
-
-#. This sample comes with a `sample agent <./resources/RoomReservation.zip>`__
-   which you can use to try the samples with.  Following the instructions on `this page <https://dialogflow.com/docs/best-practices/import-export-for-versions>`__
-   to import the agent from the `console <https://console.dialogflow.com>`__.
-
-	**WARNING: Importing the sample agent will add intents and entities to your Dialogflow agent. You might want to use a different Google Cloud Platform Project, or export your Dialogflow agent before importing the sample agent to save a version of your agent before the sample agent was imported.**
+Before running the samples, make sure you’ve followed the steps in the
+`Before you begin section <../README.md#before-you-begin>`__ of the
+client library’s README.
 
 Samples
 -------
 
-Detect intent (texts)
-~~~~~~~~~~~~~~~~~~~~~
 
-View the `source code <detect_intent_texts.py>`__.
+Context Management
+~~~~~~~~
 
-**Usage:** ``python detect_intent_texts.py --help``
+View the `source code <context_management.py>`__.
 
-.. code-block::
+|Open in Cloud Shell Context Management|
 
-	usage: detect_intent_texts.py [-h] --project-id PROJECT_ID
-	                              [--session-id SESSION_ID]
-	                              [--language-code LANGUAGE_CODE]
-	                              texts [texts ...]
+.. |Open in Cloud Shell Context Management| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/context_management.py,samples/README.md
 
-	DialogFlow API Detect Intent Python sample with text inputs.
 
-	Examples:
-	  python detect_intent_texts.py -h
-	  python detect_intent_texts.py --project-id PROJECT_ID   --session-id SESSION_ID   "hello" "book a meeting room" "Mountain View"
-	  python detect_intent_texts.py --project-id PROJECT_ID   --session-id SESSION_ID   "tomorrow" "10 AM" "2 hours" "10 people" "A" "yes"
 
-	positional arguments:
-	  texts                 Text inputs.
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  --project-id PROJECT_ID
-	                        Project/agent id. Required.
-	  --session-id SESSION_ID
-	                        Identifier of the DetectIntent session. Defaults to a
-	                        random UUID.
-	  --language-code LANGUAGE_CODE
-	                        Language code of the query. Defaults to "en-US".
-	
-Detect intent (audio)
-~~~~~~~~~~~~~~~~~~~~~
+**Usage:** ``python context_management.py --help``
+
+::
+
+    usage: context_management.py [-h] --project-id PROJECT_ID
+                             {list,create,delete} ...
+
+DialogFlow API Context Python sample showing how to manage session
+contexts.
+
+Examples:
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID   list --session-id SESSION_ID
+  python context_management.py --project-id PROJECT_ID   create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_management.py --project-id PROJECT_ID   delete --session-id SESSION_ID --context-id CONTEXT_ID
+
+positional arguments:
+  {list,create,delete}
+    list
+    create
+    delete
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
+
+
+Detect Intent Audio
+~~~~~~~~
 
 View the `source code <detect_intent_audio.py>`__.
 
+|Open in Cloud Shell Detect Intent Audio|
+
+.. |Open in Cloud Shell Detect Intent Audio| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/detect_intent_audio.py,samples/README.md
+
+
+
+
 **Usage:** ``python detect_intent_audio.py --help``
 
-.. code-block::
+::
 
-	usage: detect_intent_audio.py [-h] --project-id PROJECT_ID
-	                              [--session-id SESSION_ID]
-	                              [--language-code LANGUAGE_CODE]
-	                              --audio-file-path AUDIO_FILE_PATH
+    usage: detect_intent_audio.py [-h] --project-id PROJECT_ID
+                              [--session-id SESSION_ID]
+                              [--language-code LANGUAGE_CODE]
+                              --audio-file-path AUDIO_FILE_PATH
 
-	DialogFlow API Detect Intent Python sample with audio file.
+DialogFlow API Detect Intent Python sample with audio file.
 
-	Examples:
-	  python detect_intent_audio.py -h
-	  python detect_intent_audio.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/book_a_room.wav
-	  python detect_intent_audio.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/mountain_view.wav
-	  python detect_intent_audio.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/today.wav
+Examples:
+  python detect_intent_audio.py -h
+  python detect_intent_audio.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/book_a_room.wav
+  python detect_intent_audio.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/mountain_view.wav
+  python detect_intent_audio.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/today.wav
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  --project-id PROJECT_ID
-	                        Project/agent id. Required.
-	  --session-id SESSION_ID
-	                        Identifier of the DetectIntent session. Defaults to a
-	                        random UUID.
-	  --language-code LANGUAGE_CODE
-	                        Language code of the query. Defaults to "en-US".
-	  --audio-file-path AUDIO_FILE_PATH
-	                        Path to the audio file.
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
+  --session-id SESSION_ID
+                        Identifier of the DetectIntent session. Defaults to a
+                        random UUID.
+  --language-code LANGUAGE_CODE
+                        Language code of the query. Defaults to "en-US".
+  --audio-file-path AUDIO_FILE_PATH
+                        Path to the audio file.
 
-Detect intent (streaming)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Detect Intent Stream
+~~~~~~~~
 
 View the `source code <detect_intent_stream.py>`__.
 
+|Open in Cloud Shell Detect Intent Stream|
+
+.. |Open in Cloud Shell Detect Intent Stream| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/detect_intent_stream.py,samples/README.md
+
+
+
+
 **Usage:** ``python detect_intent_stream.py --help``
 
-.. code-block::
+::
 
-	usage: detect_intent_stream.py [-h] --project-id PROJECT_ID
-	                               [--session-id SESSION_ID]
-	                               [--language-code LANGUAGE_CODE]
-	                               --audio-file-path AUDIO_FILE_PATH
+    usage: detect_intent_stream.py [-h] --project-id PROJECT_ID
+                               [--session-id SESSION_ID]
+                               [--language-code LANGUAGE_CODE]
+                               --audio-file-path AUDIO_FILE_PATH
 
-	DialogFlow API Detect Intent Python sample with audio files processed
-	as an audio stream.
+DialogFlow API Detect Intent Python sample with audio files processed
+as an audio stream.
 
-	Examples:
-	  python detect_intent_stream.py -h
-	  python detect_intent_stream.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/book_a_room.wav
-	  python detect_intent_stream.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/mountain_view.wav
+Examples:
+  python detect_intent_stream.py -h
+  python detect_intent_stream.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/book_a_room.wav
+  python detect_intent_stream.py --project-id PROJECT_ID   --session-id SESSION_ID --audio-file-path resources/mountain_view.wav
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  --project-id PROJECT_ID
-	                        Project/agent id. Required.
-	  --session-id SESSION_ID
-	                        Identifier of the DetectIntent session. Defaults to a
-	                        random UUID.
-	  --language-code LANGUAGE_CODE
-	                        Language code of the query. Defaults to "en-US".
-	  --audio-file-path AUDIO_FILE_PATH
-	                        Path to the audio file.
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
+  --session-id SESSION_ID
+                        Identifier of the DetectIntent session. Defaults to a
+                        random UUID.
+  --language-code LANGUAGE_CODE
+                        Language code of the query. Defaults to "en-US".
+  --audio-file-path AUDIO_FILE_PATH
+                        Path to the audio file.
 
-Intent management
-~~~~~~~~~~~~~~~~~
 
-View the `source code <intent_management.py>`__.
+Context Management
+~~~~~~~~
 
-**Usage:** ``python intent_management.py --help``
+View the `source code <context_management.py>`__.
 
-.. code-block::
+|Open in Cloud Shell Context Management|
 
-	usage: intent_management.py [-h] --project-id PROJECT_ID
-	                            {list,create,delete} ...
+.. |Open in Cloud Shell Context Management| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/context_management.py,samples/README.md
 
-	DialogFlow API Intent Python sample showing how to manage intents.
 
-	Examples:
-	  python intent_management.py -h
-	  python intent_management.py --project-id PROJECT_ID list
-	  python intent_management.py --project-id PROJECT_ID create   "room.cancellation - yes"   --training-phrases-parts "cancel" "cancellation"   --message-texts "Are you sure you want to cancel?" "Cancelled."
-	  python intent_management.py --project-id PROJECT_ID delete   74892d81-7901-496a-bb0a-c769eda5180e
 
-	positional arguments:
-	  {list,create,delete}
-	    list
-	    create              Create an intent of the given intent type.
-	    delete              Delete intent with the given intent type and intent
-	                        value.
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  --project-id PROJECT_ID
-	                        Project/agent id. Required.
+**Usage:** ``python context_management.py --help``
 
-Entity type management
-~~~~~~~~~~~~~~~~~~~~~~
+::
 
-View the `source code <entity_type_management.py>`__.
+    usage: context_management.py [-h] --project-id PROJECT_ID
+                             {list,create,delete} ...
 
-**Usage:** ``python entity_type_management.py --help``
+DialogFlow API Context Python sample showing how to manage session
+contexts.
 
-.. code-block::
+Examples:
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID   list --session-id SESSION_ID
+  python context_management.py --project-id PROJECT_ID   create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_management.py --project-id PROJECT_ID   delete --session-id SESSION_ID --context-id CONTEXT_ID
 
-	usage: entity_type_management.py [-h] --project-id PROJECT_ID
-	                                 {list,create,delete} ...
+positional arguments:
+  {list,create,delete}
+    list
+    create
+    delete
 
-	DialogFlow API EntityType Python sample showing how to manage entity types.
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
 
-	Examples:
-	  python entity_type_management.py -h
-	  python entity_type_management.py --project-id PROJECT_ID list
-	  python entity_type_management.py --project-id PROJECT_ID create employee
-	  python entity_type_management.py --project-id PROJECT_ID delete   e57238e2-e692-44ea-9216-6be1b2332e2a
 
-	positional arguments:
-	  {list,create,delete}
-	    list
-	    create              Create an entity type with the given display name.
-	    delete              Delete entity type with the given entity type name.
+Context Management
+~~~~~~~~
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  --project-id PROJECT_ID
-	                        Project/agent id. Required.
+View the `source code <context_management.py>`__.
 
-Entity management
-~~~~~~~~~~~~~~~~~
+|Open in Cloud Shell Context Management|
 
-View the `source code <entity_management.py>`__.
+.. |Open in Cloud Shell Context Management| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/context_management.py,samples/README.md
 
-**Usage:** ``python entity_management.py --help``
 
-.. code-block::
 
-	usage: entity_management.py [-h] --project-id PROJECT_ID
-	                            {list,create,delete} ...
 
-	DialogFlow API Entity Python sample showing how to manage entities.
+**Usage:** ``python context_management.py --help``
 
-	Examples:
-	  python entity_management.py -h
-	  python entity_management.py --project-id PROJECT_ID   list --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
-	  python entity_management.py --project-id PROJECT_ID   create new_room --synonyms basement cellar   --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
-	  python entity_management.py --project-id PROJECT_ID   delete new_room   --entity-type-id e57238e2-e692-44ea-9216-6be1b2332e2a
+::
 
-	positional arguments:
-	  {list,create,delete}
-	    list
-	    create              Create an entity of the given entity type.
-	    delete              Delete entity with the given entity type and entity
-	                        value.
+    usage: context_management.py [-h] --project-id PROJECT_ID
+                             {list,create,delete} ...
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  --project-id PROJECT_ID
-	                        Project/agent id. Required.
+DialogFlow API Context Python sample showing how to manage session
+contexts.
 
-Session entity type management
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Examples:
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID   list --session-id SESSION_ID
+  python context_management.py --project-id PROJECT_ID   create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_management.py --project-id PROJECT_ID   delete --session-id SESSION_ID --context-id CONTEXT_ID
 
-View the `source code <session_entity_type_management.py>`__.
+positional arguments:
+  {list,create,delete}
+    list
+    create
+    delete
 
-**Usage:** ``python session_entity_type_management.py --help``
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
 
-.. code-block::
 
-	usage: session_entity_type_management.py [-h] --project-id PROJECT_ID
-	                                         {list,create,delete} ...
+Context Management
+~~~~~~~~
 
-	DialogFlow API SessionEntityType Python sample showing how to manage
-	session entity types.
+View the `source code <context_management.py>`__.
 
-	Examples:
-	  python session_entity_type_management.py -h
-	  python session_entity_type_management.py --project-id PROJECT_ID list   --session-id SESSION_ID
-	  python session_entity_type_management.py --project-id PROJECT_ID create   --session-id SESSION_ID   --entity-type-display-name room --entity-values C D E F
-	  python session_entity_type_management.py --project-id PROJECT_ID delete   --session-id SESSION_ID   --entity-type-display-name room
+|Open in Cloud Shell Context Management|
 
-	positional arguments:
-	  {list,create,delete}
-	    list
-	    create              Create a session entity type with the given display
-	                        name.
-	    delete              Delete session entity type with the given entity type
-	                        display name.
+.. |Open in Cloud Shell Context Management| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/context_management.py,samples/README.md
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  --project-id PROJECT_ID
-	                        Project/agent id. Required.
 
+
+
+**Usage:** ``python context_management.py --help``
+
+::
+
+    usage: context_management.py [-h] --project-id PROJECT_ID
+                             {list,create,delete} ...
+
+DialogFlow API Context Python sample showing how to manage session
+contexts.
+
+Examples:
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID   list --session-id SESSION_ID
+  python context_management.py --project-id PROJECT_ID   create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_management.py --project-id PROJECT_ID   delete --session-id SESSION_ID --context-id CONTEXT_ID
+
+positional arguments:
+  {list,create,delete}
+    list
+    create
+    delete
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
+
+
+Context Management
+~~~~~~~~
+
+View the `source code <context_management.py>`__.
+
+|Open in Cloud Shell Context Management|
+
+.. |Open in Cloud Shell Context Management| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/context_management.py,samples/README.md
+
+
+
+
+**Usage:** ``python context_management.py --help``
+
+::
+
+    usage: context_management.py [-h] --project-id PROJECT_ID
+                             {list,create,delete} ...
+
+DialogFlow API Context Python sample showing how to manage session
+contexts.
+
+Examples:
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID   list --session-id SESSION_ID
+  python context_management.py --project-id PROJECT_ID   create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_management.py --project-id PROJECT_ID   delete --session-id SESSION_ID --context-id CONTEXT_ID
+
+positional arguments:
+  {list,create,delete}
+    list
+    create
+    delete
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
+
+
+Context Management
+~~~~~~~~
+
+View the `source code <context_management.py>`__.
+
+|Open in Cloud Shell Context Management|
+
+.. |Open in Cloud Shell Context Management| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/context_management.py,samples/README.md
+
+
+
+
+**Usage:** ``python context_management.py --help``
+
+::
+
+    usage: context_management.py [-h] --project-id PROJECT_ID
+                             {list,create,delete} ...
+
+DialogFlow API Context Python sample showing how to manage session
+contexts.
+
+Examples:
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID   list --session-id SESSION_ID
+  python context_management.py --project-id PROJECT_ID   create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_management.py --project-id PROJECT_ID   delete --session-id SESSION_ID --context-id CONTEXT_ID
+
+positional arguments:
+  {list,create,delete}
+    list
+    create
+    delete
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
+
+
+Context Management
+~~~~~~~~
+
+View the `source code <context_management.py>`__.
+
+|Open in Cloud Shell Context Management|
+
+.. |Open in Cloud Shell Context Management| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/context_management.py,samples/README.md
+
+
+
+
+**Usage:** ``python context_management.py --help``
+
+::
+
+    usage: context_management.py [-h] --project-id PROJECT_ID
+                             {list,create,delete} ...
+
+DialogFlow API Context Python sample showing how to manage session
+contexts.
+
+Examples:
+  python context_management.py -h
+  python context_management.py --project-id PROJECT_ID   list --session-id SESSION_ID
+  python context_management.py --project-id PROJECT_ID   create --session-id SESSION_ID --context-id CONTEXT_ID
+  python context_management.py --project-id PROJECT_ID   delete --session-id SESSION_ID --context-id CONTEXT_ID
+
+positional arguments:
+  {list,create,delete}
+    list
+    create
+    delete
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --project-id PROJECT_ID
+                        Project/agent id. Required.
+
+
+.. |Open in Cloud Shell| image:: http://gstatic.com/cloudssh/images/open-btn.png
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dialogflow/dialogflow-python-client-v2&page=editor&open_in_editor=samples/README.md
