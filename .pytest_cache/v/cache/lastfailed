@@ -1,0 +1,8 @@
+{
+  "tests/unit/gapic/v2beta1/test_agents_client_v2beta1.py::TestAgentsClient::()": true,
+  "tests/unit/gapic/v2beta1/test_contexts_client_v2beta1.py::TestContextsClient::()": true,
+  "tests/unit/gapic/v2beta1/test_entity_types_client_v2beta1.py::TestEntityTypesClient::()": true,
+  "tests/unit/gapic/v2beta1/test_intents_client_v2beta1.py::TestIntentsClient::()": true,
+  "tests/unit/gapic/v2beta1/test_session_entity_types_client_v2beta1.py::TestSessionEntityTypesClient::()": true,
+  "tests/unit/gapic/v2beta1/test_sessions_client_v2beta1.py::TestSessionsClient::()": true
+}

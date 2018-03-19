@@ -1,6 +1,6 @@
 Client for Dialogflow API
 =========================
 
-.. automodule:: dialogflow_v2beta1
+.. automodule:: google.cloud.dialogflow_v2beta1
     :members:
     :inherited-members:
