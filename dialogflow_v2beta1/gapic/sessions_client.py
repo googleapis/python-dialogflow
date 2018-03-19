@@ -172,7 +172,7 @@ class SessionsClient(object):
                 It's up to the API caller to choose an appropriate session ID. It can be
                 a random number or some type of user identifier (preferably hashed).
                 The length of the session ID must not exceed 36 bytes.
-            query_input (Union[dict, ~google.cloud.dialogflow_v2beta1.types.QueryInput]): Required. The input specification. It can be set to:
+            query_input (Union[dict, ~dialogflow_v2beta1.types.QueryInput]): Required. The input specification. It can be set to:
 
                 1.  an audio config
                 ::
@@ -183,10 +183,10 @@ class SessionsClient(object):
 
                 3.  an event that specifies which intent to trigger.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.QueryInput`
-            query_params (Union[dict, ~google.cloud.dialogflow_v2beta1.types.QueryParameters]): Optional. The parameters of this query.
+                message :class:`~dialogflow_v2beta1.types.QueryInput`
+            query_params (Union[dict, ~dialogflow_v2beta1.types.QueryParameters]): Optional. The parameters of this query.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.QueryParameters`
+                message :class:`~dialogflow_v2beta1.types.QueryParameters`
             input_audio (bytes): Optional. The natural language speech audio to be processed. This field
                 should be populated iff ``query_input`` is set to an input audio config.
                 A single request can contain up to 1 minute of speech audio data.
@@ -200,7 +200,7 @@ class SessionsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.DetectIntentResponse` instance.
+            A :class:`~dialogflow_v2beta1.types.DetectIntentResponse` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -249,7 +249,7 @@ class SessionsClient(object):
             ...     pass
 
         Args:
-            requests (iterator[dict|google.cloud.dialogflow_v2beta1.proto.session_pb2.StreamingDetectIntentRequest]): The input objects. If a dict is provided, it must be of the
+            requests (iterator[dict|dialogflow_v2beta1.proto.session_pb2.StreamingDetectIntentRequest]): The input objects. If a dict is provided, it must be of the
                 same form as the protobuf message :class:`~.dialogflow_v2beta1.types.StreamingDetectIntentRequest`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not

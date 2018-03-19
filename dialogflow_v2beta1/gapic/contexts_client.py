@@ -56,7 +56,7 @@ class ContextsClient(object):
     if no intents are matched for a ``DetectIntent`` request.
 
     For more information about contexts, see the
-    `Dialogflow documentation <https://dialogflow.com/docs/contexts>`_.
+    `Dialogflow documentation <https://dialogflow.com/docs/contexts>`__.
     """
 
     SERVICE_ADDRESS = 'dialogflow.googleapis.com:443'

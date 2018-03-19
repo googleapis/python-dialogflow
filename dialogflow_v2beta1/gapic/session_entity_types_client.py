@@ -54,7 +54,7 @@ class SessionEntityTypesClient(object):
     entity type at the session level.
 
     For more information about entity types, see the
-    `Dialogflow documentation <https://dialogflow.com/docs/entities>`_.
+    `Dialogflow documentation <https://dialogflow.com/docs/entities>`__.
     """
 
     SERVICE_ADDRESS = 'dialogflow.googleapis.com:443'

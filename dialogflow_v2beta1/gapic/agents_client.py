@@ -64,7 +64,7 @@ class AgentsClient(object):
     currency, and so on.
 
     For more information about agents, see the
-    `Dialogflow documentation <https://dialogflow.com/docs/agents>`_.
+    `Dialogflow documentation <https://dialogflow.com/docs/agents>`__.
     """
 
     SERVICE_ADDRESS = 'dialogflow.googleapis.com:443'
@@ -217,7 +217,7 @@ class AgentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Agent` instance.
+            A :class:`~dialogflow_v2beta1.types.Agent` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -286,7 +286,7 @@ class AgentsClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~google.cloud.dialogflow_v2beta1.types.Agent` instances.
+            is an iterable of :class:`~dialogflow_v2beta1.types.Agent` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -361,7 +361,7 @@ class AgentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -430,7 +430,7 @@ class AgentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -522,7 +522,7 @@ class AgentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -568,7 +568,6 @@ class AgentsClient(object):
         Replaces the current agent version with a new one. All the intents and
         entity types in the older version are deleted.
 
-
         Operation <response: ``google.protobuf.Empty``,
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
@@ -606,7 +605,7 @@ class AgentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
+            A :class:`~dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
