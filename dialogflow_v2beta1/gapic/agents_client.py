@@ -596,21 +596,6 @@ class AgentsClient(object):
             agent_uri (str): The URI to a Google Cloud Storage file containing the agent to restore.
                 Note: The URI must start with \"gs://\".
             agent_content (bytes): The agent to restore.
-
-                Example for how to restore an agent via the command line:
-
-                curl \
-                  'https://dialogflow.googleapis.com/v2beta1/projects/<project_name>/agent:restore\
-                   -X POST \
-                   -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
-                   -H 'Accept: application/json' \
-                   -H 'Content-Type: application/json' \
-                   --compressed \
-                   --data-binary \"{
-                ::
-
-                       'agentContent': '$(cat <agent zip file> | base64 -w 0)'
-                   }\" \
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
