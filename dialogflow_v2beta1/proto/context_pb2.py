@@ -23,9 +23,10 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/dialogflow_v2beta1/proto/context.proto',
   package='google.cloud.dialogflow.v2beta1',
   syntax='proto3',
-  serialized_pb=_b('\n3google/cloud/dialogflow_v2beta1/proto/context.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\"\\\n\x07\x43ontext\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x16\n\x0elifespan_count\x18\x02 \x01(\x05\x12+\n\nparameters\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\"L\n\x13ListContextsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"k\n\x14ListContextsResponse\x12:\n\x08\x63ontexts\x18\x01 \x03(\x0b\x32(.google.cloud.dialogflow.v2beta1.Context\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"!\n\x11GetContextRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"a\n\x14\x43reateContextRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x39\n\x07\x63ontext\x18\x02 \x01(\x0b\x32(.google.cloud.dialogflow.v2beta1.Context\"\x82\x01\n\x14UpdateContextRequest\x12\x39\n\x07\x63ontext\x18\x01 \x01(\x0b\x32(.google.cloud.dialogflow.v2beta1.Context\x12/\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\"$\n\x14\x44\x65leteContextRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"*\n\x18\x44\x65leteAllContextsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t2\xbf\x08\n\x08\x43ontexts\x12\xbb\x01\n\x0cListContexts\x12\x34.google.cloud.dialogflow.v2beta1.ListContextsRequest\x1a\x35.google.cloud.dialogflow.v2beta1.ListContextsResponse\">\x82\xd3\xe4\x93\x02\x38\x12\x36/v2beta1/{parent=projects/*/agent/sessions/*}/contexts\x12\xaa\x01\n\nGetContext\x12\x32.google.cloud.dialogflow.v2beta1.GetContextRequest\x1a(.google.cloud.dialogflow.v2beta1.Context\">\x82\xd3\xe4\x93\x02\x38\x12\x36/v2beta1/{name=projects/*/agent/sessions/*/contexts/*}\x12\xb9\x01\n\rCreateContext\x12\x35.google.cloud.dialogflow.v2beta1.CreateContextRequest\x1a(.google.cloud.dialogflow.v2beta1.Context\"G\x82\xd3\xe4\x93\x02\x41\"6/v2beta1/{parent=projects/*/agent/sessions/*}/contexts:\x07\x63ontext\x12\xc1\x01\n\rUpdateContext\x12\x35.google.cloud.dialogflow.v2beta1.UpdateContextRequest\x1a(.google.cloud.dialogflow.v2beta1.Context\"O\x82\xd3\xe4\x93\x02I2>/v2beta1/{context.name=projects/*/agent/sessions/*/contexts/*}:\x07\x63ontext\x12\x9e\x01\n\rDeleteContext\x12\x35.google.cloud.dialogflow.v2beta1.DeleteContextRequest\x1a\x16.google.protobuf.Empty\">\x82\xd3\xe4\x93\x02\x38*6/v2beta1/{name=projects/*/agent/sessions/*/contexts/*}\x12\xa6\x01\n\x11\x44\x65leteAllContexts\x12\x39.google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest\x1a\x16.google.protobuf.Empty\">\x82\xd3\xe4\x93\x02\x38*6/v2beta1/{parent=projects/*/agent/sessions/*}/contextsB\xaa\x01\n#com.google.cloud.dialogflow.v2beta1B\x0c\x43ontextProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
+  serialized_pb=_b('\n3google/cloud/dialogflow_v2beta1/proto/context.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\"\\\n\x07\x43ontext\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x16\n\x0elifespan_count\x18\x02 \x01(\x05\x12+\n\nparameters\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\"L\n\x13ListContextsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"k\n\x14ListContextsResponse\x12:\n\x08\x63ontexts\x18\x01 \x03(\x0b\x32(.google.cloud.dialogflow.v2beta1.Context\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"!\n\x11GetContextRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"a\n\x14\x43reateContextRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x39\n\x07\x63ontext\x18\x02 \x01(\x0b\x32(.google.cloud.dialogflow.v2beta1.Context\"\x82\x01\n\x14UpdateContextRequest\x12\x39\n\x07\x63ontext\x18\x01 \x01(\x0b\x32(.google.cloud.dialogflow.v2beta1.Context\x12/\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\"$\n\x14\x44\x65leteContextRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"*\n\x18\x44\x65leteAllContextsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t2\xff\x0b\n\x08\x43ontexts\x12\x81\x02\n\x0cListContexts\x12\x34.google.cloud.dialogflow.v2beta1.ListContextsRequest\x1a\x35.google.cloud.dialogflow.v2beta1.ListContextsResponse\"\x83\x01\x82\xd3\xe4\x93\x02}\x12\x36/v2beta1/{parent=projects/*/agent/sessions/*}/contextsZC\x12\x41/v2beta1/{parent=projects/*/agent/runtimes/*/sessions/*}/contexts\x12\xf0\x01\n\nGetContext\x12\x32.google.cloud.dialogflow.v2beta1.GetContextRequest\x1a(.google.cloud.dialogflow.v2beta1.Context\"\x83\x01\x82\xd3\xe4\x93\x02}\x12\x36/v2beta1/{name=projects/*/agent/sessions/*/contexts/*}ZC\x12\x41/v2beta1/{name=projects/*/agent/runtimes/*/sessions/*/contexts/*}\x12\x89\x02\n\rCreateContext\x12\x35.google.cloud.dialogflow.v2beta1.CreateContextRequest\x1a(.google.cloud.dialogflow.v2beta1.Context\"\x96\x01\x82\xd3\xe4\x93\x02\x8f\x01\"6/v2beta1/{parent=projects/*/agent/sessions/*}/contexts:\x07\x63ontextZL\"A/v2beta1/{parent=projects/*/agent/runtimes/*/sessions/*}/contexts:\x07\x63ontext\x12\x99\x02\n\rUpdateContext\x12\x35.google.cloud.dialogflow.v2beta1.UpdateContextRequest\x1a(.google.cloud.dialogflow.v2beta1.Context\"\xa6\x01\x82\xd3\xe4\x93\x02\x9f\x01\x32>/v2beta1/{context.name=projects/*/agent/sessions/*/contexts/*}:\x07\x63ontextZT2I/v2beta1/{context.name=projects/*/agent/runtimes/*/sessions/*/contexts/*}:\x07\x63ontext\x12\xe4\x01\n\rDeleteContext\x12\x35.google.cloud.dialogflow.v2beta1.DeleteContextRequest\x1a\x16.google.protobuf.Empty\"\x83\x01\x82\xd3\xe4\x93\x02}*6/v2beta1/{name=projects/*/agent/sessions/*/contexts/*}ZC*A/v2beta1/{name=projects/*/agent/runtimes/*/sessions/*/contexts/*}\x12\xec\x01\n\x11\x44\x65leteAllContexts\x12\x39.google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest\x1a\x16.google.protobuf.Empty\"\x83\x01\x82\xd3\xe4\x93\x02}*6/v2beta1/{parent=projects/*/agent/sessions/*}/contextsZC*A/v2beta1/{parent=projects/*/agent/runtimes/*/sessions/*}/contextsB\xaa\x01\n#com.google.cloud.dialogflow.v2beta1B\x0c\x43ontextProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,])
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -339,7 +340,6 @@ DESCRIPTOR.message_types_by_name['CreateContextRequest'] = _CREATECONTEXTREQUEST
 DESCRIPTOR.message_types_by_name['UpdateContextRequest'] = _UPDATECONTEXTREQUEST
 DESCRIPTOR.message_types_by_name['DeleteContextRequest'] = _DELETECONTEXTREQUEST
 DESCRIPTOR.message_types_by_name['DeleteAllContextsRequest'] = _DELETEALLCONTEXTSREQUEST
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Context = _reflection.GeneratedProtocolMessageType('Context', (_message.Message,), dict(
   DESCRIPTOR = _CONTEXT,
@@ -352,8 +352,12 @@ Context = _reflection.GeneratedProtocolMessageType('Context', (_message.Message,
       name:
           Required. The unique identifier of the context. Format:
           ``projects/<Project ID>/agent/sessions/<Session
-          ID>/contexts/<Context ID>``. Note: The Context ID is always
-          converted to lowercase.
+          ID>/contexts/<Context ID>``, or ``projects/<Project
+          ID>/agent/runtimes/<Runtime ID>/sessions/<Session
+          ID>/contexts/<Context ID>``. Note: Runtimes are under
+          construction and will be available soon. The Context ID is
+          always converted to lowercase. If is not specified, we assume
+          default 'sandbox' runtime.
       lifespan_count:
           Optional. The number of conversational query requests after
           which the context expires. If set to ``0`` (the default) the
@@ -373,13 +377,18 @@ ListContextsRequest = _reflection.GeneratedProtocolMessageType('ListContextsRequ
   DESCRIPTOR = _LISTCONTEXTSREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
   ,
-  __doc__ = """The request message for [Contexts.ListContexts].
+  __doc__ = """The request message for
+  [Contexts.ListContexts][google.cloud.dialogflow.v2beta1.Contexts.ListContexts].
   
   
   Attributes:
       parent:
           Required. The session to list all contexts from. Format:
-          ``projects/<Project ID>/agent/sessions/<Session ID>``.
+          ``projects/<Project ID>/agent/sessions/<Session ID>`` or
+          ``projects/<Project ID>/agent/runtimes/<Runtime
+          ID>/sessions/<Session ID>``. Note: Runtimes are under
+          construction and will be available soon. If is not specified,
+          we assume default 'sandbox' runtime.
       page_size:
           Optional. The maximum number of items to return in a single
           page. By default 100 and at most 1000.
@@ -395,7 +404,8 @@ ListContextsResponse = _reflection.GeneratedProtocolMessageType('ListContextsRes
   DESCRIPTOR = _LISTCONTEXTSRESPONSE,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
   ,
-  __doc__ = """The response message for [Contexts.ListContexts].
+  __doc__ = """The response message for
+  [Contexts.ListContexts][google.cloud.dialogflow.v2beta1.Contexts.ListContexts].
   
   
   Attributes:
@@ -414,13 +424,18 @@ GetContextRequest = _reflection.GeneratedProtocolMessageType('GetContextRequest'
   DESCRIPTOR = _GETCONTEXTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
   ,
-  __doc__ = """The request message for [Contexts.GetContext].
+  __doc__ = """The request message for
+  [Contexts.GetContext][google.cloud.dialogflow.v2beta1.Contexts.GetContext].
   
   
   Attributes:
       name:
           Required. The name of the context. Format: ``projects/<Project
-          ID>/agent/sessions/<Session ID>/contexts/<Context ID>``.
+          ID>/agent/sessions/<Session ID>/contexts/<Context ID>`` or
+          ``projects/<Project ID>/agent/runtimes/<Runtime
+          ID>/sessions/<Session ID>/contexts/<Context ID>``. Note:
+          Runtimes are under construction and will be available soon. If
+          is not specified, we assume default 'sandbox' runtime.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.GetContextRequest)
   ))
@@ -430,13 +445,18 @@ CreateContextRequest = _reflection.GeneratedProtocolMessageType('CreateContextRe
   DESCRIPTOR = _CREATECONTEXTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
   ,
-  __doc__ = """The request message for [Contexts.CreateContext].
+  __doc__ = """The request message for
+  [Contexts.CreateContext][google.cloud.dialogflow.v2beta1.Contexts.CreateContext].
   
   
   Attributes:
       parent:
           Required. The session to create a context for. Format:
-          ``projects/<Project ID>/agent/sessions/<Session ID>``.
+          ``projects/<Project ID>/agent/sessions/<Session ID>`` or
+          ``projects/<Project ID>/agent/runtimes/<Runtime
+          ID>/sessions/<Session ID>``. Note: Runtimes are under
+          construction and will be available soon. If is not specified,
+          we assume default 'sandbox' runtime.
       context:
           Required. The context to create.
   """,
@@ -448,13 +468,13 @@ UpdateContextRequest = _reflection.GeneratedProtocolMessageType('UpdateContextRe
   DESCRIPTOR = _UPDATECONTEXTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
   ,
-  __doc__ = """The request message for [Contexts.UpdateContext].
+  __doc__ = """The request message for
+  [Contexts.UpdateContext][google.cloud.dialogflow.v2beta1.Contexts.UpdateContext].
   
   
   Attributes:
       context:
-          Required. The context to update. Format: ``projects/<Project
-          ID>/agent/sessions/<Session ID>/contexts/<Context ID>``.
+          Required. The context to update.
       update_mask:
           Optional. The mask to control which fields get updated.
   """,
@@ -466,14 +486,19 @@ DeleteContextRequest = _reflection.GeneratedProtocolMessageType('DeleteContextRe
   DESCRIPTOR = _DELETECONTEXTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
   ,
-  __doc__ = """The request message for [Contexts.DeleteContext].
+  __doc__ = """The request message for
+  [Contexts.DeleteContext][google.cloud.dialogflow.v2beta1.Contexts.DeleteContext].
   
   
   Attributes:
       name:
           Required. The name of the context to delete. Format:
           ``projects/<Project ID>/agent/sessions/<Session
-          ID>/contexts/<Context ID>``.
+          ID>/contexts/<Context ID>`` or ``projects/<Project
+          ID>/agent/runtimes/<Runtime ID>/sessions/<Session
+          ID>/contexts/<Context ID>``. Note: Runtimes are under
+          construction and will be available soon. If is not specified,
+          we assume default 'sandbox' runtime.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.DeleteContextRequest)
   ))
@@ -483,13 +508,18 @@ DeleteAllContextsRequest = _reflection.GeneratedProtocolMessageType('DeleteAllCo
   DESCRIPTOR = _DELETEALLCONTEXTSREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
   ,
-  __doc__ = """The request message for [Contexts.DeleteAllContexts].
+  __doc__ = """The request message for
+  [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
   
   
   Attributes:
       parent:
           Required. The name of the session to delete all contexts from.
-          Format: ``projects/<Project ID>/agent/sessions/<Session ID>``.
+          Format: ``projects/<Project ID>/agent/sessions/<Session ID>``
+          or ``projects/<Project ID>/agent/runtimes/<Runtime
+          ID>/sessions/<Session ID>``. Note: Runtimes are under
+          construction and will be available soon. If is not specified
+          we assume default 'sandbox' runtime.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest)
   ))
@@ -509,13 +539,23 @@ try:
 
 
   class ContextsStub(object):
-    """Manages contexts.
+    """A context represents additional information included with user input or with
+    an intent returned by the Dialogflow API. Contexts are helpful for
+    differentiating user input which may be vague or have a different meaning
+    depending on additional details from your application such as user setting
+    and preferences, previous user input, where the user is in your application,
+    geographic location, and so on.
 
+    You can include contexts as input parameters of a
+    [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+    [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+    or as output contexts included in the returned intent.
+    Contexts expire when an intent is matched, after the number of `DetectIntent`
+    requests specified by the `lifespan_count` parameter, or after 10 minutes
+    if no intents are matched for a `DetectIntent` request.
 
-    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-    # details about contexts.
-
-    Standard methods.
+    For more information about contexts, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/contexts).
     """
 
     def __init__(self, channel):
@@ -557,13 +597,23 @@ try:
 
 
   class ContextsServicer(object):
-    """Manages contexts.
+    """A context represents additional information included with user input or with
+    an intent returned by the Dialogflow API. Contexts are helpful for
+    differentiating user input which may be vague or have a different meaning
+    depending on additional details from your application such as user setting
+    and preferences, previous user input, where the user is in your application,
+    geographic location, and so on.
 
+    You can include contexts as input parameters of a
+    [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+    [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+    or as output contexts included in the returned intent.
+    Contexts expire when an intent is matched, after the number of `DetectIntent`
+    requests specified by the `lifespan_count` parameter, or after 10 minutes
+    if no intents are matched for a `DetectIntent` request.
 
-    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-    # details about contexts.
-
-    Standard methods.
+    For more information about contexts, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/contexts).
     """
 
     def ListContexts(self, request, context):
@@ -653,13 +703,23 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Manages contexts.
+    """A context represents additional information included with user input or with
+    an intent returned by the Dialogflow API. Contexts are helpful for
+    differentiating user input which may be vague or have a different meaning
+    depending on additional details from your application such as user setting
+    and preferences, previous user input, where the user is in your application,
+    geographic location, and so on.
 
+    You can include contexts as input parameters of a
+    [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+    [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+    or as output contexts included in the returned intent.
+    Contexts expire when an intent is matched, after the number of `DetectIntent`
+    requests specified by the `lifespan_count` parameter, or after 10 minutes
+    if no intents are matched for a `DetectIntent` request.
 
-    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-    # details about contexts.
-
-    Standard methods.
+    For more information about contexts, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/contexts).
     """
     def ListContexts(self, request, context):
       """Returns the list of all contexts in the specified session.
@@ -693,13 +753,23 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Manages contexts.
+    """A context represents additional information included with user input or with
+    an intent returned by the Dialogflow API. Contexts are helpful for
+    differentiating user input which may be vague or have a different meaning
+    depending on additional details from your application such as user setting
+    and preferences, previous user input, where the user is in your application,
+    geographic location, and so on.
 
+    You can include contexts as input parameters of a
+    [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+    [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+    or as output contexts included in the returned intent.
+    Contexts expire when an intent is matched, after the number of `DetectIntent`
+    requests specified by the `lifespan_count` parameter, or after 10 minutes
+    if no intents are matched for a `DetectIntent` request.
 
-    Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-    # details about contexts.
-
-    Standard methods.
+    For more information about contexts, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/contexts).
     """
     def ListContexts(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Returns the list of all contexts in the specified session.

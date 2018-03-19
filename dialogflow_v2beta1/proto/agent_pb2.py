@@ -27,6 +27,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n1google/cloud/dialogflow_v2beta1/proto/agent.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a#google/longrunning/operations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\"\x82\x03\n\x05\x41gent\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x1d\n\x15\x64\x65\x66\x61ult_language_code\x18\x03 \x01(\t\x12 \n\x18supported_language_codes\x18\x04 \x03(\t\x12\x11\n\ttime_zone\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x12\n\navatar_uri\x18\x07 \x01(\t\x12\x16\n\x0e\x65nable_logging\x18\x08 \x01(\x08\x12\x44\n\nmatch_mode\x18\t \x01(\x0e\x32\x30.google.cloud.dialogflow.v2beta1.Agent.MatchMode\x12 \n\x18\x63lassification_threshold\x18\n \x01(\x02\"V\n\tMatchMode\x12\x1a\n\x16MATCH_MODE_UNSPECIFIED\x10\x00\x12\x15\n\x11MATCH_MODE_HYBRID\x10\x01\x12\x16\n\x12MATCH_MODE_ML_ONLY\x10\x02\"!\n\x0fGetAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\"L\n\x13SearchAgentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"g\n\x14SearchAgentsResponse\x12\x36\n\x06\x61gents\x18\x01 \x03(\x0b\x32&.google.cloud.dialogflow.v2beta1.Agent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x11TrainAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\"7\n\x12\x45xportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tagent_uri\x18\x02 \x01(\t\"L\n\x13\x45xportAgentResponse\x12\x13\n\tagent_uri\x18\x01 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05\x61gent\"[\n\x12ImportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent\"\\\n\x13RestoreAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent2\xb4\x07\n\x06\x41gents\x12\x90\x01\n\x08GetAgent\x12\x30.google.cloud.dialogflow.v2beta1.GetAgentRequest\x1a&.google.cloud.dialogflow.v2beta1.Agent\"*\x82\xd3\xe4\x93\x02$\x12\"/v2beta1/{parent=projects/*}/agent\x12\xae\x01\n\x0cSearchAgents\x12\x34.google.cloud.dialogflow.v2beta1.SearchAgentsRequest\x1a\x35.google.cloud.dialogflow.v2beta1.SearchAgentsResponse\"1\x82\xd3\xe4\x93\x02+\x12)/v2beta1/{parent=projects/*}/agent:search\x12\x94\x01\n\nTrainAgent\x12\x32.google.cloud.dialogflow.v2beta1.TrainAgentRequest\x1a\x1d.google.longrunning.Operation\"3\x82\xd3\xe4\x93\x02-\"(/v2beta1/{parent=projects/*}/agent:train:\x01*\x12\x97\x01\n\x0b\x45xportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ExportAgentRequest\x1a\x1d.google.longrunning.Operation\"4\x82\xd3\xe4\x93\x02.\")/v2beta1/{parent=projects/*}/agent:export:\x01*\x12\x97\x01\n\x0bImportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ImportAgentRequest\x1a\x1d.google.longrunning.Operation\"4\x82\xd3\xe4\x93\x02.\")/v2beta1/{parent=projects/*}/agent:import:\x01*\x12\x9a\x01\n\x0cRestoreAgent\x12\x34.google.cloud.dialogflow.v2beta1.RestoreAgentRequest\x1a\x1d.google.longrunning.Operation\"5\x82\xd3\xe4\x93\x02/\"*/v2beta1/{parent=projects/*}/agent:restore:\x01*B\xa8\x01\n#com.google.cloud.dialogflow.v2beta1B\nAgentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,])
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -501,7 +502,6 @@ DESCRIPTOR.message_types_by_name['ExportAgentRequest'] = _EXPORTAGENTREQUEST
 DESCRIPTOR.message_types_by_name['ExportAgentResponse'] = _EXPORTAGENTRESPONSE
 DESCRIPTOR.message_types_by_name['ImportAgentRequest'] = _IMPORTAGENTREQUEST
 DESCRIPTOR.message_types_by_name['RestoreAgentRequest'] = _RESTOREAGENTREQUEST
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Agent = _reflection.GeneratedProtocolMessageType('Agent', (_message.Message,), dict(
   DESCRIPTOR = _AGENT,
@@ -561,7 +561,8 @@ GetAgentRequest = _reflection.GeneratedProtocolMessageType('GetAgentRequest', (_
   DESCRIPTOR = _GETAGENTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The request message for [Agents.GetAgent].
+  __doc__ = """The request message for
+  [Agents.GetAgent][google.cloud.dialogflow.v2beta1.Agents.GetAgent].
   
   
   Attributes:
@@ -577,7 +578,8 @@ SearchAgentsRequest = _reflection.GeneratedProtocolMessageType('SearchAgentsRequ
   DESCRIPTOR = _SEARCHAGENTSREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The request message for [Agents.SearchAgents].
+  __doc__ = """The request message for
+  [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
   
   
   Attributes:
@@ -599,7 +601,8 @@ SearchAgentsResponse = _reflection.GeneratedProtocolMessageType('SearchAgentsRes
   DESCRIPTOR = _SEARCHAGENTSRESPONSE,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The response message for [Agents.SearchAgents].
+  __doc__ = """The response message for
+  [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
   
   
   Attributes:
@@ -618,7 +621,8 @@ TrainAgentRequest = _reflection.GeneratedProtocolMessageType('TrainAgentRequest'
   DESCRIPTOR = _TRAINAGENTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The request message for [Agents.TrainAgent].
+  __doc__ = """The request message for
+  [Agents.TrainAgent][google.cloud.dialogflow.v2beta1.Agents.TrainAgent].
   
   
   Attributes:
@@ -634,7 +638,8 @@ ExportAgentRequest = _reflection.GeneratedProtocolMessageType('ExportAgentReques
   DESCRIPTOR = _EXPORTAGENTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The request message for [Agents.ExportAgent].
+  __doc__ = """The request message for
+  [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
   
   
   Attributes:
@@ -642,9 +647,9 @@ ExportAgentRequest = _reflection.GeneratedProtocolMessageType('ExportAgentReques
           Required. The project that the agent to export is associated
           with. Format: ``projects/<Project ID>``.
       agent_uri:
-          Optional. The URI to export the agent to. Note: The URI must
-          start with "gs://". If left unspecified, the serialized agent
-          is returned inline.
+          Optional. The Google Cloud Storage URI to export the agent to.
+          Note: The URI must start with "gs://". If left unspecified,
+          the serialized agent is returned inline.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.ExportAgentRequest)
   ))
@@ -654,7 +659,8 @@ ExportAgentResponse = _reflection.GeneratedProtocolMessageType('ExportAgentRespo
   DESCRIPTOR = _EXPORTAGENTRESPONSE,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The response message for [Agents.ExportAgent].
+  __doc__ = """The response message for
+  [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
   
   
   Attributes:
@@ -662,9 +668,17 @@ ExportAgentResponse = _reflection.GeneratedProtocolMessageType('ExportAgentRespo
           Required. The exported agent.
       agent_uri:
           The URI to a file containing the exported agent. This field is
-          populated only if ``agent_uri``
+          populated only if ``agent_uri`` is specified in
+          ``ExportAgentRequest``.
       agent_content:
-          The exported agent.
+          The exported agent.  Example for how to export an agent to a
+          zip file via a command line:  | curl | 'https://dialogflow.goo
+          gleapis.com/v2beta1/projects//agent:export' | -X POST | -H
+          'Authorization: Bearer '$(gcloud auth print-access-token) | -H
+          'Accept: application/json' | -H 'Content-Type:
+          application/json' | --compressed | --data-binary '{}' | \|
+          grep agentContent \| sed -e 's/.*"agentContent":
+          "([^"]*)".\*/:raw-latex:`\1`/' | \| base64 --decode >
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.ExportAgentResponse)
   ))
@@ -674,7 +688,8 @@ ImportAgentRequest = _reflection.GeneratedProtocolMessageType('ImportAgentReques
   DESCRIPTOR = _IMPORTAGENTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The request message for [Agents.ImportAgent].
+  __doc__ = """The request message for
+  [Agents.ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent].
   
   
   Attributes:
@@ -684,10 +699,16 @@ ImportAgentRequest = _reflection.GeneratedProtocolMessageType('ImportAgentReques
       agent:
           Required. The agent to import.
       agent_uri:
-          The URI to a file containing the agent to import. Note: The
-          URI must start with "gs://".
+          The URI to a Google Cloud Storage file containing the agent to
+          import. Note: The URI must start with "gs://".
       agent_content:
-          The agent to import.
+          The agent to import.  Example for how to import an agent via
+          the command line:  | curl | 'https://dialogflow.googleapis.com
+          /v2beta1/projects//agent:import | -X POST | -H 'Authorization:
+          Bearer ':math:`(gcloud auth print-access-token) \    -H
+          'Accept: application/json' \    -H 'Content-Type:
+          application/json' \    --compressed \    --data-binary "{
+          'agentContent': '`\ (cat \| base64 -w 0)' }"
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.ImportAgentRequest)
   ))
@@ -697,7 +718,8 @@ RestoreAgentRequest = _reflection.GeneratedProtocolMessageType('RestoreAgentRequ
   DESCRIPTOR = _RESTOREAGENTREQUEST,
   __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
   ,
-  __doc__ = """The request message for [Agents.RestoreAgent].
+  __doc__ = """The request message for
+  [Agents.RestoreAgent][google.cloud.dialogflow.v2beta1.Agents.RestoreAgent].
   
   
   Attributes:
@@ -707,10 +729,16 @@ RestoreAgentRequest = _reflection.GeneratedProtocolMessageType('RestoreAgentRequ
       agent:
           Required. The agent to restore.
       agent_uri:
-          The URI to a file containing the agent to restore. Note: The
-          URI must start with "gs://".
+          The URI to a Google Cloud Storage file containing the agent to
+          restore. Note: The URI must start with "gs://".
       agent_content:
-          The agent to restore.
+          The agent to restore.  Example for how to restore an agent via
+          the command line:  | curl | 'https://dialogflow.googleapis.com
+          /v2beta1/projects//agent:restore | -X POST | -H
+          'Authorization: Bearer ':math:`(gcloud auth print-access-
+          token) \    -H 'Accept: application/json' \    -H 'Content-
+          Type: application/json' \    --compressed \    --data-binary
+          "{  'agentContent': '`\ (cat \| base64 -w 0)' }"
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.RestoreAgentRequest)
   ))
@@ -730,13 +758,31 @@ try:
 
 
   class AgentsStub(object):
-    """Manages conversational agents.
+    """Agents are best described as Natural Language Understanding (NLU) modules
+    that transform user requests into actionable data. You can include agents
+    in your app, product, or service to determine user intent and respond to the
+    user in a natural way.
 
+    After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+    [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+    manage the flow of a conversation and match user input to predefined intents
+    and actions.
 
-    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
-    # about agents.
+    You can create an agent using both Dialogflow Standard Edition and
+    Dialogflow Enterprise Edition. For details, see
+    [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
 
-    Standard methods.
+    You can save your agent for backup or versioning by exporting the agent by
+    using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+    agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+
+    Dialogflow provides several
+    [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+    conversation scenarios such as determining a date and time, converting
+    currency, and so on.
+
+    For more information about agents, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/agents).
     """
 
     def __init__(self, channel):
@@ -778,13 +824,31 @@ try:
 
 
   class AgentsServicer(object):
-    """Manages conversational agents.
+    """Agents are best described as Natural Language Understanding (NLU) modules
+    that transform user requests into actionable data. You can include agents
+    in your app, product, or service to determine user intent and respond to the
+    user in a natural way.
 
+    After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+    [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+    manage the flow of a conversation and match user input to predefined intents
+    and actions.
 
-    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
-    # about agents.
+    You can create an agent using both Dialogflow Standard Edition and
+    Dialogflow Enterprise Edition. For details, see
+    [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
 
-    Standard methods.
+    You can save your agent for backup or versioning by exporting the agent by
+    using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+    agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+
+    Dialogflow provides several
+    [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+    conversation scenarios such as determining a date and time, converting
+    currency, and so on.
+
+    For more information about agents, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/agents).
     """
 
     def GetAgent(self, request, context):
@@ -811,8 +875,8 @@ try:
       """Trains the specified agent.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -822,8 +886,8 @@ try:
       """Exports the specified agent to a ZIP file.
 
 
-      Operation<response: ExportAgentResponse,
-      metadata: google.protobuf.Struct>
+      Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -837,8 +901,8 @@ try:
       versions from ImportAgentRequest.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -851,8 +915,8 @@ try:
       entity types in the older version are deleted.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -903,13 +967,31 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Manages conversational agents.
+    """Agents are best described as Natural Language Understanding (NLU) modules
+    that transform user requests into actionable data. You can include agents
+    in your app, product, or service to determine user intent and respond to the
+    user in a natural way.
 
+    After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+    [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+    manage the flow of a conversation and match user input to predefined intents
+    and actions.
 
-    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
-    # about agents.
+    You can create an agent using both Dialogflow Standard Edition and
+    Dialogflow Enterprise Edition. For details, see
+    [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
 
-    Standard methods.
+    You can save your agent for backup or versioning by exporting the agent by
+    using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+    agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+
+    Dialogflow provides several
+    [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+    conversation scenarios such as determining a date and time, converting
+    currency, and so on.
+
+    For more information about agents, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/agents).
     """
     def GetAgent(self, request, context):
       """Retrieves the specified agent.
@@ -929,16 +1011,16 @@ try:
       """Trains the specified agent.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def ExportAgent(self, request, context):
       """Exports the specified agent to a ZIP file.
 
 
-      Operation<response: ExportAgentResponse,
-      metadata: google.protobuf.Struct>
+      Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def ImportAgent(self, request, context):
@@ -949,8 +1031,8 @@ try:
       versions from ImportAgentRequest.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def RestoreAgent(self, request, context):
@@ -960,8 +1042,8 @@ try:
       entity types in the older version are deleted.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
@@ -972,13 +1054,31 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Manages conversational agents.
+    """Agents are best described as Natural Language Understanding (NLU) modules
+    that transform user requests into actionable data. You can include agents
+    in your app, product, or service to determine user intent and respond to the
+    user in a natural way.
 
+    After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+    [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+    manage the flow of a conversation and match user input to predefined intents
+    and actions.
 
-    Refer to [documentation](https://dialogflow.com/docs/agents) for more details
-    # about agents.
+    You can create an agent using both Dialogflow Standard Edition and
+    Dialogflow Enterprise Edition. For details, see
+    [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
 
-    Standard methods.
+    You can save your agent for backup or versioning by exporting the agent by
+    using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+    agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+
+    Dialogflow provides several
+    [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+    conversation scenarios such as determining a date and time, converting
+    currency, and so on.
+
+    For more information about agents, see the
+    [Dialogflow documentation](https://dialogflow.com/docs/agents).
     """
     def GetAgent(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Retrieves the specified agent.
@@ -1000,8 +1100,8 @@ try:
       """Trains the specified agent.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       raise NotImplementedError()
     TrainAgent.future = None
@@ -1009,8 +1109,8 @@ try:
       """Exports the specified agent to a ZIP file.
 
 
-      Operation<response: ExportAgentResponse,
-      metadata: google.protobuf.Struct>
+      Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       raise NotImplementedError()
     ExportAgent.future = None
@@ -1022,8 +1122,8 @@ try:
       versions from ImportAgentRequest.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       raise NotImplementedError()
     ImportAgent.future = None
@@ -1034,8 +1134,8 @@ try:
       entity types in the older version are deleted.
 
 
-      Operation<response: google.protobuf.Empty,
-      metadata: google.protobuf.Struct>
+      Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+      metadata: [google.protobuf.Struct][google.protobuf.Struct]>
       """
       raise NotImplementedError()
     RestoreAgent.future = None

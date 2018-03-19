@@ -1,10 +1,10 @@
-# Copyright 2017, Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,6 +18,15 @@ import sys
 from google.api_core.protobuf_helpers import get_messages
 
 from google.api import http_pb2
+from google.longrunning import operations_pb2
+from google.protobuf import any_pb2
+from google.protobuf import descriptor_pb2
+from google.protobuf import empty_pb2
+from google.protobuf import field_mask_pb2
+from google.protobuf import struct_pb2
+from google.rpc import status_pb2
+from google.type import latlng_pb2
+
 from dialogflow_v2beta1.proto import agent_pb2
 from dialogflow_v2beta1.proto import context_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2
@@ -25,15 +34,6 @@ from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2beta1.proto import session_entity_type_pb2
 from dialogflow_v2beta1.proto import session_pb2
 from dialogflow_v2beta1.proto import webhook_pb2
-from google.longrunning import operations_pb2
-from google.protobuf import any_pb2
-from google.protobuf import descriptor_pb2
-from google.protobuf import empty_pb2
-from google.protobuf import field_mask_pb2
-from google.protobuf import struct_pb2
-from google.protobuf import timestamp_pb2
-from google.rpc import status_pb2
-from google.type import latlng_pb2
 
 names = []
 for module in (
@@ -51,9 +51,9 @@ for module in (
         empty_pb2,
         field_mask_pb2,
         struct_pb2,
-        timestamp_pb2,
         status_pb2,
-        latlng_pb2, ):
+        latlng_pb2,
+):
     for name, message in get_messages(module).items():
         message.__module__ = 'google.cloud.dialogflow_v2beta1.types'
         setattr(sys.modules[__name__], name, message)

@@ -1,10 +1,10 @@
-# Copyright 2017, Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -85,38 +85,6 @@ class AudioEncoding(object):
     AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE = 7
 
 
-class EntityType(object):
-    class Kind(object):
-        """
-        Represents kinds of entities.
-
-        Attributes:
-          KIND_UNSPECIFIED (int): Not specified. This value should be never used.
-          KIND_MAP (int): Map entity types allow mapping of a group of synonyms to a canonical
-          value.
-          KIND_LIST (int): List entity types contain a set of entries that do not map to canonical
-          values. However, list entity types can contain references to other entity
-          types (with or without aliases).
-        """
-        KIND_UNSPECIFIED = 0
-        KIND_MAP = 1
-        KIND_LIST = 2
-
-    class AutoExpansionMode(object):
-        """
-        Represents different entity type expansion modes. Automated expansion
-        allows an agent to recognize values that have not been explicitly listed in
-        the entity (for example, new kinds of shopping list items).
-
-        Attributes:
-          AUTO_EXPANSION_MODE_UNSPECIFIED (int): Auto expansion disabled for the entity.
-          AUTO_EXPANSION_MODE_DEFAULT (int): Allows an agent to recognize values that have not been explicitly
-          listed in the entity.
-        """
-        AUTO_EXPANSION_MODE_UNSPECIFIED = 0
-        AUTO_EXPANSION_MODE_DEFAULT = 1
-
-
 class Intent(object):
     class WebhookState(object):
         """
@@ -175,21 +143,36 @@ class Intent(object):
             ACTIONS_ON_GOOGLE = 8
 
 
-class Agent(object):
-    class MatchMode(object):
+class EntityType(object):
+    class Kind(object):
         """
-        Match mode determines how intents are detected from user queries.
+        Represents kinds of entities.
 
         Attributes:
-          MATCH_MODE_UNSPECIFIED (int): Not specified.
-          MATCH_MODE_HYBRID (int): Best for agents with a small number of examples in intents and/or wide
-          use of templates syntax and composite entities.
-          MATCH_MODE_ML_ONLY (int): Can be used for agents with a large number of examples in intents,
-          especially the ones using @sys.any or very large developer entities.
+          KIND_UNSPECIFIED (int): Not specified. This value should be never used.
+          KIND_MAP (int): Map entity types allow mapping of a group of synonyms to a canonical
+          value.
+          KIND_LIST (int): List entity types contain a set of entries that do not map to canonical
+          values. However, list entity types can contain references to other entity
+          types (with or without aliases).
         """
-        MATCH_MODE_UNSPECIFIED = 0
-        MATCH_MODE_HYBRID = 1
-        MATCH_MODE_ML_ONLY = 2
+        KIND_UNSPECIFIED = 0
+        KIND_MAP = 1
+        KIND_LIST = 2
+
+    class AutoExpansionMode(object):
+        """
+        Represents different entity type expansion modes. Automated expansion
+        allows an agent to recognize values that have not been explicitly listed in
+        the entity (for example, new kinds of shopping list items).
+
+        Attributes:
+          AUTO_EXPANSION_MODE_UNSPECIFIED (int): Auto expansion disabled for the entity.
+          AUTO_EXPANSION_MODE_DEFAULT (int): Allows an agent to recognize values that have not been explicitly
+          listed in the entity.
+        """
+        AUTO_EXPANSION_MODE_UNSPECIFIED = 0
+        AUTO_EXPANSION_MODE_DEFAULT = 1
 
 
 class SessionEntityType(object):
@@ -205,8 +188,8 @@ class SessionEntityType(object):
           the corresponding developer entity type.
           Calls to ``ListSessionEntityTypes``, ``GetSessionEntityType``,
           ``CreateSessionEntityType`` and ``UpdateSessionEntityType`` return the full
-          collection of entities from the developer entity type and the session
-          entity type.
+          collection of entities from the developer entity type in the agent's
+          default language and the session entity type.
         """
         ENTITY_OVERRIDE_MODE_UNSPECIFIED = 0
         ENTITY_OVERRIDE_MODE_OVERRIDE = 1
@@ -232,3 +215,20 @@ class StreamingRecognitionResult(object):
         MESSAGE_TYPE_UNSPECIFIED = 0
         TRANSCRIPT = 1
         END_OF_SINGLE_UTTERANCE = 2
+
+
+class Agent(object):
+    class MatchMode(object):
+        """
+        Match mode determines how intents are detected from user queries.
+
+        Attributes:
+          MATCH_MODE_UNSPECIFIED (int): Not specified.
+          MATCH_MODE_HYBRID (int): Best for agents with a small number of examples in intents and/or wide
+          use of templates syntax and composite entities.
+          MATCH_MODE_ML_ONLY (int): Can be used for agents with a large number of examples in intents,
+          especially the ones using @sys.any or very large developer entities.
+        """
+        MATCH_MODE_UNSPECIFIED = 0
+        MATCH_MODE_HYBRID = 1
+        MATCH_MODE_ML_ONLY = 2
