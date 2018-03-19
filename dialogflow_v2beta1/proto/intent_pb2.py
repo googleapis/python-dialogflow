@@ -1920,7 +1920,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     Part = _reflection.GeneratedProtocolMessageType('Part', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_TRAININGPHRASE_PART,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """Represents a part of a training phrase.
 
@@ -1945,7 +1945,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
       ))
     ,
     DESCRIPTOR = _INTENT_TRAININGPHRASE,
-    __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+    __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
     ,
     __doc__ = """Represents an example or template that the agent is trained on.
 
@@ -1972,7 +1972,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
   Parameter = _reflection.GeneratedProtocolMessageType('Parameter', (_message.Message,), dict(
     DESCRIPTOR = _INTENT_PARAMETER,
-    __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+    __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
     ,
     __doc__ = """Represents intent parameters.
 
@@ -2016,7 +2016,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     Text = _reflection.GeneratedProtocolMessageType('Text', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_TEXT,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The text response message.
 
@@ -2031,7 +2031,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     Image = _reflection.GeneratedProtocolMessageType('Image', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_IMAGE,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The image response message.
 
@@ -2049,7 +2049,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     QuickReplies = _reflection.GeneratedProtocolMessageType('QuickReplies', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_QUICKREPLIES,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The quick replies response message.
 
@@ -2068,7 +2068,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
       Button = _reflection.GeneratedProtocolMessageType('Button', (_message.Message,), dict(
         DESCRIPTOR = _INTENT_MESSAGE_CARD_BUTTON,
-        __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+        __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
         ,
         __doc__ = """Optional. Contains information about a button.
 
@@ -2084,7 +2084,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
         ))
       ,
       DESCRIPTOR = _INTENT_MESSAGE_CARD,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The card response message.
 
@@ -2105,7 +2105,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     SimpleResponse = _reflection.GeneratedProtocolMessageType('SimpleResponse', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_SIMPLERESPONSE,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The simple response message containing speech or text.
 
@@ -2127,7 +2127,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     SimpleResponses = _reflection.GeneratedProtocolMessageType('SimpleResponses', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_SIMPLERESPONSES,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The collection of simple response candidates. This message in
       ``QueryResult.fulfillment_messages`` and
@@ -2149,7 +2149,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
         OpenUriAction = _reflection.GeneratedProtocolMessageType('OpenUriAction', (_message.Message,), dict(
           DESCRIPTOR = _INTENT_MESSAGE_BASICCARD_BUTTON_OPENURIACTION,
-          __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+          __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
           ,
           __doc__ = """Opens the given URI.
 
@@ -2162,7 +2162,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
           ))
         ,
         DESCRIPTOR = _INTENT_MESSAGE_BASICCARD_BUTTON,
-        __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+        __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
         ,
         __doc__ = """The button object that appears at the bottom of a card.
 
@@ -2177,7 +2177,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
         ))
       ,
       DESCRIPTOR = _INTENT_MESSAGE_BASICCARD,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The basic card message. Useful for displaying information.
 
@@ -2200,7 +2200,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     Suggestion = _reflection.GeneratedProtocolMessageType('Suggestion', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_SUGGESTION,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The suggestion chip message that the user can tap to quickly post a
       reply to the conversation.
@@ -2216,7 +2216,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     Suggestions = _reflection.GeneratedProtocolMessageType('Suggestions', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_SUGGESTIONS,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The collection of suggestions.
 
@@ -2231,7 +2231,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     LinkOutSuggestion = _reflection.GeneratedProtocolMessageType('LinkOutSuggestion', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_LINKOUTSUGGESTION,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The suggestion chip message that allows the user to jump out to the app
       or website associated with this agent.
@@ -2252,7 +2252,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
       Item = _reflection.GeneratedProtocolMessageType('Item', (_message.Message,), dict(
         DESCRIPTOR = _INTENT_MESSAGE_LISTSELECT_ITEM,
-        __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+        __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
         ,
         __doc__ = """An item in the list.
 
@@ -2271,7 +2271,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
         ))
       ,
       DESCRIPTOR = _INTENT_MESSAGE_LISTSELECT,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The card for presenting a list of options to select from.
 
@@ -2290,7 +2290,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
       Item = _reflection.GeneratedProtocolMessageType('Item', (_message.Message,), dict(
         DESCRIPTOR = _INTENT_MESSAGE_CAROUSELSELECT_ITEM,
-        __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+        __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
         ,
         __doc__ = """An item in the carousel.
 
@@ -2309,7 +2309,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
         ))
       ,
       DESCRIPTOR = _INTENT_MESSAGE_CAROUSELSELECT,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """The card for presenting a carousel of options to select from.
 
@@ -2324,7 +2324,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
     SelectItemInfo = _reflection.GeneratedProtocolMessageType('SelectItemInfo', (_message.Message,), dict(
       DESCRIPTOR = _INTENT_MESSAGE_SELECTITEMINFO,
-      __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+      __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
       ,
       __doc__ = """Additional info about the select item for when it is triggered in a
       dialog.
@@ -2342,7 +2342,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
       ))
     ,
     DESCRIPTOR = _INTENT_MESSAGE,
-    __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+    __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
     ,
     __doc__ = """Corresponds to the ``Response`` field in API.AI console.
 
@@ -2381,7 +2381,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
 
   FollowupIntentInfo = _reflection.GeneratedProtocolMessageType('FollowupIntentInfo', (_message.Message,), dict(
     DESCRIPTOR = _INTENT_FOLLOWUPINTENTINFO,
-    __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+    __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
     ,
     __doc__ = """Represents a single followup intent in the chain.
 
@@ -2398,7 +2398,7 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
     ))
   ,
   DESCRIPTOR = _INTENT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """Represents an intent. Intents convert a number of user expressions or
   patterns into an action. An action is an extraction of a user command or
@@ -2515,7 +2515,7 @@ _sym_db.RegisterMessage(Intent.FollowupIntentInfo)
 
 ListIntentsRequest = _reflection.GeneratedProtocolMessageType('ListIntentsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTINTENTSREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The request message for
   [Intents.ListIntents][google.cloud.dialogflow.v2beta1.Intents.ListIntents].
@@ -2547,7 +2547,7 @@ _sym_db.RegisterMessage(ListIntentsRequest)
 
 ListIntentsResponse = _reflection.GeneratedProtocolMessageType('ListIntentsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTINTENTSRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The response message for
   [Intents.ListIntents][google.cloud.dialogflow.v2beta1.Intents.ListIntents].
@@ -2567,7 +2567,7 @@ _sym_db.RegisterMessage(ListIntentsResponse)
 
 GetIntentRequest = _reflection.GeneratedProtocolMessageType('GetIntentRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETINTENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The request message for
   [Intents.GetIntent][google.cloud.dialogflow.v2beta1.Intents.GetIntent].
@@ -2593,7 +2593,7 @@ _sym_db.RegisterMessage(GetIntentRequest)
 
 CreateIntentRequest = _reflection.GeneratedProtocolMessageType('CreateIntentRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATEINTENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The request message for
   [Intents.CreateIntent][google.cloud.dialogflow.v2beta1.Intents.CreateIntent].
@@ -2621,7 +2621,7 @@ _sym_db.RegisterMessage(CreateIntentRequest)
 
 UpdateIntentRequest = _reflection.GeneratedProtocolMessageType('UpdateIntentRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEINTENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The request message for
   [Intents.UpdateIntent][google.cloud.dialogflow.v2beta1.Intents.UpdateIntent].
@@ -2649,7 +2649,7 @@ _sym_db.RegisterMessage(UpdateIntentRequest)
 
 DeleteIntentRequest = _reflection.GeneratedProtocolMessageType('DeleteIntentRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETEINTENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The request message for
   [Intents.DeleteIntent][google.cloud.dialogflow.v2beta1.Intents.DeleteIntent].
@@ -2666,7 +2666,7 @@ _sym_db.RegisterMessage(DeleteIntentRequest)
 
 BatchUpdateIntentsRequest = _reflection.GeneratedProtocolMessageType('BatchUpdateIntentsRequest', (_message.Message,), dict(
   DESCRIPTOR = _BATCHUPDATEINTENTSREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The request message for
   [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateIntents].
@@ -2703,7 +2703,7 @@ _sym_db.RegisterMessage(BatchUpdateIntentsRequest)
 
 BatchUpdateIntentsResponse = _reflection.GeneratedProtocolMessageType('BatchUpdateIntentsResponse', (_message.Message,), dict(
   DESCRIPTOR = _BATCHUPDATEINTENTSRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The response message for
   [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateIntents].
@@ -2719,7 +2719,7 @@ _sym_db.RegisterMessage(BatchUpdateIntentsResponse)
 
 BatchDeleteIntentsRequest = _reflection.GeneratedProtocolMessageType('BatchDeleteIntentsRequest', (_message.Message,), dict(
   DESCRIPTOR = _BATCHDELETEINTENTSREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """The request message for
   [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2beta1.Intents.BatchDeleteIntents].
@@ -2739,7 +2739,7 @@ _sym_db.RegisterMessage(BatchDeleteIntentsRequest)
 
 IntentBatch = _reflection.GeneratedProtocolMessageType('IntentBatch', (_message.Message,), dict(
   DESCRIPTOR = _INTENTBATCH,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.intent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.intent_pb2'
   ,
   __doc__ = """This message is a wrapper around a collection of intents.
 

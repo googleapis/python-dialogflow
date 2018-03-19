@@ -250,7 +250,7 @@ class SessionsClient(object):
 
         Args:
             requests (iterator[dict|google.cloud.dialogflow_v2beta1.proto.session_pb2.StreamingDetectIntentRequest]): The input objects. If a dict is provided, it must be of the
-                same form as the protobuf message :class:`~google.cloud.dialogflow_v2beta1.types.StreamingDetectIntentRequest`
+                same form as the protobuf message :class:`~.dialogflow_v2beta1.types.StreamingDetectIntentRequest`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -261,7 +261,7 @@ class SessionsClient(object):
                 that is provided to the method.
 
         Returns:
-            Iterable[~google.cloud.dialogflow_v2beta1.types.StreamingDetectIntentResponse].
+            Iterable[~.dialogflow_v2beta1.types.StreamingDetectIntentResponse].
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request

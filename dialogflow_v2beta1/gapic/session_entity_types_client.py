@@ -229,7 +229,7 @@ class SessionEntityTypesClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType` instances.
+            is an iterable of :class:`~dialogflow_v2beta1.types.SessionEntityType` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -296,7 +296,7 @@ class SessionEntityTypesClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType` instance.
+            A :class:`~dialogflow_v2beta1.types.SessionEntityType` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -339,9 +339,9 @@ class SessionEntityTypesClient(object):
                 ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``.
                 Note: Runtimes are under construction and will be available soon.
                 If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
-            session_entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.SessionEntityType]): Required. The session entity type to create.
+            session_entity_type (Union[dict, ~dialogflow_v2beta1.types.SessionEntityType]): Required. The session entity type to create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType`
+                message :class:`~dialogflow_v2beta1.types.SessionEntityType`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -352,7 +352,7 @@ class SessionEntityTypesClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType` instance.
+            A :class:`~dialogflow_v2beta1.types.SessionEntityType` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -391,17 +391,17 @@ class SessionEntityTypesClient(object):
             >>> response = client.update_session_entity_type(session_entity_type)
 
         Args:
-            session_entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.SessionEntityType]): Required. The entity type to update. Format:
+            session_entity_type (Union[dict, ~dialogflow_v2beta1.types.SessionEntityType]): Required. The entity type to update. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
                 Display Name>`` or ``projects/<Project ID>/agent/runtimes/<Runtime
                 ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``. Note:
                 Runtimes are under construction and will be available soon. If <Runtime ID>
                 is not specified, we assume default 'sandbox' runtime.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType`
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+                message :class:`~dialogflow_v2beta1.types.SessionEntityType`
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -412,7 +412,7 @@ class SessionEntityTypesClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType` instance.
+            A :class:`~dialogflow_v2beta1.types.SessionEntityType` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request

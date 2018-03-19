@@ -55,7 +55,7 @@ for module in (
         latlng_pb2,
 ):
     for name, message in get_messages(module).items():
-        message.__module__ = 'google.cloud.dialogflow_v2beta1.types'
+        message.__module__ = 'dialogflow_v2beta1.types'
         setattr(sys.modules[__name__], name, message)
         names.append(name)
 

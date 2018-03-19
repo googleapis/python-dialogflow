@@ -798,7 +798,7 @@ DESCRIPTOR.enum_types_by_name['AudioEncoding'] = _AUDIOENCODING
 
 DetectIntentRequest = _reflection.GeneratedProtocolMessageType('DetectIntentRequest', (_message.Message,), dict(
   DESCRIPTOR = _DETECTINTENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """The request to detect user's intent.
 
@@ -834,7 +834,7 @@ _sym_db.RegisterMessage(DetectIntentRequest)
 
 DetectIntentResponse = _reflection.GeneratedProtocolMessageType('DetectIntentResponse', (_message.Message,), dict(
   DESCRIPTOR = _DETECTINTENTRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """The message returned from the DetectIntent method.
 
@@ -856,7 +856,7 @@ _sym_db.RegisterMessage(DetectIntentResponse)
 
 QueryParameters = _reflection.GeneratedProtocolMessageType('QueryParameters', (_message.Message,), dict(
   DESCRIPTOR = _QUERYPARAMETERS,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """Represents the parameters of the conversational query.
 
@@ -890,7 +890,7 @@ _sym_db.RegisterMessage(QueryParameters)
 
 QueryInput = _reflection.GeneratedProtocolMessageType('QueryInput', (_message.Message,), dict(
   DESCRIPTOR = _QUERYINPUT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """Represents the query input. It can contain either:
 
@@ -919,7 +919,7 @@ _sym_db.RegisterMessage(QueryInput)
 
 QueryResult = _reflection.GeneratedProtocolMessageType('QueryResult', (_message.Message,), dict(
   DESCRIPTOR = _QUERYRESULT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """Represents the result of conversational query or event processing.
 
@@ -992,7 +992,7 @@ _sym_db.RegisterMessage(QueryResult)
 
 StreamingDetectIntentRequest = _reflection.GeneratedProtocolMessageType('StreamingDetectIntentRequest', (_message.Message,), dict(
   DESCRIPTOR = _STREAMINGDETECTINTENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """The top-level message sent by the client to the
   ``StreamingDetectIntent`` method.
@@ -1049,7 +1049,7 @@ _sym_db.RegisterMessage(StreamingDetectIntentRequest)
 
 StreamingDetectIntentResponse = _reflection.GeneratedProtocolMessageType('StreamingDetectIntentResponse', (_message.Message,), dict(
   DESCRIPTOR = _STREAMINGDETECTINTENTRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """The top-level message returned from the ``StreamingDetectIntent``
   method.
@@ -1083,7 +1083,7 @@ _sym_db.RegisterMessage(StreamingDetectIntentResponse)
 
 StreamingRecognitionResult = _reflection.GeneratedProtocolMessageType('StreamingRecognitionResult', (_message.Message,), dict(
   DESCRIPTOR = _STREAMINGRECOGNITIONRESULT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """Contains a speech recognition result corresponding to a portion of the
   audio that is currently being processed or an indication that this is
@@ -1150,7 +1150,7 @@ _sym_db.RegisterMessage(StreamingRecognitionResult)
 
 InputAudioConfig = _reflection.GeneratedProtocolMessageType('InputAudioConfig', (_message.Message,), dict(
   DESCRIPTOR = _INPUTAUDIOCONFIG,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """Instructs the speech recognizer how to process the audio content.
 
@@ -1181,7 +1181,7 @@ _sym_db.RegisterMessage(InputAudioConfig)
 
 TextInput = _reflection.GeneratedProtocolMessageType('TextInput', (_message.Message,), dict(
   DESCRIPTOR = _TEXTINPUT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """Represents the natural language text to be processed.
 
@@ -1203,7 +1203,7 @@ _sym_db.RegisterMessage(TextInput)
 
 EventInput = _reflection.GeneratedProtocolMessageType('EventInput', (_message.Message,), dict(
   DESCRIPTOR = _EVENTINPUT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_pb2'
   ,
   __doc__ = """Events allow for matching intents by event name instead of the natural
   language input. For instance, input

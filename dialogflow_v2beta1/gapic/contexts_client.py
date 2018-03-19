@@ -235,7 +235,7 @@ class ContextsClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~google.cloud.dialogflow_v2beta1.types.Context` instances.
+            is an iterable of :class:`~dialogflow_v2beta1.types.Context` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -301,7 +301,7 @@ class ContextsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Context` instance.
+            A :class:`~dialogflow_v2beta1.types.Context` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -342,9 +342,9 @@ class ContextsClient(object):
                 ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``.
                 Note: Runtimes are under construction and will be available soon.
                 If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
-            context (Union[dict, ~google.cloud.dialogflow_v2beta1.types.Context]): Required. The context to create.
+            context (Union[dict, ~dialogflow_v2beta1.types.Context]): Required. The context to create.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Context`
+                message :class:`~dialogflow_v2beta1.types.Context`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -355,7 +355,7 @@ class ContextsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Context` instance.
+            A :class:`~dialogflow_v2beta1.types.Context` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -393,12 +393,12 @@ class ContextsClient(object):
             >>> response = client.update_context(context)
 
         Args:
-            context (Union[dict, ~google.cloud.dialogflow_v2beta1.types.Context]): Required. The context to update.
+            context (Union[dict, ~dialogflow_v2beta1.types.Context]): Required. The context to update.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.Context`
-            update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
+                message :class:`~dialogflow_v2beta1.types.Context`
+            update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
+                message :class:`~dialogflow_v2beta1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -409,7 +409,7 @@ class ContextsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Context` instance.
+            A :class:`~dialogflow_v2beta1.types.Context` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request

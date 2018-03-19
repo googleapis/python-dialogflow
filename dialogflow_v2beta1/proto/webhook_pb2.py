@@ -200,7 +200,7 @@ DESCRIPTOR.message_types_by_name['OriginalDetectIntentRequest'] = _ORIGINALDETEC
 
 WebhookRequest = _reflection.GeneratedProtocolMessageType('WebhookRequest', (_message.Message,), dict(
   DESCRIPTOR = _WEBHOOKREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.webhook_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.webhook_pb2'
   ,
   __doc__ = """The request message for a webhook call.
 
@@ -227,7 +227,7 @@ _sym_db.RegisterMessage(WebhookRequest)
 
 WebhookResponse = _reflection.GeneratedProtocolMessageType('WebhookResponse', (_message.Message,), dict(
   DESCRIPTOR = _WEBHOOKRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.webhook_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.webhook_pb2'
   ,
   __doc__ = """The response message for a webhook call.
 
@@ -260,7 +260,7 @@ _sym_db.RegisterMessage(WebhookResponse)
 
 OriginalDetectIntentRequest = _reflection.GeneratedProtocolMessageType('OriginalDetectIntentRequest', (_message.Message,), dict(
   DESCRIPTOR = _ORIGINALDETECTINTENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.webhook_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.webhook_pb2'
   ,
   __doc__ = """Represents the contents of the original request that was passed to the
   ``[Streaming]DetectIntent`` call.

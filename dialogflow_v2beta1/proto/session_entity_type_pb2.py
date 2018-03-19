@@ -340,7 +340,7 @@ DESCRIPTOR.message_types_by_name['DeleteSessionEntityTypeRequest'] = _DELETESESS
 
 SessionEntityType = _reflection.GeneratedProtocolMessageType('SessionEntityType', (_message.Message,), dict(
   DESCRIPTOR = _SESSIONENTITYTYPE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """Represents a session entity type.
 
@@ -375,7 +375,7 @@ _sym_db.RegisterMessage(SessionEntityType)
 
 ListSessionEntityTypesRequest = _reflection.GeneratedProtocolMessageType('ListSessionEntityTypesRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTSESSIONENTITYTYPESREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
@@ -402,7 +402,7 @@ _sym_db.RegisterMessage(ListSessionEntityTypesRequest)
 
 ListSessionEntityTypesResponse = _reflection.GeneratedProtocolMessageType('ListSessionEntityTypesResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTSESSIONENTITYTYPESRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """The response message for
   [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
@@ -423,7 +423,7 @@ _sym_db.RegisterMessage(ListSessionEntityTypesResponse)
 
 GetSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('GetSessionEntityTypeRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETSESSIONENTITYTYPEREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.GetSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.GetSessionEntityType].
@@ -446,7 +446,7 @@ _sym_db.RegisterMessage(GetSessionEntityTypeRequest)
 
 CreateSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('CreateSessionEntityTypeRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATESESSIONENTITYTYPEREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.CreateSessionEntityType].
@@ -469,7 +469,7 @@ _sym_db.RegisterMessage(CreateSessionEntityTypeRequest)
 
 UpdateSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('UpdateSessionEntityTypeRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATESESSIONENTITYTYPEREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType].
@@ -494,7 +494,7 @@ _sym_db.RegisterMessage(UpdateSessionEntityTypeRequest)
 
 DeleteSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('DeleteSessionEntityTypeRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETESESSIONENTITYTYPEREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType].
