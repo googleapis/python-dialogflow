@@ -505,7 +505,7 @@ DESCRIPTOR.message_types_by_name['RestoreAgentRequest'] = _RESTOREAGENTREQUEST
 
 Agent = _reflection.GeneratedProtocolMessageType('Agent', (_message.Message,), dict(
   DESCRIPTOR = _AGENT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """Represents a conversational agent.
   
@@ -559,7 +559,7 @@ _sym_db.RegisterMessage(Agent)
 
 GetAgentRequest = _reflection.GeneratedProtocolMessageType('GetAgentRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETAGENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The request message for
   [Agents.GetAgent][google.cloud.dialogflow.v2beta1.Agents.GetAgent].
@@ -576,7 +576,7 @@ _sym_db.RegisterMessage(GetAgentRequest)
 
 SearchAgentsRequest = _reflection.GeneratedProtocolMessageType('SearchAgentsRequest', (_message.Message,), dict(
   DESCRIPTOR = _SEARCHAGENTSREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The request message for
   [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
@@ -599,7 +599,7 @@ _sym_db.RegisterMessage(SearchAgentsRequest)
 
 SearchAgentsResponse = _reflection.GeneratedProtocolMessageType('SearchAgentsResponse', (_message.Message,), dict(
   DESCRIPTOR = _SEARCHAGENTSRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The response message for
   [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
@@ -619,7 +619,7 @@ _sym_db.RegisterMessage(SearchAgentsResponse)
 
 TrainAgentRequest = _reflection.GeneratedProtocolMessageType('TrainAgentRequest', (_message.Message,), dict(
   DESCRIPTOR = _TRAINAGENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The request message for
   [Agents.TrainAgent][google.cloud.dialogflow.v2beta1.Agents.TrainAgent].
@@ -636,7 +636,7 @@ _sym_db.RegisterMessage(TrainAgentRequest)
 
 ExportAgentRequest = _reflection.GeneratedProtocolMessageType('ExportAgentRequest', (_message.Message,), dict(
   DESCRIPTOR = _EXPORTAGENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The request message for
   [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
@@ -657,7 +657,7 @@ _sym_db.RegisterMessage(ExportAgentRequest)
 
 ExportAgentResponse = _reflection.GeneratedProtocolMessageType('ExportAgentResponse', (_message.Message,), dict(
   DESCRIPTOR = _EXPORTAGENTRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The response message for
   [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
@@ -686,7 +686,7 @@ _sym_db.RegisterMessage(ExportAgentResponse)
 
 ImportAgentRequest = _reflection.GeneratedProtocolMessageType('ImportAgentRequest', (_message.Message,), dict(
   DESCRIPTOR = _IMPORTAGENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The request message for
   [Agents.ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent].
@@ -716,7 +716,7 @@ _sym_db.RegisterMessage(ImportAgentRequest)
 
 RestoreAgentRequest = _reflection.GeneratedProtocolMessageType('RestoreAgentRequest', (_message.Message,), dict(
   DESCRIPTOR = _RESTOREAGENTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.agent_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.agent_pb2'
   ,
   __doc__ = """The request message for
   [Agents.RestoreAgent][google.cloud.dialogflow.v2beta1.Agents.RestoreAgent].

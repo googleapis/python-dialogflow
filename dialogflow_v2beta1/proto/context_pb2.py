@@ -343,7 +343,7 @@ DESCRIPTOR.message_types_by_name['DeleteAllContextsRequest'] = _DELETEALLCONTEXT
 
 Context = _reflection.GeneratedProtocolMessageType('Context', (_message.Message,), dict(
   DESCRIPTOR = _CONTEXT,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """Represents a context.
   
@@ -375,7 +375,7 @@ _sym_db.RegisterMessage(Context)
 
 ListContextsRequest = _reflection.GeneratedProtocolMessageType('ListContextsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTCONTEXTSREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """The request message for
   [Contexts.ListContexts][google.cloud.dialogflow.v2beta1.Contexts.ListContexts].
@@ -402,7 +402,7 @@ _sym_db.RegisterMessage(ListContextsRequest)
 
 ListContextsResponse = _reflection.GeneratedProtocolMessageType('ListContextsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTCONTEXTSRESPONSE,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """The response message for
   [Contexts.ListContexts][google.cloud.dialogflow.v2beta1.Contexts.ListContexts].
@@ -422,7 +422,7 @@ _sym_db.RegisterMessage(ListContextsResponse)
 
 GetContextRequest = _reflection.GeneratedProtocolMessageType('GetContextRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETCONTEXTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """The request message for
   [Contexts.GetContext][google.cloud.dialogflow.v2beta1.Contexts.GetContext].
@@ -443,7 +443,7 @@ _sym_db.RegisterMessage(GetContextRequest)
 
 CreateContextRequest = _reflection.GeneratedProtocolMessageType('CreateContextRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATECONTEXTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """The request message for
   [Contexts.CreateContext][google.cloud.dialogflow.v2beta1.Contexts.CreateContext].
@@ -466,7 +466,7 @@ _sym_db.RegisterMessage(CreateContextRequest)
 
 UpdateContextRequest = _reflection.GeneratedProtocolMessageType('UpdateContextRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATECONTEXTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """The request message for
   [Contexts.UpdateContext][google.cloud.dialogflow.v2beta1.Contexts.UpdateContext].
@@ -484,7 +484,7 @@ _sym_db.RegisterMessage(UpdateContextRequest)
 
 DeleteContextRequest = _reflection.GeneratedProtocolMessageType('DeleteContextRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETECONTEXTREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """The request message for
   [Contexts.DeleteContext][google.cloud.dialogflow.v2beta1.Contexts.DeleteContext].
@@ -506,7 +506,7 @@ _sym_db.RegisterMessage(DeleteContextRequest)
 
 DeleteAllContextsRequest = _reflection.GeneratedProtocolMessageType('DeleteAllContextsRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETEALLCONTEXTSREQUEST,
-  __module__ = 'google.cloud.dialogflow_v2beta1.proto.context_pb2'
+  __module__ = 'dialogflow_v2beta1.proto.context_pb2'
   ,
   __doc__ = """The request message for
   [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
