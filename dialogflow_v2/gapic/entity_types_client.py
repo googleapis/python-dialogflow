@@ -47,7 +47,7 @@ class EntityTypesClient(object):
     Manages agent entity types.
 
 
-    Refer to the `Dialogflow documentation <https://dialogflow.com/docs/entities>`_
+    Refer to the `Dialogflow documentation <https://dialogflow.com/docs/entities>`__
     for more details about entity types.
     #
     """

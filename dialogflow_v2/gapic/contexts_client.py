@@ -42,7 +42,7 @@ class ContextsClient(object):
     Manages contexts.
 
 
-    Refer to the `Dialogflow documentation <https://dialogflow.com/docs/contexts>`_
+    Refer to the `Dialogflow documentation <https://dialogflow.com/docs/contexts>`__
     for more details about contexts.
     #
     """
