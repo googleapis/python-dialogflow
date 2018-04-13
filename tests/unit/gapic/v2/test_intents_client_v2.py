@@ -17,8 +17,8 @@ import pytest
 
 from google.rpc import status_pb2
 
-from google.cloud import dialogflow_v2
-from google.cloud.dialogflow_v2.proto import intent_pb2
+import dialogflow_v2
+from dialogflow_v2.proto import intent_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 
@@ -343,7 +343,7 @@ class TestIntentsClient(object):
         client = dialogflow_v2.IntentsClient(channel=channel)
 
         # Setup Request
-        parent = client.project_path('[PROJECT]')
+        parent = client.agent_path('[PROJECT]', '[AGENT]')
         intents = []
 
         response = client.batch_delete_intents(parent, intents)
@@ -368,7 +368,7 @@ class TestIntentsClient(object):
         client = dialogflow_v2.IntentsClient(channel=channel)
 
         # Setup Request
-        parent = client.project_path('[PROJECT]')
+        parent = client.agent_path('[PROJECT]', '[AGENT]')
         intents = []
 
         response = client.batch_delete_intents(parent, intents)

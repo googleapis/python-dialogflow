@@ -15,8 +15,8 @@
 
 import pytest
 
-from google.cloud import dialogflow_v2
-from google.cloud.dialogflow_v2.proto import session_entity_type_pb2
+import dialogflow_v2
+from dialogflow_v2.proto import session_entity_type_pb2
 from google.protobuf import empty_pb2
 
 
