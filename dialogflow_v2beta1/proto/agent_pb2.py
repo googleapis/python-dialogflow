@@ -671,14 +671,7 @@ ExportAgentResponse = _reflection.GeneratedProtocolMessageType('ExportAgentRespo
           populated only if ``agent_uri`` is specified in
           ``ExportAgentRequest``.
       agent_content:
-          The exported agent.  Example for how to export an agent to a
-          zip file via a command line:  | curl | 'https://dialogflow.goo
-          gleapis.com/v2beta1/projects//agent:export' | -X POST | -H
-          'Authorization: Bearer '$(gcloud auth print-access-token) | -H
-          'Accept: application/json' | -H 'Content-Type:
-          application/json' | --compressed | --data-binary '{}' | \|
-          grep agentContent \| sed -e 's/.*"agentContent":
-          "([^"]*)".\*/:raw-latex:`\1`/' | \| base64 --decode >
+          The exported agent.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.ExportAgentResponse)
   ))
@@ -702,13 +695,7 @@ ImportAgentRequest = _reflection.GeneratedProtocolMessageType('ImportAgentReques
           The URI to a Google Cloud Storage file containing the agent to
           import. Note: The URI must start with "gs://".
       agent_content:
-          The agent to import.  Example for how to import an agent via
-          the command line:  | curl | 'https://dialogflow.googleapis.com
-          /v2beta1/projects//agent:import | -X POST | -H 'Authorization:
-          Bearer ':math:`(gcloud auth print-access-token) \    -H
-          'Accept: application/json' \    -H 'Content-Type:
-          application/json' \    --compressed \    --data-binary "{
-          'agentContent': '`\ (cat \| base64 -w 0)' }"
+          The agent to import.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.ImportAgentRequest)
   ))
@@ -732,13 +719,7 @@ RestoreAgentRequest = _reflection.GeneratedProtocolMessageType('RestoreAgentRequ
           The URI to a Google Cloud Storage file containing the agent to
           restore. Note: The URI must start with "gs://".
       agent_content:
-          The agent to restore.  Example for how to restore an agent via
-          the command line:  | curl | 'https://dialogflow.googleapis.com
-          /v2beta1/projects//agent:restore | -X POST | -H
-          'Authorization: Bearer ':math:`(gcloud auth print-access-
-          token) \    -H 'Accept: application/json' \    -H 'Content-
-          Type: application/json' \    --compressed \    --data-binary
-          "{  'agentContent': '`\ (cat \| base64 -w 0)' }"
+          The agent to restore.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.RestoreAgentRequest)
   ))
