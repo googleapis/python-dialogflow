@@ -1,9 +1,0 @@
-{
-  "samples/tests/context_test.py": true,
-  "samples/tests/create_delete_entity_test.py": true,
-  "samples/tests/detect_intent_audio_test.py": true,
-  "samples/tests/detect_intent_stream_test.py": true,
-  "samples/tests/detect_intent_texts_test.py": true,
-  "samples/tests/intent_test.py": true,
-  "samples/tests/session_entity_type_test.py": true
-}
