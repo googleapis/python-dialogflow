@@ -33,6 +33,7 @@ from google.protobuf import struct_pb2
 from dialogflow_v2beta1.gapic import agents_client_config
 from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.proto import agent_pb2
+from dialogflow_v2beta1.proto import agent_pb2_grpc
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow',
                                                         ).version
@@ -126,7 +127,7 @@ class AgentsClient(object):
             )
 
         # Create the gRPC stubs.
-        self.agents_stub = (agent_pb2.AgentsStub(channel))
+        self.agents_stub = (agent_pb2_grpc.AgentsStub(channel))
 
         # Operations client for methods that return long-running operations
         # futures.
@@ -196,7 +197,7 @@ class AgentsClient(object):
         Retrieves the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.AgentsClient()
             >>>
@@ -249,7 +250,7 @@ class AgentsClient(object):
         Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.AgentsClient()
             >>>
@@ -331,7 +332,7 @@ class AgentsClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.AgentsClient()
             >>>
@@ -397,7 +398,7 @@ class AgentsClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.AgentsClient()
             >>>
@@ -474,7 +475,7 @@ class AgentsClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.AgentsClient()
             >>>
@@ -572,7 +573,7 @@ class AgentsClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.AgentsClient()
             >>>
@@ -595,6 +596,22 @@ class AgentsClient(object):
             agent_uri (str): The URI to a Google Cloud Storage file containing the agent to restore.
                 Note: The URI must start with \"gs://\".
             agent_content (bytes): The agent to restore.
+            
+                Example for how to restore an agent via the command line:
+
+                curl \
+                  'https://dialogflow.googleapis.com/v2beta1/projects/<project_name>/agent:restore\
+                   -X POST \
+                   -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
+                   -H 'Accept: application/json' \
+                   -H 'Content-Type: application/json' \
+                   --compressed \
+                   --data-binary \"{
+                ::
+
+                       'agentContent': '$(cat <agent zip file> | base64 -w 0)'
+                   }\" \
+
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.

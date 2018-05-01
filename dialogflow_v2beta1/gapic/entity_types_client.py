@@ -27,15 +27,17 @@ import google.api_core.page_iterator
 import google.api_core.path_template
 import google.api_core.protobuf_helpers
 
-from google.protobuf import empty_pb2
-from google.protobuf import field_mask_pb2
-from google.protobuf import struct_pb2
-
 from dialogflow_v2beta1.gapic import entity_types_client_config
 from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.proto import agent_pb2
 from dialogflow_v2beta1.proto import context_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2
+from dialogflow_v2beta1.proto import entity_type_pb2_grpc
+
+from google.longrunning import operations_pb2
+from google.protobuf import empty_pb2
+from google.protobuf import field_mask_pb2
+from google.protobuf import struct_pb2
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow',
                                                         ).version
@@ -138,7 +140,7 @@ class EntityTypesClient(object):
             )
 
         # Create the gRPC stubs.
-        self.entity_types_stub = (entity_type_pb2.EntityTypesStub(channel))
+        self.entity_types_stub = (entity_type_pb2_grpc.EntityTypesStub(channel))
 
         # Operations client for methods that return long-running operations
         # futures.
@@ -234,7 +236,7 @@ class EntityTypesClient(object):
         Returns the list of all entity types in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -319,7 +321,7 @@ class EntityTypesClient(object):
         Retrieves the specified entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -375,11 +377,13 @@ class EntityTypesClient(object):
         Creates an entity type in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
             >>> parent = client.project_agent_path('[PROJECT]')
+            >>>
+            >>> # TODO: Initialize ``entity_type``:
             >>> entity_type = {}
             >>>
             >>> response = client.create_entity_type(parent, entity_type)
@@ -436,10 +440,11 @@ class EntityTypesClient(object):
         Updates the specified entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
+            >>> # TODO: Initialize ``entity_type``:
             >>> entity_type = {}
             >>>
             >>> response = client.update_entity_type(entity_type)
@@ -496,7 +501,7 @@ class EntityTypesClient(object):
         Deletes the specified entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -547,7 +552,7 @@ class EntityTypesClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
@@ -641,11 +646,13 @@ class EntityTypesClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
             >>> parent = client.project_agent_path('[PROJECT]')
+            >>>
+            >>> # TODO: Initialize ``entity_type_names``:
             >>> entity_type_names = []
             >>>
             >>> response = client.batch_delete_entity_types(parent, entity_type_names)
@@ -713,11 +720,13 @@ class EntityTypesClient(object):
         Operation <response: ``google.protobuf.Empty``>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
             >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>>
+            >>> # TODO: Initialize ``entities``:
             >>> entities = []
             >>>
             >>> response = client.batch_create_entities(parent, entities)
@@ -794,11 +803,13 @@ class EntityTypesClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
             >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>>
+            >>> # TODO: Initialize ``entities``:
             >>> entities = []
             >>>
             >>> response = client.batch_update_entities(parent, entities)
@@ -877,11 +888,13 @@ class EntityTypesClient(object):
         metadata: [google.protobuf.Struct][google.protobuf.Struct]>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
             >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>>
+            >>> # TODO: Initialize ``entity_values``:
             >>> entity_values = []
             >>>
             >>> response = client.batch_delete_entities(parent, entity_values)

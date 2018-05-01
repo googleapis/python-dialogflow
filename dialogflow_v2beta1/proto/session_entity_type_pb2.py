@@ -23,10 +23,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/dialogflow_v2beta1/proto/session_entity_type.proto',
   package='google.cloud.dialogflow.v2beta1',
   syntax='proto3',
-  serialized_pb=_b('\n?google/cloud/dialogflow_v2beta1/proto/session_entity_type.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x37google/cloud/dialogflow_v2beta1/proto/entity_type.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\"\xd1\x02\n\x11SessionEntityType\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x63\n\x14\x65ntity_override_mode\x18\x02 \x01(\x0e\x32\x45.google.cloud.dialogflow.v2beta1.SessionEntityType.EntityOverrideMode\x12\x44\n\x08\x65ntities\x18\x03 \x03(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.EntityType.Entity\"\x82\x01\n\x12\x45ntityOverrideMode\x12$\n ENTITY_OVERRIDE_MODE_UNSPECIFIED\x10\x00\x12!\n\x1d\x45NTITY_OVERRIDE_MODE_OVERRIDE\x10\x01\x12#\n\x1f\x45NTITY_OVERRIDE_MODE_SUPPLEMENT\x10\x02\"V\n\x1dListSessionEntityTypesRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"\x8b\x01\n\x1eListSessionEntityTypesResponse\x12P\n\x14session_entity_types\x18\x01 \x03(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"+\n\x1bGetSessionEntityTypeRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x81\x01\n\x1e\x43reateSessionEntityTypeRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12O\n\x13session_entity_type\x18\x02 \x01(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\xa2\x01\n\x1eUpdateSessionEntityTypeRequest\x12O\n\x13session_entity_type\x18\x01 \x01(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\x12/\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\".\n\x1e\x44\x65leteSessionEntityTypeRequest\x12\x0c\n\x04name\x18\x01 \x01(\t2\x8f\x0c\n\x12SessionEntityTypes\x12\xa6\x02\n\x16ListSessionEntityTypes\x12>.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesRequest\x1a?.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesResponse\"\x8a\x01\x82\xd3\xe4\x93\x02\x83\x01\x12\x39/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypesZF\x12\x44/v2beta1/{parent=projects/*/agent/runtimes/*/sessions/*}/entityTypes\x12\x95\x02\n\x14GetSessionEntityType\x12<.google.cloud.dialogflow.v2beta1.GetSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\x8a\x01\x82\xd3\xe4\x93\x02\x83\x01\x12\x39/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZF\x12\x44/v2beta1/{name=projects/*/agent/runtimes/*/sessions/*/entityTypes/*}\x12\xc5\x02\n\x17\x43reateSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.CreateSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\xb4\x01\x82\xd3\xe4\x93\x02\xad\x01\"9/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypes:\x13session_entity_typeZ[\"D/v2beta1/{parent=projects/*/agent/runtimes/*/sessions/*}/entityTypes:\x13session_entity_type\x12\xed\x02\n\x17UpdateSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.UpdateSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\xdc\x01\x82\xd3\xe4\x93\x02\xd5\x01\x32M/v2beta1/{session_entity_type.name=projects/*/agent/sessions/*/entityTypes/*}:\x13session_entity_typeZo2X/v2beta1/{session_entity_type.name=projects/*/agent/runtimes/*/sessions/*/entityTypes/*}:\x13session_entity_type\x12\xff\x01\n\x17\x44\x65leteSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest\x1a\x16.google.protobuf.Empty\"\x8a\x01\x82\xd3\xe4\x93\x02\x83\x01*9/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZF*D/v2beta1/{name=projects/*/agent/runtimes/*/sessions/*/entityTypes/*}B\xb4\x01\n#com.google.cloud.dialogflow.v2beta1B\x16SessionEntityTypeProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
+  serialized_pb=_b('\n?google/cloud/dialogflow_v2beta1/proto/session_entity_type.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x37google/cloud/dialogflow_v2beta1/proto/entity_type.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\"\xd1\x02\n\x11SessionEntityType\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x63\n\x14\x65ntity_override_mode\x18\x02 \x01(\x0e\x32\x45.google.cloud.dialogflow.v2beta1.SessionEntityType.EntityOverrideMode\x12\x44\n\x08\x65ntities\x18\x03 \x03(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.EntityType.Entity\"\x82\x01\n\x12\x45ntityOverrideMode\x12$\n ENTITY_OVERRIDE_MODE_UNSPECIFIED\x10\x00\x12!\n\x1d\x45NTITY_OVERRIDE_MODE_OVERRIDE\x10\x01\x12#\n\x1f\x45NTITY_OVERRIDE_MODE_SUPPLEMENT\x10\x02\"V\n\x1dListSessionEntityTypesRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"\x8b\x01\n\x1eListSessionEntityTypesResponse\x12P\n\x14session_entity_types\x18\x01 \x03(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"+\n\x1bGetSessionEntityTypeRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x81\x01\n\x1e\x43reateSessionEntityTypeRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12O\n\x13session_entity_type\x18\x02 \x01(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\xa2\x01\n\x1eUpdateSessionEntityTypeRequest\x12O\n\x13session_entity_type\x18\x01 \x01(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\x12/\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\".\n\x1e\x44\x65leteSessionEntityTypeRequest\x12\x0c\n\x04name\x18\x01 \x01(\t2\xcb\x0c\n\x12SessionEntityTypes\x12\xb2\x02\n\x16ListSessionEntityTypes\x12>.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesRequest\x1a?.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesResponse\"\x96\x01\x82\xd3\xe4\x93\x02\x8f\x01\x12\x39/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypesZR\x12P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes\x12\xa1\x02\n\x14GetSessionEntityType\x12<.google.cloud.dialogflow.v2beta1.GetSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\x96\x01\x82\xd3\xe4\x93\x02\x8f\x01\x12\x39/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR\x12P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}\x12\xd1\x02\n\x17\x43reateSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.CreateSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\xc0\x01\x82\xd3\xe4\x93\x02\xb9\x01\"9/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypes:\x13session_entity_typeZg\"P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes:\x13session_entity_type\x12\xf9\x02\n\x17UpdateSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.UpdateSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\"\xe8\x01\x82\xd3\xe4\x93\x02\xe1\x01\x32M/v2beta1/{session_entity_type.name=projects/*/agent/sessions/*/entityTypes/*}:\x13session_entity_typeZ{2d/v2beta1/{session_entity_type.name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}:\x13session_entity_type\x12\x8b\x02\n\x17\x44\x65leteSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest\x1a\x16.google.protobuf.Empty\"\x96\x01\x82\xd3\xe4\x93\x02\x8f\x01*9/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR*P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}B\xb4\x01\n#com.google.cloud.dialogflow.v2beta1B\x16SessionEntityTypeProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_dialogflow__v2beta1_dot_proto_dot_entity__type__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -70,21 +69,21 @@ _SESSIONENTITYTYPE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='entity_override_mode', full_name='google.cloud.dialogflow.v2beta1.SessionEntityType.entity_override_mode', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='entities', full_name='google.cloud.dialogflow.v2beta1.SessionEntityType.entities', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -116,21 +115,21 @@ _LISTSESSIONENTITYTYPESREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='page_size', full_name='google.cloud.dialogflow.v2beta1.ListSessionEntityTypesRequest.page_size', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='page_token', full_name='google.cloud.dialogflow.v2beta1.ListSessionEntityTypesRequest.page_token', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -161,14 +160,14 @@ _LISTSESSIONENTITYTYPESRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='next_page_token', full_name='google.cloud.dialogflow.v2beta1.ListSessionEntityTypesResponse.next_page_token', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -199,7 +198,7 @@ _GETSESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -230,14 +229,14 @@ _CREATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='session_entity_type', full_name='google.cloud.dialogflow.v2beta1.CreateSessionEntityTypeRequest.session_entity_type', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -268,14 +267,14 @@ _UPDATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='update_mask', full_name='google.cloud.dialogflow.v2beta1.UpdateSessionEntityTypeRequest.update_mask', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -306,7 +305,7 @@ _DELETESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -337,31 +336,33 @@ DESCRIPTOR.message_types_by_name['GetSessionEntityTypeRequest'] = _GETSESSIONENT
 DESCRIPTOR.message_types_by_name['CreateSessionEntityTypeRequest'] = _CREATESESSIONENTITYTYPEREQUEST
 DESCRIPTOR.message_types_by_name['UpdateSessionEntityTypeRequest'] = _UPDATESESSIONENTITYTYPEREQUEST
 DESCRIPTOR.message_types_by_name['DeleteSessionEntityTypeRequest'] = _DELETESESSIONENTITYTYPEREQUEST
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SessionEntityType = _reflection.GeneratedProtocolMessageType('SessionEntityType', (_message.Message,), dict(
   DESCRIPTOR = _SESSIONENTITYTYPE,
   __module__ = 'dialogflow_v2beta1.proto.session_entity_type_pb2'
   ,
   __doc__ = """Represents a session entity type.
-
+  
   Extends or replaces a developer entity type at the user session level
   (we refer to the entity types defined at the agent level as "developer
   entity types").
-
+  
   Note: session entity types apply to all queries, regardless of the
   language.
-
-
+  
+  
   Attributes:
       name:
           Required. The unique identifier of this session entity type.
           Format: ``projects/<Project ID>/agent/sessions/<Session
           ID>/entityTypes/<Entity Type Display Name>``, or
-          ``projects/<Project ID>/agent/runtimes/<Runtime
-          ID>sessions/<Session ID>/entityTypes/<Entity Type Display
-          Name>``. Note: Runtimes are under construction and will be
-          available soon. If is not specified, we assume default
-          'sandbox' runtime.
+          ``projects/<Project ID>/agent/environments/<Environment
+          ID>/users/<User ID>/sessions /<Session ID>/entityTypes/<Entity
+          Type Display Name>``. Note: Environments and users are under
+          construction and will be available soon. If is not specified,
+          we assume default 'draft' environment. If is not specified, we
+          assume default '-' user.
       entity_override_mode:
           Required. Indicates whether the additional data should
           override or supplement the developer entity type definition.
@@ -379,16 +380,17 @@ ListSessionEntityTypesRequest = _reflection.GeneratedProtocolMessageType('ListSe
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
-
-
+  
+  
   Attributes:
       parent:
           Required. The session to list all session entity types from.
           Format: ``projects/<Project ID>/agent/sessions/<Session ID>``
-          or ``projects/<Project ID>/agent/runtimes/<Runtime
-          ID>/sessions/<Session ID>``. Note: Runtimes are under
-          construction and will be available soon. If is not specified,
-          we assume default 'sandbox' runtime.
+          or ``projects/<Project ID>/agent/environments/<Environment
+          ID>/users/<User ID>/ sessions/<Session ID>``. Note:
+          Environments and users are under construction and will be
+          available soon. If is not specified, we assume default 'draft'
+          environment. If is not specified, we assume default '-' user.
       page_size:
           Optional. The maximum number of items to return in a single
           page. By default 100 and at most 1000.
@@ -406,8 +408,8 @@ ListSessionEntityTypesResponse = _reflection.GeneratedProtocolMessageType('ListS
   ,
   __doc__ = """The response message for
   [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
-
-
+  
+  
   Attributes:
       session_entity_types:
           The list of session entity types. There will be a maximum
@@ -427,18 +429,19 @@ GetSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('GetSessi
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.GetSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.GetSessionEntityType].
-
-
+  
+  
   Attributes:
       name:
           Required. The name of the session entity type. Format:
           ``projects/<Project ID>/agent/sessions/<Session
           ID>/entityTypes/<Entity Type Display Name>`` or
-          ``projects/<Project ID>/agent/runtimes/<Runtime
-          ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
-          Name>``. Note: Runtimes are under construction and will be
-          available soon. If is not specified, we assume default
-          'sandbox' runtime.
+          ``projects/<Project ID>/agent/environments/<Environment
+          ID>/users/<User ID>/sessions/<Session ID>/ entityTypes/<Entity
+          Type Display Name>``. Note: Environments and users re under
+          construction and will be available soon. If is not specified,
+          we assume default 'draft' environment. If is not specified, we
+          assume default '-' user.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.GetSessionEntityTypeRequest)
   ))
@@ -450,16 +453,17 @@ CreateSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('Creat
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.CreateSessionEntityType].
-
-
+  
+  
   Attributes:
       parent:
           Required. The session to create a session entity type for.
           Format: ``projects/<Project ID>/agent/sessions/<Session ID>``
-          or ``projects/<Project ID>/agent/runtimes/<Runtime
-          ID>/sessions/<Session ID>``. Note: Runtimes are under
-          construction and will be available soon. If is not specified,
-          we assume default 'sandbox' runtime.
+          or ``projects/<Project ID>/agent/environments/<Environment
+          ID>/users/<User ID>/ sessions/<Session ID>``. Note:
+          Environments and users are under construction and will be
+          available soon. If is not specified, we assume default 'draft'
+          environment. If is not specified, we assume default '-' user.
       session_entity_type:
           Required. The session entity type to create.
   """,
@@ -473,18 +477,19 @@ UpdateSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('Updat
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType].
-
-
+  
+  
   Attributes:
       session_entity_type:
           Required. The entity type to update. Format:
           ``projects/<Project ID>/agent/sessions/<Session
           ID>/entityTypes/<Entity Type Display Name>`` or
-          ``projects/<Project ID>/agent/runtimes/<Runtime
-          ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
-          Name>``. Note: Runtimes are under construction and will be
-          available soon. If is not specified, we assume default
-          'sandbox' runtime.
+          ``projects/<Project ID>/agent/environments/<Environment
+          ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity
+          Type Display Name>``. Note: Environments and users are under
+          construction and will be available soon. If is not specified,
+          we assume default 'draft' environment. If is not specified, we
+          assume default '-' user.
       update_mask:
           Optional. The mask to control which fields get updated.
   """,
@@ -498,18 +503,19 @@ DeleteSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType('Delet
   ,
   __doc__ = """The request message for
   [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType].
-
-
+  
+  
   Attributes:
       name:
           Required. The name of the entity type to delete. Format:
           ``projects/<Project ID>/agent/sessions/<Session
           ID>/entityTypes/<Entity Type Display Name>`` or
-          ``projects/<Project ID>/agent/runtimes/<Runtime
-          ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
-          Name>``. Note: Runtimes are under construction and will be
-          available soon. If is not specified, we assume default
-          'sandbox' runtime.
+          ``projects/<Project ID>/agent/environments/<Environment
+          ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity
+          Type Display Name>``. Note: Environments and users are under
+          construction and will be available soon. If is not specified,
+          we assume default 'draft' environment. If is not specified, we
+          assume default '-' user.
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest)
   ))
@@ -518,295 +524,64 @@ _sym_db.RegisterMessage(DeleteSessionEntityTypeRequest)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n#com.google.cloud.dialogflow.v2beta1B\026SessionEntityTypeProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1'))
-try:
-  # THESE ELEMENTS WILL BE DEPRECATED.
-  # Please use the generated *_pb2_grpc.py files instead.
-  import grpc
-  from grpc.beta import implementations as beta_implementations
-  from grpc.beta import interfaces as beta_interfaces
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
 
+_SESSIONENTITYTYPES = _descriptor.ServiceDescriptor(
+  name='SessionEntityTypes',
+  full_name='google.cloud.dialogflow.v2beta1.SessionEntityTypes',
+  file=DESCRIPTOR,
+  index=0,
+  options=None,
+  serialized_start=1211,
+  serialized_end=2822,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='ListSessionEntityTypes',
+    full_name='google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes',
+    index=0,
+    containing_service=None,
+    input_type=_LISTSESSIONENTITYTYPESREQUEST,
+    output_type=_LISTSESSIONENTITYTYPESRESPONSE,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\217\001\0229/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypesZR\022P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes')),
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetSessionEntityType',
+    full_name='google.cloud.dialogflow.v2beta1.SessionEntityTypes.GetSessionEntityType',
+    index=1,
+    containing_service=None,
+    input_type=_GETSESSIONENTITYTYPEREQUEST,
+    output_type=_SESSIONENTITYTYPE,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\217\001\0229/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR\022P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}')),
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateSessionEntityType',
+    full_name='google.cloud.dialogflow.v2beta1.SessionEntityTypes.CreateSessionEntityType',
+    index=2,
+    containing_service=None,
+    input_type=_CREATESESSIONENTITYTYPEREQUEST,
+    output_type=_SESSIONENTITYTYPE,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\271\001\"9/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypes:\023session_entity_typeZg\"P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes:\023session_entity_type')),
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateSessionEntityType',
+    full_name='google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType',
+    index=3,
+    containing_service=None,
+    input_type=_UPDATESESSIONENTITYTYPEREQUEST,
+    output_type=_SESSIONENTITYTYPE,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\341\0012M/v2beta1/{session_entity_type.name=projects/*/agent/sessions/*/entityTypes/*}:\023session_entity_typeZ{2d/v2beta1/{session_entity_type.name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}:\023session_entity_type')),
+  ),
+  _descriptor.MethodDescriptor(
+    name='DeleteSessionEntityType',
+    full_name='google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType',
+    index=4,
+    containing_service=None,
+    input_type=_DELETESESSIONENTITYTYPEREQUEST,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\217\001*9/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR*P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}')),
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_SESSIONENTITYTYPES)
 
-  class SessionEntityTypesStub(object):
-    """Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
+DESCRIPTOR.services_by_name['SessionEntityTypes'] = _SESSIONENTITYTYPES
 
-    Session entity types are referred to as **User** entity types and are
-    entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. You can redefine a session
-    entity type at the session level.
-
-    For more information about entity types, see the
-    [Dialogflow documentation](https://dialogflow.com/docs/entities).
-    """
-
-    def __init__(self, channel):
-      """Constructor.
-
-      Args:
-        channel: A grpc.Channel.
-      """
-      self.ListSessionEntityTypes = channel.unary_unary(
-          '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/ListSessionEntityTypes',
-          request_serializer=ListSessionEntityTypesRequest.SerializeToString,
-          response_deserializer=ListSessionEntityTypesResponse.FromString,
-          )
-      self.GetSessionEntityType = channel.unary_unary(
-          '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/GetSessionEntityType',
-          request_serializer=GetSessionEntityTypeRequest.SerializeToString,
-          response_deserializer=SessionEntityType.FromString,
-          )
-      self.CreateSessionEntityType = channel.unary_unary(
-          '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/CreateSessionEntityType',
-          request_serializer=CreateSessionEntityTypeRequest.SerializeToString,
-          response_deserializer=SessionEntityType.FromString,
-          )
-      self.UpdateSessionEntityType = channel.unary_unary(
-          '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/UpdateSessionEntityType',
-          request_serializer=UpdateSessionEntityTypeRequest.SerializeToString,
-          response_deserializer=SessionEntityType.FromString,
-          )
-      self.DeleteSessionEntityType = channel.unary_unary(
-          '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/DeleteSessionEntityType',
-          request_serializer=DeleteSessionEntityTypeRequest.SerializeToString,
-          response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-          )
-
-
-  class SessionEntityTypesServicer(object):
-    """Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
-
-    Session entity types are referred to as **User** entity types and are
-    entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. You can redefine a session
-    entity type at the session level.
-
-    For more information about entity types, see the
-    [Dialogflow documentation](https://dialogflow.com/docs/entities).
-    """
-
-    def ListSessionEntityTypes(self, request, context):
-      """Returns the list of all session entity types in the specified session.
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def GetSessionEntityType(self, request, context):
-      """Retrieves the specified session entity type.
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def CreateSessionEntityType(self, request, context):
-      """Creates a session entity type.
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def UpdateSessionEntityType(self, request, context):
-      """Updates the specified session entity type.
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def DeleteSessionEntityType(self, request, context):
-      """Deletes the specified session entity type.
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-
-  def add_SessionEntityTypesServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-        'ListSessionEntityTypes': grpc.unary_unary_rpc_method_handler(
-            servicer.ListSessionEntityTypes,
-            request_deserializer=ListSessionEntityTypesRequest.FromString,
-            response_serializer=ListSessionEntityTypesResponse.SerializeToString,
-        ),
-        'GetSessionEntityType': grpc.unary_unary_rpc_method_handler(
-            servicer.GetSessionEntityType,
-            request_deserializer=GetSessionEntityTypeRequest.FromString,
-            response_serializer=SessionEntityType.SerializeToString,
-        ),
-        'CreateSessionEntityType': grpc.unary_unary_rpc_method_handler(
-            servicer.CreateSessionEntityType,
-            request_deserializer=CreateSessionEntityTypeRequest.FromString,
-            response_serializer=SessionEntityType.SerializeToString,
-        ),
-        'UpdateSessionEntityType': grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateSessionEntityType,
-            request_deserializer=UpdateSessionEntityTypeRequest.FromString,
-            response_serializer=SessionEntityType.SerializeToString,
-        ),
-        'DeleteSessionEntityType': grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteSessionEntityType,
-            request_deserializer=DeleteSessionEntityTypeRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-        'google.cloud.dialogflow.v2beta1.SessionEntityTypes', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
-  class BetaSessionEntityTypesServicer(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
-
-    Session entity types are referred to as **User** entity types and are
-    entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. You can redefine a session
-    entity type at the session level.
-
-    For more information about entity types, see the
-    [Dialogflow documentation](https://dialogflow.com/docs/entities).
-    """
-    def ListSessionEntityTypes(self, request, context):
-      """Returns the list of all session entity types in the specified session.
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def GetSessionEntityType(self, request, context):
-      """Retrieves the specified session entity type.
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def CreateSessionEntityType(self, request, context):
-      """Creates a session entity type.
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def UpdateSessionEntityType(self, request, context):
-      """Updates the specified session entity type.
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def DeleteSessionEntityType(self, request, context):
-      """Deletes the specified session entity type.
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-
-
-  class BetaSessionEntityTypesStub(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
-
-    Session entity types are referred to as **User** entity types and are
-    entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. You can redefine a session
-    entity type at the session level.
-
-    For more information about entity types, see the
-    [Dialogflow documentation](https://dialogflow.com/docs/entities).
-    """
-    def ListSessionEntityTypes(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Returns the list of all session entity types in the specified session.
-      """
-      raise NotImplementedError()
-    ListSessionEntityTypes.future = None
-    def GetSessionEntityType(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Retrieves the specified session entity type.
-      """
-      raise NotImplementedError()
-    GetSessionEntityType.future = None
-    def CreateSessionEntityType(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Creates a session entity type.
-      """
-      raise NotImplementedError()
-    CreateSessionEntityType.future = None
-    def UpdateSessionEntityType(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Updates the specified session entity type.
-      """
-      raise NotImplementedError()
-    UpdateSessionEntityType.future = None
-    def DeleteSessionEntityType(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Deletes the specified session entity type.
-      """
-      raise NotImplementedError()
-    DeleteSessionEntityType.future = None
-
-
-  def beta_create_SessionEntityTypes_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_deserializers = {
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'CreateSessionEntityType'): CreateSessionEntityTypeRequest.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'DeleteSessionEntityType'): DeleteSessionEntityTypeRequest.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'GetSessionEntityType'): GetSessionEntityTypeRequest.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'ListSessionEntityTypes'): ListSessionEntityTypesRequest.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'UpdateSessionEntityType'): UpdateSessionEntityTypeRequest.FromString,
-    }
-    response_serializers = {
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'CreateSessionEntityType'): SessionEntityType.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'DeleteSessionEntityType'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'GetSessionEntityType'): SessionEntityType.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'ListSessionEntityTypes'): ListSessionEntityTypesResponse.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'UpdateSessionEntityType'): SessionEntityType.SerializeToString,
-    }
-    method_implementations = {
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'CreateSessionEntityType'): face_utilities.unary_unary_inline(servicer.CreateSessionEntityType),
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'DeleteSessionEntityType'): face_utilities.unary_unary_inline(servicer.DeleteSessionEntityType),
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'GetSessionEntityType'): face_utilities.unary_unary_inline(servicer.GetSessionEntityType),
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'ListSessionEntityTypes'): face_utilities.unary_unary_inline(servicer.ListSessionEntityTypes),
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'UpdateSessionEntityType'): face_utilities.unary_unary_inline(servicer.UpdateSessionEntityType),
-    }
-    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-    return beta_implementations.server(method_implementations, options=server_options)
-
-
-  def beta_create_SessionEntityTypes_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_serializers = {
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'CreateSessionEntityType'): CreateSessionEntityTypeRequest.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'DeleteSessionEntityType'): DeleteSessionEntityTypeRequest.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'GetSessionEntityType'): GetSessionEntityTypeRequest.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'ListSessionEntityTypes'): ListSessionEntityTypesRequest.SerializeToString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'UpdateSessionEntityType'): UpdateSessionEntityTypeRequest.SerializeToString,
-    }
-    response_deserializers = {
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'CreateSessionEntityType'): SessionEntityType.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'DeleteSessionEntityType'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'GetSessionEntityType'): SessionEntityType.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'ListSessionEntityTypes'): ListSessionEntityTypesResponse.FromString,
-      ('google.cloud.dialogflow.v2beta1.SessionEntityTypes', 'UpdateSessionEntityType'): SessionEntityType.FromString,
-    }
-    cardinalities = {
-      'CreateSessionEntityType': cardinality.Cardinality.UNARY_UNARY,
-      'DeleteSessionEntityType': cardinality.Cardinality.UNARY_UNARY,
-      'GetSessionEntityType': cardinality.Cardinality.UNARY_UNARY,
-      'ListSessionEntityTypes': cardinality.Cardinality.UNARY_UNARY,
-      'UpdateSessionEntityType': cardinality.Cardinality.UNARY_UNARY,
-    }
-    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-    return beta_implementations.dynamic_stub(channel, 'google.cloud.dialogflow.v2beta1.SessionEntityTypes', cardinalities, options=stub_options)
-except ImportError:
-  pass
 # @@protoc_insertion_point(module_scope)

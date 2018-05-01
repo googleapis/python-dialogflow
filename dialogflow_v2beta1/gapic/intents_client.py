@@ -27,16 +27,18 @@ import google.api_core.page_iterator
 import google.api_core.path_template
 import google.api_core.protobuf_helpers
 
-from google.protobuf import empty_pb2
-from google.protobuf import field_mask_pb2
-from google.protobuf import struct_pb2
-
 from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.gapic import intents_client_config
 from dialogflow_v2beta1.proto import agent_pb2
 from dialogflow_v2beta1.proto import context_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2
 from dialogflow_v2beta1.proto import intent_pb2
+from dialogflow_v2beta1.proto import intent_pb2_grpc
+
+from google.longrunning import operations_pb2
+from google.protobuf import empty_pb2
+from google.protobuf import field_mask_pb2
+from google.protobuf import struct_pb2
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow',
                                                         ).version
@@ -112,6 +114,14 @@ class IntentsClient(object):
             agent=agent,
         )
 
+    @classmethod
+    def project_path(cls, project):
+        """Return a fully-qualified project string."""
+        return google.api_core.path_template.expand(
+            'projects/{project}',
+            project=project,
+        )
+
     def __init__(self,
                  channel=None,
                  credentials=None,
@@ -152,7 +162,7 @@ class IntentsClient(object):
             )
 
         # Create the gRPC stubs.
-        self.intents_stub = (intent_pb2.IntentsStub(channel))
+        self.intents_stub = (intent_pb2_grpc.IntentsStub(channel))
 
         # Operations client for methods that return long-running operations
         # futures.
@@ -231,7 +241,7 @@ class IntentsClient(object):
         Returns the list of all intents in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -319,7 +329,7 @@ class IntentsClient(object):
         Retrieves the specified intent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -378,11 +388,13 @@ class IntentsClient(object):
         Creates an intent in the specified agent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
             >>> parent = client.project_agent_path('[PROJECT]')
+            >>>
+            >>> # TODO: Initialize ``intent``:
             >>> intent = {}
             >>>
             >>> response = client.create_intent(parent, intent)
@@ -442,11 +454,14 @@ class IntentsClient(object):
         Updates the specified intent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
+            >>> # TODO: Initialize ``intent``:
             >>> intent = {}
+            >>>
+            >>> # TODO: Initialize ``language_code``:
             >>> language_code = ''
             >>>
             >>> response = client.update_intent(intent, language_code)
@@ -505,7 +520,7 @@ class IntentsClient(object):
         Deletes the specified intent.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
@@ -555,11 +570,13 @@ class IntentsClient(object):
         Operation <response: ``BatchUpdateIntentsResponse``>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
             >>> parent = client.agent_path('[PROJECT]', '[AGENT]')
+            >>>
+            >>> # TODO: Initialize ``language_code``:
             >>> language_code = ''
             >>>
             >>> response = client.batch_update_intents(parent, language_code)
@@ -649,11 +666,13 @@ class IntentsClient(object):
         Operation <response: ``google.protobuf.Empty``>
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
             >>> parent = client.project_path('[PROJECT]')
+            >>>
+            >>> # TODO: Initialize ``intents``:
             >>> intents = []
             >>>
             >>> response = client.batch_delete_intents(parent, intents)

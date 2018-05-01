@@ -24,15 +24,16 @@ import google.api_core.grpc_helpers
 import google.api_core.page_iterator
 import google.api_core.path_template
 
-from google.protobuf import empty_pb2
-from google.protobuf import field_mask_pb2
-from google.protobuf import struct_pb2
-
 from dialogflow_v2beta1.gapic import contexts_client_config
 from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.proto import agent_pb2
 from dialogflow_v2beta1.proto import context_pb2
+from dialogflow_v2beta1.proto import context_pb2_grpc
 
+from google.longrunning import operations_pb2
+from google.protobuf import empty_pb2
+from google.protobuf import field_mask_pb2
+from google.protobuf import struct_pb2
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow',
                                                         ).version
@@ -80,11 +81,35 @@ class ContextsClient(object):
         )
 
     @classmethod
+    def environment_session_path(cls, project, environment, user, session):
+        """Return a fully-qualified environment_session string."""
+        return google.api_core.path_template.expand(
+            'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}',
+            project=project,
+            environment=environment,
+            user=user,
+            session=session,
+        )
+
+    @classmethod
     def context_path(cls, project, session, context):
         """Return a fully-qualified context string."""
         return google.api_core.path_template.expand(
             'projects/{project}/agent/sessions/{session}/contexts/{context}',
             project=project,
+            session=session,
+            context=context,
+        )
+
+    @classmethod
+    def environment_context_path(cls, project, environment, user, session,
+                                 context):
+        """Return a fully-qualified environment_context string."""
+        return google.api_core.path_template.expand(
+            'projects/{project}/agent/sessions/{environment}/users/{user}/{session}/contexts/{context}',
+            project=project,
+            environment=environment,
+            user=user,
             session=session,
             context=context,
         )
@@ -129,7 +154,7 @@ class ContextsClient(object):
             )
 
         # Create the gRPC stubs.
-        self.contexts_stub = (context_pb2.ContextsStub(channel))
+        self.contexts_stub = (context_pb2_grpc.ContextsStub(channel))
 
         if client_info is None:
             client_info = (
@@ -195,7 +220,7 @@ class ContextsClient(object):
         Returns the list of all contexts in the specified session.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
@@ -216,9 +241,11 @@ class ContextsClient(object):
         Args:
             parent (str): Required. The session to list all contexts from.
                 Format: ``projects/<Project ID>/agent/sessions/<Session ID>`` or
-                ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``.
-                Note: Runtimes are under construction and will be available soon.
-                If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+                ID>/sessions/<Session ID>``. Note: Environments and users are under
+                construction and will be available soon. If <Environment ID> is not
+                specified, we assume default 'draft' environment. If <User ID> is not
+                specified, we assume default '-' user.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -276,7 +303,7 @@ class ContextsClient(object):
         Retrieves the specified context.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
@@ -287,10 +314,11 @@ class ContextsClient(object):
         Args:
             name (str): Required. The name of the context. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>``
-                or ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session
-                ID>/contexts/<Context ID>``. Note: Runtimes are under construction and will
-                be available soon. If <Runtime ID> is not specified, we assume default
-                'sandbox' runtime.
+                or ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+                ID>/sessions/<Session ID>/contexts/<Context ID>``. Note: Environments and
+                users are under construction and will be available soon. If <Environment
+                ID> is not specified, we assume default 'draft' environment. If <User ID>
+                is not specified, we assume default '-' user.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -327,11 +355,13 @@ class ContextsClient(object):
         Creates a context.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
             >>> parent = client.session_path('[PROJECT]', '[SESSION]')
+            >>>
+            >>> # TODO: Initialize ``context``:
             >>> context = {}
             >>>
             >>> response = client.create_context(parent, context)
@@ -339,9 +369,11 @@ class ContextsClient(object):
         Args:
             parent (str): Required. The session to create a context for.
                 Format: ``projects/<Project ID>/agent/sessions/<Session ID>`` or
-                ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``.
-                Note: Runtimes are under construction and will be available soon.
-                If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+                ID>/sessions/<Session ID>``. Note: Environments and users are under
+                construction and will be available soon. If <Environment ID> is not
+                specified, we assume default 'draft' environment. If <User ID> is not
+                specified, we assume default '-' user.
             context (Union[dict, ~dialogflow_v2beta1.types.Context]): Required. The context to create.
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~dialogflow_v2beta1.types.Context`
@@ -384,10 +416,11 @@ class ContextsClient(object):
         Updates the specified context.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
+            >>> # TODO: Initialize ``context``:
             >>> context = {}
             >>>
             >>> response = client.update_context(context)
@@ -437,7 +470,7 @@ class ContextsClient(object):
         Deletes the specified context.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
@@ -448,10 +481,12 @@ class ContextsClient(object):
         Args:
             name (str): Required. The name of the context to delete. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>``
-                or ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session
-                ID>/contexts/<Context ID>``. Note: Runtimes are under construction and will
-                be available soon. If <Runtime ID> is not specified, we assume default
-                'sandbox' runtime.
+                or ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+                ID>/sessions/<Session ID>/contexts/<Context ID>``. Note: Environments and
+                users are under construction and will be available soon. If <Environment
+                ID> is not specified, we assume default 'draft' environment. If <User ID>
+                is not specified, we assume default
+                '-' user.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -484,7 +519,7 @@ class ContextsClient(object):
         Deletes all active contexts in the specified session.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
@@ -495,9 +530,11 @@ class ContextsClient(object):
         Args:
             parent (str): Required. The name of the session to delete all contexts from. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>`` or ``projects/<Project
-                ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``. Note: Runtimes are
-                under construction and will be available soon. If <Runtime ID> is not
-                specified we assume default 'sandbox' runtime.
+                ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+                ID>``. Note: Environments and users are under construction and will be
+                available soon. If <Environment ID> is not specified we assume default
+                'draft' environment. If <User ID> is not specified, we assume default
+                '-' user.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.

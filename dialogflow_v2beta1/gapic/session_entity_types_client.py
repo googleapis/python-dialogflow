@@ -24,10 +24,6 @@ import google.api_core.grpc_helpers
 import google.api_core.page_iterator
 import google.api_core.path_template
 
-from google.protobuf import empty_pb2
-from google.protobuf import field_mask_pb2
-from google.protobuf import struct_pb2
-
 from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.gapic import session_entity_types_client_config
 from dialogflow_v2beta1.proto import agent_pb2
@@ -35,7 +31,12 @@ from dialogflow_v2beta1.proto import context_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2
 from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2beta1.proto import session_entity_type_pb2
+from dialogflow_v2beta1.proto import session_entity_type_pb2_grpc
 
+from google.longrunning import operations_pb2
+from google.protobuf import empty_pb2
+from google.protobuf import field_mask_pb2
+from google.protobuf import struct_pb2
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow',
                                                         ).version
@@ -78,11 +79,35 @@ class SessionEntityTypesClient(object):
         )
 
     @classmethod
+    def environment_session_path(cls, project, environment, user, session):
+        """Return a fully-qualified environment_session string."""
+        return google.api_core.path_template.expand(
+            'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}',
+            project=project,
+            environment=environment,
+            user=user,
+            session=session,
+        )
+
+    @classmethod
     def session_entity_type_path(cls, project, session, entity_type):
         """Return a fully-qualified session_entity_type string."""
         return google.api_core.path_template.expand(
             'projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}',
             project=project,
+            session=session,
+            entity_type=entity_type,
+        )
+
+    @classmethod
+    def environment_session_entity_type_path(cls, project, environment, user,
+                                             session, entity_type):
+        """Return a fully-qualified environment_session_entity_type string."""
+        return google.api_core.path_template.expand(
+            'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}',
+            project=project,
+            environment=environment,
+            user=user,
             session=session,
             entity_type=entity_type,
         )
@@ -128,7 +153,7 @@ class SessionEntityTypesClient(object):
 
         # Create the gRPC stubs.
         self.session_entity_types_stub = (
-            session_entity_type_pb2.SessionEntityTypesStub(channel))
+            session_entity_type_pb2_grpc.SessionEntityTypesStub(channel))
 
         if client_info is None:
             client_info = (
@@ -189,7 +214,7 @@ class SessionEntityTypesClient(object):
         Returns the list of all session entity types in the specified session.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
@@ -210,9 +235,11 @@ class SessionEntityTypesClient(object):
         Args:
             parent (str): Required. The session to list all session entity types from.
                 Format: ``projects/<Project ID>/agent/sessions/<Session ID>`` or
-                ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``.
-                Note: Runtimes are under construction and will be available soon.
-                If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+                sessions/<Session ID>``.
+                Note: Environments and users are under construction and will be available
+                soon. If <Environment ID> is not specified, we assume default 'draft'
+                environment. If <User ID> is not specified, we assume default '-' user.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -271,7 +298,7 @@ class SessionEntityTypesClient(object):
         Retrieves the specified session entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
@@ -282,10 +309,12 @@ class SessionEntityTypesClient(object):
         Args:
             name (str): Required. The name of the session entity type. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-                Display Name>`` or ``projects/<Project ID>/agent/runtimes/<Runtime
-                ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``. Note:
-                Runtimes are under construction and will be available soon. If <Runtime ID>
-                is not specified, we assume default 'sandbox' runtime.
+                Display Name>`` or ``projects/<Project ID>/agent/environments/<Environment
+                ID>/users/<User ID>/sessions/<Session ID>/
+                entityTypes/<Entity Type Display Name>``.
+                Note: Environments and users re under construction and will be available
+                soon. If <Environment ID> is not specified, we assume default 'draft'
+                environment. If <User ID> is not specified, we assume default '-' user.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -324,11 +353,13 @@ class SessionEntityTypesClient(object):
         Creates a session entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
             >>> parent = client.session_path('[PROJECT]', '[SESSION]')
+            >>>
+            >>> # TODO: Initialize ``session_entity_type``:
             >>> session_entity_type = {}
             >>>
             >>> response = client.create_session_entity_type(parent, session_entity_type)
@@ -336,9 +367,11 @@ class SessionEntityTypesClient(object):
         Args:
             parent (str): Required. The session to create a session entity type for.
                 Format: ``projects/<Project ID>/agent/sessions/<Session ID>`` or
-                ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``.
-                Note: Runtimes are under construction and will be available soon.
-                If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+                sessions/<Session ID>``.
+                Note: Environments and users are under construction and will be available
+                soon. If <Environment ID> is not specified, we assume default 'draft'
+                environment. If <User ID> is not specified, we assume default '-' user.
             session_entity_type (Union[dict, ~dialogflow_v2beta1.types.SessionEntityType]): Required. The session entity type to create.
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~dialogflow_v2beta1.types.SessionEntityType`
@@ -382,10 +415,11 @@ class SessionEntityTypesClient(object):
         Updates the specified session entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
+            >>> # TODO: Initialize ``session_entity_type``:
             >>> session_entity_type = {}
             >>>
             >>> response = client.update_session_entity_type(session_entity_type)
@@ -393,10 +427,12 @@ class SessionEntityTypesClient(object):
         Args:
             session_entity_type (Union[dict, ~dialogflow_v2beta1.types.SessionEntityType]): Required. The entity type to update. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-                Display Name>`` or ``projects/<Project ID>/agent/runtimes/<Runtime
-                ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``. Note:
-                Runtimes are under construction and will be available soon. If <Runtime ID>
-                is not specified, we assume default 'sandbox' runtime.
+                Display Name>`` or ``projects/<Project ID>/agent/environments/<Environment
+                ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+                Name>``.
+                Note: Environments and users are under construction and will be available
+                soon. If <Environment ID> is not specified, we assume default 'draft'
+                environment. If <User ID> is not specified, we assume default '-' user.
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~dialogflow_v2beta1.types.SessionEntityType`
             update_mask (Union[dict, ~dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
@@ -441,7 +477,7 @@ class SessionEntityTypesClient(object):
         Deletes the specified session entity type.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
@@ -452,10 +488,12 @@ class SessionEntityTypesClient(object):
         Args:
             name (str): Required. The name of the entity type to delete. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-                Display Name>`` or ``projects/<Project ID>/agent/runtimes/<Runtime
-                ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``. Note:
-                Runtimes are under construction and will be available soon. If <Runtime ID>
-                is not specified, we assume default 'sandbox' runtime.
+                Display Name>`` or ``projects/<Project ID>/agent/environments/<Environment
+                ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+                Name>``.
+                Note: Environments and users are under construction and will be available
+                soon. If <Environment ID> is not specified, we assume default 'draft'
+                environment. If <User ID> is not specified, we assume default '-' user.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.

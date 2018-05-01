@@ -349,7 +349,7 @@ class TestIntentsClient(object):
         client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
         # Setup Request
-        parent = client.project_agent_path('[PROJECT]')
+        parent = client.project_path('[PROJECT]')
         intents = []
 
         response = client.batch_delete_intents(parent, intents)
@@ -374,7 +374,7 @@ class TestIntentsClient(object):
         client = dialogflow_v2beta1.IntentsClient(channel=channel)
 
         # Setup Request
-        parent = client.project_agent_path('[PROJECT]')
+        parent = client.project_path('[PROJECT]')
         intents = []
 
         response = client.batch_delete_intents(parent, intents)

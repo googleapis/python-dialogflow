@@ -22,10 +22,6 @@ import google.api_core.gapic_v1.method
 import google.api_core.grpc_helpers
 import google.api_core.path_template
 
-from google.protobuf import empty_pb2
-from google.protobuf import field_mask_pb2
-from google.protobuf import struct_pb2
-
 from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.gapic import sessions_client_config
 from dialogflow_v2beta1.proto import agent_pb2
@@ -34,6 +30,12 @@ from dialogflow_v2beta1.proto import entity_type_pb2
 from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2beta1.proto import session_entity_type_pb2
 from dialogflow_v2beta1.proto import session_pb2
+from dialogflow_v2beta1.proto import session_pb2_grpc
+
+from google.longrunning import operations_pb2
+from google.protobuf import empty_pb2
+from google.protobuf import field_mask_pb2
+from google.protobuf import struct_pb2
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution('dialogflow',
                                                         ).version
@@ -64,6 +66,17 @@ class SessionsClient(object):
         return google.api_core.path_template.expand(
             'projects/{project}/agent/sessions/{session}',
             project=project,
+            session=session,
+        )
+
+    @classmethod
+    def environment_session_path(cls, project, environment, user, session):
+        """Return a fully-qualified environment_session string."""
+        return google.api_core.path_template.expand(
+            'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}',
+            project=project,
+            environment=environment,
+            user=user,
             session=session,
         )
 
@@ -107,7 +120,7 @@ class SessionsClient(object):
             )
 
         # Create the gRPC stubs.
-        self.sessions_stub = (session_pb2.SessionsStub(channel))
+        self.sessions_stub = (session_pb2_grpc.SessionsStub(channel))
 
         if client_info is None:
             client_info = (
@@ -154,11 +167,13 @@ class SessionsClient(object):
         results of future queries.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.SessionsClient()
             >>>
             >>> session = client.session_path('[PROJECT]', '[SESSION]')
+            >>>
+            >>> # TODO: Initialize ``query_input``:
             >>> query_input = {}
             >>>
             >>> response = client.detect_intent(session, query_input)
@@ -166,12 +181,14 @@ class SessionsClient(object):
         Args:
             session (str): Required. The name of the session this query is sent to. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>``, or
-                ``projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>``.
-                Note: Runtimes are under construction and will be available soon.
-                If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
-                It's up to the API caller to choose an appropriate session ID. It can be
-                a random number or some type of user identifier (preferably hashed).
-                The length of the session ID must not exceed 36 bytes.
+                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+                ID>/sessions/<Session ID>``. Note: Environments and users are under
+                construction and will be available soon. If <Environment ID> is not
+                specified, we assume default 'draft' environment. If <User ID> is not
+                specified, we are using \"-\". It’s up to the API caller to choose an
+                appropriate <Session ID>. and <User Id>. They can be a random numbers or
+                some type of user and session identifiers (preferably hashed). The length
+                of the <Session ID> and <User ID> must not exceed 36 characters.
             query_input (Union[dict, ~dialogflow_v2beta1.types.QueryInput]): Required. The input specification. It can be set to:
 
                 1.  an audio config
@@ -235,11 +252,14 @@ class SessionsClient(object):
         EXPERIMENTAL: This method interface might change in the future.
 
         Example:
-            >>> from google.cloud import dialogflow_v2beta1
+            >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.SessionsClient()
             >>>
+            >>> # TODO: Initialize ``session``:
             >>> session = ''
+            >>>
+            >>> # TODO: Initialize ``query_input``:
             >>> query_input = {}
             >>> request = {'session': session, 'query_input': query_input}
             >>>
@@ -250,7 +270,7 @@ class SessionsClient(object):
 
         Args:
             requests (iterator[dict|dialogflow_v2beta1.proto.session_pb2.StreamingDetectIntentRequest]): The input objects. If a dict is provided, it must be of the
-                same form as the protobuf message :class:`~.dialogflow_v2beta1.types.StreamingDetectIntentRequest`
+                same form as the protobuf message :class:`~dialogflow_v2beta1.types.StreamingDetectIntentRequest`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -261,7 +281,7 @@ class SessionsClient(object):
                 that is provided to the method.
 
         Returns:
-            Iterable[~.dialogflow_v2beta1.types.StreamingDetectIntentResponse].
+            Iterable[~dialogflow_v2beta1.types.StreamingDetectIntentResponse].
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
