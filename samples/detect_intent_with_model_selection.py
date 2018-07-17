@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2017 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,29 +14,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""DialogFlow API Detect Intent Python sample with audio files processed
-as an audio stream.
+"""Dialogflow API Beta Detect Intent Python sample with model selection.
 
 Examples:
-  python detect_intent_stream.py -h
-  python detect_intent_stream.py --project-id PROJECT_ID \
+  python detect_intent_with_model_selection.py -h
+  python detect_intent_with_model_selection.py --project-id PROJECT_ID \
   --session-id SESSION_ID --audio-file-path resources/book_a_room.wav
-  python detect_intent_stream.py --project-id PROJECT_ID \
-  --session-id SESSION_ID --audio-file-path resources/mountain_view.wav
 """
 
 import argparse
 import uuid
 
 
-# [START dialogflow_detect_intent_streaming]
-def detect_intent_stream(project_id, session_id, audio_file_path,
-                         language_code):
-    """Returns the result of detect intent with streaming audio as input.
+# [START dialogflow_detect_intent_with_model_selection]
+def detect_intent_with_model_selection(project_id, session_id, audio_file_path,
+                                       language_code):
+    """Returns the result of detect intent with model selection on an audio file
+    as input
 
     Using the same `session_id` between requests allows continuation
     of the conversaion."""
-    import dialogflow_v2 as dialogflow
+    import dialogflow_v2beta1 as dialogflow
     session_client = dialogflow.SessionsClient()
 
     # Note: hard coding audio_encoding and sample_rate_hertz for simplicity.
@@ -46,49 +44,34 @@ def detect_intent_stream(project_id, session_id, audio_file_path,
     session = session_client.session_path(project_id, session_id)
     print('Session path: {}\n'.format(session))
 
-    def request_generator(audio_config, audio_file_path):
-        query_input = dialogflow.types.QueryInput(audio_config=audio_config)
+    with open(audio_file_path, 'rb') as audio_file:
+        input_audio = audio_file.read()
 
-        # The first request contains the configuration.
-        yield dialogflow.types.StreamingDetectIntentRequest(
-            session=session, query_input=query_input)
-
-        # Here we are reading small chunks of audio data from a local
-        # audio file.  In practice these chunks should come from
-        # an audio input device.
-        with open(audio_file_path, 'rb') as audio_file:
-            while True:
-                chunk = audio_file.read(4096)
-                if not chunk:
-                    break
-                # The later requests contains audio data.
-                yield dialogflow.types.StreamingDetectIntentRequest(
-                    input_audio=chunk)
+    # Which Speech model to select for the given request.
+    # Possible models: video, phone_call, command_and_search, default
+    model = 'phone_call'
 
     audio_config = dialogflow.types.InputAudioConfig(
         audio_encoding=audio_encoding, language_code=language_code,
-        sample_rate_hertz=sample_rate_hertz)
+        sample_rate_hertz=sample_rate_hertz,
+        # Enhanced models are only available to projects that
+        # opt in for audio data collection.
+        # A model must be specified to use enhanced model.
+        model=model)
+    query_input = dialogflow.types.QueryInput(audio_config=audio_config)
 
-    requests = request_generator(audio_config, audio_file_path)
-    responses = session_client.streaming_detect_intent(requests)
-
-    print('=' * 20)
-    for response in responses:
-        print('Intermediate transcript: "{}".'.format(
-                response.recognition_result.transcript))
-
-    # Note: The result from the last response is the final transcript along
-    # with the detected content.
-    query_result = response.query_result
+    response = session_client.detect_intent(
+        session=session, query_input=query_input,
+        input_audio=input_audio)
 
     print('=' * 20)
-    print('Query text: {}'.format(query_result.query_text))
+    print('Query text: {}'.format(response.query_result.query_text))
     print('Detected intent: {} (confidence: {})\n'.format(
-        query_result.intent.display_name,
-        query_result.intent_detection_confidence))
+        response.query_result.intent.display_name,
+        response.query_result.intent_detection_confidence))
     print('Fulfillment text: {}\n'.format(
-        query_result.fulfillment_text))
-# [END dialogflow_detect_intent_streaming]
+        response.query_result.fulfillment_text))
+# [END dialogflow_detect_intent_with_model_selection]
 
 
 if __name__ == '__main__':
@@ -115,6 +98,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    detect_intent_stream(
+    detect_intent_with_model_selection(
         args.project_id, args.session_id, args.audio_file_path,
         args.language_code)
