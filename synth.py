@@ -77,3 +77,10 @@ s.replace(
     ['dialogflow_v2/__init__.py', 'dialogflow_v2beta1/__init__.py'],
     'from dialogflow_.*? import types\n',
     '')
+
+# Docstring has an extra '\' at the end of it
+s.replace(
+    'dialogflow_v2/gapic/agents_client.py',
+    '}\\\" \\',
+    '}\\"'
+)

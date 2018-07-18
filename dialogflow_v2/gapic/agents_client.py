@@ -652,7 +652,7 @@ class AgentsClient(object):
                 ::
 
                        'agentContent': '$(cat <agent zip file> | base64 -w 0)'
-                   }\" \
+                   }\"
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
