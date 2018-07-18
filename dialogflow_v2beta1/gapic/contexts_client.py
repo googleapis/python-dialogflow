@@ -82,7 +82,7 @@ class ContextsClient(object):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            ContextsClient: The constructed client.
+            dialogflow_v2beta1.ContextsClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)

@@ -81,7 +81,7 @@ class SessionsClient(object):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            SessionsClient: The constructed client.
+            dialogflow_v2beta1.SessionsClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)

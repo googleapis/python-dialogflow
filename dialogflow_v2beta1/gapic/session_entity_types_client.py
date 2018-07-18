@@ -87,7 +87,7 @@ class SessionEntityTypesClient(object):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            SessionEntityTypesClient: The constructed client.
+            dialogflow_v2beta1.SessionEntityTypesClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)

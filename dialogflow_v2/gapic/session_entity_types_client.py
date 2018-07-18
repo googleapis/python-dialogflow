@@ -61,7 +61,7 @@ class SessionEntityTypesClient(object):
     entity type at the session level.
 
     For more information about entity types, see the
-    `Dialogflow documentation <https://dialogflow.com/docs/entities>`___.
+    `Dialogflow documentation <https://dialogflow.com/docs/entities>`__.
     """
 
     SERVICE_ADDRESS = 'dialogflow.googleapis.com:443'
@@ -83,7 +83,7 @@ class SessionEntityTypesClient(object):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            SessionEntityTypesClient: The constructed client.
+            dialogflow_v2.SessionEntityTypesClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)

@@ -91,7 +91,7 @@ class AgentsClient(object):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            AgentsClient: The constructed client.
+            dialogflow_v2beta1.AgentsClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)
@@ -541,18 +541,17 @@ class AgentsClient(object):
 
                 Example for how to import an agent via the command line:
                 <pre>curl \
-                  'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
-                   -X POST \
-                   -H 'Authorization: Bearer '$(gcloud auth application-default
-                   print-access-token) \
-                   -H 'Accept: application/json' \
-                   -H 'Content-Type: application/json' \
-                   --compressed \
-                   --data-binary \"{
+                'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
+                -X POST \
+                -H 'Authorization: Bearer '$(gcloud auth application-default
+                print-access-token) \
+                -H 'Accept: application/json' \
+                -H 'Content-Type: application/json' \
+                --compressed \
+                --data-binary \"{
                 ::
-
-                      'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
-                   }\"</pre>
+                'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+                }\"</pre>
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -648,18 +647,17 @@ class AgentsClient(object):
 
                 Example for how to restore an agent via the command line:
                 <pre>curl \
-                  'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore\
-                   -X POST \
-                   -H 'Authorization: Bearer '$(gcloud auth application-default
-                   print-access-token) \
-                   -H 'Accept: application/json' \
-                   -H 'Content-Type: application/json' \
-                   --compressed \
-                   --data-binary \"{
+                'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore\
+                -X POST \
+                -H 'Authorization: Bearer '$(gcloud auth application-default
+                print-access-token) \
+                -H 'Accept: application/json' \
+                -H 'Content-Type: application/json' \
+                --compressed \
+                --data-binary \"{
                 ::
-
-                       'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
-                   }\"</pre>
+                'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+                }\"</pre>
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.

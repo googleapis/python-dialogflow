@@ -678,7 +678,7 @@ ExportAgentResponse = _reflection.GeneratedProtocolMessageType('ExportAgentRespo
           access-token) | -H 'Accept: application/json' | -H 'Content-
           Type: application/json' | --compressed | --data-binary '{}' |
           \| grep agentContent \| sed -e 's/.*"agentContent":
-          "([^"]*)".\*/:raw-latex:`\1`/' | \| base64 --decode >
+          "([^"]*)".\*/\1/' | \| base64 --decode >
   """,
   # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2.ExportAgentResponse)
   ))
@@ -705,7 +705,7 @@ ImportAgentRequest = _reflection.GeneratedProtocolMessageType('ImportAgentReques
           The agent to import.  Example for how to import an agent via
           the command line:  | curl |
           'https://dialogflow.googleapis.com/v2/projects//agent:import |
-          -X POST | -H 'Authorization: Bearer ':math:`(gcloud auth
+          -X POST | -H 'Authorization: Bearer '`(gcloud auth
           print-access-token) \    -H 'Accept: application/json' \    -H
           'Content-Type: application/json' \    --compressed \
           --data-binary "{  'agentContent': '`\ (cat \| base64 -w 0)' }"
@@ -735,7 +735,7 @@ RestoreAgentRequest = _reflection.GeneratedProtocolMessageType('RestoreAgentRequ
           The agent to restore.  Example for how to restore an agent via
           the command line:  | curl |
           'https://dialogflow.googleapis.com/v2/projects//agent:restore
-          | -X POST | -H 'Authorization: Bearer ':math:`(gcloud auth
+          | -X POST | -H 'Authorization: Bearer '`(gcloud auth
           print-access-token) \    -H 'Accept: application/json' \    -H
           'Content-Type: application/json' \    --compressed \
           --data-binary "{  'agentContent': '`\ (cat \| base64 -w 0)' }"

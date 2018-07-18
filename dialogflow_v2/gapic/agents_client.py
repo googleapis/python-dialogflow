@@ -90,7 +90,7 @@ class AgentsClient(object):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            AgentsClient: The constructed client.
+            dialogflow_v2.AgentsClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)
