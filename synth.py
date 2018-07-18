@@ -27,7 +27,8 @@ for version in versions:
 
     s.move(
         library,
-        excludes=['google/**/*', 'setup.py', 'README.rst', 'docs/index.rst'])
+        excludes=[
+            'google/**/*', 'setup.py', 'README.rst', 'docs/index.rst', 'nox.py'])
     s.move(
         library / f'google/cloud/dialogflow_{version}',
         f'dialogflow_{version}')
