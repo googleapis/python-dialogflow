@@ -81,7 +81,7 @@ class EntityTypesClient(object):
         represented by the [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] type.
 
     For more information about entity types, see the
-    `Dialogflow documentation <https://dialogflow.com/docs/entities>`_.
+    `Dialogflow documentation <https://dialogflow.com/docs/entities>`__.
     """
 
     SERVICE_ADDRESS = 'dialogflow.googleapis.com:443'

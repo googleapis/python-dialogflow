@@ -69,7 +69,7 @@ class AgentsClient(object):
     currency, and so on.
 
     For more information about agents, see the
-    `Dialogflow documentation <https://dialogflow.com/docs/agents>`_.
+    `Dialogflow documentation <https://dialogflow.com/docs/agents>`__.
     """
 
     SERVICE_ADDRESS = 'dialogflow.googleapis.com:443'

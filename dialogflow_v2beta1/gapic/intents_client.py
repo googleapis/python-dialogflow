@@ -90,7 +90,7 @@ class IntentsClient(object):
         Dialogflow API agent to better match intents.
 
     For more information about intents, see the
-    `Dialogflow documentation <https://dialogflow.com/docs/intents>`_.
+    `Dialogflow documentation <https://dialogflow.com/docs/intents>`__.
     """
 
     SERVICE_ADDRESS = 'dialogflow.googleapis.com:443'

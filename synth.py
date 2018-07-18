@@ -84,3 +84,8 @@ s.replace(
     '}\\\" \\',
     '}\\"'
 )
+
+s.replace(
+    code_paths,
+    '(`Dialogflow documentation <.*?>`)_\.'
+    '\g<1>__.')
