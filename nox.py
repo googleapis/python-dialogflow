@@ -1,10 +1,10 @@
-# Copyright 2017, Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,65 +19,34 @@ import nox
 
 
 @nox.session
-@nox.parametrize('python_version', ['2.7', '3.4', '3.5', '3.6'])
-def unit_tests(session, python_version):
-    """Run the unit test suite."""
-
-    session.interpreter = 'python{}'.format(python_version)
-
-    session.virtualenv_dirname = 'unit-' + python_version
-
-    session.install('mock', 'pytest', 'pytest-cov')
-    session.install('-e', '.')
-
-    session.run(
-        'py.test',
-        '--quiet',
-        '--cov=dialogflow',
-        '--cov=dialogflow_v2beta1',
-        '--cov-append',
-        '--cov-config=.coveragerc',
-        '--cov-report=',
-        os.path.join('tests', 'unit'),
-    )
+def default(session):
+    return unit(session, 'default')
 
 
 @nox.session
-def sample_tests(session):
-    """Run the sample tests."""
-    session.install('mock', 'pytest')
+@nox.parametrize('py', ['2.7', '3.5', '3.6', '3.7'])
+def unit(session, py):
+    """Run the unit test suite."""
+
+    # Run unit tests against all supported versions of Python.
+    if py != 'default':
+        session.interpreter = 'python{}'.format(py)
+
+    # Set the virtualenv directory name.
+    session.virtualenv_dirname = 'unit-' + py
+
+    # Install all test dependencies, then install this package in-place.
+    session.install('pytest')
     session.install('-e', '.')
-    session.run('py.test', '--quiet', os.path.join('samples', 'tests'))
+
+    # Run py.test against the unit tests.
+    session.run('py.test', '--quiet', os.path.join('tests', 'unit'))
 
 
 @nox.session
 def lint_setup_py(session):
     """Verify that setup.py is valid (including RST check)."""
+    session.interpreter = 'python3.6'
     session.install('docutils', 'pygments')
     session.run('python', 'setup.py', 'check', '--restructuredtext',
                 '--strict')
-
-
-@nox.session
-def docs(session):
-    """Build the docs."""
-
-    session.install('sphinx', 'sphinx_rtd_theme')
-    session.install('.')
-
-    # Build the docs!
-    session.run('rm', '-rf', 'docs/_build/')
-    session.run('sphinx-build', '-W', '-b', 'html', '-d',
-                'docs/_build/doctrees', 'docs/', 'docs/_build/html/')
-
-
-@nox.session
-def cover(session):
-    """Run the final coverage report.
-
-    This outputs the coverage report aggregating coverage from the unit
-    test runs (not system test runs), and then erases coverage data.
-    """
-    session.install('coverage', 'pytest-cov')
-    session.run('coverage', 'report', '--show-missing')
-    session.run('coverage', 'erase')
