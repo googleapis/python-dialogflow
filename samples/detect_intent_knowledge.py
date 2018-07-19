@@ -71,12 +71,11 @@ def detect_intent_knowledge(project_id, session_id, language_code,
         print('Fulfillment text: {}\n'.format(
             response.query_result.fulfillment_text))
         print('Knowledge results:')
-        for alternative_query_results in response.alternative_query_results:
-            knowledge_answers = alternative_query_results.knowledge_answers
-            for answers in knowledge_answers.answers:
-                print(' - Answer: {}'.format(answers.answer))
-                print(' - Confidence: {}'.format(
-                    answers.match_confidence))
+        knowledge_answers = response.query_result.knowledge_answers
+        for answers in knowledge_answers.answers:
+            print(' - Answer: {}'.format(answers.answer))
+            print(' - Confidence: {}'.format(
+                answers.match_confidence))
 # [END dialogflow_detect_intent_knowledge]
 
 

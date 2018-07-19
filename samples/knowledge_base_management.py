@@ -39,7 +39,7 @@ def list_knowledge_bases(project_id):
         project_id: The GCP project linked with the agent."""
     import dialogflow_v2beta1 as dialogflow
     client = dialogflow.KnowledgeBasesClient()
-    agent_path = client.project_agent_path(project_id)
+    agent_path = client.project_path(project_id)
 
     print('Knowledge Bases for: {}'.format(project_id))
     for knowledge_base in client.list_knowledge_bases(agent_path):
@@ -57,7 +57,7 @@ def create_knowledge_base(project_id, display_name):
         display_name: The display name of the Knowledge base."""
     import dialogflow_v2beta1 as dialogflow
     client = dialogflow.KnowledgeBasesClient()
-    agent_path = client.project_agent_path(project_id)
+    agent_path = client.project_path(project_id)
 
     knowledge_base = dialogflow.types.KnowledgeBase(
         display_name=display_name)
