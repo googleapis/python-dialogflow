@@ -43,15 +43,15 @@ def detect_intent_stream(project_id, session_id, audio_file_path,
     audio_encoding = dialogflow.enums.AudioEncoding.AUDIO_ENCODING_LINEAR_16
     sample_rate_hertz = 16000
 
-    session = session_client.session_path(project_id, session_id)
-    print('Session path: {}\n'.format(session))
+    session_path = session_client.session_path(project_id, session_id)
+    print('Session path: {}\n'.format(session_path))
 
     def request_generator(audio_config, audio_file_path):
         query_input = dialogflow.types.QueryInput(audio_config=audio_config)
 
         # The first request contains the configuration.
         yield dialogflow.types.StreamingDetectIntentRequest(
-            session=session, query_input=query_input)
+            session=session_path, query_input=query_input)
 
         # Here we are reading small chunks of audio data from a local
         # audio file.  In practice these chunks should come from

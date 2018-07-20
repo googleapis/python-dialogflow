@@ -37,8 +37,8 @@ def detect_intent_with_texttospeech_response(project_id, session_id, texts,
     import dialogflow_v2beta1 as dialogflow
     session_client = dialogflow.SessionsClient()
 
-    session = session_client.session_path(project_id, session_id)
-    print('Session path: {}\n'.format(session))
+    session_path = session_client.session_path(project_id, session_id)
+    print('Session path: {}\n'.format(session_path))
 
     for text in texts:
         text_input = dialogflow.types.TextInput(
@@ -52,7 +52,7 @@ def detect_intent_with_texttospeech_response(project_id, session_id, texts,
             .OUTPUT_AUDIO_ENCODING_LINEAR_16)
 
         response = session_client.detect_intent(
-            session=session, query_input=query_input,
+            session=session_path, query_input=query_input,
             output_audio_config=output_audio_config)
 
         print('=' * 20)

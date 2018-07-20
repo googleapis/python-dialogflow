@@ -39,10 +39,10 @@ def list_knowledge_bases(project_id):
         project_id: The GCP project linked with the agent."""
     import dialogflow_v2beta1 as dialogflow
     client = dialogflow.KnowledgeBasesClient()
-    agent_path = client.project_path(project_id)
+    project_path = client.project_path(project_id)
 
     print('Knowledge Bases for: {}'.format(project_id))
-    for knowledge_base in client.list_knowledge_bases(agent_path):
+    for knowledge_base in client.list_knowledge_bases(project_path):
         print(' - Display Name: {}'.format(knowledge_base.display_name))
         print(' - Knowledge ID: {}\n'.format(knowledge_base.name))
 # [END dialogflow_list_knowledge_base]
@@ -57,12 +57,12 @@ def create_knowledge_base(project_id, display_name):
         display_name: The display name of the Knowledge base."""
     import dialogflow_v2beta1 as dialogflow
     client = dialogflow.KnowledgeBasesClient()
-    agent_path = client.project_path(project_id)
+    project_path = client.project_path(project_id)
 
     knowledge_base = dialogflow.types.KnowledgeBase(
         display_name=display_name)
 
-    response = client.create_knowledge_base(agent_path, knowledge_base)
+    response = client.create_knowledge_base(project_path, knowledge_base)
 
     print('Knowledge Base created:\n')
     print('Display Name: {}\n'.format(response.display_name))
@@ -79,9 +79,10 @@ def get_knowledge_base(project_id, knowledge_base_id):
         knowledge_base_id: Id of the Knowledge base."""
     import dialogflow_v2beta1 as dialogflow
     client = dialogflow.KnowledgeBasesClient()
-    name = client.knowledge_base_path(project_id, knowledge_base_id)
+    knowledge_base_path = client.knowledge_base_path(
+        project_id, knowledge_base_id)
 
-    response = client.get_knowledge_base(name)
+    response = client.get_knowledge_base(knowledge_base_path)
 
     print('Got Knowledge Base:')
     print(' - Display Name: {}'.format(response.display_name))
@@ -98,9 +99,10 @@ def delete_knowledge_base(project_id, knowledge_base_id):
         knowledge_base_id: Id of the Knowledge base."""
     import dialogflow_v2beta1 as dialogflow
     client = dialogflow.KnowledgeBasesClient()
-    name = client.knowledge_base_path(project_id, knowledge_base_id)
+    knowledge_base_path = client.knowledge_base_path(
+        project_id, knowledge_base_id)
 
-    response = client.delete_knowledge_base(name)
+    response = client.delete_knowledge_base(knowledge_base_path)
 
     print('Knowledge Base deleted.'.format(response))
 # [END dialogflow_delete_knowledge_base]

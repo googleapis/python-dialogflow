@@ -43,8 +43,8 @@ def detect_intent_knowledge(project_id, session_id, language_code,
     import dialogflow_v2beta1 as dialogflow
     session_client = dialogflow.SessionsClient()
 
-    session = session_client.session_path(project_id, session_id)
-    print('Session path: {}\n'.format(session))
+    session_path = session_client.session_path(project_id, session_id)
+    print('Session path: {}\n'.format(session_path))
 
     for text in texts:
         text_input = dialogflow.types.TextInput(
@@ -52,15 +52,15 @@ def detect_intent_knowledge(project_id, session_id, language_code,
 
         query_input = dialogflow.types.QueryInput(text=text_input)
 
-        knowledge_base_name = dialogflow.knowledge_bases_client \
+        knowledge_base_path = dialogflow.knowledge_bases_client \
             .KnowledgeBasesClient \
             .knowledge_base_path(project_id, knowledge_base_id)
 
         query_params = dialogflow.types.QueryParameters(
-            knowledge_base_names=[knowledge_base_name])
+            knowledge_base_names=[knowledge_base_path])
 
         response = session_client.detect_intent(
-            session=session, query_input=query_input,
+            session=session_path, query_input=query_input,
             query_params=query_params)
 
         print('=' * 20)

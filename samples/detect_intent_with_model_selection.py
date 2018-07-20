@@ -41,8 +41,8 @@ def detect_intent_with_model_selection(project_id, session_id, audio_file_path,
     audio_encoding = dialogflow.enums.AudioEncoding.AUDIO_ENCODING_LINEAR_16
     sample_rate_hertz = 16000
 
-    session = session_client.session_path(project_id, session_id)
-    print('Session path: {}\n'.format(session))
+    session_path = session_client.session_path(project_id, session_id)
+    print('Session path: {}\n'.format(session_path))
 
     with open(audio_file_path, 'rb') as audio_file:
         input_audio = audio_file.read()
@@ -54,14 +54,11 @@ def detect_intent_with_model_selection(project_id, session_id, audio_file_path,
     audio_config = dialogflow.types.InputAudioConfig(
         audio_encoding=audio_encoding, language_code=language_code,
         sample_rate_hertz=sample_rate_hertz,
-        # Enhanced models are only available to projects that
-        # opt in for audio data collection.
-        # A model must be specified to use enhanced model.
         model=model)
     query_input = dialogflow.types.QueryInput(audio_config=audio_config)
 
     response = session_client.detect_intent(
-        session=session, query_input=query_input,
+        session=session_path, query_input=query_input,
         input_audio=input_audio)
 
     print('=' * 20)

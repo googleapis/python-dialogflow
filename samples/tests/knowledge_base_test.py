@@ -28,6 +28,12 @@ DOCUMENT_BASE_NAME = 'fake_document_name'
 
 
 def test_create_knowledge_base(capsys):
+    # Check the knowledge base does not yet exists
+    knowledge_base_management.list_knowledge_bases(PROJECT_ID)
+
+    out, _ = capsys.readouterr()
+    assert 'Display Name: {}'.format(KNOWLEDGE_BASE_NAME) not in out
+
     # Create a knowledge base
     knowledge_base_management.create_knowledge_base(PROJECT_ID,
                                                     KNOWLEDGE_BASE_NAME)
