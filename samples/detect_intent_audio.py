@@ -26,12 +26,8 @@ Examples:
   --session-id SESSION_ID --audio-file-path resources/today.wav
 """
 
-# [START import_libraries]
 import argparse
 import uuid
-
-import dialogflow
-# [END import_libraries]
 
 
 # [START dialogflow_detect_intent_audio]
@@ -41,6 +37,8 @@ def detect_intent_audio(project_id, session_id, audio_file_path,
 
     Using the same `session_id` between requests allows continuation
     of the conversaion."""
+    import dialogflow_v2 as dialogflow
+
     session_client = dialogflow.SessionsClient()
 
     # Note: hard coding audio_encoding and sample_rate_hertz for simplicity.

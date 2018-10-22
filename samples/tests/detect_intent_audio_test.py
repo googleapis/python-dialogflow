@@ -27,7 +27,6 @@ AUDIOS = [
 
 
 def test_detect_intent_audio(capsys):
-    session_id = 'test-session-id'
     for audio_file_path in AUDIOS:
         detect_intent_audio(PROJECT_ID, SESSION_ID, audio_file_path, 'en-US')
     out, _ = capsys.readouterr()
