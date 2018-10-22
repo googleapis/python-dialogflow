@@ -26,12 +26,8 @@ Examples:
   "tomorrow" "10 AM" "2 hours" "10 people" "A" "yes"
 """
 
-# [START import_libraries]
 import argparse
 import uuid
-
-import dialogflow
-# [END import_libraries]
 
 
 # [START dialogflow_detect_intent_text]
@@ -39,7 +35,9 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     """Returns the result of detect intent with texts as inputs.
 
     Using the same `session_id` between requests allows continuation
-    of the conversaion."""
+    of the conversation."""
+
+    import dialogflow_v2 as dialogflow
     session_client = dialogflow.SessionsClient()
 
     session = session_client.session_path(project_id, session_id)
