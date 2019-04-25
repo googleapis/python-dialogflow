@@ -598,7 +598,8 @@ class AgentsClient(object):
                 Example for how to import an agent via the command line:
 
                 .. raw:: html
-                <pre>curl \
+
+                    <pre>curl \
                       'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
                        -X POST \
                        -H 'Authorization: Bearer '$(gcloud auth application-default
@@ -717,7 +718,8 @@ class AgentsClient(object):
                 Example for how to restore an agent via the command line:
 
                 .. raw:: html
-                <pre>curl \
+
+                    <pre>curl \
                       'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore\
                        -X POST \
                        -H 'Authorization: Bearer '$(gcloud auth application-default
