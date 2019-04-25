@@ -23,7 +23,7 @@ versions = ['v2beta1', 'v2']
 
 
 for version in versions:
-    library = gapic.py_library('dialogflow', version)
+    library = gapic.py_library('dialogflow', version, include_protos=True)
 
     s.move(
         library,
