@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Unit tests."""
 
 import mock
@@ -26,9 +27,9 @@ from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 
 
+
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
-
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -49,15 +50,12 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-
-    def __init__(self, responses=[]):
+    def __init__(self, responses = []):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(self,
-                    method,
-                    request_serializer=None,
-                    response_deserializer=None):
+    def unary_unary(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
 
@@ -66,20 +64,17 @@ class CustomException(Exception):
 
 
 class TestEntityTypesClient(object):
+
     def test_list_entity_types(self):
         # Setup Expected Response
         next_page_token = ''
         entity_types_element = {}
         entity_types = [entity_types_element]
-        expected_response = {
-            'next_page_token': next_page_token,
-            'entity_types': entity_types
-        }
-        expected_response = entity_type_pb2.ListEntityTypesResponse(
-            **expected_response)
+        expected_response = {'next_page_token': next_page_token, 'entity_types': entity_types}
+        expected_response = entity_type_pb2.ListEntityTypesResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -95,13 +90,12 @@ class TestEntityTypesClient(object):
         assert expected_response.entity_types[0] == resources[0]
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.ListEntityTypesRequest(
-            parent=parent)
+        expected_request = entity_type_pb2.ListEntityTypesRequest(parent=parent)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_list_entity_types_exception(self):
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -122,7 +116,7 @@ class TestEntityTypesClient(object):
         expected_response = entity_type_pb2.EntityType(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -141,7 +135,7 @@ class TestEntityTypesClient(object):
 
     def test_get_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -161,7 +155,7 @@ class TestEntityTypesClient(object):
         expected_response = entity_type_pb2.EntityType(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -175,14 +169,13 @@ class TestEntityTypesClient(object):
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.CreateEntityTypeRequest(
-            parent=parent, entity_type=entity_type)
+        expected_request = entity_type_pb2.CreateEntityTypeRequest(parent=parent, entity_type=entity_type)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_create_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -203,7 +196,7 @@ class TestEntityTypesClient(object):
         expected_response = entity_type_pb2.EntityType(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -216,14 +209,13 @@ class TestEntityTypesClient(object):
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.UpdateEntityTypeRequest(
-            entity_type=entity_type)
+        expected_request = entity_type_pb2.UpdateEntityTypeRequest(entity_type=entity_type)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_update_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -254,7 +246,7 @@ class TestEntityTypesClient(object):
 
     def test_delete_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -269,10 +261,8 @@ class TestEntityTypesClient(object):
     def test_batch_update_entity_types(self):
         # Setup Expected Response
         expected_response = {}
-        expected_response = entity_type_pb2.BatchUpdateEntityTypesResponse(
-            **expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_update_entity_types', done=True)
+        expected_response = entity_type_pb2.BatchUpdateEntityTypesResponse(**expected_response)
+        operation = operations_pb2.Operation(name='operations/test_batch_update_entity_types', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -290,17 +280,15 @@ class TestEntityTypesClient(object):
         assert expected_response == result
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.BatchUpdateEntityTypesRequest(
-            parent=parent)
+        expected_request = entity_type_pb2.BatchUpdateEntityTypesRequest(parent=parent)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
+
 
     def test_batch_update_entity_types_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_update_entity_types_exception',
-            done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_update_entity_types_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
@@ -321,8 +309,7 @@ class TestEntityTypesClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_delete_entity_types', done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_delete_entity_types', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -341,17 +328,15 @@ class TestEntityTypesClient(object):
         assert expected_response == result
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.BatchDeleteEntityTypesRequest(
-            parent=parent, entity_type_names=entity_type_names)
+        expected_request = entity_type_pb2.BatchDeleteEntityTypesRequest(parent=parent, entity_type_names=entity_type_names)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
+
 
     def test_batch_delete_entity_types_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_delete_entity_types_exception',
-            done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_delete_entity_types_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
@@ -373,8 +358,7 @@ class TestEntityTypesClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_create_entities', done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_create_entities', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -393,16 +377,15 @@ class TestEntityTypesClient(object):
         assert expected_response == result
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.BatchCreateEntitiesRequest(
-            parent=parent, entities=entities)
+        expected_request = entity_type_pb2.BatchCreateEntitiesRequest(parent=parent, entities=entities)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
+
 
     def test_batch_create_entities_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_create_entities_exception', done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_create_entities_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
@@ -424,8 +407,7 @@ class TestEntityTypesClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_update_entities', done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_update_entities', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -444,16 +426,15 @@ class TestEntityTypesClient(object):
         assert expected_response == result
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.BatchUpdateEntitiesRequest(
-            parent=parent, entities=entities)
+        expected_request = entity_type_pb2.BatchUpdateEntitiesRequest(parent=parent, entities=entities)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
+
 
     def test_batch_update_entities_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_update_entities_exception', done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_update_entities_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
@@ -475,8 +456,7 @@ class TestEntityTypesClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_delete_entities', done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_delete_entities', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -495,16 +475,15 @@ class TestEntityTypesClient(object):
         assert expected_response == result
 
         assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.BatchDeleteEntitiesRequest(
-            parent=parent, entity_values=entity_values)
+        expected_request = entity_type_pb2.BatchDeleteEntitiesRequest(parent=parent, entity_values=entity_values)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
+
 
     def test_batch_delete_entities_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_batch_delete_entities_exception', done=True)
+        operation = operations_pb2.Operation(name='operations/test_batch_delete_entities_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response

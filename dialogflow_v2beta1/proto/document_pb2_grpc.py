@@ -53,6 +53,9 @@ class DocumentsServicer(object):
 
   def ListDocuments(self, request, context):
     """Returns the list of all documents of the knowledge base.
+
+    Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    only use `projects.knowledgeBases.documents`.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -60,6 +63,9 @@ class DocumentsServicer(object):
 
   def GetDocument(self, request, context):
     """Retrieves the specified document.
+
+    Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    only use `projects.knowledgeBases.documents`.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -67,6 +73,9 @@ class DocumentsServicer(object):
 
   def CreateDocument(self, request, context):
     """Creates a new document.
+
+    Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    only use `projects.knowledgeBases.documents`.
 
     Operation <response: [Document][google.cloud.dialogflow.v2beta1.Document],
     metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
@@ -78,6 +87,9 @@ class DocumentsServicer(object):
   def DeleteDocument(self, request, context):
     """Deletes the specified document.
 
+    Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    only use `projects.knowledgeBases.documents`.
+
     Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
     metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
     """
@@ -87,6 +99,10 @@ class DocumentsServicer(object):
 
   def UpdateDocument(self, request, context):
     """Updates the specified document.
+
+    Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    only use `projects.knowledgeBases.documents`.
+
     Operation <response: [Document][google.cloud.dialogflow.v2beta1.Document],
     metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
     """
@@ -99,6 +115,10 @@ class DocumentsServicer(object):
     content. The previously loaded content of the document will be deleted.
     Note: Even when the content of the document has not changed, there still
     may be side effects because of internal implementation changes.
+
+    Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    only use `projects.knowledgeBases.documents`.
+
     Operation <response: [Document][google.cloud.dialogflow.v2beta1.Document],
     metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
     """

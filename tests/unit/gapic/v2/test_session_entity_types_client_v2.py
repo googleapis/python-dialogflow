@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Unit tests."""
 
 import mock
@@ -23,9 +24,9 @@ from dialogflow_v2.proto import session_entity_type_pb2
 from google.protobuf import empty_pb2
 
 
+
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
-
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -46,15 +47,12 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-
-    def __init__(self, responses=[]):
+    def __init__(self, responses = []):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(self,
-                    method,
-                    request_serializer=None,
-                    response_deserializer=None):
+    def unary_unary(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
 
@@ -63,20 +61,17 @@ class CustomException(Exception):
 
 
 class TestSessionEntityTypesClient(object):
+
     def test_list_session_entity_types(self):
         # Setup Expected Response
         next_page_token = ''
         session_entity_types_element = {}
         session_entity_types = [session_entity_types_element]
-        expected_response = {
-            'next_page_token': next_page_token,
-            'session_entity_types': session_entity_types
-        }
-        expected_response = session_entity_type_pb2.ListSessionEntityTypesResponse(
-            **expected_response)
+        expected_response = {'next_page_token': next_page_token, 'session_entity_types': session_entity_types}
+        expected_response = session_entity_type_pb2.ListSessionEntityTypesResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -92,13 +87,12 @@ class TestSessionEntityTypesClient(object):
         assert expected_response.session_entity_types[0] == resources[0]
 
         assert len(channel.requests) == 1
-        expected_request = session_entity_type_pb2.ListSessionEntityTypesRequest(
-            parent=parent)
+        expected_request = session_entity_type_pb2.ListSessionEntityTypesRequest(parent=parent)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_list_session_entity_types_exception(self):
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -115,40 +109,36 @@ class TestSessionEntityTypesClient(object):
         # Setup Expected Response
         name_2 = 'name2-1052831874'
         expected_response = {'name': name_2}
-        expected_response = session_entity_type_pb2.SessionEntityType(
-            **expected_response)
+        expected_response = session_entity_type_pb2.SessionEntityType(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.SessionEntityTypesClient()
 
         # Setup Request
-        name = client.session_entity_type_path('[PROJECT]', '[SESSION]',
-                                               '[ENTITY_TYPE]')
+        name = client.session_entity_type_path('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]')
 
         response = client.get_session_entity_type(name)
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = session_entity_type_pb2.GetSessionEntityTypeRequest(
-            name=name)
+        expected_request = session_entity_type_pb2.GetSessionEntityTypeRequest(name=name)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_get_session_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.SessionEntityTypesClient()
 
         # Setup request
-        name = client.session_entity_type_path('[PROJECT]', '[SESSION]',
-                                               '[ENTITY_TYPE]')
+        name = client.session_entity_type_path('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]')
 
         with pytest.raises(CustomException):
             client.get_session_entity_type(name)
@@ -157,11 +147,10 @@ class TestSessionEntityTypesClient(object):
         # Setup Expected Response
         name = 'name3373707'
         expected_response = {'name': name}
-        expected_response = session_entity_type_pb2.SessionEntityType(
-            **expected_response)
+        expected_response = session_entity_type_pb2.SessionEntityType(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -171,19 +160,17 @@ class TestSessionEntityTypesClient(object):
         parent = client.session_path('[PROJECT]', '[SESSION]')
         session_entity_type = {}
 
-        response = client.create_session_entity_type(parent,
-                                                     session_entity_type)
+        response = client.create_session_entity_type(parent, session_entity_type)
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = session_entity_type_pb2.CreateSessionEntityTypeRequest(
-            parent=parent, session_entity_type=session_entity_type)
+        expected_request = session_entity_type_pb2.CreateSessionEntityTypeRequest(parent=parent, session_entity_type=session_entity_type)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_create_session_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -200,11 +187,10 @@ class TestSessionEntityTypesClient(object):
         # Setup Expected Response
         name = 'name3373707'
         expected_response = {'name': name}
-        expected_response = session_entity_type_pb2.SessionEntityType(
-            **expected_response)
+        expected_response = session_entity_type_pb2.SessionEntityType(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -217,14 +203,13 @@ class TestSessionEntityTypesClient(object):
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = session_entity_type_pb2.UpdateSessionEntityTypeRequest(
-            session_entity_type=session_entity_type)
+        expected_request = session_entity_type_pb2.UpdateSessionEntityTypeRequest(session_entity_type=session_entity_type)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_update_session_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -244,28 +229,25 @@ class TestSessionEntityTypesClient(object):
             client = dialogflow_v2.SessionEntityTypesClient()
 
         # Setup Request
-        name = client.session_entity_type_path('[PROJECT]', '[SESSION]',
-                                               '[ENTITY_TYPE]')
+        name = client.session_entity_type_path('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]')
 
         client.delete_session_entity_type(name)
 
         assert len(channel.requests) == 1
-        expected_request = session_entity_type_pb2.DeleteSessionEntityTypeRequest(
-            name=name)
+        expected_request = session_entity_type_pb2.DeleteSessionEntityTypeRequest(name=name)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_delete_session_entity_type_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.SessionEntityTypesClient()
 
         # Setup request
-        name = client.session_entity_type_path('[PROJECT]', '[SESSION]',
-                                               '[ENTITY_TYPE]')
+        name = client.session_entity_type_path('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]')
 
         with pytest.raises(CustomException):
             client.delete_session_entity_type(name)

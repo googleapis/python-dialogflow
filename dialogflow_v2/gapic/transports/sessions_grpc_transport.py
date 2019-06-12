@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 import google.api_core.grpc_helpers
 
 from dialogflow_v2.proto import session_pb2_grpc
@@ -34,9 +35,7 @@ class SessionsGrpcTransport(object):
         'https://www.googleapis.com/auth/dialogflow',
     )
 
-    def __init__(self,
-                 channel=None,
-                 credentials=None,
+    def __init__(self, channel=None, credentials=None,
                  address='dialogflow.googleapis.com:443'):
         """Instantiate the transport class.
 
@@ -56,7 +55,8 @@ class SessionsGrpcTransport(object):
         if channel is not None and credentials is not None:
             raise ValueError(
                 'The `channel` and `credentials` arguments are mutually '
-                'exclusive.', )
+                'exclusive.',
+            )
 
         # Create the channel.
         if channel is None:
@@ -73,10 +73,12 @@ class SessionsGrpcTransport(object):
             'sessions_stub': session_pb2_grpc.SessionsStub(channel),
         }
 
+
     @classmethod
-    def create_channel(cls,
-                       address='dialogflow.googleapis.com:443',
-                       credentials=None):
+    def create_channel(
+                cls,
+                address='dialogflow.googleapis.com:443',
+                credentials=None):
         """Create and return a gRPC channel object.
 
         Args:

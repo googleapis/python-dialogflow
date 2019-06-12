@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Accesses the google.cloud.dialogflow.v2 Contexts API."""
 
 import functools
@@ -41,8 +42,11 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
 
+
+
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+    'dialogflow',
+).version
 
 
 class ContextsClient(object):
@@ -72,6 +76,7 @@ class ContextsClient(object):
     # find the method configuration in the client_config dictionary.
     _INTERFACE_NAME = 'google.cloud.dialogflow.v2.Contexts'
 
+
     @classmethod
     def from_service_account_file(cls, filename, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
@@ -93,6 +98,7 @@ class ContextsClient(object):
 
     from_service_account_json = from_service_account_file
 
+
     @classmethod
     def context_path(cls, project, session, context):
         """Return a fully-qualified context string."""
@@ -112,12 +118,8 @@ class ContextsClient(object):
             session=session,
         )
 
-    def __init__(self,
-                 transport=None,
-                 channel=None,
-                 credentials=None,
-                 client_config=None,
-                 client_info=None):
+    def __init__(self, transport=None, channel=None, credentials=None,
+            client_config=None, client_info=None):
         """Constructor.
 
         Args:
@@ -151,17 +153,14 @@ class ContextsClient(object):
         # Raise deprecation warnings for things we want to go away.
         if client_config is not None:
             warnings.warn('The `client_config` argument is deprecated.',
-                          PendingDeprecationWarning,
-                          stacklevel=2)
+                          PendingDeprecationWarning, stacklevel=2)
         else:
             client_config = contexts_client_config.config
 
         if channel:
-            warnings.warn(
-                'The `channel` argument is deprecated; use '
-                '`transport` instead.',
-                PendingDeprecationWarning,
-                stacklevel=2)
+            warnings.warn('The `channel` argument is deprecated; use '
+                          '`transport` instead.',
+                          PendingDeprecationWarning, stacklevel=2)
 
         # Instantiate the transport.
         # The transport is responsible for handling serialization and
@@ -170,14 +169,14 @@ class ContextsClient(object):
             if callable(transport):
                 self.transport = transport(
                     credentials=credentials,
-                    default_class=contexts_grpc_transport.
-                    ContextsGrpcTransport,
+                    default_class=contexts_grpc_transport.ContextsGrpcTransport,
                 )
             else:
                 if credentials:
                     raise ValueError(
                         'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.')
+                        'credentials; these are mutually exclusive.'
+                    )
                 self.transport = transport
         else:
             self.transport = contexts_grpc_transport.ContextsGrpcTransport(
@@ -188,7 +187,8 @@ class ContextsClient(object):
 
         if client_info is None:
             client_info = google.api_core.gapic_v1.client_info.ClientInfo(
-                gapic_version=_GAPIC_LIBRARY_VERSION, )
+                gapic_version=_GAPIC_LIBRARY_VERSION,
+            )
         else:
             client_info.gapic_version = _GAPIC_LIBRARY_VERSION
         self._client_info = client_info
@@ -198,7 +198,8 @@ class ContextsClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config['interfaces'][self._INTERFACE_NAME], )
+            client_config['interfaces'][self._INTERFACE_NAME],
+        )
 
         # Save a dictionary of cached API call functions.
         # These are the actual callables which invoke the proper
@@ -207,12 +208,13 @@ class ContextsClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def list_contexts(self,
-                      parent,
-                      page_size=None,
-                      retry=google.api_core.gapic_v1.method.DEFAULT,
-                      timeout=google.api_core.gapic_v1.method.DEFAULT,
-                      metadata=None):
+    def list_contexts(
+            self,
+            parent,
+            page_size=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Returns the list of all contexts in the specified session.
 
@@ -269,14 +271,12 @@ class ContextsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'list_contexts' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'list_contexts'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.list_contexts,
-                    default_retry=self._method_configs['ListContexts'].retry,
-                    default_timeout=self._method_configs['ListContexts'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['list_contexts'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.list_contexts,
+                default_retry=self._method_configs['ListContexts'].retry,
+                default_timeout=self._method_configs['ListContexts'].timeout,
+                client_info=self._client_info,
+            )
 
         request = context_pb2.ListContextsRequest(
             parent=parent,
@@ -290,16 +290,12 @@ class ContextsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_contexts'],
-                                     retry=retry,
-                                     timeout=timeout,
-                                     metadata=metadata),
+            method=functools.partial(self._inner_api_calls['list_contexts'], retry=retry, timeout=timeout, metadata=metadata),
             request=request,
             items_field='contexts',
             request_token_field='page_token',
@@ -307,11 +303,12 @@ class ContextsClient(object):
         )
         return iterator
 
-    def get_context(self,
-                    name,
-                    retry=google.api_core.gapic_v1.method.DEFAULT,
-                    timeout=google.api_core.gapic_v1.method.DEFAULT,
-                    metadata=None):
+    def get_context(
+            self,
+            name,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Retrieves the specified context.
 
@@ -348,15 +345,16 @@ class ContextsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'get_context' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'get_context'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.get_context,
-                    default_retry=self._method_configs['GetContext'].retry,
-                    default_timeout=self._method_configs['GetContext'].timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['get_context'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.get_context,
+                default_retry=self._method_configs['GetContext'].retry,
+                default_timeout=self._method_configs['GetContext'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = context_pb2.GetContextRequest(name=name, )
+        request = context_pb2.GetContextRequest(
+            name=name,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -365,21 +363,18 @@ class ContextsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_context'](request,
-                                                    retry=retry,
-                                                    timeout=timeout,
-                                                    metadata=metadata)
+        return self._inner_api_calls['get_context'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def create_context(self,
-                       parent,
-                       context,
-                       retry=google.api_core.gapic_v1.method.DEFAULT,
-                       timeout=google.api_core.gapic_v1.method.DEFAULT,
-                       metadata=None):
+    def create_context(
+            self,
+            parent,
+            context,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Creates a context.
 
@@ -425,14 +420,12 @@ class ContextsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'create_context' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'create_context'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.create_context,
-                    default_retry=self._method_configs['CreateContext'].retry,
-                    default_timeout=self._method_configs['CreateContext'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['create_context'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.create_context,
+                default_retry=self._method_configs['CreateContext'].retry,
+                default_timeout=self._method_configs['CreateContext'].timeout,
+                client_info=self._client_info,
+            )
 
         request = context_pb2.CreateContextRequest(
             parent=parent,
@@ -446,21 +439,18 @@ class ContextsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_context'](request,
-                                                       retry=retry,
-                                                       timeout=timeout,
-                                                       metadata=metadata)
+        return self._inner_api_calls['create_context'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def update_context(self,
-                       context,
-                       update_mask=None,
-                       retry=google.api_core.gapic_v1.method.DEFAULT,
-                       timeout=google.api_core.gapic_v1.method.DEFAULT,
-                       metadata=None):
+    def update_context(
+            self,
+            context,
+            update_mask=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Updates the specified context.
 
@@ -504,14 +494,12 @@ class ContextsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'update_context' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'update_context'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.update_context,
-                    default_retry=self._method_configs['UpdateContext'].retry,
-                    default_timeout=self._method_configs['UpdateContext'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['update_context'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.update_context,
+                default_retry=self._method_configs['UpdateContext'].retry,
+                default_timeout=self._method_configs['UpdateContext'].timeout,
+                client_info=self._client_info,
+            )
 
         request = context_pb2.UpdateContextRequest(
             context=context,
@@ -525,20 +513,17 @@ class ContextsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_context'](request,
-                                                       retry=retry,
-                                                       timeout=timeout,
-                                                       metadata=metadata)
+        return self._inner_api_calls['update_context'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def delete_context(self,
-                       name,
-                       retry=google.api_core.gapic_v1.method.DEFAULT,
-                       timeout=google.api_core.gapic_v1.method.DEFAULT,
-                       metadata=None):
+    def delete_context(
+            self,
+            name,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Deletes the specified context.
 
@@ -572,16 +557,16 @@ class ContextsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'delete_context' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'delete_context'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.delete_context,
-                    default_retry=self._method_configs['DeleteContext'].retry,
-                    default_timeout=self._method_configs['DeleteContext'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['delete_context'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_context,
+                default_retry=self._method_configs['DeleteContext'].retry,
+                default_timeout=self._method_configs['DeleteContext'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = context_pb2.DeleteContextRequest(name=name, )
+        request = context_pb2.DeleteContextRequest(
+            name=name,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -590,20 +575,17 @@ class ContextsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_context'](request,
-                                                retry=retry,
-                                                timeout=timeout,
-                                                metadata=metadata)
+        self._inner_api_calls['delete_context'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def delete_all_contexts(self,
-                            parent,
-                            retry=google.api_core.gapic_v1.method.DEFAULT,
-                            timeout=google.api_core.gapic_v1.method.DEFAULT,
-                            metadata=None):
+    def delete_all_contexts(
+            self,
+            parent,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Deletes all active contexts in the specified session.
 
@@ -637,17 +619,16 @@ class ContextsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'delete_all_contexts' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'delete_all_contexts'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.delete_all_contexts,
-                    default_retry=self._method_configs['DeleteAllContexts'].
-                    retry,
-                    default_timeout=self._method_configs['DeleteAllContexts'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['delete_all_contexts'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_all_contexts,
+                default_retry=self._method_configs['DeleteAllContexts'].retry,
+                default_timeout=self._method_configs['DeleteAllContexts'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = context_pb2.DeleteAllContextsRequest(parent=parent, )
+        request = context_pb2.DeleteAllContextsRequest(
+            parent=parent,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -656,11 +637,7 @@ class ContextsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_all_contexts'](request,
-                                                     retry=retry,
-                                                     timeout=timeout,
-                                                     metadata=metadata)
+        self._inner_api_calls['delete_all_contexts'](request, retry=retry, timeout=timeout, metadata=metadata)

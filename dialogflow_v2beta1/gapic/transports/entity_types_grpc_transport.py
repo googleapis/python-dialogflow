@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 import google.api_core.grpc_helpers
 import google.api_core.operations_v1
 
@@ -35,9 +36,7 @@ class EntityTypesGrpcTransport(object):
         'https://www.googleapis.com/auth/dialogflow',
     )
 
-    def __init__(self,
-                 channel=None,
-                 credentials=None,
+    def __init__(self, channel=None, credentials=None,
                  address='dialogflow.googleapis.com:443'):
         """Instantiate the transport class.
 
@@ -57,7 +56,8 @@ class EntityTypesGrpcTransport(object):
         if channel is not None and credentials is not None:
             raise ValueError(
                 'The `channel` and `credentials` arguments are mutually '
-                'exclusive.', )
+                'exclusive.',
+            )
 
         # Create the channel.
         if channel is None:
@@ -77,13 +77,13 @@ class EntityTypesGrpcTransport(object):
         # Because this API includes a method that returns a
         # long-running operation (proto: google.longrunning.Operation),
         # instantiate an LRO client.
-        self._operations_client = google.api_core.operations_v1.OperationsClient(
-            channel)
+        self._operations_client = google.api_core.operations_v1.OperationsClient(channel)
 
     @classmethod
-    def create_channel(cls,
-                       address='dialogflow.googleapis.com:443',
-                       credentials=None):
+    def create_channel(
+                cls,
+                address='dialogflow.googleapis.com:443',
+                credentials=None):
         """Create and return a gRPC channel object.
 
         Args:

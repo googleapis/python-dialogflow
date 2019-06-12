@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Accesses the google.cloud.dialogflow.v2beta1 Intents API."""
 
 import functools
@@ -50,8 +51,11 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
 
+
+
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+    'dialogflow',
+).version
 
 
 class IntentsClient(object):
@@ -95,6 +99,7 @@ class IntentsClient(object):
     # find the method configuration in the client_config dictionary.
     _INTERFACE_NAME = 'google.cloud.dialogflow.v2beta1.Intents'
 
+
     @classmethod
     def from_service_account_file(cls, filename, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
@@ -116,6 +121,7 @@ class IntentsClient(object):
 
     from_service_account_json = from_service_account_file
 
+
     @classmethod
     def intent_path(cls, project, intent):
         """Return a fully-qualified intent string."""
@@ -133,12 +139,8 @@ class IntentsClient(object):
             project=project,
         )
 
-    def __init__(self,
-                 transport=None,
-                 channel=None,
-                 credentials=None,
-                 client_config=None,
-                 client_info=None):
+    def __init__(self, transport=None, channel=None, credentials=None,
+            client_config=None, client_info=None):
         """Constructor.
 
         Args:
@@ -172,17 +174,14 @@ class IntentsClient(object):
         # Raise deprecation warnings for things we want to go away.
         if client_config is not None:
             warnings.warn('The `client_config` argument is deprecated.',
-                          PendingDeprecationWarning,
-                          stacklevel=2)
+                          PendingDeprecationWarning, stacklevel=2)
         else:
             client_config = intents_client_config.config
 
         if channel:
-            warnings.warn(
-                'The `channel` argument is deprecated; use '
-                '`transport` instead.',
-                PendingDeprecationWarning,
-                stacklevel=2)
+            warnings.warn('The `channel` argument is deprecated; use '
+                          '`transport` instead.',
+                          PendingDeprecationWarning, stacklevel=2)
 
         # Instantiate the transport.
         # The transport is responsible for handling serialization and
@@ -197,7 +196,8 @@ class IntentsClient(object):
                 if credentials:
                     raise ValueError(
                         'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.')
+                        'credentials; these are mutually exclusive.'
+                    )
                 self.transport = transport
         else:
             self.transport = intents_grpc_transport.IntentsGrpcTransport(
@@ -208,7 +208,8 @@ class IntentsClient(object):
 
         if client_info is None:
             client_info = google.api_core.gapic_v1.client_info.ClientInfo(
-                gapic_version=_GAPIC_LIBRARY_VERSION, )
+                gapic_version=_GAPIC_LIBRARY_VERSION,
+            )
         else:
             client_info.gapic_version = _GAPIC_LIBRARY_VERSION
         self._client_info = client_info
@@ -218,7 +219,8 @@ class IntentsClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config['interfaces'][self._INTERFACE_NAME], )
+            client_config['interfaces'][self._INTERFACE_NAME],
+        )
 
         # Save a dictionary of cached API call functions.
         # These are the actual callables which invoke the proper
@@ -227,14 +229,15 @@ class IntentsClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def list_intents(self,
-                     parent,
-                     language_code=None,
-                     intent_view=None,
-                     page_size=None,
-                     retry=google.api_core.gapic_v1.method.DEFAULT,
-                     timeout=google.api_core.gapic_v1.method.DEFAULT,
-                     metadata=None):
+    def list_intents(
+            self,
+            parent,
+            language_code=None,
+            intent_view=None,
+            page_size=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Returns the list of all intents in the specified agent.
 
@@ -298,14 +301,12 @@ class IntentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'list_intents' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'list_intents'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.list_intents,
-                    default_retry=self._method_configs['ListIntents'].retry,
-                    default_timeout=self._method_configs['ListIntents'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['list_intents'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.list_intents,
+                default_retry=self._method_configs['ListIntents'].retry,
+                default_timeout=self._method_configs['ListIntents'].timeout,
+                client_info=self._client_info,
+            )
 
         request = intent_pb2.ListIntentsRequest(
             parent=parent,
@@ -321,16 +322,12 @@ class IntentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_intents'],
-                                     retry=retry,
-                                     timeout=timeout,
-                                     metadata=metadata),
+            method=functools.partial(self._inner_api_calls['list_intents'], retry=retry, timeout=timeout, metadata=metadata),
             request=request,
             items_field='intents',
             request_token_field='page_token',
@@ -338,13 +335,14 @@ class IntentsClient(object):
         )
         return iterator
 
-    def get_intent(self,
-                   name,
-                   language_code=None,
-                   intent_view=None,
-                   retry=google.api_core.gapic_v1.method.DEFAULT,
-                   timeout=google.api_core.gapic_v1.method.DEFAULT,
-                   metadata=None):
+    def get_intent(
+            self,
+            name,
+            language_code=None,
+            intent_view=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Retrieves the specified intent.
 
@@ -388,13 +386,12 @@ class IntentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'get_intent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'get_intent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.get_intent,
-                    default_retry=self._method_configs['GetIntent'].retry,
-                    default_timeout=self._method_configs['GetIntent'].timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['get_intent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.get_intent,
+                default_retry=self._method_configs['GetIntent'].retry,
+                default_timeout=self._method_configs['GetIntent'].timeout,
+                client_info=self._client_info,
+            )
 
         request = intent_pb2.GetIntentRequest(
             name=name,
@@ -409,23 +406,20 @@ class IntentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_intent'](request,
-                                                   retry=retry,
-                                                   timeout=timeout,
-                                                   metadata=metadata)
+        return self._inner_api_calls['get_intent'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def create_intent(self,
-                      parent,
-                      intent,
-                      language_code=None,
-                      intent_view=None,
-                      retry=google.api_core.gapic_v1.method.DEFAULT,
-                      timeout=google.api_core.gapic_v1.method.DEFAULT,
-                      metadata=None):
+    def create_intent(
+            self,
+            parent,
+            intent,
+            language_code=None,
+            intent_view=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Creates an intent in the specified agent.
 
@@ -476,14 +470,12 @@ class IntentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'create_intent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'create_intent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.create_intent,
-                    default_retry=self._method_configs['CreateIntent'].retry,
-                    default_timeout=self._method_configs['CreateIntent'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['create_intent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.create_intent,
+                default_retry=self._method_configs['CreateIntent'].retry,
+                default_timeout=self._method_configs['CreateIntent'].timeout,
+                client_info=self._client_info,
+            )
 
         request = intent_pb2.CreateIntentRequest(
             parent=parent,
@@ -499,23 +491,20 @@ class IntentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_intent'](request,
-                                                      retry=retry,
-                                                      timeout=timeout,
-                                                      metadata=metadata)
+        return self._inner_api_calls['create_intent'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def update_intent(self,
-                      intent,
-                      language_code,
-                      update_mask=None,
-                      intent_view=None,
-                      retry=google.api_core.gapic_v1.method.DEFAULT,
-                      timeout=google.api_core.gapic_v1.method.DEFAULT,
-                      metadata=None):
+    def update_intent(
+            self,
+            intent,
+            language_code,
+            update_mask=None,
+            intent_view=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Updates the specified intent.
 
@@ -569,14 +558,12 @@ class IntentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'update_intent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'update_intent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.update_intent,
-                    default_retry=self._method_configs['UpdateIntent'].retry,
-                    default_timeout=self._method_configs['UpdateIntent'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['update_intent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.update_intent,
+                default_retry=self._method_configs['UpdateIntent'].retry,
+                default_timeout=self._method_configs['UpdateIntent'].timeout,
+                client_info=self._client_info,
+            )
 
         request = intent_pb2.UpdateIntentRequest(
             intent=intent,
@@ -592,20 +579,17 @@ class IntentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_intent'](request,
-                                                      retry=retry,
-                                                      timeout=timeout,
-                                                      metadata=metadata)
+        return self._inner_api_calls['update_intent'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def delete_intent(self,
-                      name,
-                      retry=google.api_core.gapic_v1.method.DEFAULT,
-                      timeout=google.api_core.gapic_v1.method.DEFAULT,
-                      metadata=None):
+    def delete_intent(
+            self,
+            name,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Deletes the specified intent and its direct or indirect followup intents.
 
@@ -641,16 +625,16 @@ class IntentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'delete_intent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'delete_intent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.delete_intent,
-                    default_retry=self._method_configs['DeleteIntent'].retry,
-                    default_timeout=self._method_configs['DeleteIntent'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['delete_intent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_intent,
+                default_retry=self._method_configs['DeleteIntent'].retry,
+                default_timeout=self._method_configs['DeleteIntent'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = intent_pb2.DeleteIntentRequest(name=name, )
+        request = intent_pb2.DeleteIntentRequest(
+            name=name,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -659,25 +643,22 @@ class IntentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_intent'](request,
-                                               retry=retry,
-                                               timeout=timeout,
-                                               metadata=metadata)
+        self._inner_api_calls['delete_intent'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def batch_update_intents(self,
-                             parent,
-                             language_code,
-                             intent_batch_uri=None,
-                             intent_batch_inline=None,
-                             update_mask=None,
-                             intent_view=None,
-                             retry=google.api_core.gapic_v1.method.DEFAULT,
-                             timeout=google.api_core.gapic_v1.method.DEFAULT,
-                             metadata=None):
+    def batch_update_intents(
+            self,
+            parent,
+            language_code,
+            intent_batch_uri=None,
+            intent_batch_inline=None,
+            update_mask=None,
+            intent_view=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Updates/Creates multiple intents in the specified agent.
 
@@ -746,15 +727,12 @@ class IntentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'batch_update_intents' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'batch_update_intents'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.batch_update_intents,
-                    default_retry=self._method_configs['BatchUpdateIntents'].
-                    retry,
-                    default_timeout=self._method_configs['BatchUpdateIntents'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['batch_update_intents'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.batch_update_intents,
+                default_retry=self._method_configs['BatchUpdateIntents'].retry,
+                default_timeout=self._method_configs['BatchUpdateIntents'].timeout,
+                client_info=self._client_info,
+            )
 
         # Sanity check: We have some fields which are mutually exclusive;
         # raise ValueError if more than one is sent.
@@ -779,12 +757,10 @@ class IntentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['batch_update_intents'](
-            request, retry=retry, timeout=timeout, metadata=metadata)
+        operation = self._inner_api_calls['batch_update_intents'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,
@@ -792,12 +768,13 @@ class IntentsClient(object):
             metadata_type=struct_pb2.Struct,
         )
 
-    def batch_delete_intents(self,
-                             parent,
-                             intents,
-                             retry=google.api_core.gapic_v1.method.DEFAULT,
-                             timeout=google.api_core.gapic_v1.method.DEFAULT,
-                             metadata=None):
+    def batch_delete_intents(
+            self,
+            parent,
+            intents,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Deletes intents in the specified agent.
 
@@ -853,15 +830,12 @@ class IntentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'batch_delete_intents' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'batch_delete_intents'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.batch_delete_intents,
-                    default_retry=self._method_configs['BatchDeleteIntents'].
-                    retry,
-                    default_timeout=self._method_configs['BatchDeleteIntents'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['batch_delete_intents'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.batch_delete_intents,
+                default_retry=self._method_configs['BatchDeleteIntents'].retry,
+                default_timeout=self._method_configs['BatchDeleteIntents'].timeout,
+                client_info=self._client_info,
+            )
 
         request = intent_pb2.BatchDeleteIntentsRequest(
             parent=parent,
@@ -875,12 +849,10 @@ class IntentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['batch_delete_intents'](
-            request, retry=retry, timeout=timeout, metadata=metadata)
+        operation = self._inner_api_calls['batch_delete_intents'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,

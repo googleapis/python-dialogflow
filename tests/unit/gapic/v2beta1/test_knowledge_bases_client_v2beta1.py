@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Unit tests."""
 
 import mock
@@ -23,9 +24,9 @@ from dialogflow_v2beta1.proto import knowledge_base_pb2
 from google.protobuf import empty_pb2
 
 
+
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
-
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -46,15 +47,12 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-
-    def __init__(self, responses=[]):
+    def __init__(self, responses = []):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(self,
-                    method,
-                    request_serializer=None,
-                    response_deserializer=None):
+    def unary_unary(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
 
@@ -63,20 +61,17 @@ class CustomException(Exception):
 
 
 class TestKnowledgeBasesClient(object):
+
     def test_list_knowledge_bases(self):
         # Setup Expected Response
         next_page_token = ''
         knowledge_bases_element = {}
         knowledge_bases = [knowledge_bases_element]
-        expected_response = {
-            'next_page_token': next_page_token,
-            'knowledge_bases': knowledge_bases
-        }
-        expected_response = knowledge_base_pb2.ListKnowledgeBasesResponse(
-            **expected_response)
+        expected_response = {'next_page_token': next_page_token, 'knowledge_bases': knowledge_bases}
+        expected_response = knowledge_base_pb2.ListKnowledgeBasesResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -92,13 +87,12 @@ class TestKnowledgeBasesClient(object):
         assert expected_response.knowledge_bases[0] == resources[0]
 
         assert len(channel.requests) == 1
-        expected_request = knowledge_base_pb2.ListKnowledgeBasesRequest(
-            parent=parent)
+        expected_request = knowledge_base_pb2.ListKnowledgeBasesRequest(parent=parent)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_list_knowledge_bases_exception(self):
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -116,11 +110,10 @@ class TestKnowledgeBasesClient(object):
         name_2 = 'name2-1052831874'
         display_name = 'displayName1615086568'
         expected_response = {'name': name_2, 'display_name': display_name}
-        expected_response = knowledge_base_pb2.KnowledgeBase(
-            **expected_response)
+        expected_response = knowledge_base_pb2.KnowledgeBase(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -133,14 +126,13 @@ class TestKnowledgeBasesClient(object):
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = knowledge_base_pb2.GetKnowledgeBaseRequest(
-            name=name)
+        expected_request = knowledge_base_pb2.GetKnowledgeBaseRequest(name=name)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_get_knowledge_base_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -157,11 +149,10 @@ class TestKnowledgeBasesClient(object):
         name = 'name3373707'
         display_name = 'displayName1615086568'
         expected_response = {'name': name, 'display_name': display_name}
-        expected_response = knowledge_base_pb2.KnowledgeBase(
-            **expected_response)
+        expected_response = knowledge_base_pb2.KnowledgeBase(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -175,14 +166,13 @@ class TestKnowledgeBasesClient(object):
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = knowledge_base_pb2.CreateKnowledgeBaseRequest(
-            parent=parent, knowledge_base=knowledge_base)
+        expected_request = knowledge_base_pb2.CreateKnowledgeBaseRequest(parent=parent, knowledge_base=knowledge_base)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_create_knowledge_base_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -208,14 +198,13 @@ class TestKnowledgeBasesClient(object):
         client.delete_knowledge_base(name)
 
         assert len(channel.requests) == 1
-        expected_request = knowledge_base_pb2.DeleteKnowledgeBaseRequest(
-            name=name)
+        expected_request = knowledge_base_pb2.DeleteKnowledgeBaseRequest(name=name)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_delete_knowledge_base_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -232,31 +221,36 @@ class TestKnowledgeBasesClient(object):
         name = 'name3373707'
         display_name = 'displayName1615086568'
         expected_response = {'name': name, 'display_name': display_name}
-        expected_response = knowledge_base_pb2.KnowledgeBase(
-            **expected_response)
+        expected_response = knowledge_base_pb2.KnowledgeBase(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2beta1.KnowledgeBasesClient()
 
-        response = client.update_knowledge_base()
+        # Setup Request
+        knowledge_base = {}
+
+        response = client.update_knowledge_base(knowledge_base)
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = knowledge_base_pb2.UpdateKnowledgeBaseRequest()
+        expected_request = knowledge_base_pb2.UpdateKnowledgeBaseRequest(knowledge_base=knowledge_base)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_update_knowledge_base_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2beta1.KnowledgeBasesClient()
 
+        # Setup request
+        knowledge_base = {}
+
         with pytest.raises(CustomException):
-            client.update_knowledge_base()
+            client.update_knowledge_base(knowledge_base)

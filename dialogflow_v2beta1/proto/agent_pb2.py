@@ -13,7 +13,6 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
-from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from google.longrunning import operations_pb2 as google_dot_longrunning_dot_operations__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
@@ -25,9 +24,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='google.cloud.dialogflow.v2beta1',
   syntax='proto3',
   serialized_options=_b('\n#com.google.cloud.dialogflow.v2beta1B\nAgentProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1'),
-  serialized_pb=_b('\n1google/cloud/dialogflow_v2beta1/proto/agent.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/resource.proto\x1a#google/longrunning/operations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\"\x82\x03\n\x05\x41gent\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x1d\n\x15\x64\x65\x66\x61ult_language_code\x18\x03 \x01(\t\x12 \n\x18supported_language_codes\x18\x04 \x03(\t\x12\x11\n\ttime_zone\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x12\n\navatar_uri\x18\x07 \x01(\t\x12\x16\n\x0e\x65nable_logging\x18\x08 \x01(\x08\x12\x44\n\nmatch_mode\x18\t \x01(\x0e\x32\x30.google.cloud.dialogflow.v2beta1.Agent.MatchMode\x12 \n\x18\x63lassification_threshold\x18\n \x01(\x02\"V\n\tMatchMode\x12\x1a\n\x16MATCH_MODE_UNSPECIFIED\x10\x00\x12\x15\n\x11MATCH_MODE_HYBRID\x10\x01\x12\x16\n\x12MATCH_MODE_ML_ONLY\x10\x02\"!\n\x0fGetAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\"L\n\x13SearchAgentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"g\n\x14SearchAgentsResponse\x12\x36\n\x06\x61gents\x18\x01 \x03(\x0b\x32&.google.cloud.dialogflow.v2beta1.Agent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x11TrainAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\"7\n\x12\x45xportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tagent_uri\x18\x02 \x01(\t\"L\n\x13\x45xportAgentResponse\x12\x13\n\tagent_uri\x18\x01 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05\x61gent\"[\n\x12ImportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent\"\\\n\x13RestoreAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent2\xb4\x07\n\x06\x41gents\x12\x90\x01\n\x08GetAgent\x12\x30.google.cloud.dialogflow.v2beta1.GetAgentRequest\x1a&.google.cloud.dialogflow.v2beta1.Agent\"*\x82\xd3\xe4\x93\x02$\x12\"/v2beta1/{parent=projects/*}/agent\x12\xae\x01\n\x0cSearchAgents\x12\x34.google.cloud.dialogflow.v2beta1.SearchAgentsRequest\x1a\x35.google.cloud.dialogflow.v2beta1.SearchAgentsResponse\"1\x82\xd3\xe4\x93\x02+\x12)/v2beta1/{parent=projects/*}/agent:search\x12\x94\x01\n\nTrainAgent\x12\x32.google.cloud.dialogflow.v2beta1.TrainAgentRequest\x1a\x1d.google.longrunning.Operation\"3\x82\xd3\xe4\x93\x02-\"(/v2beta1/{parent=projects/*}/agent:train:\x01*\x12\x97\x01\n\x0b\x45xportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ExportAgentRequest\x1a\x1d.google.longrunning.Operation\"4\x82\xd3\xe4\x93\x02.\")/v2beta1/{parent=projects/*}/agent:export:\x01*\x12\x97\x01\n\x0bImportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ImportAgentRequest\x1a\x1d.google.longrunning.Operation\"4\x82\xd3\xe4\x93\x02.\")/v2beta1/{parent=projects/*}/agent:import:\x01*\x12\x9a\x01\n\x0cRestoreAgent\x12\x34.google.cloud.dialogflow.v2beta1.RestoreAgentRequest\x1a\x1d.google.longrunning.Operation\"5\x82\xd3\xe4\x93\x02/\"*/v2beta1/{parent=projects/*}/agent:restore:\x01*B\xa8\x01\n#com.google.cloud.dialogflow.v2beta1B\nAgentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
+  serialized_pb=_b('\n1google/cloud/dialogflow_v2beta1/proto/agent.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a#google/longrunning/operations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\"\x82\x03\n\x05\x41gent\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x1d\n\x15\x64\x65\x66\x61ult_language_code\x18\x03 \x01(\t\x12 \n\x18supported_language_codes\x18\x04 \x03(\t\x12\x11\n\ttime_zone\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x12\n\navatar_uri\x18\x07 \x01(\t\x12\x16\n\x0e\x65nable_logging\x18\x08 \x01(\x08\x12\x44\n\nmatch_mode\x18\t \x01(\x0e\x32\x30.google.cloud.dialogflow.v2beta1.Agent.MatchMode\x12 \n\x18\x63lassification_threshold\x18\n \x01(\x02\"V\n\tMatchMode\x12\x1a\n\x16MATCH_MODE_UNSPECIFIED\x10\x00\x12\x15\n\x11MATCH_MODE_HYBRID\x10\x01\x12\x16\n\x12MATCH_MODE_ML_ONLY\x10\x02\"!\n\x0fGetAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\"L\n\x13SearchAgentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"g\n\x14SearchAgentsResponse\x12\x36\n\x06\x61gents\x18\x01 \x03(\x0b\x32&.google.cloud.dialogflow.v2beta1.Agent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x11TrainAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\"7\n\x12\x45xportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tagent_uri\x18\x02 \x01(\t\"L\n\x13\x45xportAgentResponse\x12\x13\n\tagent_uri\x18\x01 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05\x61gent\"[\n\x12ImportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent\"\\\n\x13RestoreAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent2\xb4\x07\n\x06\x41gents\x12\x90\x01\n\x08GetAgent\x12\x30.google.cloud.dialogflow.v2beta1.GetAgentRequest\x1a&.google.cloud.dialogflow.v2beta1.Agent\"*\x82\xd3\xe4\x93\x02$\x12\"/v2beta1/{parent=projects/*}/agent\x12\xae\x01\n\x0cSearchAgents\x12\x34.google.cloud.dialogflow.v2beta1.SearchAgentsRequest\x1a\x35.google.cloud.dialogflow.v2beta1.SearchAgentsResponse\"1\x82\xd3\xe4\x93\x02+\x12)/v2beta1/{parent=projects/*}/agent:search\x12\x94\x01\n\nTrainAgent\x12\x32.google.cloud.dialogflow.v2beta1.TrainAgentRequest\x1a\x1d.google.longrunning.Operation\"3\x82\xd3\xe4\x93\x02-\"(/v2beta1/{parent=projects/*}/agent:train:\x01*\x12\x97\x01\n\x0b\x45xportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ExportAgentRequest\x1a\x1d.google.longrunning.Operation\"4\x82\xd3\xe4\x93\x02.\")/v2beta1/{parent=projects/*}/agent:export:\x01*\x12\x97\x01\n\x0bImportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ImportAgentRequest\x1a\x1d.google.longrunning.Operation\"4\x82\xd3\xe4\x93\x02.\")/v2beta1/{parent=projects/*}/agent:import:\x01*\x12\x9a\x01\n\x0cRestoreAgent\x12\x34.google.cloud.dialogflow.v2beta1.RestoreAgentRequest\x1a\x1d.google.longrunning.Operation\"5\x82\xd3\xe4\x93\x02/\"*/v2beta1/{parent=projects/*}/agent:restore:\x01*B\xa8\x01\n#com.google.cloud.dialogflow.v2beta1B\nAgentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
   ,
-  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_resource__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,])
 
 
 
@@ -52,8 +51,8 @@ _AGENT_MATCHMODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=574,
-  serialized_end=660,
+  serialized_start=547,
+  serialized_end=633,
 )
 _sym_db.RegisterEnumDescriptor(_AGENT_MATCHMODE)
 
@@ -148,8 +147,8 @@ _AGENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=274,
-  serialized_end=660,
+  serialized_start=247,
+  serialized_end=633,
 )
 
 
@@ -179,8 +178,8 @@ _GETAGENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=662,
-  serialized_end=695,
+  serialized_start=635,
+  serialized_end=668,
 )
 
 
@@ -224,8 +223,8 @@ _SEARCHAGENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=697,
-  serialized_end=773,
+  serialized_start=670,
+  serialized_end=746,
 )
 
 
@@ -262,8 +261,8 @@ _SEARCHAGENTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=775,
-  serialized_end=878,
+  serialized_start=748,
+  serialized_end=851,
 )
 
 
@@ -293,8 +292,8 @@ _TRAINAGENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=880,
-  serialized_end=915,
+  serialized_start=853,
+  serialized_end=888,
 )
 
 
@@ -331,8 +330,8 @@ _EXPORTAGENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=917,
-  serialized_end=972,
+  serialized_start=890,
+  serialized_end=945,
 )
 
 
@@ -372,8 +371,8 @@ _EXPORTAGENTRESPONSE = _descriptor.Descriptor(
       name='agent', full_name='google.cloud.dialogflow.v2beta1.ExportAgentResponse.agent',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=974,
-  serialized_end=1050,
+  serialized_start=947,
+  serialized_end=1023,
 )
 
 
@@ -420,8 +419,8 @@ _IMPORTAGENTREQUEST = _descriptor.Descriptor(
       name='agent', full_name='google.cloud.dialogflow.v2beta1.ImportAgentRequest.agent',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1052,
-  serialized_end=1143,
+  serialized_start=1025,
+  serialized_end=1116,
 )
 
 
@@ -468,8 +467,8 @@ _RESTOREAGENTREQUEST = _descriptor.Descriptor(
       name='agent', full_name='google.cloud.dialogflow.v2beta1.RestoreAgentRequest.agent',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1145,
-  serialized_end=1237,
+  serialized_start=1118,
+  serialized_end=1210,
 )
 
 _AGENT.fields_by_name['match_mode'].enum_type = _AGENT_MATCHMODE
@@ -762,8 +761,8 @@ _AGENTS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1240,
-  serialized_end=2188,
+  serialized_start=1213,
+  serialized_end=2161,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetAgent',

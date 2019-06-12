@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Accesses the google.cloud.dialogflow.v2 Agents API."""
 
 import functools
@@ -41,8 +42,11 @@ from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 from google.protobuf import struct_pb2
 
+
+
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+    'dialogflow',
+).version
 
 
 class AgentsClient(object):
@@ -80,6 +84,7 @@ class AgentsClient(object):
     # find the method configuration in the client_config dictionary.
     _INTERFACE_NAME = 'google.cloud.dialogflow.v2.Agents'
 
+
     @classmethod
     def from_service_account_file(cls, filename, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
@@ -101,6 +106,7 @@ class AgentsClient(object):
 
     from_service_account_json = from_service_account_file
 
+
     @classmethod
     def project_path(cls, project):
         """Return a fully-qualified project string."""
@@ -109,12 +115,8 @@ class AgentsClient(object):
             project=project,
         )
 
-    def __init__(self,
-                 transport=None,
-                 channel=None,
-                 credentials=None,
-                 client_config=None,
-                 client_info=None):
+    def __init__(self, transport=None, channel=None, credentials=None,
+            client_config=None, client_info=None):
         """Constructor.
 
         Args:
@@ -148,17 +150,14 @@ class AgentsClient(object):
         # Raise deprecation warnings for things we want to go away.
         if client_config is not None:
             warnings.warn('The `client_config` argument is deprecated.',
-                          PendingDeprecationWarning,
-                          stacklevel=2)
+                          PendingDeprecationWarning, stacklevel=2)
         else:
             client_config = agents_client_config.config
 
         if channel:
-            warnings.warn(
-                'The `channel` argument is deprecated; use '
-                '`transport` instead.',
-                PendingDeprecationWarning,
-                stacklevel=2)
+            warnings.warn('The `channel` argument is deprecated; use '
+                          '`transport` instead.',
+                          PendingDeprecationWarning, stacklevel=2)
 
         # Instantiate the transport.
         # The transport is responsible for handling serialization and
@@ -173,7 +172,8 @@ class AgentsClient(object):
                 if credentials:
                     raise ValueError(
                         'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.')
+                        'credentials; these are mutually exclusive.'
+                    )
                 self.transport = transport
         else:
             self.transport = agents_grpc_transport.AgentsGrpcTransport(
@@ -184,7 +184,8 @@ class AgentsClient(object):
 
         if client_info is None:
             client_info = google.api_core.gapic_v1.client_info.ClientInfo(
-                gapic_version=_GAPIC_LIBRARY_VERSION, )
+                gapic_version=_GAPIC_LIBRARY_VERSION,
+            )
         else:
             client_info.gapic_version = _GAPIC_LIBRARY_VERSION
         self._client_info = client_info
@@ -194,7 +195,8 @@ class AgentsClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config['interfaces'][self._INTERFACE_NAME], )
+            client_config['interfaces'][self._INTERFACE_NAME],
+        )
 
         # Save a dictionary of cached API call functions.
         # These are the actual callables which invoke the proper
@@ -203,11 +205,12 @@ class AgentsClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def get_agent(self,
-                  parent,
-                  retry=google.api_core.gapic_v1.method.DEFAULT,
-                  timeout=google.api_core.gapic_v1.method.DEFAULT,
-                  metadata=None):
+    def get_agent(
+            self,
+            parent,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Retrieves the specified agent.
 
@@ -244,15 +247,16 @@ class AgentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'get_agent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'get_agent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.get_agent,
-                    default_retry=self._method_configs['GetAgent'].retry,
-                    default_timeout=self._method_configs['GetAgent'].timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['get_agent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.get_agent,
+                default_retry=self._method_configs['GetAgent'].retry,
+                default_timeout=self._method_configs['GetAgent'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = agent_pb2.GetAgentRequest(parent=parent, )
+        request = agent_pb2.GetAgentRequest(
+            parent=parent,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -261,21 +265,18 @@ class AgentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_agent'](request,
-                                                  retry=retry,
-                                                  timeout=timeout,
-                                                  metadata=metadata)
+        return self._inner_api_calls['get_agent'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def search_agents(self,
-                      parent,
-                      page_size=None,
-                      retry=google.api_core.gapic_v1.method.DEFAULT,
-                      timeout=google.api_core.gapic_v1.method.DEFAULT,
-                      metadata=None):
+    def search_agents(
+            self,
+            parent,
+            page_size=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Returns the list of agents.
 
@@ -338,14 +339,12 @@ class AgentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'search_agents' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'search_agents'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.search_agents,
-                    default_retry=self._method_configs['SearchAgents'].retry,
-                    default_timeout=self._method_configs['SearchAgents'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['search_agents'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.search_agents,
+                default_retry=self._method_configs['SearchAgents'].retry,
+                default_timeout=self._method_configs['SearchAgents'].timeout,
+                client_info=self._client_info,
+            )
 
         request = agent_pb2.SearchAgentsRequest(
             parent=parent,
@@ -359,16 +358,12 @@ class AgentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['search_agents'],
-                                     retry=retry,
-                                     timeout=timeout,
-                                     metadata=metadata),
+            method=functools.partial(self._inner_api_calls['search_agents'], retry=retry, timeout=timeout, metadata=metadata),
             request=request,
             items_field='agents',
             request_token_field='page_token',
@@ -376,11 +371,12 @@ class AgentsClient(object):
         )
         return iterator
 
-    def train_agent(self,
-                    parent,
-                    retry=google.api_core.gapic_v1.method.DEFAULT,
-                    timeout=google.api_core.gapic_v1.method.DEFAULT,
-                    metadata=None):
+    def train_agent(
+            self,
+            parent,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Trains the specified agent.
 
@@ -428,15 +424,16 @@ class AgentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'train_agent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'train_agent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.train_agent,
-                    default_retry=self._method_configs['TrainAgent'].retry,
-                    default_timeout=self._method_configs['TrainAgent'].timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['train_agent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.train_agent,
+                default_retry=self._method_configs['TrainAgent'].retry,
+                default_timeout=self._method_configs['TrainAgent'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = agent_pb2.TrainAgentRequest(parent=parent, )
+        request = agent_pb2.TrainAgentRequest(
+            parent=parent,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -445,14 +442,10 @@ class AgentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['train_agent'](request,
-                                                         retry=retry,
-                                                         timeout=timeout,
-                                                         metadata=metadata)
+        operation = self._inner_api_calls['train_agent'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,
@@ -460,12 +453,13 @@ class AgentsClient(object):
             metadata_type=struct_pb2.Struct,
         )
 
-    def export_agent(self,
-                     parent,
-                     agent_uri=None,
-                     retry=google.api_core.gapic_v1.method.DEFAULT,
-                     timeout=google.api_core.gapic_v1.method.DEFAULT,
-                     metadata=None):
+    def export_agent(
+            self,
+            parent,
+            agent_uri=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Exports the specified agent to a ZIP file.
 
@@ -518,14 +512,12 @@ class AgentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'export_agent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'export_agent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.export_agent,
-                    default_retry=self._method_configs['ExportAgent'].retry,
-                    default_timeout=self._method_configs['ExportAgent'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['export_agent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.export_agent,
+                default_retry=self._method_configs['ExportAgent'].retry,
+                default_timeout=self._method_configs['ExportAgent'].timeout,
+                client_info=self._client_info,
+            )
 
         request = agent_pb2.ExportAgentRequest(
             parent=parent,
@@ -539,14 +531,10 @@ class AgentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['export_agent'](request,
-                                                          retry=retry,
-                                                          timeout=timeout,
-                                                          metadata=metadata)
+        operation = self._inner_api_calls['export_agent'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,
@@ -554,13 +542,14 @@ class AgentsClient(object):
             metadata_type=struct_pb2.Struct,
         )
 
-    def import_agent(self,
-                     parent,
-                     agent_uri=None,
-                     agent_content=None,
-                     retry=google.api_core.gapic_v1.method.DEFAULT,
-                     timeout=google.api_core.gapic_v1.method.DEFAULT,
-                     metadata=None):
+    def import_agent(
+            self,
+            parent,
+            agent_uri=None,
+            agent_content=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Imports the specified agent from a ZIP file.
 
@@ -631,14 +620,12 @@ class AgentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'import_agent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'import_agent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.import_agent,
-                    default_retry=self._method_configs['ImportAgent'].retry,
-                    default_timeout=self._method_configs['ImportAgent'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['import_agent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.import_agent,
+                default_retry=self._method_configs['ImportAgent'].retry,
+                default_timeout=self._method_configs['ImportAgent'].timeout,
+                client_info=self._client_info,
+            )
 
         # Sanity check: We have some fields which are mutually exclusive;
         # raise ValueError if more than one is sent.
@@ -660,14 +647,10 @@ class AgentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['import_agent'](request,
-                                                          retry=retry,
-                                                          timeout=timeout,
-                                                          metadata=metadata)
+        operation = self._inner_api_calls['import_agent'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,
@@ -675,13 +658,14 @@ class AgentsClient(object):
             metadata_type=struct_pb2.Struct,
         )
 
-    def restore_agent(self,
-                      parent,
-                      agent_uri=None,
-                      agent_content=None,
-                      retry=google.api_core.gapic_v1.method.DEFAULT,
-                      timeout=google.api_core.gapic_v1.method.DEFAULT,
-                      metadata=None):
+    def restore_agent(
+            self,
+            parent,
+            agent_uri=None,
+            agent_content=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Restores the specified agent from a ZIP file.
 
@@ -751,14 +735,12 @@ class AgentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'restore_agent' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'restore_agent'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.restore_agent,
-                    default_retry=self._method_configs['RestoreAgent'].retry,
-                    default_timeout=self._method_configs['RestoreAgent'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['restore_agent'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.restore_agent,
+                default_retry=self._method_configs['RestoreAgent'].retry,
+                default_timeout=self._method_configs['RestoreAgent'].timeout,
+                client_info=self._client_info,
+            )
 
         # Sanity check: We have some fields which are mutually exclusive;
         # raise ValueError if more than one is sent.
@@ -780,14 +762,10 @@ class AgentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['restore_agent'](request,
-                                                           retry=retry,
-                                                           timeout=timeout,
-                                                           metadata=metadata)
+        operation = self._inner_api_calls['restore_agent'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,

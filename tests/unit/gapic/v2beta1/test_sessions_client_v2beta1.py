@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Unit tests."""
 
 import mock
@@ -22,9 +23,9 @@ import dialogflow_v2beta1
 from dialogflow_v2beta1.proto import session_pb2
 
 
+
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
-
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -45,21 +46,16 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-
-    def __init__(self, responses=[]):
+    def __init__(self, responses = []):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(self,
-                    method,
-                    request_serializer=None,
-                    response_deserializer=None):
+    def unary_unary(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
-    def stream_stream(self,
-                      method,
-                      request_serializer=None,
-                      response_deserializer=None):
+    def stream_stream(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
 
@@ -68,19 +64,16 @@ class CustomException(Exception):
 
 
 class TestSessionsClient(object):
+
     def test_detect_intent(self):
         # Setup Expected Response
         response_id = 'responseId1847552473'
         output_audio = b'24'
-        expected_response = {
-            'response_id': response_id,
-            'output_audio': output_audio
-        }
-        expected_response = session_pb2.DetectIntentResponse(
-            **expected_response)
+        expected_response = {'response_id': response_id, 'output_audio': output_audio}
+        expected_response = session_pb2.DetectIntentResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -94,14 +87,13 @@ class TestSessionsClient(object):
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = session_pb2.DetectIntentRequest(
-            session=session, query_input=query_input)
+        expected_request = session_pb2.DetectIntentRequest(session=session, query_input=query_input)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_detect_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -118,15 +110,11 @@ class TestSessionsClient(object):
         # Setup Expected Response
         response_id = 'responseId1847552473'
         output_audio = b'24'
-        expected_response = {
-            'response_id': response_id,
-            'output_audio': output_audio
-        }
-        expected_response = session_pb2.StreamingDetectIntentResponse(
-            **expected_response)
+        expected_response = {'response_id': response_id, 'output_audio': output_audio}
+        expected_response = session_pb2.StreamingDetectIntentResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[iter([expected_response])])
+        channel = ChannelStub(responses = [iter([expected_response])])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -152,7 +140,7 @@ class TestSessionsClient(object):
 
     def test_streaming_detect_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel

@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Wrappers for protocol buffer enum types."""
 
 import enum
@@ -111,6 +112,50 @@ class OutputAudioEncoding(enum.IntEnum):
     OUTPUT_AUDIO_ENCODING_OGG_OPUS = 3
 
 
+class SpeechModelVariant(enum.IntEnum):
+    """
+    Variant of the specified ``Speech model`` to use.
+
+    See the `Cloud Speech
+    documentation <https://cloud.google.com/speech-to-text/docs/enhanced-models>`__
+    for which models have different variants. For example, the "phone\_call"
+    model has both a standard and an enhanced variant. When you use an
+    enhanced model, you will generally receive higher quality results than
+    for a standard model.
+
+    Attributes:
+      SPEECH_MODEL_VARIANT_UNSPECIFIED (int): No model variant specified. In this case Dialogflow defaults to
+      USE\_BEST\_AVAILABLE.
+      USE_BEST_AVAILABLE (int): Use the best available variant of the ``Speech model`` that the caller
+      is eligible for.
+
+      Please see the `Dialogflow
+      docs <https://cloud.google.com/dialogflow-enterprise/docs/data-logging>`__
+      for how to make your project eligible for enhanced models.
+      USE_STANDARD (int): Use standard model variant even if an enhanced model is available. See
+      the `Cloud Speech
+      documentation <https://cloud.google.com/speech-to-text/docs/enhanced-models>`__
+      for details about enhanced models.
+      USE_ENHANCED (int): Use an enhanced model variant:
+
+      -  If an enhanced variant does not exist for the given ``model`` and
+         request language, Dialogflow falls back to the standard variant.
+
+         The `Cloud Speech
+         documentation <https://cloud.google.com/speech-to-text/docs/enhanced-models>`__
+         describes which models have enhanced variants.
+
+      -  If the API caller isn't eligible for enhanced models, Dialogflow
+         returns an error. Please see the `Dialogflow
+         docs <https://cloud.google.com/dialogflow-enterprise/docs/data-logging>`__
+         for how to make your project eligible.
+    """
+    SPEECH_MODEL_VARIANT_UNSPECIFIED = 0
+    USE_BEST_AVAILABLE = 1
+    USE_STANDARD = 2
+    USE_ENHANCED = 3
+
+
 class SsmlVoiceGender(enum.IntEnum):
     """
     Gender of the voice as described in `SSML voice
@@ -161,6 +206,7 @@ class EntityType(object):
         AUTO_EXPANSION_MODE_UNSPECIFIED = 0
         AUTO_EXPANSION_MODE_DEFAULT = 1
 
+
     class Kind(enum.IntEnum):
         """
         Represents kinds of entities.
@@ -193,6 +239,7 @@ class Intent(object):
         WEBHOOK_STATE_ENABLED = 1
         WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING = 2
 
+
     class TrainingPhrase(object):
         class Type(enum.IntEnum):
             """
@@ -212,6 +259,7 @@ class Intent(object):
             TYPE_UNSPECIFIED = 0
             EXAMPLE = 1
             TEMPLATE = 2
+
 
     class Message(object):
         class Platform(enum.IntEnum):
@@ -288,6 +336,7 @@ class Intent(object):
                       "intent": "actions.intent.OPTION"
                     }
                   }</pre>
+              GOOGLE_HANGOUTS (int): Google Hangouts.
             """
             PLATFORM_UNSPECIFIED = 0
             FACEBOOK = 1
@@ -298,6 +347,7 @@ class Intent(object):
             LINE = 6
             VIBER = 7
             ACTIONS_ON_GOOGLE = 8
+            GOOGLE_HANGOUTS = 11
 
 
 class SessionEntityType(object):
@@ -344,3 +394,4 @@ class StreamingRecognitionResult(object):
         MESSAGE_TYPE_UNSPECIFIED = 0
         TRANSCRIPT = 1
         END_OF_SINGLE_UTTERANCE = 2
+    

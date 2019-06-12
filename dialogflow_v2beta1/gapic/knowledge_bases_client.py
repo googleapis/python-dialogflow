@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Accesses the google.cloud.dialogflow.v2beta1 KnowledgeBases API."""
 
 import functools
@@ -49,8 +50,11 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
 
+
+
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+    'dialogflow',
+).version
 
 
 class KnowledgeBasesClient(object):
@@ -66,6 +70,7 @@ class KnowledgeBasesClient(object):
     # The name of the interface for this client. This is the key used to
     # find the method configuration in the client_config dictionary.
     _INTERFACE_NAME = 'google.cloud.dialogflow.v2beta1.KnowledgeBases'
+
 
     @classmethod
     def from_service_account_file(cls, filename, *args, **kwargs):
@@ -88,6 +93,7 @@ class KnowledgeBasesClient(object):
 
     from_service_account_json = from_service_account_file
 
+
     @classmethod
     def knowledge_base_path(cls, project, knowledge_base):
         """Return a fully-qualified knowledge_base string."""
@@ -105,12 +111,8 @@ class KnowledgeBasesClient(object):
             project=project,
         )
 
-    def __init__(self,
-                 transport=None,
-                 channel=None,
-                 credentials=None,
-                 client_config=None,
-                 client_info=None):
+    def __init__(self, transport=None, channel=None, credentials=None,
+            client_config=None, client_info=None):
         """Constructor.
 
         Args:
@@ -144,17 +146,14 @@ class KnowledgeBasesClient(object):
         # Raise deprecation warnings for things we want to go away.
         if client_config is not None:
             warnings.warn('The `client_config` argument is deprecated.',
-                          PendingDeprecationWarning,
-                          stacklevel=2)
+                          PendingDeprecationWarning, stacklevel=2)
         else:
             client_config = knowledge_bases_client_config.config
 
         if channel:
-            warnings.warn(
-                'The `channel` argument is deprecated; use '
-                '`transport` instead.',
-                PendingDeprecationWarning,
-                stacklevel=2)
+            warnings.warn('The `channel` argument is deprecated; use '
+                          '`transport` instead.',
+                          PendingDeprecationWarning, stacklevel=2)
 
         # Instantiate the transport.
         # The transport is responsible for handling serialization and
@@ -163,14 +162,14 @@ class KnowledgeBasesClient(object):
             if callable(transport):
                 self.transport = transport(
                     credentials=credentials,
-                    default_class=knowledge_bases_grpc_transport.
-                    KnowledgeBasesGrpcTransport,
+                    default_class=knowledge_bases_grpc_transport.KnowledgeBasesGrpcTransport,
                 )
             else:
                 if credentials:
                     raise ValueError(
                         'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.')
+                        'credentials; these are mutually exclusive.'
+                    )
                 self.transport = transport
         else:
             self.transport = knowledge_bases_grpc_transport.KnowledgeBasesGrpcTransport(
@@ -181,7 +180,8 @@ class KnowledgeBasesClient(object):
 
         if client_info is None:
             client_info = google.api_core.gapic_v1.client_info.ClientInfo(
-                gapic_version=_GAPIC_LIBRARY_VERSION, )
+                gapic_version=_GAPIC_LIBRARY_VERSION,
+            )
         else:
             client_info.gapic_version = _GAPIC_LIBRARY_VERSION
         self._client_info = client_info
@@ -191,7 +191,8 @@ class KnowledgeBasesClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config['interfaces'][self._INTERFACE_NAME], )
+            client_config['interfaces'][self._INTERFACE_NAME],
+        )
 
         # Save a dictionary of cached API call functions.
         # These are the actual callables which invoke the proper
@@ -200,14 +201,18 @@ class KnowledgeBasesClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def list_knowledge_bases(self,
-                             parent,
-                             page_size=None,
-                             retry=google.api_core.gapic_v1.method.DEFAULT,
-                             timeout=google.api_core.gapic_v1.method.DEFAULT,
-                             metadata=None):
+    def list_knowledge_bases(
+            self,
+            parent,
+            page_size=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Returns the list of all knowledge bases of the specified agent.
+
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
 
         Example:
             >>> import dialogflow_v2beta1
@@ -262,15 +267,12 @@ class KnowledgeBasesClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'list_knowledge_bases' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'list_knowledge_bases'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.list_knowledge_bases,
-                    default_retry=self._method_configs['ListKnowledgeBases'].
-                    retry,
-                    default_timeout=self._method_configs['ListKnowledgeBases'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['list_knowledge_bases'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.list_knowledge_bases,
+                default_retry=self._method_configs['ListKnowledgeBases'].retry,
+                default_timeout=self._method_configs['ListKnowledgeBases'].timeout,
+                client_info=self._client_info,
+            )
 
         request = knowledge_base_pb2.ListKnowledgeBasesRequest(
             parent=parent,
@@ -284,17 +286,12 @@ class KnowledgeBasesClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(
-                self._inner_api_calls['list_knowledge_bases'],
-                retry=retry,
-                timeout=timeout,
-                metadata=metadata),
+            method=functools.partial(self._inner_api_calls['list_knowledge_bases'], retry=retry, timeout=timeout, metadata=metadata),
             request=request,
             items_field='knowledge_bases',
             request_token_field='page_token',
@@ -302,13 +299,17 @@ class KnowledgeBasesClient(object):
         )
         return iterator
 
-    def get_knowledge_base(self,
-                           name,
-                           retry=google.api_core.gapic_v1.method.DEFAULT,
-                           timeout=google.api_core.gapic_v1.method.DEFAULT,
-                           metadata=None):
+    def get_knowledge_base(
+            self,
+            name,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Retrieves the specified knowledge base.
+
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
 
         Example:
             >>> import dialogflow_v2beta1
@@ -343,17 +344,16 @@ class KnowledgeBasesClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'get_knowledge_base' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'get_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.get_knowledge_base,
-                    default_retry=self._method_configs['GetKnowledgeBase'].
-                    retry,
-                    default_timeout=self._method_configs['GetKnowledgeBase'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['get_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.get_knowledge_base,
+                default_retry=self._method_configs['GetKnowledgeBase'].retry,
+                default_timeout=self._method_configs['GetKnowledgeBase'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = knowledge_base_pb2.GetKnowledgeBaseRequest(name=name, )
+        request = knowledge_base_pb2.GetKnowledgeBaseRequest(
+            name=name,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -362,23 +362,23 @@ class KnowledgeBasesClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_knowledge_base'](request,
-                                                           retry=retry,
-                                                           timeout=timeout,
-                                                           metadata=metadata)
+        return self._inner_api_calls['get_knowledge_base'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def create_knowledge_base(self,
-                              parent,
-                              knowledge_base,
-                              retry=google.api_core.gapic_v1.method.DEFAULT,
-                              timeout=google.api_core.gapic_v1.method.DEFAULT,
-                              metadata=None):
+    def create_knowledge_base(
+            self,
+            parent,
+            knowledge_base,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Creates a knowledge base.
+
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
 
         Example:
             >>> import dialogflow_v2beta1
@@ -420,15 +420,12 @@ class KnowledgeBasesClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'create_knowledge_base' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'create_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.create_knowledge_base,
-                    default_retry=self._method_configs['CreateKnowledgeBase'].
-                    retry,
-                    default_timeout=self.
-                    _method_configs['CreateKnowledgeBase'].timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['create_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.create_knowledge_base,
+                default_retry=self._method_configs['CreateKnowledgeBase'].retry,
+                default_timeout=self._method_configs['CreateKnowledgeBase'].timeout,
+                client_info=self._client_info,
+            )
 
         request = knowledge_base_pb2.CreateKnowledgeBaseRequest(
             parent=parent,
@@ -442,21 +439,23 @@ class KnowledgeBasesClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_knowledge_base'](
-            request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls['create_knowledge_base'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def delete_knowledge_base(self,
-                              name,
-                              force=None,
-                              retry=google.api_core.gapic_v1.method.DEFAULT,
-                              timeout=google.api_core.gapic_v1.method.DEFAULT,
-                              metadata=None):
+    def delete_knowledge_base(
+            self,
+            name,
+            force=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Deletes the specified knowledge base.
+
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
 
         Example:
             >>> import dialogflow_v2beta1
@@ -490,15 +489,12 @@ class KnowledgeBasesClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'delete_knowledge_base' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'delete_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.delete_knowledge_base,
-                    default_retry=self._method_configs['DeleteKnowledgeBase'].
-                    retry,
-                    default_timeout=self.
-                    _method_configs['DeleteKnowledgeBase'].timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['delete_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_knowledge_base,
+                default_retry=self._method_configs['DeleteKnowledgeBase'].retry,
+                default_timeout=self._method_configs['DeleteKnowledgeBase'].timeout,
+                client_info=self._client_info,
+            )
 
         request = knowledge_base_pb2.DeleteKnowledgeBaseRequest(
             name=name,
@@ -512,30 +508,33 @@ class KnowledgeBasesClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_knowledge_base'](request,
-                                                       retry=retry,
-                                                       timeout=timeout,
-                                                       metadata=metadata)
+        self._inner_api_calls['delete_knowledge_base'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def update_knowledge_base(self,
-                              knowledge_base=None,
-                              update_mask=None,
-                              retry=google.api_core.gapic_v1.method.DEFAULT,
-                              timeout=google.api_core.gapic_v1.method.DEFAULT,
-                              metadata=None):
+    def update_knowledge_base(
+            self,
+            knowledge_base,
+            update_mask=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Updates the specified knowledge base.
+
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
 
         Example:
             >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.KnowledgeBasesClient()
             >>>
-            >>> response = client.update_knowledge_base()
+            >>> # TODO: Initialize `knowledge_base`:
+            >>> knowledge_base = {}
+            >>>
+            >>> response = client.update_knowledge_base(knowledge_base)
 
         Args:
             knowledge_base (Union[dict, ~google.cloud.dialogflow_v2beta1.types.KnowledgeBase]): Required. The knowledge base to update.
@@ -569,15 +568,12 @@ class KnowledgeBasesClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'update_knowledge_base' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'update_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.update_knowledge_base,
-                    default_retry=self._method_configs['UpdateKnowledgeBase'].
-                    retry,
-                    default_timeout=self.
-                    _method_configs['UpdateKnowledgeBase'].timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['update_knowledge_base'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.update_knowledge_base,
+                default_retry=self._method_configs['UpdateKnowledgeBase'].retry,
+                default_timeout=self._method_configs['UpdateKnowledgeBase'].timeout,
+                client_info=self._client_info,
+            )
 
         request = knowledge_base_pb2.UpdateKnowledgeBaseRequest(
             knowledge_base=knowledge_base,
@@ -591,9 +587,7 @@ class KnowledgeBasesClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_knowledge_base'](
-            request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls['update_knowledge_base'](request, retry=retry, timeout=timeout, metadata=metadata)

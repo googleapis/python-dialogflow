@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 import google.api_core.grpc_helpers
 import google.api_core.operations_v1
 
@@ -35,9 +36,7 @@ class DocumentsGrpcTransport(object):
         'https://www.googleapis.com/auth/dialogflow',
     )
 
-    def __init__(self,
-                 channel=None,
-                 credentials=None,
+    def __init__(self, channel=None, credentials=None,
                  address='dialogflow.googleapis.com:443'):
         """Instantiate the transport class.
 
@@ -57,7 +56,8 @@ class DocumentsGrpcTransport(object):
         if channel is not None and credentials is not None:
             raise ValueError(
                 'The `channel` and `credentials` arguments are mutually '
-                'exclusive.', )
+                'exclusive.',
+            )
 
         # Create the channel.
         if channel is None:
@@ -77,13 +77,13 @@ class DocumentsGrpcTransport(object):
         # Because this API includes a method that returns a
         # long-running operation (proto: google.longrunning.Operation),
         # instantiate an LRO client.
-        self._operations_client = google.api_core.operations_v1.OperationsClient(
-            channel)
+        self._operations_client = google.api_core.operations_v1.OperationsClient(channel)
 
     @classmethod
-    def create_channel(cls,
-                       address='dialogflow.googleapis.com:443',
-                       credentials=None):
+    def create_channel(
+                cls,
+                address='dialogflow.googleapis.com:443',
+                credentials=None):
         """Create and return a gRPC channel object.
 
         Args:
@@ -118,6 +118,9 @@ class DocumentsGrpcTransport(object):
 
         Returns the list of all documents of the knowledge base.
 
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
+
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
@@ -131,6 +134,9 @@ class DocumentsGrpcTransport(object):
 
         Retrieves the specified document.
 
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
+
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
@@ -143,6 +149,9 @@ class DocumentsGrpcTransport(object):
         """Return the gRPC stub for :meth:`DocumentsClient.create_document`.
 
         Creates a new document.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
 
         Operation <response: ``Document``, metadata:
         ``KnowledgeOperationMetadata``>
@@ -160,6 +169,9 @@ class DocumentsGrpcTransport(object):
 
         Deletes the specified document.
 
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
+
         Operation <response: ``google.protobuf.Empty``, metadata:
         ``KnowledgeOperationMetadata``>
 
@@ -174,8 +186,13 @@ class DocumentsGrpcTransport(object):
     def update_document(self):
         """Return the gRPC stub for :meth:`DocumentsClient.update_document`.
 
-        Updates the specified document. Operation <response: ``Document``,
-        metadata: ``KnowledgeOperationMetadata``>
+        Updates the specified document.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
+
+        Operation <response: ``Document``, metadata:
+        ``KnowledgeOperationMetadata``>
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -192,7 +209,12 @@ class DocumentsGrpcTransport(object):
         or content. The previously loaded content of the document will be
         deleted. Note: Even when the content of the document has not changed,
         there still may be side effects because of internal implementation
-        changes. Operation <response: ``Document``, metadata:
+        changes.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
+
+        Operation <response: ``Document``, metadata:
         ``KnowledgeOperationMetadata``>
 
         Returns:

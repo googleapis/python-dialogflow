@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Unit tests."""
 
 import mock
@@ -23,9 +24,9 @@ from dialogflow_v2beta1.proto import context_pb2
 from google.protobuf import empty_pb2
 
 
+
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
-
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -46,15 +47,12 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-
-    def __init__(self, responses=[]):
+    def __init__(self, responses = []):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(self,
-                    method,
-                    request_serializer=None,
-                    response_deserializer=None):
+    def unary_unary(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
 
@@ -63,20 +61,17 @@ class CustomException(Exception):
 
 
 class TestContextsClient(object):
+
     def test_list_contexts(self):
         # Setup Expected Response
         next_page_token = ''
         contexts_element = {}
         contexts = [contexts_element]
-        expected_response = {
-            'next_page_token': next_page_token,
-            'contexts': contexts
-        }
-        expected_response = context_pb2.ListContextsResponse(
-            **expected_response)
+        expected_response = {'next_page_token': next_page_token, 'contexts': contexts}
+        expected_response = context_pb2.ListContextsResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -97,7 +92,7 @@ class TestContextsClient(object):
         assert expected_request == actual_request
 
     def test_list_contexts_exception(self):
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -118,7 +113,7 @@ class TestContextsClient(object):
         expected_response = context_pb2.Context(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -137,7 +132,7 @@ class TestContextsClient(object):
 
     def test_get_context_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -157,7 +152,7 @@ class TestContextsClient(object):
         expected_response = context_pb2.Context(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -171,14 +166,13 @@ class TestContextsClient(object):
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = context_pb2.CreateContextRequest(parent=parent,
-                                                            context=context)
+        expected_request = context_pb2.CreateContextRequest(parent=parent, context=context)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_create_context_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -199,7 +193,7 @@ class TestContextsClient(object):
         expected_response = context_pb2.Context(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -218,7 +212,7 @@ class TestContextsClient(object):
 
     def test_update_context_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -249,7 +243,7 @@ class TestContextsClient(object):
 
     def test_delete_context_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -280,7 +274,7 @@ class TestContextsClient(object):
 
     def test_delete_all_contexts_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel

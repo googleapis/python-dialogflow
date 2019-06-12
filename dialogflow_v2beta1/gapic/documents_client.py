@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Accesses the google.cloud.dialogflow.v2beta1 Documents API."""
 
 import functools
@@ -45,8 +46,11 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
 
+
+
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'dialogflow', ).version
+    'dialogflow',
+).version
 
 
 class DocumentsClient(object):
@@ -58,6 +62,7 @@ class DocumentsClient(object):
     # The name of the interface for this client. This is the key used to
     # find the method configuration in the client_config dictionary.
     _INTERFACE_NAME = 'google.cloud.dialogflow.v2beta1.Documents'
+
 
     @classmethod
     def from_service_account_file(cls, filename, *args, **kwargs):
@@ -80,6 +85,7 @@ class DocumentsClient(object):
 
     from_service_account_json = from_service_account_file
 
+
     @classmethod
     def document_path(cls, project, knowledge_base, document):
         """Return a fully-qualified document string."""
@@ -99,12 +105,8 @@ class DocumentsClient(object):
             knowledge_base=knowledge_base,
         )
 
-    def __init__(self,
-                 transport=None,
-                 channel=None,
-                 credentials=None,
-                 client_config=None,
-                 client_info=None):
+    def __init__(self, transport=None, channel=None, credentials=None,
+            client_config=None, client_info=None):
         """Constructor.
 
         Args:
@@ -138,17 +140,14 @@ class DocumentsClient(object):
         # Raise deprecation warnings for things we want to go away.
         if client_config is not None:
             warnings.warn('The `client_config` argument is deprecated.',
-                          PendingDeprecationWarning,
-                          stacklevel=2)
+                          PendingDeprecationWarning, stacklevel=2)
         else:
             client_config = documents_client_config.config
 
         if channel:
-            warnings.warn(
-                'The `channel` argument is deprecated; use '
-                '`transport` instead.',
-                PendingDeprecationWarning,
-                stacklevel=2)
+            warnings.warn('The `channel` argument is deprecated; use '
+                          '`transport` instead.',
+                          PendingDeprecationWarning, stacklevel=2)
 
         # Instantiate the transport.
         # The transport is responsible for handling serialization and
@@ -157,14 +156,14 @@ class DocumentsClient(object):
             if callable(transport):
                 self.transport = transport(
                     credentials=credentials,
-                    default_class=documents_grpc_transport.
-                    DocumentsGrpcTransport,
+                    default_class=documents_grpc_transport.DocumentsGrpcTransport,
                 )
             else:
                 if credentials:
                     raise ValueError(
                         'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.')
+                        'credentials; these are mutually exclusive.'
+                    )
                 self.transport = transport
         else:
             self.transport = documents_grpc_transport.DocumentsGrpcTransport(
@@ -175,7 +174,8 @@ class DocumentsClient(object):
 
         if client_info is None:
             client_info = google.api_core.gapic_v1.client_info.ClientInfo(
-                gapic_version=_GAPIC_LIBRARY_VERSION, )
+                gapic_version=_GAPIC_LIBRARY_VERSION,
+            )
         else:
             client_info.gapic_version = _GAPIC_LIBRARY_VERSION
         self._client_info = client_info
@@ -185,7 +185,8 @@ class DocumentsClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config['interfaces'][self._INTERFACE_NAME], )
+            client_config['interfaces'][self._INTERFACE_NAME],
+        )
 
         # Save a dictionary of cached API call functions.
         # These are the actual callables which invoke the proper
@@ -194,14 +195,18 @@ class DocumentsClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def list_documents(self,
-                       parent,
-                       page_size=None,
-                       retry=google.api_core.gapic_v1.method.DEFAULT,
-                       timeout=google.api_core.gapic_v1.method.DEFAULT,
-                       metadata=None):
+    def list_documents(
+            self,
+            parent,
+            page_size=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Returns the list of all documents of the knowledge base.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
 
         Example:
             >>> import dialogflow_v2beta1
@@ -256,14 +261,12 @@ class DocumentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'list_documents' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'list_documents'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.list_documents,
-                    default_retry=self._method_configs['ListDocuments'].retry,
-                    default_timeout=self._method_configs['ListDocuments'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['list_documents'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.list_documents,
+                default_retry=self._method_configs['ListDocuments'].retry,
+                default_timeout=self._method_configs['ListDocuments'].timeout,
+                client_info=self._client_info,
+            )
 
         request = document_pb2.ListDocumentsRequest(
             parent=parent,
@@ -277,16 +280,12 @@ class DocumentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_documents'],
-                                     retry=retry,
-                                     timeout=timeout,
-                                     metadata=metadata),
+            method=functools.partial(self._inner_api_calls['list_documents'], retry=retry, timeout=timeout, metadata=metadata),
             request=request,
             items_field='documents',
             request_token_field='page_token',
@@ -294,13 +293,17 @@ class DocumentsClient(object):
         )
         return iterator
 
-    def get_document(self,
-                     name,
-                     retry=google.api_core.gapic_v1.method.DEFAULT,
-                     timeout=google.api_core.gapic_v1.method.DEFAULT,
-                     metadata=None):
+    def get_document(
+            self,
+            name,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Retrieves the specified document.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
 
         Example:
             >>> import dialogflow_v2beta1
@@ -335,16 +338,16 @@ class DocumentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'get_document' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'get_document'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.get_document,
-                    default_retry=self._method_configs['GetDocument'].retry,
-                    default_timeout=self._method_configs['GetDocument'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['get_document'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.get_document,
+                default_retry=self._method_configs['GetDocument'].retry,
+                default_timeout=self._method_configs['GetDocument'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = document_pb2.GetDocumentRequest(name=name, )
+        request = document_pb2.GetDocumentRequest(
+            name=name,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -353,23 +356,23 @@ class DocumentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_document'](request,
-                                                     retry=retry,
-                                                     timeout=timeout,
-                                                     metadata=metadata)
+        return self._inner_api_calls['get_document'](request, retry=retry, timeout=timeout, metadata=metadata)
 
-    def create_document(self,
-                        parent,
-                        document,
-                        retry=google.api_core.gapic_v1.method.DEFAULT,
-                        timeout=google.api_core.gapic_v1.method.DEFAULT,
-                        metadata=None):
+    def create_document(
+            self,
+            parent,
+            document,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Creates a new document.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
 
         Operation <response: ``Document``, metadata:
         ``KnowledgeOperationMetadata``>
@@ -423,14 +426,12 @@ class DocumentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'create_document' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'create_document'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.create_document,
-                    default_retry=self._method_configs['CreateDocument'].retry,
-                    default_timeout=self._method_configs['CreateDocument'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['create_document'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.create_document,
+                default_retry=self._method_configs['CreateDocument'].retry,
+                default_timeout=self._method_configs['CreateDocument'].timeout,
+                client_info=self._client_info,
+            )
 
         request = document_pb2.CreateDocumentRequest(
             parent=parent,
@@ -444,14 +445,10 @@ class DocumentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['create_document'](request,
-                                                             retry=retry,
-                                                             timeout=timeout,
-                                                             metadata=metadata)
+        operation = self._inner_api_calls['create_document'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,
@@ -459,13 +456,17 @@ class DocumentsClient(object):
             metadata_type=document_pb2.KnowledgeOperationMetadata,
         )
 
-    def delete_document(self,
-                        name,
-                        retry=google.api_core.gapic_v1.method.DEFAULT,
-                        timeout=google.api_core.gapic_v1.method.DEFAULT,
-                        metadata=None):
+    def delete_document(
+            self,
+            name,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Deletes the specified document.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
 
         Operation <response: ``google.protobuf.Empty``, metadata:
         ``KnowledgeOperationMetadata``>
@@ -512,16 +513,16 @@ class DocumentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'delete_document' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'delete_document'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.delete_document,
-                    default_retry=self._method_configs['DeleteDocument'].retry,
-                    default_timeout=self._method_configs['DeleteDocument'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['delete_document'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_document,
+                default_retry=self._method_configs['DeleteDocument'].retry,
+                default_timeout=self._method_configs['DeleteDocument'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = document_pb2.DeleteDocumentRequest(name=name, )
+        request = document_pb2.DeleteDocumentRequest(
+            name=name,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -530,14 +531,10 @@ class DocumentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        operation = self._inner_api_calls['delete_document'](request,
-                                                             retry=retry,
-                                                             timeout=timeout,
-                                                             metadata=metadata)
+        operation = self._inner_api_calls['delete_document'](request, retry=retry, timeout=timeout, metadata=metadata)
         return google.api_core.operation.from_gapic(
             operation,
             self.transport._operations_client,
@@ -545,22 +542,40 @@ class DocumentsClient(object):
             metadata_type=document_pb2.KnowledgeOperationMetadata,
         )
 
-    def update_document(self,
-                        document=None,
-                        update_mask=None,
-                        retry=google.api_core.gapic_v1.method.DEFAULT,
-                        timeout=google.api_core.gapic_v1.method.DEFAULT,
-                        metadata=None):
+    def update_document(
+            self,
+            document,
+            update_mask=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
-        Updates the specified document. Operation <response: ``Document``,
-        metadata: ``KnowledgeOperationMetadata``>
+        Updates the specified document.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
+
+        Operation <response: ``Document``, metadata:
+        ``KnowledgeOperationMetadata``>
 
         Example:
             >>> import dialogflow_v2beta1
             >>>
             >>> client = dialogflow_v2beta1.DocumentsClient()
             >>>
-            >>> response = client.update_document()
+            >>> # TODO: Initialize `document`:
+            >>> document = {}
+            >>>
+            >>> response = client.update_document(document)
+            >>>
+            >>> def callback(operation_future):
+            ...     # Handle result.
+            ...     result = operation_future.result()
+            >>>
+            >>> response.add_done_callback(callback)
+            >>>
+            >>> # Handle metadata.
+            >>> metadata = response.metadata()
 
         Args:
             document (Union[dict, ~google.cloud.dialogflow_v2beta1.types.Document]): Required. The document to update.
@@ -583,7 +598,7 @@ class DocumentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Operation` instance.
+            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -594,14 +609,12 @@ class DocumentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'update_document' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'update_document'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.update_document,
-                    default_retry=self._method_configs['UpdateDocument'].retry,
-                    default_timeout=self._method_configs['UpdateDocument'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['update_document'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.update_document,
+                default_retry=self._method_configs['UpdateDocument'].retry,
+                default_timeout=self._method_configs['UpdateDocument'].timeout,
+                client_info=self._client_info,
+            )
 
         request = document_pb2.UpdateDocumentRequest(
             document=document,
@@ -615,26 +628,34 @@ class DocumentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_document'](request,
-                                                        retry=retry,
-                                                        timeout=timeout,
-                                                        metadata=metadata)
+        operation = self._inner_api_calls['update_document'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return google.api_core.operation.from_gapic(
+            operation,
+            self.transport._operations_client,
+            document_pb2.Document,
+            metadata_type=document_pb2.KnowledgeOperationMetadata,
+        )
 
-    def reload_document(self,
-                        name=None,
-                        retry=google.api_core.gapic_v1.method.DEFAULT,
-                        timeout=google.api_core.gapic_v1.method.DEFAULT,
-                        metadata=None):
+    def reload_document(
+            self,
+            name=None,
+            retry=google.api_core.gapic_v1.method.DEFAULT,
+            timeout=google.api_core.gapic_v1.method.DEFAULT,
+            metadata=None):
         """
         Reloads the specified document from its specified source, content\_uri
         or content. The previously loaded content of the document will be
         deleted. Note: Even when the content of the document has not changed,
         there still may be side effects because of internal implementation
-        changes. Operation <response: ``Document``, metadata:
+        changes.
+
+        Note: The ``projects.agent.knowledgeBases.documents`` resource is
+        deprecated; only use ``projects.knowledgeBases.documents``.
+
+        Operation <response: ``Document``, metadata:
         ``KnowledgeOperationMetadata``>
 
         Example:
@@ -668,16 +689,16 @@ class DocumentsClient(object):
         """
         # Wrap the transport method to add retry and timeout logic.
         if 'reload_document' not in self._inner_api_calls:
-            self._inner_api_calls[
-                'reload_document'] = google.api_core.gapic_v1.method.wrap_method(
-                    self.transport.reload_document,
-                    default_retry=self._method_configs['ReloadDocument'].retry,
-                    default_timeout=self._method_configs['ReloadDocument'].
-                    timeout,
-                    client_info=self._client_info,
-                )
+            self._inner_api_calls['reload_document'] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.reload_document,
+                default_retry=self._method_configs['ReloadDocument'].retry,
+                default_timeout=self._method_configs['ReloadDocument'].timeout,
+                client_info=self._client_info,
+            )
 
-        request = document_pb2.ReloadDocumentRequest(name=name, )
+        request = document_pb2.ReloadDocumentRequest(
+            name=name,
+        )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
@@ -686,11 +707,7 @@ class DocumentsClient(object):
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['reload_document'](request,
-                                                        retry=retry,
-                                                        timeout=timeout,
-                                                        metadata=metadata)
+        return self._inner_api_calls['reload_document'](request, retry=retry, timeout=timeout, metadata=metadata)

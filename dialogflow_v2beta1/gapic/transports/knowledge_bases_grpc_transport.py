@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 import google.api_core.grpc_helpers
 
 from dialogflow_v2beta1.proto import knowledge_base_pb2_grpc
@@ -34,9 +35,7 @@ class KnowledgeBasesGrpcTransport(object):
         'https://www.googleapis.com/auth/dialogflow',
     )
 
-    def __init__(self,
-                 channel=None,
-                 credentials=None,
+    def __init__(self, channel=None, credentials=None,
                  address='dialogflow.googleapis.com:443'):
         """Instantiate the transport class.
 
@@ -56,7 +55,8 @@ class KnowledgeBasesGrpcTransport(object):
         if channel is not None and credentials is not None:
             raise ValueError(
                 'The `channel` and `credentials` arguments are mutually '
-                'exclusive.', )
+                'exclusive.',
+            )
 
         # Create the channel.
         if channel is None:
@@ -70,14 +70,15 @@ class KnowledgeBasesGrpcTransport(object):
         # gRPC uses objects called "stubs" that are bound to the
         # channel and provide a basic method for each RPC.
         self._stubs = {
-            'knowledge_bases_stub':
-            knowledge_base_pb2_grpc.KnowledgeBasesStub(channel),
+            'knowledge_bases_stub': knowledge_base_pb2_grpc.KnowledgeBasesStub(channel),
         }
 
+
     @classmethod
-    def create_channel(cls,
-                       address='dialogflow.googleapis.com:443',
-                       credentials=None):
+    def create_channel(
+                cls,
+                address='dialogflow.googleapis.com:443',
+                credentials=None):
         """Create and return a gRPC channel object.
 
         Args:
@@ -112,6 +113,9 @@ class KnowledgeBasesGrpcTransport(object):
 
         Returns the list of all knowledge bases of the specified agent.
 
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
+
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
@@ -124,6 +128,9 @@ class KnowledgeBasesGrpcTransport(object):
         """Return the gRPC stub for :meth:`KnowledgeBasesClient.get_knowledge_base`.
 
         Retrieves the specified knowledge base.
+
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -138,6 +145,9 @@ class KnowledgeBasesGrpcTransport(object):
 
         Creates a knowledge base.
 
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
+
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
@@ -151,6 +161,9 @@ class KnowledgeBasesGrpcTransport(object):
 
         Deletes the specified knowledge base.
 
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
+
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
@@ -163,6 +176,9 @@ class KnowledgeBasesGrpcTransport(object):
         """Return the gRPC stub for :meth:`KnowledgeBasesClient.update_knowledge_base`.
 
         Updates the specified knowledge base.
+
+        Note: The ``projects.agent.knowledgeBases`` resource is deprecated; only
+        use ``projects.knowledgeBases``.
 
         Returns:
             Callable: A callable which accepts the appropriate

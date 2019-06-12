@@ -14,7 +14,6 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
-from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from dialogflow_v2.proto import context_pb2 as google_dot_cloud_dot_dialogflow__v2_dot_proto_dot_context__pb2
 from google.longrunning import operations_pb2 as google_dot_longrunning_dot_operations__pb2
 from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
@@ -28,9 +27,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='google.cloud.dialogflow.v2',
   syntax='proto3',
   serialized_options=_b('\n\036com.google.cloud.dialogflow.v2B\013IntentProtoP\001ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\370\001\001\242\002\002DF\252\002\032Google.Cloud.Dialogflow.V2'),
-  serialized_pb=_b('\n-google/cloud/dialogflow_v2/proto/intent.proto\x12\x1agoogle.cloud.dialogflow.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/resource.proto\x1a.google/cloud/dialogflow_v2/proto/context.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xf7 \n\x06Intent\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x46\n\rwebhook_state\x18\x06 \x01(\x0e\x32/.google.cloud.dialogflow.v2.Intent.WebhookState\x12\x10\n\x08priority\x18\x03 \x01(\x05\x12\x13\n\x0bis_fallback\x18\x04 \x01(\x08\x12\x13\n\x0bml_disabled\x18\x13 \x01(\x08\x12\x1b\n\x13input_context_names\x18\x07 \x03(\t\x12\x0e\n\x06\x65vents\x18\x08 \x03(\t\x12K\n\x10training_phrases\x18\t \x03(\x0b\x32\x31.google.cloud.dialogflow.v2.Intent.TrainingPhrase\x12\x0e\n\x06\x61\x63tion\x18\n \x01(\t\x12<\n\x0foutput_contexts\x18\x0b \x03(\x0b\x32#.google.cloud.dialogflow.v2.Context\x12\x16\n\x0ereset_contexts\x18\x0c \x01(\x08\x12@\n\nparameters\x18\r \x03(\x0b\x32,.google.cloud.dialogflow.v2.Intent.Parameter\x12<\n\x08messages\x18\x0e \x03(\x0b\x32*.google.cloud.dialogflow.v2.Intent.Message\x12W\n\x1a\x64\x65\x66\x61ult_response_platforms\x18\x0f \x03(\x0e\x32\x33.google.cloud.dialogflow.v2.Intent.Message.Platform\x12!\n\x19root_followup_intent_name\x18\x10 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x11 \x01(\t\x12S\n\x14\x66ollowup_intent_info\x18\x12 \x03(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.FollowupIntentInfo\x1a\xd3\x02\n\x0eTrainingPhrase\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x44\n\x04type\x18\x02 \x01(\x0e\x32\x36.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type\x12\x45\n\x05parts\x18\x03 \x03(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part\x12\x19\n\x11times_added_count\x18\x04 \x01(\x05\x1aN\n\x04Part\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x13\n\x0b\x65ntity_type\x18\x02 \x01(\t\x12\r\n\x05\x61lias\x18\x03 \x01(\t\x12\x14\n\x0cuser_defined\x18\x04 \x01(\x08\";\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x45XAMPLE\x10\x01\x12\x10\n\x08TEMPLATE\x10\x02\x1a\x02\x08\x01\x1a\xac\x01\n\tParameter\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x15\n\rdefault_value\x18\x04 \x01(\t\x12 \n\x18\x65ntity_type_display_name\x18\x05 \x01(\t\x12\x11\n\tmandatory\x18\x06 \x01(\x08\x12\x0f\n\x07prompts\x18\x07 \x03(\t\x12\x0f\n\x07is_list\x18\x08 \x01(\x08\x1a\x9a\x15\n\x07Message\x12?\n\x04text\x18\x01 \x01(\x0b\x32/.google.cloud.dialogflow.v2.Intent.Message.TextH\x00\x12\x41\n\x05image\x18\x02 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageH\x00\x12P\n\rquick_replies\x18\x03 \x01(\x0b\x32\x37.google.cloud.dialogflow.v2.Intent.Message.QuickRepliesH\x00\x12?\n\x04\x63\x61rd\x18\x04 \x01(\x0b\x32/.google.cloud.dialogflow.v2.Intent.Message.CardH\x00\x12*\n\x07payload\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x12V\n\x10simple_responses\x18\x07 \x01(\x0b\x32:.google.cloud.dialogflow.v2.Intent.Message.SimpleResponsesH\x00\x12J\n\nbasic_card\x18\x08 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2.Intent.Message.BasicCardH\x00\x12M\n\x0bsuggestions\x18\t \x01(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.Message.SuggestionsH\x00\x12[\n\x13link_out_suggestion\x18\n \x01(\x0b\x32<.google.cloud.dialogflow.v2.Intent.Message.LinkOutSuggestionH\x00\x12L\n\x0blist_select\x18\x0b \x01(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.Message.ListSelectH\x00\x12T\n\x0f\x63\x61rousel_select\x18\x0c \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.CarouselSelectH\x00\x12\x45\n\x08platform\x18\x06 \x01(\x0e\x32\x33.google.cloud.dialogflow.v2.Intent.Message.Platform\x1a\x14\n\x04Text\x12\x0c\n\x04text\x18\x01 \x03(\t\x1a\x36\n\x05Image\x12\x11\n\timage_uri\x18\x01 \x01(\t\x12\x1a\n\x12\x61\x63\x63\x65ssibility_text\x18\x02 \x01(\t\x1a\x34\n\x0cQuickReplies\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\rquick_replies\x18\x02 \x03(\t\x1a\xad\x01\n\x04\x43\x61rd\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x11\n\timage_uri\x18\x03 \x01(\t\x12G\n\x07\x62uttons\x18\x04 \x03(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.Message.Card.Button\x1a(\n\x06\x42utton\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08postback\x18\x02 \x01(\t\x1aL\n\x0eSimpleResponse\x12\x16\n\x0etext_to_speech\x18\x01 \x01(\t\x12\x0c\n\x04ssml\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_text\x18\x03 \x01(\t\x1a\x66\n\x0fSimpleResponses\x12S\n\x10simple_responses\x18\x01 \x03(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SimpleResponse\x1a\xef\x02\n\tBasicCard\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x16\n\x0e\x66ormatted_text\x18\x03 \x01(\t\x12?\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.Image\x12L\n\x07\x62uttons\x18\x05 \x03(\x0b\x32;.google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button\x1a\x99\x01\n\x06\x42utton\x12\r\n\x05title\x18\x01 \x01(\t\x12\x62\n\x0fopen_uri_action\x18\x02 \x01(\x0b\x32I.google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button.OpenUriAction\x1a\x1c\n\rOpenUriAction\x12\x0b\n\x03uri\x18\x01 \x01(\t\x1a\x1b\n\nSuggestion\x12\r\n\x05title\x18\x01 \x01(\t\x1aY\n\x0bSuggestions\x12J\n\x0bsuggestions\x18\x01 \x03(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.Message.Suggestion\x1a:\n\x11LinkOutSuggestion\x12\x18\n\x10\x64\x65stination_name\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x1a\x9d\x02\n\nListSelect\x12\r\n\x05title\x18\x01 \x01(\t\x12I\n\x05items\x18\x02 \x03(\x0b\x32:.google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item\x1a\xb4\x01\n\x04Item\x12G\n\x04info\x18\x01 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12?\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.Image\x1a\x96\x02\n\x0e\x43\x61rouselSelect\x12M\n\x05items\x18\x01 \x03(\x0b\x32>.google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item\x1a\xb4\x01\n\x04Item\x12G\n\x04info\x18\x01 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12?\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.Image\x1a/\n\x0eSelectItemInfo\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x10\n\x08synonyms\x18\x02 \x03(\t\"\x8b\x01\n\x08Platform\x12\x18\n\x14PLATFORM_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x01\x12\t\n\x05SLACK\x10\x02\x12\x0c\n\x08TELEGRAM\x10\x03\x12\x07\n\x03KIK\x10\x04\x12\t\n\x05SKYPE\x10\x05\x12\x08\n\x04LINE\x10\x06\x12\t\n\x05VIBER\x10\x07\x12\x15\n\x11\x41\x43TIONS_ON_GOOGLE\x10\x08\x42\t\n\x07message\x1aW\n\x12\x46ollowupIntentInfo\x12\x1c\n\x14\x66ollowup_intent_name\x18\x01 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x02 \x01(\t\"t\n\x0cWebhookState\x12\x1d\n\x19WEBHOOK_STATE_UNSPECIFIED\x10\x00\x12\x19\n\x15WEBHOOK_STATE_ENABLED\x10\x01\x12*\n&WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING\x10\x02\"\x9f\x01\n\x12ListIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x15\n\rlanguage_code\x18\x02 \x01(\t\x12;\n\x0bintent_view\x18\x03 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t\"c\n\x13ListIntentsResponse\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"t\n\x10GetIntentRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rlanguage_code\x18\x02 \x01(\t\x12;\n\x0bintent_view\x18\x03 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\"\xad\x01\n\x13\x43reateIntentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x32\n\x06intent\x18\x02 \x01(\x0b\x32\".google.cloud.dialogflow.v2.Intent\x12\x15\n\rlanguage_code\x18\x03 \x01(\t\x12;\n\x0bintent_view\x18\x04 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\"\xce\x01\n\x13UpdateIntentRequest\x12\x32\n\x06intent\x18\x01 \x01(\x0b\x32\".google.cloud.dialogflow.v2.Intent\x12\x15\n\rlanguage_code\x18\x02 \x01(\t\x12/\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12;\n\x0bintent_view\x18\x04 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\"#\n\x13\x44\x65leteIntentRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xa4\x02\n\x19\x42\x61tchUpdateIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x1a\n\x10intent_batch_uri\x18\x02 \x01(\tH\x00\x12\x46\n\x13intent_batch_inline\x18\x03 \x01(\x0b\x32\'.google.cloud.dialogflow.v2.IntentBatchH\x00\x12\x15\n\rlanguage_code\x18\x04 \x01(\t\x12/\n\x0bupdate_mask\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12;\n\x0bintent_view\x18\x06 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentViewB\x0e\n\x0cintent_batch\"Q\n\x1a\x42\x61tchUpdateIntentsResponse\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent\"`\n\x19\x42\x61tchDeleteIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x33\n\x07intents\x18\x02 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent\"B\n\x0bIntentBatch\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent*?\n\nIntentView\x12\x1b\n\x17INTENT_VIEW_UNSPECIFIED\x10\x00\x12\x14\n\x10INTENT_VIEW_FULL\x10\x01\x32\xd8\x08\n\x07Intents\x12\x9d\x01\n\x0bListIntents\x12..google.cloud.dialogflow.v2.ListIntentsRequest\x1a/.google.cloud.dialogflow.v2.ListIntentsResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/v2/{parent=projects/*/agent}/intents\x12\x8c\x01\n\tGetIntent\x12,.google.cloud.dialogflow.v2.GetIntentRequest\x1a\".google.cloud.dialogflow.v2.Intent\"-\x82\xd3\xe4\x93\x02\'\x12%/v2/{name=projects/*/agent/intents/*}\x12\x9a\x01\n\x0c\x43reateIntent\x12/.google.cloud.dialogflow.v2.CreateIntentRequest\x1a\".google.cloud.dialogflow.v2.Intent\"5\x82\xd3\xe4\x93\x02/\"%/v2/{parent=projects/*/agent}/intents:\x06intent\x12\xa1\x01\n\x0cUpdateIntent\x12/.google.cloud.dialogflow.v2.UpdateIntentRequest\x1a\".google.cloud.dialogflow.v2.Intent\"<\x82\xd3\xe4\x93\x02\x36\x32,/v2/{intent.name=projects/*/agent/intents/*}:\x06intent\x12\x86\x01\n\x0c\x44\x65leteIntent\x12/.google.cloud.dialogflow.v2.DeleteIntentRequest\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/v2/{name=projects/*/agent/intents/*}\x12\xa8\x01\n\x12\x42\x61tchUpdateIntents\x12\x35.google.cloud.dialogflow.v2.BatchUpdateIntentsRequest\x1a\x1d.google.longrunning.Operation\"<\x82\xd3\xe4\x93\x02\x36\"1/v2/{parent=projects/*/agent}/intents:batchUpdate:\x01*\x12\xa8\x01\n\x12\x42\x61tchDeleteIntents\x12\x35.google.cloud.dialogflow.v2.BatchDeleteIntentsRequest\x1a\x1d.google.longrunning.Operation\"<\x82\xd3\xe4\x93\x02\x36\"1/v2/{parent=projects/*/agent}/intents:batchDelete:\x01*B\x9a\x01\n\x1e\x63om.google.cloud.dialogflow.v2B\x0bIntentProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1aGoogle.Cloud.Dialogflow.V2b\x06proto3')
+  serialized_pb=_b('\n-google/cloud/dialogflow_v2/proto/intent.proto\x12\x1agoogle.cloud.dialogflow.v2\x1a\x1cgoogle/api/annotations.proto\x1a.google/cloud/dialogflow_v2/proto/context.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\"\x8c!\n\x06Intent\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x46\n\rwebhook_state\x18\x06 \x01(\x0e\x32/.google.cloud.dialogflow.v2.Intent.WebhookState\x12\x10\n\x08priority\x18\x03 \x01(\x05\x12\x13\n\x0bis_fallback\x18\x04 \x01(\x08\x12\x13\n\x0bml_disabled\x18\x13 \x01(\x08\x12\x1b\n\x13input_context_names\x18\x07 \x03(\t\x12\x0e\n\x06\x65vents\x18\x08 \x03(\t\x12K\n\x10training_phrases\x18\t \x03(\x0b\x32\x31.google.cloud.dialogflow.v2.Intent.TrainingPhrase\x12\x0e\n\x06\x61\x63tion\x18\n \x01(\t\x12<\n\x0foutput_contexts\x18\x0b \x03(\x0b\x32#.google.cloud.dialogflow.v2.Context\x12\x16\n\x0ereset_contexts\x18\x0c \x01(\x08\x12@\n\nparameters\x18\r \x03(\x0b\x32,.google.cloud.dialogflow.v2.Intent.Parameter\x12<\n\x08messages\x18\x0e \x03(\x0b\x32*.google.cloud.dialogflow.v2.Intent.Message\x12W\n\x1a\x64\x65\x66\x61ult_response_platforms\x18\x0f \x03(\x0e\x32\x33.google.cloud.dialogflow.v2.Intent.Message.Platform\x12!\n\x19root_followup_intent_name\x18\x10 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x11 \x01(\t\x12S\n\x14\x66ollowup_intent_info\x18\x12 \x03(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.FollowupIntentInfo\x1a\xd3\x02\n\x0eTrainingPhrase\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x44\n\x04type\x18\x02 \x01(\x0e\x32\x36.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type\x12\x45\n\x05parts\x18\x03 \x03(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part\x12\x19\n\x11times_added_count\x18\x04 \x01(\x05\x1aN\n\x04Part\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x13\n\x0b\x65ntity_type\x18\x02 \x01(\t\x12\r\n\x05\x61lias\x18\x03 \x01(\t\x12\x14\n\x0cuser_defined\x18\x04 \x01(\x08\";\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x45XAMPLE\x10\x01\x12\x10\n\x08TEMPLATE\x10\x02\x1a\x02\x08\x01\x1a\xac\x01\n\tParameter\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x15\n\rdefault_value\x18\x04 \x01(\t\x12 \n\x18\x65ntity_type_display_name\x18\x05 \x01(\t\x12\x11\n\tmandatory\x18\x06 \x01(\x08\x12\x0f\n\x07prompts\x18\x07 \x03(\t\x12\x0f\n\x07is_list\x18\x08 \x01(\x08\x1a\xaf\x15\n\x07Message\x12?\n\x04text\x18\x01 \x01(\x0b\x32/.google.cloud.dialogflow.v2.Intent.Message.TextH\x00\x12\x41\n\x05image\x18\x02 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageH\x00\x12P\n\rquick_replies\x18\x03 \x01(\x0b\x32\x37.google.cloud.dialogflow.v2.Intent.Message.QuickRepliesH\x00\x12?\n\x04\x63\x61rd\x18\x04 \x01(\x0b\x32/.google.cloud.dialogflow.v2.Intent.Message.CardH\x00\x12*\n\x07payload\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x12V\n\x10simple_responses\x18\x07 \x01(\x0b\x32:.google.cloud.dialogflow.v2.Intent.Message.SimpleResponsesH\x00\x12J\n\nbasic_card\x18\x08 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2.Intent.Message.BasicCardH\x00\x12M\n\x0bsuggestions\x18\t \x01(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.Message.SuggestionsH\x00\x12[\n\x13link_out_suggestion\x18\n \x01(\x0b\x32<.google.cloud.dialogflow.v2.Intent.Message.LinkOutSuggestionH\x00\x12L\n\x0blist_select\x18\x0b \x01(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.Message.ListSelectH\x00\x12T\n\x0f\x63\x61rousel_select\x18\x0c \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.CarouselSelectH\x00\x12\x45\n\x08platform\x18\x06 \x01(\x0e\x32\x33.google.cloud.dialogflow.v2.Intent.Message.Platform\x1a\x14\n\x04Text\x12\x0c\n\x04text\x18\x01 \x03(\t\x1a\x36\n\x05Image\x12\x11\n\timage_uri\x18\x01 \x01(\t\x12\x1a\n\x12\x61\x63\x63\x65ssibility_text\x18\x02 \x01(\t\x1a\x34\n\x0cQuickReplies\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\rquick_replies\x18\x02 \x03(\t\x1a\xad\x01\n\x04\x43\x61rd\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x11\n\timage_uri\x18\x03 \x01(\t\x12G\n\x07\x62uttons\x18\x04 \x03(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.Message.Card.Button\x1a(\n\x06\x42utton\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08postback\x18\x02 \x01(\t\x1aL\n\x0eSimpleResponse\x12\x16\n\x0etext_to_speech\x18\x01 \x01(\t\x12\x0c\n\x04ssml\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_text\x18\x03 \x01(\t\x1a\x66\n\x0fSimpleResponses\x12S\n\x10simple_responses\x18\x01 \x03(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SimpleResponse\x1a\xef\x02\n\tBasicCard\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x16\n\x0e\x66ormatted_text\x18\x03 \x01(\t\x12?\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.Image\x12L\n\x07\x62uttons\x18\x05 \x03(\x0b\x32;.google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button\x1a\x99\x01\n\x06\x42utton\x12\r\n\x05title\x18\x01 \x01(\t\x12\x62\n\x0fopen_uri_action\x18\x02 \x01(\x0b\x32I.google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button.OpenUriAction\x1a\x1c\n\rOpenUriAction\x12\x0b\n\x03uri\x18\x01 \x01(\t\x1a\x1b\n\nSuggestion\x12\r\n\x05title\x18\x01 \x01(\t\x1aY\n\x0bSuggestions\x12J\n\x0bsuggestions\x18\x01 \x03(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.Message.Suggestion\x1a:\n\x11LinkOutSuggestion\x12\x18\n\x10\x64\x65stination_name\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x1a\x9d\x02\n\nListSelect\x12\r\n\x05title\x18\x01 \x01(\t\x12I\n\x05items\x18\x02 \x03(\x0b\x32:.google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item\x1a\xb4\x01\n\x04Item\x12G\n\x04info\x18\x01 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12?\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.Image\x1a\x96\x02\n\x0e\x43\x61rouselSelect\x12M\n\x05items\x18\x01 \x03(\x0b\x32>.google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item\x1a\xb4\x01\n\x04Item\x12G\n\x04info\x18\x01 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12?\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.Image\x1a/\n\x0eSelectItemInfo\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x10\n\x08synonyms\x18\x02 \x03(\t\"\xa0\x01\n\x08Platform\x12\x18\n\x14PLATFORM_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x01\x12\t\n\x05SLACK\x10\x02\x12\x0c\n\x08TELEGRAM\x10\x03\x12\x07\n\x03KIK\x10\x04\x12\t\n\x05SKYPE\x10\x05\x12\x08\n\x04LINE\x10\x06\x12\t\n\x05VIBER\x10\x07\x12\x15\n\x11\x41\x43TIONS_ON_GOOGLE\x10\x08\x12\x13\n\x0fGOOGLE_HANGOUTS\x10\x0b\x42\t\n\x07message\x1aW\n\x12\x46ollowupIntentInfo\x12\x1c\n\x14\x66ollowup_intent_name\x18\x01 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x02 \x01(\t\"t\n\x0cWebhookState\x12\x1d\n\x19WEBHOOK_STATE_UNSPECIFIED\x10\x00\x12\x19\n\x15WEBHOOK_STATE_ENABLED\x10\x01\x12*\n&WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING\x10\x02\"\x9f\x01\n\x12ListIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x15\n\rlanguage_code\x18\x02 \x01(\t\x12;\n\x0bintent_view\x18\x03 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t\"c\n\x13ListIntentsResponse\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"t\n\x10GetIntentRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rlanguage_code\x18\x02 \x01(\t\x12;\n\x0bintent_view\x18\x03 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\"\xad\x01\n\x13\x43reateIntentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x32\n\x06intent\x18\x02 \x01(\x0b\x32\".google.cloud.dialogflow.v2.Intent\x12\x15\n\rlanguage_code\x18\x03 \x01(\t\x12;\n\x0bintent_view\x18\x04 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\"\xce\x01\n\x13UpdateIntentRequest\x12\x32\n\x06intent\x18\x01 \x01(\x0b\x32\".google.cloud.dialogflow.v2.Intent\x12\x15\n\rlanguage_code\x18\x02 \x01(\t\x12/\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12;\n\x0bintent_view\x18\x04 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentView\"#\n\x13\x44\x65leteIntentRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xa4\x02\n\x19\x42\x61tchUpdateIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x1a\n\x10intent_batch_uri\x18\x02 \x01(\tH\x00\x12\x46\n\x13intent_batch_inline\x18\x03 \x01(\x0b\x32\'.google.cloud.dialogflow.v2.IntentBatchH\x00\x12\x15\n\rlanguage_code\x18\x04 \x01(\t\x12/\n\x0bupdate_mask\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12;\n\x0bintent_view\x18\x06 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentViewB\x0e\n\x0cintent_batch\"Q\n\x1a\x42\x61tchUpdateIntentsResponse\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent\"`\n\x19\x42\x61tchDeleteIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x33\n\x07intents\x18\x02 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent\"B\n\x0bIntentBatch\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32\".google.cloud.dialogflow.v2.Intent*?\n\nIntentView\x12\x1b\n\x17INTENT_VIEW_UNSPECIFIED\x10\x00\x12\x14\n\x10INTENT_VIEW_FULL\x10\x01\x32\xd8\x08\n\x07Intents\x12\x9d\x01\n\x0bListIntents\x12..google.cloud.dialogflow.v2.ListIntentsRequest\x1a/.google.cloud.dialogflow.v2.ListIntentsResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/v2/{parent=projects/*/agent}/intents\x12\x8c\x01\n\tGetIntent\x12,.google.cloud.dialogflow.v2.GetIntentRequest\x1a\".google.cloud.dialogflow.v2.Intent\"-\x82\xd3\xe4\x93\x02\'\x12%/v2/{name=projects/*/agent/intents/*}\x12\x9a\x01\n\x0c\x43reateIntent\x12/.google.cloud.dialogflow.v2.CreateIntentRequest\x1a\".google.cloud.dialogflow.v2.Intent\"5\x82\xd3\xe4\x93\x02/\"%/v2/{parent=projects/*/agent}/intents:\x06intent\x12\xa1\x01\n\x0cUpdateIntent\x12/.google.cloud.dialogflow.v2.UpdateIntentRequest\x1a\".google.cloud.dialogflow.v2.Intent\"<\x82\xd3\xe4\x93\x02\x36\x32,/v2/{intent.name=projects/*/agent/intents/*}:\x06intent\x12\x86\x01\n\x0c\x44\x65leteIntent\x12/.google.cloud.dialogflow.v2.DeleteIntentRequest\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/v2/{name=projects/*/agent/intents/*}\x12\xa8\x01\n\x12\x42\x61tchUpdateIntents\x12\x35.google.cloud.dialogflow.v2.BatchUpdateIntentsRequest\x1a\x1d.google.longrunning.Operation\"<\x82\xd3\xe4\x93\x02\x36\"1/v2/{parent=projects/*/agent}/intents:batchUpdate:\x01*\x12\xa8\x01\n\x12\x42\x61tchDeleteIntents\x12\x35.google.cloud.dialogflow.v2.BatchDeleteIntentsRequest\x1a\x1d.google.longrunning.Operation\"<\x82\xd3\xe4\x93\x02\x36\"1/v2/{parent=projects/*/agent}/intents:batchDelete:\x01*B\x9a\x01\n\x1e\x63om.google.cloud.dialogflow.v2B\x0bIntentProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1aGoogle.Cloud.Dialogflow.V2b\x06proto3')
   ,
-  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_resource__pb2.DESCRIPTOR,google_dot_cloud_dot_dialogflow__v2_dot_proto_dot_context__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_dialogflow__v2_dot_proto_dot_context__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,])
 
 _INTENTVIEW = _descriptor.EnumDescriptor(
   name='IntentView',
@@ -49,8 +48,8 @@ _INTENTVIEW = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=5909,
-  serialized_end=5972,
+  serialized_start=5903,
+  serialized_end=5966,
 )
 _sym_db.RegisterEnumDescriptor(_INTENTVIEW)
 
@@ -80,8 +79,8 @@ _INTENT_TRAININGPHRASE_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1402,
-  serialized_end=1461,
+  serialized_start=1375,
+  serialized_end=1434,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_TRAININGPHRASE_TYPE)
 
@@ -127,11 +126,15 @@ _INTENT_MESSAGE_PLATFORM = _descriptor.EnumDescriptor(
       name='ACTIONS_ON_GOOGLE', index=8, number=8,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GOOGLE_HANGOUTS', index=9, number=11,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4203,
-  serialized_end=4342,
+  serialized_start=4176,
+  serialized_end=4336,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_PLATFORM)
 
@@ -156,8 +159,8 @@ _INTENT_WEBHOOKSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4444,
-  serialized_end=4560,
+  serialized_start=4438,
+  serialized_end=4554,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_WEBHOOKSTATE)
 
@@ -209,8 +212,8 @@ _INTENT_TRAININGPHRASE_PART = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1322,
-  serialized_end=1400,
+  serialized_start=1295,
+  serialized_end=1373,
 )
 
 _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
@@ -261,8 +264,8 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1122,
-  serialized_end=1461,
+  serialized_start=1095,
+  serialized_end=1434,
 )
 
 _INTENT_PARAMETER = _descriptor.Descriptor(
@@ -340,8 +343,8 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1464,
-  serialized_end=1636,
+  serialized_start=1437,
+  serialized_end=1609,
 )
 
 _INTENT_MESSAGE_TEXT = _descriptor.Descriptor(
@@ -370,8 +373,8 @@ _INTENT_MESSAGE_TEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2544,
-  serialized_end=2564,
+  serialized_start=2517,
+  serialized_end=2537,
 )
 
 _INTENT_MESSAGE_IMAGE = _descriptor.Descriptor(
@@ -407,8 +410,8 @@ _INTENT_MESSAGE_IMAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2566,
-  serialized_end=2620,
+  serialized_start=2539,
+  serialized_end=2593,
 )
 
 _INTENT_MESSAGE_QUICKREPLIES = _descriptor.Descriptor(
@@ -444,8 +447,8 @@ _INTENT_MESSAGE_QUICKREPLIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2622,
-  serialized_end=2674,
+  serialized_start=2595,
+  serialized_end=2647,
 )
 
 _INTENT_MESSAGE_CARD_BUTTON = _descriptor.Descriptor(
@@ -481,8 +484,8 @@ _INTENT_MESSAGE_CARD_BUTTON = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2810,
-  serialized_end=2850,
+  serialized_start=2783,
+  serialized_end=2823,
 )
 
 _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
@@ -532,8 +535,8 @@ _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2677,
-  serialized_end=2850,
+  serialized_start=2650,
+  serialized_end=2823,
 )
 
 _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
@@ -576,8 +579,8 @@ _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2852,
-  serialized_end=2928,
+  serialized_start=2825,
+  serialized_end=2901,
 )
 
 _INTENT_MESSAGE_SIMPLERESPONSES = _descriptor.Descriptor(
@@ -606,8 +609,8 @@ _INTENT_MESSAGE_SIMPLERESPONSES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2930,
-  serialized_end=3032,
+  serialized_start=2903,
+  serialized_end=3005,
 )
 
 _INTENT_MESSAGE_BASICCARD_BUTTON_OPENURIACTION = _descriptor.Descriptor(
@@ -636,8 +639,8 @@ _INTENT_MESSAGE_BASICCARD_BUTTON_OPENURIACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3374,
-  serialized_end=3402,
+  serialized_start=3347,
+  serialized_end=3375,
 )
 
 _INTENT_MESSAGE_BASICCARD_BUTTON = _descriptor.Descriptor(
@@ -673,8 +676,8 @@ _INTENT_MESSAGE_BASICCARD_BUTTON = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3249,
-  serialized_end=3402,
+  serialized_start=3222,
+  serialized_end=3375,
 )
 
 _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
@@ -731,8 +734,8 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3035,
-  serialized_end=3402,
+  serialized_start=3008,
+  serialized_end=3375,
 )
 
 _INTENT_MESSAGE_SUGGESTION = _descriptor.Descriptor(
@@ -761,8 +764,8 @@ _INTENT_MESSAGE_SUGGESTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3404,
-  serialized_end=3431,
+  serialized_start=3377,
+  serialized_end=3404,
 )
 
 _INTENT_MESSAGE_SUGGESTIONS = _descriptor.Descriptor(
@@ -791,8 +794,8 @@ _INTENT_MESSAGE_SUGGESTIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3433,
-  serialized_end=3522,
+  serialized_start=3406,
+  serialized_end=3495,
 )
 
 _INTENT_MESSAGE_LINKOUTSUGGESTION = _descriptor.Descriptor(
@@ -828,8 +831,8 @@ _INTENT_MESSAGE_LINKOUTSUGGESTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3524,
-  serialized_end=3582,
+  serialized_start=3497,
+  serialized_end=3555,
 )
 
 _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
@@ -879,8 +882,8 @@ _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3690,
-  serialized_end=3870,
+  serialized_start=3663,
+  serialized_end=3843,
 )
 
 _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
@@ -916,8 +919,8 @@ _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3585,
-  serialized_end=3870,
+  serialized_start=3558,
+  serialized_end=3843,
 )
 
 _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
@@ -967,8 +970,8 @@ _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3690,
-  serialized_end=3870,
+  serialized_start=3663,
+  serialized_end=3843,
 )
 
 _INTENT_MESSAGE_CAROUSELSELECT = _descriptor.Descriptor(
@@ -997,8 +1000,8 @@ _INTENT_MESSAGE_CAROUSELSELECT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3873,
-  serialized_end=4151,
+  serialized_start=3846,
+  serialized_end=4124,
 )
 
 _INTENT_MESSAGE_SELECTITEMINFO = _descriptor.Descriptor(
@@ -1034,8 +1037,8 @@ _INTENT_MESSAGE_SELECTITEMINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4153,
-  serialized_end=4200,
+  serialized_start=4126,
+  serialized_end=4173,
 )
 
 _INTENT_MESSAGE = _descriptor.Descriptor(
@@ -1145,8 +1148,8 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
       name='message', full_name='google.cloud.dialogflow.v2.Intent.Message.message',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1639,
-  serialized_end=4353,
+  serialized_start=1612,
+  serialized_end=4347,
 )
 
 _INTENT_FOLLOWUPINTENTINFO = _descriptor.Descriptor(
@@ -1182,8 +1185,8 @@ _INTENT_FOLLOWUPINTENTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4355,
-  serialized_end=4442,
+  serialized_start=4349,
+  serialized_end=4436,
 )
 
 _INTENT = _descriptor.Descriptor(
@@ -1332,8 +1335,8 @@ _INTENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=345,
-  serialized_end=4560,
+  serialized_start=318,
+  serialized_end=4554,
 )
 
 
@@ -1391,8 +1394,8 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4563,
-  serialized_end=4722,
+  serialized_start=4557,
+  serialized_end=4716,
 )
 
 
@@ -1429,8 +1432,8 @@ _LISTINTENTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4724,
-  serialized_end=4823,
+  serialized_start=4718,
+  serialized_end=4817,
 )
 
 
@@ -1474,8 +1477,8 @@ _GETINTENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4825,
-  serialized_end=4941,
+  serialized_start=4819,
+  serialized_end=4935,
 )
 
 
@@ -1526,8 +1529,8 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4944,
-  serialized_end=5117,
+  serialized_start=4938,
+  serialized_end=5111,
 )
 
 
@@ -1578,8 +1581,8 @@ _UPDATEINTENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5120,
-  serialized_end=5326,
+  serialized_start=5114,
+  serialized_end=5320,
 )
 
 
@@ -1609,8 +1612,8 @@ _DELETEINTENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5328,
-  serialized_end=5363,
+  serialized_start=5322,
+  serialized_end=5357,
 )
 
 
@@ -1678,8 +1681,8 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
       name='intent_batch', full_name='google.cloud.dialogflow.v2.BatchUpdateIntentsRequest.intent_batch',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=5366,
-  serialized_end=5658,
+  serialized_start=5360,
+  serialized_end=5652,
 )
 
 
@@ -1709,8 +1712,8 @@ _BATCHUPDATEINTENTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5660,
-  serialized_end=5741,
+  serialized_start=5654,
+  serialized_end=5735,
 )
 
 
@@ -1747,8 +1750,8 @@ _BATCHDELETEINTENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5743,
-  serialized_end=5839,
+  serialized_start=5737,
+  serialized_end=5833,
 )
 
 
@@ -1778,8 +1781,8 @@ _INTENTBATCH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5841,
-  serialized_end=5907,
+  serialized_start=5835,
+  serialized_end=5901,
 )
 
 _INTENT_TRAININGPHRASE_PART.containing_type = _INTENT_TRAININGPHRASE
@@ -2470,9 +2473,9 @@ Intent = _reflection.GeneratedProtocolMessageType('Intent', (_message.Message,),
           Optional. The collection of rich messages corresponding to the
           ``Response`` field in the Dialogflow console.
       default_response_platforms:
-          Optional. The list of platforms for which the first response
-          will be taken from among the messages assigned to the
-          DEFAULT\_PLATFORM.
+          Optional. The list of platforms for which the first responses
+          will be copied from the messages in PLATFORM\_UNSPECIFIED
+          (i.e. default platform).
       root_followup_intent_name:
           Read-only. The unique identifier of the root intent in the
           chain of followup intents. It identifies the correct followup
@@ -2773,8 +2776,8 @@ _INTENTS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=5975,
-  serialized_end=7087,
+  serialized_start=5969,
+  serialized_end=7081,
   methods=[
   _descriptor.MethodDescriptor(
     name='ListIntents',

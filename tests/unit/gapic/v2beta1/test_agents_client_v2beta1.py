@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Unit tests."""
 
 import mock
@@ -26,9 +27,9 @@ from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 
 
+
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
-
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -49,15 +50,12 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-
-    def __init__(self, responses=[]):
+    def __init__(self, responses = []):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(self,
-                    method,
-                    request_serializer=None,
-                    response_deserializer=None):
+    def unary_unary(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
 
@@ -66,6 +64,7 @@ class CustomException(Exception):
 
 
 class TestAgentsClient(object):
+
     def test_get_agent(self):
         # Setup Expected Response
         parent_2 = 'parent21175163357'
@@ -76,20 +75,11 @@ class TestAgentsClient(object):
         avatar_uri = 'avatarUri-402824826'
         enable_logging = False
         classification_threshold = 1.11581064E8
-        expected_response = {
-            'parent': parent_2,
-            'display_name': display_name,
-            'default_language_code': default_language_code,
-            'time_zone': time_zone,
-            'description': description,
-            'avatar_uri': avatar_uri,
-            'enable_logging': enable_logging,
-            'classification_threshold': classification_threshold
-        }
+        expected_response = {'parent': parent_2, 'display_name': display_name, 'default_language_code': default_language_code, 'time_zone': time_zone, 'description': description, 'avatar_uri': avatar_uri, 'enable_logging': enable_logging, 'classification_threshold': classification_threshold}
         expected_response = agent_pb2.Agent(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -108,7 +98,7 @@ class TestAgentsClient(object):
 
     def test_get_agent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -125,14 +115,11 @@ class TestAgentsClient(object):
         next_page_token = ''
         agents_element = {}
         agents = [agents_element]
-        expected_response = {
-            'next_page_token': next_page_token,
-            'agents': agents
-        }
+        expected_response = {'next_page_token': next_page_token, 'agents': agents}
         expected_response = agent_pb2.SearchAgentsResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
+        channel = ChannelStub(responses = [expected_response])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -153,7 +140,7 @@ class TestAgentsClient(object):
         assert expected_request == actual_request
 
     def test_search_agents_exception(self):
-        channel = ChannelStub(responses=[CustomException()])
+        channel = ChannelStub(responses = [CustomException()])
         patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
@@ -170,8 +157,7 @@ class TestAgentsClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_train_agent', done=True)
+        operation = operations_pb2.Operation(name='operations/test_train_agent', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -193,11 +179,11 @@ class TestAgentsClient(object):
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
+
     def test_train_agent_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_train_agent_exception', done=True)
+        operation = operations_pb2.Operation(name='operations/test_train_agent_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
@@ -219,8 +205,7 @@ class TestAgentsClient(object):
         agent_uri = 'agentUri-1700713166'
         expected_response = {'agent_uri': agent_uri}
         expected_response = agent_pb2.ExportAgentResponse(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_export_agent', done=True)
+        operation = operations_pb2.Operation(name='operations/test_export_agent', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -242,11 +227,11 @@ class TestAgentsClient(object):
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
+
     def test_export_agent_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_export_agent_exception', done=True)
+        operation = operations_pb2.Operation(name='operations/test_export_agent_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
@@ -267,8 +252,7 @@ class TestAgentsClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_import_agent', done=True)
+        operation = operations_pb2.Operation(name='operations/test_import_agent', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -290,11 +274,11 @@ class TestAgentsClient(object):
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
+
     def test_import_agent_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_import_agent_exception', done=True)
+        operation = operations_pb2.Operation(name='operations/test_import_agent_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
@@ -315,8 +299,7 @@ class TestAgentsClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name='operations/test_restore_agent', done=True)
+        operation = operations_pb2.Operation(name='operations/test_restore_agent', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
@@ -338,11 +321,11 @@ class TestAgentsClient(object):
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
+
     def test_restore_agent_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name='operations/test_restore_agent_exception', done=True)
+        operation = operations_pb2.Operation(name='operations/test_restore_agent_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
