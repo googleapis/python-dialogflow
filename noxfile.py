@@ -83,7 +83,7 @@ def unit(session):
     default(session)
 
 
-@nox.session(python="3.7")
+@nox.session(python=["2.7", "3.7"])
 def sample_tests(session):
     """Run the sample tests."""
     session.install("mock", "pytest")
