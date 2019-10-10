@@ -14,6 +14,7 @@
 
 from __future__ import absolute_import
 import os
+import time
 
 from .. import knowledge_base_management
 from .. import document_management
@@ -23,7 +24,7 @@ PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 TEXTS = ['Where is my data stored?']
 
-KNOWLEDGE_BASE_NAME = 'fake_knowledge_base_name'
+KNOWLEDGE_BASE_NAME = 'fake_knowledge_base_name' + str(time.time())
 DOCUMENT_BASE_NAME = 'fake_document_name'
 
 
