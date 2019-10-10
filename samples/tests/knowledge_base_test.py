@@ -24,7 +24,7 @@ PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 TEXTS = ['Where is my data stored?']
 
-KNOWLEDGE_BASE_NAME = 'fake_knowledge_base_name' + '-' + str(round(time.time()))
+KNOWLEDGE_BASE_NAME = 'fake' + '-' + str(int(time.time()))
 DOCUMENT_BASE_NAME = 'fake_document_name'
 
 
