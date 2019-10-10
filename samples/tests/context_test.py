@@ -18,7 +18,7 @@ import os
 from .. import detect_intent_texts
 from .. import context_management
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 CONTEXT_ID = 'fake_context_for_testing'
 

@@ -19,7 +19,7 @@ from .. import knowledge_base_management
 from .. import document_management
 from .. import detect_intent_knowledge
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 TEXTS = ['Where is my data stored?']
 

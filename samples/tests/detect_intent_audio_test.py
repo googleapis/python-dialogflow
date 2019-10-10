@@ -17,7 +17,7 @@ import os
 from ..detect_intent_audio import detect_intent_audio
 
 DIRNAME = os.path.realpath(os.path.dirname(__file__))
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 AUDIOS = [
     '{0}/../resources/book_a_room.wav'.format(DIRNAME),

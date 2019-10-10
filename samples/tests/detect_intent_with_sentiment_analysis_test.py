@@ -17,7 +17,7 @@ import os
 from ..detect_intent_with_sentiment_analysis import \
     detect_intent_with_sentiment_analysis
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 TEXTS = ["hello", "book a meeting room", "Mountain View",
          "tomorrow", "10 AM", "2 hours", "10 people", "A", "yes"]

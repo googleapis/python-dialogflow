@@ -18,7 +18,7 @@ import os
 from .. import entity_type_management
 from .. import session_entity_type_management
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 ENTITY_TYPE_DISPLAY_NAME = 'fake_display_name_for_testing'
 ENTITY_VALUES = ['fake_entity_value_1', 'fake_entity_value_2']

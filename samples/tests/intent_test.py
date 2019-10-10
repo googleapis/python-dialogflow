@@ -17,7 +17,7 @@ import os
 
 from .. import intent_management
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.environ['PROJECT_ID']
 INTENT_DISPLAY_NAME = 'fake_display_name_for_testing'
 MESSAGE_TEXTS = [
     'fake_message_text_for_testing_1',

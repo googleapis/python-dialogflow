@@ -17,7 +17,7 @@ import os
 from ..detect_intent_with_texttospeech_response import \
     detect_intent_with_texttospeech_response
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.environ['PROJECT_ID']
 SESSION_ID = 'fake_session_for_testing'
 TEXTS = ["hello"]
 
