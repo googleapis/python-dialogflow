@@ -10,18 +10,16 @@ Thanks for stopping by to let us know something could be better!
 
 Please run down the following list and make sure you've tried the usual "quick fixes":
 
-  - Search the issues already opened: https://github.com/googleapis/google-cloud-python/issues
-  - Check for answers on StackOverflow: http://stackoverflow.com/questions/tagged/google-cloud-python
+  - Search the issues already opened: https://github.com/googleapis/dialogflow-python-client-v2/issues
+  - Check for answers on StackOverflow: http://stackoverflow.com/questions/
 
 If you are still having issues, please be sure to include as much information as possible:
 
 #### Environment details
 
-1. Specify the API at the beginning of the title (for example, "BigQuery: ...")
-   General, Core, and Other are also allowed as types
-2. OS type and version
-3. Python version and virtual environment information: `python --version`
-4. google-cloud-<service> version:  `pip show google-<service>` or `pip freeze`
+1. OS type and version
+2. Python version and virtual environment information: `python --version`
+3. dialogflow version:  `pip show dialogflow` or `pip freeze`
 
 #### Steps to reproduce
 

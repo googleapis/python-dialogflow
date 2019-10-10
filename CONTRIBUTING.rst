@@ -137,13 +137,13 @@ Exceptions to PEP8:
   Some also use a local variable, ``MUT`` (short for "Module-Under-Test").
 
 ********************
-Running System Tests
+Running Sample Tests
 ********************
 
-- To run system tests, you can execute::
+- To run sample tests, you can execute::
 
-   $ nox -s system-3.7
-   $ nox  -s system-2.7
+   $ nox -s sample_tests-3.7
+   $ nox  -s sample_tests-2.7
 
   .. note::
 
@@ -159,6 +159,7 @@ Running System Tests
   so you'll need to provide some environment variables to facilitate
   authentication to your project:
 
+  - ``PROJECT_ID``: A GCP Project.
   - ``GOOGLE_APPLICATION_CREDENTIALS``: The path to a JSON key file;
     Such a file can be downloaded directly from the developer's console by clicking
     "Generate new JSON key". See private key
@@ -224,30 +225,6 @@ Supported versions can be found in our ``noxfile.py`` `config`_.
 
 .. _config: https://github.com/googleapis/dialogflow-python-client-v2/blob/master/noxfile.py
 
-We explicitly decided not to support `Python 2.5`_ due to `decreased usage`_
-and lack of continuous integration `support`_.
-
-.. _Python 2.5: https://docs.python.org/2.5/
-.. _decreased usage: https://caremad.io/2013/10/a-look-at-pypi-downloads/
-.. _support: https://blog.travis-ci.com/2013-11-18-upcoming-build-environment-updates/
-
-We have `dropped 2.6`_ as a supported version as well since Python 2.6 is no
-longer supported by the core development team.
-
-Python 2.7 support is deprecated. All code changes should maintain Python 2.7 compatibility until January 1, 2020.
-
-We also explicitly decided to support Python 3 beginning with version
-3.5. Reasons for this include:
-
--  Encouraging use of newest versions of Python 3
--  Taking the lead of `prominent`_ open-source `projects`_
--  `Unicode literal support`_ which allows for a cleaner codebase that
-   works in both Python 2 and Python 3
-
-.. _prominent: https://docs.djangoproject.com/en/1.9/faq/install/#what-python-version-can-i-use-with-django
-.. _projects: http://flask.pocoo.org/docs/0.10/python3/
-.. _Unicode literal support: https://www.python.org/dev/peps/pep-0414/
-.. _dropped 2.6: https://github.com/googleapis/google-cloud-python/issues/995
 
 **********
 Versioning
