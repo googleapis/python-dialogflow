@@ -182,9 +182,6 @@ Api Reference
 -------------
 .. toctree::
     :maxdepth: 2
-
-    gapic/v2/api
-    gapic/v2/types
-
-    gapic/v2beta1/api
-    gapic/v2beta1/types
+    
+    v2
+    v2beta1
