@@ -20,7 +20,7 @@ from .. import entity_type_management
 from .. import entity_management
 
 PROJECT_ID = os.environ['PROJECT_ID']
-ENTITY_TYPE_DISPLAY_NAME = 'fake_entity_type_for_testing' + str(time.time())
+ENTITY_TYPE_DISPLAY_NAME = 'fake_entity_type_for_testing' + str(round(time.time()))
 ENTITY_VALUE_1 = 'fake_entity_for_testing_1'
 ENTITY_VALUE_2 = 'fake_entity_for_testing_2'
 SYNONYMS = ['fake_synonym_for_testing_1', 'fake_synonym_for_testing_2']
