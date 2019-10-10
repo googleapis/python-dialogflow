@@ -84,18 +84,6 @@ def unit(session):
     default(session)
 
 
-@nox.session(python=["2.7", "3.7"])
-def sample_tests(session):
-    """Run the sample tests."""
-    if not os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", ""):
-        session.error("Credentials must be set via environment variable `GOOGLE_APPLICATION_CREDENTIALS")
-    if not os.environ.get("PROJECT_ID", ""):
-        session.error("Project must be set via environment variable `PROJECT_ID`")
-    session.install("mock", "pytest")
-    session.install("-e", ".")
-    session.run("py.test", "--quiet", os.path.join("samples", "tests"))
-
-
 @nox.session(python="3.7")
 def cover(session):
     """Run the final coverage report.
