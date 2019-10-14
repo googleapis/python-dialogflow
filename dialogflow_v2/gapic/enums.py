@@ -154,6 +154,7 @@ class SpeechModelVariant(enum.IntEnum):
          docs <https://cloud.google.com/dialogflow/docs/data-logging>`__ for
          how to make your project eligible.
     """
+
     SPEECH_MODEL_VARIANT_UNSPECIFIED = 0
     USE_BEST_AVAILABLE = 1
     USE_STANDARD = 2
@@ -190,11 +191,11 @@ class Agent(object):
           API_VERSION_V2 (int): V2 API.
           API_VERSION_V2_BETA_1 (int): V2beta1 API.
         """
+
         API_VERSION_UNSPECIFIED = 0
         API_VERSION_V1 = 1
         API_VERSION_V2 = 2
         API_VERSION_V2_BETA_1 = 3
-
 
     class MatchMode(enum.IntEnum):
         """
@@ -212,7 +213,6 @@ class Agent(object):
         MATCH_MODE_HYBRID = 1
         MATCH_MODE_ML_ONLY = 2
 
-
     class Tier(enum.IntEnum):
         """
         Represents the agent tier.
@@ -223,6 +223,7 @@ class Agent(object):
           TIER_ENTERPRISE (int): Enterprise tier (Essentials).
           TIER_ENTERPRISE_PLUS (int): Enterprise tier (Plus).
         """
+
         TIER_UNSPECIFIED = 0
         TIER_STANDARD = 1
         TIER_ENTERPRISE = 2
@@ -244,7 +245,6 @@ class EntityType(object):
 
         AUTO_EXPANSION_MODE_UNSPECIFIED = 0
         AUTO_EXPANSION_MODE_DEFAULT = 1
-
 
     class Kind(enum.IntEnum):
         """
@@ -283,7 +283,6 @@ class Intent(object):
         WEBHOOK_STATE_ENABLED = 1
         WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING = 2
 
-
     class TrainingPhrase(object):
         class Type(enum.IntEnum):
             """
@@ -304,7 +303,6 @@ class Intent(object):
             TYPE_UNSPECIFIED = 0
             EXAMPLE = 1
             TEMPLATE = 2
-
 
     class Message(object):
         class Platform(enum.IntEnum):
@@ -442,4 +440,3 @@ class StreamingRecognitionResult(object):
         MESSAGE_TYPE_UNSPECIFIED = 0
         TRANSCRIPT = 1
         END_OF_SINGLE_UTTERANCE = 2
-    

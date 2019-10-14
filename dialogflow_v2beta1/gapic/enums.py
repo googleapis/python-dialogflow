@@ -154,6 +154,7 @@ class SpeechModelVariant(enum.IntEnum):
          docs <https://cloud.google.com/dialogflow/docs/data-logging>`__ for
          how to make your project eligible.
     """
+
     SPEECH_MODEL_VARIANT_UNSPECIFIED = 0
     USE_BEST_AVAILABLE = 1
     USE_STANDARD = 2
@@ -190,11 +191,11 @@ class Agent(object):
           API_VERSION_V2 (int): V2 API.
           API_VERSION_V2_BETA_1 (int): V2beta1 API.
         """
+
         API_VERSION_UNSPECIFIED = 0
         API_VERSION_V1 = 1
         API_VERSION_V2 = 2
         API_VERSION_V2_BETA_1 = 3
-
 
     class MatchMode(enum.IntEnum):
         """
@@ -212,7 +213,6 @@ class Agent(object):
         MATCH_MODE_HYBRID = 1
         MATCH_MODE_ML_ONLY = 2
 
-
     class Tier(enum.IntEnum):
         """
         Represents the agent tier.
@@ -223,6 +223,7 @@ class Agent(object):
           TIER_ENTERPRISE (int): Enterprise tier (Essentials).
           TIER_ENTERPRISE_PLUS (int): Enterprise tier (Plus).
         """
+
         TIER_UNSPECIFIED = 0
         TIER_STANDARD = 1
         TIER_ENTERPRISE = 2
@@ -268,7 +269,6 @@ class EntityType(object):
         AUTO_EXPANSION_MODE_UNSPECIFIED = 0
         AUTO_EXPANSION_MODE_DEFAULT = 1
 
-
     class Kind(enum.IntEnum):
         """
         Represents kinds of entities.
@@ -306,7 +306,6 @@ class Intent(object):
         WEBHOOK_STATE_ENABLED = 1
         WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING = 2
 
-
     class TrainingPhrase(object):
         class Type(enum.IntEnum):
             """
@@ -327,7 +326,6 @@ class Intent(object):
             TYPE_UNSPECIFIED = 0
             EXAMPLE = 1
             TEMPLATE = 2
-
 
     class Message(object):
         class Platform(enum.IntEnum):
@@ -420,7 +418,6 @@ class Intent(object):
             TELEPHONY = 10
             GOOGLE_HANGOUTS = 11
 
-
         class RbmCarouselCard(object):
             class CardWidth(enum.IntEnum):
                 """
@@ -431,10 +428,10 @@ class Intent(object):
                   SMALL (int): 120 DP. Note that tall media cannot be used.
                   MEDIUM (int): 232 DP.
                 """
+
                 CARD_WIDTH_UNSPECIFIED = 0
                 SMALL = 1
                 MEDIUM = 2
-
 
         class RbmStandaloneCard(object):
             class CardOrientation(enum.IntEnum):
@@ -446,10 +443,10 @@ class Intent(object):
                   HORIZONTAL (int): Horizontal layout.
                   VERTICAL (int): Vertical layout.
                 """
+
                 CARD_ORIENTATION_UNSPECIFIED = 0
                 HORIZONTAL = 1
                 VERTICAL = 2
-
 
             class ThumbnailImageAlignment(enum.IntEnum):
                 """
@@ -461,10 +458,10 @@ class Intent(object):
                   LEFT (int): Thumbnail preview is left-aligned.
                   RIGHT (int): Thumbnail preview is right-aligned.
                 """
+
                 THUMBNAIL_IMAGE_ALIGNMENT_UNSPECIFIED = 0
                 LEFT = 1
                 RIGHT = 2
-
 
         class RbmCardContent(object):
             class RbmMedia(object):
@@ -479,11 +476,11 @@ class Intent(object):
                       TALL (int): 264 DP. Not available for rich card carousels when the card width
                       is set to small.
                     """
+
                     HEIGHT_UNSPECIFIED = 0
                     SHORT = 1
                     MEDIUM = 2
                     TALL = 3
-
 
         class MediaContent(object):
             class ResponseMediaType(enum.IntEnum):
@@ -494,9 +491,9 @@ class Intent(object):
                   RESPONSE_MEDIA_TYPE_UNSPECIFIED (int): Unspecified.
                   AUDIO (int): Response media type is audio.
                 """
+
                 RESPONSE_MEDIA_TYPE_UNSPECIFIED = 0
                 AUDIO = 1
-
 
         class BrowseCarouselCard(object):
             class ImageDisplayOptions(enum.IntEnum):
@@ -521,12 +518,12 @@ class Intent(object):
                   BLURRED_BACKGROUND (int): Pad the gaps between image and image frame with a blurred copy of the
                   same image.
                 """
+
                 IMAGE_DISPLAY_OPTIONS_UNSPECIFIED = 0
                 GRAY = 1
                 WHITE = 2
                 CROPPED = 3
                 BLURRED_BACKGROUND = 4
-
 
             class BrowseCarouselCardItem(object):
                 class OpenUrlAction(object):
@@ -540,10 +537,10 @@ class Intent(object):
                           AMP_CONTENT (int): URL that points directly to AMP content, or to a canonical URL
                           which refers to AMP content via <link rel="amphtml">.
                         """
+
                         URL_TYPE_HINT_UNSPECIFIED = 0
                         AMP_ACTION = 1
                         AMP_CONTENT = 2
-
 
         class ColumnProperties(object):
             class HorizontalAlignment(enum.IntEnum):
@@ -556,6 +553,7 @@ class Intent(object):
                   CENTER (int): Text is centered in the column.
                   TRAILING (int): Text is aligned to the trailing edge of the column.
                 """
+
                 HORIZONTAL_ALIGNMENT_UNSPECIFIED = 0
                 LEADING = 1
                 CENTER = 2
@@ -660,9 +658,9 @@ class ValidationError(object):
           ERROR (int): The agent may experience partial failures.
           CRITICAL (int): The agent may completely fail.
         """
+
         SEVERITY_UNSPECIFIED = 0
         INFO = 1
         WARNING = 2
         ERROR = 3
         CRITICAL = 4
-    
