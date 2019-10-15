@@ -23,9 +23,9 @@ import dialogflow_v2
 from dialogflow_v2.proto import session_pb2
 
 
-
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
+
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -46,16 +46,17 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-    def __init__(self, responses = []):
+
+    def __init__(self, responses=[]):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(
-            self, method, request_serializer=None, response_deserializer=None):
+    def unary_unary(self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
     def stream_stream(
-            self, method, request_serializer=None, response_deserializer=None):
+        self, method, request_serializer=None, response_deserializer=None
+    ):
         return MultiCallableStub(method, self)
 
 
@@ -64,43 +65,44 @@ class CustomException(Exception):
 
 
 class TestSessionsClient(object):
-
     def test_detect_intent(self):
         # Setup Expected Response
-        response_id = 'responseId1847552473'
-        output_audio = b'24'
-        expected_response = {'response_id': response_id, 'output_audio': output_audio}
+        response_id = "responseId1847552473"
+        output_audio = b"24"
+        expected_response = {"response_id": response_id, "output_audio": output_audio}
         expected_response = session_pb2.DetectIntentResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses = [expected_response])
-        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
+        channel = ChannelStub(responses=[expected_response])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.SessionsClient()
 
         # Setup Request
-        session = client.session_path('[PROJECT]', '[SESSION]')
+        session = client.session_path("[PROJECT]", "[SESSION]")
         query_input = {}
 
         response = client.detect_intent(session, query_input)
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = session_pb2.DetectIntentRequest(session=session, query_input=query_input)
+        expected_request = session_pb2.DetectIntentRequest(
+            session=session, query_input=query_input
+        )
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_detect_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses = [CustomException()])
-        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.SessionsClient()
 
         # Setup request
-        session = client.session_path('[PROJECT]', '[SESSION]')
+        session = client.session_path("[PROJECT]", "[SESSION]")
         query_input = {}
 
         with pytest.raises(CustomException):
@@ -108,22 +110,24 @@ class TestSessionsClient(object):
 
     def test_streaming_detect_intent(self):
         # Setup Expected Response
-        response_id = 'responseId1847552473'
-        output_audio = b'24'
-        expected_response = {'response_id': response_id, 'output_audio': output_audio}
-        expected_response = session_pb2.StreamingDetectIntentResponse(**expected_response)
+        response_id = "responseId1847552473"
+        output_audio = b"24"
+        expected_response = {"response_id": response_id, "output_audio": output_audio}
+        expected_response = session_pb2.StreamingDetectIntentResponse(
+            **expected_response
+        )
 
         # Mock the API response
-        channel = ChannelStub(responses = [iter([expected_response])])
-        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
+        channel = ChannelStub(responses=[iter([expected_response])])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.SessionsClient()
 
         # Setup Request
-        session = 'session1984987798'
+        session = "session1984987798"
         query_input = {}
-        request = {'session': session, 'query_input': query_input}
+        request = {"session": session, "query_input": query_input}
         request = session_pb2.StreamingDetectIntentRequest(**request)
         requests = [request]
 
@@ -140,16 +144,16 @@ class TestSessionsClient(object):
 
     def test_streaming_detect_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses = [CustomException()])
-        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.SessionsClient()
 
         # Setup request
-        session = 'session1984987798'
+        session = "session1984987798"
         query_input = {}
-        request = {'session': session, 'query_input': query_input}
+        request = {"session": session, "query_input": query_input}
 
         request = session_pb2.StreamingDetectIntentRequest(**request)
         requests = [request]
