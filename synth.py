@@ -23,7 +23,7 @@ versions = ["v2beta1", "v2"]
 
 
 for version in versions:
-    library = gapic.py_library("dialogflow", version, include_protos=True)
+    library = gapic.py_library("dialogflow", version,  config_path=version + '/artman_dialogflow_' + version + '.yaml', include_protos=True)
 
     s.move(
         library,
@@ -94,7 +94,7 @@ s.replace(
     '}\\"\n\g<1>',
 )
 
-# Docstring has '-----' which is interpreted as section title
+# Docstring has '-----' which is interpreted as RST section title
 s.replace(
     "dialogflow_v2beta1/proto/intent_pb2.py",
     "\s+-----------",

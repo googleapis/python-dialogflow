@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Unit tests."""
 
 import mock
@@ -26,9 +27,9 @@ from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 
 
+
 class MultiCallableStub(object):
     """Stub for the grpc.UnaryUnaryMultiCallable interface."""
-
     def __init__(self, method, channel_stub):
         self.method = method
         self.channel_stub = channel_stub
@@ -49,12 +50,12 @@ class MultiCallableStub(object):
 
 class ChannelStub(object):
     """Stub for the grpc.Channel interface."""
-
-    def __init__(self, responses=[]):
+    def __init__(self, responses = []):
         self.responses = responses
         self.requests = []
 
-    def unary_unary(self, method, request_serializer=None, response_deserializer=None):
+    def unary_unary(
+            self, method, request_serializer=None, response_deserializer=None):
         return MultiCallableStub(method, self)
 
 
@@ -63,23 +64,24 @@ class CustomException(Exception):
 
 
 class TestIntentsClient(object):
+
     def test_list_intents(self):
         # Setup Expected Response
-        next_page_token = ""
+        next_page_token = ''
         intents_element = {}
         intents = [intents_element]
-        expected_response = {"next_page_token": next_page_token, "intents": intents}
+        expected_response = {'next_page_token': next_page_token, 'intents': intents}
         expected_response = intent_pb2.ListIntentsResponse(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [expected_response])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.project_agent_path('[PROJECT]')
 
         paged_list_response = client.list_intents(parent)
         resources = list(paged_list_response)
@@ -93,14 +95,14 @@ class TestIntentsClient(object):
         assert expected_request == actual_request
 
     def test_list_intents_exception(self):
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [CustomException()])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.project_agent_path('[PROJECT]')
 
         paged_list_response = client.list_intents(parent)
         with pytest.raises(CustomException):
@@ -108,37 +110,27 @@ class TestIntentsClient(object):
 
     def test_get_intent(self):
         # Setup Expected Response
-        name_2 = "name2-1052831874"
-        display_name = "displayName1615086568"
+        name_2 = 'name2-1052831874'
+        display_name = 'displayName1615086568'
         priority = 1165461084
         is_fallback = False
         ml_disabled = True
-        action = "action-1422950858"
+        action = 'action-1422950858'
         reset_contexts = True
-        root_followup_intent_name = "rootFollowupIntentName402253784"
-        parent_followup_intent_name = "parentFollowupIntentName-1131901680"
-        expected_response = {
-            "name": name_2,
-            "display_name": display_name,
-            "priority": priority,
-            "is_fallback": is_fallback,
-            "ml_disabled": ml_disabled,
-            "action": action,
-            "reset_contexts": reset_contexts,
-            "root_followup_intent_name": root_followup_intent_name,
-            "parent_followup_intent_name": parent_followup_intent_name,
-        }
+        root_followup_intent_name = 'rootFollowupIntentName402253784'
+        parent_followup_intent_name = 'parentFollowupIntentName-1131901680'
+        expected_response = {'name': name_2, 'display_name': display_name, 'priority': priority, 'is_fallback': is_fallback, 'ml_disabled': ml_disabled, 'action': action, 'reset_contexts': reset_contexts, 'root_followup_intent_name': root_followup_intent_name, 'parent_followup_intent_name': parent_followup_intent_name}
         expected_response = intent_pb2.Intent(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [expected_response])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        name = client.intent_path("[PROJECT]", "[INTENT]")
+        name = client.intent_path('[PROJECT]', '[INTENT]')
 
         response = client.get_intent(name)
         assert expected_response == response
@@ -150,51 +142,41 @@ class TestIntentsClient(object):
 
     def test_get_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [CustomException()])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup request
-        name = client.intent_path("[PROJECT]", "[INTENT]")
+        name = client.intent_path('[PROJECT]', '[INTENT]')
 
         with pytest.raises(CustomException):
             client.get_intent(name)
 
     def test_create_intent(self):
         # Setup Expected Response
-        name = "name3373707"
-        display_name = "displayName1615086568"
+        name = 'name3373707'
+        display_name = 'displayName1615086568'
         priority = 1165461084
         is_fallback = False
         ml_disabled = True
-        action = "action-1422950858"
+        action = 'action-1422950858'
         reset_contexts = True
-        root_followup_intent_name = "rootFollowupIntentName402253784"
-        parent_followup_intent_name = "parentFollowupIntentName-1131901680"
-        expected_response = {
-            "name": name,
-            "display_name": display_name,
-            "priority": priority,
-            "is_fallback": is_fallback,
-            "ml_disabled": ml_disabled,
-            "action": action,
-            "reset_contexts": reset_contexts,
-            "root_followup_intent_name": root_followup_intent_name,
-            "parent_followup_intent_name": parent_followup_intent_name,
-        }
+        root_followup_intent_name = 'rootFollowupIntentName402253784'
+        parent_followup_intent_name = 'parentFollowupIntentName-1131901680'
+        expected_response = {'name': name, 'display_name': display_name, 'priority': priority, 'is_fallback': is_fallback, 'ml_disabled': ml_disabled, 'action': action, 'reset_contexts': reset_contexts, 'root_followup_intent_name': root_followup_intent_name, 'parent_followup_intent_name': parent_followup_intent_name}
         expected_response = intent_pb2.Intent(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [expected_response])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.project_agent_path('[PROJECT]')
         intent = {}
 
         response = client.create_intent(parent, intent)
@@ -207,14 +189,14 @@ class TestIntentsClient(object):
 
     def test_create_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [CustomException()])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.project_agent_path('[PROJECT]')
         intent = {}
 
         with pytest.raises(CustomException):
@@ -222,73 +204,61 @@ class TestIntentsClient(object):
 
     def test_update_intent(self):
         # Setup Expected Response
-        name = "name3373707"
-        display_name = "displayName1615086568"
+        name = 'name3373707'
+        display_name = 'displayName1615086568'
         priority = 1165461084
         is_fallback = False
         ml_disabled = True
-        action = "action-1422950858"
+        action = 'action-1422950858'
         reset_contexts = True
-        root_followup_intent_name = "rootFollowupIntentName402253784"
-        parent_followup_intent_name = "parentFollowupIntentName-1131901680"
-        expected_response = {
-            "name": name,
-            "display_name": display_name,
-            "priority": priority,
-            "is_fallback": is_fallback,
-            "ml_disabled": ml_disabled,
-            "action": action,
-            "reset_contexts": reset_contexts,
-            "root_followup_intent_name": root_followup_intent_name,
-            "parent_followup_intent_name": parent_followup_intent_name,
-        }
+        root_followup_intent_name = 'rootFollowupIntentName402253784'
+        parent_followup_intent_name = 'parentFollowupIntentName-1131901680'
+        expected_response = {'name': name, 'display_name': display_name, 'priority': priority, 'is_fallback': is_fallback, 'ml_disabled': ml_disabled, 'action': action, 'reset_contexts': reset_contexts, 'root_followup_intent_name': root_followup_intent_name, 'parent_followup_intent_name': parent_followup_intent_name}
         expected_response = intent_pb2.Intent(**expected_response)
 
         # Mock the API response
-        channel = ChannelStub(responses=[expected_response])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [expected_response])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
         intent = {}
-        language_code = "languageCode-412800396"
+        language_code = 'languageCode-412800396'
 
         response = client.update_intent(intent, language_code)
         assert expected_response == response
 
         assert len(channel.requests) == 1
-        expected_request = intent_pb2.UpdateIntentRequest(
-            intent=intent, language_code=language_code
-        )
+        expected_request = intent_pb2.UpdateIntentRequest(intent=intent, language_code=language_code)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_update_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [CustomException()])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup request
         intent = {}
-        language_code = "languageCode-412800396"
+        language_code = 'languageCode-412800396'
 
         with pytest.raises(CustomException):
             client.update_intent(intent, language_code)
 
     def test_delete_intent(self):
         channel = ChannelStub()
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        name = client.intent_path("[PROJECT]", "[INTENT]")
+        name = client.intent_path('[PROJECT]', '[INTENT]')
 
         client.delete_intent(name)
 
@@ -299,14 +269,14 @@ class TestIntentsClient(object):
 
     def test_delete_intent_exception(self):
         # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        channel = ChannelStub(responses = [CustomException()])
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup request
-        name = client.intent_path("[PROJECT]", "[INTENT]")
+        name = client.intent_path('[PROJECT]', '[INTENT]')
 
         with pytest.raises(CustomException):
             client.delete_intent(name)
@@ -315,51 +285,46 @@ class TestIntentsClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = intent_pb2.BatchUpdateIntentsResponse(**expected_response)
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_update_intents", done=True
-        )
+        operation = operations_pb2.Operation(name='operations/test_batch_update_intents', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
         channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
-        language_code = "languageCode-412800396"
+        parent = client.project_agent_path('[PROJECT]')
+        language_code = 'languageCode-412800396'
 
         response = client.batch_update_intents(parent, language_code)
         result = response.result()
         assert expected_response == result
 
         assert len(channel.requests) == 1
-        expected_request = intent_pb2.BatchUpdateIntentsRequest(
-            parent=parent, language_code=language_code
-        )
+        expected_request = intent_pb2.BatchUpdateIntentsRequest(parent=parent, language_code=language_code)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
+
 
     def test_batch_update_intents_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_update_intents_exception", done=True
-        )
+        operation = operations_pb2.Operation(name='operations/test_batch_update_intents_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
         channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
-        language_code = "languageCode-412800396"
+        parent = client.project_agent_path('[PROJECT]')
+        language_code = 'languageCode-412800396'
 
         response = client.batch_update_intents(parent, language_code)
         exception = response.exception()
@@ -369,20 +334,18 @@ class TestIntentsClient(object):
         # Setup Expected Response
         expected_response = {}
         expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_intents", done=True
-        )
+        operation = operations_pb2.Operation(name='operations/test_batch_delete_intents', done=True)
         operation.response.Pack(expected_response)
 
         # Mock the API response
         channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.project_agent_path('[PROJECT]')
         intents = []
 
         response = client.batch_delete_intents(parent, intents)
@@ -390,29 +353,26 @@ class TestIntentsClient(object):
         assert expected_response == result
 
         assert len(channel.requests) == 1
-        expected_request = intent_pb2.BatchDeleteIntentsRequest(
-            parent=parent, intents=intents
-        )
+        expected_request = intent_pb2.BatchDeleteIntentsRequest(parent=parent, intents=intents)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
+
 
     def test_batch_delete_intents_exception(self):
         # Setup Response
         error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_intents_exception", done=True
-        )
+        operation = operations_pb2.Operation(name='operations/test_batch_delete_intents_exception', done=True)
         operation.error.CopyFrom(error)
 
         # Mock the API response
         channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        patch = mock.patch('google.api_core.grpc_helpers.create_channel')
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.project_agent_path('[PROJECT]')
         intents = []
 
         response = client.batch_delete_intents(parent, intents)
