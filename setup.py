@@ -23,7 +23,6 @@ version = "0.6.0"
 release_status = "Development Status :: 4 - Beta"
 dependencies = [
     "google-api-core[grpc] >= 1.14.0, < 2.0.0dev",
-    "googleapis-common-protos[grpc]>=1.5.2, <2.0dev",
 ]
 
 package_root = os.path.abspath(os.path.dirname(__file__))
@@ -35,15 +34,8 @@ with io.open(readme_filename, encoding="utf-8") as readme_file:
 packages = setuptools.find_packages()
 
 setup(
-<<<<<<< HEAD
     name="dialogflow",
     version="0.7.0",
-=======
-    name=name,
-    version=version,
-    description=description,
-    long_description=readme,
->>>>>>> fix: pin google-api-core version, update format
     author="Google LLC",
     author_email="googleapis-packages@google.com",
     license="Apache 2.0",
