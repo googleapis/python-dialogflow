@@ -21,9 +21,7 @@ name = "dialogflow"
 description = "Client library for the Dialogflow API"
 version = "0.6.0"
 release_status = "Development Status :: 4 - Beta"
-dependencies = [
-    "google-api-core[grpc] >= 1.14.0, < 2.0.0dev",
-]
+dependencies = ["google-api-core[grpc] >= 1.14.0, < 2.0.0dev"]
 
 package_root = os.path.abspath(os.path.dirname(__file__))
 
@@ -33,7 +31,7 @@ with io.open(readme_filename, encoding="utf-8") as readme_file:
 
 packages = setuptools.find_packages()
 
-setup(
+setuptools.setup(
     name="dialogflow",
     version="0.7.0",
     author="Google LLC",
