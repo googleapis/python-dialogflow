@@ -113,7 +113,12 @@ class TestKnowledgeBasesClient(object):
         # Setup Expected Response
         name_2 = "name2-1052831874"
         display_name = "displayName1615086568"
-        expected_response = {"name": name_2, "display_name": display_name}
+        language_code = "languageCode-412800396"
+        expected_response = {
+            "name": name_2,
+            "display_name": display_name,
+            "language_code": language_code,
+        }
         expected_response = knowledge_base_pb2.KnowledgeBase(**expected_response)
 
         # Mock the API response
@@ -152,7 +157,12 @@ class TestKnowledgeBasesClient(object):
         # Setup Expected Response
         name = "name3373707"
         display_name = "displayName1615086568"
-        expected_response = {"name": name, "display_name": display_name}
+        language_code = "languageCode-412800396"
+        expected_response = {
+            "name": name,
+            "display_name": display_name,
+            "language_code": language_code,
+        }
         expected_response = knowledge_base_pb2.KnowledgeBase(**expected_response)
 
         # Mock the API response
@@ -226,7 +236,12 @@ class TestKnowledgeBasesClient(object):
         # Setup Expected Response
         name = "name3373707"
         display_name = "displayName1615086568"
-        expected_response = {"name": name, "display_name": display_name}
+        language_code = "languageCode-412800396"
+        expected_response = {
+            "name": name,
+            "display_name": display_name,
+            "language_code": language_code,
+        }
         expected_response = knowledge_base_pb2.KnowledgeBase(**expected_response)
 
         # Mock the API response

@@ -6927,7 +6927,10 @@ BatchUpdateIntentsRequest = _reflection.GeneratedProtocolMessageType(
           Required. The name of the agent to update or create intents
           in. Format: ``projects/<Project ID>/agent``.
       intent_batch:
-          Required. The source of the intent batch.
+          Required. The source of the intent batch.  For each intent in
+          the batch:  -  If ``name`` is specified, we update an existing
+          intent. -  If ``name`` is not specified, we create a new
+          intent.
       intent_batch_uri:
           The URI to a Google Cloud Storage file containing intents to
           update or create. The file format can either be a serialized
