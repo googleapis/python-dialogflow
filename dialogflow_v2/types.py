@@ -30,6 +30,7 @@ from dialogflow_v2.proto import session_pb2
 from dialogflow_v2.proto import webhook_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import any_pb2
+from google.protobuf import duration_pb2
 from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import struct_pb2
@@ -40,6 +41,7 @@ from google.type import latlng_pb2
 _shared_modules = [
     operations_pb2,
     any_pb2,
+    duration_pb2,
     empty_pb2,
     field_mask_pb2,
     struct_pb2,

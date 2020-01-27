@@ -1271,7 +1271,7 @@ EntityType = _reflection.GeneratedProtocolMessageType(
             Required. The primary value associated with this entity entry.
             For example, if the entity type is *vegetable*, the value
             could be *scallions*.  For ``KIND_MAP`` entity types:  -  A
-            canonical value to be used in place of synonyms.  For
+            reference value to be used in place of synonyms.  For
             ``KIND_LIST`` entity types:  -  A string that can contain
             references to other entity types (with or    without aliases).
         synonyms:
@@ -1636,7 +1636,7 @@ BatchDeleteEntitiesRequest = _reflection.GeneratedProtocolMessageType(
           Format: ``projects/<Project ID>/agent/entityTypes/<Entity Type
           ID>``.
       entity_values:
-          Required. The canonical ``values`` of the entities to delete.
+          Required. The reference ``values`` of the entities to delete.
           Note that these are not fully-qualified names, i.e. they don't
           start with ``projects/<Project ID>``.
       language_code:
