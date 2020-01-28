@@ -964,10 +964,10 @@ InputAudioConfig = _reflection.GeneratedProtocolMessageType(
           See `the Cloud Speech documentation
           <https://cloud.google.com/speech-to-text/docs/basics#phrase-
           hints>`__ for more details.  This field is deprecated. Please
-          use `speech\_contexts <>`__ instead. If you specify both
-          `phrase\_hints <>`__ and `speech\_contexts <>`__, Dialogflow
-          will treat the `phrase\_hints <>`__ as a single additional
-          `SpeechContext <>`__.
+          use speech\_contexts instead. If you specify both
+          phrase\_hints and speech\_contexts, Dialogflow
+          will treat the phrase\_hints as a single additional
+          SpeechContext.
       speech_contexts:
           Optional. Context information to assist speech recognition.
           See `the Cloud Speech documentation

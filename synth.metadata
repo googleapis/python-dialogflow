@@ -1,5 +1,5 @@
 {
-  "updateTime": "2020-01-27T23:10:30.330139Z",
+  "updateTime": "2020-01-28T00:20:53.799892Z",
   "sources": [
     {
       "generator": {
@@ -12,8 +12,15 @@
       "git": {
         "name": "googleapis",
         "remote": "git@github.com:googleapis/googleapis.git",
-        "sha": "244e1d2c89346ca2e0701b39e65552330d68545a",
-        "internalRef": "291806349"
+        "sha": "8e981acfd9b97ea2f312f11bbaa7b6c16e412dea",
+        "internalRef": "291821782"
+      }
+    },
+    {
+      "template": {
+        "name": "python_library",
+        "origin": "synthtool.gcp",
+        "version": "2019.10.17"
       }
     }
   ],
@@ -42,6 +49,12 @@
   "newFiles": [
     {
       "path": "MANIFEST.in"
+    },
+    {
+      "path": ".flake8"
+    },
+    {
+      "path": ".coveragerc"
     },
     {
       "path": "setup.cfg"
@@ -170,6 +183,9 @@
       "path": "dialogflow_v2/proto/session_pb2.py"
     },
     {
+      "path": "docs/_static/custom.css"
+    },
+    {
       "path": "docs/gapic/v2/api.rst"
     },
     {
@@ -180,6 +196,9 @@
     },
     {
       "path": "docs/gapic/v2beta1/types.rst"
+    },
+    {
+      "path": "docs/_templates/layout.html"
     },
     {
       "path": "tests/unit/gapic/v2/test_sessions_client_v2.py"
