@@ -862,8 +862,8 @@ SpeechContext = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_SPEECHCONTEXT,
         __module__="google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
-        __doc__="""Hints for the speech recognizer to help with recognition in a specific
-  conversation state.
+        __doc__="""Hints for the speech recognizer to help with recognition
+  in a specific conversation state.
   
   
   Attributes:
@@ -897,7 +897,8 @@ SpeechWordInfo = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_SPEECHWORDINFO,
         __module__="google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
-        __doc__="""Information for a word recognized by the speech recognizer.
+        __doc__="""Information for a word recognized by the speech
+  recognizer.
   
   
   Attributes:
@@ -933,7 +934,8 @@ InputAudioConfig = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_INPUTAUDIOCONFIG,
         __module__="google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
-        __doc__="""Instructs the speech recognizer on how to process the audio content.
+        __doc__="""Instructs the speech recognizer on how to process the
+  audio content.
   
   
   Attributes:
@@ -1083,8 +1085,9 @@ OutputAudioConfig = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_OUTPUTAUDIOCONFIG,
         __module__="google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
-        __doc__="""Instructs the speech synthesizer how to generate the output audio
-  content.
+        __doc__="""Instructs the speech synthesizer how to generate the
+  output audio content. If this audio config is supplied in a request, it
+  overrides all existing text-to-speech settings applied to the agent.
   
   
   Attributes:

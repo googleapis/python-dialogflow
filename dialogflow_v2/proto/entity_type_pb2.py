@@ -1306,8 +1306,8 @@ EntityType = _reflection.GeneratedProtocolMessageType(
         ),
         DESCRIPTOR=_ENTITYTYPE,
         __module__="google.cloud.dialogflow_v2.proto.entity_type_pb2",
-        __doc__="""Represents an entity type. Entity types serve as a tool for extracting
-  parameter values from natural language queries.
+        __doc__="""Represents an entity type. Entity types serve as a tool
+  for extracting parameter values from natural language queries.
   
   
   Attributes:
@@ -1677,7 +1677,8 @@ EntityTypeBatch = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_ENTITYTYPEBATCH,
         __module__="google.cloud.dialogflow_v2.proto.entity_type_pb2",
-        __doc__="""This message is a wrapper around a collection of entity types.
+        __doc__="""This message is a wrapper around a collection of entity
+  types.
   
   
   Attributes:

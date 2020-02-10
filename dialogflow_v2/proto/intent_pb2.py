@@ -4504,8 +4504,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_SIMPLERESPONSES,
                         __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-                        __doc__="""The collection of simple response candidates. This message in
-      ``QueryResult.fulfillment_messages`` and
+                        __doc__="""The collection of simple response candidates. This message
+      in ``QueryResult.fulfillment_messages`` and
       ``WebhookResponse.fulfillment_messages`` should contain only one
       ``SimpleResponse``.
       
@@ -4581,8 +4581,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_SUGGESTION,
                         __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-                        __doc__="""The suggestion chip message that the user can tap to quickly post a
-      reply to the conversation.
+                        __doc__="""The suggestion chip message that the user can tap to
+      quickly post a reply to the conversation.
       
       
       Attributes:
@@ -4614,8 +4614,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_LINKOUTSUGGESTION,
                         __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-                        __doc__="""The suggestion chip message that allows the user to jump out to the app
-      or website associated with this agent.
+                        __doc__="""The suggestion chip message that allows the user to jump
+      out to the app or website associated with this agent.
       
       
       Attributes:
@@ -4698,7 +4698,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                         ),
                         DESCRIPTOR=_INTENT_MESSAGE_CAROUSELSELECT,
                         __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-                        __doc__="""The card for presenting a carousel of options to select from.
+                        __doc__="""The card for presenting a carousel of options to select
+      from.
       
       
       Attributes:
@@ -4714,8 +4715,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_SELECTITEMINFO,
                         __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-                        __doc__="""Additional info about the select item for when it is triggered in a
-      dialog.
+                        __doc__="""Additional info about the select item for when it is
+      triggered in a dialog.
       
       
       Attributes:
@@ -4892,7 +4893,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_TABLECARDROW,
                         __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-                        __doc__="""Row of [TableCard][google.cloud.dialogflow.v2.Intent.Message.TableCard].
+                        __doc__="""Row of
+      [TableCard][google.cloud.dialogflow.v2.Intent.Message.TableCard].
       
       
       Attributes:
@@ -4923,7 +4925,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                 ),
                 DESCRIPTOR=_INTENT_MESSAGE,
                 __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-                __doc__="""Corresponds to the ``Response`` field in the Dialogflow console.
+                __doc__="""Corresponds to the ``Response`` field in the Dialogflow
+    console.
     
     
     Attributes:
@@ -4988,9 +4991,9 @@ Intent = _reflection.GeneratedProtocolMessageType(
         ),
         DESCRIPTOR=_INTENT,
         __module__="google.cloud.dialogflow_v2.proto.intent_pb2",
-        __doc__="""Represents an intent. Intents convert a number of user expressions or
-  patterns into an action. An action is an extraction of a user command or
-  sentence semantics.
+        __doc__="""Represents an intent. Intents convert a number of user
+  expressions or patterns into an action. An action is an extraction of a
+  user command or sentence semantics.
   
   
   Attributes:

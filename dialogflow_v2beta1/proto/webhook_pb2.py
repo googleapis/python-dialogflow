@@ -562,8 +562,8 @@ OriginalDetectIntentRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_ORIGINALDETECTINTENTREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.webhook_pb2",
-        __doc__="""Represents the contents of the original request that was passed to the
-  ``[Streaming]DetectIntent`` call.
+        __doc__="""Represents the contents of the original request that was
+  passed to the ``[Streaming]DetectIntent`` call.
   
   
   Attributes:

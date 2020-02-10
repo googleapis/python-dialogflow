@@ -5769,8 +5769,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_SIMPLERESPONSES,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""The collection of simple response candidates. This message in
-      ``QueryResult.fulfillment_messages`` and
+                        __doc__="""The collection of simple response candidates. This message
+      in ``QueryResult.fulfillment_messages`` and
       ``WebhookResponse.fulfillment_messages`` should contain only one
       ``SimpleResponse``.
       
@@ -5846,8 +5846,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_SUGGESTION,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""The suggestion chip message that the user can tap to quickly post a
-      reply to the conversation.
+                        __doc__="""The suggestion chip message that the user can tap to
+      quickly post a reply to the conversation.
       
       
       Attributes:
@@ -5879,8 +5879,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_LINKOUTSUGGESTION,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""The suggestion chip message that allows the user to jump out to the app
-      or website associated with this agent.
+                        __doc__="""The suggestion chip message that allows the user to jump
+      out to the app or website associated with this agent.
       
       
       Attributes:
@@ -5963,7 +5963,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                         ),
                         DESCRIPTOR=_INTENT_MESSAGE_CAROUSELSELECT,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""The card for presenting a carousel of options to select from.
+                        __doc__="""The card for presenting a carousel of options to select
+      from.
       
       
       Attributes:
@@ -5979,8 +5980,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_SELECTITEMINFO,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""Additional info about the select item for when it is triggered in a
-      dialog.
+                        __doc__="""Additional info about the select item for when it is
+      triggered in a dialog.
       
       
       Attributes:
@@ -6027,8 +6028,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_TELEPHONYSYNTHESIZESPEECH,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""Synthesizes speech and plays back the synthesized audio to the caller in
-      Telephony Gateway.
+                        __doc__="""Synthesizes speech and plays back the synthesized audio to
+      the caller in Telephony Gateway.
       
       Telephony Gateway takes the synthesizer settings from
       ``DetectIntentResponse.output_audio_config`` which can either be set at
@@ -6071,7 +6072,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_RBMTEXT,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""Rich Business Messaging (RBM) text response with suggestions.
+                        __doc__="""Rich Business Messaging (RBM) text response with
+      suggestions.
       
       
       Attributes:
@@ -6152,8 +6154,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                             dict(
                                 DESCRIPTOR=_INTENT_MESSAGE_RBMCARDCONTENT_RBMMEDIA,
                                 __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                                __doc__="""Rich Business Messaging (RBM) Media displayed in Cards The following
-        media-types are currently supported:
+                                __doc__="""Rich Business Messaging (RBM) Media displayed in Cards The
+        following media-types are currently supported:
         
         Image Types
         
@@ -6215,9 +6217,9 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_RBMSUGGESTION,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""Rich Business Messaging (RBM) suggestion. Suggestions allow user to
-      easily select/click a predefined response or perform an action (like
-      opening a web uri).
+                        __doc__="""Rich Business Messaging (RBM) suggestion. Suggestions
+      allow user to easily select/click a predefined response or perform an
+      action (like opening a web uri).
       
       
       Attributes:
@@ -6237,8 +6239,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_INTENT_MESSAGE_RBMSUGGESTEDREPLY,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""Rich Business Messaging (RBM) suggested reply that the user can click
-      instead of typing in their own response.
+                        __doc__="""Rich Business Messaging (RBM) suggested reply that the
+      user can click instead of typing in their own response.
       
       
       Attributes:
@@ -6263,8 +6265,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                             dict(
                                 DESCRIPTOR=_INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONDIAL,
                                 __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                                __doc__="""Opens the user's default dialer app with the specified phone number but
-        does not dial automatically (https://goo.gl/ergbB2).
+                                __doc__="""Opens the user's default dialer app with the specified
+        phone number but does not dial automatically (https://goo.gl/ergbB2).
         
         
         Attributes:
@@ -6283,8 +6285,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                             dict(
                                 DESCRIPTOR=_INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONOPENURI,
                                 __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                                __doc__="""Opens the user's default web browser app to the specified uri
-        (https://goo.gl/6GLJD2). If the user has an app installed that is
+                                __doc__="""Opens the user's default web browser app to the specified
+        uri (https://goo.gl/6GLJD2). If the user has an app installed that is
         registered as the default handler for the URL, then this app will be
         opened instead, and its icon will be used in the suggested action UI.
         
@@ -6302,16 +6304,17 @@ Intent = _reflection.GeneratedProtocolMessageType(
                             dict(
                                 DESCRIPTOR=_INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONSHARELOCATION,
                                 __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                                __doc__="""Opens the device's location chooser so the user can pick a location to
-        send back to the agent (https://goo.gl/GXotJW).
+                                __doc__="""Opens the device's location chooser so the user can pick a
+        location to send back to the agent (https://goo.gl/GXotJW).
+        
         """,
                                 # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionShareLocation)
                             ),
                         ),
                         DESCRIPTOR=_INTENT_MESSAGE_RBMSUGGESTEDACTION,
                         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                        __doc__="""Rich Business Messaging (RBM) suggested client-side action that the user
-      can choose from the card.
+                        __doc__="""Rich Business Messaging (RBM) suggested client-side action
+      that the user can choose from the card.
       
       
       Attributes:
@@ -6529,7 +6532,8 @@ Intent = _reflection.GeneratedProtocolMessageType(
                 ),
                 DESCRIPTOR=_INTENT_MESSAGE,
                 __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                __doc__="""Corresponds to the ``Response`` field in the Dialogflow console.
+                __doc__="""Corresponds to the ``Response`` field in the Dialogflow
+    console.
     
     
     Attributes:
@@ -6608,9 +6612,9 @@ Intent = _reflection.GeneratedProtocolMessageType(
         ),
         DESCRIPTOR=_INTENT,
         __module__="google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-        __doc__="""Represents an intent. Intents convert a number of user expressions or
-  patterns into an action. An action is an extraction of a user command or
-  sentence semantics.
+        __doc__="""Represents an intent. Intents convert a number of user
+  expressions or patterns into an action. An action is an extraction of a
+  user command or sentence semantics.
   
   
   Attributes:
