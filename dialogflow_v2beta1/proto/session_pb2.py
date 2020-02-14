@@ -2011,7 +2011,7 @@ DetectIntentRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_DETECTINTENTREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""============================================================================
+        __doc__="""
   Requests and responses for custom methods. The request to detect user's
   intent.
   
