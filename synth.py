@@ -107,6 +107,15 @@ s.replace(
     ""
 )
 
+
+# Replace bad hyperlink references
+s.replace(
+    "dialogflow_*/proto/audio_config_pb2.py",
+    "\s*\<\>`__",
+    "`"
+)
+
+
 s.replace('dialogflow_v2/proto/agent_pb2.py', ':math:', '')
 s.replace('dialogflow_v2/proto/agent_pb2.py', ':raw-latex:', '')
 

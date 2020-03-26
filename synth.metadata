@@ -1,5 +1,5 @@
 {
-  "updateTime": "2020-03-26T17:37:09.629500Z",
+  "updateTime": "2020-03-26T18:20:13.139271Z",
   "sources": [
     {
       "generator": {
@@ -10,10 +10,17 @@
     },
     {
       "git": {
+        "name": ".",
+        "remote": "git@github.com:googleapis/dialogflow-python-client-v2.git",
+        "sha": "1c25409d4ee04503840a23d86adf31e3d3ec02ff"
+      }
+    },
+    {
+      "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "d4aa417ed2bba89c2d216900282bddfdafef6128",
-        "internalRef": "303010132"
+        "sha": "65816afa71e588252b7119dc723592abe51ea106",
+        "internalRef": "303150338"
       }
     }
   ],
