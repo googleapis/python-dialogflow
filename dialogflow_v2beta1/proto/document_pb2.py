@@ -938,7 +938,8 @@ KnowledgeOperationMetadata = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_KNOWLEDGEOPERATIONMETADATA,
         __module__="google.cloud.dialogflow_v2beta1.proto.document_pb2",
-        __doc__="""Metadata in google::longrunning::Operation for Knowledge operations.
+        __doc__="""Metadata in google::longrunning::Operation for Knowledge
+  operations.
   
   
   Attributes:
