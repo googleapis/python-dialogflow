@@ -78,7 +78,7 @@ More Information: `Google Cloud Platform Launch Stages <https://cloud.google.com
 Contributing
 ------------
 
-Contributions welcome! See the `Contributing Guide <https://github.com/googleapis/python-dialogflow/blob/master/.github/CONTRIBUTING.rst>`_.
+Contributions welcome! See the `Contributing Guide <https://github.com/googleapis/python-dialogflow/blob/master/.github/CONTRIBUTING.md>`_.
 
 License
 -------
