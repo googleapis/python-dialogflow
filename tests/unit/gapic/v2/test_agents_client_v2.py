@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ from google.rpc import status_pb2
 
 import dialogflow_v2
 from dialogflow_v2.proto import agent_pb2
+from dialogflow_v2.proto import validation_result_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 
@@ -446,3 +447,34 @@ class TestAgentsClient(object):
         response = client.restore_agent(parent)
         exception = response.exception()
         assert exception.errors[0] == error
+
+    def test_get_validation_result(self):
+        # Setup Expected Response
+        expected_response = {}
+        expected_response = validation_result_pb2.ValidationResult(**expected_response)
+
+        # Mock the API response
+        channel = ChannelStub(responses=[expected_response])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.AgentsClient()
+
+        response = client.get_validation_result()
+        assert expected_response == response
+
+        assert len(channel.requests) == 1
+        expected_request = agent_pb2.GetValidationResultRequest()
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_get_validation_result_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.AgentsClient()
+
+        with pytest.raises(CustomException):
+            client.get_validation_result()

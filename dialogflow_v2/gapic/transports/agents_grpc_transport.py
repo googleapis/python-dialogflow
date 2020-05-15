@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -240,3 +240,17 @@ class AgentsGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["agents_stub"].RestoreAgent
+
+    @property
+    def get_validation_result(self):
+        """Return the gRPC stub for :meth:`AgentsClient.get_validation_result`.
+
+        Gets agent validation result. Agent validation is performed during
+        training time and is updated automatically when training is completed.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["agents_stub"].GetValidationResult

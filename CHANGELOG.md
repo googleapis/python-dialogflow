@@ -4,6 +4,36 @@
 
 [1]: https://pypi.org/project/dialogflow/#history
 
+## [1.0.0](https://www.github.com/googleapis/dialogflow-python-client-v2/compare/v0.8.0...v1.0.0) (2020-05-13)
+
+
+### Features
+
+* release 1.0.0 ([#192](https://www.github.com/googleapis/dialogflow-python-client-v2/issues/192)) ([33a7263](https://www.github.com/googleapis/dialogflow-python-client-v2/commit/33a7263c18ae72d89263e790f76eb1682fe69c9f)), closes [#189](https://www.github.com/googleapis/dialogflow-python-client-v2/issues/189)
+* release_status to production/stable ([#189](https://www.github.com/googleapis/dialogflow-python-client-v2/issues/189)) ([8b995dc](https://www.github.com/googleapis/dialogflow-python-client-v2/commit/8b995dc0dd883e4980a492a67d9c76b7f2603f00))
+
+## [0.8.0](https://www.github.com/googleapis/dialogflow-python-client-v2/compare/v0.7.2...v0.8.0) (2020-03-26)
+
+
+### Features
+
+* **dialogflow:** add `MediaContent`,  `BrowseCarouselCard`, `ColumnProperties`in v2; add `SpeechContext`, `SpeechWordInfo`in v2; add `enable_word_info`, `speech_contexts`,`model` to InputAudioConfig in v2; add `subtitles` to `Intent.Message.ListSelect` in `v2beta1`; add `language_code` to `ListKnowledgeBase` in v2beta1; add `webhook_headers` to `QueryParameters` in v2beta1 ([#175](https://www.github.com/googleapis/dialogflow-python-client-v2/issues/175)) ([713846b](https://www.github.com/googleapis/dialogflow-python-client-v2/commit/713846b7ed99eaf78cdf383aa9d39b43731b9a0d))
+* add validation support to v2; add `output_audio_config_mask` to `detect_intent` method in v2beta1 and v2; add sub agent to v2beta1 (via synth) ([#179](https://www.github.com/googleapis/dialogflow-python-client-v2/issues/179)) ([5a6f18e](https://www.github.com/googleapis/dialogflow-python-client-v2/commit/5a6f18e362b5dd87affbe75e0d0bfc0c21ab87a9))
+
+### [0.7.2](https://www.github.com/googleapis/dialogflow-python-client-v2/compare/v0.7.1...v0.7.2) (2019-10-18)
+
+
+### Bug Fixes
+
+* define version once in setup.py ([#158](https://www.github.com/googleapis/dialogflow-python-client-v2/issues/158)) ([bf42fc4](https://www.github.com/googleapis/dialogflow-python-client-v2/commit/bf42fc45607b97bc040cbdacbde8ff5a4b6ad29b))
+
+### [0.7.1](https://www.github.com/googleapis/dialogflow-python-client-v2/compare/v0.7.0...v0.7.1) (2019-10-17)
+
+
+### Bug Fixes
+
+* pin google-api-core>=1.14.0, update format ([#156](https://www.github.com/googleapis/dialogflow-python-client-v2/issues/156)) ([69951d0](https://www.github.com/googleapis/dialogflow-python-client-v2/commit/69951d013b7c99966848565e30d5ab1bad7229fb))
+
 ## [0.7.0](https://www.github.com/googleapis/dialogflow-python-client-v2/compare/v0.6.0...v0.7.0) (2019-10-16)
 
 
