@@ -1,26 +1,25 @@
 {
-  "updateTime": "2020-03-26T18:20:13.139271Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "1.1.1",
-        "dockerImage": "googleapis/artman@sha256:5ef340c8d9334719bc5c6981d95f4a5d2737b0a6a24f2b9a0d430e96fff85c5b"
+        "version": "2.0.0",
+        "dockerImage": "googleapis/artman@sha256:b3b47805231a305d0f40c4bf069df20f6a2635574e6d4259fac651d3f9f6e098"
       }
     },
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/dialogflow-python-client-v2.git",
-        "sha": "1c25409d4ee04503840a23d86adf31e3d3ec02ff"
+        "remote": "https://github.com/googleapis/dialogflow-python-client-v2.git",
+        "sha": "89d071c55c5bf9c7f766c5b49de7ce33b75222d6"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "65816afa71e588252b7119dc723592abe51ea106",
-        "internalRef": "303150338"
+        "sha": "2433bd50656264a2ef9f684bf646fb4d250d39ff",
+        "internalRef": "311601348"
       }
     }
   ],
