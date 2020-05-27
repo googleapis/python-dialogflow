@@ -117,6 +117,34 @@ class IntentsGrpcTransport(object):
         return self._channel
 
     @property
+    def delete_intent(self):
+        """Return the gRPC stub for :meth:`IntentsClient.delete_intent`.
+
+        Deletes the specified intent and its direct or indirect followup intents.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["intents_stub"].DeleteIntent
+
+    @property
+    def batch_delete_intents(self):
+        """Return the gRPC stub for :meth:`IntentsClient.batch_delete_intents`.
+
+        Deletes intents in the specified agent.
+
+        Operation <response: ``google.protobuf.Empty``>
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["intents_stub"].BatchDeleteIntents
+
+    @property
     def list_intents(self):
         """Return the gRPC stub for :meth:`IntentsClient.list_intents`.
 
@@ -169,19 +197,6 @@ class IntentsGrpcTransport(object):
         return self._stubs["intents_stub"].UpdateIntent
 
     @property
-    def delete_intent(self):
-        """Return the gRPC stub for :meth:`IntentsClient.delete_intent`.
-
-        Deletes the specified intent and its direct or indirect followup intents.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["intents_stub"].DeleteIntent
-
-    @property
     def batch_update_intents(self):
         """Return the gRPC stub for :meth:`IntentsClient.batch_update_intents`.
 
@@ -195,18 +210,3 @@ class IntentsGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["intents_stub"].BatchUpdateIntents
-
-    @property
-    def batch_delete_intents(self):
-        """Return the gRPC stub for :meth:`IntentsClient.batch_delete_intents`.
-
-        Deletes intents in the specified agent.
-
-        Operation <response: ``google.protobuf.Empty``>
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["intents_stub"].BatchDeleteIntents

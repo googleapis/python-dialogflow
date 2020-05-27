@@ -17,6 +17,11 @@ config = {
                 }
             },
             "methods": {
+                "DeleteSessionEntityType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default",
+                },
                 "ListSessionEntityTypes": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
@@ -35,11 +40,6 @@ config = {
                 "UpdateSessionEntityType": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default",
-                },
-                "DeleteSessionEntityType": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
                     "retry_params_name": "default",
                 },
             },

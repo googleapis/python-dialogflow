@@ -38,8 +38,8 @@ if sys.version_info[:2] == (2, 7):
     warnings.warn(message, DeprecationWarning)
 
 
-class AgentsClient(agents_client.AgentsClient):
-    __doc__ = agents_client.AgentsClient.__doc__
+class EntityTypesClient(entity_types_client.EntityTypesClient):
+    __doc__ = entity_types_client.EntityTypesClient.__doc__
     enums = enums
 
 
@@ -48,8 +48,8 @@ class ContextsClient(contexts_client.ContextsClient):
     enums = enums
 
 
-class EntityTypesClient(entity_types_client.EntityTypesClient):
-    __doc__ = entity_types_client.EntityTypesClient.__doc__
+class SessionEntityTypesClient(session_entity_types_client.SessionEntityTypesClient):
+    __doc__ = session_entity_types_client.SessionEntityTypesClient.__doc__
     enums = enums
 
 
@@ -58,23 +58,23 @@ class IntentsClient(intents_client.IntentsClient):
     enums = enums
 
 
-class SessionEntityTypesClient(session_entity_types_client.SessionEntityTypesClient):
-    __doc__ = session_entity_types_client.SessionEntityTypesClient.__doc__
+class SessionsClient(sessions_client.SessionsClient):
+    __doc__ = sessions_client.SessionsClient.__doc__
     enums = enums
 
 
-class SessionsClient(sessions_client.SessionsClient):
-    __doc__ = sessions_client.SessionsClient.__doc__
+class AgentsClient(agents_client.AgentsClient):
+    __doc__ = agents_client.AgentsClient.__doc__
     enums = enums
 
 
 __all__ = (
     "enums",
     "types",
-    "AgentsClient",
-    "ContextsClient",
     "EntityTypesClient",
-    "IntentsClient",
+    "ContextsClient",
     "SessionEntityTypesClient",
+    "IntentsClient",
     "SessionsClient",
+    "AgentsClient",
 )

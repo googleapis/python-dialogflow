@@ -17,6 +17,16 @@ config = {
                 }
             },
             "methods": {
+                "DeleteContext": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default",
+                },
+                "DeleteAllContexts": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default",
+                },
                 "ListContexts": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
@@ -35,16 +45,6 @@ config = {
                 "UpdateContext": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default",
-                },
-                "DeleteContext": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default",
-                },
-                "DeleteAllContexts": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
                     "retry_params_name": "default",
                 },
             },

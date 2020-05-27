@@ -32,8 +32,6 @@ import grpc
 from dialogflow_v2.gapic import enums
 from dialogflow_v2.gapic import sessions_client_config
 from dialogflow_v2.gapic.transports import sessions_grpc_transport
-from dialogflow_v2.proto import agent_pb2
-from dialogflow_v2.proto import agent_pb2_grpc
 from dialogflow_v2.proto import audio_config_pb2
 from dialogflow_v2.proto import context_pb2
 from dialogflow_v2.proto import context_pb2_grpc
@@ -45,7 +43,6 @@ from dialogflow_v2.proto import session_entity_type_pb2
 from dialogflow_v2.proto import session_entity_type_pb2_grpc
 from dialogflow_v2.proto import session_pb2
 from dialogflow_v2.proto import session_pb2_grpc
-from dialogflow_v2.proto import validation_result_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
@@ -234,7 +231,8 @@ class SessionsClient(object):
             >>>
             >>> client = dialogflow_v2.SessionsClient()
             >>>
-            >>> session = client.session_path('[PROJECT]', '[SESSION]')
+            >>> # TODO: Initialize `session`:
+            >>> session = ''
             >>>
             >>> # TODO: Initialize `query_input`:
             >>> query_input = {}
