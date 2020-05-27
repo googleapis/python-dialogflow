@@ -17,6 +17,7 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.api import client_pb2 as google_dot_api_dot_client__pb2
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from dialogflow_v2beta1.proto import (
@@ -32,7 +33,6 @@ from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from google.api import client_pb2 as google_dot_api_dot_client__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -43,10 +43,11 @@ DESCRIPTOR = _descriptor.FileDescriptor(
         "\n#com.google.cloud.dialogflow.v2beta1B\013IntentProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1"
     ),
     serialized_pb=_b(
-        '\n2google/cloud/dialogflow_v2beta1/proto/intent.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x38google/cloud/dialogflow_v2beta1/proto/audio_config.proto\x1a\x33google/cloud/dialogflow_v2beta1/proto/context.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x17google/api/client.proto"\x8cN\n\x06Intent\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12K\n\rwebhook_state\x18\x06 \x01(\x0e\x32\x34.google.cloud.dialogflow.v2beta1.Intent.WebhookState\x12\x10\n\x08priority\x18\x03 \x01(\x05\x12\x13\n\x0bis_fallback\x18\x04 \x01(\x08\x12\x16\n\nml_enabled\x18\x05 \x01(\x08\x42\x02\x18\x01\x12\x13\n\x0bml_disabled\x18\x13 \x01(\x08\x12\x17\n\x0f\x65nd_interaction\x18\x15 \x01(\x08\x12\x1b\n\x13input_context_names\x18\x07 \x03(\t\x12\x0e\n\x06\x65vents\x18\x08 \x03(\t\x12P\n\x10training_phrases\x18\t \x03(\x0b\x32\x36.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase\x12\x0e\n\x06\x61\x63tion\x18\n \x01(\t\x12\x41\n\x0foutput_contexts\x18\x0b \x03(\x0b\x32(.google.cloud.dialogflow.v2beta1.Context\x12\x16\n\x0ereset_contexts\x18\x0c \x01(\x08\x12\x45\n\nparameters\x18\r \x03(\x0b\x32\x31.google.cloud.dialogflow.v2beta1.Intent.Parameter\x12\x41\n\x08messages\x18\x0e \x03(\x0b\x32/.google.cloud.dialogflow.v2beta1.Intent.Message\x12\\\n\x1a\x64\x65\x66\x61ult_response_platforms\x18\x0f \x03(\x0e\x32\x38.google.cloud.dialogflow.v2beta1.Intent.Message.Platform\x12!\n\x19root_followup_intent_name\x18\x10 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x11 \x01(\t\x12X\n\x14\x66ollowup_intent_info\x18\x12 \x03(\x0b\x32:.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo\x1a\xdd\x02\n\x0eTrainingPhrase\x12\x0c\n\x04name\x18\x01 \x01(\t\x12I\n\x04type\x18\x02 \x01(\x0e\x32;.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase.Type\x12J\n\x05parts\x18\x03 \x03(\x0b\x32;.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase.Part\x12\x19\n\x11times_added_count\x18\x04 \x01(\x05\x1aN\n\x04Part\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x13\n\x0b\x65ntity_type\x18\x02 \x01(\t\x12\r\n\x05\x61lias\x18\x03 \x01(\t\x12\x14\n\x0cuser_defined\x18\x04 \x01(\x08";\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x45XAMPLE\x10\x01\x12\x10\n\x08TEMPLATE\x10\x02\x1a\x02\x08\x01\x1a\xac\x01\n\tParameter\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x15\n\rdefault_value\x18\x04 \x01(\t\x12 \n\x18\x65ntity_type_display_name\x18\x05 \x01(\t\x12\x11\n\tmandatory\x18\x06 \x01(\x08\x12\x0f\n\x07prompts\x18\x07 \x03(\t\x12\x0f\n\x07is_list\x18\x08 \x01(\x08\x1a\xbd@\n\x07Message\x12\x44\n\x04text\x18\x01 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2beta1.Intent.Message.TextH\x00\x12\x46\n\x05image\x18\x02 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.ImageH\x00\x12U\n\rquick_replies\x18\x03 \x01(\x0b\x32<.google.cloud.dialogflow.v2beta1.Intent.Message.QuickRepliesH\x00\x12\x44\n\x04\x63\x61rd\x18\x04 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2beta1.Intent.Message.CardH\x00\x12*\n\x07payload\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x12[\n\x10simple_responses\x18\x07 \x01(\x0b\x32?.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponsesH\x00\x12O\n\nbasic_card\x18\x08 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCardH\x00\x12R\n\x0bsuggestions\x18\t \x01(\x0b\x32;.google.cloud.dialogflow.v2beta1.Intent.Message.SuggestionsH\x00\x12`\n\x13link_out_suggestion\x18\n \x01(\x0b\x32\x41.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestionH\x00\x12Q\n\x0blist_select\x18\x0b \x01(\x0b\x32:.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelectH\x00\x12Y\n\x0f\x63\x61rousel_select\x18\x0c \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelectH\x00\x12\x62\n\x14telephony_play_audio\x18\r \x01(\x0b\x32\x42.google.cloud.dialogflow.v2beta1.Intent.Message.TelephonyPlayAudioH\x00\x12p\n\x1btelephony_synthesize_speech\x18\x0e \x01(\x0b\x32I.google.cloud.dialogflow.v2beta1.Intent.Message.TelephonySynthesizeSpeechH\x00\x12h\n\x17telephony_transfer_call\x18\x0f \x01(\x0b\x32\x45.google.cloud.dialogflow.v2beta1.Intent.Message.TelephonyTransferCallH\x00\x12K\n\x08rbm_text\x18\x12 \x01(\x0b\x32\x37.google.cloud.dialogflow.v2beta1.Intent.Message.RbmTextH\x00\x12\x65\n\x18rbm_standalone_rich_card\x18\x13 \x01(\x0b\x32\x41.google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCardH\x00\x12\x61\n\x16rbm_carousel_rich_card\x18\x14 \x01(\x0b\x32?.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCarouselCardH\x00\x12\x62\n\x14\x62rowse_carousel_card\x18\x16 \x01(\x0b\x32\x42.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCardH\x00\x12O\n\ntable_card\x18\x17 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2beta1.Intent.Message.TableCardH\x00\x12U\n\rmedia_content\x18\x18 \x01(\x0b\x32<.google.cloud.dialogflow.v2beta1.Intent.Message.MediaContentH\x00\x12J\n\x08platform\x18\x06 \x01(\x0e\x32\x38.google.cloud.dialogflow.v2beta1.Intent.Message.Platform\x1a\x14\n\x04Text\x12\x0c\n\x04text\x18\x01 \x03(\t\x1a\x36\n\x05Image\x12\x11\n\timage_uri\x18\x01 \x01(\t\x12\x1a\n\x12\x61\x63\x63\x65ssibility_text\x18\x02 \x01(\t\x1a\x34\n\x0cQuickReplies\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\rquick_replies\x18\x02 \x03(\t\x1a\xb2\x01\n\x04\x43\x61rd\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x11\n\timage_uri\x18\x03 \x01(\t\x12L\n\x07\x62uttons\x18\x04 \x03(\x0b\x32;.google.cloud.dialogflow.v2beta1.Intent.Message.Card.Button\x1a(\n\x06\x42utton\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08postback\x18\x02 \x01(\t\x1aL\n\x0eSimpleResponse\x12\x16\n\x0etext_to_speech\x18\x01 \x01(\t\x12\x0c\n\x04ssml\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_text\x18\x03 \x01(\t\x1ak\n\x0fSimpleResponses\x12X\n\x10simple_responses\x18\x01 \x03(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponse\x1a\xfe\x02\n\tBasicCard\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x16\n\x0e\x66ormatted_text\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x12Q\n\x07\x62uttons\x18\x05 \x03(\x0b\x32@.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button\x1a\x9e\x01\n\x06\x42utton\x12\r\n\x05title\x18\x01 \x01(\t\x12g\n\x0fopen_uri_action\x18\x02 \x01(\x0b\x32N.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button.OpenUriAction\x1a\x1c\n\rOpenUriAction\x12\x0b\n\x03uri\x18\x01 \x01(\t\x1a\x1b\n\nSuggestion\x12\r\n\x05title\x18\x01 \x01(\t\x1a^\n\x0bSuggestions\x12O\n\x0bsuggestions\x18\x01 \x03(\x0b\x32:.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestion\x1a:\n\x11LinkOutSuggestion\x12\x18\n\x10\x64\x65stination_name\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x1a\xc3\x02\n\nListSelect\x12\r\n\x05title\x18\x01 \x01(\t\x12N\n\x05items\x18\x02 \x03(\x0b\x32?.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect.Item\x12\x15\n\x08subtitle\x18\x03 \x01(\tB\x03\xe0\x41\x01\x1a\xbe\x01\n\x04Item\x12L\n\x04info\x18\x01 \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x1a\xa5\x02\n\x0e\x43\x61rouselSelect\x12R\n\x05items\x18\x01 \x03(\x0b\x32\x43.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect.Item\x1a\xbe\x01\n\x04Item\x12L\n\x04info\x18\x01 \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x1a/\n\x0eSelectItemInfo\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x10\n\x08synonyms\x18\x02 \x03(\t\x1a\'\n\x12TelephonyPlayAudio\x12\x11\n\taudio_uri\x18\x01 \x01(\t\x1a\x45\n\x19TelephonySynthesizeSpeech\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12\x0e\n\x04ssml\x18\x02 \x01(\tH\x00\x42\x08\n\x06source\x1a-\n\x15TelephonyTransferCall\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x1an\n\x07RbmText\x12\x0c\n\x04text\x18\x01 \x01(\t\x12U\n\x0erbm_suggestion\x18\x02 \x03(\x0b\x32=.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestion\x1a\x87\x02\n\x0fRbmCarouselCard\x12]\n\ncard_width\x18\x01 \x01(\x0e\x32I.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCarouselCard.CardWidth\x12U\n\rcard_contents\x18\x02 \x03(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent">\n\tCardWidth\x12\x1a\n\x16\x43\x41RD_WIDTH_UNSPECIFIED\x10\x00\x12\t\n\x05SMALL\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x1a\x82\x04\n\x11RbmStandaloneCard\x12k\n\x10\x63\x61rd_orientation\x18\x01 \x01(\x0e\x32Q.google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCard.CardOrientation\x12|\n\x19thumbnail_image_alignment\x18\x02 \x01(\x0e\x32Y.google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCard.ThumbnailImageAlignment\x12T\n\x0c\x63\x61rd_content\x18\x03 \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent"Q\n\x0f\x43\x61rdOrientation\x12 \n\x1c\x43\x41RD_ORIENTATION_UNSPECIFIED\x10\x00\x12\x0e\n\nHORIZONTAL\x10\x01\x12\x0c\n\x08VERTICAL\x10\x02"Y\n\x17ThumbnailImageAlignment\x12)\n%THUMBNAIL_IMAGE_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x08\n\x04LEFT\x10\x01\x12\t\n\x05RIGHT\x10\x02\x1a\xb9\x03\n\x0eRbmCardContent\x12\r\n\x05title\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12V\n\x05media\x18\x03 \x01(\x0b\x32G.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent.RbmMedia\x12R\n\x0bsuggestions\x18\x04 \x03(\x0b\x32=.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestion\x1a\xd6\x01\n\x08RbmMedia\x12\x10\n\x08\x66ile_uri\x18\x01 \x01(\t\x12\x15\n\rthumbnail_uri\x18\x02 \x01(\t\x12^\n\x06height\x18\x03 \x01(\x0e\x32N.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent.RbmMedia.Height"A\n\x06Height\x12\x16\n\x12HEIGHT_UNSPECIFIED\x10\x00\x12\t\n\x05SHORT\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04TALL\x10\x03\x1a\xc7\x01\n\rRbmSuggestion\x12R\n\x05reply\x18\x01 \x01(\x0b\x32\x41.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedReplyH\x00\x12T\n\x06\x61\x63tion\x18\x02 \x01(\x0b\x32\x42.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedActionH\x00\x42\x0c\n\nsuggestion\x1a\x38\n\x11RbmSuggestedReply\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x15\n\rpostback_data\x18\x02 \x01(\t\x1a\x9b\x04\n\x12RbmSuggestedAction\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x15\n\rpostback_data\x18\x02 \x01(\t\x12i\n\x04\x64ial\x18\x03 \x01(\x0b\x32Y.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionDialH\x00\x12p\n\x08open_url\x18\x04 \x01(\x0b\x32\\.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionOpenUriH\x00\x12|\n\x0eshare_location\x18\x05 \x01(\x0b\x32\x62.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionShareLocationH\x00\x1a.\n\x16RbmSuggestedActionDial\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x1a(\n\x19RbmSuggestedActionOpenUri\x12\x0b\n\x03uri\x18\x01 \x01(\t\x1a!\n\x1fRbmSuggestedActionShareLocationB\x08\n\x06\x61\x63tion\x1a\x8e\x04\n\x0cMediaContent\x12\x62\n\nmedia_type\x18\x01 \x01(\x0e\x32N.google.cloud.dialogflow.v2beta1.Intent.Message.MediaContent.ResponseMediaType\x12g\n\rmedia_objects\x18\x02 \x03(\x0b\x32P.google.cloud.dialogflow.v2beta1.Intent.Message.MediaContent.ResponseMediaObject\x1a\xeb\x01\n\x13ResponseMediaObject\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12L\n\x0blarge_image\x18\x03 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.ImageH\x00\x12\x45\n\x04icon\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.ImageH\x00\x12\x13\n\x0b\x63ontent_url\x18\x05 \x01(\tB\x07\n\x05image"C\n\x11ResponseMediaType\x12#\n\x1fRESPONSE_MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\t\n\x05\x41UDIO\x10\x01\x1a\x80\x07\n\x12\x42rowseCarouselCard\x12h\n\x05items\x18\x01 \x03(\x0b\x32Y.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem\x12u\n\x15image_display_options\x18\x02 \x01(\x0e\x32V.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.ImageDisplayOptions\x1a\x90\x04\n\x16\x42rowseCarouselCardItem\x12\x80\x01\n\x0fopen_uri_action\x18\x01 \x01(\x0b\x32g.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x12\x0e\n\x06\x66ooter\x18\x05 \x01(\t\x1a\xf8\x01\n\rOpenUrlAction\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x8a\x01\n\rurl_type_hint\x18\x03 \x01(\x0e\x32s.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint"M\n\x0bUrlTypeHint\x12\x1d\n\x19URL_TYPE_HINT_UNSPECIFIED\x10\x00\x12\x0e\n\nAMP_ACTION\x10\x01\x12\x0f\n\x0b\x41MP_CONTENT\x10\x02"v\n\x13ImageDisplayOptions\x12%\n!IMAGE_DISPLAY_OPTIONS_UNSPECIFIED\x10\x00\x12\x08\n\x04GRAY\x10\x01\x12\t\n\x05WHITE\x10\x02\x12\x0b\n\x07\x43ROPPED\x10\x03\x12\x16\n\x12\x42LURRED_BACKGROUND\x10\x04\x1a\xee\x02\n\tTableCard\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x44\n\x05image\x18\x03 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x12[\n\x11\x63olumn_properties\x18\x04 \x03(\x0b\x32@.google.cloud.dialogflow.v2beta1.Intent.Message.ColumnProperties\x12J\n\x04rows\x18\x05 \x03(\x0b\x32<.google.cloud.dialogflow.v2beta1.Intent.Message.TableCardRow\x12Q\n\x07\x62uttons\x18\x06 \x03(\x0b\x32@.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button\x1a\xfa\x01\n\x10\x43olumnProperties\x12\x0e\n\x06header\x18\x01 \x01(\t\x12r\n\x14horizontal_alignment\x18\x02 \x01(\x0e\x32T.google.cloud.dialogflow.v2beta1.Intent.Message.ColumnProperties.HorizontalAlignment"b\n\x13HorizontalAlignment\x12$\n HORIZONTAL_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x0b\n\x07LEADING\x10\x01\x12\n\n\x06\x43\x45NTER\x10\x02\x12\x0c\n\x08TRAILING\x10\x03\x1as\n\x0cTableCardRow\x12L\n\x05\x63\x65lls\x18\x01 \x03(\x0b\x32=.google.cloud.dialogflow.v2beta1.Intent.Message.TableCardCell\x12\x15\n\rdivider_after\x18\x02 \x01(\x08\x1a\x1d\n\rTableCardCell\x12\x0c\n\x04text\x18\x01 \x01(\t"\xaf\x01\n\x08Platform\x12\x18\n\x14PLATFORM_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x01\x12\t\n\x05SLACK\x10\x02\x12\x0c\n\x08TELEGRAM\x10\x03\x12\x07\n\x03KIK\x10\x04\x12\t\n\x05SKYPE\x10\x05\x12\x08\n\x04LINE\x10\x06\x12\t\n\x05VIBER\x10\x07\x12\x15\n\x11\x41\x43TIONS_ON_GOOGLE\x10\x08\x12\r\n\tTELEPHONY\x10\n\x12\x13\n\x0fGOOGLE_HANGOUTS\x10\x0b\x42\t\n\x07message\x1aW\n\x12\x46ollowupIntentInfo\x12\x1c\n\x14\x66ollowup_intent_name\x18\x01 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x02 \x01(\t"t\n\x0cWebhookState\x12\x1d\n\x19WEBHOOK_STATE_UNSPECIFIED\x10\x00\x12\x19\n\x15WEBHOOK_STATE_ENABLED\x10\x01\x12*\n&WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING\x10\x02:\x91\x01\xea\x41\x8d\x01\n dialogflow.googleapis.com/Intent\x12)projects/{project}/agent/intents/{intent}\x12>projects/{project}/locations/{location}/agent/intents/{intent}"\xa9\x01\n\x12ListIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x03 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t"h\n\x13ListIntentsResponse\x12\x38\n\x07intents\x18\x01 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"~\n\x10GetIntentRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x03 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView"\xbc\x01\n\x13\x43reateIntentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x37\n\x06intent\x18\x02 \x01(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent\x12\x1a\n\rlanguage_code\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x04 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView"\xdd\x01\n\x13UpdateIntentRequest\x12\x37\n\x06intent\x18\x01 \x01(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12/\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12@\n\x0bintent_view\x18\x04 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView"#\n\x13\x44\x65leteIntentRequest\x12\x0c\n\x04name\x18\x01 \x01(\t"\xb3\x02\n\x19\x42\x61tchUpdateIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x1a\n\x10intent_batch_uri\x18\x02 \x01(\tH\x00\x12K\n\x13intent_batch_inline\x18\x03 \x01(\x0b\x32,.google.cloud.dialogflow.v2beta1.IntentBatchH\x00\x12\x1a\n\rlanguage_code\x18\x04 \x01(\tB\x03\xe0\x41\x01\x12/\n\x0bupdate_mask\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12@\n\x0bintent_view\x18\x06 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentViewB\x0e\n\x0cintent_batch"V\n\x1a\x42\x61tchUpdateIntentsResponse\x12\x38\n\x07intents\x18\x01 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent"e\n\x19\x42\x61tchDeleteIntentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x38\n\x07intents\x18\x02 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent"G\n\x0bIntentBatch\x12\x38\n\x07intents\x18\x01 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent*?\n\nIntentView\x12\x1b\n\x17INTENT_VIEW_UNSPECIFIED\x10\x00\x12\x14\n\x10INTENT_VIEW_FULL\x10\x01\x32\xfd\r\n\x07Intents\x12\xe6\x01\n\x0bListIntents\x12\x33.google.cloud.dialogflow.v2beta1.ListIntentsRequest\x1a\x34.google.cloud.dialogflow.v2beta1.ListIntentsResponse"l\x82\xd3\xe4\x93\x02\x66\x12*/v2beta1/{parent=projects/*/agent}/intentsZ8\x12\x36/v2beta1/{parent=projects/*/locations/*/agent}/intents\x12\xd5\x01\n\tGetIntent\x12\x31.google.cloud.dialogflow.v2beta1.GetIntentRequest\x1a\'.google.cloud.dialogflow.v2beta1.Intent"l\x82\xd3\xe4\x93\x02\x66\x12*/v2beta1/{name=projects/*/agent/intents/*}Z8\x12\x36/v2beta1/{name=projects/*/locations/*/agent/intents/*}\x12\xeb\x01\n\x0c\x43reateIntent\x12\x34.google.cloud.dialogflow.v2beta1.CreateIntentRequest\x1a\'.google.cloud.dialogflow.v2beta1.Intent"|\x82\xd3\xe4\x93\x02v"*/v2beta1/{parent=projects/*/agent}/intents:\x06intentZ@"6/v2beta1/{parent=projects/*/locations/*/agent}/intents:\x06intent\x12\xfb\x01\n\x0cUpdateIntent\x12\x34.google.cloud.dialogflow.v2beta1.UpdateIntentRequest\x1a\'.google.cloud.dialogflow.v2beta1.Intent"\x8b\x01\x82\xd3\xe4\x93\x02\x84\x01\x32\x31/v2beta1/{intent.name=projects/*/agent/intents/*}:\x06intentZG2=/v2beta1/{intent.name=projects/*/locations/*/agent/intents/*}:\x06intent\x12\xca\x01\n\x0c\x44\x65leteIntent\x12\x34.google.cloud.dialogflow.v2beta1.DeleteIntentRequest\x1a\x16.google.protobuf.Empty"l\x82\xd3\xe4\x93\x02\x66**/v2beta1/{name=projects/*/agent/intents/*}Z8*6/v2beta1/{name=projects/*/locations/*/agent/intents/*}\x12\xfd\x01\n\x12\x42\x61tchUpdateIntents\x12:.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest\x1a\x1d.google.longrunning.Operation"\x8b\x01\x82\xd3\xe4\x93\x02\x84\x01"6/v2beta1/{parent=projects/*/agent}/intents:batchUpdate:\x01*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchUpdate:\x01*\x12\xfd\x01\n\x12\x42\x61tchDeleteIntents\x12:.google.cloud.dialogflow.v2beta1.BatchDeleteIntentsRequest\x1a\x1d.google.longrunning.Operation"\x8b\x01\x82\xd3\xe4\x93\x02\x84\x01"6/v2beta1/{parent=projects/*/agent}/intents:batchDelete:\x01*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchDelete:\x01*\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\xa9\x01\n#com.google.cloud.dialogflow.v2beta1B\x0bIntentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3'
+        '\n2google/cloud/dialogflow_v2beta1/proto/intent.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x38google/cloud/dialogflow_v2beta1/proto/audio_config.proto\x1a\x33google/cloud/dialogflow_v2beta1/proto/context.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto"\xfdN\n\x06Intent\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12\x19\n\x0c\x64isplay_name\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12P\n\rwebhook_state\x18\x06 \x01(\x0e\x32\x34.google.cloud.dialogflow.v2beta1.Intent.WebhookStateB\x03\xe0\x41\x01\x12\x15\n\x08priority\x18\x03 \x01(\x05\x42\x03\xe0\x41\x01\x12\x18\n\x0bis_fallback\x18\x04 \x01(\x08\x42\x03\xe0\x41\x01\x12\x19\n\nml_enabled\x18\x05 \x01(\x08\x42\x05\x18\x01\xe0\x41\x01\x12\x18\n\x0bml_disabled\x18\x13 \x01(\x08\x42\x03\xe0\x41\x01\x12\x1c\n\x0f\x65nd_interaction\x18\x15 \x01(\x08\x42\x03\xe0\x41\x01\x12 \n\x13input_context_names\x18\x07 \x03(\tB\x03\xe0\x41\x01\x12\x13\n\x06\x65vents\x18\x08 \x03(\tB\x03\xe0\x41\x01\x12U\n\x10training_phrases\x18\t \x03(\x0b\x32\x36.google.cloud.dialogflow.v2beta1.Intent.TrainingPhraseB\x03\xe0\x41\x01\x12\x13\n\x06\x61\x63tion\x18\n \x01(\tB\x03\xe0\x41\x01\x12\x46\n\x0foutput_contexts\x18\x0b \x03(\x0b\x32(.google.cloud.dialogflow.v2beta1.ContextB\x03\xe0\x41\x01\x12\x1b\n\x0ereset_contexts\x18\x0c \x01(\x08\x42\x03\xe0\x41\x01\x12J\n\nparameters\x18\r \x03(\x0b\x32\x31.google.cloud.dialogflow.v2beta1.Intent.ParameterB\x03\xe0\x41\x01\x12\x41\n\x08messages\x18\x0e \x03(\x0b\x32/.google.cloud.dialogflow.v2beta1.Intent.Message\x12\x61\n\x1a\x64\x65\x66\x61ult_response_platforms\x18\x0f \x03(\x0e\x32\x38.google.cloud.dialogflow.v2beta1.Intent.Message.PlatformB\x03\xe0\x41\x01\x12&\n\x19root_followup_intent_name\x18\x10 \x01(\tB\x03\xe0\x41\x03\x12(\n\x1bparent_followup_intent_name\x18\x11 \x01(\tB\x03\xe0\x41\x01\x12]\n\x14\x66ollowup_intent_info\x18\x12 \x03(\x0b\x32:.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfoB\x03\xe0\x41\x03\x1a\xec\x02\n\x0eTrainingPhrase\x12\x0c\n\x04name\x18\x01 \x01(\t\x12N\n\x04type\x18\x02 \x01(\x0e\x32;.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase.TypeB\x03\xe0\x41\x02\x12O\n\x05parts\x18\x03 \x03(\x0b\x32;.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase.PartB\x03\xe0\x41\x02\x12\x1e\n\x11times_added_count\x18\x04 \x01(\x05\x42\x03\xe0\x41\x01\x1aN\n\x04Part\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x13\n\x0b\x65ntity_type\x18\x02 \x01(\t\x12\r\n\x05\x61lias\x18\x03 \x01(\t\x12\x14\n\x0cuser_defined\x18\x04 \x01(\x08";\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x45XAMPLE\x10\x01\x12\x10\n\x08TEMPLATE\x10\x02\x1a\x02\x08\x01\x1a\xac\x01\n\tParameter\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x15\n\rdefault_value\x18\x04 \x01(\t\x12 \n\x18\x65ntity_type_display_name\x18\x05 \x01(\t\x12\x11\n\tmandatory\x18\x06 \x01(\x08\x12\x0f\n\x07prompts\x18\x07 \x03(\t\x12\x0f\n\x07is_list\x18\x08 \x01(\x08\x1a\xc2@\n\x07Message\x12\x44\n\x04text\x18\x01 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2beta1.Intent.Message.TextH\x00\x12\x46\n\x05image\x18\x02 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.ImageH\x00\x12U\n\rquick_replies\x18\x03 \x01(\x0b\x32<.google.cloud.dialogflow.v2beta1.Intent.Message.QuickRepliesH\x00\x12\x44\n\x04\x63\x61rd\x18\x04 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2beta1.Intent.Message.CardH\x00\x12*\n\x07payload\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x12[\n\x10simple_responses\x18\x07 \x01(\x0b\x32?.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponsesH\x00\x12O\n\nbasic_card\x18\x08 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCardH\x00\x12R\n\x0bsuggestions\x18\t \x01(\x0b\x32;.google.cloud.dialogflow.v2beta1.Intent.Message.SuggestionsH\x00\x12`\n\x13link_out_suggestion\x18\n \x01(\x0b\x32\x41.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestionH\x00\x12Q\n\x0blist_select\x18\x0b \x01(\x0b\x32:.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelectH\x00\x12Y\n\x0f\x63\x61rousel_select\x18\x0c \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelectH\x00\x12\x62\n\x14telephony_play_audio\x18\r \x01(\x0b\x32\x42.google.cloud.dialogflow.v2beta1.Intent.Message.TelephonyPlayAudioH\x00\x12p\n\x1btelephony_synthesize_speech\x18\x0e \x01(\x0b\x32I.google.cloud.dialogflow.v2beta1.Intent.Message.TelephonySynthesizeSpeechH\x00\x12h\n\x17telephony_transfer_call\x18\x0f \x01(\x0b\x32\x45.google.cloud.dialogflow.v2beta1.Intent.Message.TelephonyTransferCallH\x00\x12K\n\x08rbm_text\x18\x12 \x01(\x0b\x32\x37.google.cloud.dialogflow.v2beta1.Intent.Message.RbmTextH\x00\x12\x65\n\x18rbm_standalone_rich_card\x18\x13 \x01(\x0b\x32\x41.google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCardH\x00\x12\x61\n\x16rbm_carousel_rich_card\x18\x14 \x01(\x0b\x32?.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCarouselCardH\x00\x12\x62\n\x14\x62rowse_carousel_card\x18\x16 \x01(\x0b\x32\x42.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCardH\x00\x12O\n\ntable_card\x18\x17 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2beta1.Intent.Message.TableCardH\x00\x12U\n\rmedia_content\x18\x18 \x01(\x0b\x32<.google.cloud.dialogflow.v2beta1.Intent.Message.MediaContentH\x00\x12O\n\x08platform\x18\x06 \x01(\x0e\x32\x38.google.cloud.dialogflow.v2beta1.Intent.Message.PlatformB\x03\xe0\x41\x01\x1a\x14\n\x04Text\x12\x0c\n\x04text\x18\x01 \x03(\t\x1a\x36\n\x05Image\x12\x11\n\timage_uri\x18\x01 \x01(\t\x12\x1a\n\x12\x61\x63\x63\x65ssibility_text\x18\x02 \x01(\t\x1a\x34\n\x0cQuickReplies\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\rquick_replies\x18\x02 \x03(\t\x1a\xb2\x01\n\x04\x43\x61rd\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x11\n\timage_uri\x18\x03 \x01(\t\x12L\n\x07\x62uttons\x18\x04 \x03(\x0b\x32;.google.cloud.dialogflow.v2beta1.Intent.Message.Card.Button\x1a(\n\x06\x42utton\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08postback\x18\x02 \x01(\t\x1aL\n\x0eSimpleResponse\x12\x16\n\x0etext_to_speech\x18\x01 \x01(\t\x12\x0c\n\x04ssml\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_text\x18\x03 \x01(\t\x1ak\n\x0fSimpleResponses\x12X\n\x10simple_responses\x18\x01 \x03(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponse\x1a\xfe\x02\n\tBasicCard\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x16\n\x0e\x66ormatted_text\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x12Q\n\x07\x62uttons\x18\x05 \x03(\x0b\x32@.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button\x1a\x9e\x01\n\x06\x42utton\x12\r\n\x05title\x18\x01 \x01(\t\x12g\n\x0fopen_uri_action\x18\x02 \x01(\x0b\x32N.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button.OpenUriAction\x1a\x1c\n\rOpenUriAction\x12\x0b\n\x03uri\x18\x01 \x01(\t\x1a\x1b\n\nSuggestion\x12\r\n\x05title\x18\x01 \x01(\t\x1a^\n\x0bSuggestions\x12O\n\x0bsuggestions\x18\x01 \x03(\x0b\x32:.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestion\x1a:\n\x11LinkOutSuggestion\x12\x18\n\x10\x64\x65stination_name\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x1a\xc3\x02\n\nListSelect\x12\r\n\x05title\x18\x01 \x01(\t\x12N\n\x05items\x18\x02 \x03(\x0b\x32?.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect.Item\x12\x15\n\x08subtitle\x18\x03 \x01(\tB\x03\xe0\x41\x01\x1a\xbe\x01\n\x04Item\x12L\n\x04info\x18\x01 \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x1a\xa5\x02\n\x0e\x43\x61rouselSelect\x12R\n\x05items\x18\x01 \x03(\x0b\x32\x43.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect.Item\x1a\xbe\x01\n\x04Item\x12L\n\x04info\x18\x01 \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.SelectItemInfo\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x1a/\n\x0eSelectItemInfo\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x10\n\x08synonyms\x18\x02 \x03(\t\x1a\'\n\x12TelephonyPlayAudio\x12\x11\n\taudio_uri\x18\x01 \x01(\t\x1a\x45\n\x19TelephonySynthesizeSpeech\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12\x0e\n\x04ssml\x18\x02 \x01(\tH\x00\x42\x08\n\x06source\x1a-\n\x15TelephonyTransferCall\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x1an\n\x07RbmText\x12\x0c\n\x04text\x18\x01 \x01(\t\x12U\n\x0erbm_suggestion\x18\x02 \x03(\x0b\x32=.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestion\x1a\x87\x02\n\x0fRbmCarouselCard\x12]\n\ncard_width\x18\x01 \x01(\x0e\x32I.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCarouselCard.CardWidth\x12U\n\rcard_contents\x18\x02 \x03(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent">\n\tCardWidth\x12\x1a\n\x16\x43\x41RD_WIDTH_UNSPECIFIED\x10\x00\x12\t\n\x05SMALL\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x1a\x82\x04\n\x11RbmStandaloneCard\x12k\n\x10\x63\x61rd_orientation\x18\x01 \x01(\x0e\x32Q.google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCard.CardOrientation\x12|\n\x19thumbnail_image_alignment\x18\x02 \x01(\x0e\x32Y.google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCard.ThumbnailImageAlignment\x12T\n\x0c\x63\x61rd_content\x18\x03 \x01(\x0b\x32>.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent"Q\n\x0f\x43\x61rdOrientation\x12 \n\x1c\x43\x41RD_ORIENTATION_UNSPECIFIED\x10\x00\x12\x0e\n\nHORIZONTAL\x10\x01\x12\x0c\n\x08VERTICAL\x10\x02"Y\n\x17ThumbnailImageAlignment\x12)\n%THUMBNAIL_IMAGE_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x08\n\x04LEFT\x10\x01\x12\t\n\x05RIGHT\x10\x02\x1a\xb9\x03\n\x0eRbmCardContent\x12\r\n\x05title\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12V\n\x05media\x18\x03 \x01(\x0b\x32G.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent.RbmMedia\x12R\n\x0bsuggestions\x18\x04 \x03(\x0b\x32=.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestion\x1a\xd6\x01\n\x08RbmMedia\x12\x10\n\x08\x66ile_uri\x18\x01 \x01(\t\x12\x15\n\rthumbnail_uri\x18\x02 \x01(\t\x12^\n\x06height\x18\x03 \x01(\x0e\x32N.google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent.RbmMedia.Height"A\n\x06Height\x12\x16\n\x12HEIGHT_UNSPECIFIED\x10\x00\x12\t\n\x05SHORT\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04TALL\x10\x03\x1a\xc7\x01\n\rRbmSuggestion\x12R\n\x05reply\x18\x01 \x01(\x0b\x32\x41.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedReplyH\x00\x12T\n\x06\x61\x63tion\x18\x02 \x01(\x0b\x32\x42.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedActionH\x00\x42\x0c\n\nsuggestion\x1a\x38\n\x11RbmSuggestedReply\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x15\n\rpostback_data\x18\x02 \x01(\t\x1a\x9b\x04\n\x12RbmSuggestedAction\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x15\n\rpostback_data\x18\x02 \x01(\t\x12i\n\x04\x64ial\x18\x03 \x01(\x0b\x32Y.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionDialH\x00\x12p\n\x08open_url\x18\x04 \x01(\x0b\x32\\.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionOpenUriH\x00\x12|\n\x0eshare_location\x18\x05 \x01(\x0b\x32\x62.google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionShareLocationH\x00\x1a.\n\x16RbmSuggestedActionDial\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x1a(\n\x19RbmSuggestedActionOpenUri\x12\x0b\n\x03uri\x18\x01 \x01(\t\x1a!\n\x1fRbmSuggestedActionShareLocationB\x08\n\x06\x61\x63tion\x1a\x8e\x04\n\x0cMediaContent\x12\x62\n\nmedia_type\x18\x01 \x01(\x0e\x32N.google.cloud.dialogflow.v2beta1.Intent.Message.MediaContent.ResponseMediaType\x12g\n\rmedia_objects\x18\x02 \x03(\x0b\x32P.google.cloud.dialogflow.v2beta1.Intent.Message.MediaContent.ResponseMediaObject\x1a\xeb\x01\n\x13ResponseMediaObject\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12L\n\x0blarge_image\x18\x03 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.ImageH\x00\x12\x45\n\x04icon\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.ImageH\x00\x12\x13\n\x0b\x63ontent_url\x18\x05 \x01(\tB\x07\n\x05image"C\n\x11ResponseMediaType\x12#\n\x1fRESPONSE_MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\t\n\x05\x41UDIO\x10\x01\x1a\x80\x07\n\x12\x42rowseCarouselCard\x12h\n\x05items\x18\x01 \x03(\x0b\x32Y.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem\x12u\n\x15image_display_options\x18\x02 \x01(\x0e\x32V.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.ImageDisplayOptions\x1a\x90\x04\n\x16\x42rowseCarouselCardItem\x12\x80\x01\n\x0fopen_uri_action\x18\x01 \x01(\x0b\x32g.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x12\x0e\n\x06\x66ooter\x18\x05 \x01(\t\x1a\xf8\x01\n\rOpenUrlAction\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x8a\x01\n\rurl_type_hint\x18\x03 \x01(\x0e\x32s.google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint"M\n\x0bUrlTypeHint\x12\x1d\n\x19URL_TYPE_HINT_UNSPECIFIED\x10\x00\x12\x0e\n\nAMP_ACTION\x10\x01\x12\x0f\n\x0b\x41MP_CONTENT\x10\x02"v\n\x13ImageDisplayOptions\x12%\n!IMAGE_DISPLAY_OPTIONS_UNSPECIFIED\x10\x00\x12\x08\n\x04GRAY\x10\x01\x12\t\n\x05WHITE\x10\x02\x12\x0b\n\x07\x43ROPPED\x10\x03\x12\x16\n\x12\x42LURRED_BACKGROUND\x10\x04\x1a\xee\x02\n\tTableCard\x12\r\n\x05title\x18\x01 \x01(\t\x12\x10\n\x08subtitle\x18\x02 \x01(\t\x12\x44\n\x05image\x18\x03 \x01(\x0b\x32\x35.google.cloud.dialogflow.v2beta1.Intent.Message.Image\x12[\n\x11\x63olumn_properties\x18\x04 \x03(\x0b\x32@.google.cloud.dialogflow.v2beta1.Intent.Message.ColumnProperties\x12J\n\x04rows\x18\x05 \x03(\x0b\x32<.google.cloud.dialogflow.v2beta1.Intent.Message.TableCardRow\x12Q\n\x07\x62uttons\x18\x06 \x03(\x0b\x32@.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button\x1a\xfa\x01\n\x10\x43olumnProperties\x12\x0e\n\x06header\x18\x01 \x01(\t\x12r\n\x14horizontal_alignment\x18\x02 \x01(\x0e\x32T.google.cloud.dialogflow.v2beta1.Intent.Message.ColumnProperties.HorizontalAlignment"b\n\x13HorizontalAlignment\x12$\n HORIZONTAL_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x0b\n\x07LEADING\x10\x01\x12\n\n\x06\x43\x45NTER\x10\x02\x12\x0c\n\x08TRAILING\x10\x03\x1as\n\x0cTableCardRow\x12L\n\x05\x63\x65lls\x18\x01 \x03(\x0b\x32=.google.cloud.dialogflow.v2beta1.Intent.Message.TableCardCell\x12\x15\n\rdivider_after\x18\x02 \x01(\x08\x1a\x1d\n\rTableCardCell\x12\x0c\n\x04text\x18\x01 \x01(\t"\xaf\x01\n\x08Platform\x12\x18\n\x14PLATFORM_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x01\x12\t\n\x05SLACK\x10\x02\x12\x0c\n\x08TELEGRAM\x10\x03\x12\x07\n\x03KIK\x10\x04\x12\t\n\x05SKYPE\x10\x05\x12\x08\n\x04LINE\x10\x06\x12\t\n\x05VIBER\x10\x07\x12\x15\n\x11\x41\x43TIONS_ON_GOOGLE\x10\x08\x12\r\n\tTELEPHONY\x10\n\x12\x13\n\x0fGOOGLE_HANGOUTS\x10\x0b\x42\t\n\x07message\x1aW\n\x12\x46ollowupIntentInfo\x12\x1c\n\x14\x66ollowup_intent_name\x18\x01 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x02 \x01(\t"t\n\x0cWebhookState\x12\x1d\n\x19WEBHOOK_STATE_UNSPECIFIED\x10\x00\x12\x19\n\x15WEBHOOK_STATE_ENABLED\x10\x01\x12*\n&WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING\x10\x02:\x91\x01\xea\x41\x8d\x01\n dialogflow.googleapis.com/Intent\x12)projects/{project}/agent/intents/{intent}\x12>projects/{project}/locations/{location}/agent/intents/{intent}"\xd3\x01\n\x12ListIntentsRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x03 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t"h\n\x13ListIntentsResponse\x12\x38\n\x07intents\x18\x01 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"\xa8\x01\n\x10GetIntentRequest\x12\x36\n\x04name\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\n dialogflow.googleapis.com/Intent\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x03 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView"\xe6\x01\n\x13\x43reateIntentRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x37\n\x06intent\x18\x02 \x01(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent\x12\x1a\n\rlanguage_code\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x04 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView"\xdd\x01\n\x13UpdateIntentRequest\x12\x37\n\x06intent\x18\x01 \x01(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12/\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12@\n\x0bintent_view\x18\x04 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentView"M\n\x13\x44\x65leteIntentRequest\x12\x36\n\x04name\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\n dialogflow.googleapis.com/Intent"\xdd\x02\n\x19\x42\x61tchUpdateIntentsRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x1a\n\x10intent_batch_uri\x18\x02 \x01(\tH\x00\x12K\n\x13intent_batch_inline\x18\x03 \x01(\x0b\x32,.google.cloud.dialogflow.v2beta1.IntentBatchH\x00\x12\x1a\n\rlanguage_code\x18\x04 \x01(\tB\x03\xe0\x41\x01\x12/\n\x0bupdate_mask\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\x12@\n\x0bintent_view\x18\x06 \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.IntentViewB\x0e\n\x0cintent_batch"V\n\x1a\x42\x61tchUpdateIntentsResponse\x12\x38\n\x07intents\x18\x01 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent"\x8f\x01\n\x19\x42\x61tchDeleteIntentsRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x38\n\x07intents\x18\x02 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent"G\n\x0bIntentBatch\x12\x38\n\x07intents\x18\x01 \x03(\x0b\x32\'.google.cloud.dialogflow.v2beta1.Intent*?\n\nIntentView\x12\x1b\n\x17INTENT_VIEW_UNSPECIFIED\x10\x00\x12\x14\n\x10INTENT_VIEW_FULL\x10\x01\x32\xd2\x10\n\x07Intents\x12\x87\x02\n\x0bListIntents\x12\x33.google.cloud.dialogflow.v2beta1.ListIntentsRequest\x1a\x34.google.cloud.dialogflow.v2beta1.ListIntentsResponse"\x8c\x01\x82\xd3\xe4\x93\x02\x66\x12*/v2beta1/{parent=projects/*/agent}/intentsZ8\x12\x36/v2beta1/{parent=projects/*/locations/*/agent}/intents\xda\x41\x06parent\xda\x41\x14parent,language_code\x12\xf2\x01\n\tGetIntent\x12\x31.google.cloud.dialogflow.v2beta1.GetIntentRequest\x1a\'.google.cloud.dialogflow.v2beta1.Intent"\x88\x01\x82\xd3\xe4\x93\x02\x66\x12*/v2beta1/{name=projects/*/agent/intents/*}Z8\x12\x36/v2beta1/{name=projects/*/locations/*/agent/intents/*}\xda\x41\x04name\xda\x41\x12name,language_code\x12\x9a\x02\n\x0c\x43reateIntent\x12\x34.google.cloud.dialogflow.v2beta1.CreateIntentRequest\x1a\'.google.cloud.dialogflow.v2beta1.Intent"\xaa\x01\x82\xd3\xe4\x93\x02v"*/v2beta1/{parent=projects/*/agent}/intents:\x06intentZ@"6/v2beta1/{parent=projects/*/locations/*/agent}/intents:\x06intent\xda\x41\rparent,intent\xda\x41\x1bparent,intent,language_code\x12\xd3\x02\n\x0cUpdateIntent\x12\x34.google.cloud.dialogflow.v2beta1.UpdateIntentRequest\x1a\'.google.cloud.dialogflow.v2beta1.Intent"\xe3\x01\x82\xd3\xe4\x93\x02\x84\x01\x32\x31/v2beta1/{intent.name=projects/*/agent/intents/*}:\x06intentZG2=/v2beta1/{intent.name=projects/*/locations/*/agent/intents/*}:\x06intent\xda\x41\x12intent,update_mask\xda\x41\x06intent\xda\x41\x14intent,language_code\xda\x41 intent,language_code,update_mask\x12\xd1\x01\n\x0c\x44\x65leteIntent\x12\x34.google.cloud.dialogflow.v2beta1.DeleteIntentRequest\x1a\x16.google.protobuf.Empty"s\x82\xd3\xe4\x93\x02\x66**/v2beta1/{name=projects/*/agent/intents/*}Z8*6/v2beta1/{name=projects/*/locations/*/agent/intents/*}\xda\x41\x04name\x12\xd4\x02\n\x12\x42\x61tchUpdateIntents\x12:.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest\x1a\x1d.google.longrunning.Operation"\xe2\x01\x82\xd3\xe4\x93\x02\x84\x01"6/v2beta1/{parent=projects/*/agent}/intents:batchUpdate:\x01*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchUpdate:\x01*\xca\x41T\n:google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse\x12\x16google.protobuf.Struct\x12\xaf\x02\n\x12\x42\x61tchDeleteIntents\x12:.google.cloud.dialogflow.v2beta1.BatchDeleteIntentsRequest\x1a\x1d.google.longrunning.Operation"\xbd\x01\x82\xd3\xe4\x93\x02\x84\x01"6/v2beta1/{parent=projects/*/agent}/intents:batchDelete:\x01*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchDelete:\x01*\xca\x41/\n\x15google.protobuf.Empty\x12\x16google.protobuf.Struct\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\xa9\x01\n#com.google.cloud.dialogflow.v2beta1B\x0bIntentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3'
     ),
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
+        google_dot_api_dot_client__pb2.DESCRIPTOR,
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
         google_dot_api_dot_resource__pb2.DESCRIPTOR,
         google_dot_cloud_dot_dialogflow__v2beta1_dot_proto_dot_audio__config__pb2.DESCRIPTOR,
@@ -56,7 +57,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
         google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,
-        google_dot_api_dot_client__pb2.DESCRIPTOR,
     ],
 )
 
@@ -83,8 +83,8 @@ _INTENTVIEW = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=11906,
-    serialized_end=11969,
+    serialized_start=12273,
+    serialized_end=12336,
 )
 _sym_db.RegisterEnumDescriptor(_INTENTVIEW)
 
@@ -119,8 +119,8 @@ _INTENT_TRAININGPHRASE_TYPE = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=1627,
-    serialized_end=1686,
+    serialized_start=1735,
+    serialized_end=1794,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_TRAININGPHRASE_TYPE)
 
@@ -146,8 +146,8 @@ _INTENT_MESSAGE_RBMCAROUSELCARD_CARDWIDTH = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=5905,
-    serialized_end=5967,
+    serialized_start=6018,
+    serialized_end=6080,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_RBMCAROUSELCARD_CARDWIDTH)
 
@@ -173,8 +173,8 @@ _INTENT_MESSAGE_RBMSTANDALONECARD_CARDORIENTATION = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=6312,
-    serialized_end=6393,
+    serialized_start=6425,
+    serialized_end=6506,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_RBMSTANDALONECARD_CARDORIENTATION)
 
@@ -200,8 +200,8 @@ _INTENT_MESSAGE_RBMSTANDALONECARD_THUMBNAILIMAGEALIGNMENT = _descriptor.EnumDesc
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=6395,
-    serialized_end=6484,
+    serialized_start=6508,
+    serialized_end=6597,
 )
 _sym_db.RegisterEnumDescriptor(
     _INTENT_MESSAGE_RBMSTANDALONECARD_THUMBNAILIMAGEALIGNMENT
@@ -232,8 +232,8 @@ _INTENT_MESSAGE_RBMCARDCONTENT_RBMMEDIA_HEIGHT = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=6863,
-    serialized_end=6928,
+    serialized_start=6976,
+    serialized_end=7041,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_RBMCARDCONTENT_RBMMEDIA_HEIGHT)
 
@@ -256,8 +256,8 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIATYPE = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=8192,
-    serialized_end=8259,
+    serialized_start=8305,
+    serialized_end=8372,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIATYPE)
 
@@ -283,8 +283,8 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION_URLTYPEH
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=8961,
-    serialized_end=9038,
+    serialized_start=9074,
+    serialized_end=9151,
 )
 _sym_db.RegisterEnumDescriptor(
     _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION_URLTYPEHINT
@@ -322,8 +322,8 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_IMAGEDISPLAYOPTIONS = _descriptor.EnumDescrip
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=9040,
-    serialized_end=9158,
+    serialized_start=9153,
+    serialized_end=9271,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_BROWSECAROUSELCARD_IMAGEDISPLAYOPTIONS)
 
@@ -352,8 +352,8 @@ _INTENT_MESSAGE_COLUMNPROPERTIES_HORIZONTALALIGNMENT = _descriptor.EnumDescripto
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=9682,
-    serialized_end=9780,
+    serialized_start=9795,
+    serialized_end=9893,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_COLUMNPROPERTIES_HORIZONTALALIGNMENT)
 
@@ -411,8 +411,8 @@ _INTENT_MESSAGE_PLATFORM = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=9931,
-    serialized_end=10106,
+    serialized_start=10044,
+    serialized_end=10219,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_MESSAGE_PLATFORM)
 
@@ -446,8 +446,8 @@ _INTENT_WEBHOOKSTATE = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=10208,
-    serialized_end=10324,
+    serialized_start=10321,
+    serialized_end=10437,
 )
 _sym_db.RegisterEnumDescriptor(_INTENT_WEBHOOKSTATE)
 
@@ -540,8 +540,8 @@ _INTENT_TRAININGPHRASE_PART = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1547,
-    serialized_end=1625,
+    serialized_start=1655,
+    serialized_end=1733,
 )
 
 _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
@@ -584,7 +584,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\002"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -602,7 +602,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\002"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -620,7 +620,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
     ],
@@ -632,8 +632,8 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1337,
-    serialized_end=1686,
+    serialized_start=1430,
+    serialized_end=1794,
 )
 
 _INTENT_PARAMETER = _descriptor.Descriptor(
@@ -796,8 +796,8 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1689,
-    serialized_end=1861,
+    serialized_start=1797,
+    serialized_end=1969,
 )
 
 _INTENT_MESSAGE_TEXT = _descriptor.Descriptor(
@@ -834,8 +834,8 @@ _INTENT_MESSAGE_TEXT = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=3691,
-    serialized_end=3711,
+    serialized_start=3804,
+    serialized_end=3824,
 )
 
 _INTENT_MESSAGE_IMAGE = _descriptor.Descriptor(
@@ -890,8 +890,8 @@ _INTENT_MESSAGE_IMAGE = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=3713,
-    serialized_end=3767,
+    serialized_start=3826,
+    serialized_end=3880,
 )
 
 _INTENT_MESSAGE_QUICKREPLIES = _descriptor.Descriptor(
@@ -946,8 +946,8 @@ _INTENT_MESSAGE_QUICKREPLIES = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=3769,
-    serialized_end=3821,
+    serialized_start=3882,
+    serialized_end=3934,
 )
 
 _INTENT_MESSAGE_CARD_BUTTON = _descriptor.Descriptor(
@@ -1002,8 +1002,8 @@ _INTENT_MESSAGE_CARD_BUTTON = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=3962,
-    serialized_end=4002,
+    serialized_start=4075,
+    serialized_end=4115,
 )
 
 _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
@@ -1094,8 +1094,8 @@ _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=3824,
-    serialized_end=4002,
+    serialized_start=3937,
+    serialized_end=4115,
 )
 
 _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
@@ -1168,8 +1168,8 @@ _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4004,
-    serialized_end=4080,
+    serialized_start=4117,
+    serialized_end=4193,
 )
 
 _INTENT_MESSAGE_SIMPLERESPONSES = _descriptor.Descriptor(
@@ -1206,8 +1206,8 @@ _INTENT_MESSAGE_SIMPLERESPONSES = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4082,
-    serialized_end=4189,
+    serialized_start=4195,
+    serialized_end=4302,
 )
 
 _INTENT_MESSAGE_BASICCARD_BUTTON_OPENURIACTION = _descriptor.Descriptor(
@@ -1244,8 +1244,8 @@ _INTENT_MESSAGE_BASICCARD_BUTTON_OPENURIACTION = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4546,
-    serialized_end=4574,
+    serialized_start=4659,
+    serialized_end=4687,
 )
 
 _INTENT_MESSAGE_BASICCARD_BUTTON = _descriptor.Descriptor(
@@ -1300,8 +1300,8 @@ _INTENT_MESSAGE_BASICCARD_BUTTON = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4416,
-    serialized_end=4574,
+    serialized_start=4529,
+    serialized_end=4687,
 )
 
 _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
@@ -1410,8 +1410,8 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4192,
-    serialized_end=4574,
+    serialized_start=4305,
+    serialized_end=4687,
 )
 
 _INTENT_MESSAGE_SUGGESTION = _descriptor.Descriptor(
@@ -1448,8 +1448,8 @@ _INTENT_MESSAGE_SUGGESTION = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4576,
-    serialized_end=4603,
+    serialized_start=4689,
+    serialized_end=4716,
 )
 
 _INTENT_MESSAGE_SUGGESTIONS = _descriptor.Descriptor(
@@ -1486,8 +1486,8 @@ _INTENT_MESSAGE_SUGGESTIONS = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4605,
-    serialized_end=4699,
+    serialized_start=4718,
+    serialized_end=4812,
 )
 
 _INTENT_MESSAGE_LINKOUTSUGGESTION = _descriptor.Descriptor(
@@ -1542,8 +1542,8 @@ _INTENT_MESSAGE_LINKOUTSUGGESTION = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4701,
-    serialized_end=4759,
+    serialized_start=4814,
+    serialized_end=4872,
 )
 
 _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
@@ -1634,8 +1634,8 @@ _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4895,
-    serialized_end=5085,
+    serialized_start=5008,
+    serialized_end=5198,
 )
 
 _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
@@ -1708,8 +1708,8 @@ _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4762,
-    serialized_end=5085,
+    serialized_start=4875,
+    serialized_end=5198,
 )
 
 _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
@@ -1800,8 +1800,8 @@ _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=4895,
-    serialized_end=5085,
+    serialized_start=5008,
+    serialized_end=5198,
 )
 
 _INTENT_MESSAGE_CAROUSELSELECT = _descriptor.Descriptor(
@@ -1838,8 +1838,8 @@ _INTENT_MESSAGE_CAROUSELSELECT = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=5088,
-    serialized_end=5381,
+    serialized_start=5201,
+    serialized_end=5494,
 )
 
 _INTENT_MESSAGE_SELECTITEMINFO = _descriptor.Descriptor(
@@ -1894,8 +1894,8 @@ _INTENT_MESSAGE_SELECTITEMINFO = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=5383,
-    serialized_end=5430,
+    serialized_start=5496,
+    serialized_end=5543,
 )
 
 _INTENT_MESSAGE_TELEPHONYPLAYAUDIO = _descriptor.Descriptor(
@@ -1932,8 +1932,8 @@ _INTENT_MESSAGE_TELEPHONYPLAYAUDIO = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=5432,
-    serialized_end=5471,
+    serialized_start=5545,
+    serialized_end=5584,
 )
 
 _INTENT_MESSAGE_TELEPHONYSYNTHESIZESPEECH = _descriptor.Descriptor(
@@ -1996,8 +1996,8 @@ _INTENT_MESSAGE_TELEPHONYSYNTHESIZESPEECH = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=5473,
-    serialized_end=5542,
+    serialized_start=5586,
+    serialized_end=5655,
 )
 
 _INTENT_MESSAGE_TELEPHONYTRANSFERCALL = _descriptor.Descriptor(
@@ -2034,8 +2034,8 @@ _INTENT_MESSAGE_TELEPHONYTRANSFERCALL = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=5544,
-    serialized_end=5589,
+    serialized_start=5657,
+    serialized_end=5702,
 )
 
 _INTENT_MESSAGE_RBMTEXT = _descriptor.Descriptor(
@@ -2090,8 +2090,8 @@ _INTENT_MESSAGE_RBMTEXT = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=5591,
-    serialized_end=5701,
+    serialized_start=5704,
+    serialized_end=5814,
 )
 
 _INTENT_MESSAGE_RBMCAROUSELCARD = _descriptor.Descriptor(
@@ -2146,8 +2146,8 @@ _INTENT_MESSAGE_RBMCAROUSELCARD = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=5704,
-    serialized_end=5967,
+    serialized_start=5817,
+    serialized_end=6080,
 )
 
 _INTENT_MESSAGE_RBMSTANDALONECARD = _descriptor.Descriptor(
@@ -2223,8 +2223,8 @@ _INTENT_MESSAGE_RBMSTANDALONECARD = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=5970,
-    serialized_end=6484,
+    serialized_start=6083,
+    serialized_end=6597,
 )
 
 _INTENT_MESSAGE_RBMCARDCONTENT_RBMMEDIA = _descriptor.Descriptor(
@@ -2297,8 +2297,8 @@ _INTENT_MESSAGE_RBMCARDCONTENT_RBMMEDIA = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=6714,
-    serialized_end=6928,
+    serialized_start=6827,
+    serialized_end=7041,
 )
 
 _INTENT_MESSAGE_RBMCARDCONTENT = _descriptor.Descriptor(
@@ -2389,8 +2389,8 @@ _INTENT_MESSAGE_RBMCARDCONTENT = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=6487,
-    serialized_end=6928,
+    serialized_start=6600,
+    serialized_end=7041,
 )
 
 _INTENT_MESSAGE_RBMSUGGESTION = _descriptor.Descriptor(
@@ -2453,8 +2453,8 @@ _INTENT_MESSAGE_RBMSUGGESTION = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=6931,
-    serialized_end=7130,
+    serialized_start=7044,
+    serialized_end=7243,
 )
 
 _INTENT_MESSAGE_RBMSUGGESTEDREPLY = _descriptor.Descriptor(
@@ -2509,8 +2509,8 @@ _INTENT_MESSAGE_RBMSUGGESTEDREPLY = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=7132,
-    serialized_end=7188,
+    serialized_start=7245,
+    serialized_end=7301,
 )
 
 _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONDIAL = _descriptor.Descriptor(
@@ -2547,8 +2547,8 @@ _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONDIAL = _descriptor.Descript
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=7597,
-    serialized_end=7643,
+    serialized_start=7710,
+    serialized_end=7756,
 )
 
 _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONOPENURI = _descriptor.Descriptor(
@@ -2585,8 +2585,8 @@ _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONOPENURI = _descriptor.Descr
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=7645,
-    serialized_end=7685,
+    serialized_start=7758,
+    serialized_end=7798,
 )
 
 _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONSHARELOCATION = _descriptor.Descriptor(
@@ -2604,8 +2604,8 @@ _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONSHARELOCATION = _descriptor
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=7687,
-    serialized_end=7720,
+    serialized_start=7800,
+    serialized_end=7833,
 )
 
 _INTENT_MESSAGE_RBMSUGGESTEDACTION = _descriptor.Descriptor(
@@ -2726,8 +2726,8 @@ _INTENT_MESSAGE_RBMSUGGESTEDACTION = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=7191,
-    serialized_end=7730,
+    serialized_start=7304,
+    serialized_end=7843,
 )
 
 _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
@@ -2844,8 +2844,8 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=7955,
-    serialized_end=8190,
+    serialized_start=8068,
+    serialized_end=8303,
 )
 
 _INTENT_MESSAGE_MEDIACONTENT = _descriptor.Descriptor(
@@ -2900,8 +2900,8 @@ _INTENT_MESSAGE_MEDIACONTENT = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=7733,
-    serialized_end=8259,
+    serialized_start=7846,
+    serialized_end=8372,
 )
 
 _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION = _descriptor.Descriptor(
@@ -2958,8 +2958,8 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION = _descr
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=8790,
-    serialized_end=9038,
+    serialized_start=8903,
+    serialized_end=9151,
 )
 
 _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descriptor(
@@ -3070,8 +3070,8 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descript
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=8510,
-    serialized_end=9038,
+    serialized_start=8623,
+    serialized_end=9151,
 )
 
 _INTENT_MESSAGE_BROWSECAROUSELCARD = _descriptor.Descriptor(
@@ -3126,8 +3126,8 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=8262,
-    serialized_end=9158,
+    serialized_start=8375,
+    serialized_end=9271,
 )
 
 _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
@@ -3254,8 +3254,8 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=9161,
-    serialized_end=9527,
+    serialized_start=9274,
+    serialized_end=9640,
 )
 
 _INTENT_MESSAGE_COLUMNPROPERTIES = _descriptor.Descriptor(
@@ -3310,8 +3310,8 @@ _INTENT_MESSAGE_COLUMNPROPERTIES = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=9530,
-    serialized_end=9780,
+    serialized_start=9643,
+    serialized_end=9893,
 )
 
 _INTENT_MESSAGE_TABLECARDROW = _descriptor.Descriptor(
@@ -3366,8 +3366,8 @@ _INTENT_MESSAGE_TABLECARDROW = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=9782,
-    serialized_end=9897,
+    serialized_start=9895,
+    serialized_end=10010,
 )
 
 _INTENT_MESSAGE_TABLECARDCELL = _descriptor.Descriptor(
@@ -3404,8 +3404,8 @@ _INTENT_MESSAGE_TABLECARDCELL = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=9899,
-    serialized_end=9928,
+    serialized_start=10012,
+    serialized_end=10041,
 )
 
 _INTENT_MESSAGE = _descriptor.Descriptor(
@@ -3790,7 +3790,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
     ],
@@ -3840,8 +3840,8 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=1864,
-    serialized_end=10117,
+    serialized_start=1972,
+    serialized_end=10230,
 )
 
 _INTENT_FOLLOWUPINTENTINFO = _descriptor.Descriptor(
@@ -3896,8 +3896,8 @@ _INTENT_FOLLOWUPINTENTINFO = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=10119,
-    serialized_end=10206,
+    serialized_start=10232,
+    serialized_end=10319,
 )
 
 _INTENT = _descriptor.Descriptor(
@@ -3922,7 +3922,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -3940,7 +3940,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\002"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -3958,7 +3958,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -3976,7 +3976,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -3994,7 +3994,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4012,7 +4012,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=_b("\030\001"),
+            serialized_options=_b("\030\001\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4030,7 +4030,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4048,7 +4048,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4066,7 +4066,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4084,7 +4084,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4102,7 +4102,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4120,7 +4120,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4138,7 +4138,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4156,7 +4156,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4174,7 +4174,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4210,7 +4210,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4228,7 +4228,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\003"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4246,7 +4246,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4264,7 +4264,7 @@ _INTENT = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b("\340A\003"),
             file=DESCRIPTOR,
         ),
     ],
@@ -4284,7 +4284,7 @@ _INTENT = _descriptor.Descriptor(
     extension_ranges=[],
     oneofs=[],
     serialized_start=476,
-    serialized_end=10472,
+    serialized_end=10585,
 )
 
 
@@ -4310,7 +4310,9 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                '\340A\002\372A"\022 dialogflow.googleapis.com/Intent'
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4394,8 +4396,8 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=10475,
-    serialized_end=10644,
+    serialized_start=10588,
+    serialized_end=10799,
 )
 
 
@@ -4451,8 +4453,8 @@ _LISTINTENTSRESPONSE = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=10646,
-    serialized_end=10750,
+    serialized_start=10801,
+    serialized_end=10905,
 )
 
 
@@ -4478,7 +4480,7 @@ _GETINTENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b('\340A\002\372A"\n dialogflow.googleapis.com/Intent'),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4526,8 +4528,8 @@ _GETINTENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=10752,
-    serialized_end=10878,
+    serialized_start=10908,
+    serialized_end=11076,
 )
 
 
@@ -4553,7 +4555,9 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                '\340A\002\372A"\022 dialogflow.googleapis.com/Intent'
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4619,8 +4623,8 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=10881,
-    serialized_end=11069,
+    serialized_start=11079,
+    serialized_end=11309,
 )
 
 
@@ -4712,8 +4716,8 @@ _UPDATEINTENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=11072,
-    serialized_end=11293,
+    serialized_start=11312,
+    serialized_end=11533,
 )
 
 
@@ -4739,7 +4743,7 @@ _DELETEINTENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b('\340A\002\372A"\n dialogflow.googleapis.com/Intent'),
             file=DESCRIPTOR,
         )
     ],
@@ -4751,8 +4755,8 @@ _DELETEINTENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=11295,
-    serialized_end=11330,
+    serialized_start=11535,
+    serialized_end=11612,
 )
 
 
@@ -4778,7 +4782,9 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                '\340A\002\372A"\022 dialogflow.googleapis.com/Intent'
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4888,8 +4894,8 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=11333,
-    serialized_end=11640,
+    serialized_start=11615,
+    serialized_end=11964,
 )
 
 
@@ -4927,8 +4933,8 @@ _BATCHUPDATEINTENTSRESPONSE = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=11642,
-    serialized_end=11728,
+    serialized_start=11966,
+    serialized_end=12052,
 )
 
 
@@ -4954,7 +4960,9 @@ _BATCHDELETEINTENTSREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                '\340A\002\372A"\022 dialogflow.googleapis.com/Intent'
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -4984,8 +4992,8 @@ _BATCHDELETEINTENTSREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=11730,
-    serialized_end=11831,
+    serialized_start=12055,
+    serialized_end=12198,
 )
 
 
@@ -5023,8 +5031,8 @@ _INTENTBATCH = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=11833,
-    serialized_end=11904,
+    serialized_start=12200,
+    serialized_end=12271,
 )
 
 _INTENT_TRAININGPHRASE_PART.containing_type = _INTENT_TRAININGPHRASE
@@ -5607,11 +5615,11 @@ Intent = _reflection.GeneratedProtocolMessageType(
         display_name:
             Required. The name of the parameter.
         value:
-            Optional. The definition of the parameter value. It can be: -
-            a constant string, - a parameter value defined as
-            ``$parameter_name``, - an original parameter value defined as
-            ``$parameter_name.original``, - a parameter value from some
-            context defined as ``#context_name.parameter_name``.
+            Optional. The definition of the parameter value. It can be:  -
+            a constant string, -  a parameter value defined as
+            ``$parameter_name``, -  an original parameter value defined as
+            ``$parameter_name.original``, -  a parameter value from some
+            context defined as    ``#context_name.parameter_name``.
         default_value:
             Optional. The default value to use when the ``value`` yields
             an empty result. Default values can be extracted from contexts
@@ -6507,10 +6515,10 @@ Intent = _reflection.GeneratedProtocolMessageType(
   or sentence semantics.
   Attributes:
       name:
-          The unique identifier of this intent. Required for [Intents.Up
-          dateIntent][google.cloud.dialogflow.v2beta1.Intents.UpdateInte
-          nt] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v
-          2beta1.Intents.BatchUpdateIntents] methods. Format:
+          Optional. The unique identifier of this intent. Required for [
+          Intents.UpdateIntent][google.cloud.dialogflow.v2beta1.Intents.
+          UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.di
+          alogflow.v2beta1.Intents.BatchUpdateIntents] methods. Format:
           ``projects/<Project ID>/agent/intents/<Intent ID>``.
       display_name:
           Required. The name of this intent.
@@ -6518,12 +6526,12 @@ Intent = _reflection.GeneratedProtocolMessageType(
           Optional. Indicates whether webhooks are enabled for the
           intent.
       priority:
-          The priority of this intent. Higher numbers represent higher
-          priorities.  -  If the supplied value is unspecified or 0, the
-          service translates the    value to 500,000, which corresponds
-          to the ``Normal`` priority in the    console. -  If the
-          supplied value is negative, the intent is ignored in runtime
-          detect intent requests.
+          Optional. The priority of this intent. Higher numbers
+          represent higher priorities.  -  If the supplied value is
+          unspecified or 0, the service translates the    value to
+          500,000, which corresponds to the ``Normal`` priority in the
+          console. -  If the supplied value is negative, the intent is
+          ignored in runtime    detect intent requests.
       is_fallback:
           Optional. Indicates whether this is a fallback intent.
       ml_enabled:
@@ -6585,22 +6593,21 @@ Intent = _reflection.GeneratedProtocolMessageType(
           will be copied from the messages in PLATFORM\_UNSPECIFIED
           (i.e. default platform).
       root_followup_intent_name:
-          Read-only. The unique identifier of the root intent in the
+          Output only. The unique identifier of the root intent in the
           chain of followup intents. It identifies the correct followup
-          intents chain for this intent. We populate this field only in
-          the output.  Format: ``projects/<Project
+          intents chain for this intent.  Format: ``projects/<Project
           ID>/agent/intents/<Intent ID>``.
       parent_followup_intent_name:
-          Read-only after creation. The unique identifier of the parent
-          intent in the chain of followup intents. You can set this
-          field when creating an intent, for example with [CreateIntent]
-          [google.cloud.dialogflow.v2beta1.Intents.CreateIntent] or [Bat
-          chUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.Batch
-          UpdateIntents], in order to make this intent a followup
-          intent.  It identifies the parent followup intent. Format:
+          Optional. The unique identifier of the parent intent in the
+          chain of followup intents. You can set this field when
+          creating an intent, for example with [CreateIntent][google.clo
+          ud.dialogflow.v2beta1.Intents.CreateIntent] or [BatchUpdateInt
+          ents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateInten
+          ts], in order to make this intent a followup intent.  It
+          identifies the parent followup intent. Format:
           ``projects/<Project ID>/agent/intents/<Intent ID>``.
       followup_intent_info:
-          Read-only. Information about all followup intents that have
+          Output only. Information about all followup intents that have
           this intent as a direct or indirect parent. We populate this
           field only in the output.
   """,
@@ -6909,14 +6916,42 @@ _sym_db.RegisterMessage(IntentBatch)
 
 DESCRIPTOR._options = None
 _INTENT_TRAININGPHRASE_TYPE.values_by_name["TEMPLATE"]._options = None
+_INTENT_TRAININGPHRASE.fields_by_name["type"]._options = None
+_INTENT_TRAININGPHRASE.fields_by_name["parts"]._options = None
+_INTENT_TRAININGPHRASE.fields_by_name["times_added_count"]._options = None
 _INTENT_MESSAGE_LISTSELECT.fields_by_name["subtitle"]._options = None
+_INTENT_MESSAGE.fields_by_name["platform"]._options = None
+_INTENT.fields_by_name["name"]._options = None
+_INTENT.fields_by_name["display_name"]._options = None
+_INTENT.fields_by_name["webhook_state"]._options = None
+_INTENT.fields_by_name["priority"]._options = None
+_INTENT.fields_by_name["is_fallback"]._options = None
 _INTENT.fields_by_name["ml_enabled"]._options = None
+_INTENT.fields_by_name["ml_disabled"]._options = None
+_INTENT.fields_by_name["end_interaction"]._options = None
+_INTENT.fields_by_name["input_context_names"]._options = None
+_INTENT.fields_by_name["events"]._options = None
+_INTENT.fields_by_name["training_phrases"]._options = None
+_INTENT.fields_by_name["action"]._options = None
+_INTENT.fields_by_name["output_contexts"]._options = None
+_INTENT.fields_by_name["reset_contexts"]._options = None
+_INTENT.fields_by_name["parameters"]._options = None
+_INTENT.fields_by_name["default_response_platforms"]._options = None
+_INTENT.fields_by_name["root_followup_intent_name"]._options = None
+_INTENT.fields_by_name["parent_followup_intent_name"]._options = None
+_INTENT.fields_by_name["followup_intent_info"]._options = None
 _INTENT._options = None
+_LISTINTENTSREQUEST.fields_by_name["parent"]._options = None
 _LISTINTENTSREQUEST.fields_by_name["language_code"]._options = None
+_GETINTENTREQUEST.fields_by_name["name"]._options = None
 _GETINTENTREQUEST.fields_by_name["language_code"]._options = None
+_CREATEINTENTREQUEST.fields_by_name["parent"]._options = None
 _CREATEINTENTREQUEST.fields_by_name["language_code"]._options = None
 _UPDATEINTENTREQUEST.fields_by_name["language_code"]._options = None
+_DELETEINTENTREQUEST.fields_by_name["name"]._options = None
+_BATCHUPDATEINTENTSREQUEST.fields_by_name["parent"]._options = None
 _BATCHUPDATEINTENTSREQUEST.fields_by_name["language_code"]._options = None
+_BATCHDELETEINTENTSREQUEST.fields_by_name["parent"]._options = None
 
 _INTENTS = _descriptor.ServiceDescriptor(
     name="Intents",
@@ -6926,8 +6961,8 @@ _INTENTS = _descriptor.ServiceDescriptor(
     serialized_options=_b(
         "\312A\031dialogflow.googleapis.com\322AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflow"
     ),
-    serialized_start=11972,
-    serialized_end=13761,
+    serialized_start=12339,
+    serialized_end=14469,
     methods=[
         _descriptor.MethodDescriptor(
             name="ListIntents",
@@ -6937,7 +6972,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_LISTINTENTSREQUEST,
             output_type=_LISTINTENTSRESPONSE,
             serialized_options=_b(
-                "\202\323\344\223\002f\022*/v2beta1/{parent=projects/*/agent}/intentsZ8\0226/v2beta1/{parent=projects/*/locations/*/agent}/intents"
+                "\202\323\344\223\002f\022*/v2beta1/{parent=projects/*/agent}/intentsZ8\0226/v2beta1/{parent=projects/*/locations/*/agent}/intents\332A\006parent\332A\024parent,language_code"
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -6948,7 +6983,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_GETINTENTREQUEST,
             output_type=_INTENT,
             serialized_options=_b(
-                "\202\323\344\223\002f\022*/v2beta1/{name=projects/*/agent/intents/*}Z8\0226/v2beta1/{name=projects/*/locations/*/agent/intents/*}"
+                "\202\323\344\223\002f\022*/v2beta1/{name=projects/*/agent/intents/*}Z8\0226/v2beta1/{name=projects/*/locations/*/agent/intents/*}\332A\004name\332A\022name,language_code"
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -6959,7 +6994,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_CREATEINTENTREQUEST,
             output_type=_INTENT,
             serialized_options=_b(
-                '\202\323\344\223\002v"*/v2beta1/{parent=projects/*/agent}/intents:\006intentZ@"6/v2beta1/{parent=projects/*/locations/*/agent}/intents:\006intent'
+                '\202\323\344\223\002v"*/v2beta1/{parent=projects/*/agent}/intents:\006intentZ@"6/v2beta1/{parent=projects/*/locations/*/agent}/intents:\006intent\332A\rparent,intent\332A\033parent,intent,language_code'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -6970,7 +7005,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_UPDATEINTENTREQUEST,
             output_type=_INTENT,
             serialized_options=_b(
-                "\202\323\344\223\002\204\00121/v2beta1/{intent.name=projects/*/agent/intents/*}:\006intentZG2=/v2beta1/{intent.name=projects/*/locations/*/agent/intents/*}:\006intent"
+                "\202\323\344\223\002\204\00121/v2beta1/{intent.name=projects/*/agent/intents/*}:\006intentZG2=/v2beta1/{intent.name=projects/*/locations/*/agent/intents/*}:\006intent\332A\022intent,update_mask\332A\006intent\332A\024intent,language_code\332A intent,language_code,update_mask"
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -6981,7 +7016,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_DELETEINTENTREQUEST,
             output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
             serialized_options=_b(
-                "\202\323\344\223\002f**/v2beta1/{name=projects/*/agent/intents/*}Z8*6/v2beta1/{name=projects/*/locations/*/agent/intents/*}"
+                "\202\323\344\223\002f**/v2beta1/{name=projects/*/agent/intents/*}Z8*6/v2beta1/{name=projects/*/locations/*/agent/intents/*}\332A\004name"
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -6992,7 +7027,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_BATCHUPDATEINTENTSREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=_b(
-                '\202\323\344\223\002\204\001"6/v2beta1/{parent=projects/*/agent}/intents:batchUpdate:\001*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchUpdate:\001*'
+                '\202\323\344\223\002\204\001"6/v2beta1/{parent=projects/*/agent}/intents:batchUpdate:\001*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchUpdate:\001*\312AT\n:google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse\022\026google.protobuf.Struct'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -7003,7 +7038,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_BATCHDELETEINTENTSREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=_b(
-                '\202\323\344\223\002\204\001"6/v2beta1/{parent=projects/*/agent}/intents:batchDelete:\001*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchDelete:\001*'
+                '\202\323\344\223\002\204\001"6/v2beta1/{parent=projects/*/agent}/intents:batchDelete:\001*ZG"B/v2beta1/{parent=projects/*/locations/*/agent}/intents:batchDelete:\001*\312A/\n\025google.protobuf.Empty\022\026google.protobuf.Struct'
             ),
         ),
     ],
