@@ -2,8 +2,9 @@ config = {
     "interfaces": {
         "google.cloud.dialogflow.v2.Environments": {
             "retry_codes": {
-                "idempotent": ["DEADLINE_EXCEEDED", "UNAVAILABLE"],
+                "idempotent": ["INTERNAL", "UNAVAILABLE"],
                 "non_idempotent": [],
+                "idempotent2": ["DEADLINE_EXCEEDED", "UNAVAILABLE"],
             },
             "retry_params": {
                 "default": {
@@ -19,7 +20,7 @@ config = {
             "methods": {
                 "ListEnvironments": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
+                    "retry_codes_name": "idempotent2",
                     "retry_params_name": "default",
                 }
             },
