@@ -62,8 +62,13 @@ class CustomException(Exception):
 class TestEnvironmentsClient(object):
     def test_list_environments(self):
         # Setup Expected Response
-        next_page_token = "nextPageToken-1530815211"
-        expected_response = {"next_page_token": next_page_token}
+        next_page_token = ""
+        environments_element = {}
+        environments = [environments_element]
+        expected_response = {
+            "next_page_token": next_page_token,
+            "environments": environments,
+        }
         expected_response = environment_pb2.ListEnvironmentsResponse(
             **expected_response
         )
@@ -75,21 +80,30 @@ class TestEnvironmentsClient(object):
             create_channel.return_value = channel
             client = dialogflow_v2beta1.EnvironmentsClient()
 
-        response = client.list_environments()
-        assert expected_response == response
+        # Setup Request
+        parent = client.project_agent_path("[PROJECT]")
+
+        paged_list_response = client.list_environments(parent)
+        resources = list(paged_list_response)
+        assert len(resources) == 1
+
+        assert expected_response.environments[0] == resources[0]
 
         assert len(channel.requests) == 1
-        expected_request = environment_pb2.ListEnvironmentsRequest()
+        expected_request = environment_pb2.ListEnvironmentsRequest(parent=parent)
         actual_request = channel.requests[0][1]
         assert expected_request == actual_request
 
     def test_list_environments_exception(self):
-        # Mock the API response
         channel = ChannelStub(responses=[CustomException()])
         patch = mock.patch("google.api_core.grpc_helpers.create_channel")
         with patch as create_channel:
             create_channel.return_value = channel
             client = dialogflow_v2beta1.EnvironmentsClient()
 
+        # Setup request
+        parent = client.project_agent_path("[PROJECT]")
+
+        paged_list_response = client.list_environments(parent)
         with pytest.raises(CustomException):
-            client.list_environments()
+            list(paged_list_response)

@@ -2,7 +2,7 @@ config = {
     "interfaces": {
         "google.cloud.dialogflow.v2beta1.Environments": {
             "retry_codes": {
-                "idempotent": ["DEADLINE_EXCEEDED", "UNAVAILABLE"],
+                "idempotent": ["INTERNAL", "UNAVAILABLE"],
                 "non_idempotent": [],
             },
             "retry_params": {
