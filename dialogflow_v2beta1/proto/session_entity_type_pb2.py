@@ -526,16 +526,10 @@ SessionEntityType = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_SESSIONENTITYTYPE,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2",
-        __doc__="""Represents a session entity type.
-  
-  Extends or replaces a custom entity type at the user session level (we
-  refer to the entity types defined at the agent level as "custom entity
-  types").
-  
-  Note: session entity types apply to all queries, regardless of the
-  language.
-  
-  
+        __doc__="""Represents a session entity type.  Extends or replaces a custom entity
+  type at the user session level (we refer to the entity types defined
+  at the agent level as "custom entity types").  Note: session entity
+  types apply to all queries, regardless of the language.
   Attributes:
       name:
           Required. The unique identifier of this session entity type.
@@ -566,10 +560,9 @@ ListSessionEntityTypesRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_LISTSESSIONENTITYTYPESREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2",
-        __doc__="""The request message for
-  [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
-  
-  
+        __doc__="""The request message for [SessionEntityTypes.ListSessionEntityTypes][go
+  ogle.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityType
+  s].
   Attributes:
       parent:
           Required. The session to list all session entity types from.
@@ -596,10 +589,9 @@ ListSessionEntityTypesResponse = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_LISTSESSIONENTITYTYPESRESPONSE,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2",
-        __doc__="""The response message for
-  [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
-  
-  
+        __doc__="""The response message for [SessionEntityTypes.ListSessionEntityTypes][g
+  oogle.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTyp
+  es].
   Attributes:
       session_entity_types:
           The list of session entity types. There will be a maximum
@@ -620,10 +612,8 @@ GetSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_GETSESSIONENTITYTYPEREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2",
-        __doc__="""The request message for
-  [SessionEntityTypes.GetSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.GetSessionEntityType].
-  
-  
+        __doc__="""The request message for [SessionEntityTypes.GetSessionEntityType][goog
+  le.cloud.dialogflow.v2beta1.SessionEntityTypes.GetSessionEntityType].
   Attributes:
       name:
           Required. The name of the session entity type. Format:
@@ -646,10 +636,9 @@ CreateSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_CREATESESSIONENTITYTYPEREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2",
-        __doc__="""The request message for
-  [SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.CreateSessionEntityType].
-  
-  
+        __doc__="""The request message for [SessionEntityTypes.CreateSessionEntityType][g
+  oogle.cloud.dialogflow.v2beta1.SessionEntityTypes.CreateSessionEntityT
+  ype].
   Attributes:
       parent:
           Required. The session to create a session entity type for.
@@ -672,10 +661,9 @@ UpdateSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_UPDATESESSIONENTITYTYPEREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2",
-        __doc__="""The request message for
-  [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType].
-  
-  
+        __doc__="""The request message for [SessionEntityTypes.UpdateSessionEntityType][g
+  oogle.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityT
+  ype].
   Attributes:
       session_entity_type:
           Required. The entity type to update. Format:
@@ -700,10 +688,9 @@ DeleteSessionEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_DELETESESSIONENTITYTYPEREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_entity_type_pb2",
-        __doc__="""The request message for
-  [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType].
-  
-  
+        __doc__="""The request message for [SessionEntityTypes.DeleteSessionEntityType][g
+  oogle.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityT
+  ype].
   Attributes:
       name:
           Required. The name of the entity type to delete. Format:

@@ -2078,11 +2078,9 @@ DetectIntentRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_DETECTINTENTREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""
-  Requests and responses for custom methods. The request to detect user's
-  intent.
-  
-  
+        __doc__="""======================================================================
+  ====== Requests and responses for custom methods. The request to
+  detect user's intent.
   Attributes:
       session:
           Required. The name of the session this query is sent to.
@@ -2133,8 +2131,6 @@ DetectIntentResponse = _reflection.GeneratedProtocolMessageType(
         DESCRIPTOR=_DETECTINTENTRESPONSE,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
         __doc__="""The message returned from the DetectIntent method.
-  
-  
   Attributes:
       response_id:
           The unique identifier of the response. It can be used to
@@ -2188,8 +2184,6 @@ QueryParameters = _reflection.GeneratedProtocolMessageType(
         DESCRIPTOR=_QUERYPARAMETERS,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
         __doc__="""Represents the parameters of the conversational query.
-  
-  
   Attributes:
       time_zone:
           The time zone of this conversational query from the `time zone
@@ -2252,16 +2246,10 @@ QueryInput = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_QUERYINPUT,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""Represents the query input. It can contain either:
-  
-  1. An audio config which instructs the speech recognizer how to process
-     the speech audio.
-  
-  2. A conversational query in the form of text.
-  
-  3. An event that specifies which intent to trigger.
-  
-  
+        __doc__="""Represents the query input. It can contain either:  1. An audio config
+  which instructs the speech recognizer how to process    the speech
+  audio.  2. A conversational query in the form of text.  3. An event
+  that specifies which intent to trigger.
   Attributes:
       input:
           Required. The input specification.
@@ -2284,10 +2272,7 @@ QueryResult = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_QUERYRESULT,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""Represents the result of conversational query or event
-  processing.
-  
-  
+        __doc__="""Represents the result of conversational query or event processing.
   Attributes:
       query_text:
           The original conversational query text:  -  If natural
@@ -2386,8 +2371,6 @@ KnowledgeAnswers = _reflection.GeneratedProtocolMessageType(
                 DESCRIPTOR=_KNOWLEDGEANSWERS_ANSWER,
                 __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
                 __doc__="""An answer from Knowledge Connector.
-    
-    
     Attributes:
         source:
             Indicates which Knowledge Document this answer was extracted
@@ -2424,8 +2407,6 @@ KnowledgeAnswers = _reflection.GeneratedProtocolMessageType(
         DESCRIPTOR=_KNOWLEDGEANSWERS,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
         __doc__="""Represents the result of querying a Knowledge base.
-  
-  
   Attributes:
       answers:
           A list of answers from Knowledge Connector.
@@ -2442,44 +2423,32 @@ StreamingDetectIntentRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_STREAMINGDETECTINTENTREQUEST,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""The top-level message sent by the client to the
-  [Sessions.StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]
-  method.
-  
-  Multiple request messages should be sent in order:
-  
-  1. The first message must contain
-     [session][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.session],
-     [query\_input][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.query\_input]
-     plus optionally
-     [query\_params][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.query\_params].
-     If the client wants to receive an audio response, it should also
-     contain
-     [output\_audio\_config][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.output\_audio\_config].
-     The message must not contain
-     [input\_audio][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.input\_audio].
-  2. If
-     [query\_input][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.query\_input]
-     was set to
-     [query\_input.audio\_config][google.cloud.dialogflow.v2beta1.InputAudioConfig],
-     all subsequent messages must contain
-     [input\_audio][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.input\_audio]
-     to continue with Speech recognition. If you decide to rather detect
-     an intent from text input after you already started Speech
-     recognition, please send a message with
-     [query\_input.text][google.cloud.dialogflow.v2beta1.QueryInput.text].
-  
-     However, note that:
-  
-     -  Dialogflow will bill you for the audio duration so far.
-     -  Dialogflow discards all Speech recognition results in favor of the
-        input text.
-     -  Dialogflow will use the language code from the first message.
-  
-  After you sent all input, you must half-close or abort the request
-  stream.
-  
-  
+        __doc__="""The top-level message sent by the client to the [Sessions.StreamingDet
+  ectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectInt
+  ent] method.  Multiple request messages should be sent in order:  1.
+  The first message must contain    [session][google.cloud.dialogflow.v2
+  beta1.StreamingDetectIntentRequest.session],    [query\_input][google.
+  cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.query\_input]
+  plus optionally    [query\_params][google.cloud.dialogflow.v2beta1.Str
+  eamingDetectIntentRequest.query\_params].    If the client wants to
+  receive an audio response, it should also    contain    [output\_audio
+  \_config][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest
+  .output\_audio\_config].    The message must not contain    [input\_au
+  dio][google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest.inpu
+  t\_audio]. 2. If    [query\_input][google.cloud.dialogflow.v2beta1.Str
+  eamingDetectIntentRequest.query\_input]    was set to    [query\_input
+  .audio\_config][google.cloud.dialogflow.v2beta1.InputAudioConfig],
+  all subsequent messages must contain    [input\_audio][google.cloud.di
+  alogflow.v2beta1.StreamingDetectIntentRequest.input\_audio]    to
+  continue with Speech recognition. If you decide to rather detect    an
+  intent from text input after you already started Speech
+  recognition, please send a message with
+  [query\_input.text][google.cloud.dialogflow.v2beta1.QueryInput.text].
+  However, note that:     -  Dialogflow will bill you for the audio
+  duration so far.    -  Dialogflow discards all Speech recognition
+  results in favor of the       input text.    -  Dialogflow will use
+  the language code from the first message.  After you sent all input,
+  you must half-close or abort the request stream.
   Attributes:
       session:
           Required. The name of the session the query is sent to. Format
@@ -2541,25 +2510,18 @@ StreamingDetectIntentResponse = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_STREAMINGDETECTINTENTRESPONSE,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""The top-level message returned from the
-  ``StreamingDetectIntent`` method.
-  
-  Multiple response messages can be returned in order:
-  
-  1. If the input was set to streaming audio, the first one or more
-     messages contain ``recognition_result``. Each ``recognition_result``
-     represents a more complete transcript of what the user said. The last
-     ``recognition_result`` has ``is_final`` set to ``true``.
-  
-  2. The next message contains ``response_id``, ``query_result``,
-     ``alternative_query_results`` and optionally ``webhook_status`` if a
-     WebHook was called.
-  
-  3. If ``output_audio_config`` was specified in the request or
-     agent-level speech synthesizer is configured, all subsequent messages
-     contain ``output_audio`` and ``output_audio_config``.
-  
-  
+        __doc__="""The top-level message returned from the ``StreamingDetectIntent``
+  method.  Multiple response messages can be returned in order:  1. If
+  the input was set to streaming audio, the first one or more
+  messages contain ``recognition_result``. Each ``recognition_result``
+  represents a more complete transcript of what the user said. The last
+  ``recognition_result`` has ``is_final`` set to ``true``.  2. The next
+  message contains ``response_id``, ``query_result``,
+  ``alternative_query_results`` and optionally ``webhook_status`` if a
+  WebHook was called.  3. If ``output_audio_config`` was specified in
+  the request or    agent-level speech synthesizer is configured, all
+  subsequent messages    contain ``output_audio`` and
+  ``output_audio_config``.
   Attributes:
       response_id:
           The unique identifier of the response. It can be used to
@@ -2605,39 +2567,19 @@ StreamingRecognitionResult = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_STREAMINGRECOGNITIONRESULT,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""Contains a speech recognition result corresponding to a
-  portion of the audio that is currently being processed or an indication
-  that this is the end of the single requested utterance.
-  
-  Example:
-  
-  1. transcript: "tube"
-  
-  2. transcript: "to be a"
-  
-  3. transcript: "to be"
-  
-  4. transcript: "to be or not to be" is\_final: true
-  
-  5. transcript: " that's"
-  
-  6. transcript: " that is"
-  
-  7. message\_type: ``END_OF_SINGLE_UTTERANCE``
-  
-  8. transcript: " that is the question" is\_final: true
-  
-  Only two of the responses contain final results (#4 and #8 indicated by
-  ``is_final: true``). Concatenating these generates the full transcript:
-  "to be or not to be that is the question".
-  
-  In each response we populate:
-  
-  -  for ``TRANSCRIPT``: ``transcript`` and possibly ``is_final``.
-  
-  -  for ``END_OF_SINGLE_UTTERANCE``: only ``message_type``.
-  
-  
+        __doc__="""Contains a speech recognition result corresponding to a portion of the
+  audio that is currently being processed or an indication that this is
+  the end of the single requested utterance.  Example:  1. transcript:
+  "tube"  2. transcript: "to be a"  3. transcript: "to be"  4.
+  transcript: "to be or not to be" is\_final: true  5. transcript: "
+  that's"  6. transcript: " that is"  7. message\_type:
+  ``END_OF_SINGLE_UTTERANCE``  8. transcript: " that is the question"
+  is\_final: true  Only two of the responses contain final results (#4
+  and #8 indicated by ``is_final: true``). Concatenating these generates
+  the full transcript: "to be or not to be that is the question".  In
+  each response we populate:  -  for ``TRANSCRIPT``: ``transcript`` and
+  possibly ``is_final``.  -  for ``END_OF_SINGLE_UTTERANCE``: only
+  ``message_type``.
   Attributes:
       message_type:
           Type of the result message.
@@ -2689,8 +2631,6 @@ TextInput = _reflection.GeneratedProtocolMessageType(
         DESCRIPTOR=_TEXTINPUT,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
         __doc__="""Represents the natural language text to be processed.
-  
-  
   Attributes:
       text:
           Required. The UTF-8 encoded natural language text to be
@@ -2713,14 +2653,12 @@ EventInput = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_EVENTINPUT,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""Events allow for matching intents by event name instead of
-  the natural language input. For instance, input
-  ``<event: { name: "welcome_event", parameters: { name: "Sam" } }>`` can
-  trigger a personalized welcome response. The parameter ``name`` may be
-  used by the agent in the response:
-  ``"Hello #welcome_event.name! What can I do for you today?"``.
-  
-  
+        __doc__="""Events allow for matching intents by event name instead of the natural
+  language input. For instance, input ``<event: { name: "welcome_event",
+  parameters: { name: "Sam" } }>`` can trigger a personalized welcome
+  response. The parameter ``name`` may be used by the agent in the
+  response: ``"Hello #welcome_event.name! What can I do for you
+  today?"``.
   Attributes:
       name:
           Required. The unique identifier of the event.
@@ -2745,8 +2683,6 @@ SentimentAnalysisRequestConfig = _reflection.GeneratedProtocolMessageType(
         DESCRIPTOR=_SENTIMENTANALYSISREQUESTCONFIG,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
         __doc__="""Configures the types of sentiment analysis to perform.
-  
-  
   Attributes:
       analyze_query_text_sentiment:
           Instructs the service to perform sentiment analysis on
@@ -2766,8 +2702,6 @@ SentimentAnalysisResult = _reflection.GeneratedProtocolMessageType(
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
         __doc__="""The result of sentiment analysis as configured by
   ``sentiment_analysis_request_config``.
-  
-  
   Attributes:
       query_text_sentiment:
           The sentiment analysis result for ``query_text``.
@@ -2783,10 +2717,8 @@ Sentiment = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_SENTIMENT,
         __module__="google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        __doc__="""The sentiment, such as positive/negative feeling or
-  association, for a unit of analysis, such as the query text.
-  
-  
+        __doc__="""The sentiment, such as positive/negative feeling or association, for a
+  unit of analysis, such as the query text.
   Attributes:
       score:
           Sentiment score between -1.0 (negative sentiment) and 1.0
