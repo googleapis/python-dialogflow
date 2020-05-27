@@ -1688,8 +1688,7 @@ DetectIntentRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_DETECTINTENTREQUEST,
         __module__="google.cloud.dialogflow_v2.proto.session_pb2",
-        __doc__="""Requests and responses for custom methods. The request to detect
-  user's intent.
+        __doc__="""The request to detect user's intent.
   Attributes:
       session:
           Required. The name of the session this query is sent to.
@@ -1868,7 +1867,17 @@ QueryResult = _reflection.GeneratedProtocolMessageType(
       action:
           The action name from the matched intent.
       parameters:
-          The collection of extracted parameters.
+          The collection of extracted parameters.  Depending on your
+          protocol or client library language, this is a map,
+          associative array, symbol table, dictionary, or JSON object
+          composed of a collection of (MapKey, MapValue) pairs:  -
+          MapKey type: string -  MapKey value: parameter name -
+          MapValue type:     -  If parameter's entity type is a
+          composite entity: map    -  Else: string or number, depending
+          on parameter value type  -  MapValue value:     -  If
+          parameter's entity type is a composite entity: map from
+          composite entity property names to property values    -  Else:
+          parameter value
       all_required_params_present:
           This field is set to:  -  ``false`` if the matched intent has
           required parameters and not all    of the required parameter
@@ -2148,6 +2157,16 @@ EventInput = _reflection.GeneratedProtocolMessageType(
           Required. The unique identifier of the event.
       parameters:
           The collection of parameters associated with the event.
+          Depending on your protocol or client library language, this is
+          a map, associative array, symbol table, dictionary, or JSON
+          object composed of a collection of (MapKey, MapValue) pairs:
+          -  MapKey type: string -  MapKey value: parameter name -
+          MapValue type:     -  If parameter's entity type is a
+          composite entity: map    -  Else: string or number, depending
+          on parameter value type  -  MapValue value:     -  If
+          parameter's entity type is a composite entity: map from
+          composite entity property names to property values    -  Else:
+          parameter value
       language_code:
           Required. The language of this query. See `Language Support <h
           ttps://cloud.google.com/dialogflow/docs/reference/language>`__
