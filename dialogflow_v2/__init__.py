@@ -24,6 +24,7 @@ from dialogflow_v2.gapic import agents_client
 from dialogflow_v2.gapic import contexts_client
 from dialogflow_v2.gapic import entity_types_client
 from dialogflow_v2.gapic import enums
+from dialogflow_v2.gapic import environments_client
 from dialogflow_v2.gapic import intents_client
 from dialogflow_v2.gapic import session_entity_types_client
 from dialogflow_v2.gapic import sessions_client
@@ -40,6 +41,11 @@ if sys.version_info[:2] == (2, 7):
 
 class EntityTypesClient(entity_types_client.EntityTypesClient):
     __doc__ = entity_types_client.EntityTypesClient.__doc__
+    enums = enums
+
+
+class EnvironmentsClient(environments_client.EnvironmentsClient):
+    __doc__ = environments_client.EnvironmentsClient.__doc__
     enums = enums
 
 
@@ -72,6 +78,7 @@ __all__ = (
     "enums",
     "types",
     "EntityTypesClient",
+    "EnvironmentsClient",
     "ContextsClient",
     "SessionEntityTypesClient",
     "IntentsClient",
