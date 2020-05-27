@@ -287,12 +287,10 @@ class IntentsClient(object):
         Args:
             parent (str): Required. The agent to list all intents from. Format:
                 ``projects/<Project ID>/agent``.
-            language_code (str): Optional. The language to list training phrases, parameters and rich
-                messages for. If not specified, the agent's default language is used.
-                `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             intent_view (~google.cloud.dialogflow_v2.types.IntentView): Optional. The resource view to apply to the returned intent.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
@@ -390,12 +388,10 @@ class IntentsClient(object):
         Args:
             name (str): Required. The name of the intent. Format:
                 ``projects/<Project ID>/agent/intents/<Intent ID>``.
-            language_code (str): Optional. The language to retrieve training phrases, parameters and rich
-                messages for. If not specified, the agent's default language is used.
-                `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             intent_view (~google.cloud.dialogflow_v2.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -479,12 +475,10 @@ class IntentsClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.Intent`
-            language_code (str): Optional. The language of training phrases, parameters and rich messages
-                defined in ``intent``. If not specified, the agent's default language is
-                used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             intent_view (~google.cloud.dialogflow_v2.types.IntentView): Optional. The resource view to apply to the returned intent.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -567,12 +561,10 @@ class IntentsClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.Intent`
-            language_code (str): Optional. The language of training phrases, parameters and rich messages
-                defined in ``intent``. If not specified, the agent's default language is
-                used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -744,12 +736,10 @@ class IntentsClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.IntentBatch`
-            language_code (str): Optional. The language of training phrases, parameters and rich messages
-                defined in ``intents``. If not specified, the agent's default language
-                is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
