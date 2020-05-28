@@ -17,12 +17,12 @@
 
 import google.api_core.grpc_helpers
 
-from dialogflow_v2.proto import context_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 
 
-class ContextsGrpcTransport(object):
+class EnvironmentsGrpcTransport(object):
     """gRPC transport class providing stubs for
-    google.cloud.dialogflow.v2 Contexts API.
+    google.cloud.dialogflow.v2beta1 Environments API.
 
     The transport provides access to the raw gRPC stubs,
     which can be used to take advantage of advanced
@@ -74,7 +74,9 @@ class ContextsGrpcTransport(object):
 
         # gRPC uses objects called "stubs" that are bound to the
         # channel and provide a basic method for each RPC.
-        self._stubs = {"contexts_stub": context_pb2_grpc.ContextsStub(channel)}
+        self._stubs = {
+            "environments_stub": environment_pb2_grpc.EnvironmentsStub(channel)
+        }
 
     @classmethod
     def create_channel(
@@ -109,81 +111,14 @@ class ContextsGrpcTransport(object):
         return self._channel
 
     @property
-    def delete_context(self):
-        """Return the gRPC stub for :meth:`ContextsClient.delete_context`.
+    def list_environments(self):
+        """Return the gRPC stub for :meth:`EnvironmentsClient.list_environments`.
 
-        Deletes the specified context.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["contexts_stub"].DeleteContext
-
-    @property
-    def delete_all_contexts(self):
-        """Return the gRPC stub for :meth:`ContextsClient.delete_all_contexts`.
-
-        Deletes all active contexts in the specified session.
+        Returns the list of all non-draft environments of the specified agent.
 
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs["contexts_stub"].DeleteAllContexts
-
-    @property
-    def list_contexts(self):
-        """Return the gRPC stub for :meth:`ContextsClient.list_contexts`.
-
-        Returns the list of all contexts in the specified session.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["contexts_stub"].ListContexts
-
-    @property
-    def get_context(self):
-        """Return the gRPC stub for :meth:`ContextsClient.get_context`.
-
-        Retrieves the specified context.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["contexts_stub"].GetContext
-
-    @property
-    def create_context(self):
-        """Return the gRPC stub for :meth:`ContextsClient.create_context`.
-
-        Creates a context.
-
-        If the specified context already exists, overrides the context.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["contexts_stub"].CreateContext
-
-    @property
-    def update_context(self):
-        """Return the gRPC stub for :meth:`ContextsClient.update_context`.
-
-        Updates the specified context.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["contexts_stub"].UpdateContext
+        return self._stubs["environments_stub"].ListEnvironments

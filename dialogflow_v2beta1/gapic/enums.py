@@ -290,6 +290,28 @@ class EntityType(object):
         KIND_REGEXP = 3
 
 
+class Environment(object):
+    class State(enum.IntEnum):
+        """
+        Represents an environment state. When an environment is pointed to a new
+        agent version, the environment is temporarily set to the ``LOADING``
+        state. During that time, the environment keeps on serving the previous
+        version of the agent. After the new agent version is done loading, the
+        environment is set back to the ``RUNNING`` state.
+
+        Attributes:
+          STATE_UNSPECIFIED (int): Not specified. This value is not used.
+          STOPPED (int): Stopped.
+          LOADING (int): Loading.
+          RUNNING (int): Running.
+        """
+
+        STATE_UNSPECIFIED = 0
+        STOPPED = 1
+        LOADING = 2
+        RUNNING = 3
+
+
 class Intent(object):
     class WebhookState(enum.IntEnum):
         """
@@ -341,67 +363,8 @@ class Intent(object):
               SKYPE (int): Skype.
               LINE (int): Line.
               VIBER (int): Viber.
-              ACTIONS_ON_GOOGLE (int): Actions on Google. When using Actions on Google, you can choose one of
-              the specific Intent.Message types that mention support for Actions on
-              Google, or you can use the advanced Intent.Message.payload field. The
-              payload field provides access to AoG features not available in the
-              specific message types. If using the Intent.Message.payload field, it
-              should have a structure similar to the JSON message shown here. For more
-              information, see `Actions on Google Webhook
-              Format <https://developers.google.com/actions/dialogflow/webhook>`__
-
-              .. raw:: html
-              <pre>{
-                    "expectUserResponse": true,
-                    "isSsml": false,
-                    "noInputPrompts": [],
-                    "richResponse": {
-                      "items": [
-                        {
-                          "simpleResponse": {
-                            "displayText": "hi",
-                            "textToSpeech": "hello"
-                          }
-                        }
-                      ],
-                      "suggestions": [
-                        {
-                          "title": "Say this"
-                        },
-                        {
-                          "title": "or this"
-                        }
-                      ]
-                    },
-                    "systemIntent": {
-                      "data": {
-                        "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                        "listSelect": {
-                          "items": [
-                            {
-                              "optionInfo": {
-                                "key": "key1",
-                                "synonyms": [
-                                  "key one"
-                                ]
-                              },
-                              "title": "must not be empty, but unique"
-                            },
-                            {
-                              "optionInfo": {
-                                "key": "key2",
-                                "synonyms": [
-                                  "key two"
-                                ]
-                              },
-                              "title": "must not be empty, but unique"
-                            }
-                          ]
-                        }
-                      },
-                      "intent": "actions.intent.OPTION"
-                    }
-                  }</pre>
+              ACTIONS_ON_GOOGLE (int): Google Assistant See `Dialogflow webhook
+              format <https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json>`__
               TELEPHONY (int): Telephony Gateway.
               GOOGLE_HANGOUTS (int): Google Hangouts.
             """

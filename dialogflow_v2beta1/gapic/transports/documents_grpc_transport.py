@@ -157,9 +157,6 @@ class DocumentsGrpcTransport(object):
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
 
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
-
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
@@ -176,9 +173,6 @@ class DocumentsGrpcTransport(object):
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
 
-        Operation <response: ``google.protobuf.Empty``, metadata:
-        ``KnowledgeOperationMetadata``>
-
         Returns:
             Callable: A callable which accepts the appropriate
                 deserialized request object and returns a
@@ -194,9 +188,6 @@ class DocumentsGrpcTransport(object):
 
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
-
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -217,9 +208,6 @@ class DocumentsGrpcTransport(object):
 
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
-
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
 
         Returns:
             Callable: A callable which accepts the appropriate

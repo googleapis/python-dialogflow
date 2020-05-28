@@ -408,9 +408,6 @@ class DocumentsClient(object):
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
 
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
-
         Example:
             >>> import dialogflow_v2beta1
             >>>
@@ -506,9 +503,6 @@ class DocumentsClient(object):
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
 
-        Operation <response: ``google.protobuf.Empty``, metadata:
-        ``KnowledgeOperationMetadata``>
-
         Example:
             >>> import dialogflow_v2beta1
             >>>
@@ -528,7 +522,7 @@ class DocumentsClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            name (str): The name of the document to delete. Format:
+            name (str): Required. The name of the document to delete. Format:
                 ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -597,9 +591,6 @@ class DocumentsClient(object):
 
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
-
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
 
         Example:
             >>> import dialogflow_v2beta1
@@ -705,9 +696,6 @@ class DocumentsClient(object):
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
 
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
-
         Example:
             >>> import dialogflow_v2beta1
             >>>
@@ -716,9 +704,10 @@ class DocumentsClient(object):
             >>> response = client.reload_document()
 
         Args:
-            name (str): The name of the document to reload. Format:
+            name (str): Required. The name of the document to reload. Format:
                 ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
-            gcs_source (Union[dict, ~google.cloud.dialogflow_v2beta1.types.GcsSource]): The path of gcs source file for reloading document content.
+            gcs_source (Union[dict, ~google.cloud.dialogflow_v2beta1.types.GcsSource]): The path for a Cloud Storage source file for reloading document content.
+                If not provided, the Document's existing source will be reloaded.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.GcsSource`

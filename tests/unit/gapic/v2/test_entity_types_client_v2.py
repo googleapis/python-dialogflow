@@ -64,6 +64,145 @@ class CustomException(Exception):
 
 
 class TestEntityTypesClient(object):
+    def test_delete_entity_type(self):
+        channel = ChannelStub()
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.EntityTypesClient()
+
+        # Setup Request
+        name = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
+
+        client.delete_entity_type(name)
+
+        assert len(channel.requests) == 1
+        expected_request = entity_type_pb2.DeleteEntityTypeRequest(name=name)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_delete_entity_type_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.EntityTypesClient()
+
+        # Setup request
+        name = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
+
+        with pytest.raises(CustomException):
+            client.delete_entity_type(name)
+
+    def test_batch_delete_entity_types(self):
+        # Setup Expected Response
+        expected_response = {}
+        expected_response = empty_pb2.Empty(**expected_response)
+        operation = operations_pb2.Operation(
+            name="operations/test_batch_delete_entity_types", done=True
+        )
+        operation.response.Pack(expected_response)
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.EntityTypesClient()
+
+        # Setup Request
+        parent = client.agent_path("[PROJECT]")
+        entity_type_names = []
+
+        response = client.batch_delete_entity_types(parent, entity_type_names)
+        result = response.result()
+        assert expected_response == result
+
+        assert len(channel.requests) == 1
+        expected_request = entity_type_pb2.BatchDeleteEntityTypesRequest(
+            parent=parent, entity_type_names=entity_type_names
+        )
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_batch_delete_entity_types_exception(self):
+        # Setup Response
+        error = status_pb2.Status()
+        operation = operations_pb2.Operation(
+            name="operations/test_batch_delete_entity_types_exception", done=True
+        )
+        operation.error.CopyFrom(error)
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.EntityTypesClient()
+
+        # Setup Request
+        parent = client.agent_path("[PROJECT]")
+        entity_type_names = []
+
+        response = client.batch_delete_entity_types(parent, entity_type_names)
+        exception = response.exception()
+        assert exception.errors[0] == error
+
+    def test_batch_delete_entities(self):
+        # Setup Expected Response
+        expected_response = {}
+        expected_response = empty_pb2.Empty(**expected_response)
+        operation = operations_pb2.Operation(
+            name="operations/test_batch_delete_entities", done=True
+        )
+        operation.response.Pack(expected_response)
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.EntityTypesClient()
+
+        # Setup Request
+        parent = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
+        entity_values = []
+
+        response = client.batch_delete_entities(parent, entity_values)
+        result = response.result()
+        assert expected_response == result
+
+        assert len(channel.requests) == 1
+        expected_request = entity_type_pb2.BatchDeleteEntitiesRequest(
+            parent=parent, entity_values=entity_values
+        )
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_batch_delete_entities_exception(self):
+        # Setup Response
+        error = status_pb2.Status()
+        operation = operations_pb2.Operation(
+            name="operations/test_batch_delete_entities_exception", done=True
+        )
+        operation.error.CopyFrom(error)
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.EntityTypesClient()
+
+        # Setup Request
+        parent = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
+        entity_values = []
+
+        response = client.batch_delete_entities(parent, entity_values)
+        exception = response.exception()
+        assert exception.errors[0] == error
+
     def test_list_entity_types(self):
         # Setup Expected Response
         next_page_token = ""
@@ -83,7 +222,7 @@ class TestEntityTypesClient(object):
             client = dialogflow_v2.EntityTypesClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         paged_list_response = client.list_entity_types(parent)
         resources = list(paged_list_response)
@@ -104,7 +243,7 @@ class TestEntityTypesClient(object):
             client = dialogflow_v2.EntityTypesClient()
 
         # Setup request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         paged_list_response = client.list_entity_types(parent)
         with pytest.raises(CustomException):
@@ -174,7 +313,7 @@ class TestEntityTypesClient(object):
             client = dialogflow_v2.EntityTypesClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
         entity_type = {}
 
         response = client.create_entity_type(parent, entity_type)
@@ -196,7 +335,7 @@ class TestEntityTypesClient(object):
             client = dialogflow_v2.EntityTypesClient()
 
         # Setup request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
         entity_type = {}
 
         with pytest.raises(CustomException):
@@ -248,37 +387,6 @@ class TestEntityTypesClient(object):
         with pytest.raises(CustomException):
             client.update_entity_type(entity_type)
 
-    def test_delete_entity_type(self):
-        channel = ChannelStub()
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.EntityTypesClient()
-
-        # Setup Request
-        name = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
-
-        client.delete_entity_type(name)
-
-        assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.DeleteEntityTypeRequest(name=name)
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_delete_entity_type_exception(self):
-        # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.EntityTypesClient()
-
-        # Setup request
-        name = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
-
-        with pytest.raises(CustomException):
-            client.delete_entity_type(name)
-
     def test_batch_update_entity_types(self):
         # Setup Expected Response
         expected_response = {}
@@ -298,7 +406,7 @@ class TestEntityTypesClient(object):
             client = dialogflow_v2.EntityTypesClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         response = client.batch_update_entity_types(parent)
         result = response.result()
@@ -325,63 +433,9 @@ class TestEntityTypesClient(object):
             client = dialogflow_v2.EntityTypesClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         response = client.batch_update_entity_types(parent)
-        exception = response.exception()
-        assert exception.errors[0] == error
-
-    def test_batch_delete_entity_types(self):
-        # Setup Expected Response
-        expected_response = {}
-        expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_entity_types", done=True
-        )
-        operation.response.Pack(expected_response)
-
-        # Mock the API response
-        channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.EntityTypesClient()
-
-        # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
-        entity_type_names = []
-
-        response = client.batch_delete_entity_types(parent, entity_type_names)
-        result = response.result()
-        assert expected_response == result
-
-        assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.BatchDeleteEntityTypesRequest(
-            parent=parent, entity_type_names=entity_type_names
-        )
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_batch_delete_entity_types_exception(self):
-        # Setup Response
-        error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_entity_types_exception", done=True
-        )
-        operation.error.CopyFrom(error)
-
-        # Mock the API response
-        channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.EntityTypesClient()
-
-        # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
-        entity_type_names = []
-
-        response = client.batch_delete_entity_types(parent, entity_type_names)
         exception = response.exception()
         assert exception.errors[0] == error
 
@@ -490,59 +544,5 @@ class TestEntityTypesClient(object):
         entities = []
 
         response = client.batch_update_entities(parent, entities)
-        exception = response.exception()
-        assert exception.errors[0] == error
-
-    def test_batch_delete_entities(self):
-        # Setup Expected Response
-        expected_response = {}
-        expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_entities", done=True
-        )
-        operation.response.Pack(expected_response)
-
-        # Mock the API response
-        channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.EntityTypesClient()
-
-        # Setup Request
-        parent = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
-        entity_values = []
-
-        response = client.batch_delete_entities(parent, entity_values)
-        result = response.result()
-        assert expected_response == result
-
-        assert len(channel.requests) == 1
-        expected_request = entity_type_pb2.BatchDeleteEntitiesRequest(
-            parent=parent, entity_values=entity_values
-        )
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_batch_delete_entities_exception(self):
-        # Setup Response
-        error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_entities_exception", done=True
-        )
-        operation.error.CopyFrom(error)
-
-        # Mock the API response
-        channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.EntityTypesClient()
-
-        # Setup Request
-        parent = client.entity_type_path("[PROJECT]", "[ENTITY_TYPE]")
-        entity_values = []
-
-        response = client.batch_delete_entities(parent, entity_values)
         exception = response.exception()
         assert exception.errors[0] == error

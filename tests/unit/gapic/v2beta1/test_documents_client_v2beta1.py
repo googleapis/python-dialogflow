@@ -113,11 +113,13 @@ class TestDocumentsClient(object):
         display_name = "displayName1615086568"
         mime_type = "mimeType-196041627"
         content_uri = "contentUri-388807514"
+        enable_auto_reload = False
         expected_response = {
             "name": name_2,
             "display_name": display_name,
             "mime_type": mime_type,
             "content_uri": content_uri,
+            "enable_auto_reload": enable_auto_reload,
         }
         expected_response = document_pb2.Document(**expected_response)
 
@@ -159,11 +161,13 @@ class TestDocumentsClient(object):
         display_name = "displayName1615086568"
         mime_type = "mimeType-196041627"
         content_uri = "contentUri-388807514"
+        enable_auto_reload = False
         expected_response = {
             "name": name,
             "display_name": display_name,
             "mime_type": mime_type,
             "content_uri": content_uri,
+            "enable_auto_reload": enable_auto_reload,
         }
         expected_response = document_pb2.Document(**expected_response)
         operation = operations_pb2.Operation(
@@ -272,11 +276,13 @@ class TestDocumentsClient(object):
         display_name = "displayName1615086568"
         mime_type = "mimeType-196041627"
         content_uri = "contentUri-388807514"
+        enable_auto_reload = False
         expected_response = {
             "name": name,
             "display_name": display_name,
             "mime_type": mime_type,
             "content_uri": content_uri,
+            "enable_auto_reload": enable_auto_reload,
         }
         expected_response = document_pb2.Document(**expected_response)
         operation = operations_pb2.Operation(

@@ -25,6 +25,7 @@ from dialogflow_v2beta1.gapic import contexts_client
 from dialogflow_v2beta1.gapic import documents_client
 from dialogflow_v2beta1.gapic import entity_types_client
 from dialogflow_v2beta1.gapic import enums
+from dialogflow_v2beta1.gapic import environments_client
 from dialogflow_v2beta1.gapic import intents_client
 from dialogflow_v2beta1.gapic import knowledge_bases_client
 from dialogflow_v2beta1.gapic import session_entity_types_client
@@ -60,6 +61,11 @@ class EntityTypesClient(entity_types_client.EntityTypesClient):
     enums = enums
 
 
+class EnvironmentsClient(environments_client.EnvironmentsClient):
+    __doc__ = environments_client.EnvironmentsClient.__doc__
+    enums = enums
+
+
 class IntentsClient(intents_client.IntentsClient):
     __doc__ = intents_client.IntentsClient.__doc__
     enums = enums
@@ -87,6 +93,7 @@ __all__ = (
     "ContextsClient",
     "DocumentsClient",
     "EntityTypesClient",
+    "EnvironmentsClient",
     "IntentsClient",
     "KnowledgeBasesClient",
     "SessionEntityTypesClient",

@@ -167,7 +167,6 @@ class EntityTypesServicer(object):
 
     def BatchUpdateEntityTypes(self, request, context):
         """Updates/Creates multiple entity types in the specified agent.
-
     Operation <response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse]>
     """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -176,7 +175,6 @@ class EntityTypesServicer(object):
 
     def BatchDeleteEntityTypes(self, request, context):
         """Deletes entity types in the specified agent.
-
     Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
     """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
