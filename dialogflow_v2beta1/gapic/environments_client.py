@@ -16,6 +16,7 @@
 
 """Accesses the google.cloud.dialogflow.v2beta1 Environments API."""
 
+import functools
 import pkg_resources
 import warnings
 
@@ -26,6 +27,8 @@ import google.api_core.gapic_v1.config
 import google.api_core.gapic_v1.method
 import google.api_core.gapic_v1.routing_header
 import google.api_core.grpc_helpers
+import google.api_core.page_iterator
+import google.api_core.path_template
 import grpc
 
 from dialogflow_v2beta1.gapic import enums
@@ -81,6 +84,22 @@ class EnvironmentsClient(object):
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
+
+    @classmethod
+    def environment_path(cls, project, environment):
+        """Return a fully-qualified environment string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent/environments/{environment}",
+            project=project,
+            environment=environment,
+        )
+
+    @classmethod
+    def project_agent_path(cls, project):
+        """Return a fully-qualified project_agent string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent", project=project
+        )
 
     def __init__(
         self,
@@ -197,9 +216,8 @@ class EnvironmentsClient(object):
     # Service calls
     def list_environments(
         self,
-        parent=None,
+        parent,
         page_size=None,
-        page_token=None,
         retry=google.api_core.gapic_v1.method.DEFAULT,
         timeout=google.api_core.gapic_v1.method.DEFAULT,
         metadata=None,
@@ -212,15 +230,30 @@ class EnvironmentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EnvironmentsClient()
             >>>
-            >>> response = client.list_environments()
+            >>> parent = client.project_agent_path('[PROJECT]')
+            >>>
+            >>> # Iterate over all results
+            >>> for element in client.list_environments(parent):
+            ...     # process element
+            ...     pass
+            >>>
+            >>>
+            >>> # Alternatively:
+            >>>
+            >>> # Iterate over results one page at a time
+            >>> for page in client.list_environments(parent).pages:
+            ...     for element in page:
+            ...         # process element
+            ...         pass
 
         Args:
             parent (str): Required. The agent to list all environments from. Format:
                 ``projects/<Project ID>/agent``.
-            page_size (int): Optional. The maximum number of items to return in a single page. By default 100 and
-                at most 1000.
-            page_token (str): Optional. The next\_page\_token value returned from a previous list
-                request.
+            page_size (int): The maximum number of resources contained in the
+                underlying API response. If page streaming is performed per-
+                resource, this parameter does not affect the return value. If page
+                streaming is performed per-page, this determines the maximum number
+                of resources in a page.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -231,7 +264,10 @@ class EnvironmentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.ListEnvironmentsResponse` instance.
+            A :class:`~google.api_core.page_iterator.PageIterator` instance.
+            An iterable of :class:`~google.cloud.dialogflow_v2beta1.types.Environment` instances.
+            You can also iterate over the pages of the response
+            using its `pages` property.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -252,7 +288,7 @@ class EnvironmentsClient(object):
             )
 
         request = environment_pb2.ListEnvironmentsRequest(
-            parent=parent, page_size=page_size, page_token=page_token
+            parent=parent, page_size=page_size
         )
         if metadata is None:
             metadata = []
@@ -267,6 +303,17 @@ class EnvironmentsClient(object):
             )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls["list_environments"](
-            request, retry=retry, timeout=timeout, metadata=metadata
+        iterator = google.api_core.page_iterator.GRPCIterator(
+            client=None,
+            method=functools.partial(
+                self._inner_api_calls["list_environments"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
+            request=request,
+            items_field="environments",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
+        return iterator
