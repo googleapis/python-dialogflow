@@ -571,13 +571,7 @@ class SessionEntityTypesClient(object):
             >>> response = client.update_session_entity_type(session_entity_type)
 
         Args:
-            session_entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.SessionEntityType]): Required. The entity type to update. Format:
-                ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``
-                or
-                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``.
-                If ``Environment ID`` is not specified, we assume default 'draft'
-                environment. If ``User ID`` is not specified, we assume default '-'
-                user.
+            session_entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.SessionEntityType]): Required. The session entity type to update.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType`

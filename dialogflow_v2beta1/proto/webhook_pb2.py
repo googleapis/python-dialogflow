@@ -507,19 +507,17 @@ WebhookResponse = _reflection.GeneratedProtocolMessageType(
           Optional. This value is passed directly to
           ``QueryResult.webhook_source``.
       payload:
-          Optional. This value is passed directly to
-          ``QueryResult.webhook_payload``. See the related
-          ``fulfillment_messages[i].payload field``, which may be used
-          as an alternative to this field.  This field can be used for
-          Actions on Google responses. It should have a structure
-          similar to the JSON message shown here. For more information,
-          see `Actions on Google Webhook Format
-          <https://developers.google.com/actions/dialogflow/webhook>`__
-          .. raw:: html     <pre>{      "google": {
-          "expectUserResponse": true,        "richResponse": {
-          "items": [            {              "simpleResponse": {
-          "textToSpeech": "this is a simple response"              }
-          }          ]        }      }    }</pre>
+          Optional. This field can be used to pass custom data from your
+          webhook to the API caller. Arbitrary JSON objects are
+          supported. When provided, Dialogflow uses this field to
+          populate ``QueryResult.webhook_payload`` sent to the API
+          caller. This field is also used by the `Google Assistant
+          integration
+          <https://cloud.google.com/dialogflow/docs/integrations/aog>`__
+          for rich response messages. See the format definition at
+          `Google Assistant Dialogflow webhook format <https://developer
+          s.google.com/assistant/actions/build/json/dialogflow-webhook-
+          json>`__
       output_contexts:
           Optional. The collection of output contexts. This value is
           passed directly to ``QueryResult.output_contexts``.
@@ -566,12 +564,12 @@ OriginalDetectIntentRequest = _reflection.GeneratedProtocolMessageType(
           Optional. This field is set to the value of the
           ``QueryParameters.payload`` field passed in the request. Some
           integrations that query a Dialogflow agent may provide
-          additional information in the payload.  In particular for the
-          Telephony Gateway this field has the form:  .. raw:: html
-          <pre>{     "telephony": {       "caller_id": "+18558363987"
-          }    }</pre>  Note: The caller ID field (``caller_id``) will
-          be redacted for Standard Edition agents and populated with the
-          caller ID in `E.164 format
+          additional information in the payload.  In particular, for the
+          Dialogflow Phone Gateway integration, this field has the form:
+          .. raw:: html     <pre>{     "telephony": {       "caller_id":
+          "+18558363987"     }    }</pre>  Note: The caller ID field
+          (``caller_id``) will be redacted for Standard Edition agents
+          and populated with the caller ID in `E.164 format
           <https://en.wikipedia.org/wiki/E.164>`__ for Enterprise
           Edition agents.
   """,
