@@ -45,6 +45,8 @@ from dialogflow_v2beta1.proto import document_pb2
 from dialogflow_v2beta1.proto import document_pb2_grpc
 from dialogflow_v2beta1.proto import entity_type_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 from dialogflow_v2beta1.proto import gcs_pb2
 from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2beta1.proto import intent_pb2_grpc

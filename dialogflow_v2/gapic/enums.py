@@ -267,6 +267,28 @@ class EntityType(object):
         KIND_REGEXP = 3
 
 
+class Environment(object):
+    class State(enum.IntEnum):
+        """
+        Represents an environment state. When a environment is pointed to a new
+        agent version, the environment is temporarily set to the ``LOADING``
+        state. During that time, the environment keeps on serving the previous
+        version of the agent. After the new agent version is done loading, the
+        environment is set back to the ``RUNNING`` state.
+
+        Attributes:
+          STATE_UNSPECIFIED (int): Not specified. This value is not used.
+          STOPPED (int): Stopped.
+          LOADING (int): Loading.
+          RUNNING (int): Running.
+        """
+
+        STATE_UNSPECIFIED = 0
+        STOPPED = 1
+        LOADING = 2
+        RUNNING = 3
+
+
 class Intent(object):
     class WebhookState(enum.IntEnum):
         """
