@@ -64,6 +64,91 @@ class CustomException(Exception):
 
 
 class TestIntentsClient(object):
+    def test_delete_intent(self):
+        channel = ChannelStub()
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.IntentsClient()
+
+        # Setup Request
+        name = client.intent_path("[PROJECT]", "[INTENT]")
+
+        client.delete_intent(name)
+
+        assert len(channel.requests) == 1
+        expected_request = intent_pb2.DeleteIntentRequest(name=name)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_delete_intent_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.IntentsClient()
+
+        # Setup request
+        name = client.intent_path("[PROJECT]", "[INTENT]")
+
+        with pytest.raises(CustomException):
+            client.delete_intent(name)
+
+    def test_batch_delete_intents(self):
+        # Setup Expected Response
+        expected_response = {}
+        expected_response = empty_pb2.Empty(**expected_response)
+        operation = operations_pb2.Operation(
+            name="operations/test_batch_delete_intents", done=True
+        )
+        operation.response.Pack(expected_response)
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.IntentsClient()
+
+        # Setup Request
+        parent = client.agent_path("[PROJECT]")
+        intents = []
+
+        response = client.batch_delete_intents(parent, intents)
+        result = response.result()
+        assert expected_response == result
+
+        assert len(channel.requests) == 1
+        expected_request = intent_pb2.BatchDeleteIntentsRequest(
+            parent=parent, intents=intents
+        )
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_batch_delete_intents_exception(self):
+        # Setup Response
+        error = status_pb2.Status()
+        operation = operations_pb2.Operation(
+            name="operations/test_batch_delete_intents_exception", done=True
+        )
+        operation.error.CopyFrom(error)
+
+        # Mock the API response
+        channel = ChannelStub(responses=[operation])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.IntentsClient()
+
+        # Setup Request
+        parent = client.agent_path("[PROJECT]")
+        intents = []
+
+        response = client.batch_delete_intents(parent, intents)
+        exception = response.exception()
+        assert exception.errors[0] == error
+
     def test_list_intents(self):
         # Setup Expected Response
         next_page_token = ""
@@ -80,7 +165,7 @@ class TestIntentsClient(object):
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         paged_list_response = client.list_intents(parent)
         resources = list(paged_list_response)
@@ -101,7 +186,7 @@ class TestIntentsClient(object):
             client = dialogflow_v2.IntentsClient()
 
         # Setup request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         paged_list_response = client.list_intents(parent)
         with pytest.raises(CustomException):
@@ -195,7 +280,7 @@ class TestIntentsClient(object):
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
         intent = {}
 
         response = client.create_intent(parent, intent)
@@ -215,7 +300,7 @@ class TestIntentsClient(object):
             client = dialogflow_v2.IntentsClient()
 
         # Setup request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
         intent = {}
 
         with pytest.raises(CustomException):
@@ -277,37 +362,6 @@ class TestIntentsClient(object):
         with pytest.raises(CustomException):
             client.update_intent(intent)
 
-    def test_delete_intent(self):
-        channel = ChannelStub()
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.IntentsClient()
-
-        # Setup Request
-        name = client.intent_path("[PROJECT]", "[INTENT]")
-
-        client.delete_intent(name)
-
-        assert len(channel.requests) == 1
-        expected_request = intent_pb2.DeleteIntentRequest(name=name)
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_delete_intent_exception(self):
-        # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.IntentsClient()
-
-        # Setup request
-        name = client.intent_path("[PROJECT]", "[INTENT]")
-
-        with pytest.raises(CustomException):
-            client.delete_intent(name)
-
     def test_batch_update_intents(self):
         # Setup Expected Response
         expected_response = {}
@@ -325,7 +379,7 @@ class TestIntentsClient(object):
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         response = client.batch_update_intents(parent)
         result = response.result()
@@ -352,62 +406,8 @@ class TestIntentsClient(object):
             client = dialogflow_v2.IntentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = client.agent_path("[PROJECT]")
 
         response = client.batch_update_intents(parent)
-        exception = response.exception()
-        assert exception.errors[0] == error
-
-    def test_batch_delete_intents(self):
-        # Setup Expected Response
-        expected_response = {}
-        expected_response = empty_pb2.Empty(**expected_response)
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_intents", done=True
-        )
-        operation.response.Pack(expected_response)
-
-        # Mock the API response
-        channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.IntentsClient()
-
-        # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
-        intents = []
-
-        response = client.batch_delete_intents(parent, intents)
-        result = response.result()
-        assert expected_response == result
-
-        assert len(channel.requests) == 1
-        expected_request = intent_pb2.BatchDeleteIntentsRequest(
-            parent=parent, intents=intents
-        )
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_batch_delete_intents_exception(self):
-        # Setup Response
-        error = status_pb2.Status()
-        operation = operations_pb2.Operation(
-            name="operations/test_batch_delete_intents_exception", done=True
-        )
-        operation.error.CopyFrom(error)
-
-        # Mock the API response
-        channel = ChannelStub(responses=[operation])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.IntentsClient()
-
-        # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
-        intents = []
-
-        response = client.batch_delete_intents(parent, intents)
         exception = response.exception()
         assert exception.errors[0] == error
