@@ -680,9 +680,8 @@ class EntityTypesClient(object):
         metadata=None,
     ):
         """
-        Updates/Creates multiple entity types in the specified agent.
-
-        Operation <response: ``BatchUpdateEntityTypesResponse``>
+        Updates/Creates multiple entity types in the specified agent. Operation
+        <response: ``BatchUpdateEntityTypesResponse``>
 
         Example:
             >>> import dialogflow_v2beta1
@@ -797,9 +796,8 @@ class EntityTypesClient(object):
         metadata=None,
     ):
         """
-        Deletes entity types in the specified agent.
-
-        Operation <response: ``google.protobuf.Empty``>
+        Deletes entity types in the specified agent. Operation <response:
+        ``google.protobuf.Empty``>
 
         Example:
             >>> import dialogflow_v2beta1

@@ -16,6 +16,7 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.api import client_pb2 as google_dot_api_dot_client__pb2
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from dialogflow_v2beta1.proto import (
@@ -29,7 +30,6 @@ from google.longrunning import (
 )
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
-from google.api import client_pb2 as google_dot_api_dot_client__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -40,10 +40,11 @@ DESCRIPTOR = _descriptor.FileDescriptor(
         "\n#com.google.cloud.dialogflow.v2beta1B\nAgentProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1"
     ),
     serialized_pb=_b(
-        '\n1google/cloud/dialogflow_v2beta1/proto/agent.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x37google/cloud/dialogflow_v2beta1/proto/environment.proto\x1a=google/cloud/dialogflow_v2beta1/proto/validation_result.proto\x1a#google/longrunning/operations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x17google/api/client.proto"\xc2\x06\n\x05\x41gent\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x1d\n\x15\x64\x65\x66\x61ult_language_code\x18\x03 \x01(\t\x12 \n\x18supported_language_codes\x18\x04 \x03(\t\x12\x11\n\ttime_zone\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x12\n\navatar_uri\x18\x07 \x01(\t\x12\x16\n\x0e\x65nable_logging\x18\x08 \x01(\x08\x12\x44\n\nmatch_mode\x18\t \x01(\x0e\x32\x30.google.cloud.dialogflow.v2beta1.Agent.MatchMode\x12 \n\x18\x63lassification_threshold\x18\n \x01(\x02\x12\x46\n\x0b\x61pi_version\x18\x0e \x01(\x0e\x32\x31.google.cloud.dialogflow.v2beta1.Agent.ApiVersion\x12\x39\n\x04tier\x18\x0f \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.Agent.Tier"V\n\tMatchMode\x12\x1a\n\x16MATCH_MODE_UNSPECIFIED\x10\x00\x12\x15\n\x11MATCH_MODE_HYBRID\x10\x01\x12\x16\n\x12MATCH_MODE_ML_ONLY\x10\x02"l\n\nApiVersion\x12\x1b\n\x17\x41PI_VERSION_UNSPECIFIED\x10\x00\x12\x12\n\x0e\x41PI_VERSION_V1\x10\x01\x12\x12\n\x0e\x41PI_VERSION_V2\x10\x02\x12\x19\n\x15\x41PI_VERSION_V2_BETA_1\x10\x03"^\n\x04Tier\x12\x14\n\x10TIER_UNSPECIFIED\x10\x00\x12\x11\n\rTIER_STANDARD\x10\x01\x12\x13\n\x0fTIER_ENTERPRISE\x10\x02\x12\x18\n\x14TIER_ENTERPRISE_PLUS\x10\x03:m\xea\x41j\n\x1f\x64ialogflow.googleapis.com/Agent\x12\x18projects/{project}/agent\x12-projects/{project}/locations/{location}/agent"!\n\x0fGetAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t"y\n\x0fSetAgentRequest\x12\x35\n\x05\x61gent\x18\x01 \x01(\x0b\x32&.google.cloud.dialogflow.v2beta1.Agent\x12/\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask"$\n\x12\x44\x65leteAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t"0\n\x08SubAgent\x12\x0f\n\x07project\x18\x01 \x01(\t\x12\x13\n\x0b\x65nvironment\x18\x02 \x01(\t"L\n\x13SearchAgentsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t"g\n\x14SearchAgentsResponse\x12\x36\n\x06\x61gents\x18\x01 \x03(\x0b\x32&.google.cloud.dialogflow.v2beta1.Agent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"#\n\x11TrainAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t"7\n\x12\x45xportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tagent_uri\x18\x02 \x01(\t"L\n\x13\x45xportAgentResponse\x12\x13\n\tagent_uri\x18\x01 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05\x61gent"[\n\x12ImportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent"\\\n\x13RestoreAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent"M\n\x1aGetValidationResultRequest\x12\x13\n\x06parent\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x1a\n\rlanguage_code\x18\x03 \x01(\tB\x03\xe0\x41\x01\x32\xaf\x0f\n\x06\x41gents\x12\xc2\x01\n\x08GetAgent\x12\x30.google.cloud.dialogflow.v2beta1.GetAgentRequest\x1a&.google.cloud.dialogflow.v2beta1.Agent"\\\x82\xd3\xe4\x93\x02V\x12"/v2beta1/{parent=projects/*}/agentZ0\x12./v2beta1/{parent=projects/*/locations/*}/agent\x12\xdc\x01\n\x08SetAgent\x12\x30.google.cloud.dialogflow.v2beta1.SetAgentRequest\x1a&.google.cloud.dialogflow.v2beta1.Agent"v\x82\xd3\xe4\x93\x02p"(/v2beta1/{agent.parent=projects/*}/agent:\x05\x61gentZ="4/v2beta1/{agent.parent=projects/*/locations/*}/agent:\x05\x61gent\x12\xb8\x01\n\x0b\x44\x65leteAgent\x12\x33.google.cloud.dialogflow.v2beta1.DeleteAgentRequest\x1a\x16.google.protobuf.Empty"\\\x82\xd3\xe4\x93\x02V*"/v2beta1/{parent=projects/*}/agentZ0*./v2beta1/{parent=projects/*/locations/*}/agent\x12\xae\x01\n\x0cSearchAgents\x12\x34.google.cloud.dialogflow.v2beta1.SearchAgentsRequest\x1a\x35.google.cloud.dialogflow.v2beta1.SearchAgentsResponse"1\x82\xd3\xe4\x93\x02+\x12)/v2beta1/{parent=projects/*}/agent:search\x12\xcf\x01\n\nTrainAgent\x12\x32.google.cloud.dialogflow.v2beta1.TrainAgentRequest\x1a\x1d.google.longrunning.Operation"n\x82\xd3\xe4\x93\x02h"(/v2beta1/{parent=projects/*}/agent:train:\x01*Z9"4/v2beta1/{parent=projects/*/locations/*}/agent:train:\x01*\x12\xd3\x01\n\x0b\x45xportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ExportAgentRequest\x1a\x1d.google.longrunning.Operation"p\x82\xd3\xe4\x93\x02j")/v2beta1/{parent=projects/*}/agent:export:\x01*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:export:\x01*\x12\xd3\x01\n\x0bImportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ImportAgentRequest\x1a\x1d.google.longrunning.Operation"p\x82\xd3\xe4\x93\x02j")/v2beta1/{parent=projects/*}/agent:import:\x01*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:import:\x01*\x12\xd7\x01\n\x0cRestoreAgent\x12\x34.google.cloud.dialogflow.v2beta1.RestoreAgentRequest\x1a\x1d.google.longrunning.Operation"r\x82\xd3\xe4\x93\x02l"*/v2beta1/{parent=projects/*}/agent:restore:\x01*Z;"6/v2beta1/{parent=projects/*/locations/*}/agent:restore:\x01*\x12\xc2\x01\n\x13GetValidationResult\x12;.google.cloud.dialogflow.v2beta1.GetValidationResultRequest\x1a\x31.google.cloud.dialogflow.v2beta1.ValidationResult";\x82\xd3\xe4\x93\x02\x35\x12\x33/v2beta1/{parent=projects/*}/agent/validationResult\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\xa8\x01\n#com.google.cloud.dialogflow.v2beta1B\nAgentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3'
+        '\n1google/cloud/dialogflow_v2beta1/proto/agent.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x37google/cloud/dialogflow_v2beta1/proto/environment.proto\x1a=google/cloud/dialogflow_v2beta1/proto/validation_result.proto\x1a#google/longrunning/operations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto"\xc2\x06\n\x05\x41gent\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x1d\n\x15\x64\x65\x66\x61ult_language_code\x18\x03 \x01(\t\x12 \n\x18supported_language_codes\x18\x04 \x03(\t\x12\x11\n\ttime_zone\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x12\n\navatar_uri\x18\x07 \x01(\t\x12\x16\n\x0e\x65nable_logging\x18\x08 \x01(\x08\x12\x44\n\nmatch_mode\x18\t \x01(\x0e\x32\x30.google.cloud.dialogflow.v2beta1.Agent.MatchMode\x12 \n\x18\x63lassification_threshold\x18\n \x01(\x02\x12\x46\n\x0b\x61pi_version\x18\x0e \x01(\x0e\x32\x31.google.cloud.dialogflow.v2beta1.Agent.ApiVersion\x12\x39\n\x04tier\x18\x0f \x01(\x0e\x32+.google.cloud.dialogflow.v2beta1.Agent.Tier"V\n\tMatchMode\x12\x1a\n\x16MATCH_MODE_UNSPECIFIED\x10\x00\x12\x15\n\x11MATCH_MODE_HYBRID\x10\x01\x12\x16\n\x12MATCH_MODE_ML_ONLY\x10\x02"l\n\nApiVersion\x12\x1b\n\x17\x41PI_VERSION_UNSPECIFIED\x10\x00\x12\x12\n\x0e\x41PI_VERSION_V1\x10\x01\x12\x12\n\x0e\x41PI_VERSION_V2\x10\x02\x12\x19\n\x15\x41PI_VERSION_V2_BETA_1\x10\x03"^\n\x04Tier\x12\x14\n\x10TIER_UNSPECIFIED\x10\x00\x12\x11\n\rTIER_STANDARD\x10\x01\x12\x13\n\x0fTIER_ENTERPRISE\x10\x02\x12\x18\n\x14TIER_ENTERPRISE_PLUS\x10\x03:m\xea\x41j\n\x1f\x64ialogflow.googleapis.com/Agent\x12\x18projects/{project}/agent\x12-projects/{project}/locations/{location}/agent"J\n\x0fGetAgentRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\x12\x1f\x64ialogflow.googleapis.com/Agent"y\n\x0fSetAgentRequest\x12\x35\n\x05\x61gent\x18\x01 \x01(\x0b\x32&.google.cloud.dialogflow.v2beta1.Agent\x12/\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask"M\n\x12\x44\x65leteAgentRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\x12\x1f\x64ialogflow.googleapis.com/Agent"0\n\x08SubAgent\x12\x0f\n\x07project\x18\x01 \x01(\t\x12\x13\n\x0b\x65nvironment\x18\x02 \x01(\t"u\n\x13SearchAgentsRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\x12\x1f\x64ialogflow.googleapis.com/Agent\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t"g\n\x14SearchAgentsResponse\x12\x36\n\x06\x61gents\x18\x01 \x03(\x0b\x32&.google.cloud.dialogflow.v2beta1.Agent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"L\n\x11TrainAgentRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\x12\x1f\x64ialogflow.googleapis.com/Agent"7\n\x12\x45xportAgentRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tagent_uri\x18\x02 \x01(\t"L\n\x13\x45xportAgentResponse\x12\x13\n\tagent_uri\x18\x01 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05\x61gent"\x84\x01\n\x12ImportAgentRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\x12\x1f\x64ialogflow.googleapis.com/Agent\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent"\x85\x01\n\x13RestoreAgentRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\x12\x1f\x64ialogflow.googleapis.com/Agent\x12\x13\n\tagent_uri\x18\x02 \x01(\tH\x00\x12\x17\n\ragent_content\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05\x61gent"q\n\x1aGetValidationResultRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\x12\x1f\x64ialogflow.googleapis.com/Agent\x12\x1a\n\rlanguage_code\x18\x03 \x01(\tB\x03\xe0\x41\x01\x32\xce\x11\n\x06\x41gents\x12\xcb\x01\n\x08GetAgent\x12\x30.google.cloud.dialogflow.v2beta1.GetAgentRequest\x1a&.google.cloud.dialogflow.v2beta1.Agent"e\x82\xd3\xe4\x93\x02V\x12"/v2beta1/{parent=projects/*}/agentZ0\x12./v2beta1/{parent=projects/*/locations/*}/agent\xda\x41\x06parent\x12\xe4\x01\n\x08SetAgent\x12\x30.google.cloud.dialogflow.v2beta1.SetAgentRequest\x1a&.google.cloud.dialogflow.v2beta1.Agent"~\x82\xd3\xe4\x93\x02p"(/v2beta1/{agent.parent=projects/*}/agent:\x05\x61gentZ="4/v2beta1/{agent.parent=projects/*/locations/*}/agent:\x05\x61gent\xda\x41\x05\x61gent\x12\xc1\x01\n\x0b\x44\x65leteAgent\x12\x33.google.cloud.dialogflow.v2beta1.DeleteAgentRequest\x1a\x16.google.protobuf.Empty"e\x82\xd3\xe4\x93\x02V*"/v2beta1/{parent=projects/*}/agentZ0*./v2beta1/{parent=projects/*/locations/*}/agent\xda\x41\x06parent\x12\xb7\x01\n\x0cSearchAgents\x12\x34.google.cloud.dialogflow.v2beta1.SearchAgentsRequest\x1a\x35.google.cloud.dialogflow.v2beta1.SearchAgentsResponse":\x82\xd3\xe4\x93\x02+\x12)/v2beta1/{parent=projects/*}/agent:search\xda\x41\x06parent\x12\x8b\x02\n\nTrainAgent\x12\x32.google.cloud.dialogflow.v2beta1.TrainAgentRequest\x1a\x1d.google.longrunning.Operation"\xa9\x01\x82\xd3\xe4\x93\x02h"(/v2beta1/{parent=projects/*}/agent:train:\x01*Z9"4/v2beta1/{parent=projects/*/locations/*}/agent:train:\x01*\xda\x41\x06parent\xca\x41/\n\x15google.protobuf.Empty\x12\x16google.protobuf.Struct\x12\xad\x02\n\x0b\x45xportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ExportAgentRequest\x1a\x1d.google.longrunning.Operation"\xc9\x01\x82\xd3\xe4\x93\x02j")/v2beta1/{parent=projects/*}/agent:export:\x01*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:export:\x01*\xda\x41\x06parent\xca\x41M\n3google.cloud.dialogflow.v2beta1.ExportAgentResponse\x12\x16google.protobuf.Struct\x12\x86\x02\n\x0bImportAgent\x12\x33.google.cloud.dialogflow.v2beta1.ImportAgentRequest\x1a\x1d.google.longrunning.Operation"\xa2\x01\x82\xd3\xe4\x93\x02j")/v2beta1/{parent=projects/*}/agent:import:\x01*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:import:\x01*\xca\x41/\n\x15google.protobuf.Empty\x12\x16google.protobuf.Struct\x12\x8a\x02\n\x0cRestoreAgent\x12\x34.google.cloud.dialogflow.v2beta1.RestoreAgentRequest\x1a\x1d.google.longrunning.Operation"\xa4\x01\x82\xd3\xe4\x93\x02l"*/v2beta1/{parent=projects/*}/agent:restore:\x01*Z;"6/v2beta1/{parent=projects/*/locations/*}/agent:restore:\x01*\xca\x41/\n\x15google.protobuf.Empty\x12\x16google.protobuf.Struct\x12\xc2\x01\n\x13GetValidationResult\x12;.google.cloud.dialogflow.v2beta1.GetValidationResultRequest\x1a\x31.google.cloud.dialogflow.v2beta1.ValidationResult";\x82\xd3\xe4\x93\x02\x35\x12\x33/v2beta1/{parent=projects/*}/agent/validationResult\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\xa8\x01\n#com.google.cloud.dialogflow.v2beta1B\nAgentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3'
     ),
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
+        google_dot_api_dot_client__pb2.DESCRIPTOR,
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
         google_dot_api_dot_resource__pb2.DESCRIPTOR,
         google_dot_cloud_dot_dialogflow__v2beta1_dot_proto_dot_environment__pb2.DESCRIPTOR,
@@ -51,7 +52,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
         google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,
-        google_dot_api_dot_client__pb2.DESCRIPTOR,
     ],
 )
 
@@ -425,7 +425,9 @@ _GETAGENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                "\340A\002\372A!\022\037dialogflow.googleapis.com/Agent"
+            ),
             file=DESCRIPTOR,
         )
     ],
@@ -438,7 +440,7 @@ _GETAGENTREQUEST = _descriptor.Descriptor(
     extension_ranges=[],
     oneofs=[],
     serialized_start=1258,
-    serialized_end=1291,
+    serialized_end=1332,
 )
 
 
@@ -494,8 +496,8 @@ _SETAGENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1293,
-    serialized_end=1414,
+    serialized_start=1334,
+    serialized_end=1455,
 )
 
 
@@ -521,7 +523,9 @@ _DELETEAGENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                "\340A\002\372A!\022\037dialogflow.googleapis.com/Agent"
+            ),
             file=DESCRIPTOR,
         )
     ],
@@ -533,8 +537,8 @@ _DELETEAGENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1416,
-    serialized_end=1452,
+    serialized_start=1457,
+    serialized_end=1534,
 )
 
 
@@ -590,8 +594,8 @@ _SUBAGENT = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1454,
-    serialized_end=1502,
+    serialized_start=1536,
+    serialized_end=1584,
 )
 
 
@@ -617,7 +621,9 @@ _SEARCHAGENTSREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                "\340A\002\372A!\022\037dialogflow.googleapis.com/Agent"
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -665,8 +671,8 @@ _SEARCHAGENTSREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1504,
-    serialized_end=1580,
+    serialized_start=1586,
+    serialized_end=1703,
 )
 
 
@@ -722,8 +728,8 @@ _SEARCHAGENTSRESPONSE = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1582,
-    serialized_end=1685,
+    serialized_start=1705,
+    serialized_end=1808,
 )
 
 
@@ -749,7 +755,9 @@ _TRAINAGENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                "\340A\002\372A!\022\037dialogflow.googleapis.com/Agent"
+            ),
             file=DESCRIPTOR,
         )
     ],
@@ -761,8 +769,8 @@ _TRAINAGENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1687,
-    serialized_end=1722,
+    serialized_start=1810,
+    serialized_end=1886,
 )
 
 
@@ -818,8 +826,8 @@ _EXPORTAGENTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=1724,
-    serialized_end=1779,
+    serialized_start=1888,
+    serialized_end=1943,
 )
 
 
@@ -883,8 +891,8 @@ _EXPORTAGENTRESPONSE = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=1781,
-    serialized_end=1857,
+    serialized_start=1945,
+    serialized_end=2021,
 )
 
 
@@ -910,7 +918,9 @@ _IMPORTAGENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                "\340A\002\372A!\022\037dialogflow.googleapis.com/Agent"
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -966,8 +976,8 @@ _IMPORTAGENTREQUEST = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=1859,
-    serialized_end=1950,
+    serialized_start=2024,
+    serialized_end=2156,
 )
 
 
@@ -993,7 +1003,9 @@ _RESTOREAGENTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=None,
+            serialized_options=_b(
+                "\340A\002\372A!\022\037dialogflow.googleapis.com/Agent"
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -1049,8 +1061,8 @@ _RESTOREAGENTREQUEST = _descriptor.Descriptor(
             fields=[],
         )
     ],
-    serialized_start=1952,
-    serialized_end=2044,
+    serialized_start=2159,
+    serialized_end=2292,
 )
 
 
@@ -1076,7 +1088,9 @@ _GETVALIDATIONRESULTREQUEST = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=_b("\340A\002"),
+            serialized_options=_b(
+                "\340A\002\372A!\022\037dialogflow.googleapis.com/Agent"
+            ),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -1106,8 +1120,8 @@ _GETVALIDATIONRESULTREQUEST = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=2046,
-    serialized_end=2123,
+    serialized_start=2294,
+    serialized_end=2407,
 )
 
 _AGENT.fields_by_name["match_mode"].enum_type = _AGENT_MATCHMODE
@@ -1502,6 +1516,12 @@ _sym_db.RegisterMessage(GetValidationResultRequest)
 
 DESCRIPTOR._options = None
 _AGENT._options = None
+_GETAGENTREQUEST.fields_by_name["parent"]._options = None
+_DELETEAGENTREQUEST.fields_by_name["parent"]._options = None
+_SEARCHAGENTSREQUEST.fields_by_name["parent"]._options = None
+_TRAINAGENTREQUEST.fields_by_name["parent"]._options = None
+_IMPORTAGENTREQUEST.fields_by_name["parent"]._options = None
+_RESTOREAGENTREQUEST.fields_by_name["parent"]._options = None
 _GETVALIDATIONRESULTREQUEST.fields_by_name["parent"]._options = None
 _GETVALIDATIONRESULTREQUEST.fields_by_name["language_code"]._options = None
 
@@ -1513,8 +1533,8 @@ _AGENTS = _descriptor.ServiceDescriptor(
     serialized_options=_b(
         "\312A\031dialogflow.googleapis.com\322AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflow"
     ),
-    serialized_start=2126,
-    serialized_end=4093,
+    serialized_start=2410,
+    serialized_end=4664,
     methods=[
         _descriptor.MethodDescriptor(
             name="GetAgent",
@@ -1524,7 +1544,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_GETAGENTREQUEST,
             output_type=_AGENT,
             serialized_options=_b(
-                '\202\323\344\223\002V\022"/v2beta1/{parent=projects/*}/agentZ0\022./v2beta1/{parent=projects/*/locations/*}/agent'
+                '\202\323\344\223\002V\022"/v2beta1/{parent=projects/*}/agentZ0\022./v2beta1/{parent=projects/*/locations/*}/agent\332A\006parent'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -1535,7 +1555,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_SETAGENTREQUEST,
             output_type=_AGENT,
             serialized_options=_b(
-                '\202\323\344\223\002p"(/v2beta1/{agent.parent=projects/*}/agent:\005agentZ="4/v2beta1/{agent.parent=projects/*/locations/*}/agent:\005agent'
+                '\202\323\344\223\002p"(/v2beta1/{agent.parent=projects/*}/agent:\005agentZ="4/v2beta1/{agent.parent=projects/*/locations/*}/agent:\005agent\332A\005agent'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -1546,7 +1566,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_DELETEAGENTREQUEST,
             output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
             serialized_options=_b(
-                '\202\323\344\223\002V*"/v2beta1/{parent=projects/*}/agentZ0*./v2beta1/{parent=projects/*/locations/*}/agent'
+                '\202\323\344\223\002V*"/v2beta1/{parent=projects/*}/agentZ0*./v2beta1/{parent=projects/*/locations/*}/agent\332A\006parent'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -1557,7 +1577,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_SEARCHAGENTSREQUEST,
             output_type=_SEARCHAGENTSRESPONSE,
             serialized_options=_b(
-                "\202\323\344\223\002+\022)/v2beta1/{parent=projects/*}/agent:search"
+                "\202\323\344\223\002+\022)/v2beta1/{parent=projects/*}/agent:search\332A\006parent"
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -1568,7 +1588,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_TRAINAGENTREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=_b(
-                '\202\323\344\223\002h"(/v2beta1/{parent=projects/*}/agent:train:\001*Z9"4/v2beta1/{parent=projects/*/locations/*}/agent:train:\001*'
+                '\202\323\344\223\002h"(/v2beta1/{parent=projects/*}/agent:train:\001*Z9"4/v2beta1/{parent=projects/*/locations/*}/agent:train:\001*\332A\006parent\312A/\n\025google.protobuf.Empty\022\026google.protobuf.Struct'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -1579,7 +1599,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_EXPORTAGENTREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=_b(
-                '\202\323\344\223\002j")/v2beta1/{parent=projects/*}/agent:export:\001*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:export:\001*'
+                '\202\323\344\223\002j")/v2beta1/{parent=projects/*}/agent:export:\001*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:export:\001*\332A\006parent\312AM\n3google.cloud.dialogflow.v2beta1.ExportAgentResponse\022\026google.protobuf.Struct'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -1590,7 +1610,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_IMPORTAGENTREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=_b(
-                '\202\323\344\223\002j")/v2beta1/{parent=projects/*}/agent:import:\001*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:import:\001*'
+                '\202\323\344\223\002j")/v2beta1/{parent=projects/*}/agent:import:\001*Z:"5/v2beta1/{parent=projects/*/locations/*}/agent:import:\001*\312A/\n\025google.protobuf.Empty\022\026google.protobuf.Struct'
             ),
         ),
         _descriptor.MethodDescriptor(
@@ -1601,7 +1621,7 @@ _AGENTS = _descriptor.ServiceDescriptor(
             input_type=_RESTOREAGENTREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=_b(
-                '\202\323\344\223\002l"*/v2beta1/{parent=projects/*}/agent:restore:\001*Z;"6/v2beta1/{parent=projects/*/locations/*}/agent:restore:\001*'
+                '\202\323\344\223\002l"*/v2beta1/{parent=projects/*}/agent:restore:\001*Z;"6/v2beta1/{parent=projects/*/locations/*}/agent:restore:\001*\312A/\n\025google.protobuf.Empty\022\026google.protobuf.Struct'
             ),
         ),
         _descriptor.MethodDescriptor(
