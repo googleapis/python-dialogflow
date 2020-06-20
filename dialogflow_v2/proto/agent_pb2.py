@@ -1256,9 +1256,7 @@ SearchAgentsRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_SEARCHAGENTSREQUEST,
         __module__="google.cloud.dialogflow_v2.proto.agent_pb2",
-        __doc__="""======================================================================
-  ====== Requests and responses for custom methods. The request message
-  for
+        __doc__="""The request message for
   [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
   Attributes:
       parent:
