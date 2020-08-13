@@ -32,8 +32,8 @@ from dialogflow_v2.gapic import sessions_client
 
 if sys.version_info[:2] == (2, 7):
     message = (
-        "A future version of this library will drop support for Python 2.7."
-        "More details about Python 2 support for Google Cloud Client Libraries"
+        "A future version of this library will drop support for Python 2.7. "
+        "More details about Python 2 support for Google Cloud Client Libraries "
         "can be found at https://cloud.google.com/python/docs/python2-sunset/"
     )
     warnings.warn(message, DeprecationWarning)
