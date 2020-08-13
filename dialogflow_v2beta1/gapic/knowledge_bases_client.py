@@ -60,11 +60,7 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 
 class KnowledgeBasesClient(object):
-    """
-    Manages knowledge bases.
-
-    Allows users to setup and maintain knowledge bases with their knowledge data.
-    """
+    """Service for managing ``KnowledgeBases``."""
 
     SERVICE_ADDRESS = "dialogflow.googleapis.com:443"
     """The default address of the service."""

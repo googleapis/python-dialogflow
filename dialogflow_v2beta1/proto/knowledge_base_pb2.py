@@ -513,9 +513,15 @@ KnowledgeBase = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _KNOWLEDGEBASE,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.knowledge_base_pb2",
-        "__doc__": """Represents knowledge base resource.  Note: The
-  ``projects.agent.knowledgeBases`` resource is deprecated; only use
-  ``projects.knowledgeBases``.
+        "__doc__": """A knowledge base represents a collection of knowledge documents that
+  you provide to Dialogflow. Your knowledge documents contain
+  information that may be useful during conversations with end-users.
+  Some Dialogflow features use knowledge bases when looking for a
+  response to an end-user input.  For more information, see the
+  `knowledge base guide
+  <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+  Note: The ``projects.agent.knowledgeBases`` resource is deprecated;
+  only use ``projects.knowledgeBases``.
   
   Attributes:
       name:

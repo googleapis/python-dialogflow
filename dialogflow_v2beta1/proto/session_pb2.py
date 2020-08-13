@@ -2207,6 +2207,8 @@ DetectIntentRequest = _reflection.GeneratedProtocolMessageType(
           ``User Id``. They can be a random number or some type of user
           and session identifiers (preferably hashed). The length of the
           ``Session ID`` and ``User ID`` must not exceed 36 characters.
+          For more information, see the `API interactions guide
+          <https://cloud.google.com/dialogflow/docs/api-overview>`__.
       query_params:
           The parameters of this query.
       query_input:
@@ -2598,6 +2600,8 @@ StreamingDetectIntentRequest = _reflection.GeneratedProtocolMessageType(
           Id``. They can be a random number or some type of user and
           session identifiers (preferably hashed). The length of the
           ``Session ID`` and ``User ID`` must not exceed 36 characters.
+          For more information, see the `API interactions guide
+          <https://cloud.google.com/dialogflow/docs/api-overview>`__.
       query_params:
           The parameters of this query.
       query_input:
@@ -2854,8 +2858,22 @@ SentimentAnalysisResult = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _SENTIMENTANALYSISRESULT,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
-        "__doc__": """The result of sentiment analysis as configured by
-  ``sentiment_analysis_request_config``.
+        "__doc__": """The result of sentiment analysis. Sentiment analysis inspects user
+  input and identifies the prevailing subjective opinion, especially to
+  determine a user’s attitude as positive, negative, or neutral. For [Pa
+  rticipants.AnalyzeContent][google.cloud.dialogflow.v2beta1.Participant
+  s.AnalyzeContent], it needs to be configured in [DetectIntentRequest.q
+  uery_params][google.cloud.dialogflow.v2beta1.DetectIntentRequest.query
+  _params]. For [Participants.StreamingAnalyzeContent][google.cloud.dial
+  ogflow.v2beta1.Participants.StreamingAnalyzeContent], it needs to be
+  configured in [StreamingDetectIntentRequest.query_params][google.cloud
+  .dialogflow.v2beta1.StreamingDetectIntentRequest.query_params]. And
+  for [Participants.AnalyzeContent][google.cloud.dialogflow.v2beta1.Part
+  icipants.AnalyzeContent] and [Participants.StreamingAnalyzeContent][go
+  ogle.cloud.dialogflow.v2beta1.Participants.StreamingAnalyzeContent],
+  it needs to be configured in [ConversationProfile.human_agent_assistan
+  t_config][google.cloud.dialogflow.v2beta1.ConversationProfile.human_ag
+  ent_assistant_config]
   
   Attributes:
       query_text_sentiment:

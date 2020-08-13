@@ -55,7 +55,7 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 
 class DocumentsClient(object):
-    """Manages documents of a knowledge base."""
+    """Service for managing knowledge ``Documents``."""
 
     SERVICE_ADDRESS = "dialogflow.googleapis.com:443"
     """The default address of the service."""

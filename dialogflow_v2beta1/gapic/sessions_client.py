@@ -64,9 +64,10 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 class SessionsClient(object):
     """
-    A session represents an interaction with a user. You retrieve user
-    input and pass it to the ``DetectIntent`` (or ``StreamingDetectIntent``)
-    method to determine user intent and respond.
+    A service used for session interactions.
+
+    For more information, see the `API interactions
+    guide <https://cloud.google.com/dialogflow/docs/api-overview>`__.
     """
 
     SERVICE_ADDRESS = "dialogflow.googleapis.com:443"
@@ -269,6 +270,9 @@ class SessionsClient(object):
                 ``User Id``. They can be a random number or some type of user and
                 session identifiers (preferably hashed). The length of the
                 ``Session ID`` and ``User ID`` must not exceed 36 characters.
+
+                For more information, see the `API interactions
+                guide <https://cloud.google.com/dialogflow/docs/api-overview>`__.
             query_input (Union[dict, ~google.cloud.dialogflow_v2beta1.types.QueryInput]): Required. The input specification. It can be set to:
 
                 1.  an audio config
