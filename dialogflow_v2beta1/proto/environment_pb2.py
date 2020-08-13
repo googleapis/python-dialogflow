@@ -334,8 +334,6 @@ Environment = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _ENVIRONMENT,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.environment_pb2",
         "__doc__": """Represents an agent environment.
-  
-  
   Attributes:
       name:
           Output only. The unique identifier of this agent environment.
@@ -369,10 +367,8 @@ ListEnvironmentsRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTENVIRONMENTSREQUEST,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.environment_pb2",
-        "__doc__": """The request message for
-  [Environments.ListEnvironments][google.cloud.dialogflow.v2beta1.Environments.ListEnvironments].
-  
-  
+        "__doc__": """The request message for [Environments.ListEnvironments][google.cloud.d
+  ialogflow.v2beta1.Environments.ListEnvironments].
   Attributes:
       parent:
           Required. The agent to list all environments from. Format:
@@ -395,10 +391,8 @@ ListEnvironmentsResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTENVIRONMENTSRESPONSE,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.environment_pb2",
-        "__doc__": """The response message for
-  [Environments.ListEnvironments][google.cloud.dialogflow.v2beta1.Environments.ListEnvironments].
-  
-  
+        "__doc__": """The response message for [Environments.ListEnvironments][google.cloud.
+  dialogflow.v2beta1.Environments.ListEnvironments].
   Attributes:
       environments:
           The list of agent environments. There will be a maximum number

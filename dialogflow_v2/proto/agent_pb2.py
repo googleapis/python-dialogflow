@@ -1110,8 +1110,6 @@ Agent = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _AGENT,
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """Represents a conversational agent.
-  
-  
   Attributes:
       parent:
           Required. The project of this agent. Format:
@@ -1178,8 +1176,6 @@ GetAgentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetAgent].
-  
-  
   Attributes:
       parent:
           Required. The project that the agent to fetch is associated
@@ -1198,8 +1194,6 @@ SetAgentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.SetAgent][google.cloud.dialogflow.v2.Agents.SetAgent].
-  
-  
   Attributes:
       agent:
           Required. The agent to update.
@@ -1219,8 +1213,6 @@ DeleteAgentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.DeleteAgent][google.cloud.dialogflow.v2.Agents.DeleteAgent].
-  
-  
   Attributes:
       parent:
           Required. The project that the agent to delete is associated
@@ -1239,8 +1231,6 @@ SearchAgentsRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
-  
-  
   Attributes:
       parent:
           Required. The project to list agents from. Format:
@@ -1265,8 +1255,6 @@ SearchAgentsResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The response message for
   [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
-  
-  
   Attributes:
       agents:
           The list of agents. There will be a maximum number of items
@@ -1288,8 +1276,6 @@ TrainAgentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent].
-  
-  
   Attributes:
       parent:
           Required. The project that the agent to train is associated
@@ -1308,8 +1294,6 @@ ExportAgentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
-  
-  
   Attributes:
       parent:
           Required. The project that the agent to export is associated
@@ -1334,8 +1318,6 @@ ExportAgentResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The response message for
   [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
-  
-  
   Attributes:
       agent:
           The exported agent.
@@ -1359,8 +1341,6 @@ ImportAgentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
-  
-  
   Attributes:
       parent:
           Required. The project that the agent to import is associated
@@ -1386,8 +1366,6 @@ RestoreAgentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
         "__doc__": """The request message for
   [Agents.RestoreAgent][google.cloud.dialogflow.v2.Agents.RestoreAgent].
-  
-  
   Attributes:
       parent:
           Required. The project that the agent to restore is associated
@@ -1411,10 +1389,8 @@ GetValidationResultRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _GETVALIDATIONRESULTREQUEST,
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
-        "__doc__": """The request message for
-  [Agents.GetValidationResult][google.cloud.dialogflow.v2.Agents.GetValidationResult].
-  
-  
+        "__doc__": """The request message for [Agents.GetValidationResult][google.cloud.dial
+  ogflow.v2.Agents.GetValidationResult].
   Attributes:
       parent:
           Required. The project that the agent is associated with.

@@ -186,8 +186,6 @@ ValidationError = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _VALIDATIONERROR,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.validation_result_pb2",
         "__doc__": """Represents a single validation error.
-  
-  
   Attributes:
       severity:
           The severity of the error.
@@ -217,8 +215,6 @@ ValidationResult = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _VALIDATIONRESULT,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.validation_result_pb2",
         "__doc__": """Represents the output of agent validation.
-  
-  
   Attributes:
       validation_errors:
           Contains all validation errors.
