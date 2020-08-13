@@ -41,6 +41,11 @@ if sys.version_info[:2] == (2, 7):
     warnings.warn(message, DeprecationWarning)
 
 
+class EnvironmentsClient(environments_client.EnvironmentsClient):
+    __doc__ = environments_client.EnvironmentsClient.__doc__
+    enums = enums
+
+
 class AgentsClient(agents_client.AgentsClient):
     __doc__ = agents_client.AgentsClient.__doc__
     enums = enums
@@ -58,11 +63,6 @@ class DocumentsClient(documents_client.DocumentsClient):
 
 class EntityTypesClient(entity_types_client.EntityTypesClient):
     __doc__ = entity_types_client.EntityTypesClient.__doc__
-    enums = enums
-
-
-class EnvironmentsClient(environments_client.EnvironmentsClient):
-    __doc__ = environments_client.EnvironmentsClient.__doc__
     enums = enums
 
 
@@ -89,11 +89,11 @@ class SessionsClient(sessions_client.SessionsClient):
 __all__ = (
     "enums",
     "types",
+    "EnvironmentsClient",
     "AgentsClient",
     "ContextsClient",
     "DocumentsClient",
     "EntityTypesClient",
-    "EnvironmentsClient",
     "IntentsClient",
     "KnowledgeBasesClient",
     "SessionEntityTypesClient",

@@ -81,7 +81,7 @@ class TestEnvironmentsClient(object):
             client = dialogflow_v2beta1.EnvironmentsClient()
 
         # Setup Request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = "parent-995424086"
 
         paged_list_response = client.list_environments(parent)
         resources = list(paged_list_response)
@@ -102,7 +102,7 @@ class TestEnvironmentsClient(object):
             client = dialogflow_v2beta1.EnvironmentsClient()
 
         # Setup request
-        parent = client.project_agent_path("[PROJECT]")
+        parent = "parent-995424086"
 
         paged_list_response = client.list_environments(parent)
         with pytest.raises(CustomException):

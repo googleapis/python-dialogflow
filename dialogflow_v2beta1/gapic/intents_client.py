@@ -91,17 +91,17 @@ class IntentsClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
+    def agent_path(cls, project):
+        """Return a fully-qualified agent string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent", project=project
+        )
+
+    @classmethod
     def intent_path(cls, project, intent):
         """Return a fully-qualified intent string."""
         return google.api_core.path_template.expand(
             "projects/{project}/agent/intents/{intent}", project=project, intent=intent
-        )
-
-    @classmethod
-    def project_agent_path(cls, project):
-        """Return a fully-qualified project_agent string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent", project=project
         )
 
     def __init__(
@@ -235,7 +235,8 @@ class IntentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # Iterate over all results
             >>> for element in client.list_intents(parent):
@@ -348,7 +349,8 @@ class IntentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
-            >>> name = client.intent_path('[PROJECT]', '[INTENT]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> response = client.get_intent(name)
 
@@ -428,7 +430,8 @@ class IntentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `intent`:
             >>> intent = {}
@@ -605,7 +608,8 @@ class IntentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
-            >>> name = client.intent_path('[PROJECT]', '[INTENT]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> client.delete_intent(name)
 
@@ -681,7 +685,8 @@ class IntentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> response = client.batch_update_intents(parent)
             >>>
@@ -798,7 +803,8 @@ class IntentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.IntentsClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `intents`:
             >>> intents = []

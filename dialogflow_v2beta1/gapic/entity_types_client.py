@@ -45,6 +45,8 @@ from dialogflow_v2beta1.proto import document_pb2
 from dialogflow_v2beta1.proto import document_pb2_grpc
 from dialogflow_v2beta1.proto import entity_type_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 from dialogflow_v2beta1.proto import gcs_pb2
 from dialogflow_v2beta1.proto import validation_result_pb2
 from google.longrunning import operations_pb2
@@ -87,19 +89,19 @@ class EntityTypesClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
+    def agent_path(cls, project):
+        """Return a fully-qualified agent string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent", project=project
+        )
+
+    @classmethod
     def entity_type_path(cls, project, entity_type):
         """Return a fully-qualified entity_type string."""
         return google.api_core.path_template.expand(
             "projects/{project}/agent/entityTypes/{entity_type}",
             project=project,
             entity_type=entity_type,
-        )
-
-    @classmethod
-    def project_agent_path(cls, project):
-        """Return a fully-qualified project_agent string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent", project=project
         )
 
     def __init__(
@@ -232,7 +234,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # Iterate over all results
             >>> for element in client.list_entity_types(parent):
@@ -340,7 +343,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> name = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> response = client.get_entity_type(name)
 
@@ -418,7 +422,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `entity_type`:
             >>> entity_type = {}
@@ -588,7 +593,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> name = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> client.delete_entity_type(name)
 
@@ -660,7 +666,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> response = client.batch_update_entity_types(parent)
             >>>
@@ -776,7 +783,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `entity_type_names`:
             >>> entity_type_names = []
@@ -872,7 +880,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `entities`:
             >>> entities = []
@@ -977,7 +986,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `entities`:
             >>> entities = []
@@ -1087,7 +1097,8 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EntityTypesClient()
             >>>
-            >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `entity_values`:
             >>> entity_values = []

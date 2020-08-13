@@ -34,22 +34,8 @@ import grpc
 from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.gapic import environments_client_config
 from dialogflow_v2beta1.gapic.transports import environments_grpc_transport
-from dialogflow_v2beta1.proto import agent_pb2
-from dialogflow_v2beta1.proto import agent_pb2_grpc
-from dialogflow_v2beta1.proto import context_pb2
-from dialogflow_v2beta1.proto import context_pb2_grpc
-from dialogflow_v2beta1.proto import document_pb2
-from dialogflow_v2beta1.proto import document_pb2_grpc
-from dialogflow_v2beta1.proto import entity_type_pb2
-from dialogflow_v2beta1.proto import entity_type_pb2_grpc
 from dialogflow_v2beta1.proto import environment_pb2
 from dialogflow_v2beta1.proto import environment_pb2_grpc
-from dialogflow_v2beta1.proto import gcs_pb2
-from dialogflow_v2beta1.proto import validation_result_pb2
-from google.longrunning import operations_pb2
-from google.protobuf import empty_pb2
-from google.protobuf import field_mask_pb2
-from google.protobuf import struct_pb2
 
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
@@ -86,17 +72,8 @@ class EnvironmentsClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
-    def environment_path(cls, project, environment):
-        """Return a fully-qualified environment string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent/environments/{environment}",
-            project=project,
-            environment=environment,
-        )
-
-    @classmethod
-    def project_agent_path(cls, project):
-        """Return a fully-qualified project_agent string."""
+    def agent_path(cls, project):
+        """Return a fully-qualified agent string."""
         return google.api_core.path_template.expand(
             "projects/{project}/agent", project=project
         )
@@ -230,7 +207,8 @@ class EnvironmentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.EnvironmentsClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # Iterate over all results
             >>> for element in client.list_environments(parent):

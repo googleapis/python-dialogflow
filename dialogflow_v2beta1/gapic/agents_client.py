@@ -39,6 +39,8 @@ from dialogflow_v2beta1.gapic import enums
 from dialogflow_v2beta1.gapic.transports import agents_grpc_transport
 from dialogflow_v2beta1.proto import agent_pb2
 from dialogflow_v2beta1.proto import agent_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 from dialogflow_v2beta1.proto import validation_result_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
@@ -78,6 +80,15 @@ class AgentsClient(object):
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
+
+    @classmethod
+    def location_path(cls, project, location):
+        """Return a fully-qualified location string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/locations/{location}",
+            project=project,
+            location=location,
+        )
 
     @classmethod
     def project_path(cls, project):
@@ -199,6 +210,76 @@ class AgentsClient(object):
         self._inner_api_calls = {}
 
     # Service calls
+    def get_agent(
+        self,
+        parent,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Retrieves the specified agent.
+
+        Example:
+            >>> import dialogflow_v2beta1
+            >>>
+            >>> client = dialogflow_v2beta1.AgentsClient()
+            >>>
+            >>> parent = client.project_path('[PROJECT]')
+            >>>
+            >>> response = client.get_agent(parent)
+
+        Args:
+            parent (str): Required. The project that the agent to fetch is associated with.
+                Format: ``projects/<Project ID>``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.dialogflow_v2beta1.types.Agent` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "get_agent" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_agent"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.get_agent,
+                default_retry=self._method_configs["GetAgent"].retry,
+                default_timeout=self._method_configs["GetAgent"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = agent_pb2.GetAgentRequest(parent=parent)
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("parent", parent)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        return self._inner_api_calls["get_agent"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+
     def set_agent(
         self,
         agent,
@@ -341,76 +422,6 @@ class AgentsClient(object):
             metadata.append(routing_metadata)
 
         self._inner_api_calls["delete_agent"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-
-    def get_agent(
-        self,
-        parent,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Retrieves the specified agent.
-
-        Example:
-            >>> import dialogflow_v2beta1
-            >>>
-            >>> client = dialogflow_v2beta1.AgentsClient()
-            >>>
-            >>> parent = client.project_path('[PROJECT]')
-            >>>
-            >>> response = client.get_agent(parent)
-
-        Args:
-            parent (str): Required. The project that the agent to fetch is associated with.
-                Format: ``projects/<Project ID>``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Agent` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "get_agent" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "get_agent"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.get_agent,
-                default_retry=self._method_configs["GetAgent"].retry,
-                default_timeout=self._method_configs["GetAgent"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = agent_pb2.GetAgentRequest(parent=parent)
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("parent", parent)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        return self._inner_api_calls["get_agent"](
             request, retry=retry, timeout=timeout, metadata=metadata
         )
 
@@ -921,7 +932,7 @@ class AgentsClient(object):
 
     def get_validation_result(
         self,
-        parent=None,
+        parent,
         language_code=None,
         retry=google.api_core.gapic_v1.method.DEFAULT,
         timeout=google.api_core.gapic_v1.method.DEFAULT,
@@ -936,7 +947,9 @@ class AgentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.AgentsClient()
             >>>
-            >>> response = client.get_validation_result()
+            >>> parent = client.project_path('[PROJECT]')
+            >>>
+            >>> response = client.get_validation_result(parent)
 
         Args:
             parent (str): Required. The project that the agent is associated with. Format:

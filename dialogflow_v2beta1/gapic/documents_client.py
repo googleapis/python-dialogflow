@@ -43,6 +43,8 @@ from dialogflow_v2beta1.proto import context_pb2
 from dialogflow_v2beta1.proto import context_pb2_grpc
 from dialogflow_v2beta1.proto import document_pb2
 from dialogflow_v2beta1.proto import document_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 from dialogflow_v2beta1.proto import gcs_pb2
 from dialogflow_v2beta1.proto import validation_result_pb2
 from google.longrunning import operations_pb2
@@ -680,7 +682,7 @@ class DocumentsClient(object):
 
     def reload_document(
         self,
-        name=None,
+        name,
         gcs_source=None,
         retry=google.api_core.gapic_v1.method.DEFAULT,
         timeout=google.api_core.gapic_v1.method.DEFAULT,
@@ -701,7 +703,18 @@ class DocumentsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.DocumentsClient()
             >>>
-            >>> response = client.reload_document()
+            >>> name = client.document_path('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]')
+            >>>
+            >>> response = client.reload_document(name)
+            >>>
+            >>> def callback(operation_future):
+            ...     # Handle result.
+            ...     result = operation_future.result()
+            >>>
+            >>> response.add_done_callback(callback)
+            >>>
+            >>> # Handle metadata.
+            >>> metadata = response.metadata()
 
         Args:
             name (str): Required. The name of the document to reload. Format:
@@ -721,7 +734,7 @@ class DocumentsClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~google.cloud.dialogflow_v2beta1.types.Operation` instance.
+            A :class:`~google.cloud.dialogflow_v2beta1.types._OperationFuture` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -759,6 +772,12 @@ class DocumentsClient(object):
             )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls["reload_document"](
+        operation = self._inner_api_calls["reload_document"](
             request, retry=retry, timeout=timeout, metadata=metadata
+        )
+        return google.api_core.operation.from_gapic(
+            operation,
+            self.transport._operations_client,
+            document_pb2.Document,
+            metadata_type=document_pb2.KnowledgeOperationMetadata,
         )

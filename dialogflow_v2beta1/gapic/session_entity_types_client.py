@@ -92,31 +92,6 @@ class SessionEntityTypesClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
-    def environment_session_path(cls, project, environment, user, session):
-        """Return a fully-qualified environment_session string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}",
-            project=project,
-            environment=environment,
-            user=user,
-            session=session,
-        )
-
-    @classmethod
-    def environment_session_entity_type_path(
-        cls, project, environment, user, session, entity_type
-    ):
-        """Return a fully-qualified environment_session_entity_type string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}",
-            project=project,
-            environment=environment,
-            user=user,
-            session=session,
-            entity_type=entity_type,
-        )
-
-    @classmethod
     def session_path(cls, project, session):
         """Return a fully-qualified session string."""
         return google.api_core.path_template.expand(
@@ -268,7 +243,8 @@ class SessionEntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
-            >>> parent = client.session_path('[PROJECT]', '[SESSION]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # Iterate over all results
             >>> for element in client.list_session_entity_types(parent):
@@ -379,7 +355,8 @@ class SessionEntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
-            >>> name = client.session_entity_type_path('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> response = client.get_session_entity_type(name)
 
@@ -462,7 +439,8 @@ class SessionEntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
-            >>> parent = client.session_path('[PROJECT]', '[SESSION]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `session_entity_type`:
             >>> session_entity_type = {}
@@ -633,7 +611,8 @@ class SessionEntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2beta1.SessionEntityTypesClient()
             >>>
-            >>> name = client.session_entity_type_path('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> client.delete_session_entity_type(name)
 

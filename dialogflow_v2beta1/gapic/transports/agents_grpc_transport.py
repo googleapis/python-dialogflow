@@ -117,6 +117,19 @@ class AgentsGrpcTransport(object):
         return self._channel
 
     @property
+    def get_agent(self):
+        """Return the gRPC stub for :meth:`AgentsClient.get_agent`.
+
+        Retrieves the specified agent.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["agents_stub"].GetAgent
+
+    @property
     def set_agent(self):
         """Return the gRPC stub for :meth:`AgentsClient.set_agent`.
 
@@ -141,19 +154,6 @@ class AgentsGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["agents_stub"].DeleteAgent
-
-    @property
-    def get_agent(self):
-        """Return the gRPC stub for :meth:`AgentsClient.get_agent`.
-
-        Retrieves the specified agent.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["agents_stub"].GetAgent
 
     @property
     def search_agents(self):

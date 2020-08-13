@@ -38,6 +38,8 @@ from dialogflow_v2beta1.proto import agent_pb2
 from dialogflow_v2beta1.proto import agent_pb2_grpc
 from dialogflow_v2beta1.proto import context_pb2
 from dialogflow_v2beta1.proto import context_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 from dialogflow_v2beta1.proto import validation_result_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
@@ -86,29 +88,6 @@ class ContextsClient(object):
             project=project,
             session=session,
             context=context,
-        )
-
-    @classmethod
-    def environment_context_path(cls, project, environment, user, session, context):
-        """Return a fully-qualified environment_context string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}",
-            project=project,
-            environment=environment,
-            user=user,
-            session=session,
-            context=context,
-        )
-
-    @classmethod
-    def environment_session_path(cls, project, environment, user, session):
-        """Return a fully-qualified environment_session string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}",
-            project=project,
-            environment=environment,
-            user=user,
-            session=session,
         )
 
     @classmethod
@@ -249,7 +228,8 @@ class ContextsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
-            >>> parent = client.session_path('[PROJECT]', '[SESSION]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # Iterate over all results
             >>> for element in client.list_contexts(parent):
@@ -354,7 +334,8 @@ class ContextsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
-            >>> name = client.context_path('[PROJECT]', '[SESSION]', '[CONTEXT]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> response = client.get_context(name)
 
@@ -432,7 +413,8 @@ class ContextsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
-            >>> parent = client.session_path('[PROJECT]', '[SESSION]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> # TODO: Initialize `context`:
             >>> context = {}
@@ -593,7 +575,8 @@ class ContextsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
-            >>> name = client.context_path('[PROJECT]', '[SESSION]', '[CONTEXT]')
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
             >>>
             >>> client.delete_context(name)
 
@@ -665,7 +648,8 @@ class ContextsClient(object):
             >>>
             >>> client = dialogflow_v2beta1.ContextsClient()
             >>>
-            >>> parent = client.session_path('[PROJECT]', '[SESSION]')
+            >>> # TODO: Initialize `parent`:
+            >>> parent = ''
             >>>
             >>> client.delete_all_contexts(parent)
 
