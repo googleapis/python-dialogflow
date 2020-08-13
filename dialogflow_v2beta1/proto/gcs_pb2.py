@@ -20,6 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.dialogflow.v2beta1",
     syntax="proto3",
     serialized_options=b"\n#com.google.cloud.dialogflow.v2beta1B\010GcsProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n/google/cloud/dialogflow_v2beta1/proto/gcs.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto"\x18\n\tGcsSource\x12\x0b\n\x03uri\x18\x01 \x01(\tB\xa6\x01\n#com.google.cloud.dialogflow.v2beta1B\x08GcsProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3',
     dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR],
 )
@@ -31,6 +32,7 @@ _GCSSOURCE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="uri",
@@ -49,6 +51,7 @@ _GCSSOURCE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],

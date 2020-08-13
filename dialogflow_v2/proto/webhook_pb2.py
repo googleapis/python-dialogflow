@@ -33,6 +33,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.dialogflow.v2",
     syntax="proto3",
     serialized_options=b"\n\036com.google.cloud.dialogflow.v2B\014WebhookProtoP\001ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\370\001\001\242\002\002DF\252\002\032Google.Cloud.Dialogflow.V2",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n.google/cloud/dialogflow_v2/proto/webhook.proto\x12\x1agoogle.cloud.dialogflow.v2\x1a.google/cloud/dialogflow_v2/proto/context.proto\x1a-google/cloud/dialogflow_v2/proto/intent.proto\x1a.google/cloud/dialogflow_v2/proto/session.proto\x1a:google/cloud/dialogflow_v2/proto/session_entity_type.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto"\xd6\x01\n\x0eWebhookRequest\x12\x0f\n\x07session\x18\x04 \x01(\t\x12\x13\n\x0bresponse_id\x18\x01 \x01(\t\x12=\n\x0cquery_result\x18\x02 \x01(\x0b\x32\'.google.cloud.dialogflow.v2.QueryResult\x12_\n\x1eoriginal_detect_intent_request\x18\x03 \x01(\x0b\x32\x37.google.cloud.dialogflow.v2.OriginalDetectIntentRequest"\x80\x03\n\x0fWebhookResponse\x12\x18\n\x10\x66ulfillment_text\x18\x01 \x01(\t\x12H\n\x14\x66ulfillment_messages\x18\x02 \x03(\x0b\x32*.google.cloud.dialogflow.v2.Intent.Message\x12\x0e\n\x06source\x18\x03 \x01(\t\x12(\n\x07payload\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12<\n\x0foutput_contexts\x18\x05 \x03(\x0b\x32#.google.cloud.dialogflow.v2.Context\x12\x44\n\x14\x66ollowup_event_input\x18\x06 \x01(\x0b\x32&.google.cloud.dialogflow.v2.EventInput\x12K\n\x14session_entity_types\x18\n \x03(\x0b\x32-.google.cloud.dialogflow.v2.SessionEntityType"h\n\x1bOriginalDetectIntentRequest\x12\x0e\n\x06source\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\t\x12(\n\x07payload\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x9b\x01\n\x1e\x63om.google.cloud.dialogflow.v2B\x0cWebhookProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1aGoogle.Cloud.Dialogflow.V2b\x06proto3',
     dependencies=[
         google_dot_cloud_dot_dialogflow__v2_dot_proto_dot_context__pb2.DESCRIPTOR,
@@ -51,6 +52,7 @@ _WEBHOOKREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="session",
@@ -69,6 +71,7 @@ _WEBHOOKREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="response_id",
@@ -87,6 +90,7 @@ _WEBHOOKREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="query_result",
@@ -105,6 +109,7 @@ _WEBHOOKREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="original_detect_intent_request",
@@ -123,6 +128,7 @@ _WEBHOOKREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -144,6 +150,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="fulfillment_text",
@@ -162,6 +169,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="fulfillment_messages",
@@ -180,6 +188,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="source",
@@ -198,6 +207,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="payload",
@@ -216,6 +226,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="output_contexts",
@@ -234,6 +245,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="followup_event_input",
@@ -252,6 +264,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="session_entity_types",
@@ -270,6 +283,7 @@ _WEBHOOKRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -291,6 +305,7 @@ _ORIGINALDETECTINTENTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="source",
@@ -309,6 +324,7 @@ _ORIGINALDETECTINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="version",
@@ -327,6 +343,7 @@ _ORIGINALDETECTINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="payload",
@@ -345,6 +362,7 @@ _ORIGINALDETECTINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

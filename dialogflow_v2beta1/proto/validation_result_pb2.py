@@ -20,6 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.dialogflow.v2beta1",
     syntax="proto3",
     serialized_options=b"\n#com.google.cloud.dialogflow.v2beta1B\025ValidationResultProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n=google/cloud/dialogflow_v2beta1/proto/validation_result.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto"\xdc\x01\n\x0fValidationError\x12K\n\x08severity\x18\x01 \x01(\x0e\x32\x39.google.cloud.dialogflow.v2beta1.ValidationError.Severity\x12\x0f\n\x07\x65ntries\x18\x03 \x03(\t\x12\x15\n\rerror_message\x18\x04 \x01(\t"T\n\x08Severity\x12\x18\n\x14SEVERITY_UNSPECIFIED\x10\x00\x12\x08\n\x04INFO\x10\x01\x12\x0b\n\x07WARNING\x10\x02\x12\t\n\x05\x45RROR\x10\x03\x12\x0c\n\x08\x43RITICAL\x10\x04"_\n\x10ValidationResult\x12K\n\x11validation_errors\x18\x01 \x03(\x0b\x32\x30.google.cloud.dialogflow.v2beta1.ValidationErrorB\xb3\x01\n#com.google.cloud.dialogflow.v2beta1B\x15ValidationResultProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3',
     dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR],
 )
@@ -30,6 +31,7 @@ _VALIDATIONERROR_SEVERITY = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2beta1.ValidationError.Severity",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="SEVERITY_UNSPECIFIED",
@@ -37,18 +39,39 @@ _VALIDATIONERROR_SEVERITY = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="INFO", index=1, number=1, serialized_options=None, type=None
+            name="INFO",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="WARNING", index=2, number=2, serialized_options=None, type=None
+            name="WARNING",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="ERROR", index=3, number=3, serialized_options=None, type=None
+            name="ERROR",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="CRITICAL", index=4, number=4, serialized_options=None, type=None
+            name="CRITICAL",
+            index=4,
+            number=4,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -65,6 +88,7 @@ _VALIDATIONERROR = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="severity",
@@ -83,6 +107,7 @@ _VALIDATIONERROR = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="entries",
@@ -101,6 +126,7 @@ _VALIDATIONERROR = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="error_message",
@@ -119,6 +145,7 @@ _VALIDATIONERROR = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -140,6 +167,7 @@ _VALIDATIONRESULT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="validation_errors",
@@ -158,6 +186,7 @@ _VALIDATIONRESULT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],

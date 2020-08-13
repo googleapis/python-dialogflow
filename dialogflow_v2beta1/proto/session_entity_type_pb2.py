@@ -28,6 +28,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.dialogflow.v2beta1",
     syntax="proto3",
     serialized_options=b"\n#com.google.cloud.dialogflow.v2beta1B\026SessionEntityTypeProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n?google/cloud/dialogflow_v2beta1/proto/session_entity_type.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x37google/cloud/dialogflow_v2beta1/proto/entity_type.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto"\x97\x05\n\x11SessionEntityType\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x63\n\x14\x65ntity_override_mode\x18\x02 \x01(\x0e\x32\x45.google.cloud.dialogflow.v2beta1.SessionEntityType.EntityOverrideMode\x12\x44\n\x08\x65ntities\x18\x03 \x03(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.EntityType.Entity"\x82\x01\n\x12\x45ntityOverrideMode\x12$\n ENTITY_OVERRIDE_MODE_UNSPECIFIED\x10\x00\x12!\n\x1d\x45NTITY_OVERRIDE_MODE_OVERRIDE\x10\x01\x12#\n\x1f\x45NTITY_OVERRIDE_MODE_SUPPLEMENT\x10\x02:\xc3\x02\xea\x41\xbf\x02\n+dialogflow.googleapis.com/SessionEntityType\x12\x45projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}\x12Zprojects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}\x12mprojects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}"\x8b\x01\n\x1dListSessionEntityTypesRequest\x12\x43\n\x06parent\x18\x01 \x01(\tB3\xe0\x41\x02\xfa\x41-\x12+dialogflow.googleapis.com/SessionEntityType\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t"\x8b\x01\n\x1eListSessionEntityTypesResponse\x12P\n\x14session_entity_types\x18\x01 \x03(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"`\n\x1bGetSessionEntityTypeRequest\x12\x41\n\x04name\x18\x01 \x01(\tB3\xe0\x41\x02\xfa\x41-\n+dialogflow.googleapis.com/SessionEntityType"\xb6\x01\n\x1e\x43reateSessionEntityTypeRequest\x12\x43\n\x06parent\x18\x01 \x01(\tB3\xe0\x41\x02\xfa\x41-\x12+dialogflow.googleapis.com/SessionEntityType\x12O\n\x13session_entity_type\x18\x02 \x01(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType"\xa2\x01\n\x1eUpdateSessionEntityTypeRequest\x12O\n\x13session_entity_type\x18\x01 \x01(\x0b\x32\x32.google.cloud.dialogflow.v2beta1.SessionEntityType\x12/\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask"c\n\x1e\x44\x65leteSessionEntityTypeRequest\x12\x41\n\x04name\x18\x01 \x01(\tB3\xe0\x41\x02\xfa\x41-\n+dialogflow.googleapis.com/SessionEntityType2\xfb\x15\n\x12SessionEntityTypes\x12\xe4\x03\n\x16ListSessionEntityTypes\x12>.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesRequest\x1a?.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesResponse"\xc8\x02\x82\xd3\xe4\x93\x02\xb8\x02\x12\x39/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypesZR\x12P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypesZG\x12\x45/v2beta1/{parent=projects/*/locations/*/agent/sessions/*}/entityTypesZ^\x12\\/v2beta1/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/entityTypes\xda\x41\x06parent\x12\xd1\x03\n\x14GetSessionEntityType\x12<.google.cloud.dialogflow.v2beta1.GetSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType"\xc6\x02\x82\xd3\xe4\x93\x02\xb8\x02\x12\x39/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR\x12P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}ZG\x12\x45/v2beta1/{name=projects/*/locations/*/agent/sessions/*/entityTypes/*}Z^\x12\\/v2beta1/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}\xda\x41\x04name\x12\xc1\x04\n\x17\x43reateSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.CreateSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType"\xb0\x03\x82\xd3\xe4\x93\x02\x8c\x03"9/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypes:\x13session_entity_typeZg"P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes:\x13session_entity_typeZ\\"E/v2beta1/{parent=projects/*/locations/*/agent/sessions/*}/entityTypes:\x13session_entity_typeZs"\\/v2beta1/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/entityTypes:\x13session_entity_type\xda\x41\x1aparent,session_entity_type\x12\xad\x05\n\x17UpdateSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.UpdateSessionEntityTypeRequest\x1a\x32.google.cloud.dialogflow.v2beta1.SessionEntityType"\x9c\x04\x82\xd3\xe4\x93\x02\xdd\x03\x32M/v2beta1/{session_entity_type.name=projects/*/agent/sessions/*/entityTypes/*}:\x13session_entity_typeZ{2d/v2beta1/{session_entity_type.name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}:\x13session_entity_typeZp2Y/v2beta1/{session_entity_type.name=projects/*/locations/*/agent/sessions/*/entityTypes/*}:\x13session_entity_typeZ\x87\x01\x32p/v2beta1/{session_entity_type.name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}:\x13session_entity_type\xda\x41\x13session_entity_type\xda\x41\x1fsession_entity_type,update_mask\x12\xbb\x03\n\x17\x44\x65leteSessionEntityType\x12?.google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest\x1a\x16.google.protobuf.Empty"\xc6\x02\x82\xd3\xe4\x93\x02\xb8\x02*9/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR*P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}ZG*E/v2beta1/{name=projects/*/locations/*/agent/sessions/*/entityTypes/*}Z^*\\/v2beta1/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}\xda\x41\x04name\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\xb4\x01\n#com.google.cloud.dialogflow.v2beta1B\x16SessionEntityTypeProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3',
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
@@ -46,6 +47,7 @@ _SESSIONENTITYTYPE_ENTITYOVERRIDEMODE = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2beta1.SessionEntityType.EntityOverrideMode",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="ENTITY_OVERRIDE_MODE_UNSPECIFIED",
@@ -53,6 +55,7 @@ _SESSIONENTITYTYPE_ENTITYOVERRIDEMODE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="ENTITY_OVERRIDE_MODE_OVERRIDE",
@@ -60,6 +63,7 @@ _SESSIONENTITYTYPE_ENTITYOVERRIDEMODE = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="ENTITY_OVERRIDE_MODE_SUPPLEMENT",
@@ -67,6 +71,7 @@ _SESSIONENTITYTYPE_ENTITYOVERRIDEMODE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -83,6 +88,7 @@ _SESSIONENTITYTYPE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -101,6 +107,7 @@ _SESSIONENTITYTYPE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="entity_override_mode",
@@ -119,6 +126,7 @@ _SESSIONENTITYTYPE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="entities",
@@ -137,6 +145,7 @@ _SESSIONENTITYTYPE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -158,6 +167,7 @@ _LISTSESSIONENTITYTYPESREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -176,6 +186,7 @@ _LISTSESSIONENTITYTYPESREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A-\022+dialogflow.googleapis.com/SessionEntityType",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -194,6 +205,7 @@ _LISTSESSIONENTITYTYPESREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -212,6 +224,7 @@ _LISTSESSIONENTITYTYPESREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -233,6 +246,7 @@ _LISTSESSIONENTITYTYPESRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="session_entity_types",
@@ -251,6 +265,7 @@ _LISTSESSIONENTITYTYPESRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -269,6 +284,7 @@ _LISTSESSIONENTITYTYPESRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -290,6 +306,7 @@ _GETSESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -308,6 +325,7 @@ _GETSESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A-\n+dialogflow.googleapis.com/SessionEntityType",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -329,6 +347,7 @@ _CREATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -347,6 +366,7 @@ _CREATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A-\022+dialogflow.googleapis.com/SessionEntityType",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="session_entity_type",
@@ -365,6 +385,7 @@ _CREATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -386,6 +407,7 @@ _UPDATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="session_entity_type",
@@ -404,6 +426,7 @@ _UPDATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="update_mask",
@@ -422,6 +445,7 @@ _UPDATESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -443,6 +467,7 @@ _DELETESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -461,6 +486,7 @@ _DELETESESSIONENTITYTYPEREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A-\n+dialogflow.googleapis.com/SessionEntityType",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -711,6 +737,7 @@ _SESSIONENTITYTYPES = _descriptor.ServiceDescriptor(
     file=DESCRIPTOR,
     index=0,
     serialized_options=b"\312A\031dialogflow.googleapis.com\322AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflow",
+    create_key=_descriptor._internal_create_key,
     serialized_start=1835,
     serialized_end=4646,
     methods=[
@@ -722,6 +749,7 @@ _SESSIONENTITYTYPES = _descriptor.ServiceDescriptor(
             input_type=_LISTSESSIONENTITYTYPESREQUEST,
             output_type=_LISTSESSIONENTITYTYPESRESPONSE,
             serialized_options=b"\202\323\344\223\002\270\002\0229/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypesZR\022P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypesZG\022E/v2beta1/{parent=projects/*/locations/*/agent/sessions/*}/entityTypesZ^\022\\/v2beta1/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/entityTypes\332A\006parent",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetSessionEntityType",
@@ -731,6 +759,7 @@ _SESSIONENTITYTYPES = _descriptor.ServiceDescriptor(
             input_type=_GETSESSIONENTITYTYPEREQUEST,
             output_type=_SESSIONENTITYTYPE,
             serialized_options=b"\202\323\344\223\002\270\002\0229/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR\022P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}ZG\022E/v2beta1/{name=projects/*/locations/*/agent/sessions/*/entityTypes/*}Z^\022\\/v2beta1/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateSessionEntityType",
@@ -740,6 +769,7 @@ _SESSIONENTITYTYPES = _descriptor.ServiceDescriptor(
             input_type=_CREATESESSIONENTITYTYPEREQUEST,
             output_type=_SESSIONENTITYTYPE,
             serialized_options=b'\202\323\344\223\002\214\003"9/v2beta1/{parent=projects/*/agent/sessions/*}/entityTypes:\023session_entity_typeZg"P/v2beta1/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes:\023session_entity_typeZ\\"E/v2beta1/{parent=projects/*/locations/*/agent/sessions/*}/entityTypes:\023session_entity_typeZs"\\/v2beta1/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/entityTypes:\023session_entity_type\332A\032parent,session_entity_type',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="UpdateSessionEntityType",
@@ -749,6 +779,7 @@ _SESSIONENTITYTYPES = _descriptor.ServiceDescriptor(
             input_type=_UPDATESESSIONENTITYTYPEREQUEST,
             output_type=_SESSIONENTITYTYPE,
             serialized_options=b"\202\323\344\223\002\335\0032M/v2beta1/{session_entity_type.name=projects/*/agent/sessions/*/entityTypes/*}:\023session_entity_typeZ{2d/v2beta1/{session_entity_type.name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}:\023session_entity_typeZp2Y/v2beta1/{session_entity_type.name=projects/*/locations/*/agent/sessions/*/entityTypes/*}:\023session_entity_typeZ\207\0012p/v2beta1/{session_entity_type.name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}:\023session_entity_type\332A\023session_entity_type\332A\037session_entity_type,update_mask",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="DeleteSessionEntityType",
@@ -758,6 +789,7 @@ _SESSIONENTITYTYPES = _descriptor.ServiceDescriptor(
             input_type=_DELETESESSIONENTITYTYPEREQUEST,
             output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
             serialized_options=b"\202\323\344\223\002\270\002*9/v2beta1/{name=projects/*/agent/sessions/*/entityTypes/*}ZR*P/v2beta1/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}ZG*E/v2beta1/{name=projects/*/locations/*/agent/sessions/*/entityTypes/*}Z^*\\/v2beta1/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
     ],
 )

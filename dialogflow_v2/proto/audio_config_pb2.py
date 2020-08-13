@@ -24,6 +24,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.dialogflow.v2",
     syntax="proto3",
     serialized_options=b"\n\036com.google.cloud.dialogflow.v2B\020AudioConfigProtoP\001ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\370\001\001\242\002\002DF\252\002\032Google.Cloud.Dialogflow.V2",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n3google/cloud/dialogflow_v2/proto/audio_config.proto\x12\x1agoogle.cloud.dialogflow.v2\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/api/annotations.proto"/\n\rSpeechContext\x12\x0f\n\x07phrases\x18\x01 \x03(\t\x12\r\n\x05\x62oost\x18\x02 \x01(\x02"\x92\x01\n\x0eSpeechWordInfo\x12\x0c\n\x04word\x18\x03 \x01(\t\x12/\n\x0cstart_offset\x18\x01 \x01(\x0b\x32\x19.google.protobuf.Duration\x12-\n\nend_offset\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x12\n\nconfidence\x18\x04 \x01(\x02"\xef\x02\n\x10InputAudioConfig\x12\x41\n\x0e\x61udio_encoding\x18\x01 \x01(\x0e\x32).google.cloud.dialogflow.v2.AudioEncoding\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x15\n\rlanguage_code\x18\x03 \x01(\t\x12\x18\n\x10\x65nable_word_info\x18\r \x01(\x08\x12\x18\n\x0cphrase_hints\x18\x04 \x03(\tB\x02\x18\x01\x12\x42\n\x0fspeech_contexts\x18\x0b \x03(\x0b\x32).google.cloud.dialogflow.v2.SpeechContext\x12\r\n\x05model\x18\x07 \x01(\t\x12\x45\n\rmodel_variant\x18\n \x01(\x0e\x32..google.cloud.dialogflow.v2.SpeechModelVariant\x12\x18\n\x10single_utterance\x18\x08 \x01(\x08"f\n\x14VoiceSelectionParams\x12\x0c\n\x04name\x18\x01 \x01(\t\x12@\n\x0bssml_gender\x18\x02 \x01(\x0e\x32+.google.cloud.dialogflow.v2.SsmlVoiceGender"\xb3\x01\n\x16SynthesizeSpeechConfig\x12\x15\n\rspeaking_rate\x18\x01 \x01(\x01\x12\r\n\x05pitch\x18\x02 \x01(\x01\x12\x16\n\x0evolume_gain_db\x18\x03 \x01(\x01\x12\x1a\n\x12\x65\x66\x66\x65\x63ts_profile_id\x18\x05 \x03(\t\x12?\n\x05voice\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.VoiceSelectionParams"\xd2\x01\n\x11OutputAudioConfig\x12L\n\x0e\x61udio_encoding\x18\x01 \x01(\x0e\x32/.google.cloud.dialogflow.v2.OutputAudioEncodingB\x03\xe0\x41\x02\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12T\n\x18synthesize_speech_config\x18\x03 \x01(\x0b\x32\x32.google.cloud.dialogflow.v2.SynthesizeSpeechConfig*\xfb\x01\n\rAudioEncoding\x12\x1e\n\x1a\x41UDIO_ENCODING_UNSPECIFIED\x10\x00\x12\x1c\n\x18\x41UDIO_ENCODING_LINEAR_16\x10\x01\x12\x17\n\x13\x41UDIO_ENCODING_FLAC\x10\x02\x12\x18\n\x14\x41UDIO_ENCODING_MULAW\x10\x03\x12\x16\n\x12\x41UDIO_ENCODING_AMR\x10\x04\x12\x19\n\x15\x41UDIO_ENCODING_AMR_WB\x10\x05\x12\x1b\n\x17\x41UDIO_ENCODING_OGG_OPUS\x10\x06\x12)\n%AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE\x10\x07*v\n\x12SpeechModelVariant\x12$\n SPEECH_MODEL_VARIANT_UNSPECIFIED\x10\x00\x12\x16\n\x12USE_BEST_AVAILABLE\x10\x01\x12\x10\n\x0cUSE_STANDARD\x10\x02\x12\x10\n\x0cUSE_ENHANCED\x10\x03*\x8d\x01\n\x0fSsmlVoiceGender\x12!\n\x1dSSML_VOICE_GENDER_UNSPECIFIED\x10\x00\x12\x1a\n\x16SSML_VOICE_GENDER_MALE\x10\x01\x12\x1c\n\x18SSML_VOICE_GENDER_FEMALE\x10\x02\x12\x1d\n\x19SSML_VOICE_GENDER_NEUTRAL\x10\x03*\xa4\x01\n\x13OutputAudioEncoding\x12%\n!OUTPUT_AUDIO_ENCODING_UNSPECIFIED\x10\x00\x12#\n\x1fOUTPUT_AUDIO_ENCODING_LINEAR_16\x10\x01\x12\x1d\n\x19OUTPUT_AUDIO_ENCODING_MP3\x10\x02\x12"\n\x1eOUTPUT_AUDIO_ENCODING_OGG_OPUS\x10\x03\x42\x9f\x01\n\x1e\x63om.google.cloud.dialogflow.v2B\x10\x41udioConfigProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1aGoogle.Cloud.Dialogflow.V2b\x06proto3',
     dependencies=[
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
@@ -38,6 +39,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.AudioEncoding",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_UNSPECIFIED",
@@ -45,6 +47,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_LINEAR_16",
@@ -52,6 +55,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_FLAC",
@@ -59,6 +63,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_MULAW",
@@ -66,6 +71,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_AMR",
@@ -73,6 +79,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=4,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_AMR_WB",
@@ -80,6 +87,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=5,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_OGG_OPUS",
@@ -87,6 +95,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=6,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
@@ -94,6 +103,7 @@ _AUDIOENCODING = _descriptor.EnumDescriptor(
             number=7,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -109,6 +119,7 @@ _SPEECHMODELVARIANT = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.SpeechModelVariant",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="SPEECH_MODEL_VARIANT_UNSPECIFIED",
@@ -116,6 +127,7 @@ _SPEECHMODELVARIANT = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="USE_BEST_AVAILABLE",
@@ -123,12 +135,23 @@ _SPEECHMODELVARIANT = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="USE_STANDARD", index=2, number=2, serialized_options=None, type=None
+            name="USE_STANDARD",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="USE_ENHANCED", index=3, number=3, serialized_options=None, type=None
+            name="USE_ENHANCED",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -144,6 +167,7 @@ _SSMLVOICEGENDER = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.SsmlVoiceGender",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="SSML_VOICE_GENDER_UNSPECIFIED",
@@ -151,6 +175,7 @@ _SSMLVOICEGENDER = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SSML_VOICE_GENDER_MALE",
@@ -158,6 +183,7 @@ _SSMLVOICEGENDER = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SSML_VOICE_GENDER_FEMALE",
@@ -165,6 +191,7 @@ _SSMLVOICEGENDER = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SSML_VOICE_GENDER_NEUTRAL",
@@ -172,6 +199,7 @@ _SSMLVOICEGENDER = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -187,6 +215,7 @@ _OUTPUTAUDIOENCODING = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.OutputAudioEncoding",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="OUTPUT_AUDIO_ENCODING_UNSPECIFIED",
@@ -194,6 +223,7 @@ _OUTPUTAUDIOENCODING = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="OUTPUT_AUDIO_ENCODING_LINEAR_16",
@@ -201,6 +231,7 @@ _OUTPUTAUDIOENCODING = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="OUTPUT_AUDIO_ENCODING_MP3",
@@ -208,6 +239,7 @@ _OUTPUTAUDIOENCODING = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="OUTPUT_AUDIO_ENCODING_OGG_OPUS",
@@ -215,6 +247,7 @@ _OUTPUTAUDIOENCODING = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -253,6 +286,7 @@ _SPEECHCONTEXT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="phrases",
@@ -271,6 +305,7 @@ _SPEECHCONTEXT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="boost",
@@ -289,6 +324,7 @@ _SPEECHCONTEXT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -310,6 +346,7 @@ _SPEECHWORDINFO = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="word",
@@ -328,6 +365,7 @@ _SPEECHWORDINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="start_offset",
@@ -346,6 +384,7 @@ _SPEECHWORDINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="end_offset",
@@ -364,6 +403,7 @@ _SPEECHWORDINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="confidence",
@@ -382,6 +422,7 @@ _SPEECHWORDINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -403,6 +444,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="audio_encoding",
@@ -421,6 +463,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="sample_rate_hertz",
@@ -439,6 +482,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="language_code",
@@ -457,6 +501,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="enable_word_info",
@@ -475,6 +520,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="phrase_hints",
@@ -493,6 +539,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\030\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="speech_contexts",
@@ -511,6 +558,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="model",
@@ -529,6 +577,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="model_variant",
@@ -547,6 +596,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="single_utterance",
@@ -565,6 +615,7 @@ _INPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -586,6 +637,7 @@ _VOICESELECTIONPARAMS = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -604,6 +656,7 @@ _VOICESELECTIONPARAMS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="ssml_gender",
@@ -622,6 +675,7 @@ _VOICESELECTIONPARAMS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -643,6 +697,7 @@ _SYNTHESIZESPEECHCONFIG = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="speaking_rate",
@@ -661,6 +716,7 @@ _SYNTHESIZESPEECHCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="pitch",
@@ -679,6 +735,7 @@ _SYNTHESIZESPEECHCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="volume_gain_db",
@@ -697,6 +754,7 @@ _SYNTHESIZESPEECHCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="effects_profile_id",
@@ -715,6 +773,7 @@ _SYNTHESIZESPEECHCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="voice",
@@ -733,6 +792,7 @@ _SYNTHESIZESPEECHCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -754,6 +814,7 @@ _OUTPUTAUDIOCONFIG = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="audio_encoding",
@@ -772,6 +833,7 @@ _OUTPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="sample_rate_hertz",
@@ -790,6 +852,7 @@ _OUTPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="synthesize_speech_config",
@@ -808,6 +871,7 @@ _OUTPUTAUDIOCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

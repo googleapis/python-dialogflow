@@ -37,6 +37,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.dialogflow.v2",
     syntax="proto3",
     serialized_options=b"\n\036com.google.cloud.dialogflow.v2B\013IntentProtoP\001ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\370\001\001\242\002\002DF\252\002\032Google.Cloud.Dialogflow.V2",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n-google/cloud/dialogflow_v2/proto/intent.proto\x12\x1agoogle.cloud.dialogflow.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x33google/cloud/dialogflow_v2/proto/audio_config.proto\x1a.google/cloud/dialogflow_v2/proto/context.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto"\xcc\x37\n\x06Intent\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12\x19\n\x0c\x64isplay_name\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12K\n\rwebhook_state\x18\x06 \x01(\x0e\x32/.google.cloud.dialogflow.v2.Intent.WebhookStateB\x03\xe0\x41\x01\x12\x15\n\x08priority\x18\x03 \x01(\x05\x42\x03\xe0\x41\x01\x12\x18\n\x0bis_fallback\x18\x04 \x01(\x08\x42\x03\xe0\x41\x01\x12\x18\n\x0bml_disabled\x18\x13 \x01(\x08\x42\x03\xe0\x41\x01\x12 \n\x13input_context_names\x18\x07 \x03(\tB\x03\xe0\x41\x01\x12\x13\n\x06\x65vents\x18\x08 \x03(\tB\x03\xe0\x41\x01\x12P\n\x10training_phrases\x18\t \x03(\x0b\x32\x31.google.cloud.dialogflow.v2.Intent.TrainingPhraseB\x03\xe0\x41\x01\x12\x13\n\x06\x61\x63tion\x18\n \x01(\tB\x03\xe0\x41\x01\x12\x41\n\x0foutput_contexts\x18\x0b \x03(\x0b\x32#.google.cloud.dialogflow.v2.ContextB\x03\xe0\x41\x01\x12\x1b\n\x0ereset_contexts\x18\x0c \x01(\x08\x42\x03\xe0\x41\x01\x12\x45\n\nparameters\x18\r \x03(\x0b\x32,.google.cloud.dialogflow.v2.Intent.ParameterB\x03\xe0\x41\x01\x12\x41\n\x08messages\x18\x0e \x03(\x0b\x32*.google.cloud.dialogflow.v2.Intent.MessageB\x03\xe0\x41\x01\x12\\\n\x1a\x64\x65\x66\x61ult_response_platforms\x18\x0f \x03(\x0e\x32\x33.google.cloud.dialogflow.v2.Intent.Message.PlatformB\x03\xe0\x41\x01\x12!\n\x19root_followup_intent_name\x18\x10 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x11 \x01(\t\x12S\n\x14\x66ollowup_intent_info\x18\x12 \x03(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.FollowupIntentInfo\x1a\xf1\x02\n\x0eTrainingPhrase\x12\x0c\n\x04name\x18\x01 \x01(\t\x12I\n\x04type\x18\x02 \x01(\x0e\x32\x36.google.cloud.dialogflow.v2.Intent.TrainingPhrase.TypeB\x03\xe0\x41\x02\x12J\n\x05parts\x18\x03 \x03(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.TrainingPhrase.PartB\x03\xe0\x41\x02\x12\x1e\n\x11times_added_count\x18\x04 \x01(\x05\x42\x03\xe0\x41\x01\x1a]\n\x04Part\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x18\n\x0b\x65ntity_type\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12\x12\n\x05\x61lias\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x19\n\x0cuser_defined\x18\x04 \x01(\x08\x42\x03\xe0\x41\x01";\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x45XAMPLE\x10\x01\x12\x10\n\x08TEMPLATE\x10\x02\x1a\x02\x08\x01\x1a\xca\x01\n\tParameter\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x12\n\x05value\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x1a\n\rdefault_value\x18\x04 \x01(\tB\x03\xe0\x41\x01\x12%\n\x18\x65ntity_type_display_name\x18\x05 \x01(\tB\x03\xe0\x41\x01\x12\x16\n\tmandatory\x18\x06 \x01(\x08\x42\x03\xe0\x41\x01\x12\x14\n\x07prompts\x18\x07 \x03(\tB\x03\xe0\x41\x01\x12\x14\n\x07is_list\x18\x08 \x01(\x08\x42\x03\xe0\x41\x01\x1a\x96*\n\x07Message\x12?\n\x04text\x18\x01 \x01(\x0b\x32/.google.cloud.dialogflow.v2.Intent.Message.TextH\x00\x12\x41\n\x05image\x18\x02 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageH\x00\x12P\n\rquick_replies\x18\x03 \x01(\x0b\x32\x37.google.cloud.dialogflow.v2.Intent.Message.QuickRepliesH\x00\x12?\n\x04\x63\x61rd\x18\x04 \x01(\x0b\x32/.google.cloud.dialogflow.v2.Intent.Message.CardH\x00\x12*\n\x07payload\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x12V\n\x10simple_responses\x18\x07 \x01(\x0b\x32:.google.cloud.dialogflow.v2.Intent.Message.SimpleResponsesH\x00\x12J\n\nbasic_card\x18\x08 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2.Intent.Message.BasicCardH\x00\x12M\n\x0bsuggestions\x18\t \x01(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.Message.SuggestionsH\x00\x12[\n\x13link_out_suggestion\x18\n \x01(\x0b\x32<.google.cloud.dialogflow.v2.Intent.Message.LinkOutSuggestionH\x00\x12L\n\x0blist_select\x18\x0b \x01(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.Message.ListSelectH\x00\x12T\n\x0f\x63\x61rousel_select\x18\x0c \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.CarouselSelectH\x00\x12]\n\x14\x62rowse_carousel_card\x18\x16 \x01(\x0b\x32=.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCardH\x00\x12J\n\ntable_card\x18\x17 \x01(\x0b\x32\x34.google.cloud.dialogflow.v2.Intent.Message.TableCardH\x00\x12P\n\rmedia_content\x18\x18 \x01(\x0b\x32\x37.google.cloud.dialogflow.v2.Intent.Message.MediaContentH\x00\x12J\n\x08platform\x18\x06 \x01(\x0e\x32\x33.google.cloud.dialogflow.v2.Intent.Message.PlatformB\x03\xe0\x41\x01\x1a\x19\n\x04Text\x12\x11\n\x04text\x18\x01 \x03(\tB\x03\xe0\x41\x01\x1a@\n\x05Image\x12\x16\n\timage_uri\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12\x1f\n\x12\x61\x63\x63\x65ssibility_text\x18\x02 \x01(\tB\x03\xe0\x41\x01\x1a>\n\x0cQuickReplies\x12\x12\n\x05title\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12\x1a\n\rquick_replies\x18\x02 \x03(\tB\x03\xe0\x41\x01\x1a\xcb\x01\n\x04\x43\x61rd\x12\x12\n\x05title\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12\x15\n\x08subtitle\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12\x16\n\timage_uri\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12L\n\x07\x62uttons\x18\x04 \x03(\x0b\x32\x36.google.cloud.dialogflow.v2.Intent.Message.Card.ButtonB\x03\xe0\x41\x01\x1a\x32\n\x06\x42utton\x12\x11\n\x04text\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12\x15\n\x08postback\x18\x02 \x01(\tB\x03\xe0\x41\x01\x1aQ\n\x0eSimpleResponse\x12\x16\n\x0etext_to_speech\x18\x01 \x01(\t\x12\x0c\n\x04ssml\x18\x02 \x01(\t\x12\x19\n\x0c\x64isplay_text\x18\x03 \x01(\tB\x03\xe0\x41\x01\x1ak\n\x0fSimpleResponses\x12X\n\x10simple_responses\x18\x01 \x03(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SimpleResponseB\x03\xe0\x41\x02\x1a\x88\x03\n\tBasicCard\x12\x12\n\x05title\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12\x15\n\x08subtitle\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12\x16\n\x0e\x66ormatted_text\x18\x03 \x01(\t\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageB\x03\xe0\x41\x01\x12Q\n\x07\x62uttons\x18\x05 \x03(\x0b\x32;.google.cloud.dialogflow.v2.Intent.Message.BasicCard.ButtonB\x03\xe0\x41\x01\x1a\x9e\x01\n\x06\x42utton\x12\r\n\x05title\x18\x01 \x01(\t\x12g\n\x0fopen_uri_action\x18\x02 \x01(\x0b\x32I.google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button.OpenUriActionB\x03\xe0\x41\x02\x1a\x1c\n\rOpenUriAction\x12\x0b\n\x03uri\x18\x01 \x01(\t\x1a \n\nSuggestion\x12\x12\n\x05title\x18\x01 \x01(\tB\x03\xe0\x41\x02\x1a^\n\x0bSuggestions\x12O\n\x0bsuggestions\x18\x01 \x03(\x0b\x32\x35.google.cloud.dialogflow.v2.Intent.Message.SuggestionB\x03\xe0\x41\x02\x1a\x44\n\x11LinkOutSuggestion\x12\x1d\n\x10\x64\x65stination_name\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x10\n\x03uri\x18\x02 \x01(\tB\x03\xe0\x41\x02\x1a\xd2\x02\n\nListSelect\x12\x12\n\x05title\x18\x01 \x01(\tB\x03\xe0\x41\x01\x12N\n\x05items\x18\x02 \x03(\x0b\x32:.google.cloud.dialogflow.v2.Intent.Message.ListSelect.ItemB\x03\xe0\x41\x02\x12\x15\n\x08subtitle\x18\x03 \x01(\tB\x03\xe0\x41\x01\x1a\xc8\x01\n\x04Item\x12L\n\x04info\x18\x01 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfoB\x03\xe0\x41\x02\x12\x12\n\x05title\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12\x18\n\x0b\x64\x65scription\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageB\x03\xe0\x41\x01\x1a\xaf\x02\n\x0e\x43\x61rouselSelect\x12R\n\x05items\x18\x01 \x03(\x0b\x32>.google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.ItemB\x03\xe0\x41\x02\x1a\xc8\x01\n\x04Item\x12L\n\x04info\x18\x01 \x01(\x0b\x32\x39.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfoB\x03\xe0\x41\x02\x12\x12\n\x05title\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12\x18\n\x0b\x64\x65scription\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageB\x03\xe0\x41\x01\x1a\x39\n\x0eSelectItemInfo\x12\x10\n\x03key\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x15\n\x08synonyms\x18\x02 \x03(\tB\x03\xe0\x41\x01\x1a\x8e\x04\n\x0cMediaContent\x12\x62\n\nmedia_type\x18\x01 \x01(\x0e\x32I.google.cloud.dialogflow.v2.Intent.Message.MediaContent.ResponseMediaTypeB\x03\xe0\x41\x01\x12\x62\n\rmedia_objects\x18\x02 \x03(\x0b\x32K.google.cloud.dialogflow.v2.Intent.Message.MediaContent.ResponseMediaObject\x1a\xf0\x01\n\x13ResponseMediaObject\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x18\n\x0b\x64\x65scription\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12L\n\x0blarge_image\x18\x03 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageB\x03\xe0\x41\x01H\x00\x12\x45\n\x04icon\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageB\x03\xe0\x41\x01H\x00\x12\x13\n\x0b\x63ontent_url\x18\x05 \x01(\tB\x07\n\x05image"C\n\x11ResponseMediaType\x12#\n\x1fRESPONSE_MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\t\n\x05\x41UDIO\x10\x01\x1a\xff\x06\n\x12\x42rowseCarouselCard\x12\x63\n\x05items\x18\x01 \x03(\x0b\x32T.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem\x12u\n\x15image_display_options\x18\x02 \x01(\x0e\x32Q.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.ImageDisplayOptionsB\x03\xe0\x41\x01\x1a\x94\x04\n\x16\x42rowseCarouselCardItem\x12{\n\x0fopen_uri_action\x18\x01 \x01(\x0b\x32\x62.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction\x12\r\n\x05title\x18\x02 \x01(\t\x12\x18\n\x0b\x64\x65scription\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x44\n\x05image\x18\x04 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageB\x03\xe0\x41\x01\x12\x13\n\x06\x66ooter\x18\x05 \x01(\tB\x03\xe0\x41\x01\x1a\xf8\x01\n\rOpenUrlAction\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x8a\x01\n\rurl_type_hint\x18\x03 \x01(\x0e\x32n.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHintB\x03\xe0\x41\x01"M\n\x0bUrlTypeHint\x12\x1d\n\x19URL_TYPE_HINT_UNSPECIFIED\x10\x00\x12\x0e\n\nAMP_ACTION\x10\x01\x12\x0f\n\x0b\x41MP_CONTENT\x10\x02"v\n\x13ImageDisplayOptions\x12%\n!IMAGE_DISPLAY_OPTIONS_UNSPECIFIED\x10\x00\x12\x08\n\x04GRAY\x10\x01\x12\t\n\x05WHITE\x10\x02\x12\x0b\n\x07\x43ROPPED\x10\x03\x12\x16\n\x12\x42LURRED_BACKGROUND\x10\x04\x1a\xf3\x02\n\tTableCard\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\x08subtitle\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12\x44\n\x05image\x18\x03 \x01(\x0b\x32\x30.google.cloud.dialogflow.v2.Intent.Message.ImageB\x03\xe0\x41\x01\x12[\n\x11\x63olumn_properties\x18\x04 \x03(\x0b\x32;.google.cloud.dialogflow.v2.Intent.Message.ColumnPropertiesB\x03\xe0\x41\x01\x12J\n\x04rows\x18\x05 \x03(\x0b\x32\x37.google.cloud.dialogflow.v2.Intent.Message.TableCardRowB\x03\xe0\x41\x01\x12Q\n\x07\x62uttons\x18\x06 \x03(\x0b\x32;.google.cloud.dialogflow.v2.Intent.Message.BasicCard.ButtonB\x03\xe0\x41\x01\x1a\xfa\x01\n\x10\x43olumnProperties\x12\x0e\n\x06header\x18\x01 \x01(\t\x12r\n\x14horizontal_alignment\x18\x02 \x01(\x0e\x32O.google.cloud.dialogflow.v2.Intent.Message.ColumnProperties.HorizontalAlignmentB\x03\xe0\x41\x01"b\n\x13HorizontalAlignment\x12$\n HORIZONTAL_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x0b\n\x07LEADING\x10\x01\x12\n\n\x06\x43\x45NTER\x10\x02\x12\x0c\n\x08TRAILING\x10\x03\x1ax\n\x0cTableCardRow\x12L\n\x05\x63\x65lls\x18\x01 \x03(\x0b\x32\x38.google.cloud.dialogflow.v2.Intent.Message.TableCardCellB\x03\xe0\x41\x01\x12\x1a\n\rdivider_after\x18\x02 \x01(\x08\x42\x03\xe0\x41\x01\x1a\x1d\n\rTableCardCell\x12\x0c\n\x04text\x18\x01 \x01(\t"\xa0\x01\n\x08Platform\x12\x18\n\x14PLATFORM_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x01\x12\t\n\x05SLACK\x10\x02\x12\x0c\n\x08TELEGRAM\x10\x03\x12\x07\n\x03KIK\x10\x04\x12\t\n\x05SKYPE\x10\x05\x12\x08\n\x04LINE\x10\x06\x12\t\n\x05VIBER\x10\x07\x12\x15\n\x11\x41\x43TIONS_ON_GOOGLE\x10\x08\x12\x13\n\x0fGOOGLE_HANGOUTS\x10\x0b\x42\t\n\x07message\x1aW\n\x12\x46ollowupIntentInfo\x12\x1c\n\x14\x66ollowup_intent_name\x18\x01 \x01(\t\x12#\n\x1bparent_followup_intent_name\x18\x02 \x01(\t"t\n\x0cWebhookState\x12\x1d\n\x19WEBHOOK_STATE_UNSPECIFIED\x10\x00\x12\x19\n\x15WEBHOOK_STATE_ENABLED\x10\x01\x12*\n&WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING\x10\x02:P\xea\x41M\n dialogflow.googleapis.com/Intent\x12)projects/{project}/agent/intents/{intent}"\xdd\x01\n\x12ListIntentsRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x03 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentViewB\x03\xe0\x41\x01\x12\x16\n\tpage_size\x18\x04 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x05 \x01(\tB\x03\xe0\x41\x01"c\n\x13ListIntentsResponse\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32".google.cloud.dialogflow.v2.Intent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"\xa8\x01\n\x10GetIntentRequest\x12\x36\n\x04name\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\n dialogflow.googleapis.com/Intent\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x03 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentViewB\x03\xe0\x41\x01"\xe6\x01\n\x13\x43reateIntentRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x37\n\x06intent\x18\x02 \x01(\x0b\x32".google.cloud.dialogflow.v2.IntentB\x03\xe0\x41\x02\x12\x1a\n\rlanguage_code\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x04 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentViewB\x03\xe0\x41\x01"\xe2\x01\n\x13UpdateIntentRequest\x12\x37\n\x06intent\x18\x01 \x01(\x0b\x32".google.cloud.dialogflow.v2.IntentB\x03\xe0\x41\x02\x12\x1a\n\rlanguage_code\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12\x34\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x04 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentViewB\x03\xe0\x41\x01"M\n\x13\x44\x65leteIntentRequest\x12\x36\n\x04name\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\n dialogflow.googleapis.com/Intent"\xdd\x02\n\x19\x42\x61tchUpdateIntentsRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x1a\n\x10intent_batch_uri\x18\x02 \x01(\tH\x00\x12\x46\n\x13intent_batch_inline\x18\x03 \x01(\x0b\x32\'.google.cloud.dialogflow.v2.IntentBatchH\x00\x12\x1a\n\rlanguage_code\x18\x04 \x01(\tB\x03\xe0\x41\x01\x12\x34\n\x0bupdate_mask\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x03\xe0\x41\x01\x12@\n\x0bintent_view\x18\x06 \x01(\x0e\x32&.google.cloud.dialogflow.v2.IntentViewB\x03\xe0\x41\x01\x42\x0e\n\x0cintent_batch"Q\n\x1a\x42\x61tchUpdateIntentsResponse\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32".google.cloud.dialogflow.v2.Intent"\x8f\x01\n\x19\x42\x61tchDeleteIntentsRequest\x12\x38\n\x06parent\x18\x01 \x01(\tB(\xe0\x41\x02\xfa\x41"\x12 dialogflow.googleapis.com/Intent\x12\x38\n\x07intents\x18\x02 \x03(\x0b\x32".google.cloud.dialogflow.v2.IntentB\x03\xe0\x41\x02"B\n\x0bIntentBatch\x12\x33\n\x07intents\x18\x01 \x03(\x0b\x32".google.cloud.dialogflow.v2.Intent*?\n\nIntentView\x12\x1b\n\x17INTENT_VIEW_UNSPECIFIED\x10\x00\x12\x14\n\x10INTENT_VIEW_FULL\x10\x01\x32\xca\x0c\n\x07Intents\x12\xbd\x01\n\x0bListIntents\x12..google.cloud.dialogflow.v2.ListIntentsRequest\x1a/.google.cloud.dialogflow.v2.ListIntentsResponse"M\x82\xd3\xe4\x93\x02\'\x12%/v2/{parent=projects/*/agent}/intents\xda\x41\x06parent\xda\x41\x14parent,language_code\x12\xa8\x01\n\tGetIntent\x12,.google.cloud.dialogflow.v2.GetIntentRequest\x1a".google.cloud.dialogflow.v2.Intent"I\x82\xd3\xe4\x93\x02\'\x12%/v2/{name=projects/*/agent/intents/*}\xda\x41\x04name\xda\x41\x12name,language_code\x12\xc8\x01\n\x0c\x43reateIntent\x12/.google.cloud.dialogflow.v2.CreateIntentRequest\x1a".google.cloud.dialogflow.v2.Intent"c\x82\xd3\xe4\x93\x02/"%/v2/{parent=projects/*/agent}/intents:\x06intent\xda\x41\rparent,intent\xda\x41\x1bparent,intent,language_code\x12\xdb\x01\n\x0cUpdateIntent\x12/.google.cloud.dialogflow.v2.UpdateIntentRequest\x1a".google.cloud.dialogflow.v2.Intent"v\x82\xd3\xe4\x93\x02\x36\x32,/v2/{intent.name=projects/*/agent/intents/*}:\x06intent\xda\x41\x14intent,language_code\xda\x41 intent,language_code,update_mask\x12\x8d\x01\n\x0c\x44\x65leteIntent\x12/.google.cloud.dialogflow.v2.DeleteIntentRequest\x1a\x16.google.protobuf.Empty"4\x82\xd3\xe4\x93\x02\'*%/v2/{name=projects/*/agent/intents/*}\xda\x41\x04name\x12\xb2\x02\n\x12\x42\x61tchUpdateIntents\x12\x35.google.cloud.dialogflow.v2.BatchUpdateIntentsRequest\x1a\x1d.google.longrunning.Operation"\xc5\x01\x82\xd3\xe4\x93\x02\x36"1/v2/{parent=projects/*/agent}/intents:batchUpdate:\x01*\xda\x41\x17parent,intent_batch_uri\xda\x41\x1aparent,intent_batch_inline\xca\x41O\n5google.cloud.dialogflow.v2.BatchUpdateIntentsResponse\x12\x16google.protobuf.Struct\x12\xeb\x01\n\x12\x42\x61tchDeleteIntents\x12\x35.google.cloud.dialogflow.v2.BatchDeleteIntentsRequest\x1a\x1d.google.longrunning.Operation"\x7f\x82\xd3\xe4\x93\x02\x36"1/v2/{parent=projects/*/agent}/intents:batchDelete:\x01*\xda\x41\x0eparent,intents\xca\x41/\n\x15google.protobuf.Empty\x12\x16google.protobuf.Struct\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\x9a\x01\n\x1e\x63om.google.cloud.dialogflow.v2B\x0bIntentProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1aGoogle.Cloud.Dialogflow.V2b\x06proto3',
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
@@ -58,6 +59,7 @@ _INTENTVIEW = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.IntentView",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="INTENT_VIEW_UNSPECIFIED",
@@ -65,6 +67,7 @@ _INTENTVIEW = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="INTENT_VIEW_FULL",
@@ -72,6 +75,7 @@ _INTENTVIEW = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -91,6 +95,7 @@ _INTENT_TRAININGPHRASE_TYPE = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="TYPE_UNSPECIFIED",
@@ -98,9 +103,15 @@ _INTENT_TRAININGPHRASE_TYPE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="EXAMPLE", index=1, number=1, serialized_options=None, type=None
+            name="EXAMPLE",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="TEMPLATE",
@@ -108,6 +119,7 @@ _INTENT_TRAININGPHRASE_TYPE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=b"\010\001",
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -122,6 +134,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIATYPE = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.Intent.Message.MediaContent.ResponseMediaType",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="RESPONSE_MEDIA_TYPE_UNSPECIFIED",
@@ -129,9 +142,15 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIATYPE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="AUDIO", index=1, number=1, serialized_options=None, type=None
+            name="AUDIO",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -146,6 +165,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION_URLTYPEH
     full_name="google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="URL_TYPE_HINT_UNSPECIFIED",
@@ -153,12 +173,23 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION_URLTYPEH
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="AMP_ACTION", index=1, number=1, serialized_options=None, type=None
+            name="AMP_ACTION",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="AMP_CONTENT", index=2, number=2, serialized_options=None, type=None
+            name="AMP_CONTENT",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -175,6 +206,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_IMAGEDISPLAYOPTIONS = _descriptor.EnumDescrip
     full_name="google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.ImageDisplayOptions",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="IMAGE_DISPLAY_OPTIONS_UNSPECIFIED",
@@ -182,15 +214,31 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_IMAGEDISPLAYOPTIONS = _descriptor.EnumDescrip
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="GRAY", index=1, number=1, serialized_options=None, type=None
+            name="GRAY",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="WHITE", index=2, number=2, serialized_options=None, type=None
+            name="WHITE",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="CROPPED", index=3, number=3, serialized_options=None, type=None
+            name="CROPPED",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="BLURRED_BACKGROUND",
@@ -198,6 +246,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_IMAGEDISPLAYOPTIONS = _descriptor.EnumDescrip
             number=4,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -212,6 +261,7 @@ _INTENT_MESSAGE_COLUMNPROPERTIES_HORIZONTALALIGNMENT = _descriptor.EnumDescripto
     full_name="google.cloud.dialogflow.v2.Intent.Message.ColumnProperties.HorizontalAlignment",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="HORIZONTAL_ALIGNMENT_UNSPECIFIED",
@@ -219,15 +269,31 @@ _INTENT_MESSAGE_COLUMNPROPERTIES_HORIZONTALALIGNMENT = _descriptor.EnumDescripto
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="LEADING", index=1, number=1, serialized_options=None, type=None
+            name="LEADING",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="CENTER", index=2, number=2, serialized_options=None, type=None
+            name="CENTER",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="TRAILING", index=3, number=3, serialized_options=None, type=None
+            name="TRAILING",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -242,6 +308,7 @@ _INTENT_MESSAGE_PLATFORM = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.Intent.Message.Platform",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="PLATFORM_UNSPECIFIED",
@@ -249,27 +316,63 @@ _INTENT_MESSAGE_PLATFORM = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="FACEBOOK", index=1, number=1, serialized_options=None, type=None
+            name="FACEBOOK",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="SLACK", index=2, number=2, serialized_options=None, type=None
+            name="SLACK",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="TELEGRAM", index=3, number=3, serialized_options=None, type=None
+            name="TELEGRAM",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="KIK", index=4, number=4, serialized_options=None, type=None
+            name="KIK",
+            index=4,
+            number=4,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="SKYPE", index=5, number=5, serialized_options=None, type=None
+            name="SKYPE",
+            index=5,
+            number=5,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="LINE", index=6, number=6, serialized_options=None, type=None
+            name="LINE",
+            index=6,
+            number=6,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="VIBER", index=7, number=7, serialized_options=None, type=None
+            name="VIBER",
+            index=7,
+            number=7,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="ACTIONS_ON_GOOGLE",
@@ -277,6 +380,7 @@ _INTENT_MESSAGE_PLATFORM = _descriptor.EnumDescriptor(
             number=8,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="GOOGLE_HANGOUTS",
@@ -284,6 +388,7 @@ _INTENT_MESSAGE_PLATFORM = _descriptor.EnumDescriptor(
             number=11,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -298,6 +403,7 @@ _INTENT_WEBHOOKSTATE = _descriptor.EnumDescriptor(
     full_name="google.cloud.dialogflow.v2.Intent.WebhookState",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="WEBHOOK_STATE_UNSPECIFIED",
@@ -305,6 +411,7 @@ _INTENT_WEBHOOKSTATE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="WEBHOOK_STATE_ENABLED",
@@ -312,6 +419,7 @@ _INTENT_WEBHOOKSTATE = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING",
@@ -319,6 +427,7 @@ _INTENT_WEBHOOKSTATE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -335,6 +444,7 @@ _INTENT_TRAININGPHRASE_PART = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="text",
@@ -353,6 +463,7 @@ _INTENT_TRAININGPHRASE_PART = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="entity_type",
@@ -371,6 +482,7 @@ _INTENT_TRAININGPHRASE_PART = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="alias",
@@ -389,6 +501,7 @@ _INTENT_TRAININGPHRASE_PART = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="user_defined",
@@ -407,6 +520,7 @@ _INTENT_TRAININGPHRASE_PART = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -427,6 +541,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -445,6 +560,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="type",
@@ -463,6 +579,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="parts",
@@ -481,6 +598,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="times_added_count",
@@ -499,6 +617,7 @@ _INTENT_TRAININGPHRASE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -519,6 +638,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -537,6 +657,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="display_name",
@@ -555,6 +676,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="value",
@@ -573,6 +695,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="default_value",
@@ -591,6 +714,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="entity_type_display_name",
@@ -609,6 +733,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="mandatory",
@@ -627,6 +752,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="prompts",
@@ -645,6 +771,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="is_list",
@@ -663,6 +790,7 @@ _INTENT_PARAMETER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -683,6 +811,7 @@ _INTENT_MESSAGE_TEXT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="text",
@@ -701,6 +830,7 @@ _INTENT_MESSAGE_TEXT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -721,6 +851,7 @@ _INTENT_MESSAGE_IMAGE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="image_uri",
@@ -739,6 +870,7 @@ _INTENT_MESSAGE_IMAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="accessibility_text",
@@ -757,6 +889,7 @@ _INTENT_MESSAGE_IMAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -777,6 +910,7 @@ _INTENT_MESSAGE_QUICKREPLIES = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="title",
@@ -795,6 +929,7 @@ _INTENT_MESSAGE_QUICKREPLIES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="quick_replies",
@@ -813,6 +948,7 @@ _INTENT_MESSAGE_QUICKREPLIES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -833,6 +969,7 @@ _INTENT_MESSAGE_CARD_BUTTON = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="text",
@@ -851,6 +988,7 @@ _INTENT_MESSAGE_CARD_BUTTON = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="postback",
@@ -869,6 +1007,7 @@ _INTENT_MESSAGE_CARD_BUTTON = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -889,6 +1028,7 @@ _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="title",
@@ -907,6 +1047,7 @@ _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="subtitle",
@@ -925,6 +1066,7 @@ _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image_uri",
@@ -943,6 +1085,7 @@ _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="buttons",
@@ -961,6 +1104,7 @@ _INTENT_MESSAGE_CARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -981,6 +1125,7 @@ _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="text_to_speech",
@@ -999,6 +1144,7 @@ _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="ssml",
@@ -1017,6 +1163,7 @@ _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="display_text",
@@ -1035,6 +1182,7 @@ _INTENT_MESSAGE_SIMPLERESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1055,6 +1203,7 @@ _INTENT_MESSAGE_SIMPLERESPONSES = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="simple_responses",
@@ -1073,6 +1222,7 @@ _INTENT_MESSAGE_SIMPLERESPONSES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1093,6 +1243,7 @@ _INTENT_MESSAGE_BASICCARD_BUTTON_OPENURIACTION = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="uri",
@@ -1111,6 +1262,7 @@ _INTENT_MESSAGE_BASICCARD_BUTTON_OPENURIACTION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1131,6 +1283,7 @@ _INTENT_MESSAGE_BASICCARD_BUTTON = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="title",
@@ -1149,6 +1302,7 @@ _INTENT_MESSAGE_BASICCARD_BUTTON = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="open_uri_action",
@@ -1167,6 +1321,7 @@ _INTENT_MESSAGE_BASICCARD_BUTTON = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1187,6 +1342,7 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="title",
@@ -1205,6 +1361,7 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="subtitle",
@@ -1223,6 +1380,7 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="formatted_text",
@@ -1241,6 +1399,7 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image",
@@ -1259,6 +1418,7 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="buttons",
@@ -1277,6 +1437,7 @@ _INTENT_MESSAGE_BASICCARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1297,6 +1458,7 @@ _INTENT_MESSAGE_SUGGESTION = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="title",
@@ -1315,6 +1477,7 @@ _INTENT_MESSAGE_SUGGESTION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1335,6 +1498,7 @@ _INTENT_MESSAGE_SUGGESTIONS = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="suggestions",
@@ -1353,6 +1517,7 @@ _INTENT_MESSAGE_SUGGESTIONS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1373,6 +1538,7 @@ _INTENT_MESSAGE_LINKOUTSUGGESTION = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="destination_name",
@@ -1391,6 +1557,7 @@ _INTENT_MESSAGE_LINKOUTSUGGESTION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="uri",
@@ -1409,6 +1576,7 @@ _INTENT_MESSAGE_LINKOUTSUGGESTION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1429,6 +1597,7 @@ _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="info",
@@ -1447,6 +1616,7 @@ _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="title",
@@ -1465,6 +1635,7 @@ _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="description",
@@ -1483,6 +1654,7 @@ _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image",
@@ -1501,6 +1673,7 @@ _INTENT_MESSAGE_LISTSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1521,6 +1694,7 @@ _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="title",
@@ -1539,6 +1713,7 @@ _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="items",
@@ -1557,6 +1732,7 @@ _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="subtitle",
@@ -1575,6 +1751,7 @@ _INTENT_MESSAGE_LISTSELECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1595,6 +1772,7 @@ _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="info",
@@ -1613,6 +1791,7 @@ _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="title",
@@ -1631,6 +1810,7 @@ _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="description",
@@ -1649,6 +1829,7 @@ _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image",
@@ -1667,6 +1848,7 @@ _INTENT_MESSAGE_CAROUSELSELECT_ITEM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1687,6 +1869,7 @@ _INTENT_MESSAGE_CAROUSELSELECT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="items",
@@ -1705,6 +1888,7 @@ _INTENT_MESSAGE_CAROUSELSELECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1725,6 +1909,7 @@ _INTENT_MESSAGE_SELECTITEMINFO = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="key",
@@ -1743,6 +1928,7 @@ _INTENT_MESSAGE_SELECTITEMINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="synonyms",
@@ -1761,6 +1947,7 @@ _INTENT_MESSAGE_SELECTITEMINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1781,6 +1968,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1799,6 +1987,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="description",
@@ -1817,6 +2006,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="large_image",
@@ -1835,6 +2025,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="icon",
@@ -1853,6 +2044,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="content_url",
@@ -1871,6 +2063,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1886,6 +2079,7 @@ _INTENT_MESSAGE_MEDIACONTENT_RESPONSEMEDIAOBJECT = _descriptor.Descriptor(
             full_name="google.cloud.dialogflow.v2.Intent.Message.MediaContent.ResponseMediaObject.image",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -1899,6 +2093,7 @@ _INTENT_MESSAGE_MEDIACONTENT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="media_type",
@@ -1917,6 +2112,7 @@ _INTENT_MESSAGE_MEDIACONTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="media_objects",
@@ -1935,6 +2131,7 @@ _INTENT_MESSAGE_MEDIACONTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1955,6 +2152,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION = _descr
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="url",
@@ -1973,6 +2171,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION = _descr
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="url_type_hint",
@@ -1991,6 +2190,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM_OPENURLACTION = _descr
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2013,6 +2213,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descript
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="open_uri_action",
@@ -2031,6 +2232,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descript
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="title",
@@ -2049,6 +2251,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descript
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="description",
@@ -2067,6 +2270,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descript
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image",
@@ -2085,6 +2289,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descript
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="footer",
@@ -2103,6 +2308,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD_BROWSECAROUSELCARDITEM = _descriptor.Descript
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2125,6 +2331,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="items",
@@ -2143,6 +2350,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image_display_options",
@@ -2161,6 +2369,7 @@ _INTENT_MESSAGE_BROWSECAROUSELCARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2181,6 +2390,7 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="title",
@@ -2199,6 +2409,7 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="subtitle",
@@ -2217,6 +2428,7 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image",
@@ -2235,6 +2447,7 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="column_properties",
@@ -2253,6 +2466,7 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="rows",
@@ -2271,6 +2485,7 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="buttons",
@@ -2289,6 +2504,7 @@ _INTENT_MESSAGE_TABLECARD = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2309,6 +2525,7 @@ _INTENT_MESSAGE_COLUMNPROPERTIES = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="header",
@@ -2327,6 +2544,7 @@ _INTENT_MESSAGE_COLUMNPROPERTIES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="horizontal_alignment",
@@ -2345,6 +2563,7 @@ _INTENT_MESSAGE_COLUMNPROPERTIES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2365,6 +2584,7 @@ _INTENT_MESSAGE_TABLECARDROW = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="cells",
@@ -2383,6 +2603,7 @@ _INTENT_MESSAGE_TABLECARDROW = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="divider_after",
@@ -2401,6 +2622,7 @@ _INTENT_MESSAGE_TABLECARDROW = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2421,6 +2643,7 @@ _INTENT_MESSAGE_TABLECARDCELL = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="text",
@@ -2439,6 +2662,7 @@ _INTENT_MESSAGE_TABLECARDCELL = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -2459,6 +2683,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="text",
@@ -2477,6 +2702,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="image",
@@ -2495,6 +2721,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="quick_replies",
@@ -2513,6 +2740,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="card",
@@ -2531,6 +2759,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="payload",
@@ -2549,6 +2778,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="simple_responses",
@@ -2567,6 +2797,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="basic_card",
@@ -2585,6 +2816,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="suggestions",
@@ -2603,6 +2835,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="link_out_suggestion",
@@ -2621,6 +2854,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="list_select",
@@ -2639,6 +2873,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="carousel_select",
@@ -2657,6 +2892,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="browse_carousel_card",
@@ -2675,6 +2911,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="table_card",
@@ -2693,6 +2930,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="media_content",
@@ -2711,6 +2949,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="platform",
@@ -2729,6 +2968,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2764,6 +3004,7 @@ _INTENT_MESSAGE = _descriptor.Descriptor(
             full_name="google.cloud.dialogflow.v2.Intent.Message.message",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -2777,6 +3018,7 @@ _INTENT_FOLLOWUPINTENTINFO = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="followup_intent_name",
@@ -2795,6 +3037,7 @@ _INTENT_FOLLOWUPINTENTINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="parent_followup_intent_name",
@@ -2813,6 +3056,7 @@ _INTENT_FOLLOWUPINTENTINFO = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2833,6 +3077,7 @@ _INTENT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -2851,6 +3096,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="display_name",
@@ -2869,6 +3115,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="webhook_state",
@@ -2887,6 +3134,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="priority",
@@ -2905,6 +3153,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="is_fallback",
@@ -2923,6 +3172,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="ml_disabled",
@@ -2941,6 +3191,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="input_context_names",
@@ -2959,6 +3210,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="events",
@@ -2977,6 +3229,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="training_phrases",
@@ -2995,6 +3248,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="action",
@@ -3013,6 +3267,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="output_contexts",
@@ -3031,6 +3286,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="reset_contexts",
@@ -3049,6 +3305,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="parameters",
@@ -3067,6 +3324,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="messages",
@@ -3085,6 +3343,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="default_response_platforms",
@@ -3103,6 +3362,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="root_followup_intent_name",
@@ -3121,6 +3381,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="parent_followup_intent_name",
@@ -3139,6 +3400,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="followup_intent_info",
@@ -3157,6 +3419,7 @@ _INTENT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3183,6 +3446,7 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -3201,6 +3465,7 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b'\340A\002\372A"\022 dialogflow.googleapis.com/Intent',
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="language_code",
@@ -3219,6 +3484,7 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent_view",
@@ -3237,6 +3503,7 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -3255,6 +3522,7 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -3273,6 +3541,7 @@ _LISTINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3294,6 +3563,7 @@ _LISTINTENTSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="intents",
@@ -3312,6 +3582,7 @@ _LISTINTENTSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -3330,6 +3601,7 @@ _LISTINTENTSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3351,6 +3623,7 @@ _GETINTENTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -3369,6 +3642,7 @@ _GETINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b'\340A\002\372A"\n dialogflow.googleapis.com/Intent',
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="language_code",
@@ -3387,6 +3661,7 @@ _GETINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent_view",
@@ -3405,6 +3680,7 @@ _GETINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3426,6 +3702,7 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -3444,6 +3721,7 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b'\340A\002\372A"\022 dialogflow.googleapis.com/Intent',
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent",
@@ -3462,6 +3740,7 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="language_code",
@@ -3480,6 +3759,7 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent_view",
@@ -3498,6 +3778,7 @@ _CREATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3519,6 +3800,7 @@ _UPDATEINTENTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="intent",
@@ -3537,6 +3819,7 @@ _UPDATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="language_code",
@@ -3555,6 +3838,7 @@ _UPDATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="update_mask",
@@ -3573,6 +3857,7 @@ _UPDATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent_view",
@@ -3591,6 +3876,7 @@ _UPDATEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3612,6 +3898,7 @@ _DELETEINTENTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -3630,6 +3917,7 @@ _DELETEINTENTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b'\340A\002\372A"\n dialogflow.googleapis.com/Intent',
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -3651,6 +3939,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -3669,6 +3958,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b'\340A\002\372A"\022 dialogflow.googleapis.com/Intent',
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent_batch_uri",
@@ -3687,6 +3977,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent_batch_inline",
@@ -3705,6 +3996,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="language_code",
@@ -3723,6 +4015,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="update_mask",
@@ -3741,6 +4034,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intent_view",
@@ -3759,6 +4053,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3774,6 +4069,7 @@ _BATCHUPDATEINTENTSREQUEST = _descriptor.Descriptor(
             full_name="google.cloud.dialogflow.v2.BatchUpdateIntentsRequest.intent_batch",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -3788,6 +4084,7 @@ _BATCHUPDATEINTENTSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="intents",
@@ -3806,6 +4103,7 @@ _BATCHUPDATEINTENTSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -3827,6 +4125,7 @@ _BATCHDELETEINTENTSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -3845,6 +4144,7 @@ _BATCHDELETEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b'\340A\002\372A"\022 dialogflow.googleapis.com/Intent',
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="intents",
@@ -3863,6 +4163,7 @@ _BATCHDELETEINTENTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3884,6 +4185,7 @@ _INTENTBATCH = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="intents",
@@ -3902,6 +4204,7 @@ _INTENTBATCH = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -5404,6 +5707,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
     file=DESCRIPTOR,
     index=0,
     serialized_options=b"\312A\031dialogflow.googleapis.com\322AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflow",
+    create_key=_descriptor._internal_create_key,
     serialized_start=9326,
     serialized_end=10936,
     methods=[
@@ -5415,6 +5719,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_LISTINTENTSREQUEST,
             output_type=_LISTINTENTSRESPONSE,
             serialized_options=b"\202\323\344\223\002'\022%/v2/{parent=projects/*/agent}/intents\332A\006parent\332A\024parent,language_code",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetIntent",
@@ -5424,6 +5729,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_GETINTENTREQUEST,
             output_type=_INTENT,
             serialized_options=b"\202\323\344\223\002'\022%/v2/{name=projects/*/agent/intents/*}\332A\004name\332A\022name,language_code",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateIntent",
@@ -5433,6 +5739,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_CREATEINTENTREQUEST,
             output_type=_INTENT,
             serialized_options=b'\202\323\344\223\002/"%/v2/{parent=projects/*/agent}/intents:\006intent\332A\rparent,intent\332A\033parent,intent,language_code',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="UpdateIntent",
@@ -5442,6 +5749,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_UPDATEINTENTREQUEST,
             output_type=_INTENT,
             serialized_options=b"\202\323\344\223\00262,/v2/{intent.name=projects/*/agent/intents/*}:\006intent\332A\024intent,language_code\332A intent,language_code,update_mask",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="DeleteIntent",
@@ -5451,6 +5759,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_DELETEINTENTREQUEST,
             output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
             serialized_options=b"\202\323\344\223\002'*%/v2/{name=projects/*/agent/intents/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="BatchUpdateIntents",
@@ -5460,6 +5769,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_BATCHUPDATEINTENTSREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=b'\202\323\344\223\0026"1/v2/{parent=projects/*/agent}/intents:batchUpdate:\001*\332A\027parent,intent_batch_uri\332A\032parent,intent_batch_inline\312AO\n5google.cloud.dialogflow.v2.BatchUpdateIntentsResponse\022\026google.protobuf.Struct',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="BatchDeleteIntents",
@@ -5469,6 +5779,7 @@ _INTENTS = _descriptor.ServiceDescriptor(
             input_type=_BATCHDELETEINTENTSREQUEST,
             output_type=google_dot_longrunning_dot_operations__pb2._OPERATION,
             serialized_options=b'\202\323\344\223\0026"1/v2/{parent=projects/*/agent}/intents:batchDelete:\001*\332A\016parent,intents\312A/\n\025google.protobuf.Empty\022\026google.protobuf.Struct',
+            create_key=_descriptor._internal_create_key,
         ),
     ],
 )

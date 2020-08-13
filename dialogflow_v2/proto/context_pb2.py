@@ -26,6 +26,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.dialogflow.v2",
     syntax="proto3",
     serialized_options=b"\n\036com.google.cloud.dialogflow.v2B\014ContextProtoP\001ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\370\001\001\242\002\002DF\252\002\032Google.Cloud.Dialogflow.V2",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n.google/cloud/dialogflow_v2/proto/context.proto\x12\x1agoogle.cloud.dialogflow.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto"\xbd\x02\n\x07\x43ontext\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x1b\n\x0elifespan_count\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x30\n\nparameters\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x03\xe0\x41\x01:\xcf\x01\xea\x41\xcb\x01\n!dialogflow.googleapis.com/Context\x12>projects/{project}/agent/sessions/{session}/contexts/{context}\x12\x66projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}"\x81\x01\n\x13ListContextsRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\x12!dialogflow.googleapis.com/Context\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01"f\n\x14ListContextsResponse\x12\x35\n\x08\x63ontexts\x18\x01 \x03(\x0b\x32#.google.cloud.dialogflow.v2.Context\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"L\n\x11GetContextRequest\x12\x37\n\x04name\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!dialogflow.googleapis.com/Context"\x8c\x01\n\x14\x43reateContextRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\x12!dialogflow.googleapis.com/Context\x12\x39\n\x07\x63ontext\x18\x02 \x01(\x0b\x32#.google.cloud.dialogflow.v2.ContextB\x03\xe0\x41\x02"\x87\x01\n\x14UpdateContextRequest\x12\x39\n\x07\x63ontext\x18\x01 \x01(\x0b\x32#.google.cloud.dialogflow.v2.ContextB\x03\xe0\x41\x02\x12\x34\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x03\xe0\x41\x01"O\n\x14\x44\x65leteContextRequest\x12\x37\n\x04name\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!dialogflow.googleapis.com/Context"U\n\x18\x44\x65leteAllContextsRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\x12!dialogflow.googleapis.com/Context2\x9a\r\n\x08\x43ontexts\x12\x82\x02\n\x0cListContexts\x12/.google.cloud.dialogflow.v2.ListContextsRequest\x1a\x30.google.cloud.dialogflow.v2.ListContextsResponse"\x8e\x01\x82\xd3\xe4\x93\x02\x7f\x12\x31/v2/{parent=projects/*/agent/sessions/*}/contextsZJ\x12H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts\xda\x41\x06parent\x12\xef\x01\n\nGetContext\x12-.google.cloud.dialogflow.v2.GetContextRequest\x1a#.google.cloud.dialogflow.v2.Context"\x8c\x01\x82\xd3\xe4\x93\x02\x7f\x12\x31/v2/{name=projects/*/agent/sessions/*/contexts/*}ZJ\x12H/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}\xda\x41\x04name\x12\x92\x02\n\rCreateContext\x12\x30.google.cloud.dialogflow.v2.CreateContextRequest\x1a#.google.cloud.dialogflow.v2.Context"\xa9\x01\x82\xd3\xe4\x93\x02\x91\x01"1/v2/{parent=projects/*/agent/sessions/*}/contexts:\x07\x63ontextZS"H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts:\x07\x63ontext\xda\x41\x0eparent,context\x12\xa7\x02\n\rUpdateContext\x12\x30.google.cloud.dialogflow.v2.UpdateContextRequest\x1a#.google.cloud.dialogflow.v2.Context"\xbe\x01\x82\xd3\xe4\x93\x02\xa1\x01\x32\x39/v2/{context.name=projects/*/agent/sessions/*/contexts/*}:\x07\x63ontextZ[2P/v2/{context.name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}:\x07\x63ontext\xda\x41\x13\x63ontext,update_mask\x12\xe8\x01\n\rDeleteContext\x12\x30.google.cloud.dialogflow.v2.DeleteContextRequest\x1a\x16.google.protobuf.Empty"\x8c\x01\x82\xd3\xe4\x93\x02\x7f*1/v2/{name=projects/*/agent/sessions/*/contexts/*}ZJ*H/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}\xda\x41\x04name\x12\xf2\x01\n\x11\x44\x65leteAllContexts\x12\x34.google.cloud.dialogflow.v2.DeleteAllContextsRequest\x1a\x16.google.protobuf.Empty"\x8e\x01\x82\xd3\xe4\x93\x02\x7f*1/v2/{parent=projects/*/agent/sessions/*}/contextsZJ*H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts\xda\x41\x06parent\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\x9b\x01\n\x1e\x63om.google.cloud.dialogflow.v2B\x0c\x43ontextProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1aGoogle.Cloud.Dialogflow.V2b\x06proto3',
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
@@ -45,6 +46,7 @@ _CONTEXT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -63,6 +65,7 @@ _CONTEXT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="lifespan_count",
@@ -81,6 +84,7 @@ _CONTEXT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="parameters",
@@ -99,6 +103,7 @@ _CONTEXT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -120,6 +125,7 @@ _LISTCONTEXTSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -138,6 +144,7 @@ _LISTCONTEXTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\022!dialogflow.googleapis.com/Context",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -156,6 +163,7 @@ _LISTCONTEXTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -174,6 +182,7 @@ _LISTCONTEXTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -195,6 +204,7 @@ _LISTCONTEXTSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="contexts",
@@ -213,6 +223,7 @@ _LISTCONTEXTSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -231,6 +242,7 @@ _LISTCONTEXTSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -252,6 +264,7 @@ _GETCONTEXTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -270,6 +283,7 @@ _GETCONTEXTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!dialogflow.googleapis.com/Context",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -291,6 +305,7 @@ _CREATECONTEXTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -309,6 +324,7 @@ _CREATECONTEXTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\022!dialogflow.googleapis.com/Context",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="context",
@@ -327,6 +343,7 @@ _CREATECONTEXTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -348,6 +365,7 @@ _UPDATECONTEXTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="context",
@@ -366,6 +384,7 @@ _UPDATECONTEXTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="update_mask",
@@ -384,6 +403,7 @@ _UPDATECONTEXTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -405,6 +425,7 @@ _DELETECONTEXTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -423,6 +444,7 @@ _DELETECONTEXTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!dialogflow.googleapis.com/Context",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -444,6 +466,7 @@ _DELETEALLCONTEXTSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -462,6 +485,7 @@ _DELETEALLCONTEXTSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\022!dialogflow.googleapis.com/Context",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -726,6 +750,7 @@ _CONTEXTS = _descriptor.ServiceDescriptor(
     file=DESCRIPTOR,
     index=0,
     serialized_options=b"\312A\031dialogflow.googleapis.com\322AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflow",
+    create_key=_descriptor._internal_create_key,
     serialized_start=1370,
     serialized_end=3060,
     methods=[
@@ -737,6 +762,7 @@ _CONTEXTS = _descriptor.ServiceDescriptor(
             input_type=_LISTCONTEXTSREQUEST,
             output_type=_LISTCONTEXTSRESPONSE,
             serialized_options=b"\202\323\344\223\002\177\0221/v2/{parent=projects/*/agent/sessions/*}/contextsZJ\022H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts\332A\006parent",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetContext",
@@ -746,6 +772,7 @@ _CONTEXTS = _descriptor.ServiceDescriptor(
             input_type=_GETCONTEXTREQUEST,
             output_type=_CONTEXT,
             serialized_options=b"\202\323\344\223\002\177\0221/v2/{name=projects/*/agent/sessions/*/contexts/*}ZJ\022H/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateContext",
@@ -755,6 +782,7 @@ _CONTEXTS = _descriptor.ServiceDescriptor(
             input_type=_CREATECONTEXTREQUEST,
             output_type=_CONTEXT,
             serialized_options=b'\202\323\344\223\002\221\001"1/v2/{parent=projects/*/agent/sessions/*}/contexts:\007contextZS"H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts:\007context\332A\016parent,context',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="UpdateContext",
@@ -764,6 +792,7 @@ _CONTEXTS = _descriptor.ServiceDescriptor(
             input_type=_UPDATECONTEXTREQUEST,
             output_type=_CONTEXT,
             serialized_options=b"\202\323\344\223\002\241\00129/v2/{context.name=projects/*/agent/sessions/*/contexts/*}:\007contextZ[2P/v2/{context.name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}:\007context\332A\023context,update_mask",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="DeleteContext",
@@ -773,6 +802,7 @@ _CONTEXTS = _descriptor.ServiceDescriptor(
             input_type=_DELETECONTEXTREQUEST,
             output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
             serialized_options=b"\202\323\344\223\002\177*1/v2/{name=projects/*/agent/sessions/*/contexts/*}ZJ*H/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="DeleteAllContexts",
@@ -782,6 +812,7 @@ _CONTEXTS = _descriptor.ServiceDescriptor(
             input_type=_DELETEALLCONTEXTSREQUEST,
             output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
             serialized_options=b"\202\323\344\223\002\177*1/v2/{parent=projects/*/agent/sessions/*}/contextsZJ*H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts\332A\006parent",
+            create_key=_descriptor._internal_create_key,
         ),
     ],
 )
