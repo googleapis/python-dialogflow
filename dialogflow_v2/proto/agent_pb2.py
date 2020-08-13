@@ -1185,7 +1185,14 @@ Agent = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _AGENT,
         "__module__": "google.cloud.dialogflow_v2.proto.agent_pb2",
-        "__doc__": """Represents a conversational agent.
+        "__doc__": """A Dialogflow agent is a virtual agent that handles conversations with
+  your end-users. It is a natural language understanding module that
+  understands the nuances of human language. Dialogflow translates end-
+  user text or audio during a conversation to structured data that your
+  apps and services can understand. You design and build a Dialogflow
+  agent to handle the types of conversations required for your system.
+  For more information about agents, see the `Agents documentation
+  <https://cloud.google.com/dialogflow/docs/agents-overview>`__.
   Attributes:
       parent:
           Required. The project of this agent. Format:
