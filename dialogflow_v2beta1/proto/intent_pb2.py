@@ -6471,12 +6471,9 @@ Intent = _reflection.GeneratedProtocolMessageType(
                         "__module__": "google.cloud.dialogflow_v2beta1.proto.intent_pb2",
                         "__doc__": """Carousel Rich Business Messaging (RBM) rich card.  Rich cards allow
       you to respond to users with more vivid content, e.g. with media and
-      suggestions.  For more details about RBM rich cards, please see:
-      https://developers.google.com/business-communications/rcs-business-
-      messaging/guides/build/messages/send#rich-cards If you want to show a
-      single card with more control over the layout, please use [RbmStandalo
-      neCard][google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCa
-      rd] instead.
+      suggestions.  If you want to show a single card with more control over
+      the layout, please use [RbmStandaloneCard][google.cloud.dialogflow.v2b
+      eta1.Intent.Message.RbmStandaloneCard] instead.
       
       Attributes:
           card_width:
@@ -6496,12 +6493,10 @@ Intent = _reflection.GeneratedProtocolMessageType(
                         "__module__": "google.cloud.dialogflow_v2beta1.proto.intent_pb2",
                         "__doc__": """Standalone Rich Business Messaging (RBM) rich card.  Rich cards allow
       you to respond to users with more vivid content, e.g. with media and
-      suggestions.  For more details about RBM rich cards, please see:
-      https://developers.google.com/business-communications/rcs-business-
-      messaging/guides/build/messages/send#rich-cards You can group multiple
-      rich cards into one using [RbmCarouselCard][google.cloud.dialogflow.v2
-      beta1.Intent.Message.RbmCarouselCard] but carousel cards will give you
-      less control over the card layout.
+      suggestions.  You can group multiple rich cards into one using [RbmCar
+      ouselCard][google.cloud.dialogflow.v2beta1.Intent.Message.RbmCarouselC
+      ard] but carousel cards will give you less control over the card
+      layout.
       
       Attributes:
           card_orientation:
@@ -6546,9 +6541,9 @@ Intent = _reflection.GeneratedProtocolMessageType(
                 download button.
             height:
                 Required for cards with vertical orientation. The height of
-                the media within a rich card with a vertical layout.
-                (https://goo.gl/NeFCjz). For a standalone card with horizontal
-                layout, height is not customizable, and this field is ignored.
+                the media within a rich card with a vertical layout. For a
+                standalone card with horizontal layout, height is not
+                customizable, and this field is ignored.
         """,
                                 # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.Intent.Message.RbmCardContent.RbmMedia)
                             },
@@ -6627,7 +6622,7 @@ Intent = _reflection.GeneratedProtocolMessageType(
                                 "DESCRIPTOR": _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONDIAL,
                                 "__module__": "google.cloud.dialogflow_v2beta1.proto.intent_pb2",
                                 "__doc__": """Opens the user’s default dialer app with the specified phone number
-        but does not dial automatically (https://goo.gl/ergbB2).
+        but does not dial automatically.
         
         Attributes:
             phone_number:
@@ -6645,10 +6640,10 @@ Intent = _reflection.GeneratedProtocolMessageType(
                             {
                                 "DESCRIPTOR": _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONOPENURI,
                                 "__module__": "google.cloud.dialogflow_v2beta1.proto.intent_pb2",
-                                "__doc__": """Opens the user’s default web browser app to the specified uri
-        (https://goo.gl/6GLJD2). If the user has an app installed that is
-        registered as the default handler for the URL, then this app will be
-        opened instead, and its icon will be used in the suggested action UI.
+                                "__doc__": """Opens the user’s default web browser app to the specified uri If the
+        user has an app installed that is registered as the default handler
+        for the URL, then this app will be opened instead, and its icon will
+        be used in the suggested action UI.
         
         Attributes:
             uri:
@@ -6664,7 +6659,7 @@ Intent = _reflection.GeneratedProtocolMessageType(
                                 "DESCRIPTOR": _INTENT_MESSAGE_RBMSUGGESTEDACTION_RBMSUGGESTEDACTIONSHARELOCATION,
                                 "__module__": "google.cloud.dialogflow_v2beta1.proto.intent_pb2",
                                 "__doc__": """Opens the device’s location chooser so the user can pick a location to
-        send back to the agent (https://goo.gl/GXotJW).""",
+        send back to the agent.""",
                                 # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.Intent.Message.RbmSuggestedAction.RbmSuggestedActionShareLocation)
                             },
                         ),
