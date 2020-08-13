@@ -58,10 +58,10 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 class EntityTypesClient(object):
     """
-    Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
+    Entities are extracted from user input and represent parameters that
+    are meaningful to your application. For example, a date range, a proper
+    name such as a geographic location or landmark, and so on. Entities
+    represent actionable data for your application.
 
     When you define an entity, you can also include synonyms that all map to
     that entity. For example, "soft drink", "soda", "pop", and so on.
@@ -279,11 +279,10 @@ class EntityTypesClient(object):
         Args:
             parent (str): Required. The agent to list all entity types from. Format:
                 ``projects/<Project ID>/agent``.
-            language_code (str): Optional. The language to list entity synonyms for. If not specified,
-                the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -376,11 +375,10 @@ class EntityTypesClient(object):
         Args:
             name (str): Required. The name of the entity type. Format:
                 ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
-            language_code (str): Optional. The language to retrieve entity synonyms for. If not
-                specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -462,11 +460,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.EntityType`
-            language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -544,11 +541,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.EntityType`
-            language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -717,11 +713,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.EntityTypeBatch`
-            language_code (str): Optional. The language of entity synonyms defined in ``entity_types``.
-                If not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -830,8 +825,8 @@ class EntityTypesClient(object):
         Args:
             parent (str): Required. The name of the agent to delete all entities types for.
                 Format: ``projects/<Project ID>/agent``.
-            entity_type_names (list[str]): Required. The names entity types to delete. All names must point to the
-                same agent as ``parent``.
+            entity_type_names (list[str]): Required. The names entity types to delete. All names must point to
+                the same agent as ``parent``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -930,11 +925,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.Entity`
-            language_code (str): Optional. The language of entity synonyms defined in ``entities``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1002,8 +996,8 @@ class EntityTypesClient(object):
         metadata=None,
     ):
         """
-        Updates or creates multiple entities in the specified entity type. This
-        method does not affect entities in the entity type that aren't
+        Updates or creates multiple entities in the specified entity type.
+        This method does not affect entities in the entity type that aren't
         explicitly specified in the request.
 
         Operation <response: ``google.protobuf.Empty``>
@@ -1030,17 +1024,17 @@ class EntityTypesClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            parent (str): Required. The name of the entity type to update or create entities in.
-                Format: ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
+            parent (str): Required. The name of the entity type to update or create entities
+                in. Format:
+                ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
             entities (list[Union[dict, ~google.cloud.dialogflow_v2beta1.types.Entity]]): Required. The entities to update or create.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.Entity`
-            language_code (str): Optional. The language of entity synonyms defined in ``entities``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2beta1.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -1142,14 +1136,13 @@ class EntityTypesClient(object):
         Args:
             parent (str): Required. The name of the entity type to delete entries for. Format:
                 ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
-            entity_values (list[str]): Required. The reference ``values`` of the entities to delete. Note that
-                these are not fully-qualified names, i.e. they don't start with
+            entity_values (list[str]): Required. The reference ``values`` of the entities to delete. Note
+                that these are not fully-qualified names, i.e. they don't start with
                 ``projects/<Project ID>``.
-            language_code (str): Optional. The language of entity synonyms defined in ``entities``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.

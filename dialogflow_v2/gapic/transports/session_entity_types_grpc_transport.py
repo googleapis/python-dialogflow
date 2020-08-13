@@ -113,6 +113,23 @@ class SessionEntityTypesGrpcTransport(object):
         return self._channel
 
     @property
+    def delete_session_entity_type(self):
+        """Return the gRPC stub for :meth:`SessionEntityTypesClient.delete_session_entity_type`.
+
+        Deletes the specified session entity type.
+
+        This method doesn't work with Google Assistant integration.
+        Contact Dialogflow support if you need to use session entities
+        with Google Assistant integration.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["session_entity_types_stub"].DeleteSessionEntityType
+
+    @property
     def list_session_entity_types(self):
         """Return the gRPC stub for :meth:`SessionEntityTypesClient.list_session_entity_types`.
 
@@ -182,20 +199,3 @@ class SessionEntityTypesGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["session_entity_types_stub"].UpdateSessionEntityType
-
-    @property
-    def delete_session_entity_type(self):
-        """Return the gRPC stub for :meth:`SessionEntityTypesClient.delete_session_entity_type`.
-
-        Deletes the specified session entity type.
-
-        This method doesn't work with Google Assistant integration.
-        Contact Dialogflow support if you need to use session entities
-        with Google Assistant integration.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["session_entity_types_stub"].DeleteSessionEntityType

@@ -408,9 +408,6 @@ class DocumentsClient(object):
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
 
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
-
         Example:
             >>> import dialogflow_v2beta1
             >>>
@@ -506,9 +503,6 @@ class DocumentsClient(object):
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
 
-        Operation <response: ``google.protobuf.Empty``, metadata:
-        ``KnowledgeOperationMetadata``>
-
         Example:
             >>> import dialogflow_v2beta1
             >>>
@@ -597,9 +591,6 @@ class DocumentsClient(object):
 
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
-
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
 
         Example:
             >>> import dialogflow_v2beta1
@@ -696,17 +687,14 @@ class DocumentsClient(object):
         metadata=None,
     ):
         """
-        Reloads the specified document from its specified source, content\_uri
-        or content. The previously loaded content of the document will be
-        deleted. Note: Even when the content of the document has not changed,
-        there still may be side effects because of internal implementation
-        changes.
+        Reloads the specified document from its specified source,
+        content_uri or content. The previously loaded content of the document
+        will be deleted. Note: Even when the content of the document has not
+        changed, there still may be side effects because of internal
+        implementation changes.
 
         Note: The ``projects.agent.knowledgeBases.documents`` resource is
         deprecated; only use ``projects.knowledgeBases.documents``.
-
-        Operation <response: ``Document``, metadata:
-        ``KnowledgeOperationMetadata``>
 
         Example:
             >>> import dialogflow_v2beta1
@@ -718,7 +706,8 @@ class DocumentsClient(object):
         Args:
             name (str): The name of the document to reload. Format:
                 ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
-            gcs_source (Union[dict, ~google.cloud.dialogflow_v2beta1.types.GcsSource]): The path of gcs source file for reloading document content.
+            gcs_source (Union[dict, ~google.cloud.dialogflow_v2beta1.types.GcsSource]): Optional. The path for a Cloud Storage source file for reloading document content.
+                If not provided, the Document's existing source will be reloaded.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.GcsSource`

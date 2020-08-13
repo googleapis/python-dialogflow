@@ -41,6 +41,8 @@ from dialogflow_v2beta1.proto import document_pb2
 from dialogflow_v2beta1.proto import document_pb2_grpc
 from dialogflow_v2beta1.proto import entity_type_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 from dialogflow_v2beta1.proto import gcs_pb2
 from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2beta1.proto import intent_pb2_grpc
@@ -62,8 +64,8 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 class SessionsClient(object):
     """
-    A session represents an interaction with a user. You retrieve user input
-    and pass it to the ``DetectIntent`` (or ``StreamingDetectIntent``)
+    A session represents an interaction with a user. You retrieve user
+    input and pass it to the ``DetectIntent`` (or ``StreamingDetectIntent``)
     method to determine user intent and respond.
     """
 
@@ -297,9 +299,9 @@ class SessionsClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.FieldMask`
-            input_audio (bytes): The natural language speech audio to be processed. This field should be
-                populated iff ``query_input`` is set to an input audio config. A single
-                request can contain up to 1 minute of speech audio data.
+            input_audio (bytes): The natural language speech audio to be processed. This field should
+                be populated iff ``query_input`` is set to an input audio config. A
+                single request can contain up to 1 minute of speech audio data.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.

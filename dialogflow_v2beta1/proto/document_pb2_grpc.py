@@ -80,9 +80,6 @@ class DocumentsServicer(object):
 
     Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
     only use `projects.knowledgeBases.documents`.
-
-    Operation <response: [Document][google.cloud.dialogflow.v2beta1.Document],
-    metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
     """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -93,9 +90,6 @@ class DocumentsServicer(object):
 
     Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
     only use `projects.knowledgeBases.documents`.
-
-    Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-    metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
     """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -106,9 +100,6 @@ class DocumentsServicer(object):
 
     Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
     only use `projects.knowledgeBases.documents`.
-
-    Operation <response: [Document][google.cloud.dialogflow.v2beta1.Document],
-    metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
     """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -122,9 +113,6 @@ class DocumentsServicer(object):
 
     Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
     only use `projects.knowledgeBases.documents`.
-
-    Operation <response: [Document][google.cloud.dialogflow.v2beta1.Document],
-    metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2beta1.KnowledgeOperationMetadata]>
     """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")

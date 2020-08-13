@@ -55,10 +55,10 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 class EntityTypesClient(object):
     """
-    Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
+    Entities are extracted from user input and represent parameters that
+    are meaningful to your application. For example, a date range, a proper
+    name such as a geographic location or landmark, and so on. Entities
+    represent actionable data for your application.
 
     When you define an entity, you can also include synonyms that all map to
     that entity. For example, "soft drink", "soda", "pop", and so on.
@@ -112,19 +112,19 @@ class EntityTypesClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
+    def agent_path(cls, project):
+        """Return a fully-qualified agent string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent", project=project
+        )
+
+    @classmethod
     def entity_type_path(cls, project, entity_type):
         """Return a fully-qualified entity_type string."""
         return google.api_core.path_template.expand(
             "projects/{project}/agent/entityTypes/{entity_type}",
             project=project,
             entity_type=entity_type,
-        )
-
-    @classmethod
-    def project_agent_path(cls, project):
-        """Return a fully-qualified project_agent string."""
-        return google.api_core.path_template.expand(
-            "projects/{project}/agent", project=project
         )
 
     def __init__(
@@ -240,6 +240,269 @@ class EntityTypesClient(object):
         self._inner_api_calls = {}
 
     # Service calls
+    def delete_entity_type(
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes the specified entity type.
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.EntityTypesClient()
+            >>>
+            >>> name = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>>
+            >>> client.delete_entity_type(name)
+
+        Args:
+            name (str): Required. The name of the entity type to delete. Format:
+                ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "delete_entity_type" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_entity_type"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_entity_type,
+                default_retry=self._method_configs["DeleteEntityType"].retry,
+                default_timeout=self._method_configs["DeleteEntityType"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = entity_type_pb2.DeleteEntityTypeRequest(name=name)
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("name", name)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        self._inner_api_calls["delete_entity_type"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+
+    def batch_delete_entity_types(
+        self,
+        parent,
+        entity_type_names,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes entity types in the specified agent.
+
+        Operation <response: ``google.protobuf.Empty``>
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.EntityTypesClient()
+            >>>
+            >>> parent = client.agent_path('[PROJECT]')
+            >>>
+            >>> # TODO: Initialize `entity_type_names`:
+            >>> entity_type_names = []
+            >>>
+            >>> response = client.batch_delete_entity_types(parent, entity_type_names)
+            >>>
+            >>> def callback(operation_future):
+            ...     # Handle result.
+            ...     result = operation_future.result()
+            >>>
+            >>> response.add_done_callback(callback)
+            >>>
+            >>> # Handle metadata.
+            >>> metadata = response.metadata()
+
+        Args:
+            parent (str): Required. The name of the agent to delete all entities types for.
+                Format: ``projects/<Project ID>/agent``.
+            entity_type_names (list[str]): Required. The names entity types to delete. All names must point to
+                the same agent as ``parent``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "batch_delete_entity_types" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_delete_entity_types"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.batch_delete_entity_types,
+                default_retry=self._method_configs["BatchDeleteEntityTypes"].retry,
+                default_timeout=self._method_configs["BatchDeleteEntityTypes"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = entity_type_pb2.BatchDeleteEntityTypesRequest(
+            parent=parent, entity_type_names=entity_type_names
+        )
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("parent", parent)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        operation = self._inner_api_calls["batch_delete_entity_types"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+        return google.api_core.operation.from_gapic(
+            operation,
+            self.transport._operations_client,
+            empty_pb2.Empty,
+            metadata_type=struct_pb2.Struct,
+        )
+
+    def batch_delete_entities(
+        self,
+        parent,
+        entity_values,
+        language_code=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes entities in the specified entity type.
+
+        Operation <response: ``google.protobuf.Empty``>
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.EntityTypesClient()
+            >>>
+            >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>>
+            >>> # TODO: Initialize `entity_values`:
+            >>> entity_values = []
+            >>>
+            >>> response = client.batch_delete_entities(parent, entity_values)
+            >>>
+            >>> def callback(operation_future):
+            ...     # Handle result.
+            ...     result = operation_future.result()
+            >>>
+            >>> response.add_done_callback(callback)
+            >>>
+            >>> # Handle metadata.
+            >>> metadata = response.metadata()
+
+        Args:
+            parent (str): Required. The name of the entity type to delete entries for. Format:
+                ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
+            entity_values (list[str]): Required. The reference ``values`` of the entities to delete. Note
+                that these are not fully-qualified names, i.e. they don't start with
+                ``projects/<Project ID>``.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "batch_delete_entities" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_delete_entities"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.batch_delete_entities,
+                default_retry=self._method_configs["BatchDeleteEntities"].retry,
+                default_timeout=self._method_configs["BatchDeleteEntities"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = entity_type_pb2.BatchDeleteEntitiesRequest(
+            parent=parent, entity_values=entity_values, language_code=language_code
+        )
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("parent", parent)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        operation = self._inner_api_calls["batch_delete_entities"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+        return google.api_core.operation.from_gapic(
+            operation,
+            self.transport._operations_client,
+            empty_pb2.Empty,
+            metadata_type=struct_pb2.Struct,
+        )
+
     def list_entity_types(
         self,
         parent,
@@ -257,7 +520,7 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2.EntityTypesClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> parent = client.agent_path('[PROJECT]')
             >>>
             >>> # Iterate over all results
             >>> for element in client.list_entity_types(parent):
@@ -276,11 +539,10 @@ class EntityTypesClient(object):
         Args:
             parent (str): Required. The agent to list all entity types from. Format:
                 ``projects/<Project ID>/agent``.
-            language_code (str): Optional. The language to list entity synonyms for. If not specified,
-                the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -373,11 +635,10 @@ class EntityTypesClient(object):
         Args:
             name (str): Required. The name of the entity type. Format:
                 ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
-            language_code (str): Optional. The language to retrieve entity synonyms for. If not
-                specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -445,7 +706,7 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2.EntityTypesClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> parent = client.agent_path('[PROJECT]')
             >>>
             >>> # TODO: Initialize `entity_type`:
             >>> entity_type = {}
@@ -459,11 +720,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.EntityType`
-            language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -541,11 +801,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.EntityType`
-            language_code (str): Optional. The language of entity synonyms defined in ``entity_type``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -602,73 +861,6 @@ class EntityTypesClient(object):
             request, retry=retry, timeout=timeout, metadata=metadata
         )
 
-    def delete_entity_type(
-        self,
-        name,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes the specified entity type.
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.EntityTypesClient()
-            >>>
-            >>> name = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
-            >>>
-            >>> client.delete_entity_type(name)
-
-        Args:
-            name (str): Required. The name of the entity type to delete. Format:
-                ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "delete_entity_type" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "delete_entity_type"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.delete_entity_type,
-                default_retry=self._method_configs["DeleteEntityType"].retry,
-                default_timeout=self._method_configs["DeleteEntityType"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = entity_type_pb2.DeleteEntityTypeRequest(name=name)
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("name", name)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        self._inner_api_calls["delete_entity_type"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-
     def batch_update_entity_types(
         self,
         parent,
@@ -690,7 +882,7 @@ class EntityTypesClient(object):
             >>>
             >>> client = dialogflow_v2.EntityTypesClient()
             >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
+            >>> parent = client.agent_path('[PROJECT]')
             >>>
             >>> response = client.batch_update_entity_types(parent)
             >>>
@@ -714,11 +906,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.EntityTypeBatch`
-            language_code (str): Optional. The language of entity synonyms defined in ``entity_types``.
-                If not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -790,101 +981,6 @@ class EntityTypesClient(object):
             metadata_type=struct_pb2.Struct,
         )
 
-    def batch_delete_entity_types(
-        self,
-        parent,
-        entity_type_names,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes entity types in the specified agent.
-
-        Operation <response: ``google.protobuf.Empty``>
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.EntityTypesClient()
-            >>>
-            >>> parent = client.project_agent_path('[PROJECT]')
-            >>>
-            >>> # TODO: Initialize `entity_type_names`:
-            >>> entity_type_names = []
-            >>>
-            >>> response = client.batch_delete_entity_types(parent, entity_type_names)
-            >>>
-            >>> def callback(operation_future):
-            ...     # Handle result.
-            ...     result = operation_future.result()
-            >>>
-            >>> response.add_done_callback(callback)
-            >>>
-            >>> # Handle metadata.
-            >>> metadata = response.metadata()
-
-        Args:
-            parent (str): Required. The name of the agent to delete all entities types for.
-                Format: ``projects/<Project ID>/agent``.
-            entity_type_names (list[str]): Required. The names entity types to delete. All names must point to the
-                same agent as ``parent``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "batch_delete_entity_types" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "batch_delete_entity_types"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.batch_delete_entity_types,
-                default_retry=self._method_configs["BatchDeleteEntityTypes"].retry,
-                default_timeout=self._method_configs["BatchDeleteEntityTypes"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = entity_type_pb2.BatchDeleteEntityTypesRequest(
-            parent=parent, entity_type_names=entity_type_names
-        )
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("parent", parent)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        operation = self._inner_api_calls["batch_delete_entity_types"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-        return google.api_core.operation.from_gapic(
-            operation,
-            self.transport._operations_client,
-            empty_pb2.Empty,
-            metadata_type=struct_pb2.Struct,
-        )
-
     def batch_create_entities(
         self,
         parent,
@@ -927,11 +1023,10 @@ class EntityTypesClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.Entity`
-            language_code (str): Optional. The language of entity synonyms defined in ``entities``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -999,8 +1094,8 @@ class EntityTypesClient(object):
         metadata=None,
     ):
         """
-        Updates or creates multiple entities in the specified entity type. This
-        method does not affect entities in the entity type that aren't
+        Updates or creates multiple entities in the specified entity type.
+        This method does not affect entities in the entity type that aren't
         explicitly specified in the request.
 
         Operation <response: ``google.protobuf.Empty``>
@@ -1027,17 +1122,17 @@ class EntityTypesClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            parent (str): Required. The name of the entity type to update or create entities in.
-                Format: ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
+            parent (str): Required. The name of the entity type to update or create entities
+                in. Format:
+                ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
             entities (list[Union[dict, ~google.cloud.dialogflow_v2.types.Entity]]): Required. The entities to update or create.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2.types.Entity`
-            language_code (str): Optional. The language of entity synonyms defined in ``entities``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
             update_mask (Union[dict, ~google.cloud.dialogflow_v2.types.FieldMask]): Optional. The mask to control which fields get updated.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -1092,108 +1187,6 @@ class EntityTypesClient(object):
             metadata.append(routing_metadata)
 
         operation = self._inner_api_calls["batch_update_entities"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-        return google.api_core.operation.from_gapic(
-            operation,
-            self.transport._operations_client,
-            empty_pb2.Empty,
-            metadata_type=struct_pb2.Struct,
-        )
-
-    def batch_delete_entities(
-        self,
-        parent,
-        entity_values,
-        language_code=None,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes entities in the specified entity type.
-
-        Operation <response: ``google.protobuf.Empty``>
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.EntityTypesClient()
-            >>>
-            >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
-            >>>
-            >>> # TODO: Initialize `entity_values`:
-            >>> entity_values = []
-            >>>
-            >>> response = client.batch_delete_entities(parent, entity_values)
-            >>>
-            >>> def callback(operation_future):
-            ...     # Handle result.
-            ...     result = operation_future.result()
-            >>>
-            >>> response.add_done_callback(callback)
-            >>>
-            >>> # Handle metadata.
-            >>> metadata = response.metadata()
-
-        Args:
-            parent (str): Required. The name of the entity type to delete entries for. Format:
-                ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
-            entity_values (list[str]): Required. The reference ``values`` of the entities to delete. Note that
-                these are not fully-qualified names, i.e. they don't start with
-                ``projects/<Project ID>``.
-            language_code (str): Optional. The language of entity synonyms defined in ``entities``. If
-                not specified, the agent's default language is used. `Many
-                languages <https://cloud.google.com/dialogflow/docs/reference/language>`__
-                are supported. Note: languages must be enabled in the agent before they
-                can be used.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "batch_delete_entities" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "batch_delete_entities"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.batch_delete_entities,
-                default_retry=self._method_configs["BatchDeleteEntities"].retry,
-                default_timeout=self._method_configs["BatchDeleteEntities"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = entity_type_pb2.BatchDeleteEntitiesRequest(
-            parent=parent, entity_values=entity_values, language_code=language_code
-        )
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("parent", parent)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        operation = self._inner_api_calls["batch_delete_entities"](
             request, retry=retry, timeout=timeout, metadata=metadata
         )
         return google.api_core.operation.from_gapic(

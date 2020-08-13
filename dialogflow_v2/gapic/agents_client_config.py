@@ -27,11 +27,6 @@ config = {
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default",
                 },
-                "GetAgent": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default",
-                },
                 "SearchAgents": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
@@ -47,14 +42,19 @@ config = {
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default",
                 },
-                "ImportAgent": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default",
-                },
                 "RestoreAgent": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
+                    "retry_params_name": "default",
+                },
+                "GetAgent": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default",
+                },
+                "ImportAgent": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default",
                 },
                 "GetValidationResult": {

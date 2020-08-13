@@ -143,19 +143,6 @@ class AgentsGrpcTransport(object):
         return self._stubs["agents_stub"].DeleteAgent
 
     @property
-    def get_agent(self):
-        """Return the gRPC stub for :meth:`AgentsClient.get_agent`.
-
-        Retrieves the specified agent.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["agents_stub"].GetAgent
-
-    @property
     def search_agents(self):
         """Return the gRPC stub for :meth:`AgentsClient.search_agents`.
 
@@ -205,6 +192,37 @@ class AgentsGrpcTransport(object):
         return self._stubs["agents_stub"].ExportAgent
 
     @property
+    def restore_agent(self):
+        """Return the gRPC stub for :meth:`AgentsClient.restore_agent`.
+
+        Restores the specified agent from a ZIP file.
+
+        Replaces the current agent version with a new one. All the intents and
+        entity types in the older version are deleted.
+
+        Operation <response: ``google.protobuf.Empty``>
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["agents_stub"].RestoreAgent
+
+    @property
+    def get_agent(self):
+        """Return the gRPC stub for :meth:`AgentsClient.get_agent`.
+
+        Retrieves the specified agent.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["agents_stub"].GetAgent
+
+    @property
     def import_agent(self):
         """Return the gRPC stub for :meth:`AgentsClient.import_agent`.
 
@@ -222,24 +240,6 @@ class AgentsGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["agents_stub"].ImportAgent
-
-    @property
-    def restore_agent(self):
-        """Return the gRPC stub for :meth:`AgentsClient.restore_agent`.
-
-        Restores the specified agent from a ZIP file.
-
-        Replaces the current agent version with a new one. All the intents and
-        entity types in the older version are deleted.
-
-        Operation <response: ``google.protobuf.Empty``>
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["agents_stub"].RestoreAgent
 
     @property
     def get_validation_result(self):

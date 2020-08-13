@@ -50,9 +50,9 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 class ContextsClient(object):
     """
-    A context represents additional information included with user input or
-    with an intent returned by the Dialogflow API. Contexts are helpful for
-    differentiating user input which may be vague or have a different
+    A context represents additional information included with user input
+    or with an intent returned by the Dialogflow API. Contexts are helpful
+    for differentiating user input which may be vague or have a different
     meaning depending on additional details from your application such as
     user setting and preferences, previous user input, where the user is in
     your application, geographic location, and so on.
@@ -687,8 +687,8 @@ class ContextsClient(object):
             >>> client.delete_all_contexts(parent)
 
         Args:
-            parent (str): Required. The name of the session to delete all contexts from. Format:
-                ``projects/<Project ID>/agent/sessions/<Session ID>`` or
+            parent (str): Required. The name of the session to delete all contexts from.
+                Format: ``projects/<Project ID>/agent/sessions/<Session ID>`` or
                 ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>``.
                 If ``Environment ID`` is not specified we assume default 'draft'
                 environment. If ``User ID`` is not specified, we assume default '-'

@@ -42,6 +42,8 @@ from dialogflow_v2beta1.proto import document_pb2
 from dialogflow_v2beta1.proto import document_pb2_grpc
 from dialogflow_v2beta1.proto import entity_type_pb2
 from dialogflow_v2beta1.proto import entity_type_pb2_grpc
+from dialogflow_v2beta1.proto import environment_pb2
+from dialogflow_v2beta1.proto import environment_pb2_grpc
 from dialogflow_v2beta1.proto import gcs_pb2
 from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2beta1.proto import intent_pb2_grpc
@@ -61,10 +63,10 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 class SessionEntityTypesClient(object):
     """
-    Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
+    Entities are extracted from user input and represent parameters that
+    are meaningful to your application. For example, a date range, a proper
+    name such as a geographic location or landmark, and so on. Entities
+    represent actionable data for your application.
 
     Session entity types are referred to as **User** entity types and are
     entities that are built for an individual user such as favorites,
@@ -571,13 +573,7 @@ class SessionEntityTypesClient(object):
             >>> response = client.update_session_entity_type(session_entity_type)
 
         Args:
-            session_entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.SessionEntityType]): Required. The entity type to update. Format:
-                ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``
-                or
-                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``.
-                If ``Environment ID`` is not specified, we assume default 'draft'
-                environment. If ``User ID`` is not specified, we assume default '-'
-                user.
+            session_entity_type (Union[dict, ~google.cloud.dialogflow_v2beta1.types.SessionEntityType]): Required. The session entity type to update.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dialogflow_v2beta1.types.SessionEntityType`

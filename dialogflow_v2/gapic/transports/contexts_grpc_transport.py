@@ -109,6 +109,32 @@ class ContextsGrpcTransport(object):
         return self._channel
 
     @property
+    def delete_context(self):
+        """Return the gRPC stub for :meth:`ContextsClient.delete_context`.
+
+        Deletes the specified context.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["contexts_stub"].DeleteContext
+
+    @property
+    def delete_all_contexts(self):
+        """Return the gRPC stub for :meth:`ContextsClient.delete_all_contexts`.
+
+        Deletes all active contexts in the specified session.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["contexts_stub"].DeleteAllContexts
+
+    @property
     def list_contexts(self):
         """Return the gRPC stub for :meth:`ContextsClient.list_contexts`.
 
@@ -161,29 +187,3 @@ class ContextsGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["contexts_stub"].UpdateContext
-
-    @property
-    def delete_context(self):
-        """Return the gRPC stub for :meth:`ContextsClient.delete_context`.
-
-        Deletes the specified context.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["contexts_stub"].DeleteContext
-
-    @property
-    def delete_all_contexts(self):
-        """Return the gRPC stub for :meth:`ContextsClient.delete_all_contexts`.
-
-        Deletes all active contexts in the specified session.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["contexts_stub"].DeleteAllContexts
