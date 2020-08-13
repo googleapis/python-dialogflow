@@ -1336,6 +1336,7 @@ EntityType = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _ENTITYTYPE_ENTITY,
                 "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
                 "__doc__": """An **entity entry** for an associated entity type.
+    
     Attributes:
         value:
             Required. The primary value associated with this entity entry.
@@ -1358,6 +1359,7 @@ EntityType = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """Represents an entity type. Entity types serve as a tool for extracting
   parameter values from natural language queries.
+  
   Attributes:
       name:
           The unique identifier of the entity type. Required for [Entity
@@ -1394,6 +1396,7 @@ ListEntityTypesRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.ListEntityTypes][google.cloud.dia
   logflow.v2beta1.EntityTypes.ListEntityTypes].
+  
   Attributes:
       parent:
           Required. The agent to list all entity types from. Format:
@@ -1424,6 +1427,7 @@ ListEntityTypesResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The response message for [EntityTypes.ListEntityTypes][google.cloud.di
   alogflow.v2beta1.EntityTypes.ListEntityTypes].
+  
   Attributes:
       entity_types:
           The list of agent entity types. There will be a maximum number
@@ -1445,6 +1449,7 @@ GetEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.GetEntityType][google.cloud.dialo
   gflow.v2beta1.EntityTypes.GetEntityType].
+  
   Attributes:
       name:
           Required. The name of the entity type. Format:
@@ -1469,6 +1474,7 @@ CreateEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.CreateEntityType][google.cloud.di
   alogflow.v2beta1.EntityTypes.CreateEntityType].
+  
   Attributes:
       parent:
           Required. The agent to create a entity type for. Format:
@@ -1495,6 +1501,7 @@ UpdateEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.UpdateEntityType][google.cloud.di
   alogflow.v2beta1.EntityTypes.UpdateEntityType].
+  
   Attributes:
       entity_type:
           Required. The entity type to update.
@@ -1520,6 +1527,7 @@ DeleteEntityTypeRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.DeleteEntityType][google.cloud.di
   alogflow.v2beta1.EntityTypes.DeleteEntityType].
+  
   Attributes:
       name:
           Required. The name of the entity type to delete. Format:
@@ -1538,6 +1546,7 @@ BatchUpdateEntityTypesRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.BatchUpdateEntityTypes][google.cl
   oud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
+  
   Attributes:
       parent:
           Required. The name of the agent to update or create entity
@@ -1576,6 +1585,7 @@ BatchUpdateEntityTypesResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The response message for [EntityTypes.BatchUpdateEntityTypes][google.c
   loud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
+  
   Attributes:
       entity_types:
           The collection of updated or created entity types.
@@ -1593,6 +1603,7 @@ BatchDeleteEntityTypesRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.BatchDeleteEntityTypes][google.cl
   oud.dialogflow.v2beta1.EntityTypes.BatchDeleteEntityTypes].
+  
   Attributes:
       parent:
           Required. The name of the agent to delete all entities types
@@ -1614,6 +1625,7 @@ BatchCreateEntitiesRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.BatchCreateEntities][google.cloud
   .dialogflow.v2beta1.EntityTypes.BatchCreateEntities].
+  
   Attributes:
       parent:
           Required. The name of the entity type to create entities in.
@@ -1641,6 +1653,7 @@ BatchUpdateEntitiesRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.BatchUpdateEntities][google.cloud
   .dialogflow.v2beta1.EntityTypes.BatchUpdateEntities].
+  
   Attributes:
       parent:
           Required. The name of the entity type to update or create
@@ -1670,6 +1683,7 @@ BatchDeleteEntitiesRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """The request message for [EntityTypes.BatchDeleteEntities][google.cloud
   .dialogflow.v2beta1.EntityTypes.BatchDeleteEntities].
+  
   Attributes:
       parent:
           Required. The name of the entity type to delete entries for.
@@ -1698,6 +1712,7 @@ EntityTypeBatch = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _ENTITYTYPEBATCH,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.entity_type_pb2",
         "__doc__": """This message is a wrapper around a collection of entity types.
+  
   Attributes:
       entity_types:
           A collection of entity types.

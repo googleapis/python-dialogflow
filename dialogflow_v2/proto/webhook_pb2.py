@@ -423,6 +423,7 @@ WebhookRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _WEBHOOKREQUEST,
         "__module__": "google.cloud.dialogflow_v2.proto.webhook_pb2",
         "__doc__": """The request message for a webhook call.
+  
   Attributes:
       session:
           The unique identifier of detectIntent request session. Can be
@@ -461,6 +462,7 @@ WebhookResponse = _reflection.GeneratedProtocolMessageType(
   objects -  Use ``[]`` or ``null`` for empty arrays  For more
   information, see the `Protocol Buffers Language Guide
   <https://developers.google.com/protocol-buffers/docs/proto3#json>`__.
+  
   Attributes:
       fulfillment_text:
           Optional. The text response message intended for the end-user.
@@ -527,6 +529,7 @@ OriginalDetectIntentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2.proto.webhook_pb2",
         "__doc__": """Represents the contents of the original request that was passed to the
   ``[Streaming]DetectIntent`` call.
+  
   Attributes:
       source:
           The source of this request, e.g., ``google``, ``facebook``,

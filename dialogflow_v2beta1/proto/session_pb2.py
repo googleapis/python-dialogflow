@@ -2194,6 +2194,7 @@ DetectIntentRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DETECTINTENTREQUEST,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """The request to detect user’s intent.
+  
   Attributes:
       session:
           Required. The name of the session this query is sent to.
@@ -2244,6 +2245,7 @@ DetectIntentResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DETECTINTENTRESPONSE,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """The message returned from the DetectIntent method.
+  
   Attributes:
       response_id:
           The unique identifier of the response. It can be used to
@@ -2300,6 +2302,7 @@ QueryParameters = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _QUERYPARAMETERS,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """Represents the parameters of the conversational query.
+  
   Attributes:
       time_zone:
           The time zone of this conversational query from the `time zone
@@ -2368,6 +2371,7 @@ QueryInput = _reflection.GeneratedProtocolMessageType(
   which instructs the speech recognizer how to process    the speech
   audio.  2. A conversational query in the form of text.  3. An event
   that specifies which intent to trigger.
+  
   Attributes:
       input:
           Required. The input specification.
@@ -2391,6 +2395,7 @@ QueryResult = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _QUERYRESULT,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """Represents the result of conversational query or event processing.
+  
   Attributes:
       query_text:
           The original conversational query text:  -  If natural
@@ -2499,6 +2504,7 @@ KnowledgeAnswers = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _KNOWLEDGEANSWERS_ANSWER,
                 "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
                 "__doc__": """An answer from Knowledge Connector.
+    
     Attributes:
         source:
             Indicates which Knowledge Document this answer was extracted
@@ -2535,6 +2541,7 @@ KnowledgeAnswers = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _KNOWLEDGEANSWERS,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """Represents the result of querying a Knowledge base.
+  
   Attributes:
       answers:
           A list of answers from Knowledge Connector.
@@ -2577,6 +2584,7 @@ StreamingDetectIntentRequest = _reflection.GeneratedProtocolMessageType(
   results in favor of the       input text.    -  Dialogflow will use
   the language code from the first message.  After you sent all input,
   you must half-close or abort the request stream.
+  
   Attributes:
       session:
           Required. The name of the session the query is sent to. Format
@@ -2650,6 +2658,7 @@ StreamingDetectIntentResponse = _reflection.GeneratedProtocolMessageType(
   the request or    agent-level speech synthesizer is configured, all
   subsequent messages    contain ``output_audio`` and
   ``output_audio_config``.
+  
   Attributes:
       response_id:
           The unique identifier of the response. It can be used to
@@ -2711,6 +2720,7 @@ StreamingRecognitionResult = _reflection.GeneratedProtocolMessageType(
   each response we populate:  -  for ``TRANSCRIPT``: ``transcript`` and
   possibly ``is_final``.  -  for ``END_OF_SINGLE_UTTERANCE``: only
   ``message_type``.
+  
   Attributes:
       message_type:
           Type of the result message.
@@ -2762,6 +2772,7 @@ TextInput = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _TEXTINPUT,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """Represents the natural language text to be processed.
+  
   Attributes:
       text:
           Required. The UTF-8 encoded natural language text to be
@@ -2790,6 +2801,7 @@ EventInput = _reflection.GeneratedProtocolMessageType(
   response. The parameter ``name`` may be used by the agent in the
   response: ``"Hello #welcome_event.name! What can I do for you
   today?"``.
+  
   Attributes:
       name:
           Required. The unique identifier of the event.
@@ -2824,6 +2836,7 @@ SentimentAnalysisRequestConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SENTIMENTANALYSISREQUESTCONFIG,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """Configures the types of sentiment analysis to perform.
+  
   Attributes:
       analyze_query_text_sentiment:
           Instructs the service to perform sentiment analysis on
@@ -2843,6 +2856,7 @@ SentimentAnalysisResult = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """The result of sentiment analysis as configured by
   ``sentiment_analysis_request_config``.
+  
   Attributes:
       query_text_sentiment:
           The sentiment analysis result for ``query_text``.
@@ -2860,6 +2874,7 @@ Sentiment = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.session_pb2",
         "__doc__": """The sentiment, such as positive/negative feeling or association, for a
   unit of analysis, such as the query text.
+  
   Attributes:
       score:
           Sentiment score between -1.0 (negative sentiment) and 1.0

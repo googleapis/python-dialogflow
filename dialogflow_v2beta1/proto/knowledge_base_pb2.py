@@ -516,6 +516,7 @@ KnowledgeBase = _reflection.GeneratedProtocolMessageType(
         "__doc__": """Represents knowledge base resource.  Note: The
   ``projects.agent.knowledgeBases`` resource is deprecated; only use
   ``projects.knowledgeBases``.
+  
   Attributes:
       name:
           The knowledge base resource name. The name must be empty when
@@ -544,6 +545,7 @@ ListKnowledgeBasesRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.knowledge_base_pb2",
         "__doc__": """Request message for [KnowledgeBases.ListKnowledgeBases][google.cloud.d
   ialogflow.v2beta1.KnowledgeBases.ListKnowledgeBases].
+  
   Attributes:
       parent:
           Required. The project to list of knowledge bases for. Format:
@@ -568,6 +570,7 @@ ListKnowledgeBasesResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.knowledge_base_pb2",
         "__doc__": """Response message for [KnowledgeBases.ListKnowledgeBases][google.cloud.
   dialogflow.v2beta1.KnowledgeBases.ListKnowledgeBases].
+  
   Attributes:
       knowledge_bases:
           The list of knowledge bases.
@@ -588,6 +591,7 @@ GetKnowledgeBaseRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.knowledge_base_pb2",
         "__doc__": """Request message for [KnowledgeBases.GetKnowledgeBase][google.cloud.dia
   logflow.v2beta1.KnowledgeBases.GetKnowledgeBase].
+  
   Attributes:
       name:
           Required. The name of the knowledge base to retrieve. Format
@@ -606,6 +610,7 @@ CreateKnowledgeBaseRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.knowledge_base_pb2",
         "__doc__": """Request message for [KnowledgeBases.CreateKnowledgeBase][google.cloud.
   dialogflow.v2beta1.KnowledgeBases.CreateKnowledgeBase].
+  
   Attributes:
       parent:
           Required. The project to create a knowledge base for. Format:
@@ -626,6 +631,7 @@ DeleteKnowledgeBaseRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.knowledge_base_pb2",
         "__doc__": """Request message for [KnowledgeBases.DeleteKnowledgeBase][google.cloud.
   dialogflow.v2beta1.KnowledgeBases.DeleteKnowledgeBase].
+  
   Attributes:
       name:
           Required. The name of the knowledge base to delete. Format:
@@ -647,6 +653,7 @@ UpdateKnowledgeBaseRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.knowledge_base_pb2",
         "__doc__": """Request message for [KnowledgeBases.UpdateKnowledgeBase][google.cloud.
   dialogflow.v2beta1.KnowledgeBases.UpdateKnowledgeBase].
+  
   Attributes:
       knowledge_base:
           Required. The knowledge base to update.

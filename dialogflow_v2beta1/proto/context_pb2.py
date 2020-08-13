@@ -526,6 +526,7 @@ Context = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CONTEXT,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """Represents a context.
+  
   Attributes:
       name:
           Required. The unique identifier of the context. Format:
@@ -574,6 +575,7 @@ ListContextsRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """The request message for [Contexts.ListContexts][google.cloud.dialogflo
   w.v2beta1.Contexts.ListContexts].
+  
   Attributes:
       parent:
           Required. The session to list all contexts from. Format:
@@ -602,6 +604,7 @@ ListContextsResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """The response message for [Contexts.ListContexts][google.cloud.dialogfl
   ow.v2beta1.Contexts.ListContexts].
+  
   Attributes:
       contexts:
           The list of contexts. There will be a maximum number of items
@@ -623,6 +626,7 @@ GetContextRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """The request message for [Contexts.GetContext][google.cloud.dialogflow.
   v2beta1.Contexts.GetContext].
+  
   Attributes:
       name:
           Required. The name of the context. Format: ``projects/<Project
@@ -646,6 +650,7 @@ CreateContextRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """The request message for [Contexts.CreateContext][google.cloud.dialogfl
   ow.v2beta1.Contexts.CreateContext].
+  
   Attributes:
       parent:
           Required. The session to create a context for. Format:
@@ -670,6 +675,7 @@ UpdateContextRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """The request message for [Contexts.UpdateContext][google.cloud.dialogfl
   ow.v2beta1.Contexts.UpdateContext].
+  
   Attributes:
       context:
           Required. The context to update.
@@ -689,6 +695,7 @@ DeleteContextRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """The request message for [Contexts.DeleteContext][google.cloud.dialogfl
   ow.v2beta1.Contexts.DeleteContext].
+  
   Attributes:
       name:
           Required. The name of the context to delete. Format:
@@ -713,6 +720,7 @@ DeleteAllContextsRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.context_pb2",
         "__doc__": """The request message for [Contexts.DeleteAllContexts][google.cloud.dial
   ogflow.v2beta1.Contexts.DeleteAllContexts].
+  
   Attributes:
       parent:
           Required. The name of the session to delete all contexts from.

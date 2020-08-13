@@ -923,6 +923,7 @@ SpeechContext = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
         "__doc__": """Hints for the speech recognizer to help with recognition in a specific
   conversation state.
+  
   Attributes:
       phrases:
           Optional. A list of strings containing words and phrases that
@@ -955,6 +956,7 @@ SpeechWordInfo = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SPEECHWORDINFO,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
         "__doc__": """Information for a word recognized by the speech recognizer.
+  
   Attributes:
       word:
           The word this info is for.
@@ -989,6 +991,7 @@ InputAudioConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _INPUTAUDIOCONFIG,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
         "__doc__": """Instructs the speech recognizer on how to process the audio content.
+  
   Attributes:
       audio_encoding:
           Required. Audio encoding of the audio content to process.
@@ -1063,6 +1066,7 @@ VoiceSelectionParams = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _VOICESELECTIONPARAMS,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
         "__doc__": """Description of which voice to use for speech synthesis.
+  
   Attributes:
       name:
           Optional. The name of the voice. If not set, the service will
@@ -1090,6 +1094,7 @@ SynthesizeSpeechConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SYNTHESIZESPEECHCONFIG,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
         "__doc__": """Configuration of how speech should be synthesized.
+  
   Attributes:
       speaking_rate:
           Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0
@@ -1133,6 +1138,7 @@ OutputAudioConfig = _reflection.GeneratedProtocolMessageType(
         "__doc__": """Instructs the speech synthesizer how to generate the output audio
   content. If this audio config is supplied in a request, it overrides
   all existing text-to-speech settings applied to the agent.
+  
   Attributes:
       audio_encoding:
           Required. Audio encoding of the synthesized audio content.

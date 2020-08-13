@@ -919,6 +919,7 @@ Document = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _DOCUMENT_RELOADSTATUS,
                 "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
                 "__doc__": """The status of a reload attempt.
+    
     Attributes:
         time:
             Output only. The time of a reload attempt. This reload may
@@ -936,6 +937,7 @@ Document = _reflection.GeneratedProtocolMessageType(
         "__doc__": """A document resource.  Note: The
   ``projects.agent.knowledgeBases.documents`` resource is deprecated;
   only use ``projects.knowledgeBases.documents``.
+  
   Attributes:
       name:
           Optional. The document resource name. The name must be empty
@@ -1002,6 +1004,7 @@ GetDocumentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Request message for [Documents.GetDocument][google.cloud.dialogflow.v2
   beta1.Documents.GetDocument].
+  
   Attributes:
       name:
           Required. The name of the document to retrieve. Format
@@ -1021,6 +1024,7 @@ ListDocumentsRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Request message for [Documents.ListDocuments][google.cloud.dialogflow.
   v2beta1.Documents.ListDocuments].
+  
   Attributes:
       parent:
           Required. The knowledge base to list all documents for.
@@ -1046,6 +1050,7 @@ ListDocumentsResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Response message for [Documents.ListDocuments][google.cloud.dialogflow
   .v2beta1.Documents.ListDocuments].
+  
   Attributes:
       documents:
           The list of documents.
@@ -1066,6 +1071,7 @@ CreateDocumentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Request message for [Documents.CreateDocument][google.cloud.dialogflow
   .v2beta1.Documents.CreateDocument].
+  
   Attributes:
       parent:
           Required. The knoweldge base to create a document for. Format:
@@ -1086,6 +1092,7 @@ DeleteDocumentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Request message for [Documents.DeleteDocument][google.cloud.dialogflow
   .v2beta1.Documents.DeleteDocument].
+  
   Attributes:
       name:
           Required. The name of the document to delete. Format:
@@ -1105,6 +1112,7 @@ UpdateDocumentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Request message for [Documents.UpdateDocument][google.cloud.dialogflow
   .v2beta1.Documents.UpdateDocument].
+  
   Attributes:
       document:
           Required. The document to update.
@@ -1125,6 +1133,7 @@ KnowledgeOperationMetadata = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _KNOWLEDGEOPERATIONMETADATA,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Metadata in google::longrunning::Operation for Knowledge operations.
+  
   Attributes:
       state:
           Required. Output only. The current state of this operation.
@@ -1142,6 +1151,7 @@ ReloadDocumentRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.dialogflow_v2beta1.proto.document_pb2",
         "__doc__": """Request message for [Documents.ReloadDocument][google.cloud.dialogflow
   .v2beta1.Documents.ReloadDocument].
+  
   Attributes:
       name:
           Required. The name of the document to reload. Format:

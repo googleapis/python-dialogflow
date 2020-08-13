@@ -76,6 +76,7 @@ GcsSource = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GCSSOURCE,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.gcs_pb2",
         "__doc__": """Google Cloud Storage location for single input.
+  
   Attributes:
       uri:
           Required. The Google Cloud Storage URIs for the inputs. A URI
