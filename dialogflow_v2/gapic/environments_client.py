@@ -53,7 +53,7 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("dialogflow").version
 
 
 class EnvironmentsClient(object):
-    """Manages agent environments."""
+    """Service for managing ``Environments``."""
 
     SERVICE_ADDRESS = "dialogflow.googleapis.com:443"
     """The default address of the service."""

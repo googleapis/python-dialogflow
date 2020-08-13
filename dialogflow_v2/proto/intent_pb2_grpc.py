@@ -13,38 +13,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class IntentsStub(object):
-    """An intent represents a mapping between input from a user and an action to
-    be taken by your application. When you pass user input to the
-    [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-    [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method, the
-    Dialogflow API analyzes the input and searches
-    for a matching intent. If no match is found, the Dialogflow API returns a
-    fallback intent (`is_fallback` = true).
-
-    You can provide additional information for the Dialogflow API to use to
-    match user input to an intent by adding the following to your intent.
-
-    *   **Contexts** - provide additional context for intent analysis. For
-    example, if an intent is related to an object in your application that
-    plays music, you can provide a context to determine when to match the
-    intent if the user input is "turn it off". You can include a context
-    that matches the intent when there is previous user input of
-    "play music", and not when there is previous user input of
-    "turn on the light".
-
-    *   **Events** - allow for matching an intent by using an event name
-    instead of user input. Your application can provide an event name and
-    related parameters to the Dialogflow API to match an intent. For
-    example, when your application starts, you can send a welcome event
-    with a user name parameter to the Dialogflow API to match an intent with
-    a personalized welcome message for the user.
-
-    *   **Training phrases** - provide examples of user input to train the
-    Dialogflow API agent to better match intents.
-
-    For more information about intents, see the
-    [Dialogflow
-    documentation](https://cloud.google.com/dialogflow/docs/intents-overview).
+    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent].
     """
 
     def __init__(self, channel):
@@ -91,38 +60,7 @@ class IntentsStub(object):
 
 
 class IntentsServicer(object):
-    """An intent represents a mapping between input from a user and an action to
-    be taken by your application. When you pass user input to the
-    [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-    [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method, the
-    Dialogflow API analyzes the input and searches
-    for a matching intent. If no match is found, the Dialogflow API returns a
-    fallback intent (`is_fallback` = true).
-
-    You can provide additional information for the Dialogflow API to use to
-    match user input to an intent by adding the following to your intent.
-
-    *   **Contexts** - provide additional context for intent analysis. For
-    example, if an intent is related to an object in your application that
-    plays music, you can provide a context to determine when to match the
-    intent if the user input is "turn it off". You can include a context
-    that matches the intent when there is previous user input of
-    "play music", and not when there is previous user input of
-    "turn on the light".
-
-    *   **Events** - allow for matching an intent by using an event name
-    instead of user input. Your application can provide an event name and
-    related parameters to the Dialogflow API to match an intent. For
-    example, when your application starts, you can send a welcome event
-    with a user name parameter to the Dialogflow API to match an intent with
-    a personalized welcome message for the user.
-
-    *   **Training phrases** - provide examples of user input to train the
-    Dialogflow API agent to better match intents.
-
-    For more information about intents, see the
-    [Dialogflow
-    documentation](https://cloud.google.com/dialogflow/docs/intents-overview).
+    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent].
     """
 
     def ListIntents(self, request, context):
@@ -225,38 +163,7 @@ def add_IntentsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Intents(object):
-    """An intent represents a mapping between input from a user and an action to
-    be taken by your application. When you pass user input to the
-    [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-    [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method, the
-    Dialogflow API analyzes the input and searches
-    for a matching intent. If no match is found, the Dialogflow API returns a
-    fallback intent (`is_fallback` = true).
-
-    You can provide additional information for the Dialogflow API to use to
-    match user input to an intent by adding the following to your intent.
-
-    *   **Contexts** - provide additional context for intent analysis. For
-    example, if an intent is related to an object in your application that
-    plays music, you can provide a context to determine when to match the
-    intent if the user input is "turn it off". You can include a context
-    that matches the intent when there is previous user input of
-    "play music", and not when there is previous user input of
-    "turn on the light".
-
-    *   **Events** - allow for matching an intent by using an event name
-    instead of user input. Your application can provide an event name and
-    related parameters to the Dialogflow API to match an intent. For
-    example, when your application starts, you can send a welcome event
-    with a user name parameter to the Dialogflow API to match an intent with
-    a personalized welcome message for the user.
-
-    *   **Training phrases** - provide examples of user input to train the
-    Dialogflow API agent to better match intents.
-
-    For more information about intents, see the
-    [Dialogflow
-    documentation](https://cloud.google.com/dialogflow/docs/intents-overview).
+    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent].
     """
 
     @staticmethod

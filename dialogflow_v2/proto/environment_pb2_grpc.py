@@ -8,7 +8,7 @@ from dialogflow_v2.proto import (
 
 
 class EnvironmentsStub(object):
-    """Manages agent environments.
+    """Service for managing [Environments][google.cloud.dialogflow.v2.Environment].
     """
 
     def __init__(self, channel):
@@ -25,7 +25,7 @@ class EnvironmentsStub(object):
 
 
 class EnvironmentsServicer(object):
-    """Manages agent environments.
+    """Service for managing [Environments][google.cloud.dialogflow.v2.Environment].
     """
 
     def ListEnvironments(self, request, context):
@@ -52,7 +52,7 @@ def add_EnvironmentsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Environments(object):
-    """Manages agent environments.
+    """Service for managing [Environments][google.cloud.dialogflow.v2.Environment].
     """
 
     @staticmethod

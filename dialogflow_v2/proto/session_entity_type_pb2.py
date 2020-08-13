@@ -549,10 +549,13 @@ SessionEntityType = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _SESSIONENTITYTYPE,
         "__module__": "google.cloud.dialogflow_v2.proto.session_entity_type_pb2",
-        "__doc__": """Represents a session entity type.  Extends or replaces a custom entity
-  type at the user session level (we refer to the entity types defined
-  at the agent level as “custom entity types”).  Note: session entity
-  types apply to all queries, regardless of the language.
+        "__doc__": """A session represents a conversation between a Dialogflow agent and an
+  end-user. You can create special entities, called session entities,
+  during a session. Session entities can extend or replace custom entity
+  types and only exist during the session that they were created for.
+  All session data, including session entities, is stored by Dialogflow
+  for 20 minutes.  For more information, see the `session entity guide
+  <https://cloud.google.com/dialogflow/docs/entities-session>`__.
   
   Attributes:
       name:

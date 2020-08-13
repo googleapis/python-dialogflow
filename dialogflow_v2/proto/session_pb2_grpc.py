@@ -8,10 +8,10 @@ from dialogflow_v2.proto import (
 
 
 class SessionsStub(object):
-    """A session represents an interaction with a user. You retrieve user input
-    and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-    [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
-    user intent and respond.
+    """A service used for session interactions.
+
+    For more information, see the [API interactions
+    guide](https://cloud.google.com/dialogflow/docs/api-overview).
     """
 
     def __init__(self, channel):
@@ -33,10 +33,10 @@ class SessionsStub(object):
 
 
 class SessionsServicer(object):
-    """A session represents an interaction with a user. You retrieve user input
-    and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-    [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
-    user intent and respond.
+    """A service used for session interactions.
+
+    For more information, see the [API interactions
+    guide](https://cloud.google.com/dialogflow/docs/api-overview).
     """
 
     def DetectIntent(self, request, context):
@@ -80,10 +80,10 @@ def add_SessionsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Sessions(object):
-    """A session represents an interaction with a user. You retrieve user input
-    and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-    [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
-    user intent and respond.
+    """A service used for session interactions.
+
+    For more information, see the [API interactions
+    guide](https://cloud.google.com/dialogflow/docs/api-overview).
     """
 
     @staticmethod

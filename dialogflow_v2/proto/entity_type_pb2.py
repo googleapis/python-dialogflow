@@ -1357,8 +1357,16 @@ EntityType = _reflection.GeneratedProtocolMessageType(
         ),
         "DESCRIPTOR": _ENTITYTYPE,
         "__module__": "google.cloud.dialogflow_v2.proto.entity_type_pb2",
-        "__doc__": """Represents an entity type. Entity types serve as a tool for extracting
-  parameter values from natural language queries.
+        "__doc__": """Each intent parameter has a type, called the entity type, which
+  dictates exactly how data from an end-user expression is extracted.
+  Dialogflow provides predefined system entities that can match many
+  common types of data. For example, there are system entities for
+  matching dates, times, colors, email addresses, and so on. You can
+  also create your own custom entities for matching custom data. For
+  example, you could define a vegetable entity that can match the types
+  of vegetables available for purchase with a grocery store agent.  For
+  more information, see the `Entity guide
+  <https://cloud.google.com/dialogflow/docs/entities-overview>`__.
   
   Attributes:
       name:

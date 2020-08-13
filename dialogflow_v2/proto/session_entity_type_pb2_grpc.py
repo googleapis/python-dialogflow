@@ -9,23 +9,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class SessionEntityTypesStub(object):
-    """Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
-
-    Session entity types are referred to as **User** entity types and are
-    entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. You can redefine a session
-    entity type at the session level.
-
-    Session entity methods do not work with Google Assistant integration.
-    Contact Dialogflow support if you need to use session entities
-    with Google Assistant integration.
-
-    For more information about entity types, see the
-    [Dialogflow
-    documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
+    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
     """
 
     def __init__(self, channel):
@@ -62,23 +46,7 @@ class SessionEntityTypesStub(object):
 
 
 class SessionEntityTypesServicer(object):
-    """Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
-
-    Session entity types are referred to as **User** entity types and are
-    entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. You can redefine a session
-    entity type at the session level.
-
-    Session entity methods do not work with Google Assistant integration.
-    Contact Dialogflow support if you need to use session entities
-    with Google Assistant integration.
-
-    For more information about entity types, see the
-    [Dialogflow
-    documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
+    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
     """
 
     def ListSessionEntityTypes(self, request, context):
@@ -176,23 +144,7 @@ def add_SessionEntityTypesServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class SessionEntityTypes(object):
-    """Entities are extracted from user input and represent parameters that are
-    meaningful to your application. For example, a date range, a proper name
-    such as a geographic location or landmark, and so on. Entities represent
-    actionable data for your application.
-
-    Session entity types are referred to as **User** entity types and are
-    entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. You can redefine a session
-    entity type at the session level.
-
-    Session entity methods do not work with Google Assistant integration.
-    Contact Dialogflow support if you need to use session entities
-    with Google Assistant integration.
-
-    For more information about entity types, see the
-    [Dialogflow
-    documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
+    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
     """
 
     @staticmethod
