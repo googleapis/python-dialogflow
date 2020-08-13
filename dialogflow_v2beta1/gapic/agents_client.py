@@ -448,12 +448,10 @@ class AgentsClient(object):
         metadata=None,
     ):
         """
-        Returns the list of agents.
-
-        Since there is at most one conversational agent per project, this method
-        is useful primarily for listing all agents across projects the caller
-        has access to. One can achieve that with a wildcard project collection
-        id "-". Refer to `List
+        Returns the list of agents. Since there is at most one
+        conversational agent per project, this method is useful primarily for
+        listing all agents across projects the caller has access to. One can
+        achieve that with a wildcard project collection id "-". Refer to `List
         Sub-Collections <https://cloud.google.com/apis/design/design_patterns#list_sub-collections>`__.
 
         Example:

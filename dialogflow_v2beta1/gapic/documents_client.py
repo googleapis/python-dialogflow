@@ -522,7 +522,7 @@ class DocumentsClient(object):
             >>> metadata = response.metadata()
 
         Args:
-            name (str): The name of the document to delete. Format:
+            name (str): Required. The name of the document to delete. Format:
                 ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -704,9 +704,9 @@ class DocumentsClient(object):
             >>> response = client.reload_document()
 
         Args:
-            name (str): The name of the document to reload. Format:
+            name (str): Required. The name of the document to reload. Format:
                 ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
-            gcs_source (Union[dict, ~google.cloud.dialogflow_v2beta1.types.GcsSource]): Optional. The path for a Cloud Storage source file for reloading document content.
+            gcs_source (Union[dict, ~google.cloud.dialogflow_v2beta1.types.GcsSource]): The path for a Cloud Storage source file for reloading document content.
                 If not provided, the Document's existing source will be reloaded.
 
                 If a dict is provided, it must be of the same form as the protobuf
