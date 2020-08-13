@@ -6032,11 +6032,11 @@ Intent = _reflection.GeneratedProtocolMessageType(
                         "__doc__": """Carousel Rich Business Messaging (RBM) rich card.  Rich cards allow
       you to respond to users with more vivid content, e.g. with media and
       suggestions.  For more details about RBM rich cards, please see:
-      https://developers.google.com/rcs-business-
-      messaging/rbm/guides/build/send-messages#rich-cards. If you want to
-      show a single card with more control over the layout, please use [RbmS
-      tandaloneCard][google.cloud.dialogflow.v2beta1.Intent.Message.RbmStand
-      aloneCard] instead.
+      https://developers.google.com/business-communications/rcs-business-
+      messaging/guides/build/messages/send#rich-cards If you want to show a
+      single card with more control over the layout, please use [RbmStandalo
+      neCard][google.cloud.dialogflow.v2beta1.Intent.Message.RbmStandaloneCa
+      rd] instead.
       Attributes:
           card_width:
               Required. The width of the cards in the carousel.
@@ -6056,11 +6056,11 @@ Intent = _reflection.GeneratedProtocolMessageType(
                         "__doc__": """Standalone Rich Business Messaging (RBM) rich card.  Rich cards allow
       you to respond to users with more vivid content, e.g. with media and
       suggestions.  For more details about RBM rich cards, please see:
-      https://developers.google.com/rcs-business-
-      messaging/rbm/guides/build/send-messages#rich-cards. You can group
-      multiple rich cards into one using [RbmCarouselCard][google.cloud.dial
-      ogflow.v2beta1.Intent.Message.RbmCarouselCard] but carousel cards will
-      give you less control over the card layout.
+      https://developers.google.com/business-communications/rcs-business-
+      messaging/guides/build/messages/send#rich-cards You can group multiple
+      rich cards into one using [RbmCarouselCard][google.cloud.dialogflow.v2
+      beta1.Intent.Message.RbmCarouselCard] but carousel cards will give you
+      less control over the card layout.
       Attributes:
           card_orientation:
               Required. Orientation of the card.
