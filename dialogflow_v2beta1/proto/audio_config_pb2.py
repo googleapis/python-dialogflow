@@ -1078,9 +1078,9 @@ OutputAudioConfig = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _OUTPUTAUDIOCONFIG,
         "__module__": "google.cloud.dialogflow_v2beta1.proto.audio_config_pb2",
-        "__doc__": """Instructs the speech synthesizer how to generate the
-  output audio content. If this audio config is supplied in a request, it
-  overrides all existing text-to-speech settings applied to the agent.
+        "__doc__": """Instructs the speech synthesizer how to generate the output audio
+  content. If this audio config is supplied in a request, it overrides all
+  existing text-to-speech settings applied to the agent.
   
   
   Attributes:

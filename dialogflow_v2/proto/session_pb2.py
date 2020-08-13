@@ -1750,7 +1750,10 @@ DetectIntentResponse = _reflection.GeneratedProtocolMessageType(
           ``query_result.fulfillment_messages`` field. If multiple
           default text responses exist, they will be concatenated when
           generating audio. If no default platform text responses exist,
-          the generated audio content will be empty.
+          the generated audio content will be empty.  In some scenarios,
+          multiple output audio fields may be present in the response
+          structure. In these cases, only the top-most-level audio
+          output has content.
       output_audio_config:
           The config used by the speech synthesizer to generate the
           output audio.
@@ -2075,7 +2078,10 @@ StreamingDetectIntentResponse = _reflection.GeneratedProtocolMessageType(
           ``query_result.fulfillment_messages`` field. If multiple
           default text responses exist, they will be concatenated when
           generating audio. If no default platform text responses exist,
-          the generated audio content will be empty.
+          the generated audio content will be empty.  In some scenarios,
+          multiple output audio fields may be present in the response
+          structure. In these cases, only the top-most-level audio
+          output has content.
       output_audio_config:
           The config used by the speech synthesizer to generate the
           output audio.
