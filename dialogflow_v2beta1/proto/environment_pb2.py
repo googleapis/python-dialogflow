@@ -13,6 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.api import client_pb2 as google_dot_api_dot_client__pb2
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from dialogflow_v2beta1.proto import (
@@ -21,7 +22,6 @@ from dialogflow_v2beta1.proto import (
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
-from google.api import client_pb2 as google_dot_api_dot_client__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -30,16 +30,16 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     syntax="proto3",
     serialized_options=b"\n#com.google.cloud.dialogflow.v2beta1B\020EnvironmentProtoP\001ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflow.V2beta1",
     create_key=_descriptor._internal_create_key,
-    serialized_pb=b'\n7google/cloud/dialogflow_v2beta1/proto/environment.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x38google/cloud/dialogflow_v2beta1/proto/audio_config.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/api/client.proto"\xc8\x03\n\x0b\x45nvironment\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x18\n\x0b\x64\x65scription\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12\x1a\n\ragent_version\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x46\n\x05state\x18\x04 \x01(\x0e\x32\x32.google.cloud.dialogflow.v2beta1.Environment.StateB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03"E\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0b\n\x07STOPPED\x10\x01\x12\x0b\n\x07LOADING\x10\x02\x12\x0b\n\x07RUNNING\x10\x03:\xaa\x01\xea\x41\xa6\x01\n%dialogflow.googleapis.com/Environment\x12\x33projects/{project}/agent/environments/{environment}\x12Hprojects/{project}/locations/{location}/agent/environments/{environment}"\x89\x01\n\x17ListEnvironmentsRequest\x12=\n\x06parent\x18\x01 \x01(\tB-\xe0\x41\x02\xfa\x41\'\x12%dialogflow.googleapis.com/Environment\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01"w\n\x18ListEnvironmentsResponse\x12\x42\n\x0c\x65nvironments\x18\x01 \x03(\x0b\x32,.google.cloud.dialogflow.v2beta1.Environment\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t2\x8a\x03\n\x0c\x45nvironments\x12\xff\x01\n\x10ListEnvironments\x12\x38.google.cloud.dialogflow.v2beta1.ListEnvironmentsRequest\x1a\x39.google.cloud.dialogflow.v2beta1.ListEnvironmentsResponse"v\x82\xd3\xe4\x93\x02p\x12//v2beta1/{parent=projects/*/agent}/environmentsZ=\x12;/v2beta1/{parent=projects/*/locations/*/agent}/environments\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\xae\x01\n#com.google.cloud.dialogflow.v2beta1B\x10\x45nvironmentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3',
+    serialized_pb=b'\n7google/cloud/dialogflow_v2beta1/proto/environment.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x38google/cloud/dialogflow_v2beta1/proto/audio_config.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto"\xc8\x03\n\x0b\x45nvironment\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x18\n\x0b\x64\x65scription\x18\x02 \x01(\tB\x03\xe0\x41\x01\x12\x1a\n\ragent_version\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x46\n\x05state\x18\x04 \x01(\x0e\x32\x32.google.cloud.dialogflow.v2beta1.Environment.StateB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03"E\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0b\n\x07STOPPED\x10\x01\x12\x0b\n\x07LOADING\x10\x02\x12\x0b\n\x07RUNNING\x10\x03:\xaa\x01\xea\x41\xa6\x01\n%dialogflow.googleapis.com/Environment\x12\x33projects/{project}/agent/environments/{environment}\x12Hprojects/{project}/locations/{location}/agent/environments/{environment}"\x89\x01\n\x17ListEnvironmentsRequest\x12=\n\x06parent\x18\x01 \x01(\tB-\xe0\x41\x02\xfa\x41\'\x12%dialogflow.googleapis.com/Environment\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01"w\n\x18ListEnvironmentsResponse\x12\x42\n\x0c\x65nvironments\x18\x01 \x03(\x0b\x32,.google.cloud.dialogflow.v2beta1.Environment\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t2\x93\x03\n\x0c\x45nvironments\x12\x88\x02\n\x10ListEnvironments\x12\x38.google.cloud.dialogflow.v2beta1.ListEnvironmentsRequest\x1a\x39.google.cloud.dialogflow.v2beta1.ListEnvironmentsResponse"\x7f\x82\xd3\xe4\x93\x02p\x12//v2beta1/{parent=projects/*/agent}/environmentsZ=\x12;/v2beta1/{parent=projects/*/locations/*/agent}/environments\xda\x41\x06parent\x1ax\xca\x41\x19\x64ialogflow.googleapis.com\xd2\x41Yhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB\xae\x01\n#com.google.cloud.dialogflow.v2beta1B\x10\x45nvironmentProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3',
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
+        google_dot_api_dot_client__pb2.DESCRIPTOR,
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
         google_dot_api_dot_resource__pb2.DESCRIPTOR,
         google_dot_cloud_dot_dialogflow__v2beta1_dot_proto_dot_audio__config__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,
-        google_dot_api_dot_client__pb2.DESCRIPTOR,
     ],
 )
 
@@ -471,7 +471,7 @@ _ENVIRONMENTS = _descriptor.ServiceDescriptor(
     serialized_options=b"\312A\031dialogflow.googleapis.com\322AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflow",
     create_key=_descriptor._internal_create_key,
     serialized_start=1082,
-    serialized_end=1476,
+    serialized_end=1485,
     methods=[
         _descriptor.MethodDescriptor(
             name="ListEnvironments",
@@ -480,7 +480,7 @@ _ENVIRONMENTS = _descriptor.ServiceDescriptor(
             containing_service=None,
             input_type=_LISTENVIRONMENTSREQUEST,
             output_type=_LISTENVIRONMENTSRESPONSE,
-            serialized_options=b"\202\323\344\223\002p\022//v2beta1/{parent=projects/*/agent}/environmentsZ=\022;/v2beta1/{parent=projects/*/locations/*/agent}/environments",
+            serialized_options=b"\202\323\344\223\002p\022//v2beta1/{parent=projects/*/agent}/environmentsZ=\022;/v2beta1/{parent=projects/*/locations/*/agent}/environments\332A\006parent",
             create_key=_descriptor._internal_create_key,
         )
     ],
