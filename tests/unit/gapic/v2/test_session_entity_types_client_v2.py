@@ -61,39 +61,6 @@ class CustomException(Exception):
 
 
 class TestSessionEntityTypesClient(object):
-    def test_delete_session_entity_type(self):
-        channel = ChannelStub()
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.SessionEntityTypesClient()
-
-        # Setup Request
-        name = "name3373707"
-
-        client.delete_session_entity_type(name)
-
-        assert len(channel.requests) == 1
-        expected_request = session_entity_type_pb2.DeleteSessionEntityTypeRequest(
-            name=name
-        )
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_delete_session_entity_type_exception(self):
-        # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.SessionEntityTypesClient()
-
-        # Setup request
-        name = "name3373707"
-
-        with pytest.raises(CustomException):
-            client.delete_session_entity_type(name)
-
     def test_list_session_entity_types(self):
         # Setup Expected Response
         next_page_token = ""
@@ -271,3 +238,36 @@ class TestSessionEntityTypesClient(object):
 
         with pytest.raises(CustomException):
             client.update_session_entity_type(session_entity_type)
+
+    def test_delete_session_entity_type(self):
+        channel = ChannelStub()
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.SessionEntityTypesClient()
+
+        # Setup Request
+        name = "name3373707"
+
+        client.delete_session_entity_type(name)
+
+        assert len(channel.requests) == 1
+        expected_request = session_entity_type_pb2.DeleteSessionEntityTypeRequest(
+            name=name
+        )
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_delete_session_entity_type_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.SessionEntityTypesClient()
+
+        # Setup request
+        name = "name3373707"
+
+        with pytest.raises(CustomException):
+            client.delete_session_entity_type(name)

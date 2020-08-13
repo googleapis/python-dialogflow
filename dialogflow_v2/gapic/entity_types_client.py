@@ -240,269 +240,6 @@ class EntityTypesClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def delete_entity_type(
-        self,
-        name,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes the specified entity type.
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.EntityTypesClient()
-            >>>
-            >>> name = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
-            >>>
-            >>> client.delete_entity_type(name)
-
-        Args:
-            name (str): Required. The name of the entity type to delete. Format:
-                ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "delete_entity_type" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "delete_entity_type"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.delete_entity_type,
-                default_retry=self._method_configs["DeleteEntityType"].retry,
-                default_timeout=self._method_configs["DeleteEntityType"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = entity_type_pb2.DeleteEntityTypeRequest(name=name)
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("name", name)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        self._inner_api_calls["delete_entity_type"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-
-    def batch_delete_entity_types(
-        self,
-        parent,
-        entity_type_names,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes entity types in the specified agent.
-
-        Operation <response: ``google.protobuf.Empty``>
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.EntityTypesClient()
-            >>>
-            >>> parent = client.agent_path('[PROJECT]')
-            >>>
-            >>> # TODO: Initialize `entity_type_names`:
-            >>> entity_type_names = []
-            >>>
-            >>> response = client.batch_delete_entity_types(parent, entity_type_names)
-            >>>
-            >>> def callback(operation_future):
-            ...     # Handle result.
-            ...     result = operation_future.result()
-            >>>
-            >>> response.add_done_callback(callback)
-            >>>
-            >>> # Handle metadata.
-            >>> metadata = response.metadata()
-
-        Args:
-            parent (str): Required. The name of the agent to delete all entities types for.
-                Format: ``projects/<Project ID>/agent``.
-            entity_type_names (list[str]): Required. The names entity types to delete. All names must point to
-                the same agent as ``parent``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "batch_delete_entity_types" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "batch_delete_entity_types"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.batch_delete_entity_types,
-                default_retry=self._method_configs["BatchDeleteEntityTypes"].retry,
-                default_timeout=self._method_configs["BatchDeleteEntityTypes"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = entity_type_pb2.BatchDeleteEntityTypesRequest(
-            parent=parent, entity_type_names=entity_type_names
-        )
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("parent", parent)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        operation = self._inner_api_calls["batch_delete_entity_types"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-        return google.api_core.operation.from_gapic(
-            operation,
-            self.transport._operations_client,
-            empty_pb2.Empty,
-            metadata_type=struct_pb2.Struct,
-        )
-
-    def batch_delete_entities(
-        self,
-        parent,
-        entity_values,
-        language_code=None,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes entities in the specified entity type.
-
-        Operation <response: ``google.protobuf.Empty``>
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.EntityTypesClient()
-            >>>
-            >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
-            >>>
-            >>> # TODO: Initialize `entity_values`:
-            >>> entity_values = []
-            >>>
-            >>> response = client.batch_delete_entities(parent, entity_values)
-            >>>
-            >>> def callback(operation_future):
-            ...     # Handle result.
-            ...     result = operation_future.result()
-            >>>
-            >>> response.add_done_callback(callback)
-            >>>
-            >>> # Handle metadata.
-            >>> metadata = response.metadata()
-
-        Args:
-            parent (str): Required. The name of the entity type to delete entries for. Format:
-                ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
-            entity_values (list[str]): Required. The reference ``values`` of the entities to delete. Note
-                that these are not fully-qualified names, i.e. they don't start with
-                ``projects/<Project ID>``.
-            language_code (str): Optional. The language used to access language-specific data. If not
-                specified, the agent's default language is used. For more information,
-                see `Multilingual intent and entity
-                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "batch_delete_entities" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "batch_delete_entities"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.batch_delete_entities,
-                default_retry=self._method_configs["BatchDeleteEntities"].retry,
-                default_timeout=self._method_configs["BatchDeleteEntities"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = entity_type_pb2.BatchDeleteEntitiesRequest(
-            parent=parent, entity_values=entity_values, language_code=language_code
-        )
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("parent", parent)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        operation = self._inner_api_calls["batch_delete_entities"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-        return google.api_core.operation.from_gapic(
-            operation,
-            self.transport._operations_client,
-            empty_pb2.Empty,
-            metadata_type=struct_pb2.Struct,
-        )
-
     def list_entity_types(
         self,
         parent,
@@ -861,6 +598,73 @@ class EntityTypesClient(object):
             request, retry=retry, timeout=timeout, metadata=metadata
         )
 
+    def delete_entity_type(
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes the specified entity type.
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.EntityTypesClient()
+            >>>
+            >>> name = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>>
+            >>> client.delete_entity_type(name)
+
+        Args:
+            name (str): Required. The name of the entity type to delete. Format:
+                ``projects/<Project ID>/agent/entityTypes/<EntityType ID>``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "delete_entity_type" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_entity_type"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_entity_type,
+                default_retry=self._method_configs["DeleteEntityType"].retry,
+                default_timeout=self._method_configs["DeleteEntityType"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = entity_type_pb2.DeleteEntityTypeRequest(name=name)
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("name", name)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        self._inner_api_calls["delete_entity_type"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+
     def batch_update_entity_types(
         self,
         parent,
@@ -978,6 +782,101 @@ class EntityTypesClient(object):
             operation,
             self.transport._operations_client,
             entity_type_pb2.BatchUpdateEntityTypesResponse,
+            metadata_type=struct_pb2.Struct,
+        )
+
+    def batch_delete_entity_types(
+        self,
+        parent,
+        entity_type_names,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes entity types in the specified agent.
+
+        Operation <response: ``google.protobuf.Empty``>
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.EntityTypesClient()
+            >>>
+            >>> parent = client.agent_path('[PROJECT]')
+            >>>
+            >>> # TODO: Initialize `entity_type_names`:
+            >>> entity_type_names = []
+            >>>
+            >>> response = client.batch_delete_entity_types(parent, entity_type_names)
+            >>>
+            >>> def callback(operation_future):
+            ...     # Handle result.
+            ...     result = operation_future.result()
+            >>>
+            >>> response.add_done_callback(callback)
+            >>>
+            >>> # Handle metadata.
+            >>> metadata = response.metadata()
+
+        Args:
+            parent (str): Required. The name of the agent to delete all entities types for.
+                Format: ``projects/<Project ID>/agent``.
+            entity_type_names (list[str]): Required. The names entity types to delete. All names must point to
+                the same agent as ``parent``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "batch_delete_entity_types" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_delete_entity_types"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.batch_delete_entity_types,
+                default_retry=self._method_configs["BatchDeleteEntityTypes"].retry,
+                default_timeout=self._method_configs["BatchDeleteEntityTypes"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = entity_type_pb2.BatchDeleteEntityTypesRequest(
+            parent=parent, entity_type_names=entity_type_names
+        )
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("parent", parent)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        operation = self._inner_api_calls["batch_delete_entity_types"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+        return google.api_core.operation.from_gapic(
+            operation,
+            self.transport._operations_client,
+            empty_pb2.Empty,
             metadata_type=struct_pb2.Struct,
         )
 
@@ -1187,6 +1086,107 @@ class EntityTypesClient(object):
             metadata.append(routing_metadata)
 
         operation = self._inner_api_calls["batch_update_entities"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+        return google.api_core.operation.from_gapic(
+            operation,
+            self.transport._operations_client,
+            empty_pb2.Empty,
+            metadata_type=struct_pb2.Struct,
+        )
+
+    def batch_delete_entities(
+        self,
+        parent,
+        entity_values,
+        language_code=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes entities in the specified entity type.
+
+        Operation <response: ``google.protobuf.Empty``>
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.EntityTypesClient()
+            >>>
+            >>> parent = client.entity_type_path('[PROJECT]', '[ENTITY_TYPE]')
+            >>>
+            >>> # TODO: Initialize `entity_values`:
+            >>> entity_values = []
+            >>>
+            >>> response = client.batch_delete_entities(parent, entity_values)
+            >>>
+            >>> def callback(operation_future):
+            ...     # Handle result.
+            ...     result = operation_future.result()
+            >>>
+            >>> response.add_done_callback(callback)
+            >>>
+            >>> # Handle metadata.
+            >>> metadata = response.metadata()
+
+        Args:
+            parent (str): Required. The name of the entity type to delete entries for. Format:
+                ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``.
+            entity_values (list[str]): Required. The reference ``values`` of the entities to delete. Note
+                that these are not fully-qualified names, i.e. they don't start with
+                ``projects/<Project ID>``.
+            language_code (str): Optional. The language used to access language-specific data. If not
+                specified, the agent's default language is used. For more information,
+                see `Multilingual intent and entity
+                data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "batch_delete_entities" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_delete_entities"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.batch_delete_entities,
+                default_retry=self._method_configs["BatchDeleteEntities"].retry,
+                default_timeout=self._method_configs["BatchDeleteEntities"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = entity_type_pb2.BatchDeleteEntitiesRequest(
+            parent=parent, entity_values=entity_values, language_code=language_code
+        )
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("parent", parent)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        operation = self._inner_api_calls["batch_delete_entities"](
             request, retry=retry, timeout=timeout, metadata=metadata
         )
         return google.api_core.operation.from_gapic(

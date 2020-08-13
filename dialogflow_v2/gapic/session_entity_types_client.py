@@ -235,83 +235,6 @@ class SessionEntityTypesClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def delete_session_entity_type(
-        self,
-        name,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes the specified session entity type.
-
-        This method doesn't work with Google Assistant integration.
-        Contact Dialogflow support if you need to use session entities
-        with Google Assistant integration.
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.SessionEntityTypesClient()
-            >>>
-            >>> # TODO: Initialize `name`:
-            >>> name = ''
-            >>>
-            >>> client.delete_session_entity_type(name)
-
-        Args:
-            name (str): Required. The name of the entity type to delete. Format:
-                ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``
-                or
-                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``.
-                If ``Environment ID`` is not specified, we assume default 'draft'
-                environment. If ``User ID`` is not specified, we assume default '-'
-                user.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "delete_session_entity_type" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "delete_session_entity_type"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.delete_session_entity_type,
-                default_retry=self._method_configs["DeleteSessionEntityType"].retry,
-                default_timeout=self._method_configs["DeleteSessionEntityType"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = session_entity_type_pb2.DeleteSessionEntityTypeRequest(name=name)
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("name", name)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        self._inner_api_calls["delete_session_entity_type"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-
     def list_session_entity_types(
         self,
         parent,
@@ -678,5 +601,82 @@ class SessionEntityTypesClient(object):
             metadata.append(routing_metadata)
 
         return self._inner_api_calls["update_session_entity_type"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+
+    def delete_session_entity_type(
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes the specified session entity type.
+
+        This method doesn't work with Google Assistant integration.
+        Contact Dialogflow support if you need to use session entities
+        with Google Assistant integration.
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.SessionEntityTypesClient()
+            >>>
+            >>> # TODO: Initialize `name`:
+            >>> name = ''
+            >>>
+            >>> client.delete_session_entity_type(name)
+
+        Args:
+            name (str): Required. The name of the entity type to delete. Format:
+                ``projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``
+                or
+                ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>``.
+                If ``Environment ID`` is not specified, we assume default 'draft'
+                environment. If ``User ID`` is not specified, we assume default '-'
+                user.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "delete_session_entity_type" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_session_entity_type"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_session_entity_type,
+                default_retry=self._method_configs["DeleteSessionEntityType"].retry,
+                default_timeout=self._method_configs["DeleteSessionEntityType"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = session_entity_type_pb2.DeleteSessionEntityTypeRequest(name=name)
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("name", name)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        self._inner_api_calls["delete_session_entity_type"](
             request, retry=retry, timeout=timeout, metadata=metadata
         )

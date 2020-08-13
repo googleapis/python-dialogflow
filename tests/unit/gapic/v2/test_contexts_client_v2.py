@@ -61,68 +61,6 @@ class CustomException(Exception):
 
 
 class TestContextsClient(object):
-    def test_delete_context(self):
-        channel = ChannelStub()
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.ContextsClient()
-
-        # Setup Request
-        name = "name3373707"
-
-        client.delete_context(name)
-
-        assert len(channel.requests) == 1
-        expected_request = context_pb2.DeleteContextRequest(name=name)
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_delete_context_exception(self):
-        # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.ContextsClient()
-
-        # Setup request
-        name = "name3373707"
-
-        with pytest.raises(CustomException):
-            client.delete_context(name)
-
-    def test_delete_all_contexts(self):
-        channel = ChannelStub()
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.ContextsClient()
-
-        # Setup Request
-        parent = "parent-995424086"
-
-        client.delete_all_contexts(parent)
-
-        assert len(channel.requests) == 1
-        expected_request = context_pb2.DeleteAllContextsRequest(parent=parent)
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_delete_all_contexts_exception(self):
-        # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = dialogflow_v2.ContextsClient()
-
-        # Setup request
-        parent = "parent-995424086"
-
-        with pytest.raises(CustomException):
-            client.delete_all_contexts(parent)
-
     def test_list_contexts(self):
         # Setup Expected Response
         next_page_token = ""
@@ -286,3 +224,65 @@ class TestContextsClient(object):
 
         with pytest.raises(CustomException):
             client.update_context(context)
+
+    def test_delete_context(self):
+        channel = ChannelStub()
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.ContextsClient()
+
+        # Setup Request
+        name = "name3373707"
+
+        client.delete_context(name)
+
+        assert len(channel.requests) == 1
+        expected_request = context_pb2.DeleteContextRequest(name=name)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_delete_context_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.ContextsClient()
+
+        # Setup request
+        name = "name3373707"
+
+        with pytest.raises(CustomException):
+            client.delete_context(name)
+
+    def test_delete_all_contexts(self):
+        channel = ChannelStub()
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.ContextsClient()
+
+        # Setup Request
+        parent = "parent-995424086"
+
+        client.delete_all_contexts(parent)
+
+        assert len(channel.requests) == 1
+        expected_request = context_pb2.DeleteAllContextsRequest(parent=parent)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_delete_all_contexts_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = dialogflow_v2.ContextsClient()
+
+        # Setup request
+        parent = "parent-995424086"
+
+        with pytest.raises(CustomException):
+            client.delete_all_contexts(parent)

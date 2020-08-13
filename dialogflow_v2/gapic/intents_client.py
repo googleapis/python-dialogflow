@@ -245,170 +245,6 @@ class IntentsClient(object):
         self._inner_api_calls = {}
 
     # Service calls
-    def delete_intent(
-        self,
-        name,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes the specified intent and its direct or indirect followup intents.
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.IntentsClient()
-            >>>
-            >>> name = client.intent_path('[PROJECT]', '[INTENT]')
-            >>>
-            >>> client.delete_intent(name)
-
-        Args:
-            name (str): Required. The name of the intent to delete. If this intent has
-                direct or indirect followup intents, we also delete them. Format:
-                ``projects/<Project ID>/agent/intents/<Intent ID>``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "delete_intent" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "delete_intent"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.delete_intent,
-                default_retry=self._method_configs["DeleteIntent"].retry,
-                default_timeout=self._method_configs["DeleteIntent"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = intent_pb2.DeleteIntentRequest(name=name)
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("name", name)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        self._inner_api_calls["delete_intent"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-
-    def batch_delete_intents(
-        self,
-        parent,
-        intents,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes intents in the specified agent.
-
-        Operation <response: ``google.protobuf.Empty``>
-
-        Example:
-            >>> import dialogflow_v2
-            >>>
-            >>> client = dialogflow_v2.IntentsClient()
-            >>>
-            >>> parent = client.agent_path('[PROJECT]')
-            >>>
-            >>> # TODO: Initialize `intents`:
-            >>> intents = []
-            >>>
-            >>> response = client.batch_delete_intents(parent, intents)
-            >>>
-            >>> def callback(operation_future):
-            ...     # Handle result.
-            ...     result = operation_future.result()
-            >>>
-            >>> response.add_done_callback(callback)
-            >>>
-            >>> # Handle metadata.
-            >>> metadata = response.metadata()
-
-        Args:
-            parent (str): Required. The name of the agent to delete all entities types for.
-                Format: ``projects/<Project ID>/agent``.
-            intents (list[Union[dict, ~google.cloud.dialogflow_v2.types.Intent]]): Required. The collection of intents to delete. Only intent ``name``
-                must be filled in.
-
-                If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~google.cloud.dialogflow_v2.types.Intent`
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "batch_delete_intents" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "batch_delete_intents"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.batch_delete_intents,
-                default_retry=self._method_configs["BatchDeleteIntents"].retry,
-                default_timeout=self._method_configs["BatchDeleteIntents"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = intent_pb2.BatchDeleteIntentsRequest(parent=parent, intents=intents)
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("parent", parent)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        operation = self._inner_api_calls["batch_delete_intents"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-        return google.api_core.operation.from_gapic(
-            operation,
-            self.transport._operations_client,
-            empty_pb2.Empty,
-            metadata_type=struct_pb2.Struct,
-        )
-
     def list_intents(
         self,
         parent,
@@ -782,6 +618,74 @@ class IntentsClient(object):
             request, retry=retry, timeout=timeout, metadata=metadata
         )
 
+    def delete_intent(
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes the specified intent and its direct or indirect followup intents.
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.IntentsClient()
+            >>>
+            >>> name = client.intent_path('[PROJECT]', '[INTENT]')
+            >>>
+            >>> client.delete_intent(name)
+
+        Args:
+            name (str): Required. The name of the intent to delete. If this intent has
+                direct or indirect followup intents, we also delete them. Format:
+                ``projects/<Project ID>/agent/intents/<Intent ID>``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "delete_intent" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_intent"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_intent,
+                default_retry=self._method_configs["DeleteIntent"].retry,
+                default_timeout=self._method_configs["DeleteIntent"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = intent_pb2.DeleteIntentRequest(name=name)
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("name", name)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        self._inner_api_calls["delete_intent"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+
     def batch_update_intents(
         self,
         parent,
@@ -900,5 +804,101 @@ class IntentsClient(object):
             operation,
             self.transport._operations_client,
             intent_pb2.BatchUpdateIntentsResponse,
+            metadata_type=struct_pb2.Struct,
+        )
+
+    def batch_delete_intents(
+        self,
+        parent,
+        intents,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes intents in the specified agent.
+
+        Operation <response: ``google.protobuf.Empty``>
+
+        Example:
+            >>> import dialogflow_v2
+            >>>
+            >>> client = dialogflow_v2.IntentsClient()
+            >>>
+            >>> parent = client.agent_path('[PROJECT]')
+            >>>
+            >>> # TODO: Initialize `intents`:
+            >>> intents = []
+            >>>
+            >>> response = client.batch_delete_intents(parent, intents)
+            >>>
+            >>> def callback(operation_future):
+            ...     # Handle result.
+            ...     result = operation_future.result()
+            >>>
+            >>> response.add_done_callback(callback)
+            >>>
+            >>> # Handle metadata.
+            >>> metadata = response.metadata()
+
+        Args:
+            parent (str): Required. The name of the agent to delete all entities types for.
+                Format: ``projects/<Project ID>/agent``.
+            intents (list[Union[dict, ~google.cloud.dialogflow_v2.types.Intent]]): Required. The collection of intents to delete. Only intent ``name``
+                must be filled in.
+
+                If a dict is provided, it must be of the same form as the protobuf
+                message :class:`~google.cloud.dialogflow_v2.types.Intent`
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.dialogflow_v2.types._OperationFuture` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "batch_delete_intents" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_delete_intents"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.batch_delete_intents,
+                default_retry=self._method_configs["BatchDeleteIntents"].retry,
+                default_timeout=self._method_configs["BatchDeleteIntents"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = intent_pb2.BatchDeleteIntentsRequest(parent=parent, intents=intents)
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("parent", parent)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        operation = self._inner_api_calls["batch_delete_intents"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+        return google.api_core.operation.from_gapic(
+            operation,
+            self.transport._operations_client,
+            empty_pb2.Empty,
             metadata_type=struct_pb2.Struct,
         )

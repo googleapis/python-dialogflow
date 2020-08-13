@@ -117,6 +117,19 @@ class AgentsGrpcTransport(object):
         return self._channel
 
     @property
+    def get_agent(self):
+        """Return the gRPC stub for :meth:`AgentsClient.get_agent`.
+
+        Retrieves the specified agent.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["agents_stub"].GetAgent
+
+    @property
     def set_agent(self):
         """Return the gRPC stub for :meth:`AgentsClient.set_agent`.
 
@@ -192,43 +205,6 @@ class AgentsGrpcTransport(object):
         return self._stubs["agents_stub"].ExportAgent
 
     @property
-    def restore_agent(self):
-        """Return the gRPC stub for :meth:`AgentsClient.restore_agent`.
-
-        Restores the specified agent from a ZIP file.
-
-        Replaces the current agent version with a new one. All the intents and
-        entity types in the older version are deleted. After the restore, the
-        restored draft agent will be trained automatically (unless disabled in
-        agent settings). However, once the restore is done, training may not be
-        completed yet. Please call ``TrainAgent`` and wait for the operation it
-        returns in order to train explicitly.
-
-        Operation <response: ``google.protobuf.Empty``> An operation which
-        tracks when restoring is complete. It only tracks when the draft agent
-        is updated not when it is done training.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["agents_stub"].RestoreAgent
-
-    @property
-    def get_agent(self):
-        """Return the gRPC stub for :meth:`AgentsClient.get_agent`.
-
-        Retrieves the specified agent.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["agents_stub"].GetAgent
-
-    @property
     def import_agent(self):
         """Return the gRPC stub for :meth:`AgentsClient.import_agent`.
 
@@ -252,6 +228,30 @@ class AgentsGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["agents_stub"].ImportAgent
+
+    @property
+    def restore_agent(self):
+        """Return the gRPC stub for :meth:`AgentsClient.restore_agent`.
+
+        Restores the specified agent from a ZIP file.
+
+        Replaces the current agent version with a new one. All the intents and
+        entity types in the older version are deleted. After the restore, the
+        restored draft agent will be trained automatically (unless disabled in
+        agent settings). However, once the restore is done, training may not be
+        completed yet. Please call ``TrainAgent`` and wait for the operation it
+        returns in order to train explicitly.
+
+        Operation <response: ``google.protobuf.Empty``> An operation which
+        tracks when restoring is complete. It only tracks when the draft agent
+        is updated not when it is done training.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["agents_stub"].RestoreAgent
 
     @property
     def get_validation_result(self):
