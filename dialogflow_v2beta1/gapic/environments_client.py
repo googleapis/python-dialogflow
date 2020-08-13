@@ -248,7 +248,9 @@ class EnvironmentsClient(object):
 
         Args:
             parent (str): Required. The agent to list all environments from. Format:
-                ``projects/<Project ID>/agent``.
+
+                -  ``projects/<Project Number / ID>/agent``
+                -  \`projects/<Project Number / ID>/locations//agent
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
