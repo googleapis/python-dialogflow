@@ -98,6 +98,17 @@ class SessionsClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
+    def environment_session_path(cls, project, environment, user, session):
+        """Return a fully-qualified environment_session string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}",
+            project=project,
+            environment=environment,
+            user=user,
+            session=session,
+        )
+
+    @classmethod
     def session_path(cls, project, session):
         """Return a fully-qualified session string."""
         return google.api_core.path_template.expand(

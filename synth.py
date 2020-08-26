@@ -285,6 +285,29 @@ count = s.replace(
 if count != 1:
     raise Exception("Required replacement not made.")
 
+count = s.replace(
+    "dialogflow_v2beta1/**/sessions_client.py",
+    """@classmethod
+\s+def session_path\(cls, project, session\):""",
+    '''@classmethod	
+    def environment_session_path(cls, project, environment, user, session):	
+        """Return a fully-qualified environment_session string."""	
+        return google.api_core.path_template.expand(	
+            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}",	
+            project=project,	
+            environment=environment,	
+            user=user,	
+            session=session,	
+        )
+    
+    @classmethod
+    def session_path(cls, project, session):'''
+)
+
+if count != 1:
+    raise Exception("Required replacement not made.")
+
+
 # fix unit test 
 s.replace(
     "tests/**/test_intents_client_v2.py",
