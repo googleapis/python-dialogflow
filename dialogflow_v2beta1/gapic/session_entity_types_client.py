@@ -92,6 +92,31 @@ class SessionEntityTypesClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
+    def environment_session_path(cls, project, environment, user, session):
+        """Return a fully-qualified environment_session string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}",
+            project=project,
+            environment=environment,
+            user=user,
+            session=session,
+        )
+
+    @classmethod
+    def environment_session_entity_type_path(
+        cls, project, environment, user, session, entity_type
+    ):
+        """Return a fully-qualified environment_session_entity_type string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}",
+            project=project,
+            environment=environment,
+            user=user,
+            session=session,
+            entity_type=entity_type,
+        )
+
+    @classmethod
     def session_path(cls, project, session):
         """Return a fully-qualified session string."""
         return google.api_core.path_template.expand(

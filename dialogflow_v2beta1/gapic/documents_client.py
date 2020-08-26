@@ -682,7 +682,7 @@ class DocumentsClient(object):
 
     def reload_document(
         self,
-        name,
+        name=None,
         gcs_source=None,
         retry=google.api_core.gapic_v1.method.DEFAULT,
         timeout=google.api_core.gapic_v1.method.DEFAULT,

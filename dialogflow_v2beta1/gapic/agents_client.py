@@ -930,9 +930,9 @@ class AgentsClient(object):
             metadata_type=struct_pb2.Struct,
         )
 
-    def get_validation_result(
+    def get_validation_results(
         self,
-        parent,
+        parent=None,
         language_code=None,
         retry=google.api_core.gapic_v1.method.DEFAULT,
         timeout=google.api_core.gapic_v1.method.DEFAULT,

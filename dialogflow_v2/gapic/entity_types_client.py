@@ -84,6 +84,13 @@ class EntityTypesClient(object):
     from_service_account_json = from_service_account_file
 
     @classmethod
+    def project_agent_path(cls, project):
+        """Return a fully-qualified project_agent string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/agent", project=project
+        )
+
+    @classmethod
     def agent_path(cls, project):
         """Return a fully-qualified agent string."""
         return google.api_core.path_template.expand(
