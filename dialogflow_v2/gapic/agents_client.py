@@ -924,7 +924,7 @@ class AgentsClient(object):
             metadata_type=struct_pb2.Struct,
         )
 
-    def get_validation_results(
+    def get_validation_result(
         self,
         parent=None,
         language_code=None,

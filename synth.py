@@ -144,7 +144,7 @@ count = s.replace(
     """(\s+)def get_validation_result\(
 (\s+)self,
 \s+parent,""",
-"""\g<1>def get_validation_results(
+"""\g<1>def get_validation_result(
         self,
         parent=None,"""
 )
