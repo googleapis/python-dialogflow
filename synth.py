@@ -285,5 +285,11 @@ count = s.replace(
 if count != 1:
     raise Exception("Required replacement not made.")
 
+# fix unit test 
+s.replace(
+    "tests/**/test_intents_client_v2.py",
+    """client\.agent_path\('\[PROJECT\]'\)""",
+    """client.agent_path("[PROJECT]", "[AGENT]")""",
+)
 
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
