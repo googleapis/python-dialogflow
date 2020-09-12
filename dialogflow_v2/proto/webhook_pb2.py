@@ -545,9 +545,9 @@ OriginalDetectIntentRequest = _reflection.GeneratedProtocolMessageType(
           Dialogflow Phone Gateway integration, this field has the form:
           .. raw:: html     <pre>{     "telephony": {       "caller_id":
           "+18558363987"     }    }</pre>  Note: The caller ID field
-          (``caller_id``) will be redacted for Standard Edition agents
-          and populated with the caller ID in `E.164 format
-          <https://en.wikipedia.org/wiki/E.164>`__ for Enterprise
+          (``caller_id``) will be redacted for Trial Edition agents and
+          populated with the caller ID in `E.164 format
+          <https://en.wikipedia.org/wiki/E.164>`__ for Essentials
           Edition agents.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2.OriginalDetectIntentRequest)

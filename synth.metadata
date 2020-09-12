@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/dialogflow-python-client-v2.git",
-        "sha": "e78b0e6765f94fb9ecbbc72c9fc30ce7245703e2"
+        "sha": "73e004697b64c951fe8c3d1ef38b717701947deb"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "4bc344a7c1b638ce317045c57d8009856aba81d3",
-        "internalRef": "329103436"
+        "sha": "b100ad424293ce5d5378e9067d9d83c4973a115a",
+        "internalRef": "331189912"
       }
     }
   ],
