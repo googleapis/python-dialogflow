@@ -1,16 +1,7 @@
-.. include:: README.rst
-
-Api Reference
+API Reference
 -------------
 .. toctree::
     :maxdepth: 2
-    
-    v2
-    v2beta1
 
-Changelog
-----------
-.. toctree::
-    :maxdepth: 2
-
-    changelog
+    dialogflow_v2/services
+    dialogflow_v2/types
