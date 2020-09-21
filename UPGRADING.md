@@ -163,3 +163,18 @@ from google.cloud import dialogvlow_v2
 
 query_params = dialogvlow_v2.types.QueryParameters(time_zone="Europe/Paris")
 ```
+
+
+## Resource path helpers
+
+> **WARNING**: Breaking change
+
+The following resource path helper methods have been removed:
+
+```py
+project_agent_path
+session_path
+environment_context_path
+environment_session_path
+environment_session_entity_type_path
+```
