@@ -30,7 +30,7 @@ from google.cloud import dialogflow
 
 client = dialogflow.ContextsClient()
 
-response= client.list_contexts(request={"parent": "projects/1337/agent/sessions/1024", page_size=10})
+response = client.list_contexts(request={"parent": "projects/1337/agent/sessions/1024", page_size=10})
 More Details
 In google-cloud-dialogflow<2.0.0, parameters required by the API were positional parameters and optional parameters were keyword parameters.
 
