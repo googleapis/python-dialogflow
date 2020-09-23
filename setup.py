@@ -17,12 +17,14 @@ import os
 
 import setuptools
 
+# basic information of this Package
 name = "dialogflow"
 description = "Client library for the Dialogflow API"
 version = "1.1.0"
 release_status = "Development Status :: 5 - Production/Stable"
 dependencies = ["google-api-core[grpc] >= 1.14.0, < 2.0.0dev"]
 
+# PATH of the package root
 package_root = os.path.abspath(os.path.dirname(__file__))
 
 readme_filename = os.path.join(package_root, "README.rst")
