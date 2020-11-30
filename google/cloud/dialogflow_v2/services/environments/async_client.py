@@ -46,8 +46,45 @@ class EnvironmentsAsyncClient:
     DEFAULT_ENDPOINT = EnvironmentsClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = EnvironmentsClient.DEFAULT_MTLS_ENDPOINT
 
+    environment_path = staticmethod(EnvironmentsClient.environment_path)
+    parse_environment_path = staticmethod(EnvironmentsClient.parse_environment_path)
+
+    common_billing_account_path = staticmethod(
+        EnvironmentsClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        EnvironmentsClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(EnvironmentsClient.common_folder_path)
+    parse_common_folder_path = staticmethod(EnvironmentsClient.parse_common_folder_path)
+
+    common_organization_path = staticmethod(EnvironmentsClient.common_organization_path)
+    parse_common_organization_path = staticmethod(
+        EnvironmentsClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(EnvironmentsClient.common_project_path)
+    parse_common_project_path = staticmethod(
+        EnvironmentsClient.parse_common_project_path
+    )
+
+    common_location_path = staticmethod(EnvironmentsClient.common_location_path)
+    parse_common_location_path = staticmethod(
+        EnvironmentsClient.parse_common_location_path
+    )
+
     from_service_account_file = EnvironmentsClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> EnvironmentsTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            EnvironmentsTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(EnvironmentsClient).get_transport_class, type(EnvironmentsClient)

@@ -28,8 +28,8 @@ from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.api_core import operation
-from google.api_core import operation_async
+from google.api_core import operation  # type: ignore
+from google.api_core import operation_async  # type: ignore
 from google.cloud.dialogflow_v2.services.entity_types import pagers
 from google.cloud.dialogflow_v2.types import entity_type
 from google.cloud.dialogflow_v2.types import entity_type as gcd_entity_type
@@ -54,8 +54,42 @@ class EntityTypesAsyncClient:
     entity_type_path = staticmethod(EntityTypesClient.entity_type_path)
     parse_entity_type_path = staticmethod(EntityTypesClient.parse_entity_type_path)
 
+    common_billing_account_path = staticmethod(
+        EntityTypesClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        EntityTypesClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(EntityTypesClient.common_folder_path)
+    parse_common_folder_path = staticmethod(EntityTypesClient.parse_common_folder_path)
+
+    common_organization_path = staticmethod(EntityTypesClient.common_organization_path)
+    parse_common_organization_path = staticmethod(
+        EntityTypesClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(EntityTypesClient.common_project_path)
+    parse_common_project_path = staticmethod(
+        EntityTypesClient.parse_common_project_path
+    )
+
+    common_location_path = staticmethod(EntityTypesClient.common_location_path)
+    parse_common_location_path = staticmethod(
+        EntityTypesClient.parse_common_location_path
+    )
+
     from_service_account_file = EntityTypesClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> EntityTypesTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            EntityTypesTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(EntityTypesClient).get_transport_class, type(EntityTypesClient)
@@ -160,7 +194,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, language_code]):
+        has_flattened_params = any([parent, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -262,7 +297,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, language_code]):
+        has_flattened_params = any([name, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -364,7 +400,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, entity_type, language_code]):
+        has_flattened_params = any([parent, entity_type, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -461,7 +498,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([entity_type, language_code]):
+        has_flattened_params = any([entity_type, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -530,7 +568,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -691,7 +730,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, entity_type_names]):
+        has_flattened_params = any([parent, entity_type_names])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -704,8 +744,9 @@ class EntityTypesAsyncClient:
 
         if parent is not None:
             request.parent = parent
-        if entity_type_names is not None:
-            request.entity_type_names = entity_type_names
+
+        if entity_type_names:
+            request.entity_type_names.extend(entity_type_names)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -807,7 +848,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, entities, language_code]):
+        has_flattened_params = any([parent, entities, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -820,10 +862,11 @@ class EntityTypesAsyncClient:
 
         if parent is not None:
             request.parent = parent
-        if entities is not None:
-            request.entities = entities
         if language_code is not None:
             request.language_code = language_code
+
+        if entities:
+            request.entities.extend(entities)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -928,7 +971,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, entities, language_code]):
+        has_flattened_params = any([parent, entities, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -941,10 +985,11 @@ class EntityTypesAsyncClient:
 
         if parent is not None:
             request.parent = parent
-        if entities is not None:
-            request.entities = entities
         if language_code is not None:
             request.language_code = language_code
+
+        if entities:
+            request.entities.extend(entities)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1048,7 +1093,8 @@ class EntityTypesAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, entity_values, language_code]):
+        has_flattened_params = any([parent, entity_values, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1061,10 +1107,11 @@ class EntityTypesAsyncClient:
 
         if parent is not None:
             request.parent = parent
-        if entity_values is not None:
-            request.entity_values = entity_values
         if language_code is not None:
             request.language_code = language_code
+
+        if entity_values:
+            request.entity_values.extend(entity_values)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

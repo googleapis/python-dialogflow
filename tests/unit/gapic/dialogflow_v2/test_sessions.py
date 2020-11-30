@@ -36,16 +36,11 @@ from google.cloud.dialogflow_v2.services.sessions import SessionsAsyncClient
 from google.cloud.dialogflow_v2.services.sessions import SessionsClient
 from google.cloud.dialogflow_v2.services.sessions import transports
 from google.cloud.dialogflow_v2.types import audio_config
-from google.cloud.dialogflow_v2.types import audio_config as gcd_audio_config
 from google.cloud.dialogflow_v2.types import context
-from google.cloud.dialogflow_v2.types import context as gcd_context
 from google.cloud.dialogflow_v2.types import entity_type
 from google.cloud.dialogflow_v2.types import session
 from google.cloud.dialogflow_v2.types import session as gcd_session
 from google.cloud.dialogflow_v2.types import session_entity_type
-from google.cloud.dialogflow_v2.types import (
-    session_entity_type as gcd_session_entity_type,
-)
 from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import struct_pb2 as struct  # type: ignore
@@ -100,12 +95,12 @@ def test_sessions_client_from_service_account_file(client_class):
     ) as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
         client = client_class.from_service_account_json("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
-        assert client._transport._host == "dialogflow.googleapis.com:443"
+        assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_sessions_client_get_transport_class():
@@ -435,7 +430,7 @@ def test_detect_intent(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.detect_intent), "__call__") as call:
+    with mock.patch.object(type(client.transport.detect_intent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session.DetectIntentResponse(
             response_id="response_id_value", output_audio=b"output_audio_blob",
@@ -450,6 +445,7 @@ def test_detect_intent(
         assert args[0] == gcd_session.DetectIntentRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, gcd_session.DetectIntentResponse)
 
     assert response.response_id == "response_id_value"
@@ -462,19 +458,19 @@ def test_detect_intent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_detect_intent_async(transport: str = "grpc_asyncio"):
+async def test_detect_intent_async(
+    transport: str = "grpc_asyncio", request_type=gcd_session.DetectIntentRequest
+):
     client = SessionsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = gcd_session.DetectIntentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.detect_intent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.detect_intent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             gcd_session.DetectIntentResponse(
@@ -488,7 +484,7 @@ async def test_detect_intent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == gcd_session.DetectIntentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcd_session.DetectIntentResponse)
@@ -496,6 +492,11 @@ async def test_detect_intent_async(transport: str = "grpc_asyncio"):
     assert response.response_id == "response_id_value"
 
     assert response.output_audio == b"output_audio_blob"
+
+
+@pytest.mark.asyncio
+async def test_detect_intent_async_from_dict():
+    await test_detect_intent_async(request_type=dict)
 
 
 def test_detect_intent_field_headers():
@@ -507,7 +508,7 @@ def test_detect_intent_field_headers():
     request.session = "session/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.detect_intent), "__call__") as call:
+    with mock.patch.object(type(client.transport.detect_intent), "__call__") as call:
         call.return_value = gcd_session.DetectIntentResponse()
 
         client.detect_intent(request)
@@ -532,9 +533,7 @@ async def test_detect_intent_field_headers_async():
     request.session = "session/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.detect_intent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.detect_intent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             gcd_session.DetectIntentResponse()
         )
@@ -555,7 +554,7 @@ def test_detect_intent_flattened():
     client = SessionsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.detect_intent), "__call__") as call:
+    with mock.patch.object(type(client.transport.detect_intent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session.DetectIntentResponse()
 
@@ -564,7 +563,7 @@ def test_detect_intent_flattened():
         client.detect_intent(
             session="session_value",
             query_input=gcd_session.QueryInput(
-                audio_config=gcd_audio_config.InputAudioConfig(
+                audio_config=audio_config.InputAudioConfig(
                     audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
                 )
             ),
@@ -578,7 +577,7 @@ def test_detect_intent_flattened():
         assert args[0].session == "session_value"
 
         assert args[0].query_input == gcd_session.QueryInput(
-            audio_config=gcd_audio_config.InputAudioConfig(
+            audio_config=audio_config.InputAudioConfig(
                 audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
             )
         )
@@ -594,7 +593,7 @@ def test_detect_intent_flattened_error():
             gcd_session.DetectIntentRequest(),
             session="session_value",
             query_input=gcd_session.QueryInput(
-                audio_config=gcd_audio_config.InputAudioConfig(
+                audio_config=audio_config.InputAudioConfig(
                     audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
                 )
             ),
@@ -606,9 +605,7 @@ async def test_detect_intent_flattened_async():
     client = SessionsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.detect_intent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.detect_intent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session.DetectIntentResponse()
 
@@ -620,7 +617,7 @@ async def test_detect_intent_flattened_async():
         response = await client.detect_intent(
             session="session_value",
             query_input=gcd_session.QueryInput(
-                audio_config=gcd_audio_config.InputAudioConfig(
+                audio_config=audio_config.InputAudioConfig(
                     audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
                 )
             ),
@@ -634,7 +631,7 @@ async def test_detect_intent_flattened_async():
         assert args[0].session == "session_value"
 
         assert args[0].query_input == gcd_session.QueryInput(
-            audio_config=gcd_audio_config.InputAudioConfig(
+            audio_config=audio_config.InputAudioConfig(
                 audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
             )
         )
@@ -651,7 +648,7 @@ async def test_detect_intent_flattened_error_async():
             gcd_session.DetectIntentRequest(),
             session="session_value",
             query_input=gcd_session.QueryInput(
-                audio_config=gcd_audio_config.InputAudioConfig(
+                audio_config=audio_config.InputAudioConfig(
                     audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
                 )
             ),
@@ -673,7 +670,7 @@ def test_streaming_detect_intent(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.streaming_detect_intent), "__call__"
+        type(client.transport.streaming_detect_intent), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = iter([session.StreamingDetectIntentResponse()])
@@ -696,20 +693,22 @@ def test_streaming_detect_intent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_streaming_detect_intent_async(transport: str = "grpc_asyncio"):
+async def test_streaming_detect_intent_async(
+    transport: str = "grpc_asyncio", request_type=session.StreamingDetectIntentRequest
+):
     client = SessionsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = session.StreamingDetectIntentRequest()
+    request = request_type()
 
     requests = [request]
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.streaming_detect_intent), "__call__"
+        type(client.transport.streaming_detect_intent), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = mock.Mock(aio.StreamStreamCall, autospec=True)
@@ -728,6 +727,11 @@ async def test_streaming_detect_intent_async(transport: str = "grpc_asyncio"):
     # Establish that the response is the type that we expect.
     message = await response.read()
     assert isinstance(message, session.StreamingDetectIntentResponse)
+
+
+@pytest.mark.asyncio
+async def test_streaming_detect_intent_async_from_dict():
+    await test_streaming_detect_intent_async(request_type=dict)
 
 
 def test_credentials_transport_error():
@@ -766,7 +770,7 @@ def test_transport_instance():
         credentials=credentials.AnonymousCredentials(),
     )
     client = SessionsClient(transport=transport)
-    assert client._transport is transport
+    assert client.transport is transport
 
 
 def test_transport_get_channel():
@@ -799,7 +803,7 @@ def test_transport_adc(transport_class):
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = SessionsClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client._transport, transports.SessionsGrpcTransport,)
+    assert isinstance(client.transport, transports.SessionsGrpcTransport,)
 
 
 def test_sessions_base_transport_error():
@@ -903,7 +907,7 @@ def test_sessions_host_no_port():
             api_endpoint="dialogflow.googleapis.com"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:443"
+    assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_sessions_host_with_port():
@@ -913,7 +917,7 @@ def test_sessions_host_with_port():
             api_endpoint="dialogflow.googleapis.com:8000"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:8000"
+    assert client.transport._host == "dialogflow.googleapis.com:8000"
 
 
 def test_sessions_grpc_transport_channel():
@@ -925,6 +929,7 @@ def test_sessions_grpc_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 def test_sessions_grpc_asyncio_transport_channel():
@@ -936,6 +941,7 @@ def test_sessions_grpc_asyncio_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 @pytest.mark.parametrize(
@@ -981,6 +987,7 @@ def test_sessions_transport_channel_mtls_with_client_cert_source(transport_class
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+            assert transport._ssl_channel_credentials == mock_ssl_cred
 
 
 @pytest.mark.parametrize(
@@ -1048,10 +1055,56 @@ def test_parse_context_path():
     assert expected == actual
 
 
+def test_intent_path():
+    project = "cuttlefish"
+    intent = "mussel"
+
+    expected = "projects/{project}/agent/intents/{intent}".format(
+        project=project, intent=intent,
+    )
+    actual = SessionsClient.intent_path(project, intent)
+    assert expected == actual
+
+
+def test_parse_intent_path():
+    expected = {
+        "project": "winkle",
+        "intent": "nautilus",
+    }
+    path = SessionsClient.intent_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionsClient.parse_intent_path(path)
+    assert expected == actual
+
+
+def test_session_path():
+    project = "scallop"
+    session = "abalone"
+
+    expected = "projects/{project}/agent/sessions/{session}".format(
+        project=project, session=session,
+    )
+    actual = SessionsClient.session_path(project, session)
+    assert expected == actual
+
+
+def test_parse_session_path():
+    expected = {
+        "project": "squid",
+        "session": "clam",
+    }
+    path = SessionsClient.session_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionsClient.parse_session_path(path)
+    assert expected == actual
+
+
 def test_session_entity_type_path():
-    project = "squid"
-    session = "clam"
-    entity_type = "whelk"
+    project = "whelk"
+    session = "octopus"
+    entity_type = "oyster"
 
     expected = "projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}".format(
         project=project, session=session, entity_type=entity_type,
@@ -1062,14 +1115,115 @@ def test_session_entity_type_path():
 
 def test_parse_session_entity_type_path():
     expected = {
-        "project": "octopus",
-        "session": "oyster",
-        "entity_type": "nudibranch",
+        "project": "nudibranch",
+        "session": "cuttlefish",
+        "entity_type": "mussel",
     }
     path = SessionsClient.session_entity_type_path(**expected)
 
     # Check that the path construction is reversible.
     actual = SessionsClient.parse_session_entity_type_path(path)
+    assert expected == actual
+
+
+def test_common_billing_account_path():
+    billing_account = "winkle"
+
+    expected = "billingAccounts/{billing_account}".format(
+        billing_account=billing_account,
+    )
+    actual = SessionsClient.common_billing_account_path(billing_account)
+    assert expected == actual
+
+
+def test_parse_common_billing_account_path():
+    expected = {
+        "billing_account": "nautilus",
+    }
+    path = SessionsClient.common_billing_account_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionsClient.parse_common_billing_account_path(path)
+    assert expected == actual
+
+
+def test_common_folder_path():
+    folder = "scallop"
+
+    expected = "folders/{folder}".format(folder=folder,)
+    actual = SessionsClient.common_folder_path(folder)
+    assert expected == actual
+
+
+def test_parse_common_folder_path():
+    expected = {
+        "folder": "abalone",
+    }
+    path = SessionsClient.common_folder_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionsClient.parse_common_folder_path(path)
+    assert expected == actual
+
+
+def test_common_organization_path():
+    organization = "squid"
+
+    expected = "organizations/{organization}".format(organization=organization,)
+    actual = SessionsClient.common_organization_path(organization)
+    assert expected == actual
+
+
+def test_parse_common_organization_path():
+    expected = {
+        "organization": "clam",
+    }
+    path = SessionsClient.common_organization_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionsClient.parse_common_organization_path(path)
+    assert expected == actual
+
+
+def test_common_project_path():
+    project = "whelk"
+
+    expected = "projects/{project}".format(project=project,)
+    actual = SessionsClient.common_project_path(project)
+    assert expected == actual
+
+
+def test_parse_common_project_path():
+    expected = {
+        "project": "octopus",
+    }
+    path = SessionsClient.common_project_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionsClient.parse_common_project_path(path)
+    assert expected == actual
+
+
+def test_common_location_path():
+    project = "oyster"
+    location = "nudibranch"
+
+    expected = "projects/{project}/locations/{location}".format(
+        project=project, location=location,
+    )
+    actual = SessionsClient.common_location_path(project, location)
+    assert expected == actual
+
+
+def test_parse_common_location_path():
+    expected = {
+        "project": "cuttlefish",
+        "location": "mussel",
+    }
+    path = SessionsClient.common_location_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionsClient.parse_common_location_path(path)
     assert expected == actual
 
 

@@ -183,7 +183,7 @@ class SetAgentRequest(proto.Message):
             get updated.
     """
 
-    agent = proto.Field(proto.MESSAGE, number=1, message=Agent,)
+    agent = proto.Field(proto.MESSAGE, number=1, message="Agent",)
 
     update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
 
@@ -243,7 +243,7 @@ class SearchAgentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    agents = proto.RepeatedField(proto.MESSAGE, number=1, message=Agent,)
+    agents = proto.RepeatedField(proto.MESSAGE, number=1, message="Agent",)
 
     next_page_token = proto.Field(proto.STRING, number=2)
 

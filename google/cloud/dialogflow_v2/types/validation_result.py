@@ -78,7 +78,7 @@ class ValidationResult(proto.Message):
     """
 
     validation_errors = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=ValidationError,
+        proto.MESSAGE, number=1, message="ValidationError",
     )
 
 

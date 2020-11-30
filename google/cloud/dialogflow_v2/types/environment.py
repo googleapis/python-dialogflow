@@ -140,7 +140,7 @@ class ListEnvironmentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    environments = proto.RepeatedField(proto.MESSAGE, number=1, message=Environment,)
+    environments = proto.RepeatedField(proto.MESSAGE, number=1, message="Environment",)
 
     next_page_token = proto.Field(proto.STRING, number=2)
 

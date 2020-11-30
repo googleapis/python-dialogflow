@@ -21,7 +21,7 @@ from synthtool.languages import python
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-versions = ["v2"]
+versions = ["v2beta1", "v2"]
 
 for version in versions:
     library = gapic.py_library(
@@ -31,7 +31,7 @@ for version in versions:
         include_protos=True,
     )
 
-    s.move(library)
+    s.move(library, excludes=["docs/index.rst", "setup.py"])
 
 # ----------------------------------------------------------------------------
 # Add templated files

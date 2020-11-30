@@ -41,7 +41,6 @@ from google.cloud.dialogflow_v2.services.session_entity_types import (
 from google.cloud.dialogflow_v2.services.session_entity_types import pagers
 from google.cloud.dialogflow_v2.services.session_entity_types import transports
 from google.cloud.dialogflow_v2.types import entity_type
-from google.cloud.dialogflow_v2.types import entity_type as gcd_entity_type
 from google.cloud.dialogflow_v2.types import session_entity_type
 from google.cloud.dialogflow_v2.types import (
     session_entity_type as gcd_session_entity_type,
@@ -105,12 +104,12 @@ def test_session_entity_types_client_from_service_account_file(client_class):
     ) as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
         client = client_class.from_service_account_json("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
-        assert client._transport._host == "dialogflow.googleapis.com:443"
+        assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_session_entity_types_client_get_transport_class():
@@ -472,7 +471,7 @@ def test_list_session_entity_types(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = session_entity_type.ListSessionEntityTypesResponse(
@@ -488,6 +487,7 @@ def test_list_session_entity_types(
         assert args[0] == session_entity_type.ListSessionEntityTypesRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, pagers.ListSessionEntityTypesPager)
 
     assert response.next_page_token == "next_page_token_value"
@@ -498,18 +498,21 @@ def test_list_session_entity_types_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_list_session_entity_types_async(transport: str = "grpc_asyncio"):
+async def test_list_session_entity_types_async(
+    transport: str = "grpc_asyncio",
+    request_type=session_entity_type.ListSessionEntityTypesRequest,
+):
     client = SessionEntityTypesAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = session_entity_type.ListSessionEntityTypesRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -524,12 +527,17 @@ async def test_list_session_entity_types_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == session_entity_type.ListSessionEntityTypesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListSessionEntityTypesAsyncPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+@pytest.mark.asyncio
+async def test_list_session_entity_types_async_from_dict():
+    await test_list_session_entity_types_async(request_type=dict)
 
 
 def test_list_session_entity_types_field_headers():
@@ -542,7 +550,7 @@ def test_list_session_entity_types_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         call.return_value = session_entity_type.ListSessionEntityTypesResponse()
 
@@ -571,7 +579,7 @@ async def test_list_session_entity_types_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             session_entity_type.ListSessionEntityTypesResponse()
@@ -594,7 +602,7 @@ def test_list_session_entity_types_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = session_entity_type.ListSessionEntityTypesResponse()
@@ -630,7 +638,7 @@ async def test_list_session_entity_types_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = session_entity_type.ListSessionEntityTypesResponse()
@@ -669,7 +677,7 @@ def test_list_session_entity_types_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -717,7 +725,7 @@ def test_list_session_entity_types_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_session_entity_types), "__call__"
+        type(client.transport.list_session_entity_types), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -757,7 +765,7 @@ async def test_list_session_entity_types_async_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_session_entity_types),
+        type(client.transport.list_session_entity_types),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
@@ -806,7 +814,7 @@ async def test_list_session_entity_types_async_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_session_entity_types),
+        type(client.transport.list_session_entity_types),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
@@ -856,7 +864,7 @@ def test_get_session_entity_type(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.get_session_entity_type), "__call__"
+        type(client.transport.get_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = session_entity_type.SessionEntityType(
@@ -873,6 +881,7 @@ def test_get_session_entity_type(
         assert args[0] == session_entity_type.GetSessionEntityTypeRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, session_entity_type.SessionEntityType)
 
     assert response.name == "name_value"
@@ -888,18 +897,21 @@ def test_get_session_entity_type_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_get_session_entity_type_async(transport: str = "grpc_asyncio"):
+async def test_get_session_entity_type_async(
+    transport: str = "grpc_asyncio",
+    request_type=session_entity_type.GetSessionEntityTypeRequest,
+):
     client = SessionEntityTypesAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = session_entity_type.GetSessionEntityTypeRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.get_session_entity_type), "__call__"
+        type(client.transport.get_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -915,7 +927,7 @@ async def test_get_session_entity_type_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == session_entity_type.GetSessionEntityTypeRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, session_entity_type.SessionEntityType)
@@ -928,6 +940,11 @@ async def test_get_session_entity_type_async(transport: str = "grpc_asyncio"):
     )
 
 
+@pytest.mark.asyncio
+async def test_get_session_entity_type_async_from_dict():
+    await test_get_session_entity_type_async(request_type=dict)
+
+
 def test_get_session_entity_type_field_headers():
     client = SessionEntityTypesClient(credentials=credentials.AnonymousCredentials(),)
 
@@ -938,7 +955,7 @@ def test_get_session_entity_type_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.get_session_entity_type), "__call__"
+        type(client.transport.get_session_entity_type), "__call__"
     ) as call:
         call.return_value = session_entity_type.SessionEntityType()
 
@@ -967,7 +984,7 @@ async def test_get_session_entity_type_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.get_session_entity_type), "__call__"
+        type(client.transport.get_session_entity_type), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             session_entity_type.SessionEntityType()
@@ -990,7 +1007,7 @@ def test_get_session_entity_type_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.get_session_entity_type), "__call__"
+        type(client.transport.get_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = session_entity_type.SessionEntityType()
@@ -1026,7 +1043,7 @@ async def test_get_session_entity_type_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.get_session_entity_type), "__call__"
+        type(client.transport.get_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = session_entity_type.SessionEntityType()
@@ -1074,7 +1091,7 @@ def test_create_session_entity_type(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_session_entity_type), "__call__"
+        type(client.transport.create_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session_entity_type.SessionEntityType(
@@ -1091,6 +1108,7 @@ def test_create_session_entity_type(
         assert args[0] == gcd_session_entity_type.CreateSessionEntityTypeRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, gcd_session_entity_type.SessionEntityType)
 
     assert response.name == "name_value"
@@ -1106,18 +1124,21 @@ def test_create_session_entity_type_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_create_session_entity_type_async(transport: str = "grpc_asyncio"):
+async def test_create_session_entity_type_async(
+    transport: str = "grpc_asyncio",
+    request_type=gcd_session_entity_type.CreateSessionEntityTypeRequest,
+):
     client = SessionEntityTypesAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = gcd_session_entity_type.CreateSessionEntityTypeRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_session_entity_type), "__call__"
+        type(client.transport.create_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -1133,7 +1154,7 @@ async def test_create_session_entity_type_async(transport: str = "grpc_asyncio")
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == gcd_session_entity_type.CreateSessionEntityTypeRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcd_session_entity_type.SessionEntityType)
@@ -1146,6 +1167,11 @@ async def test_create_session_entity_type_async(transport: str = "grpc_asyncio")
     )
 
 
+@pytest.mark.asyncio
+async def test_create_session_entity_type_async_from_dict():
+    await test_create_session_entity_type_async(request_type=dict)
+
+
 def test_create_session_entity_type_field_headers():
     client = SessionEntityTypesClient(credentials=credentials.AnonymousCredentials(),)
 
@@ -1156,7 +1182,7 @@ def test_create_session_entity_type_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_session_entity_type), "__call__"
+        type(client.transport.create_session_entity_type), "__call__"
     ) as call:
         call.return_value = gcd_session_entity_type.SessionEntityType()
 
@@ -1185,7 +1211,7 @@ async def test_create_session_entity_type_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_session_entity_type), "__call__"
+        type(client.transport.create_session_entity_type), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             gcd_session_entity_type.SessionEntityType()
@@ -1208,7 +1234,7 @@ def test_create_session_entity_type_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_session_entity_type), "__call__"
+        type(client.transport.create_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session_entity_type.SessionEntityType()
@@ -1257,7 +1283,7 @@ async def test_create_session_entity_type_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_session_entity_type), "__call__"
+        type(client.transport.create_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session_entity_type.SessionEntityType()
@@ -1318,7 +1344,7 @@ def test_update_session_entity_type(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.update_session_entity_type), "__call__"
+        type(client.transport.update_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session_entity_type.SessionEntityType(
@@ -1335,6 +1361,7 @@ def test_update_session_entity_type(
         assert args[0] == gcd_session_entity_type.UpdateSessionEntityTypeRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, gcd_session_entity_type.SessionEntityType)
 
     assert response.name == "name_value"
@@ -1350,18 +1377,21 @@ def test_update_session_entity_type_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_update_session_entity_type_async(transport: str = "grpc_asyncio"):
+async def test_update_session_entity_type_async(
+    transport: str = "grpc_asyncio",
+    request_type=gcd_session_entity_type.UpdateSessionEntityTypeRequest,
+):
     client = SessionEntityTypesAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = gcd_session_entity_type.UpdateSessionEntityTypeRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.update_session_entity_type), "__call__"
+        type(client.transport.update_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -1377,7 +1407,7 @@ async def test_update_session_entity_type_async(transport: str = "grpc_asyncio")
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == gcd_session_entity_type.UpdateSessionEntityTypeRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcd_session_entity_type.SessionEntityType)
@@ -1390,6 +1420,11 @@ async def test_update_session_entity_type_async(transport: str = "grpc_asyncio")
     )
 
 
+@pytest.mark.asyncio
+async def test_update_session_entity_type_async_from_dict():
+    await test_update_session_entity_type_async(request_type=dict)
+
+
 def test_update_session_entity_type_field_headers():
     client = SessionEntityTypesClient(credentials=credentials.AnonymousCredentials(),)
 
@@ -1400,7 +1435,7 @@ def test_update_session_entity_type_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.update_session_entity_type), "__call__"
+        type(client.transport.update_session_entity_type), "__call__"
     ) as call:
         call.return_value = gcd_session_entity_type.SessionEntityType()
 
@@ -1432,7 +1467,7 @@ async def test_update_session_entity_type_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.update_session_entity_type), "__call__"
+        type(client.transport.update_session_entity_type), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             gcd_session_entity_type.SessionEntityType()
@@ -1458,7 +1493,7 @@ def test_update_session_entity_type_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.update_session_entity_type), "__call__"
+        type(client.transport.update_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session_entity_type.SessionEntityType()
@@ -1507,7 +1542,7 @@ async def test_update_session_entity_type_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.update_session_entity_type), "__call__"
+        type(client.transport.update_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_session_entity_type.SessionEntityType()
@@ -1568,7 +1603,7 @@ def test_delete_session_entity_type(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.delete_session_entity_type), "__call__"
+        type(client.transport.delete_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
@@ -1590,18 +1625,21 @@ def test_delete_session_entity_type_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_delete_session_entity_type_async(transport: str = "grpc_asyncio"):
+async def test_delete_session_entity_type_async(
+    transport: str = "grpc_asyncio",
+    request_type=session_entity_type.DeleteSessionEntityTypeRequest,
+):
     client = SessionEntityTypesAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = session_entity_type.DeleteSessionEntityTypeRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_session_entity_type), "__call__"
+        type(client.transport.delete_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
@@ -1612,10 +1650,15 @@ async def test_delete_session_entity_type_async(transport: str = "grpc_asyncio")
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == session_entity_type.DeleteSessionEntityTypeRequest()
 
     # Establish that the response is the type that we expect.
     assert response is None
+
+
+@pytest.mark.asyncio
+async def test_delete_session_entity_type_async_from_dict():
+    await test_delete_session_entity_type_async(request_type=dict)
 
 
 def test_delete_session_entity_type_field_headers():
@@ -1628,7 +1671,7 @@ def test_delete_session_entity_type_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.delete_session_entity_type), "__call__"
+        type(client.transport.delete_session_entity_type), "__call__"
     ) as call:
         call.return_value = None
 
@@ -1657,7 +1700,7 @@ async def test_delete_session_entity_type_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_session_entity_type), "__call__"
+        type(client.transport.delete_session_entity_type), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
@@ -1678,7 +1721,7 @@ def test_delete_session_entity_type_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.delete_session_entity_type), "__call__"
+        type(client.transport.delete_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
@@ -1714,7 +1757,7 @@ async def test_delete_session_entity_type_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_session_entity_type), "__call__"
+        type(client.transport.delete_session_entity_type), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
@@ -1782,7 +1825,7 @@ def test_transport_instance():
         credentials=credentials.AnonymousCredentials(),
     )
     client = SessionEntityTypesClient(transport=transport)
-    assert client._transport is transport
+    assert client.transport is transport
 
 
 def test_transport_get_channel():
@@ -1818,7 +1861,7 @@ def test_transport_adc(transport_class):
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = SessionEntityTypesClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client._transport, transports.SessionEntityTypesGrpcTransport,)
+    assert isinstance(client.transport, transports.SessionEntityTypesGrpcTransport,)
 
 
 def test_session_entity_types_base_transport_error():
@@ -1925,7 +1968,7 @@ def test_session_entity_types_host_no_port():
             api_endpoint="dialogflow.googleapis.com"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:443"
+    assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_session_entity_types_host_with_port():
@@ -1935,7 +1978,7 @@ def test_session_entity_types_host_with_port():
             api_endpoint="dialogflow.googleapis.com:8000"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:8000"
+    assert client.transport._host == "dialogflow.googleapis.com:8000"
 
 
 def test_session_entity_types_grpc_transport_channel():
@@ -1947,6 +1990,7 @@ def test_session_entity_types_grpc_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 def test_session_entity_types_grpc_asyncio_transport_channel():
@@ -1958,6 +2002,7 @@ def test_session_entity_types_grpc_asyncio_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 @pytest.mark.parametrize(
@@ -2008,6 +2053,7 @@ def test_session_entity_types_transport_channel_mtls_with_client_cert_source(
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+            assert transport._ssl_channel_credentials == mock_ssl_cred
 
 
 @pytest.mark.parametrize(
@@ -2077,6 +2123,107 @@ def test_parse_session_entity_type_path():
 
     # Check that the path construction is reversible.
     actual = SessionEntityTypesClient.parse_session_entity_type_path(path)
+    assert expected == actual
+
+
+def test_common_billing_account_path():
+    billing_account = "cuttlefish"
+
+    expected = "billingAccounts/{billing_account}".format(
+        billing_account=billing_account,
+    )
+    actual = SessionEntityTypesClient.common_billing_account_path(billing_account)
+    assert expected == actual
+
+
+def test_parse_common_billing_account_path():
+    expected = {
+        "billing_account": "mussel",
+    }
+    path = SessionEntityTypesClient.common_billing_account_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionEntityTypesClient.parse_common_billing_account_path(path)
+    assert expected == actual
+
+
+def test_common_folder_path():
+    folder = "winkle"
+
+    expected = "folders/{folder}".format(folder=folder,)
+    actual = SessionEntityTypesClient.common_folder_path(folder)
+    assert expected == actual
+
+
+def test_parse_common_folder_path():
+    expected = {
+        "folder": "nautilus",
+    }
+    path = SessionEntityTypesClient.common_folder_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionEntityTypesClient.parse_common_folder_path(path)
+    assert expected == actual
+
+
+def test_common_organization_path():
+    organization = "scallop"
+
+    expected = "organizations/{organization}".format(organization=organization,)
+    actual = SessionEntityTypesClient.common_organization_path(organization)
+    assert expected == actual
+
+
+def test_parse_common_organization_path():
+    expected = {
+        "organization": "abalone",
+    }
+    path = SessionEntityTypesClient.common_organization_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionEntityTypesClient.parse_common_organization_path(path)
+    assert expected == actual
+
+
+def test_common_project_path():
+    project = "squid"
+
+    expected = "projects/{project}".format(project=project,)
+    actual = SessionEntityTypesClient.common_project_path(project)
+    assert expected == actual
+
+
+def test_parse_common_project_path():
+    expected = {
+        "project": "clam",
+    }
+    path = SessionEntityTypesClient.common_project_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionEntityTypesClient.parse_common_project_path(path)
+    assert expected == actual
+
+
+def test_common_location_path():
+    project = "whelk"
+    location = "octopus"
+
+    expected = "projects/{project}/locations/{location}".format(
+        project=project, location=location,
+    )
+    actual = SessionEntityTypesClient.common_location_path(project, location)
+    assert expected == actual
+
+
+def test_parse_common_location_path():
+    expected = {
+        "project": "oyster",
+        "location": "nudibranch",
+    }
+    path = SessionEntityTypesClient.common_location_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = SessionEntityTypesClient.parse_common_location_path(path)
     assert expected == actual
 
 

@@ -28,8 +28,8 @@ from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.api_core import operation
-from google.api_core import operation_async
+from google.api_core import operation  # type: ignore
+from google.api_core import operation_async  # type: ignore
 from google.cloud.dialogflow_v2.services.intents import pagers
 from google.cloud.dialogflow_v2.types import context
 from google.cloud.dialogflow_v2.types import intent
@@ -56,8 +56,38 @@ class IntentsAsyncClient:
     intent_path = staticmethod(IntentsClient.intent_path)
     parse_intent_path = staticmethod(IntentsClient.parse_intent_path)
 
+    common_billing_account_path = staticmethod(
+        IntentsClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        IntentsClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(IntentsClient.common_folder_path)
+    parse_common_folder_path = staticmethod(IntentsClient.parse_common_folder_path)
+
+    common_organization_path = staticmethod(IntentsClient.common_organization_path)
+    parse_common_organization_path = staticmethod(
+        IntentsClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(IntentsClient.common_project_path)
+    parse_common_project_path = staticmethod(IntentsClient.parse_common_project_path)
+
+    common_location_path = staticmethod(IntentsClient.common_location_path)
+    parse_common_location_path = staticmethod(IntentsClient.parse_common_location_path)
+
     from_service_account_file = IntentsClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> IntentsTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            IntentsTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(IntentsClient).get_transport_class, type(IntentsClient)
@@ -162,7 +192,8 @@ class IntentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, language_code]):
+        has_flattened_params = any([parent, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -260,7 +291,8 @@ class IntentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, language_code]):
+        has_flattened_params = any([name, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -358,7 +390,8 @@ class IntentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, intent, language_code]):
+        has_flattened_params = any([parent, intent, language_code])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -458,7 +491,8 @@ class IntentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([intent, language_code, update_mask]):
+        has_flattened_params = any([intent, language_code, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -532,7 +566,8 @@ class IntentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -626,7 +661,8 @@ class IntentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, intent_batch_uri, intent_batch_inline]):
+        has_flattened_params = any([parent, intent_batch_uri, intent_batch_inline])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -734,7 +770,8 @@ class IntentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, intents]):
+        has_flattened_params = any([parent, intents])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -747,8 +784,9 @@ class IntentsAsyncClient:
 
         if parent is not None:
             request.parent = parent
-        if intents is not None:
-            request.intents = intents
+
+        if intents:
+            request.intents.extend(intents)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

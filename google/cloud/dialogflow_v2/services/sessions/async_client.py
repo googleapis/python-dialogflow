@@ -18,7 +18,16 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, AsyncIterable, AsyncIterator, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    AsyncIterable,
+    Awaitable,
+    AsyncIterator,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 import pkg_resources
 
 import google.api_core.client_options as ClientOptions  # type: ignore
@@ -52,13 +61,47 @@ class SessionsAsyncClient:
 
     context_path = staticmethod(SessionsClient.context_path)
     parse_context_path = staticmethod(SessionsClient.parse_context_path)
+    intent_path = staticmethod(SessionsClient.intent_path)
+    parse_intent_path = staticmethod(SessionsClient.parse_intent_path)
+    session_path = staticmethod(SessionsClient.session_path)
+    parse_session_path = staticmethod(SessionsClient.parse_session_path)
     session_entity_type_path = staticmethod(SessionsClient.session_entity_type_path)
     parse_session_entity_type_path = staticmethod(
         SessionsClient.parse_session_entity_type_path
     )
 
+    common_billing_account_path = staticmethod(
+        SessionsClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        SessionsClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(SessionsClient.common_folder_path)
+    parse_common_folder_path = staticmethod(SessionsClient.parse_common_folder_path)
+
+    common_organization_path = staticmethod(SessionsClient.common_organization_path)
+    parse_common_organization_path = staticmethod(
+        SessionsClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(SessionsClient.common_project_path)
+    parse_common_project_path = staticmethod(SessionsClient.parse_common_project_path)
+
+    common_location_path = staticmethod(SessionsClient.common_location_path)
+    parse_common_location_path = staticmethod(SessionsClient.parse_common_location_path)
+
     from_service_account_file = SessionsClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> SessionsTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            SessionsTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(SessionsClient).get_transport_class, type(SessionsClient)
@@ -181,7 +224,8 @@ class SessionsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([session, query_input]):
+        has_flattened_params = any([session, query_input])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -230,7 +274,7 @@ class SessionsAsyncClient:
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> AsyncIterable[session.StreamingDetectIntentResponse]:
+    ) -> Awaitable[AsyncIterable[session.StreamingDetectIntentResponse]]:
         r"""Processes a natural language query in audio format in
         a streaming fashion and returns structured, actionable
         data as a result. This method is only available via the

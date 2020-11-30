@@ -172,7 +172,7 @@ class Intent(proto.Message):
             name (str):
                 Output only. The unique identifier of this
                 training phrase.
-            type (~.gcd_intent.Intent.TrainingPhrase.Type):
+            type_ (~.gcd_intent.Intent.TrainingPhrase.Type):
                 Required. The type of the training phrase.
             parts (Sequence[~.gcd_intent.Intent.TrainingPhrase.Part]):
                 Required. The ordered list of training phrase parts. The
@@ -245,7 +245,7 @@ class Intent(proto.Message):
 
         name = proto.Field(proto.STRING, number=1)
 
-        type = proto.Field(proto.ENUM, number=2, enum="Intent.TrainingPhrase.Type",)
+        type_ = proto.Field(proto.ENUM, number=2, enum="Intent.TrainingPhrase.Type",)
 
         parts = proto.RepeatedField(
             proto.MESSAGE, number=3, message="Intent.TrainingPhrase.Part",
@@ -1156,7 +1156,7 @@ class ListIntentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=1, message=Intent,)
+    intents = proto.RepeatedField(proto.MESSAGE, number=1, message="Intent",)
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -1210,7 +1210,7 @@ class CreateIntentRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    intent = proto.Field(proto.MESSAGE, number=2, message=Intent,)
+    intent = proto.Field(proto.MESSAGE, number=2, message="Intent",)
 
     language_code = proto.Field(proto.STRING, number=3)
 
@@ -1238,7 +1238,7 @@ class UpdateIntentRequest(proto.Message):
             returned intent.
     """
 
-    intent = proto.Field(proto.MESSAGE, number=1, message=Intent,)
+    intent = proto.Field(proto.MESSAGE, number=1, message="Intent",)
 
     language_code = proto.Field(proto.STRING, number=2)
 
@@ -1316,7 +1316,7 @@ class BatchUpdateIntentsResponse(proto.Message):
             The collection of updated or created intents.
     """
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=1, message=Intent,)
+    intents = proto.RepeatedField(proto.MESSAGE, number=1, message="Intent",)
 
 
 class BatchDeleteIntentsRequest(proto.Message):
@@ -1334,7 +1334,7 @@ class BatchDeleteIntentsRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=2, message=Intent,)
+    intents = proto.RepeatedField(proto.MESSAGE, number=2, message="Intent",)
 
 
 class IntentBatch(proto.Message):
@@ -1345,7 +1345,7 @@ class IntentBatch(proto.Message):
             A collection of intents.
     """
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=1, message=Intent,)
+    intents = proto.RepeatedField(proto.MESSAGE, number=1, message="Intent",)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

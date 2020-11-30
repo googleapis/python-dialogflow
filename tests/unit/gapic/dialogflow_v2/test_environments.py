@@ -89,12 +89,12 @@ def test_environments_client_from_service_account_file(client_class):
     ) as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
         client = client_class.from_service_account_json("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
-        assert client._transport._host == "dialogflow.googleapis.com:443"
+        assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_environments_client_get_transport_class():
@@ -439,7 +439,7 @@ def test_list_environments(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_environments), "__call__"
+        type(client.transport.list_environments), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = environment.ListEnvironmentsResponse(
@@ -455,6 +455,7 @@ def test_list_environments(
         assert args[0] == environment.ListEnvironmentsRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, pagers.ListEnvironmentsPager)
 
     assert response.next_page_token == "next_page_token_value"
@@ -465,18 +466,20 @@ def test_list_environments_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_list_environments_async(transport: str = "grpc_asyncio"):
+async def test_list_environments_async(
+    transport: str = "grpc_asyncio", request_type=environment.ListEnvironmentsRequest
+):
     client = EnvironmentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = environment.ListEnvironmentsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_environments), "__call__"
+        type(client.transport.list_environments), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -491,12 +494,17 @@ async def test_list_environments_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == environment.ListEnvironmentsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListEnvironmentsAsyncPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+@pytest.mark.asyncio
+async def test_list_environments_async_from_dict():
+    await test_list_environments_async(request_type=dict)
 
 
 def test_list_environments_field_headers():
@@ -509,7 +517,7 @@ def test_list_environments_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_environments), "__call__"
+        type(client.transport.list_environments), "__call__"
     ) as call:
         call.return_value = environment.ListEnvironmentsResponse()
 
@@ -536,7 +544,7 @@ async def test_list_environments_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_environments), "__call__"
+        type(client.transport.list_environments), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             environment.ListEnvironmentsResponse()
@@ -559,7 +567,7 @@ def test_list_environments_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_environments), "__call__"
+        type(client.transport.list_environments), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -601,7 +609,7 @@ def test_list_environments_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_environments), "__call__"
+        type(client.transport.list_environments), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -635,7 +643,7 @@ async def test_list_environments_async_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_environments),
+        type(client.transport.list_environments),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
@@ -676,7 +684,7 @@ async def test_list_environments_async_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_environments),
+        type(client.transport.list_environments),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
@@ -744,7 +752,7 @@ def test_transport_instance():
         credentials=credentials.AnonymousCredentials(),
     )
     client = EnvironmentsClient(transport=transport)
-    assert client._transport is transport
+    assert client.transport is transport
 
 
 def test_transport_get_channel():
@@ -777,7 +785,7 @@ def test_transport_adc(transport_class):
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = EnvironmentsClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client._transport, transports.EnvironmentsGrpcTransport,)
+    assert isinstance(client.transport, transports.EnvironmentsGrpcTransport,)
 
 
 def test_environments_base_transport_error():
@@ -878,7 +886,7 @@ def test_environments_host_no_port():
             api_endpoint="dialogflow.googleapis.com"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:443"
+    assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_environments_host_with_port():
@@ -888,7 +896,7 @@ def test_environments_host_with_port():
             api_endpoint="dialogflow.googleapis.com:8000"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:8000"
+    assert client.transport._host == "dialogflow.googleapis.com:8000"
 
 
 def test_environments_grpc_transport_channel():
@@ -900,6 +908,7 @@ def test_environments_grpc_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 def test_environments_grpc_asyncio_transport_channel():
@@ -911,6 +920,7 @@ def test_environments_grpc_asyncio_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 @pytest.mark.parametrize(
@@ -956,6 +966,7 @@ def test_environments_transport_channel_mtls_with_client_cert_source(transport_c
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+            assert transport._ssl_channel_credentials == mock_ssl_cred
 
 
 @pytest.mark.parametrize(
@@ -996,6 +1007,130 @@ def test_environments_transport_channel_mtls_with_adc(transport_class):
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+
+
+def test_environment_path():
+    project = "squid"
+    environment = "clam"
+
+    expected = "projects/{project}/agent/environments/{environment}".format(
+        project=project, environment=environment,
+    )
+    actual = EnvironmentsClient.environment_path(project, environment)
+    assert expected == actual
+
+
+def test_parse_environment_path():
+    expected = {
+        "project": "whelk",
+        "environment": "octopus",
+    }
+    path = EnvironmentsClient.environment_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = EnvironmentsClient.parse_environment_path(path)
+    assert expected == actual
+
+
+def test_common_billing_account_path():
+    billing_account = "oyster"
+
+    expected = "billingAccounts/{billing_account}".format(
+        billing_account=billing_account,
+    )
+    actual = EnvironmentsClient.common_billing_account_path(billing_account)
+    assert expected == actual
+
+
+def test_parse_common_billing_account_path():
+    expected = {
+        "billing_account": "nudibranch",
+    }
+    path = EnvironmentsClient.common_billing_account_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = EnvironmentsClient.parse_common_billing_account_path(path)
+    assert expected == actual
+
+
+def test_common_folder_path():
+    folder = "cuttlefish"
+
+    expected = "folders/{folder}".format(folder=folder,)
+    actual = EnvironmentsClient.common_folder_path(folder)
+    assert expected == actual
+
+
+def test_parse_common_folder_path():
+    expected = {
+        "folder": "mussel",
+    }
+    path = EnvironmentsClient.common_folder_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = EnvironmentsClient.parse_common_folder_path(path)
+    assert expected == actual
+
+
+def test_common_organization_path():
+    organization = "winkle"
+
+    expected = "organizations/{organization}".format(organization=organization,)
+    actual = EnvironmentsClient.common_organization_path(organization)
+    assert expected == actual
+
+
+def test_parse_common_organization_path():
+    expected = {
+        "organization": "nautilus",
+    }
+    path = EnvironmentsClient.common_organization_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = EnvironmentsClient.parse_common_organization_path(path)
+    assert expected == actual
+
+
+def test_common_project_path():
+    project = "scallop"
+
+    expected = "projects/{project}".format(project=project,)
+    actual = EnvironmentsClient.common_project_path(project)
+    assert expected == actual
+
+
+def test_parse_common_project_path():
+    expected = {
+        "project": "abalone",
+    }
+    path = EnvironmentsClient.common_project_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = EnvironmentsClient.parse_common_project_path(path)
+    assert expected == actual
+
+
+def test_common_location_path():
+    project = "squid"
+    location = "clam"
+
+    expected = "projects/{project}/locations/{location}".format(
+        project=project, location=location,
+    )
+    actual = EnvironmentsClient.common_location_path(project, location)
+    assert expected == actual
+
+
+def test_parse_common_location_path():
+    expected = {
+        "project": "whelk",
+        "location": "octopus",
+    }
+    path = EnvironmentsClient.common_location_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = EnvironmentsClient.parse_common_location_path(path)
+    assert expected == actual
 
 
 def test_client_withDEFAULT_CLIENT_INFO():

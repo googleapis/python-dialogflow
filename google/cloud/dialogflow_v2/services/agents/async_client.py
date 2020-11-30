@@ -28,8 +28,8 @@ from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.api_core import operation
-from google.api_core import operation_async
+from google.api_core import operation  # type: ignore
+from google.api_core import operation_async  # type: ignore
 from google.cloud.dialogflow_v2.services.agents import pagers
 from google.cloud.dialogflow_v2.types import agent
 from google.cloud.dialogflow_v2.types import agent as gcd_agent
@@ -53,8 +53,36 @@ class AgentsAsyncClient:
     agent_path = staticmethod(AgentsClient.agent_path)
     parse_agent_path = staticmethod(AgentsClient.parse_agent_path)
 
+    common_billing_account_path = staticmethod(AgentsClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(
+        AgentsClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(AgentsClient.common_folder_path)
+    parse_common_folder_path = staticmethod(AgentsClient.parse_common_folder_path)
+
+    common_organization_path = staticmethod(AgentsClient.common_organization_path)
+    parse_common_organization_path = staticmethod(
+        AgentsClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(AgentsClient.common_project_path)
+    parse_common_project_path = staticmethod(AgentsClient.parse_common_project_path)
+
+    common_location_path = staticmethod(AgentsClient.common_location_path)
+    parse_common_location_path = staticmethod(AgentsClient.parse_common_location_path)
+
     from_service_account_file = AgentsClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> AgentsTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            AgentsTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(AgentsClient).get_transport_class, type(AgentsClient)
@@ -155,7 +183,8 @@ class AgentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -235,7 +264,8 @@ class AgentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([agent]):
+        has_flattened_params = any([agent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -302,7 +332,8 @@ class AgentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -381,7 +412,8 @@ class AgentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -476,7 +508,8 @@ class AgentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -562,7 +595,8 @@ class AgentsAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."

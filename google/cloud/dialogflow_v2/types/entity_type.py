@@ -192,7 +192,7 @@ class ListEntityTypesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message=EntityType,)
+    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message="EntityType",)
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -238,7 +238,7 @@ class CreateEntityTypeRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    entity_type = proto.Field(proto.MESSAGE, number=2, message=EntityType,)
+    entity_type = proto.Field(proto.MESSAGE, number=2, message="EntityType",)
 
     language_code = proto.Field(proto.STRING, number=3)
 
@@ -261,7 +261,7 @@ class UpdateEntityTypeRequest(proto.Message):
             get updated.
     """
 
-    entity_type = proto.Field(proto.MESSAGE, number=1, message=EntityType,)
+    entity_type = proto.Field(proto.MESSAGE, number=1, message="EntityType",)
 
     language_code = proto.Field(proto.STRING, number=2)
 
@@ -334,7 +334,7 @@ class BatchUpdateEntityTypesResponse(proto.Message):
             types.
     """
 
-    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message=EntityType,)
+    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message="EntityType",)
 
 
 class BatchDeleteEntityTypesRequest(proto.Message):
@@ -376,7 +376,9 @@ class BatchCreateEntitiesRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    entities = proto.RepeatedField(proto.MESSAGE, number=2, message=EntityType.Entity,)
+    entities = proto.RepeatedField(
+        proto.MESSAGE, number=2, message="EntityType.Entity",
+    )
 
     language_code = proto.Field(proto.STRING, number=3)
 
@@ -405,7 +407,9 @@ class BatchUpdateEntitiesRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    entities = proto.RepeatedField(proto.MESSAGE, number=2, message=EntityType.Entity,)
+    entities = proto.RepeatedField(
+        proto.MESSAGE, number=2, message="EntityType.Entity",
+    )
 
     language_code = proto.Field(proto.STRING, number=3)
 
@@ -449,7 +453,7 @@ class EntityTypeBatch(proto.Message):
             A collection of entity types.
     """
 
-    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message=EntityType,)
+    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message="EntityType",)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

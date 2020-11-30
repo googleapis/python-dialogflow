@@ -31,7 +31,7 @@ from google.api_core import future
 from google.api_core import gapic_v1
 from google.api_core import grpc_helpers
 from google.api_core import grpc_helpers_async
-from google.api_core import operation_async
+from google.api_core import operation_async  # type: ignore
 from google.api_core import operations_v1
 from google.auth import credentials
 from google.auth.exceptions import MutualTLSChannelError
@@ -94,12 +94,12 @@ def test_agents_client_from_service_account_file(client_class):
     ) as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
         client = client_class.from_service_account_json("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
-        assert client._transport._host == "dialogflow.googleapis.com:443"
+        assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_agents_client_get_transport_class():
@@ -423,7 +423,7 @@ def test_get_agent(transport: str = "grpc", request_type=agent.GetAgentRequest):
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = agent.Agent(
             parent="parent_value",
@@ -449,6 +449,7 @@ def test_get_agent(transport: str = "grpc", request_type=agent.GetAgentRequest):
         assert args[0] == agent.GetAgentRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, agent.Agent)
 
     assert response.parent == "parent_value"
@@ -481,19 +482,19 @@ def test_get_agent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_get_agent_async(transport: str = "grpc_asyncio"):
+async def test_get_agent_async(
+    transport: str = "grpc_asyncio", request_type=agent.GetAgentRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.GetAgentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.get_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             agent.Agent(
@@ -518,7 +519,7 @@ async def test_get_agent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.GetAgentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, agent.Agent)
@@ -548,6 +549,11 @@ async def test_get_agent_async(transport: str = "grpc_asyncio"):
     assert response.tier == agent.Agent.Tier.TIER_STANDARD
 
 
+@pytest.mark.asyncio
+async def test_get_agent_async_from_dict():
+    await test_get_agent_async(request_type=dict)
+
+
 def test_get_agent_field_headers():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
@@ -557,7 +563,7 @@ def test_get_agent_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_agent), "__call__") as call:
         call.return_value = agent.Agent()
 
         client.get_agent(request)
@@ -582,9 +588,7 @@ async def test_get_agent_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.get_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_agent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(agent.Agent())
 
         await client.get_agent(request)
@@ -603,7 +607,7 @@ def test_get_agent_flattened():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = agent.Agent()
 
@@ -635,9 +639,7 @@ async def test_get_agent_flattened_async():
     client = AgentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.get_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = agent.Agent()
 
@@ -676,7 +678,7 @@ def test_set_agent(transport: str = "grpc", request_type=gcd_agent.SetAgentReque
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.set_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.set_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_agent.Agent(
             parent="parent_value",
@@ -702,6 +704,7 @@ def test_set_agent(transport: str = "grpc", request_type=gcd_agent.SetAgentReque
         assert args[0] == gcd_agent.SetAgentRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, gcd_agent.Agent)
 
     assert response.parent == "parent_value"
@@ -734,19 +737,19 @@ def test_set_agent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_set_agent_async(transport: str = "grpc_asyncio"):
+async def test_set_agent_async(
+    transport: str = "grpc_asyncio", request_type=gcd_agent.SetAgentRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = gcd_agent.SetAgentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.set_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.set_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             gcd_agent.Agent(
@@ -771,7 +774,7 @@ async def test_set_agent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == gcd_agent.SetAgentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcd_agent.Agent)
@@ -801,6 +804,11 @@ async def test_set_agent_async(transport: str = "grpc_asyncio"):
     assert response.tier == gcd_agent.Agent.Tier.TIER_STANDARD
 
 
+@pytest.mark.asyncio
+async def test_set_agent_async_from_dict():
+    await test_set_agent_async(request_type=dict)
+
+
 def test_set_agent_field_headers():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
@@ -810,7 +818,7 @@ def test_set_agent_field_headers():
     request.agent.parent = "agent.parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.set_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.set_agent), "__call__") as call:
         call.return_value = gcd_agent.Agent()
 
         client.set_agent(request)
@@ -837,9 +845,7 @@ async def test_set_agent_field_headers_async():
     request.agent.parent = "agent.parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.set_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.set_agent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_agent.Agent())
 
         await client.set_agent(request)
@@ -860,7 +866,7 @@ def test_set_agent_flattened():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.set_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.set_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_agent.Agent()
 
@@ -892,9 +898,7 @@ async def test_set_agent_flattened_async():
     client = AgentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.set_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.set_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_agent.Agent()
 
@@ -933,7 +937,7 @@ def test_delete_agent(transport: str = "grpc", request_type=agent.DeleteAgentReq
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.delete_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -954,19 +958,19 @@ def test_delete_agent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_delete_agent_async(transport: str = "grpc_asyncio"):
+async def test_delete_agent_async(
+    transport: str = "grpc_asyncio", request_type=agent.DeleteAgentRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.DeleteAgentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.delete_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.delete_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
@@ -976,10 +980,15 @@ async def test_delete_agent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.DeleteAgentRequest()
 
     # Establish that the response is the type that we expect.
     assert response is None
+
+
+@pytest.mark.asyncio
+async def test_delete_agent_async_from_dict():
+    await test_delete_agent_async(request_type=dict)
 
 
 def test_delete_agent_field_headers():
@@ -991,7 +1000,7 @@ def test_delete_agent_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.delete_agent), "__call__") as call:
         call.return_value = None
 
         client.delete_agent(request)
@@ -1016,9 +1025,7 @@ async def test_delete_agent_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.delete_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.delete_agent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
         await client.delete_agent(request)
@@ -1037,7 +1044,7 @@ def test_delete_agent_flattened():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.delete_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1069,9 +1076,7 @@ async def test_delete_agent_flattened_async():
     client = AgentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.delete_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.delete_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1110,7 +1115,7 @@ def test_search_agents(transport: str = "grpc", request_type=agent.SearchAgentsR
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_agents), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = agent.SearchAgentsResponse(
             next_page_token="next_page_token_value",
@@ -1125,6 +1130,7 @@ def test_search_agents(transport: str = "grpc", request_type=agent.SearchAgentsR
         assert args[0] == agent.SearchAgentsRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, pagers.SearchAgentsPager)
 
     assert response.next_page_token == "next_page_token_value"
@@ -1135,19 +1141,19 @@ def test_search_agents_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_search_agents_async(transport: str = "grpc_asyncio"):
+async def test_search_agents_async(
+    transport: str = "grpc_asyncio", request_type=agent.SearchAgentsRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.SearchAgentsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.search_agents), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             agent.SearchAgentsResponse(next_page_token="next_page_token_value",)
@@ -1159,12 +1165,17 @@ async def test_search_agents_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.SearchAgentsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.SearchAgentsAsyncPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+@pytest.mark.asyncio
+async def test_search_agents_async_from_dict():
+    await test_search_agents_async(request_type=dict)
 
 
 def test_search_agents_field_headers():
@@ -1176,7 +1187,7 @@ def test_search_agents_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_agents), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         call.return_value = agent.SearchAgentsResponse()
 
         client.search_agents(request)
@@ -1201,9 +1212,7 @@ async def test_search_agents_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.search_agents), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             agent.SearchAgentsResponse()
         )
@@ -1224,7 +1233,7 @@ def test_search_agents_flattened():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_agents), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = agent.SearchAgentsResponse()
 
@@ -1256,9 +1265,7 @@ async def test_search_agents_flattened_async():
     client = AgentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.search_agents), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = agent.SearchAgentsResponse()
 
@@ -1293,7 +1300,7 @@ def test_search_agents_pager():
     client = AgentsClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_agents), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         # Set the response to a series of pages.
         call.side_effect = (
             agent.SearchAgentsResponse(
@@ -1323,7 +1330,7 @@ def test_search_agents_pages():
     client = AgentsClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_agents), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_agents), "__call__") as call:
         # Set the response to a series of pages.
         call.side_effect = (
             agent.SearchAgentsResponse(
@@ -1346,9 +1353,7 @@ async def test_search_agents_async_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.search_agents),
-        "__call__",
-        new_callable=mock.AsyncMock,
+        type(client.transport.search_agents), "__call__", new_callable=mock.AsyncMock
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -1377,9 +1382,7 @@ async def test_search_agents_async_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.search_agents),
-        "__call__",
-        new_callable=mock.AsyncMock,
+        type(client.transport.search_agents), "__call__", new_callable=mock.AsyncMock
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -1409,7 +1412,7 @@ def test_train_agent(transport: str = "grpc", request_type=agent.TrainAgentReque
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.train_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.train_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/spam")
 
@@ -1430,19 +1433,19 @@ def test_train_agent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_train_agent_async(transport: str = "grpc_asyncio"):
+async def test_train_agent_async(
+    transport: str = "grpc_asyncio", request_type=agent.TrainAgentRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.TrainAgentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.train_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.train_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/spam")
@@ -1454,10 +1457,15 @@ async def test_train_agent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.TrainAgentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+@pytest.mark.asyncio
+async def test_train_agent_async_from_dict():
+    await test_train_agent_async(request_type=dict)
 
 
 def test_train_agent_field_headers():
@@ -1469,7 +1477,7 @@ def test_train_agent_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.train_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.train_agent), "__call__") as call:
         call.return_value = operations_pb2.Operation(name="operations/op")
 
         client.train_agent(request)
@@ -1494,9 +1502,7 @@ async def test_train_agent_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.train_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.train_agent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/op")
         )
@@ -1517,7 +1523,7 @@ def test_train_agent_flattened():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.train_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.train_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/op")
 
@@ -1549,9 +1555,7 @@ async def test_train_agent_flattened_async():
     client = AgentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.train_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.train_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/op")
 
@@ -1592,7 +1596,7 @@ def test_export_agent(transport: str = "grpc", request_type=agent.ExportAgentReq
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.export_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.export_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/spam")
 
@@ -1613,19 +1617,19 @@ def test_export_agent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_export_agent_async(transport: str = "grpc_asyncio"):
+async def test_export_agent_async(
+    transport: str = "grpc_asyncio", request_type=agent.ExportAgentRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.ExportAgentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.export_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.export_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/spam")
@@ -1637,10 +1641,15 @@ async def test_export_agent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.ExportAgentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+@pytest.mark.asyncio
+async def test_export_agent_async_from_dict():
+    await test_export_agent_async(request_type=dict)
 
 
 def test_export_agent_field_headers():
@@ -1652,7 +1661,7 @@ def test_export_agent_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.export_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.export_agent), "__call__") as call:
         call.return_value = operations_pb2.Operation(name="operations/op")
 
         client.export_agent(request)
@@ -1677,9 +1686,7 @@ async def test_export_agent_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.export_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.export_agent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/op")
         )
@@ -1700,7 +1707,7 @@ def test_export_agent_flattened():
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.export_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.export_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/op")
 
@@ -1732,9 +1739,7 @@ async def test_export_agent_flattened_async():
     client = AgentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.export_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.export_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/op")
 
@@ -1775,7 +1780,7 @@ def test_import_agent(transport: str = "grpc", request_type=agent.ImportAgentReq
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.import_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.import_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/spam")
 
@@ -1796,19 +1801,19 @@ def test_import_agent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_import_agent_async(transport: str = "grpc_asyncio"):
+async def test_import_agent_async(
+    transport: str = "grpc_asyncio", request_type=agent.ImportAgentRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.ImportAgentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.import_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.import_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/spam")
@@ -1820,10 +1825,15 @@ async def test_import_agent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.ImportAgentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+@pytest.mark.asyncio
+async def test_import_agent_async_from_dict():
+    await test_import_agent_async(request_type=dict)
 
 
 def test_import_agent_field_headers():
@@ -1835,7 +1845,7 @@ def test_import_agent_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.import_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.import_agent), "__call__") as call:
         call.return_value = operations_pb2.Operation(name="operations/op")
 
         client.import_agent(request)
@@ -1860,9 +1870,7 @@ async def test_import_agent_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.import_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.import_agent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/op")
         )
@@ -1889,7 +1897,7 @@ def test_restore_agent(transport: str = "grpc", request_type=agent.RestoreAgentR
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.restore_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.restore_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/spam")
 
@@ -1910,19 +1918,19 @@ def test_restore_agent_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_restore_agent_async(transport: str = "grpc_asyncio"):
+async def test_restore_agent_async(
+    transport: str = "grpc_asyncio", request_type=agent.RestoreAgentRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.RestoreAgentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.restore_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.restore_agent), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/spam")
@@ -1934,10 +1942,15 @@ async def test_restore_agent_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.RestoreAgentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+@pytest.mark.asyncio
+async def test_restore_agent_async_from_dict():
+    await test_restore_agent_async(request_type=dict)
 
 
 def test_restore_agent_field_headers():
@@ -1949,7 +1962,7 @@ def test_restore_agent_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.restore_agent), "__call__") as call:
+    with mock.patch.object(type(client.transport.restore_agent), "__call__") as call:
         call.return_value = operations_pb2.Operation(name="operations/op")
 
         client.restore_agent(request)
@@ -1974,9 +1987,7 @@ async def test_restore_agent_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.restore_agent), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.restore_agent), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/op")
         )
@@ -2006,7 +2017,7 @@ def test_get_validation_result(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.get_validation_result), "__call__"
+        type(client.transport.get_validation_result), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = validation_result.ValidationResult()
@@ -2020,6 +2031,7 @@ def test_get_validation_result(
         assert args[0] == agent.GetValidationResultRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, validation_result.ValidationResult)
 
 
@@ -2028,18 +2040,20 @@ def test_get_validation_result_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_get_validation_result_async(transport: str = "grpc_asyncio"):
+async def test_get_validation_result_async(
+    transport: str = "grpc_asyncio", request_type=agent.GetValidationResultRequest
+):
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = agent.GetValidationResultRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.get_validation_result), "__call__"
+        type(client.transport.get_validation_result), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -2052,10 +2066,15 @@ async def test_get_validation_result_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == agent.GetValidationResultRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, validation_result.ValidationResult)
+
+
+@pytest.mark.asyncio
+async def test_get_validation_result_async_from_dict():
+    await test_get_validation_result_async(request_type=dict)
 
 
 def test_get_validation_result_field_headers():
@@ -2068,7 +2087,7 @@ def test_get_validation_result_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.get_validation_result), "__call__"
+        type(client.transport.get_validation_result), "__call__"
     ) as call:
         call.return_value = validation_result.ValidationResult()
 
@@ -2095,7 +2114,7 @@ async def test_get_validation_result_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.get_validation_result), "__call__"
+        type(client.transport.get_validation_result), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             validation_result.ValidationResult()
@@ -2149,7 +2168,7 @@ def test_transport_instance():
         credentials=credentials.AnonymousCredentials(),
     )
     client = AgentsClient(transport=transport)
-    assert client._transport is transport
+    assert client.transport is transport
 
 
 def test_transport_get_channel():
@@ -2182,7 +2201,7 @@ def test_transport_adc(transport_class):
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = AgentsClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client._transport, transports.AgentsGrpcTransport,)
+    assert isinstance(client.transport, transports.AgentsGrpcTransport,)
 
 
 def test_agents_base_transport_error():
@@ -2298,7 +2317,7 @@ def test_agents_host_no_port():
             api_endpoint="dialogflow.googleapis.com"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:443"
+    assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
 def test_agents_host_with_port():
@@ -2308,7 +2327,7 @@ def test_agents_host_with_port():
             api_endpoint="dialogflow.googleapis.com:8000"
         ),
     )
-    assert client._transport._host == "dialogflow.googleapis.com:8000"
+    assert client.transport._host == "dialogflow.googleapis.com:8000"
 
 
 def test_agents_grpc_transport_channel():
@@ -2320,6 +2339,7 @@ def test_agents_grpc_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 def test_agents_grpc_asyncio_transport_channel():
@@ -2331,6 +2351,7 @@ def test_agents_grpc_asyncio_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 @pytest.mark.parametrize(
@@ -2376,6 +2397,7 @@ def test_agents_transport_channel_mtls_with_client_cert_source(transport_class):
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+            assert transport._ssl_channel_credentials == mock_ssl_cred
 
 
 @pytest.mark.parametrize(
@@ -2422,7 +2444,7 @@ def test_agents_grpc_lro_client():
     client = AgentsClient(
         credentials=credentials.AnonymousCredentials(), transport="grpc",
     )
-    transport = client._transport
+    transport = client.transport
 
     # Ensure that we have a api-core operations client.
     assert isinstance(transport.operations_client, operations_v1.OperationsClient,)
@@ -2435,7 +2457,7 @@ def test_agents_grpc_lro_async_client():
     client = AgentsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport="grpc_asyncio",
     )
-    transport = client._client._transport
+    transport = client.transport
 
     # Ensure that we have a api-core operations client.
     assert isinstance(transport.operations_client, operations_v1.OperationsAsyncClient,)
@@ -2460,6 +2482,107 @@ def test_parse_agent_path():
 
     # Check that the path construction is reversible.
     actual = AgentsClient.parse_agent_path(path)
+    assert expected == actual
+
+
+def test_common_billing_account_path():
+    billing_account = "whelk"
+
+    expected = "billingAccounts/{billing_account}".format(
+        billing_account=billing_account,
+    )
+    actual = AgentsClient.common_billing_account_path(billing_account)
+    assert expected == actual
+
+
+def test_parse_common_billing_account_path():
+    expected = {
+        "billing_account": "octopus",
+    }
+    path = AgentsClient.common_billing_account_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = AgentsClient.parse_common_billing_account_path(path)
+    assert expected == actual
+
+
+def test_common_folder_path():
+    folder = "oyster"
+
+    expected = "folders/{folder}".format(folder=folder,)
+    actual = AgentsClient.common_folder_path(folder)
+    assert expected == actual
+
+
+def test_parse_common_folder_path():
+    expected = {
+        "folder": "nudibranch",
+    }
+    path = AgentsClient.common_folder_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = AgentsClient.parse_common_folder_path(path)
+    assert expected == actual
+
+
+def test_common_organization_path():
+    organization = "cuttlefish"
+
+    expected = "organizations/{organization}".format(organization=organization,)
+    actual = AgentsClient.common_organization_path(organization)
+    assert expected == actual
+
+
+def test_parse_common_organization_path():
+    expected = {
+        "organization": "mussel",
+    }
+    path = AgentsClient.common_organization_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = AgentsClient.parse_common_organization_path(path)
+    assert expected == actual
+
+
+def test_common_project_path():
+    project = "winkle"
+
+    expected = "projects/{project}".format(project=project,)
+    actual = AgentsClient.common_project_path(project)
+    assert expected == actual
+
+
+def test_parse_common_project_path():
+    expected = {
+        "project": "nautilus",
+    }
+    path = AgentsClient.common_project_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = AgentsClient.parse_common_project_path(path)
+    assert expected == actual
+
+
+def test_common_location_path():
+    project = "scallop"
+    location = "abalone"
+
+    expected = "projects/{project}/locations/{location}".format(
+        project=project, location=location,
+    )
+    actual = AgentsClient.common_location_path(project, location)
+    assert expected == actual
+
+
+def test_parse_common_location_path():
+    expected = {
+        "project": "squid",
+        "location": "clam",
+    }
+    path = AgentsClient.common_location_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = AgentsClient.parse_common_location_path(path)
     assert expected == actual
 
 

@@ -503,9 +503,9 @@ class StreamingDetectIntentRequest(proto.Message):
 
     session = proto.Field(proto.STRING, number=1)
 
-    query_params = proto.Field(proto.MESSAGE, number=2, message=QueryParameters,)
+    query_params = proto.Field(proto.MESSAGE, number=2, message="QueryParameters",)
 
-    query_input = proto.Field(proto.MESSAGE, number=3, message=QueryInput,)
+    query_input = proto.Field(proto.MESSAGE, number=3, message="QueryInput",)
 
     single_utterance = proto.Field(proto.BOOL, number=4)
 
@@ -570,7 +570,7 @@ class StreamingDetectIntentResponse(proto.Message):
         proto.MESSAGE, number=2, message="StreamingRecognitionResult",
     )
 
-    query_result = proto.Field(proto.MESSAGE, number=3, message=QueryResult,)
+    query_result = proto.Field(proto.MESSAGE, number=3, message="QueryResult",)
 
     webhook_status = proto.Field(proto.MESSAGE, number=4, message=status.Status,)
 
@@ -753,13 +753,10 @@ class SentimentAnalysisResult(proto.Message):
     r"""The result of sentiment analysis. Sentiment analysis inspects user
     input and identifies the prevailing subjective opinion, especially
     to determine a user's attitude as positive, negative, or neutral.
-    For
-    [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent],
-    it needs to be configured in
+    For [Participants.DetectIntent][], it needs to be configured in
     [DetectIntentRequest.query_params][google.cloud.dialogflow.v2.DetectIntentRequest.query_params].
-    For
-    [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent],
-    it needs to be configured in
+    For [Participants.StreamingDetectIntent][], it needs to be
+    configured in
     [StreamingDetectIntentRequest.query_params][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_params].
     And for
     [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
