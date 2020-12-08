@@ -109,6 +109,16 @@ class SessionsClient(object):
         )
 
     @classmethod
+    def location_session_path(cls, project, location, session):
+        """Return a fully-qualified location_session string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/locations/{location}/agent/sessions/{session}",
+            project=project,
+            location=location,
+            session=session,
+        )
+
+    @classmethod
     def session_path(cls, project, session):
         """Return a fully-qualified session string."""
         return google.api_core.path_template.expand(
