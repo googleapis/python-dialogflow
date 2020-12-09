@@ -171,10 +171,12 @@ query_params = dialogvlow_v2.types.QueryParameters(time_zone="Europe/Paris")
 
 The following resource path helper methods have been removed:
 
+Construct these paths manually.
+
 ```py
-project_agent_path
-session_path
-environment_context_path
-environment_session_path
-environment_session_entity_type_path
+project_agent_path = f""
+session_path = f""
+environment_context_path = f""
+environment_session_path = f""
+environment_session_entity_type_path = f""
 ```

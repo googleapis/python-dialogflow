@@ -32,7 +32,7 @@ with io.open(readme_filename, encoding="utf-8") as readme_file:
 packages = setuptools.PEP420PackageFinder.find()
 
 setuptools.setup(
-    name="dialogflow",
+    name="google-cloud-dialogflow",
     description=description,
     long_description=readme,
     version=version,
