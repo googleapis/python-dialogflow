@@ -166,7 +166,8 @@ class KnowledgeBasesAsyncClient:
                 [KnowledgeBases.ListKnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBases.ListKnowledgeBases].
             parent (:class:`str`):
                 Required. The project to list of knowledge bases for.
-                Format: ``projects/<Project ID>``.
+                Format:
+                ``projects/<Project ID>/locations/<Location ID>``.
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -251,7 +252,7 @@ class KnowledgeBasesAsyncClient:
             name (:class:`str`):
                 Required. The name of the knowledge base to retrieve.
                 Format
-                ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -337,7 +338,8 @@ class KnowledgeBasesAsyncClient:
                 [KnowledgeBases.CreateKnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBases.CreateKnowledgeBase].
             parent (:class:`str`):
                 Required. The project to create a knowledge base for.
-                Format: ``projects/<Project ID>``.
+                Format:
+                ``projects/<Project ID>/locations/<Location ID>``.
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -431,7 +433,7 @@ class KnowledgeBasesAsyncClient:
             name (:class:`str`):
                 Required. The name of the knowledge base to delete.
                 Format:
-                ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.

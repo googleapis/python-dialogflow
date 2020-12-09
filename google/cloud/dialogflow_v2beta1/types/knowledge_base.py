@@ -52,7 +52,7 @@ class KnowledgeBase(proto.Message):
         name (str):
             The knowledge base resource name. The name must be empty
             when creating a knowledge base. Format:
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
         display_name (str):
             Required. The display name of the knowledge
             base. The name must be 1024 bytes or less;
@@ -78,7 +78,7 @@ class ListKnowledgeBasesRequest(proto.Message):
     Attributes:
         parent (str):
             Required. The project to list of knowledge bases for.
-            Format: ``projects/<Project ID>``.
+            Format: ``projects/<Project ID>/locations/<Location ID>``.
         page_size (int):
             The maximum number of items to return in a
             single page. By default 10 and at most 100.
@@ -156,7 +156,7 @@ class GetKnowledgeBaseRequest(proto.Message):
     Attributes:
         name (str):
             Required. The name of the knowledge base to retrieve. Format
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
     """
 
     name = proto.Field(proto.STRING, number=1)
@@ -169,7 +169,7 @@ class CreateKnowledgeBaseRequest(proto.Message):
     Attributes:
         parent (str):
             Required. The project to create a knowledge base for.
-            Format: ``projects/<Project ID>``.
+            Format: ``projects/<Project ID>/locations/<Location ID>``.
         knowledge_base (~.gcd_knowledge_base.KnowledgeBase):
             Required. The knowledge base to create.
     """
@@ -186,7 +186,7 @@ class DeleteKnowledgeBaseRequest(proto.Message):
     Attributes:
         name (str):
             Required. The name of the knowledge base to delete. Format:
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
         force (bool):
             Optional. Force deletes the knowledge base.
             When set to true, any documents in the knowledge

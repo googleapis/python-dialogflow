@@ -163,7 +163,7 @@ class DocumentsAsyncClient:
             parent (:class:`str`):
                 Required. The knowledge base to list all documents for.
                 Format:
-                ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -247,7 +247,7 @@ class DocumentsAsyncClient:
                 [Documents.GetDocument][google.cloud.dialogflow.v2beta1.Documents.GetDocument].
             name (:class:`str`):
                 Required. The name of the document to retrieve. Format
-                ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -331,7 +331,7 @@ class DocumentsAsyncClient:
             parent (:class:`str`):
                 Required. The knowledge base to create a document for.
                 Format:
-                ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -432,7 +432,7 @@ class DocumentsAsyncClient:
                 [Documents.DeleteDocument][google.cloud.dialogflow.v2beta1.Documents.DeleteDocument].
             name (:class:`str`):
                 Required. The name of the document to delete. Format:
-                ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -629,7 +629,11 @@ class DocumentsAsyncClient:
         content_uri or content. The previously loaded content of the
         document will be deleted. Note: Even when the content of the
         document has not changed, there still may be side effects
-        because of internal implementation changes.
+        because of internal implementation changes. Note: If the
+        document source is Google Cloud Storage URI, its metadata will
+        be replaced with the custom metadata from Google Cloud Storage
+        if the ``import_gcs_custom_metadata`` field is set to true in
+        the request.
 
         Note: The ``projects.agent.knowledgeBases.documents`` resource
         is deprecated; only use ``projects.knowledgeBases.documents``.
@@ -640,7 +644,7 @@ class DocumentsAsyncClient:
                 [Documents.ReloadDocument][google.cloud.dialogflow.v2beta1.Documents.ReloadDocument].
             name (:class:`str`):
                 Required. The name of the document to reload. Format:
-                ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
+                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.

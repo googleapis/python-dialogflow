@@ -165,11 +165,14 @@ class SessionsAsyncClient:
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_session.DetectIntentResponse:
-        r"""Processes a natural language query and returns
-        structured, actionable data as a result. This method is
-        not idempotent, because it may cause contexts and
-        session entity types to be updated, which in turn might
-        affect results of future queries.
+        r"""Processes a natural language query and returns structured,
+        actionable data as a result. This method is not idempotent,
+        because it may cause contexts and session entity types to be
+        updated, which in turn might affect results of future queries.
+
+        Note: Always use agent versions for production traffic. See
+        `Versions and
+        environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
         Args:
             request (:class:`~.gcd_session.DetectIntentRequest`):
@@ -191,6 +194,10 @@ class SessionsAsyncClient:
 
                 For more information, see the `API interactions
                 guide <https://cloud.google.com/dialogflow/docs/api-overview>`__.
+
+                Note: Always use agent versions for production traffic.
+                See `Versions and
+                environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
                 This corresponds to the ``session`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -275,10 +282,14 @@ class SessionsAsyncClient:
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> Awaitable[AsyncIterable[session.StreamingDetectIntentResponse]]:
-        r"""Processes a natural language query in audio format in
-        a streaming fashion and returns structured, actionable
-        data as a result. This method is only available via the
-        gRPC API (not REST).
+        r"""Processes a natural language query in audio format in a
+        streaming fashion and returns structured, actionable data as a
+        result. This method is only available via the gRPC API (not
+        REST).
+
+        Note: Always use agent versions for production traffic. See
+        `Versions and
+        environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
         Args:
             requests (AsyncIterator[`~.session.StreamingDetectIntentRequest`]):
@@ -286,6 +297,7 @@ class SessionsAsyncClient:
                 client to the
                 [Sessions.StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]
                 method.
+
                 Multiple request messages should be sent in order:
 
                 1.  The first message must contain
@@ -293,7 +305,7 @@ class SessionsAsyncClient:
                 [query_input][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input]
                 plus optionally
                 [query_params][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_params].
-                If the client     wants to receive an audio response, it
+                If the client wants to receive an audio response, it
                 should also contain
                 [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config].
                 The message must not contain
@@ -302,12 +314,12 @@ class SessionsAsyncClient:
                 [query_input][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input]
                 was set to
                 [query_input.audio_config][google.cloud.dialogflow.v2.InputAudioConfig],
-                all subsequent     messages must contain
+                all subsequent messages must contain
                 [input_audio][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.input_audio]
-                to continue with     Speech recognition.
-                    If you decide to rather detect an intent from text
-                input after you     already started Speech recognition,
-                please send a message with
+                to continue with Speech recognition. If you decide to
+                rather detect an     intent from text input after you
+                already started Speech recognition,     please send a
+                message with
                 [query_input.text][google.cloud.dialogflow.v2.QueryInput.text].
                     However, note that:
 

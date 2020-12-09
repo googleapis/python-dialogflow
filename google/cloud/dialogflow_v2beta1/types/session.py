@@ -74,6 +74,10 @@ class DetectIntentRequest(proto.Message):
             ``Session ID`` and ``User ID`` must not exceed 36
             characters. For more information, see the `API interactions
             guide <https://cloud.google.com/dialogflow/docs/api-overview>`__.
+
+            Note: Always use agent versions for production traffic. See
+            `Versions and
+            environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
         query_params (~.gcd_session.QueryParameters):
             The parameters of this query.
         query_input (~.gcd_session.QueryInput):
@@ -234,7 +238,7 @@ class QueryParameters(proto.Message):
         webhook_headers (Sequence[~.gcd_session.QueryParameters.WebhookHeadersEntry]):
             This field can be used to pass HTTP headers
             for a webhook call. These headers will be sent
-            to webhook alone with the headers that have been
+            to webhook along with the headers that have been
             configured through Dialogflow web console. The
             headers defined within this field will overwrite
             the headers configured through Dialogflow
@@ -588,6 +592,10 @@ class StreamingDetectIntentRequest(proto.Message):
 
             For more information, see the `API interactions
             guide <https://cloud.google.com/dialogflow/docs/api-overview>`__.
+
+            Note: Always use agent versions for production traffic. See
+            `Versions and
+            environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
         query_params (~.gcd_session.QueryParameters):
             The parameters of this query.
         query_input (~.gcd_session.QueryInput):

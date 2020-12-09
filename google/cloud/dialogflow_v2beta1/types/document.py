@@ -54,7 +54,7 @@ class Document(proto.Message):
         name (str):
             Optional. The document resource name. The name must be empty
             when creating a document. Format:
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
         display_name (str):
             Required. The display name of the document.
             The name must be 1024 bytes or less; otherwise,
@@ -159,7 +159,7 @@ class GetDocumentRequest(proto.Message):
     Attributes:
         name (str):
             Required. The name of the document to retrieve. Format
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
     """
 
     name = proto.Field(proto.STRING, number=1)
@@ -173,7 +173,7 @@ class ListDocumentsRequest(proto.Message):
         parent (str):
             Required. The knowledge base to list all documents for.
             Format:
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
         page_size (int):
             The maximum number of items to return in a
             single page. By default 10 and at most 100.
@@ -245,14 +245,20 @@ class CreateDocumentRequest(proto.Message):
         parent (str):
             Required. The knowledge base to create a document for.
             Format:
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
         document (~.gcd_document.Document):
             Required. The document to create.
+        import_gcs_custom_metadata (bool):
+            Whether to import custom metadata from Google
+            Cloud Storage. Only valid when the document
+            source is Google Cloud Storage URI.
     """
 
     parent = proto.Field(proto.STRING, number=1)
 
     document = proto.Field(proto.MESSAGE, number=2, message="Document",)
+
+    import_gcs_custom_metadata = proto.Field(proto.BOOL, number=3)
 
 
 class DeleteDocumentRequest(proto.Message):
@@ -262,7 +268,7 @@ class DeleteDocumentRequest(proto.Message):
     Attributes:
         name (str):
             Required. The name of the document to delete. Format:
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
     """
 
     name = proto.Field(proto.STRING, number=1)
@@ -313,11 +319,15 @@ class ReloadDocumentRequest(proto.Message):
     Attributes:
         name (str):
             Required. The name of the document to reload. Format:
-            ``projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
         gcs_source (~.gcs.GcsSource):
             The path for a Cloud Storage source file for
             reloading document content. If not provided, the
             Document's existing source will be reloaded.
+        import_gcs_custom_metadata (bool):
+            Whether to import custom metadata from Google
+            Cloud Storage. Only valid when the document
+            source is Google Cloud Storage URI.
     """
 
     name = proto.Field(proto.STRING, number=1)
@@ -325,6 +335,8 @@ class ReloadDocumentRequest(proto.Message):
     gcs_source = proto.Field(
         proto.MESSAGE, number=3, oneof="source", message=gcs.GcsSource,
     )
+
+    import_gcs_custom_metadata = proto.Field(proto.BOOL, number=4)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

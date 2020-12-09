@@ -68,6 +68,10 @@ class DetectIntentRequest(proto.Message):
 
             For more information, see the `API interactions
             guide <https://cloud.google.com/dialogflow/docs/api-overview>`__.
+
+            Note: Always use agent versions for production traffic. See
+            `Versions and
+            environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
         query_params (~.gcd_session.QueryParameters):
             The parameters of this query.
         query_input (~.gcd_session.QueryInput):
@@ -197,6 +201,19 @@ class QueryParameters(proto.Message):
             Configures the type of sentiment analysis to
             perform. If not provided, sentiment analysis is
             not performed.
+        webhook_headers (Sequence[~.gcd_session.QueryParameters.WebhookHeadersEntry]):
+            This field can be used to pass HTTP headers
+            for a webhook call. These headers will be sent
+            to webhook along with the headers that have been
+            configured through the Dialogflow web console.
+            The headers defined within this field will
+            overwrite the headers configured through the
+            Dialogflow console if there is a conflict.
+            Header names are case-insensitive. Google's
+            specified headers are not allowed. Including:
+            "Host", "Content-Length", "Connection", "From",
+            "User-Agent", "Accept-Encoding", "If-Modified-
+            Since", "If-None-Match", "X-Forwarded-For", etc.
     """
 
     time_zone = proto.Field(proto.STRING, number=1)
@@ -216,6 +233,8 @@ class QueryParameters(proto.Message):
     sentiment_analysis_request_config = proto.Field(
         proto.MESSAGE, number=10, message="SentimentAnalysisRequestConfig",
     )
+
+    webhook_headers = proto.MapField(proto.STRING, proto.STRING, number=14)
 
 
 class QueryInput(proto.Message):
@@ -456,6 +475,10 @@ class StreamingDetectIntentRequest(proto.Message):
 
             For more information, see the `API interactions
             guide <https://cloud.google.com/dialogflow/docs/api-overview>`__.
+
+            Note: Always use agent versions for production traffic. See
+            `Versions and
+            environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
         query_params (~.gcd_session.QueryParameters):
             The parameters of this query.
         query_input (~.gcd_session.QueryInput):

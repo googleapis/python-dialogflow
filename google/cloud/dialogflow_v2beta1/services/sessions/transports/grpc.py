@@ -239,11 +239,14 @@ class SessionsGrpcTransport(SessionsTransport):
     ) -> Callable[[gcd_session.DetectIntentRequest], gcd_session.DetectIntentResponse]:
         r"""Return a callable for the detect intent method over gRPC.
 
-        Processes a natural language query and returns
-        structured, actionable data as a result. This method is
-        not idempotent, because it may cause contexts and
-        session entity types to be updated, which in turn might
-        affect results of future queries.
+        Processes a natural language query and returns structured,
+        actionable data as a result. This method is not idempotent,
+        because it may cause contexts and session entity types to be
+        updated, which in turn might affect results of future queries.
+
+        Note: Always use agent versions for production traffic. See
+        `Versions and
+        environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
         Returns:
             Callable[[~.DetectIntentRequest],
@@ -271,10 +274,14 @@ class SessionsGrpcTransport(SessionsTransport):
     ]:
         r"""Return a callable for the streaming detect intent method over gRPC.
 
-        Processes a natural language query in audio format in
-        a streaming fashion and returns structured, actionable
-        data as a result. This method is only available via the
-        gRPC API (not REST).
+        Processes a natural language query in audio format in a
+        streaming fashion and returns structured, actionable data as a
+        result. This method is only available via the gRPC API (not
+        REST).
+
+        Note: Always use agent versions for production traffic. See
+        `Versions and
+        environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
         Returns:
             Callable[[~.StreamingDetectIntentRequest],
