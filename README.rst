@@ -52,8 +52,8 @@ Supported Python Versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 Python >= 3.6
 
-Deprecated Python Versions
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Unsupported Python Versions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The last version of this library compatible with Python 2.7 is google-cloud-dialogflow==1.1.0.
 
 
