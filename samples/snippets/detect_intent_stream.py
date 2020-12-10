@@ -70,7 +70,7 @@ def detect_intent_stream(project_id, session_id, audio_file_path,
         sample_rate_hertz=sample_rate_hertz)
 
     requests = request_generator(audio_config, audio_file_path)
-    responses = session_client.streaming_detect_intent(request={'session': requests})
+    responses = session_client.streaming_detect_intent(requests=requests)
 
     print('=' * 20)
     for response in responses:

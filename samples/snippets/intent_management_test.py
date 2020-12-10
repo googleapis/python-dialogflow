@@ -40,7 +40,7 @@ def test_create_intent(capsys):
 
     assert len(intent_ids) == 1
 
-    intent_management.list_intents(request={'parent': PROJECT_ID})
+    intent_management.list_intents(PROJECT_ID)
 
     out, _ = capsys.readouterr()
 
@@ -55,9 +55,9 @@ def test_delete_session_entity_type(capsys):
         PROJECT_ID, INTENT_DISPLAY_NAME)
 
     for intent_id in intent_ids:
-        intent_management.delete_intent(request={'name': PROJECT_ID}, retry = intent_id)
+        intent_management.delete_intent(PROJECT_ID, intent_id)
 
-    intent_management.list_intents(request={'parent': PROJECT_ID})
+    intent_management.list_intents(PROJECT_I})
     out, _ = capsys.readouterr()
 
     assert INTENT_DISPLAY_NAME not in out

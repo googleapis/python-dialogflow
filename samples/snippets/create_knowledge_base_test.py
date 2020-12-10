@@ -32,7 +32,7 @@ def teardown():
     yield
 
     # Delete the created knowledge base
-    client = dialogflow.KnowledgeBasesClient()
+    client = dialogflow_v2beta1.KnowledgeBasesClient()
     assert pytest.KNOWLEDGE_BASE_ID is not None
     knowledge_base_path = client.knowledge_base_path(
         PROJECT_ID, pytest.KNOWLEDGE_BASE_ID)

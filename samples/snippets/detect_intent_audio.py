@@ -56,8 +56,12 @@ def detect_intent_audio(project_id, session_id, audio_file_path,
         sample_rate_hertz=sample_rate_hertz)
     query_input = dialogflow.QueryInput(audio_config=audio_config)
 
-    response = session_client.detect_intent(
-        request={'session': session, 'query_input': query_input, 'query_params': input_audio})
+    request in dialogflow.DetectIntentRequest(
+        session=session,
+        query_input=query_input,
+        input_audio=input_audio,
+    )
+    response = session_client.detect_intent(request=request)
 
     print('=' * 20)
     print('Query text: {}'.format(response.query_result.query_text))

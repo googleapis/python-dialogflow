@@ -31,9 +31,9 @@ pytest.KNOWLEDGE_BASE_ID = None
 @pytest.fixture(scope="function", autouse=True)
 def setup_teardown():
     # Create a knowledge base to use in document management
-    client = dialogflow.KnowledgeBasesClient()
+    client = dialogflow_v2beta1.KnowledgeBasesClient()
     project_path = client.common_project_path(PROJECT_ID)
-    knowledge_base = dialogflow.KnowledgeBase(
+    knowledge_base = dialogflow_v2beta1.KnowledgeBase(
         display_name=KNOWLEDGE_BASE_NAME)
     response = client.create_knowledge_base(parent=project_path, knowledge_base=knowledge_base)
     pytest.KNOWLEDGE_BASE_ID = response.name.split(

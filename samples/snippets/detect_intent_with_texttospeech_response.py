@@ -51,8 +51,12 @@ def detect_intent_with_texttospeech_response(project_id, session_id, texts,
             audio_encoding=dialogflow.OutputAudioEncoding
             .OUTPUT_AUDIO_ENCODING_LINEAR_16)
 
-        response = session_client.detect_intent(
-            request={'session': session_path, 'query_input': query_input, 'query_params': output_audio_config})
+        request = dialogflow.DetectIntentRequest(
+            session=session_path,
+            query_input=query_input,
+            output_audio_config=output_audio_config
+        )
+        response = session_client.detect_intent(request=request)
 
         print('=' * 20)
         print('Query text: {}'.format(response.query_result.query_text))
