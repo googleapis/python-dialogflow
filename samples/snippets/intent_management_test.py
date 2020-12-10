@@ -57,7 +57,7 @@ def test_delete_session_entity_type(capsys):
     for intent_id in intent_ids:
         intent_management.delete_intent(PROJECT_ID, intent_id)
 
-    intent_management.list_intents(PROJECT_I})
+    intent_management.list_intents(PROJECT_ID)
     out, _ = capsys.readouterr()
 
     assert INTENT_DISPLAY_NAME not in out
