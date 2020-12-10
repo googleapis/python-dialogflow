@@ -52,8 +52,7 @@ def detect_intent_knowledge(project_id, session_id, language_code,
 
         query_input = dialogflow.QueryInput(text=text_input)
 
-        knowledge_base_path = dialogflow.knowledge_bases_client \
-            .KnowledgeBasesClient \
+        knowledge_base_path = dialogflow.KnowledgeBasesClient \
             .knowledge_base_path(project_id, knowledge_base_id)
 
         query_params = dialogflow.QueryParameters(

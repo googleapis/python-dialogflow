@@ -18,7 +18,7 @@ Methods expect request objects. We provide a script that will convert most commo
 ```sh
 $ python3 -m pip install google-cloud-dialogflow
 ```
-* The script fixup_keywords.py is shipped with the library. It expects an input directory (with the code to convert) and an empty destination directory.
+* The scripts `fixup_dialogflow_v2_keywords.py` and `fixup_dialogflow_v2beta1_keywords.py` are shipped with the library. It expects an input directory (with the code to convert) and an empty destination directory.
 
 ```sh
 $ fixup_dialogflow_v2_keywords.py --input-directory .samples/ --output-directory samples/
