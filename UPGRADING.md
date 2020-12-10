@@ -2,7 +2,36 @@
 
 The 2.0 release of the `google-cloud-dialogflow` client is a significant upgrade based on a [next-gen code generator](https://github.com/googleapis/gapic-generator-python), and includes substantial interface changes. Existing code written for earlier versions of this library will likely require updates to use this version. This document describes the changes that have been made, and what you need to do to update your usage.
 
-If you experience issues or have questions, please file an [issue](https://github.com/googleapis/dialogflow-python-client-v2/issues).
+If you experience issues or have questions, please file an [issue](https://github.com/googleapis/python-dialogflow/issues).
+
+
+## Package import and naming
+> **WARNING**: Breaking change
+
+The 2.0.0 release changes the name and import path of the library to fall under the google-cloud namespace.
+
+No further updates will be made to the package [dialogflow](https://pypi.org/project/dialogflow/) on PyPI.
+
+**Before:**
+
+```sh
+python3 -m pip install dialogflow
+```
+
+```py
+import dialogflow
+```
+
+**After:**
+
+```sh
+python3 -m pip install google-cloud-dialogflow
+```
+
+```py
+from google.cloud import dialogflow
+```
+
 
 ## Supported Python Versions
 > **WARNING**: Breaking change
@@ -40,32 +69,6 @@ client = dialogflow.ContextsClient()
 
 response = client.list_contexts(request={"parent": "projects/1337/agent/sessions/1024", page_size=10})
 ```
-
-## Package import and naming
-> **WARNING**: Breaking change
-
-The 2.0.0 release changes the name and import path of the library to fall under the google-cloud namespace.
-
-**Before:**
-
-```sh
-python3 -m pip install dialogflow
-```
-
-```py
-import dialogflow
-```
-
-**After:**
-
-```sh
-python3 -m pip install google-cloud-dialogflow
-```
-
-```py
-from google.cloud import dialogflow
-```
-
 
 ### More Details
 In google-cloud-dialogflow<2.0.0, parameters required by the API were positional parameters and optional parameters were keyword parameters.
