@@ -33,13 +33,21 @@ for version in versions:
 
     s.move(library, excludes=["docs/index.rst", "setup.py"])
 
-# ----------------------------------------------------------------------------
-# Add templated files
-# ----------------------------------------------------------------------------
+# # ----------------------------------------------------------------------------
+# # Add templated files
+# # ----------------------------------------------------------------------------
 templated_files = common.py_library(
     samples=False,  # set to True only if there are samples
     microgenerator=True,
 )
 s.move(templated_files, excludes=[".coveragerc"])  # microgenerator has a good .coveragerc file
+
+# Don't treat warnings as errors
+# Docstrings have unexpected idnentation and block quote formatting issues
+s.replace(
+    "noxfile.py",
+    '''["']-W["'],  # warnings as errors''',
+    "",
+)
     
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
