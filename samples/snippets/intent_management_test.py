@@ -33,15 +33,14 @@ TRAINING_PHRASE_PARTS = [
 
 def test_create_intent(capsys):
     intent_management.create_intent(
-        PROJECT_ID, INTENT_DISPLAY_NAME, TRAINING_PHRASE_PARTS,
-        MESSAGE_TEXTS)
+        request={'parent': PROJECT_ID, 'intent': INTENT_DISPLAY_NAME, 'language_code': TRAINING_PHRASE_PARTS, 'intent_view': MESSAGE_TEXTS})
 
     intent_ids = intent_management._get_intent_ids(
         PROJECT_ID, INTENT_DISPLAY_NAME)
 
     assert len(intent_ids) == 1
 
-    intent_management.list_intents(PROJECT_ID)
+    intent_management.list_intents(request={'parent': PROJECT_ID})
 
     out, _ = capsys.readouterr()
 
@@ -56,9 +55,9 @@ def test_delete_session_entity_type(capsys):
         PROJECT_ID, INTENT_DISPLAY_NAME)
 
     for intent_id in intent_ids:
-        intent_management.delete_intent(PROJECT_ID, intent_id)
+        intent_management.delete_intent(request={'name': PROJECT_ID}, retry = intent_id)
 
-    intent_management.list_intents(PROJECT_ID)
+    intent_management.list_intents(request={'parent': PROJECT_ID})
     out, _ = capsys.readouterr()
 
     assert INTENT_DISPLAY_NAME not in out

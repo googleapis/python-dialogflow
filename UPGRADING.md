@@ -169,14 +169,80 @@ query_params = dialogvlow_v2.types.QueryParameters(time_zone="Europe/Paris")
 
 > **WARNING**: Breaking change
 
-The following resource path helper methods have been removed:
+Some resource path helpers have been renamed, and others have been removed.
+See below for an alternative method or a string.
 
-Construct these paths manually.
+
+**v2**
+```py
+from google.cloud import dialogflow_v2
+
+# AgentsClient
+project_path = dialogflow_v2.AgentsClient.common_project_path("PROJECT")
+
+# ContextsClient
+session_path = dialogflow_v2.SessionsClient.session_path("PROJECT", "SESSION")
+
+# EntityTypesClient
+agent_path = dialogflow_v2.AgentsClient.agent_path("PROJECT")
+project_agent_path = dialogflow_v2.AgentsClient.agent_path("PROJECT")
+
+# EnvironmentsClient
+agent_path = dialogflow_v2.AgentsClient.agent_path("PROJECT")
+
+# IntentsClient
+agent_path = dialogflow_v2.AgentsClient.agent_path("PROJECT")
+project_agent_path = dialogflow_v2.AgentsClient.agent_path("PROJECT")
+
+# SessionEntityTypesClient
+session_path = dialogflow_v2.SessionsClient.session_path("PROJECT", "SESSION")
+
+```
+
+**v2beta1**
 
 ```py
-project_agent_path = f""
-session_path = f""
-environment_context_path = f""
-environment_session_path = f""
-environment_session_entity_type_path = f""
+from google.cloud import dialogflow_v2beta1
+
+context = "CONTEXT"
+entity_type = "ENTITY_TYPE"
+environmnent = "ENVIRONMENT"
+project = "PROJECT"
+session = "SESSION"
+user = "USER"
+
+# AgentsClient
+location_path = dialogflow_v2beta1.AgentsClient.common_location_path(
+    "PROJECT", "LOCATION"
+)
+project_path = dialogflow_v2beta1.AgentsClient.common_project_path("PROJECT")
+
+# ContextsClient
+environment_context_path = f"projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}"
+environment_session_path = f"projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}"
+session_path = dialogflow_v2beta1.SessionsClient.session_path("PROJECT", "SESSION")
+
+# DocumentsClient
+knowledge_base_path = dialogflow_v2beta1.KnowledgeBasesClient.knowledge_base_path(
+    "PROJECT", "KNOWLEDGE_BASE"
+)
+
+# EnvironmentsClient
+agent_path = dialogflow_v2beta1.AgentsClient.agent_path("PROJECT")
+
+# IntentsClient
+agent_path = dialogflow_v2beta1.AgentsClient.agent_path("PROJECT")
+project_path = dialogflow_v2beta1.AgentsClient.common_project_path("PROJECT")
+
+# KnowledgeBasesClient
+project_path = dialogflow_v2beta1.KnowledgeBasesClient.common_project_path("PROJECT")
+
+# SessionEntityTypesClient
+environment_session_path = f"projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}"
+environment_sessions_entity_path = f"projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}"
+session_path = f"projects/{project}/agent/sessions/{session}"
+
+
+# SessionsClient
+environment_session_path = f"projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}"
 ```
