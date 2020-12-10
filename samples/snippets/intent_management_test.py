@@ -33,7 +33,7 @@ TRAINING_PHRASE_PARTS = [
 
 def test_create_intent(capsys):
     intent_management.create_intent(
-        request={'parent': PROJECT_ID, 'intent': INTENT_DISPLAY_NAME, 'language_code': TRAINING_PHRASE_PARTS, 'intent_view': MESSAGE_TEXTS})
+        PROJECT_ID, INTENT_DISPLAY_NAME, TRAINING_PHRASE_PARTS, MESSAGE_TEXTS)
 
     intent_ids = intent_management._get_intent_ids(
         PROJECT_ID, INTENT_DISPLAY_NAME)

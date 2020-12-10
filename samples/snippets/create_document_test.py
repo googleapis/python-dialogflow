@@ -44,7 +44,10 @@ def setup_teardown():
     # Delete the created knowledge base
     knowledge_base_path = client.knowledge_base_path(
         PROJECT_ID, pytest.KNOWLEDGE_BASE_ID)
-    client.delete_knowledge_base(name=knowledge_base_path, force=True)
+    request = dialogflow_v2beta1.DeleteKnowledgeBaseRequest(
+        name=knowledge_base_path, force=True
+    )
+    client.delete_knowledge_base(request=request)
 
 
 @pytest.mark.flaky(max_runs=3, min_passes=1)

@@ -58,12 +58,12 @@ def detect_intent_knowledge(project_id, session_id, language_code,
         query_params = dialogflow.QueryParameters(
             knowledge_base_names=[knowledge_base_path])
 
-        requests = dialogflow.DetectIntentRequest(
-            session=session,
+        request = dialogflow.DetectIntentRequest(
+            session=session_path,
             query_input=query_input,
             query_params=query_params
         )
-        response = session_client.detect_intent(requests=request)
+        response = session_client.detect_intent(request=request)
 
         print('=' * 20)
         print('Query text: {}'.format(response.query_result.query_text))

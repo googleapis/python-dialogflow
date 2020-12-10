@@ -56,7 +56,7 @@ def detect_intent_audio(project_id, session_id, audio_file_path,
         sample_rate_hertz=sample_rate_hertz)
     query_input = dialogflow.QueryInput(audio_config=audio_config)
 
-    request in dialogflow.DetectIntentRequest(
+    request = dialogflow.DetectIntentRequest(
         session=session,
         query_input=query_input,
         input_audio=input_audio,
