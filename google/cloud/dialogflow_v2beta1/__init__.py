@@ -162,7 +162,6 @@ __all__ = (
     "DetectIntentRequest",
     "DetectIntentResponse",
     "Document",
-    "DocumentsClient",
     "EntityType",
     "EntityTypeBatch",
     "EntityTypesClient",
@@ -244,6 +243,7 @@ __all__ = (
     "ValidationResult",
     "VoiceSelectionParams",
     "WebhookRequest",
-    "WebhookResponse",
+    "WebhookResponse"
     "ContextsClient",
+    "DocumentsClient",
 )
