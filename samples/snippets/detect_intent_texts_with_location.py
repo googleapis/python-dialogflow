@@ -14,11 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""DialogFlow API Detect Intent Python sample with text inputs.
+"""DialogFlow API Detect Intent Python sample to use regional endpoint.
 
 Examples:
-  python detect_intent_texts.py -h
-  python detect_intent_texts.py --project-id PROJECT_ID \
+  python detect_intent_texts_with_location.py -h
+  python detect_intent_texts_with_location.py --project-id PROJECT_ID \
   --location-id LOCATION_ID --session-id SESSION_ID \
   "hello" "book a meeting room" "Mountain View"
 """
@@ -27,7 +27,7 @@ import argparse
 import uuid
 
 
-# [START dialogflow_detect_intent_text]
+# [START dialogflow_detect_intent_text_with_location]
 def detect_intent_texts_with_location(project_id, location_id, session_id, texts, language_code):
     """Returns the result of detect intent with texts as inputs.
 
@@ -57,7 +57,7 @@ def detect_intent_texts_with_location(project_id, location_id, session_id, texts
             response.query_result.intent_detection_confidence))
         print('Fulfillment text: {}\n'.format(
             response.query_result.fulfillment_text))
-# [END dialogflow_detect_intent_text]
+# [END dialogflow_detect_intent_text_with_location]
 
 
 if __name__ == '__main__':
