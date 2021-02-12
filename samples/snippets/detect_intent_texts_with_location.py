@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2017 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,10 +35,9 @@ def detect_intent_texts_with_location(project_id, location_id, session_id, texts
     of the conversation."""
     from google.cloud import dialogflow
     session_client = dialogflow.SessionsClient(client_options={
-       "api_endpoint": "{location}-dialogflow.googleapis.com".format(location=location_id)})
+       "api_endpoint": f"{location_id}-dialogflow.googleapis.com"})
 
-    session = "projects/{project}/locations/{location}/agent/sessions/{session}".format(
-        project=project_id, location=location_id, session=session_id)
+    session = f"projects/{project_id}/locations/{location_id}/agent/sessions/{session_id}"
     print('Session path: {}\n'.format(session))
 
     for text in texts:

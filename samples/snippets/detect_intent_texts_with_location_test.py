@@ -26,7 +26,7 @@ TEXTS = ["hello", "book a meeting room", "Mountain View",
 
 
 def test_detect_intent_texts_with_location(capsys):
-    detect_intent_texts_with_location(PROJECT_ID, LOCATION_ID, SESSION_ID, TEXTS, 'en-US')
+    detect_intent_texts_with_location(PROJECT_ID, LOCATION_ID, SESSION_ID, TEXTS, 'en-GB')
     out, _ = capsys.readouterr()
 
     assert 'Fulfillment text: All set!' in out
