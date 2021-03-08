@@ -39,9 +39,9 @@ if sys.version_info[:2] == (2, 7):
     warnings.warn(message, DeprecationWarning)
 
 raise RuntimeError(
-    "'dialogflow' has been renamed to 'google-cloud-dialogflow'."
-    "'dialogflow' will no longer be updated."
-    "For help upgrading to gogole-cloud-dialogflow>=2.0.0, see"
+    "'dialogflow' has been renamed to 'google-cloud-dialogflow'. "
+    "'dialogflow' will no longer be updated. "
+    "For help upgrading to google-cloud-dialogflow>=2.0.0, see "
     "https://github.com/googleapis/python-dialogflow/blob/master/UPGRADING.md"
 )
 
