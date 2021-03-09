@@ -112,22 +112,6 @@ class ContextsClient(metaclass=ContextsClientMeta):
     )
 
     @classmethod
-    def from_service_account_info(cls, info: dict, *args, **kwargs):
-        """Creates an instance of this client using the provided credentials info.
-
-        Args:
-            info (dict): The service account private key info.
-            args: Additional arguments to pass to the constructor.
-            kwargs: Additional arguments to pass to the constructor.
-
-        Returns:
-            ContextsClient: The constructed client.
-        """
-        credentials = service_account.Credentials.from_service_account_info(info)
-        kwargs["credentials"] = credentials
-        return cls(*args, **kwargs)
-
-    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -139,7 +123,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            ContextsClient: The constructed client.
+            {@api.name}: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -247,10 +231,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, ContextsTransport]): The
+            transport (Union[str, ~.ContextsTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (client_options_lib.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -361,17 +345,16 @@ class ContextsClient(metaclass=ContextsClientMeta):
         session.
 
         Args:
-            request (google.cloud.dialogflow_v2.types.ListContextsRequest):
+            request (:class:`~.context.ListContextsRequest`):
                 The request object. The request message for
                 [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
-            parent (str):
+            parent (:class:`str`):
                 Required. The session to list all contexts from. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>`` or
                 ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>``.
                 If ``Environment ID`` is not specified, we assume
                 default 'draft' environment. If ``User ID`` is not
                 specified, we assume default '-' user.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -383,7 +366,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.services.contexts.pagers.ListContextsPager:
+            ~.pagers.ListContextsPager:
                 The response message for
                 [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
 
@@ -448,10 +431,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
         r"""Retrieves the specified context.
 
         Args:
-            request (google.cloud.dialogflow_v2.types.GetContextRequest):
+            request (:class:`~.context.GetContextRequest`):
                 The request object. The request message for
                 [Contexts.GetContext][google.cloud.dialogflow.v2.Contexts.GetContext].
-            name (str):
+            name (:class:`str`):
                 Required. The name of the context. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>``
                 or
@@ -459,7 +442,6 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 If ``Environment ID`` is not specified, we assume
                 default 'draft' environment. If ``User ID`` is not
                 specified, we assume default '-' user.
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -471,26 +453,26 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.types.Context:
-                Dialogflow contexts are similar to natural language context. If a person says
-                   to you "they are orange", you need context in order
-                   to understand what "they" is referring to. Similarly,
-                   for Dialogflow to handle an end-user expression like
-                   that, it needs to be provided with context in order
-                   to correctly match an intent.
+            ~.context.Context:
+                Dialogflow contexts are similar to natural language
+                context. If a person says to you "they are orange", you
+                need context in order to understand what "they" is
+                referring to. Similarly, for Dialogflow to handle an
+                end-user expression like that, it needs to be provided
+                with context in order to correctly match an intent.
 
-                   Using contexts, you can control the flow of a
-                   conversation. You can configure contexts for an
-                   intent by setting input and output contexts, which
-                   are identified by string names. When an intent is
-                   matched, any configured output contexts for that
-                   intent become active. While any contexts are active,
-                   Dialogflow is more likely to match intents that are
-                   configured with input contexts that correspond to the
-                   currently active contexts.
+                Using contexts, you can control the flow of a
+                conversation. You can configure contexts for an intent
+                by setting input and output contexts, which are
+                identified by string names. When an intent is matched,
+                any configured output contexts for that intent become
+                active. While any contexts are active, Dialogflow is
+                more likely to match intents that are configured with
+                input contexts that correspond to the currently active
+                contexts.
 
-                   For more information about context, see the [Contexts
-                   guide](\ https://cloud.google.com/dialogflow/docs/contexts-overview).
+                For more information about context, see the `Contexts
+                guide <https://cloud.google.com/dialogflow/docs/contexts-overview>`__.
 
         """
         # Create or coerce a protobuf request object.
@@ -547,21 +529,20 @@ class ContextsClient(metaclass=ContextsClientMeta):
         context.
 
         Args:
-            request (google.cloud.dialogflow_v2.types.CreateContextRequest):
+            request (:class:`~.gcd_context.CreateContextRequest`):
                 The request object. The request message for
                 [Contexts.CreateContext][google.cloud.dialogflow.v2.Contexts.CreateContext].
-            parent (str):
+            parent (:class:`str`):
                 Required. The session to create a context for. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>`` or
                 ``projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>``.
                 If ``Environment ID`` is not specified, we assume
                 default 'draft' environment. If ``User ID`` is not
                 specified, we assume default '-' user.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            context (google.cloud.dialogflow_v2.types.Context):
+            context (:class:`~.gcd_context.Context`):
                 Required. The context to create.
                 This corresponds to the ``context`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -574,26 +555,26 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.types.Context:
-                Dialogflow contexts are similar to natural language context. If a person says
-                   to you "they are orange", you need context in order
-                   to understand what "they" is referring to. Similarly,
-                   for Dialogflow to handle an end-user expression like
-                   that, it needs to be provided with context in order
-                   to correctly match an intent.
+            ~.gcd_context.Context:
+                Dialogflow contexts are similar to natural language
+                context. If a person says to you "they are orange", you
+                need context in order to understand what "they" is
+                referring to. Similarly, for Dialogflow to handle an
+                end-user expression like that, it needs to be provided
+                with context in order to correctly match an intent.
 
-                   Using contexts, you can control the flow of a
-                   conversation. You can configure contexts for an
-                   intent by setting input and output contexts, which
-                   are identified by string names. When an intent is
-                   matched, any configured output contexts for that
-                   intent become active. While any contexts are active,
-                   Dialogflow is more likely to match intents that are
-                   configured with input contexts that correspond to the
-                   currently active contexts.
+                Using contexts, you can control the flow of a
+                conversation. You can configure contexts for an intent
+                by setting input and output contexts, which are
+                identified by string names. When an intent is matched,
+                any configured output contexts for that intent become
+                active. While any contexts are active, Dialogflow is
+                more likely to match intents that are configured with
+                input contexts that correspond to the currently active
+                contexts.
 
-                   For more information about context, see the [Contexts
-                   guide](\ https://cloud.google.com/dialogflow/docs/contexts-overview).
+                For more information about context, see the `Contexts
+                guide <https://cloud.google.com/dialogflow/docs/contexts-overview>`__.
 
         """
         # Create or coerce a protobuf request object.
@@ -650,18 +631,17 @@ class ContextsClient(metaclass=ContextsClientMeta):
         r"""Updates the specified context.
 
         Args:
-            request (google.cloud.dialogflow_v2.types.UpdateContextRequest):
+            request (:class:`~.gcd_context.UpdateContextRequest`):
                 The request object. The request message for
                 [Contexts.UpdateContext][google.cloud.dialogflow.v2.Contexts.UpdateContext].
-            context (google.cloud.dialogflow_v2.types.Context):
+            context (:class:`~.gcd_context.Context`):
                 Required. The context to update.
                 This corresponds to the ``context`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            update_mask (:class:`~.field_mask.FieldMask`):
                 Optional. The mask to control which
                 fields get updated.
-
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -673,26 +653,26 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.types.Context:
-                Dialogflow contexts are similar to natural language context. If a person says
-                   to you "they are orange", you need context in order
-                   to understand what "they" is referring to. Similarly,
-                   for Dialogflow to handle an end-user expression like
-                   that, it needs to be provided with context in order
-                   to correctly match an intent.
+            ~.gcd_context.Context:
+                Dialogflow contexts are similar to natural language
+                context. If a person says to you "they are orange", you
+                need context in order to understand what "they" is
+                referring to. Similarly, for Dialogflow to handle an
+                end-user expression like that, it needs to be provided
+                with context in order to correctly match an intent.
 
-                   Using contexts, you can control the flow of a
-                   conversation. You can configure contexts for an
-                   intent by setting input and output contexts, which
-                   are identified by string names. When an intent is
-                   matched, any configured output contexts for that
-                   intent become active. While any contexts are active,
-                   Dialogflow is more likely to match intents that are
-                   configured with input contexts that correspond to the
-                   currently active contexts.
+                Using contexts, you can control the flow of a
+                conversation. You can configure contexts for an intent
+                by setting input and output contexts, which are
+                identified by string names. When an intent is matched,
+                any configured output contexts for that intent become
+                active. While any contexts are active, Dialogflow is
+                more likely to match intents that are configured with
+                input contexts that correspond to the currently active
+                contexts.
 
-                   For more information about context, see the [Contexts
-                   guide](\ https://cloud.google.com/dialogflow/docs/contexts-overview).
+                For more information about context, see the `Contexts
+                guide <https://cloud.google.com/dialogflow/docs/contexts-overview>`__.
 
         """
         # Create or coerce a protobuf request object.
@@ -750,10 +730,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
         r"""Deletes the specified context.
 
         Args:
-            request (google.cloud.dialogflow_v2.types.DeleteContextRequest):
+            request (:class:`~.context.DeleteContextRequest`):
                 The request object. The request message for
                 [Contexts.DeleteContext][google.cloud.dialogflow.v2.Contexts.DeleteContext].
-            name (str):
+            name (:class:`str`):
                 Required. The name of the context to delete. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>``
                 or
@@ -761,7 +741,6 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 If ``Environment ID`` is not specified, we assume
                 default 'draft' environment. If ``User ID`` is not
                 specified, we assume default '-' user.
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -822,10 +801,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
         r"""Deletes all active contexts in the specified session.
 
         Args:
-            request (google.cloud.dialogflow_v2.types.DeleteAllContextsRequest):
+            request (:class:`~.context.DeleteAllContextsRequest`):
                 The request object. The request message for
                 [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2.Contexts.DeleteAllContexts].
-            parent (str):
+            parent (:class:`str`):
                 Required. The name of the session to delete all contexts
                 from. Format:
                 ``projects/<Project ID>/agent/sessions/<Session ID>`` or
@@ -833,7 +812,6 @@ class ContextsClient(metaclass=ContextsClientMeta):
                 If ``Environment ID`` is not specified we assume default
                 'draft' environment. If ``User ID`` is not specified, we
                 assume default '-' user.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.

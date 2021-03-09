@@ -86,20 +86,7 @@ def test__get_default_mtls_endpoint():
     assert IntentsClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-def test_intents_client_from_service_account_info():
-    creds = credentials.AnonymousCredentials()
-    with mock.patch.object(
-        service_account.Credentials, "from_service_account_info"
-    ) as factory:
-        factory.return_value = creds
-        info = {"valid": True}
-        client = IntentsClient.from_service_account_info(info)
-        assert client.transport._credentials == creds
-
-        assert client.transport._host == "dialogflow.googleapis.com:443"
-
-
-@pytest.mark.parametrize("client_class", [IntentsClient, IntentsAsyncClient,])
+@pytest.mark.parametrize("client_class", [IntentsClient, IntentsAsyncClient])
 def test_intents_client_from_service_account_file(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
@@ -117,10 +104,7 @@ def test_intents_client_from_service_account_file(client_class):
 
 def test_intents_client_get_transport_class():
     transport = IntentsClient.get_transport_class()
-    available_transports = [
-        transports.IntentsGrpcTransport,
-    ]
-    assert transport in available_transports
+    assert transport == transports.IntentsGrpcTransport
 
     transport = IntentsClient.get_transport_class("grpc")
     assert transport == transports.IntentsGrpcTransport
@@ -2287,7 +2271,7 @@ def test_transport_get_channel():
 
 @pytest.mark.parametrize(
     "transport_class",
-    [transports.IntentsGrpcTransport, transports.IntentsGrpcAsyncIOTransport,],
+    [transports.IntentsGrpcTransport, transports.IntentsGrpcAsyncIOTransport],
 )
 def test_transport_adc(transport_class):
     # Test default credentials are used if not provided.
@@ -2428,7 +2412,7 @@ def test_intents_host_with_port():
 
 
 def test_intents_grpc_transport_channel():
-    channel = grpc.secure_channel("http://localhost/", grpc.local_channel_credentials())
+    channel = grpc.insecure_channel("http://localhost/")
 
     # Check that channel is used if provided.
     transport = transports.IntentsGrpcTransport(
@@ -2440,7 +2424,7 @@ def test_intents_grpc_transport_channel():
 
 
 def test_intents_grpc_asyncio_transport_channel():
-    channel = aio.secure_channel("http://localhost/", grpc.local_channel_credentials())
+    channel = aio.insecure_channel("http://localhost/")
 
     # Check that channel is used if provided.
     transport = transports.IntentsGrpcAsyncIOTransport(
@@ -2460,7 +2444,7 @@ def test_intents_transport_channel_mtls_with_client_cert_source(transport_class)
         "grpc.ssl_channel_credentials", autospec=True
     ) as grpc_ssl_channel_cred:
         with mock.patch.object(
-            transport_class, "create_channel"
+            transport_class, "create_channel", autospec=True
         ) as grpc_create_channel:
             mock_ssl_cred = mock.Mock()
             grpc_ssl_channel_cred.return_value = mock_ssl_cred
@@ -2513,7 +2497,7 @@ def test_intents_transport_channel_mtls_with_adc(transport_class):
         ssl_credentials=mock.PropertyMock(return_value=mock_ssl_cred),
     ):
         with mock.patch.object(
-            transport_class, "create_channel"
+            transport_class, "create_channel", autospec=True
         ) as grpc_create_channel:
             mock_grpc_channel = mock.Mock()
             grpc_create_channel.return_value = mock_grpc_channel

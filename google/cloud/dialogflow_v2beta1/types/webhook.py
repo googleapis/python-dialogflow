@@ -47,14 +47,14 @@ class WebhookRequest(proto.Message):
         response_id (str):
             The unique identifier of the response. Contains the same
             value as ``[Streaming]DetectIntentResponse.response_id``.
-        query_result (google.cloud.dialogflow_v2beta1.types.QueryResult):
+        query_result (~.gcd_session.QueryResult):
             The result of the conversational query or event processing.
             Contains the same value as
             ``[Streaming]DetectIntentResponse.query_result``.
-        alternative_query_results (Sequence[google.cloud.dialogflow_v2beta1.types.QueryResult]):
+        alternative_query_results (Sequence[~.gcd_session.QueryResult]):
             Alternative query results from
             KnowledgeService.
-        original_detect_intent_request (google.cloud.dialogflow_v2beta1.types.OriginalDetectIntentRequest):
+        original_detect_intent_request (~.webhook.OriginalDetectIntentRequest):
             Optional. The contents of the original request that was
             passed to ``[Streaming]DetectIntent`` call.
     """
@@ -100,7 +100,7 @@ class WebhookResponse(proto.Message):
             provided, Dialogflow uses this field to populate
             [QueryResult.fulfillment_text][google.cloud.dialogflow.v2beta1.QueryResult.fulfillment_text]
             sent to the integration or API caller.
-        fulfillment_messages (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message]):
+        fulfillment_messages (Sequence[~.intent.Intent.Message]):
             Optional. The rich response messages intended for the
             end-user. When provided, Dialogflow uses this field to
             populate
@@ -112,7 +112,7 @@ class WebhookResponse(proto.Message):
             Dialogflow uses this field to populate
             [QueryResult.webhook_source][google.cloud.dialogflow.v2beta1.QueryResult.webhook_source]
             sent to the integration or API caller.
-        payload (google.protobuf.struct_pb2.Struct):
+        payload (~.struct.Struct):
             Optional. This field can be used to pass custom data from
             your webhook to the integration or API caller. Arbitrary
             JSON objects are supported. When provided, Dialogflow uses
@@ -124,14 +124,14 @@ class WebhookResponse(proto.Message):
             for rich response messages. See the format definition at
             `Google Assistant Dialogflow webhook
             format <https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json>`__
-        output_contexts (Sequence[google.cloud.dialogflow_v2beta1.types.Context]):
+        output_contexts (Sequence[~.context.Context]):
             Optional. The collection of output contexts that will
             overwrite currently active contexts for the session and
             reset their lifespans. When provided, Dialogflow uses this
             field to populate
             [QueryResult.output_contexts][google.cloud.dialogflow.v2beta1.QueryResult.output_contexts]
             sent to the integration or API caller.
-        followup_event_input (google.cloud.dialogflow_v2beta1.types.EventInput):
+        followup_event_input (~.gcd_session.EventInput):
             Optional. Invokes the supplied events. When this field is
             set, Dialogflow ignores the ``fulfillment_text``,
             ``fulfillment_messages``, and ``payload`` fields.
@@ -141,7 +141,7 @@ class WebhookResponse(proto.Message):
             Google or Dialogflow phone gateway) use this
             information to close interaction with an end
             user. Default is false.
-        session_entity_types (Sequence[google.cloud.dialogflow_v2beta1.types.SessionEntityType]):
+        session_entity_types (Sequence[~.session_entity_type.SessionEntityType]):
             Optional. Additional session entity types to replace or
             extend developer entity types with. The entity synonyms
             apply to all languages and persist for the session. Setting
@@ -188,7 +188,7 @@ class OriginalDetectIntentRequest(proto.Message):
         version (str):
             Optional. The version of the protocol used
             for this request. This field is AoG-specific.
-        payload (google.protobuf.struct_pb2.Struct):
+        payload (~.struct.Struct):
             Optional. This field is set to the value of the
             ``QueryParameters.payload`` field passed in the request.
             Some integrations that query a Dialogflow agent may provide

@@ -24,7 +24,7 @@ class ListDocumentsPager:
     """A pager for iterating through ``list_documents`` requests.
 
     This class thinly wraps an initial
-    :class:`google.cloud.dialogflow_v2beta1.types.ListDocumentsResponse` object, and
+    :class:`~.document.ListDocumentsResponse` object, and
     provides an ``__iter__`` method to iterate through its
     ``documents`` field.
 
@@ -33,7 +33,7 @@ class ListDocumentsPager:
     through the ``documents`` field on the
     corresponding responses.
 
-    All the usual :class:`google.cloud.dialogflow_v2beta1.types.ListDocumentsResponse`
+    All the usual :class:`~.document.ListDocumentsResponse`
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
@@ -51,9 +51,9 @@ class ListDocumentsPager:
         Args:
             method (Callable): The method that was originally called, and
                 which instantiated this pager.
-            request (google.cloud.dialogflow_v2beta1.types.ListDocumentsRequest):
+            request (:class:`~.document.ListDocumentsRequest`):
                 The initial request object.
-            response (google.cloud.dialogflow_v2beta1.types.ListDocumentsResponse):
+            response (:class:`~.document.ListDocumentsResponse`):
                 The initial response object.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
@@ -86,7 +86,7 @@ class ListDocumentsAsyncPager:
     """A pager for iterating through ``list_documents`` requests.
 
     This class thinly wraps an initial
-    :class:`google.cloud.dialogflow_v2beta1.types.ListDocumentsResponse` object, and
+    :class:`~.document.ListDocumentsResponse` object, and
     provides an ``__aiter__`` method to iterate through its
     ``documents`` field.
 
@@ -95,7 +95,7 @@ class ListDocumentsAsyncPager:
     through the ``documents`` field on the
     corresponding responses.
 
-    All the usual :class:`google.cloud.dialogflow_v2beta1.types.ListDocumentsResponse`
+    All the usual :class:`~.document.ListDocumentsResponse`
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
@@ -113,9 +113,9 @@ class ListDocumentsAsyncPager:
         Args:
             method (Callable): The method that was originally called, and
                 which instantiated this pager.
-            request (google.cloud.dialogflow_v2beta1.types.ListDocumentsRequest):
+            request (:class:`~.document.ListDocumentsRequest`):
                 The initial request object.
-            response (google.cloud.dialogflow_v2beta1.types.ListDocumentsResponse):
+            response (:class:`~.document.ListDocumentsResponse`):
                 The initial response object.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.

@@ -76,7 +76,7 @@ class Intent(proto.Message):
             -  ``projects/<Project ID>/locations/<Location ID>/agent/intents/<Intent ID>``
         display_name (str):
             Required. The name of this intent.
-        webhook_state (google.cloud.dialogflow_v2beta1.types.Intent.WebhookState):
+        webhook_state (~.gcd_intent.Intent.WebhookState):
             Optional. Indicates whether webhooks are
             enabled for the intent.
         priority (int):
@@ -130,14 +130,14 @@ class Intent(proto.Message):
             be present in the active user session for an
             event to trigger this intent. Event names are
             limited to 150 characters.
-        training_phrases (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.TrainingPhrase]):
+        training_phrases (Sequence[~.gcd_intent.Intent.TrainingPhrase]):
             Optional. The collection of examples that the
             agent is trained on.
         action (str):
             Optional. The name of the action associated
             with the intent. Note: The action name must not
             contain whitespaces.
-        output_contexts (Sequence[google.cloud.dialogflow_v2beta1.types.Context]):
+        output_contexts (Sequence[~.context.Context]):
             Optional. The collection of contexts that are activated when
             the intent is matched. Context messages in this collection
             should not set the parameters field. Setting the
@@ -148,13 +148,13 @@ class Intent(proto.Message):
             Optional. Indicates whether to delete all
             contexts in the current session when this intent
             is matched.
-        parameters (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Parameter]):
+        parameters (Sequence[~.gcd_intent.Intent.Parameter]):
             Optional. The collection of parameters
             associated with the intent.
-        messages (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message]):
+        messages (Sequence[~.gcd_intent.Intent.Message]):
             Optional. The collection of rich messages corresponding to
             the ``Response`` field in the Dialogflow console.
-        default_response_platforms (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.Platform]):
+        default_response_platforms (Sequence[~.gcd_intent.Intent.Message.Platform]):
             Optional. The list of platforms for which the first
             responses will be copied from the messages in
             PLATFORM_UNSPECIFIED (i.e. default platform).
@@ -175,7 +175,7 @@ class Intent(proto.Message):
 
             It identifies the parent followup intent. Format:
             ``projects/<Project ID>/agent/intents/<Intent ID>``.
-        followup_intent_info (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.FollowupIntentInfo]):
+        followup_intent_info (Sequence[~.gcd_intent.Intent.FollowupIntentInfo]):
             Output only. Information about all followup
             intents that have this intent as a direct or
             indirect parent. We populate this field only in
@@ -195,9 +195,9 @@ class Intent(proto.Message):
             name (str):
                 Output only. The unique identifier of this
                 training phrase.
-            type_ (google.cloud.dialogflow_v2beta1.types.Intent.TrainingPhrase.Type):
+            type_ (~.gcd_intent.Intent.TrainingPhrase.Type):
                 Required. The type of the training phrase.
-            parts (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.TrainingPhrase.Part]):
+            parts (Sequence[~.gcd_intent.Intent.TrainingPhrase.Part]):
                 Required. The ordered list of training phrase parts. The
                 parts are concatenated in order to form the training phrase.
 
@@ -336,56 +336,56 @@ class Intent(proto.Message):
         r"""Corresponds to the ``Response`` field in the Dialogflow console.
 
         Attributes:
-            text (google.cloud.dialogflow_v2beta1.types.Intent.Message.Text):
+            text (~.gcd_intent.Intent.Message.Text):
                 Returns a text response.
-            image (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+            image (~.gcd_intent.Intent.Message.Image):
                 Displays an image.
-            quick_replies (google.cloud.dialogflow_v2beta1.types.Intent.Message.QuickReplies):
+            quick_replies (~.gcd_intent.Intent.Message.QuickReplies):
                 Displays quick replies.
-            card (google.cloud.dialogflow_v2beta1.types.Intent.Message.Card):
+            card (~.gcd_intent.Intent.Message.Card):
                 Displays a card.
-            payload (google.protobuf.struct_pb2.Struct):
+            payload (~.struct.Struct):
                 A custom platform-specific response.
-            simple_responses (google.cloud.dialogflow_v2beta1.types.Intent.Message.SimpleResponses):
+            simple_responses (~.gcd_intent.Intent.Message.SimpleResponses):
                 Returns a voice or text-only response for
                 Actions on Google.
-            basic_card (google.cloud.dialogflow_v2beta1.types.Intent.Message.BasicCard):
+            basic_card (~.gcd_intent.Intent.Message.BasicCard):
                 Displays a basic card for Actions on Google.
-            suggestions (google.cloud.dialogflow_v2beta1.types.Intent.Message.Suggestions):
+            suggestions (~.gcd_intent.Intent.Message.Suggestions):
                 Displays suggestion chips for Actions on
                 Google.
-            link_out_suggestion (google.cloud.dialogflow_v2beta1.types.Intent.Message.LinkOutSuggestion):
+            link_out_suggestion (~.gcd_intent.Intent.Message.LinkOutSuggestion):
                 Displays a link out suggestion chip for
                 Actions on Google.
-            list_select (google.cloud.dialogflow_v2beta1.types.Intent.Message.ListSelect):
+            list_select (~.gcd_intent.Intent.Message.ListSelect):
                 Displays a list card for Actions on Google.
-            carousel_select (google.cloud.dialogflow_v2beta1.types.Intent.Message.CarouselSelect):
+            carousel_select (~.gcd_intent.Intent.Message.CarouselSelect):
                 Displays a carousel card for Actions on
                 Google.
-            telephony_play_audio (google.cloud.dialogflow_v2beta1.types.Intent.Message.TelephonyPlayAudio):
+            telephony_play_audio (~.gcd_intent.Intent.Message.TelephonyPlayAudio):
                 Plays audio from a file in Telephony Gateway.
-            telephony_synthesize_speech (google.cloud.dialogflow_v2beta1.types.Intent.Message.TelephonySynthesizeSpeech):
+            telephony_synthesize_speech (~.gcd_intent.Intent.Message.TelephonySynthesizeSpeech):
                 Synthesizes speech in Telephony Gateway.
-            telephony_transfer_call (google.cloud.dialogflow_v2beta1.types.Intent.Message.TelephonyTransferCall):
+            telephony_transfer_call (~.gcd_intent.Intent.Message.TelephonyTransferCall):
                 Transfers the call in Telephony Gateway.
-            rbm_text (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmText):
+            rbm_text (~.gcd_intent.Intent.Message.RbmText):
                 Rich Business Messaging (RBM) text response.
                 RBM allows businesses to send enriched and
                 branded versions of SMS. See
                 https://jibe.google.com/business-messaging.
-            rbm_standalone_rich_card (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmStandaloneCard):
+            rbm_standalone_rich_card (~.gcd_intent.Intent.Message.RbmStandaloneCard):
                 Standalone Rich Business Messaging (RBM) rich
                 card response.
-            rbm_carousel_rich_card (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmCarouselCard):
+            rbm_carousel_rich_card (~.gcd_intent.Intent.Message.RbmCarouselCard):
                 Rich Business Messaging (RBM) carousel rich
                 card response.
-            browse_carousel_card (google.cloud.dialogflow_v2beta1.types.Intent.Message.BrowseCarouselCard):
+            browse_carousel_card (~.gcd_intent.Intent.Message.BrowseCarouselCard):
                 Browse carousel card for Actions on Google.
-            table_card (google.cloud.dialogflow_v2beta1.types.Intent.Message.TableCard):
+            table_card (~.gcd_intent.Intent.Message.TableCard):
                 Table card for Actions on Google.
-            media_content (google.cloud.dialogflow_v2beta1.types.Intent.Message.MediaContent):
+            media_content (~.gcd_intent.Intent.Message.MediaContent):
                 The media content card for Actions on Google.
-            platform (google.cloud.dialogflow_v2beta1.types.Intent.Message.Platform):
+            platform (~.gcd_intent.Intent.Message.Platform):
                 Optional. The platform that this message is
                 intended for.
         """
@@ -459,7 +459,7 @@ class Intent(proto.Message):
                 image_uri (str):
                     Optional. The public URI to an image file for
                     the card.
-                buttons (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.Card.Button]):
+                buttons (Sequence[~.gcd_intent.Intent.Message.Card.Button]):
                     Optional. The collection of card buttons.
             """
 
@@ -516,7 +516,7 @@ class Intent(proto.Message):
             ``SimpleResponse``.
 
             Attributes:
-                simple_responses (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.SimpleResponse]):
+                simple_responses (Sequence[~.gcd_intent.Intent.Message.SimpleResponse]):
                     Required. The list of simple responses.
             """
 
@@ -535,9 +535,9 @@ class Intent(proto.Message):
                 formatted_text (str):
                     Required, unless image is present. The body
                     text of the card.
-                image (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+                image (~.gcd_intent.Intent.Message.Image):
                     Optional. The image for the card.
-                buttons (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.BasicCard.Button]):
+                buttons (Sequence[~.gcd_intent.Intent.Message.BasicCard.Button]):
                     Optional. The collection of card buttons.
             """
 
@@ -547,7 +547,7 @@ class Intent(proto.Message):
                 Attributes:
                     title (str):
                         Required. The title of the button.
-                    open_uri_action (google.cloud.dialogflow_v2beta1.types.Intent.Message.BasicCard.Button.OpenUriAction):
+                    open_uri_action (~.gcd_intent.Intent.Message.BasicCard.Button.OpenUriAction):
                         Required. Action to take when a user taps on
                         the button.
                 """
@@ -600,7 +600,7 @@ class Intent(proto.Message):
             r"""The collection of suggestions.
 
             Attributes:
-                suggestions (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.Suggestion]):
+                suggestions (Sequence[~.gcd_intent.Intent.Message.Suggestion]):
                     Required. The list of suggested replies.
             """
 
@@ -631,7 +631,7 @@ class Intent(proto.Message):
             Attributes:
                 title (str):
                     Optional. The overall title of the list.
-                items (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.ListSelect.Item]):
+                items (Sequence[~.gcd_intent.Intent.Message.ListSelect.Item]):
                     Required. List items.
                 subtitle (str):
                     Optional. Subtitle of the list.
@@ -641,14 +641,14 @@ class Intent(proto.Message):
                 r"""An item in the list.
 
                 Attributes:
-                    info (google.cloud.dialogflow_v2beta1.types.Intent.Message.SelectItemInfo):
+                    info (~.gcd_intent.Intent.Message.SelectItemInfo):
                         Required. Additional information about this
                         option.
                     title (str):
                         Required. The title of the list item.
                     description (str):
                         Optional. The main text describing the item.
-                    image (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+                    image (~.gcd_intent.Intent.Message.Image):
                         Optional. The image to display.
                 """
 
@@ -676,7 +676,7 @@ class Intent(proto.Message):
             r"""The card for presenting a carousel of options to select from.
 
             Attributes:
-                items (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.CarouselSelect.Item]):
+                items (Sequence[~.gcd_intent.Intent.Message.CarouselSelect.Item]):
                     Required. Carousel items.
             """
 
@@ -684,14 +684,14 @@ class Intent(proto.Message):
                 r"""An item in the carousel.
 
                 Attributes:
-                    info (google.cloud.dialogflow_v2beta1.types.Intent.Message.SelectItemInfo):
+                    info (~.gcd_intent.Intent.Message.SelectItemInfo):
                         Required. Additional info about the option
                         item.
                     title (str):
                         Required. Title of the carousel item.
                     description (str):
                         Optional. The body text of the card.
-                    image (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+                    image (~.gcd_intent.Intent.Message.Image):
                         Optional. The image to display.
                 """
 
@@ -794,7 +794,7 @@ class Intent(proto.Message):
                 text (str):
                     Required. Text sent and displayed to the
                     user.
-                rbm_suggestion (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmSuggestion]):
+                rbm_suggestion (Sequence[~.gcd_intent.Intent.Message.RbmSuggestion]):
                     Optional. One or more suggestions to show to
                     the user.
             """
@@ -817,10 +817,10 @@ class Intent(proto.Message):
             instead.
 
             Attributes:
-                card_width (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmCarouselCard.CardWidth):
+                card_width (~.gcd_intent.Intent.Message.RbmCarouselCard.CardWidth):
                     Required. The width of the cards in the
                     carousel.
-                card_contents (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmCardContent]):
+                card_contents (Sequence[~.gcd_intent.Intent.Message.RbmCardContent]):
                     Required. The cards in the carousel. A
                     carousel must have at least 2 cards and at most
                     10.
@@ -851,13 +851,13 @@ class Intent(proto.Message):
             but carousel cards will give you less control over the card layout.
 
             Attributes:
-                card_orientation (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmStandaloneCard.CardOrientation):
+                card_orientation (~.gcd_intent.Intent.Message.RbmStandaloneCard.CardOrientation):
                     Required. Orientation of the card.
-                thumbnail_image_alignment (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmStandaloneCard.ThumbnailImageAlignment):
+                thumbnail_image_alignment (~.gcd_intent.Intent.Message.RbmStandaloneCard.ThumbnailImageAlignment):
                     Required if orientation is horizontal.
                     Image preview alignment for standalone cards
                     with horizontal layout.
-                card_content (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmCardContent):
+                card_content (~.gcd_intent.Intent.Message.RbmCardContent):
                     Required. Card content.
             """
 
@@ -905,11 +905,11 @@ class Intent(proto.Message):
                     2000 bytes).
                     At least one of the title, description or media
                     must be set.
-                media (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmCardContent.RbmMedia):
+                media (~.gcd_intent.Intent.Message.RbmCardContent.RbmMedia):
                     Optional. However at least one of the title,
                     description or media must be set. Media (image,
                     GIF or a video) to include in the card.
-                suggestions (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmSuggestion]):
+                suggestions (Sequence[~.gcd_intent.Intent.Message.RbmSuggestion]):
                     Optional. List of suggestions to include in
                     the card.
             """
@@ -950,7 +950,7 @@ class Intent(proto.Message):
                         file. Depending on the user's setting, the file
                         may not download automatically and may require
                         the user to tap a download button.
-                    height (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmCardContent.RbmMedia.Height):
+                    height (~.gcd_intent.Intent.Message.RbmCardContent.RbmMedia.Height):
                         Required for cards with vertical orientation.
                         The height of the media within a rich card with
                         a vertical layout. For a standalone card with
@@ -995,10 +995,10 @@ class Intent(proto.Message):
             action (like opening a web uri).
 
             Attributes:
-                reply (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmSuggestedReply):
+                reply (~.gcd_intent.Intent.Message.RbmSuggestedReply):
                     Predefined replies for user to select instead
                     of typing
-                action (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmSuggestedAction):
+                action (~.gcd_intent.Intent.Message.RbmSuggestedAction):
                     Predefined client side actions that user can
                     choose
             """
@@ -1049,13 +1049,13 @@ class Intent(proto.Message):
                     action. This data will be also forwarded to
                     webhook to allow performing custom business
                     logic.
-                dial (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmSuggestedAction.RbmSuggestedActionDial):
+                dial (~.gcd_intent.Intent.Message.RbmSuggestedAction.RbmSuggestedActionDial):
                     Suggested client side action: Dial a phone
                     number
-                open_url (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmSuggestedAction.RbmSuggestedActionOpenUri):
+                open_url (~.gcd_intent.Intent.Message.RbmSuggestedAction.RbmSuggestedActionOpenUri):
                     Suggested client side action: Open a URI on
                     device
-                share_location (google.cloud.dialogflow_v2beta1.types.Intent.Message.RbmSuggestedAction.RbmSuggestedActionShareLocation):
+                share_location (~.gcd_intent.Intent.Message.RbmSuggestedAction.RbmSuggestedActionShareLocation):
                     Suggested client side action: Share user
                     location
             """
@@ -1122,10 +1122,10 @@ class Intent(proto.Message):
             r"""The media content card for Actions on Google.
 
             Attributes:
-                media_type (google.cloud.dialogflow_v2beta1.types.Intent.Message.MediaContent.ResponseMediaType):
+                media_type (~.gcd_intent.Intent.Message.MediaContent.ResponseMediaType):
                     Optional. What type of media is the content
                     (ie "audio").
-                media_objects (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.MediaContent.ResponseMediaObject]):
+                media_objects (Sequence[~.gcd_intent.Intent.Message.MediaContent.ResponseMediaObject]):
                     Required. List of media objects.
             """
 
@@ -1142,10 +1142,10 @@ class Intent(proto.Message):
                         Required. Name of media card.
                     description (str):
                         Optional. Description of media card.
-                    large_image (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+                    large_image (~.gcd_intent.Intent.Message.Image):
                         Optional. Image to display above media
                         content.
-                    icon (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+                    icon (~.gcd_intent.Intent.Message.Image):
                         Optional. Icon to display above media
                         content.
                     content_url (str):
@@ -1189,11 +1189,11 @@ class Intent(proto.Message):
             https://developers.google.com/actions/assistant/responses#browsing_carousel
 
             Attributes:
-                items (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem]):
+                items (Sequence[~.gcd_intent.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem]):
                     Required. List of items in the Browse
                     Carousel Card. Minimum of two items, maximum of
                     ten.
-                image_display_options (google.cloud.dialogflow_v2beta1.types.Intent.Message.BrowseCarouselCard.ImageDisplayOptions):
+                image_display_options (~.gcd_intent.Intent.Message.BrowseCarouselCard.ImageDisplayOptions):
                     Optional. Settings for displaying the image. Applies to
                     every image in
                     [items][google.cloud.dialogflow.v2beta1.Intent.Message.BrowseCarouselCard.items].
@@ -1214,7 +1214,7 @@ class Intent(proto.Message):
                 r"""Browsing carousel tile
 
                 Attributes:
-                    open_uri_action (google.cloud.dialogflow_v2beta1.types.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction):
+                    open_uri_action (~.gcd_intent.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction):
                         Required. Action to present to the user.
                     title (str):
                         Required. Title of the carousel item. Maximum
@@ -1222,7 +1222,7 @@ class Intent(proto.Message):
                     description (str):
                         Optional. Description of the carousel item.
                         Maximum of four lines of text.
-                    image (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+                    image (~.gcd_intent.Intent.Message.Image):
                         Optional. Hero image for the carousel item.
                     footer (str):
                         Optional. Text that appears at the bottom of
@@ -1236,7 +1236,7 @@ class Intent(proto.Message):
                     Attributes:
                         url (str):
                             Required. URL
-                        url_type_hint (google.cloud.dialogflow_v2beta1.types.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint):
+                        url_type_hint (~.gcd_intent.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint):
                             Optional. Specifies the type of viewer that
                             is used when opening the URL. Defaults to
                             opening via web browser.
@@ -1292,15 +1292,15 @@ class Intent(proto.Message):
                     Required. Title of the card.
                 subtitle (str):
                     Optional. Subtitle to the title.
-                image (google.cloud.dialogflow_v2beta1.types.Intent.Message.Image):
+                image (~.gcd_intent.Intent.Message.Image):
                     Optional. Image which should be displayed on
                     the card.
-                column_properties (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.ColumnProperties]):
+                column_properties (Sequence[~.gcd_intent.Intent.Message.ColumnProperties]):
                     Optional. Display properties for the columns
                     in this table.
-                rows (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.TableCardRow]):
+                rows (Sequence[~.gcd_intent.Intent.Message.TableCardRow]):
                     Optional. Rows in this table of data.
-                buttons (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.BasicCard.Button]):
+                buttons (Sequence[~.gcd_intent.Intent.Message.BasicCard.Button]):
                     Optional. List of buttons for the card.
             """
 
@@ -1331,7 +1331,7 @@ class Intent(proto.Message):
             Attributes:
                 header (str):
                     Required. Column heading.
-                horizontal_alignment (google.cloud.dialogflow_v2beta1.types.Intent.Message.ColumnProperties.HorizontalAlignment):
+                horizontal_alignment (~.gcd_intent.Intent.Message.ColumnProperties.HorizontalAlignment):
                     Optional. Defines text alignment for all
                     cells in this column.
             """
@@ -1356,7 +1356,7 @@ class Intent(proto.Message):
             [TableCard][google.cloud.dialogflow.v2beta1.Intent.Message.TableCard].
 
             Attributes:
-                cells (Sequence[google.cloud.dialogflow_v2beta1.types.Intent.Message.TableCardCell]):
+                cells (Sequence[~.gcd_intent.Intent.Message.TableCardCell]):
                     Optional. List of cells that make up this
                     row.
                 divider_after (bool):
@@ -1587,7 +1587,7 @@ class ListIntentsRequest(proto.Message):
             used. For more information, see `Multilingual intent and
             entity
             data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
-        intent_view (google.cloud.dialogflow_v2beta1.types.IntentView):
+        intent_view (~.gcd_intent.IntentView):
             Optional. The resource view to apply to the
             returned intent.
         page_size (int):
@@ -1615,7 +1615,7 @@ class ListIntentsResponse(proto.Message):
     [Intents.ListIntents][google.cloud.dialogflow.v2beta1.Intents.ListIntents].
 
     Attributes:
-        intents (Sequence[google.cloud.dialogflow_v2beta1.types.Intent]):
+        intents (Sequence[~.gcd_intent.Intent]):
             The list of agent intents. There will be a maximum number of
             items returned based on the page_size field in the request.
         next_page_token (str):
@@ -1649,7 +1649,7 @@ class GetIntentRequest(proto.Message):
             used. For more information, see `Multilingual intent and
             entity
             data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
-        intent_view (google.cloud.dialogflow_v2beta1.types.IntentView):
+        intent_view (~.gcd_intent.IntentView):
             Optional. The resource view to apply to the
             returned intent.
     """
@@ -1672,7 +1672,7 @@ class CreateIntentRequest(proto.Message):
 
             -  ``projects/<Project ID>/agent``
             -  ``projects/<Project ID>/locations/<Location ID>/agent``
-        intent (google.cloud.dialogflow_v2beta1.types.Intent):
+        intent (~.gcd_intent.Intent):
             Required. The intent to create.
         language_code (str):
             Optional. The language used to access language-specific
@@ -1680,7 +1680,7 @@ class CreateIntentRequest(proto.Message):
             used. For more information, see `Multilingual intent and
             entity
             data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
-        intent_view (google.cloud.dialogflow_v2beta1.types.IntentView):
+        intent_view (~.gcd_intent.IntentView):
             Optional. The resource view to apply to the
             returned intent.
     """
@@ -1699,7 +1699,7 @@ class UpdateIntentRequest(proto.Message):
     [Intents.UpdateIntent][google.cloud.dialogflow.v2beta1.Intents.UpdateIntent].
 
     Attributes:
-        intent (google.cloud.dialogflow_v2beta1.types.Intent):
+        intent (~.gcd_intent.Intent):
             Required. The intent to update.
         language_code (str):
             Optional. The language used to access language-specific
@@ -1707,10 +1707,10 @@ class UpdateIntentRequest(proto.Message):
             used. For more information, see `Multilingual intent and
             entity
             data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+        update_mask (~.field_mask.FieldMask):
             Optional. The mask to control which fields
             get updated.
-        intent_view (google.cloud.dialogflow_v2beta1.types.IntentView):
+        intent_view (~.gcd_intent.IntentView):
             Optional. The resource view to apply to the
             returned intent.
     """
@@ -1760,7 +1760,7 @@ class BatchUpdateIntentsRequest(proto.Message):
             format can either be a serialized proto (of
             IntentBatch type) or JSON object. Note: The URI
             must start with "gs://".
-        intent_batch_inline (google.cloud.dialogflow_v2beta1.types.IntentBatch):
+        intent_batch_inline (~.gcd_intent.IntentBatch):
             The collection of intents to update or
             create.
         language_code (str):
@@ -1769,10 +1769,10 @@ class BatchUpdateIntentsRequest(proto.Message):
             used. For more information, see `Multilingual intent and
             entity
             data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+        update_mask (~.field_mask.FieldMask):
             Optional. The mask to control which fields
             get updated.
-        intent_view (google.cloud.dialogflow_v2beta1.types.IntentView):
+        intent_view (~.gcd_intent.IntentView):
             Optional. The resource view to apply to the
             returned intent.
     """
@@ -1797,7 +1797,7 @@ class BatchUpdateIntentsResponse(proto.Message):
     [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateIntents].
 
     Attributes:
-        intents (Sequence[google.cloud.dialogflow_v2beta1.types.Intent]):
+        intents (Sequence[~.gcd_intent.Intent]):
             The collection of updated or created intents.
     """
 
@@ -1815,7 +1815,7 @@ class BatchDeleteIntentsRequest(proto.Message):
 
             -  ``projects/<Project ID>/agent``
             -  ``projects/<Project ID>/locations/<Location ID>/agent``
-        intents (Sequence[google.cloud.dialogflow_v2beta1.types.Intent]):
+        intents (Sequence[~.gcd_intent.Intent]):
             Required. The collection of intents to delete. Only intent
             ``name`` must be filled in.
     """
@@ -1829,7 +1829,7 @@ class IntentBatch(proto.Message):
     r"""This message is a wrapper around a collection of intents.
 
     Attributes:
-        intents (Sequence[google.cloud.dialogflow_v2beta1.types.Intent]):
+        intents (Sequence[~.gcd_intent.Intent]):
             A collection of intents.
     """
 

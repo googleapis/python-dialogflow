@@ -28,7 +28,7 @@ class ValidationError(proto.Message):
     r"""Represents a single validation error.
 
     Attributes:
-        severity (google.cloud.dialogflow_v2.types.ValidationError.Severity):
+        severity (~.validation_result.ValidationError.Severity):
             The severity of the error.
         entries (Sequence[str]):
             The names of the entries that the error is
@@ -73,7 +73,7 @@ class ValidationResult(proto.Message):
     r"""Represents the output of agent validation.
 
     Attributes:
-        validation_errors (Sequence[google.cloud.dialogflow_v2.types.ValidationError]):
+        validation_errors (Sequence[~.validation_result.ValidationError]):
             Contains all validation errors.
     """
 

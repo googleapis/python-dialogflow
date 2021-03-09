@@ -86,7 +86,7 @@ class Context(proto.Message):
             ``0``, the context expires immediately. Contexts expire
             automatically after 20 minutes if there are no matching
             queries.
-        parameters (google.protobuf.struct_pb2.Struct):
+        parameters (~.struct.Struct):
             Optional. The collection of parameters
             associated with this context.
             Depending on your protocol or client library
@@ -98,10 +98,9 @@ class Context(proto.Message):
             -   MapKey value: parameter name
             -   MapValue type:
                 -   If parameter's entity type is a
-            composite entity: map     -   Else: depending on
-            parameter value type, could be one of string,
-            number, boolean, null, list or map
-            -   MapValue value:
+            composite entity: map     -   Else: string or
+            number, depending on parameter value type -
+            MapValue value:
                 -   If parameter's entity type is a
             composite entity:         map from composite
             entity property names to property values     -
@@ -154,7 +153,7 @@ class ListContextsResponse(proto.Message):
     [Contexts.ListContexts][google.cloud.dialogflow.v2beta1.Contexts.ListContexts].
 
     Attributes:
-        contexts (Sequence[google.cloud.dialogflow_v2beta1.types.Context]):
+        contexts (Sequence[~.gcd_context.Context]):
             The list of contexts. There will be a maximum number of
             items returned based on the page_size field in the request.
         next_page_token (str):
@@ -212,7 +211,7 @@ class CreateContextRequest(proto.Message):
             location. If ``Environment ID`` is not specified, we assume
             default 'draft' environment. If ``User ID`` is not
             specified, we assume default '-' user.
-        context (google.cloud.dialogflow_v2beta1.types.Context):
+        context (~.gcd_context.Context):
             Required. The context to create.
     """
 
@@ -226,9 +225,9 @@ class UpdateContextRequest(proto.Message):
     [Contexts.UpdateContext][google.cloud.dialogflow.v2beta1.Contexts.UpdateContext].
 
     Attributes:
-        context (google.cloud.dialogflow_v2beta1.types.Context):
+        context (~.gcd_context.Context):
             Required. The context to update.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+        update_mask (~.field_mask.FieldMask):
             Optional. The mask to control which fields
             get updated.
     """

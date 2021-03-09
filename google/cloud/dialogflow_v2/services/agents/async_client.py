@@ -72,7 +72,6 @@ class AgentsAsyncClient:
     common_location_path = staticmethod(AgentsClient.common_location_path)
     parse_common_location_path = staticmethod(AgentsClient.parse_common_location_path)
 
-    from_service_account_info = AgentsClient.from_service_account_info
     from_service_account_file = AgentsClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -149,13 +148,12 @@ class AgentsAsyncClient:
         r"""Retrieves the specified agent.
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.GetAgentRequest`):
+            request (:class:`~.agent.GetAgentRequest`):
                 The request object. The request message for
                 [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetAgent].
             parent (:class:`str`):
                 Required. The project that the agent to fetch is
                 associated with. Format: ``projects/<Project ID>``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -167,18 +165,19 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.types.Agent:
-                A Dialogflow agent is a virtual agent that handles conversations with your
-                   end-users. It is a natural language understanding
-                   module that understands the nuances of human
-                   language. Dialogflow translates end-user text or
-                   audio during a conversation to structured data that
-                   your apps and services can understand. You design and
-                   build a Dialogflow agent to handle the types of
-                   conversations required for your system.
+            ~.agent.Agent:
+                A Dialogflow agent is a virtual agent that handles
+                conversations with your end-users. It is a natural
+                language understanding module that understands the
+                nuances of human language. Dialogflow translates
+                end-user text or audio during a conversation to
+                structured data that your apps and services can
+                understand. You design and build a Dialogflow agent to
+                handle the types of conversations required for your
+                system.
 
-                   For more information about agents, see the [Agent
-                   guide](\ https://cloud.google.com/dialogflow/docs/agents-overview).
+                For more information about agents, see the `Agent
+                guide <https://cloud.google.com/dialogflow/docs/agents-overview>`__.
 
         """
         # Create or coerce a protobuf request object.
@@ -231,10 +230,10 @@ class AgentsAsyncClient:
         r"""Creates/updates the specified agent.
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.SetAgentRequest`):
+            request (:class:`~.gcd_agent.SetAgentRequest`):
                 The request object. The request message for
                 [Agents.SetAgent][google.cloud.dialogflow.v2.Agents.SetAgent].
-            agent (:class:`google.cloud.dialogflow_v2.types.Agent`):
+            agent (:class:`~.gcd_agent.Agent`):
                 Required. The agent to update.
                 This corresponds to the ``agent`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -247,18 +246,19 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.types.Agent:
-                A Dialogflow agent is a virtual agent that handles conversations with your
-                   end-users. It is a natural language understanding
-                   module that understands the nuances of human
-                   language. Dialogflow translates end-user text or
-                   audio during a conversation to structured data that
-                   your apps and services can understand. You design and
-                   build a Dialogflow agent to handle the types of
-                   conversations required for your system.
+            ~.gcd_agent.Agent:
+                A Dialogflow agent is a virtual agent that handles
+                conversations with your end-users. It is a natural
+                language understanding module that understands the
+                nuances of human language. Dialogflow translates
+                end-user text or audio during a conversation to
+                structured data that your apps and services can
+                understand. You design and build a Dialogflow agent to
+                handle the types of conversations required for your
+                system.
 
-                   For more information about agents, see the [Agent
-                   guide](\ https://cloud.google.com/dialogflow/docs/agents-overview).
+                For more information about agents, see the `Agent
+                guide <https://cloud.google.com/dialogflow/docs/agents-overview>`__.
 
         """
         # Create or coerce a protobuf request object.
@@ -313,13 +313,12 @@ class AgentsAsyncClient:
         r"""Deletes the specified agent.
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.DeleteAgentRequest`):
+            request (:class:`~.agent.DeleteAgentRequest`):
                 The request object. The request message for
                 [Agents.DeleteAgent][google.cloud.dialogflow.v2.Agents.DeleteAgent].
             parent (:class:`str`):
                 Required. The project that the agent to delete is
                 associated with. Format: ``projects/<Project ID>``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -385,13 +384,12 @@ class AgentsAsyncClient:
         Sub-Collections <https://cloud.google.com/apis/design/design_patterns#list_sub-collections>`__.
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.SearchAgentsRequest`):
+            request (:class:`~.agent.SearchAgentsRequest`):
                 The request object. The request message for
                 [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
             parent (:class:`str`):
                 Required. The project to list agents from. Format:
                 ``projects/<Project ID or '-'>``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -403,7 +401,7 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.services.agents.pagers.SearchAgentsAsyncPager:
+            ~.pagers.SearchAgentsAsyncPager:
                 The response message for
                 [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
 
@@ -470,13 +468,12 @@ class AgentsAsyncClient:
         [google.protobuf.Empty][google.protobuf.Empty]>
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.TrainAgentRequest`):
+            request (:class:`~.agent.TrainAgentRequest`):
                 The request object. The request message for
                 [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent].
             parent (:class:`str`):
                 Required. The project that the agent to train is
                 associated with. Format: ``projects/<Project ID>``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -488,22 +485,24 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
-                   empty messages in your APIs. A typical example is to
-                   use it as the request or the response type of an API
-                   method. For instance:
+                The result type for the operation will be
+                :class:``~.empty.Empty``: A generic empty message that
+                you can re-use to avoid defining duplicated empty
+                messages in your APIs. A typical example is to use it as
+                the request or the response type of an API method. For
+                instance:
 
-                      service Foo {
-                         rpc Bar(google.protobuf.Empty) returns
-                         (google.protobuf.Empty);
+                ::
 
-                      }
+                    service Foo {
+                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+                    }
 
-                   The JSON representation for Empty is empty JSON
-                   object {}.
+                The JSON representation for ``Empty`` is empty JSON
+                object ``{}``.
 
         """
         # Create or coerce a protobuf request object.
@@ -567,13 +566,12 @@ class AgentsAsyncClient:
         [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]>
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.ExportAgentRequest`):
+            request (:class:`~.agent.ExportAgentRequest`):
                 The request object. The request message for
                 [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
             parent (:class:`str`):
                 Required. The project that the agent to export is
                 associated with. Format: ``projects/<Project ID>``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -585,12 +583,12 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.dialogflow_v2.types.ExportAgentResponse`
-                The response message for
+                :class:``~.agent.ExportAgentResponse``: The response
+                message for
                 [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
 
         """
@@ -667,7 +665,7 @@ class AgentsAsyncClient:
         draft agent is updated not when it is done training.
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.ImportAgentRequest`):
+            request (:class:`~.agent.ImportAgentRequest`):
                 The request object. The request message for
                 [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
 
@@ -678,22 +676,24 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
-                   empty messages in your APIs. A typical example is to
-                   use it as the request or the response type of an API
-                   method. For instance:
+                The result type for the operation will be
+                :class:``~.empty.Empty``: A generic empty message that
+                you can re-use to avoid defining duplicated empty
+                messages in your APIs. A typical example is to use it as
+                the request or the response type of an API method. For
+                instance:
 
-                      service Foo {
-                         rpc Bar(google.protobuf.Empty) returns
-                         (google.protobuf.Empty);
+                ::
 
-                      }
+                    service Foo {
+                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+                    }
 
-                   The JSON representation for Empty is empty JSON
-                   object {}.
+                The JSON representation for ``Empty`` is empty JSON
+                object ``{}``.
 
         """
         # Create or coerce a protobuf request object.
@@ -753,7 +753,7 @@ class AgentsAsyncClient:
         draft agent is updated not when it is done training.
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.RestoreAgentRequest`):
+            request (:class:`~.agent.RestoreAgentRequest`):
                 The request object. The request message for
                 [Agents.RestoreAgent][google.cloud.dialogflow.v2.Agents.RestoreAgent].
 
@@ -764,22 +764,24 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
-                   empty messages in your APIs. A typical example is to
-                   use it as the request or the response type of an API
-                   method. For instance:
+                The result type for the operation will be
+                :class:``~.empty.Empty``: A generic empty message that
+                you can re-use to avoid defining duplicated empty
+                messages in your APIs. A typical example is to use it as
+                the request or the response type of an API method. For
+                instance:
 
-                      service Foo {
-                         rpc Bar(google.protobuf.Empty) returns
-                         (google.protobuf.Empty);
+                ::
 
-                      }
+                    service Foo {
+                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+                    }
 
-                   The JSON representation for Empty is empty JSON
-                   object {}.
+                The JSON representation for ``Empty`` is empty JSON
+                object ``{}``.
 
         """
         # Create or coerce a protobuf request object.
@@ -827,7 +829,7 @@ class AgentsAsyncClient:
         automatically when training is completed.
 
         Args:
-            request (:class:`google.cloud.dialogflow_v2.types.GetValidationResultRequest`):
+            request (:class:`~.agent.GetValidationResultRequest`):
                 The request object. The request message for
                 [Agents.GetValidationResult][google.cloud.dialogflow.v2.Agents.GetValidationResult].
 
@@ -838,7 +840,7 @@ class AgentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.types.ValidationResult:
+            ~.validation_result.ValidationResult:
                 Represents the output of agent
                 validation.
 

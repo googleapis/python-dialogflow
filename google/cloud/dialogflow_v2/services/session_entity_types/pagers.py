@@ -24,7 +24,7 @@ class ListSessionEntityTypesPager:
     """A pager for iterating through ``list_session_entity_types`` requests.
 
     This class thinly wraps an initial
-    :class:`google.cloud.dialogflow_v2.types.ListSessionEntityTypesResponse` object, and
+    :class:`~.session_entity_type.ListSessionEntityTypesResponse` object, and
     provides an ``__iter__`` method to iterate through its
     ``session_entity_types`` field.
 
@@ -33,7 +33,7 @@ class ListSessionEntityTypesPager:
     through the ``session_entity_types`` field on the
     corresponding responses.
 
-    All the usual :class:`google.cloud.dialogflow_v2.types.ListSessionEntityTypesResponse`
+    All the usual :class:`~.session_entity_type.ListSessionEntityTypesResponse`
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
@@ -51,9 +51,9 @@ class ListSessionEntityTypesPager:
         Args:
             method (Callable): The method that was originally called, and
                 which instantiated this pager.
-            request (google.cloud.dialogflow_v2.types.ListSessionEntityTypesRequest):
+            request (:class:`~.session_entity_type.ListSessionEntityTypesRequest`):
                 The initial request object.
-            response (google.cloud.dialogflow_v2.types.ListSessionEntityTypesResponse):
+            response (:class:`~.session_entity_type.ListSessionEntityTypesResponse`):
                 The initial response object.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
@@ -86,7 +86,7 @@ class ListSessionEntityTypesAsyncPager:
     """A pager for iterating through ``list_session_entity_types`` requests.
 
     This class thinly wraps an initial
-    :class:`google.cloud.dialogflow_v2.types.ListSessionEntityTypesResponse` object, and
+    :class:`~.session_entity_type.ListSessionEntityTypesResponse` object, and
     provides an ``__aiter__`` method to iterate through its
     ``session_entity_types`` field.
 
@@ -95,7 +95,7 @@ class ListSessionEntityTypesAsyncPager:
     through the ``session_entity_types`` field on the
     corresponding responses.
 
-    All the usual :class:`google.cloud.dialogflow_v2.types.ListSessionEntityTypesResponse`
+    All the usual :class:`~.session_entity_type.ListSessionEntityTypesResponse`
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
@@ -115,9 +115,9 @@ class ListSessionEntityTypesAsyncPager:
         Args:
             method (Callable): The method that was originally called, and
                 which instantiated this pager.
-            request (google.cloud.dialogflow_v2.types.ListSessionEntityTypesRequest):
+            request (:class:`~.session_entity_type.ListSessionEntityTypesRequest`):
                 The initial request object.
-            response (google.cloud.dialogflow_v2.types.ListSessionEntityTypesResponse):
+            response (:class:`~.session_entity_type.ListSessionEntityTypesResponse`):
                 The initial response object.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.

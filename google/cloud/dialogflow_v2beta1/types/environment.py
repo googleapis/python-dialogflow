@@ -66,11 +66,11 @@ class Environment(proto.Message):
 
             -  ``projects/<Project ID>/agent/versions/<Version ID>``
             -  ``projects/<Project ID>/locations/<Location ID>/agent/versions/<Version ID>``
-        state (google.cloud.dialogflow_v2beta1.types.Environment.State):
+        state (~.environment.Environment.State):
             Output only. The state of this environment.
             This field is read-only, i.e., it cannot be set
             by create and update methods.
-        update_time (google.protobuf.timestamp_pb2.Timestamp):
+        update_time (~.timestamp.Timestamp):
             Output only. The last update time of this
             environment. This field is read-only, i.e., it
             cannot be set by create and update methods.
@@ -131,7 +131,7 @@ class ListEnvironmentsResponse(proto.Message):
     [Environments.ListEnvironments][google.cloud.dialogflow.v2beta1.Environments.ListEnvironments].
 
     Attributes:
-        environments (Sequence[google.cloud.dialogflow_v2beta1.types.Environment]):
+        environments (Sequence[~.environment.Environment]):
             The list of agent environments. There will be a maximum
             number of items returned based on the page_size field in the
             request.
