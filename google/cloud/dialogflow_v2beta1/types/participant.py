@@ -1472,10 +1472,6 @@ class ResponseMessage(proto.Message):
         end_interaction (google.cloud.dialogflow_v2beta1.types.ResponseMessage.EndInteraction):
             A signal that indicates the interaction with
             the Dialogflow agent has ended.
-        mixed_audio (google.cloud.dialogflow_v2beta1.types.ResponseMessage.MixedAudio):
-            An audio response message composed of both
-            the synthesized Dialogflow agent responses and
-            the audios hosted in places known to the client.
     """
 
     class Text(proto.Message):
@@ -1516,44 +1512,6 @@ class ResponseMessage(proto.Message):
         ended.
         """
 
-    class MixedAudio(proto.Message):
-        r"""Represents an audio message that is composed of both segments
-        synthesized from the Dialogflow agent prompts and ones hosted
-        externally at the specified URIs.
-
-        Attributes:
-            segments (Sequence[google.cloud.dialogflow_v2beta1.types.ResponseMessage.MixedAudio.Segment]):
-                Segments this audio response is composed of.
-        """
-
-        class Segment(proto.Message):
-            r"""Represents one segment of audio.
-
-            Attributes:
-                audio (bytes):
-                    Raw audio synthesized from the Dialogflow
-                    agent's response using the output config
-                    specified in the request.
-                uri (str):
-                    Client-specific URI that points to an audio
-                    clip accessible to the client.
-                allow_playback_interruption (bool):
-                    Whether the playback of this segment can be
-                    interrupted by the end user's speech and the
-                    client should then start the next Dialogflow
-                    request.
-            """
-
-            audio = proto.Field(proto.BYTES, number=1, oneof="content")
-
-            uri = proto.Field(proto.STRING, number=2, oneof="content")
-
-            allow_playback_interruption = proto.Field(proto.BOOL, number=3)
-
-        segments = proto.RepeatedField(
-            proto.MESSAGE, number=1, message="ResponseMessage.MixedAudio.Segment",
-        )
-
     text = proto.Field(proto.MESSAGE, number=1, oneof="message", message=Text,)
 
     payload = proto.Field(
@@ -1566,10 +1524,6 @@ class ResponseMessage(proto.Message):
 
     end_interaction = proto.Field(
         proto.MESSAGE, number=4, oneof="message", message=EndInteraction,
-    )
-
-    mixed_audio = proto.Field(
-        proto.MESSAGE, number=5, oneof="message", message=MixedAudio,
     )
 
 

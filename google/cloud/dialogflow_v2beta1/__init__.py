@@ -226,7 +226,6 @@ __all__ = (
     "AnnotatedMessagePart",
     "AnswerFeedback",
     "AnswerRecord",
-    "AnswerRecordsClient",
     "ArticleAnswer",
     "AudioEncoding",
     "AudioInput",
@@ -318,6 +317,7 @@ __all__ = (
     "Intent",
     "IntentBatch",
     "IntentView",
+    "IntentsClient",
     "KnowledgeAnswers",
     "KnowledgeBase",
     "KnowledgeBasesClient",
@@ -415,5 +415,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "IntentsClient",
+    "AnswerRecordsClient",
 )
