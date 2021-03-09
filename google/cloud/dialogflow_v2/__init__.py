@@ -227,6 +227,7 @@ __all__ = (
     "ConversationEvent",
     "ConversationPhoneNumber",
     "ConversationProfile",
+    "ConversationProfilesClient",
     "ConversationsClient",
     "CreateCallMatcherRequest",
     "CreateContextRequest",
@@ -321,7 +322,6 @@ __all__ = (
     "OutputAudioConfig",
     "OutputAudioEncoding",
     "Participant",
-    "ParticipantsClient",
     "QueryInput",
     "QueryParameters",
     "QueryResult",
@@ -371,5 +371,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "ConversationProfilesClient",
+    "ParticipantsClient",
 )

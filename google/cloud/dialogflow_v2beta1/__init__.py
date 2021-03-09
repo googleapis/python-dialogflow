@@ -279,6 +279,7 @@ __all__ = (
     "DetectIntentRequest",
     "DetectIntentResponse",
     "Document",
+    "DocumentsClient",
     "DtmfParameters",
     "EntityType",
     "EntityTypeBatch",
@@ -373,7 +374,6 @@ __all__ = (
     "SentimentAnalysisResult",
     "SessionEntityType",
     "SessionEntityTypesClient",
-    "SessionsClient",
     "SetAgentRequest",
     "SmartReplyAnswer",
     "SpeechContext",
@@ -415,5 +415,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "DocumentsClient",
+    "SessionsClient",
 )
