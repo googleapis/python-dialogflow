@@ -254,6 +254,7 @@ __all__ = (
     "ConversationPhoneNumber",
     "ConversationProfile",
     "ConversationProfilesClient",
+    "ConversationsClient",
     "CreateCallMatcherRequest",
     "CreateContextRequest",
     "CreateConversationProfileRequest",
@@ -317,7 +318,6 @@ __all__ = (
     "Intent",
     "IntentBatch",
     "IntentView",
-    "IntentsClient",
     "KnowledgeAnswers",
     "KnowledgeBase",
     "KnowledgeBasesClient",
@@ -415,5 +415,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "ConversationsClient",
+    "IntentsClient",
 )

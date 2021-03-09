@@ -227,6 +227,7 @@ __all__ = (
     "ConversationEvent",
     "ConversationPhoneNumber",
     "ConversationProfile",
+    "ConversationProfilesClient",
     "ConversationsClient",
     "CreateCallMatcherRequest",
     "CreateContextRequest",
@@ -334,7 +335,6 @@ __all__ = (
     "SentimentAnalysisResult",
     "SessionEntityType",
     "SessionEntityTypesClient",
-    "SessionsClient",
     "SetAgentRequest",
     "SpeechContext",
     "SpeechModelVariant",
@@ -371,5 +371,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "ConversationProfilesClient",
+    "SessionsClient",
 )
