@@ -163,6 +163,7 @@ __all__ = (
     "DetectIntentRequest",
     "DetectIntentResponse",
     "Document",
+    "DocumentsClient",
     "EntityType",
     "EntityTypeBatch",
     "EntityTypesClient",
@@ -185,7 +186,6 @@ __all__ = (
     "Intent",
     "IntentBatch",
     "IntentView",
-    "IntentsClient",
     "KnowledgeAnswers",
     "KnowledgeBase",
     "KnowledgeBasesClient",
@@ -245,5 +245,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "DocumentsClient",
+    "IntentsClient",
 )
