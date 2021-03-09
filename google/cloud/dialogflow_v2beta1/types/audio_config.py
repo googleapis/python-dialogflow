@@ -299,6 +299,10 @@ class VoiceSelectionParams(proto.Message):
             will choose a voice based on the other parameters such as
             language_code and
             [ssml_gender][google.cloud.dialogflow.v2beta1.VoiceSelectionParams.ssml_gender].
+
+            For the list of available voices, please refer to `Supported
+            voices and
+            languages <https://cloud.google.com/text-to-speech/docs/voices>`__.
         ssml_gender (google.cloud.dialogflow_v2beta1.types.SsmlVoiceGender):
             Optional. The preferred gender of the voice. If not set, the
             service will choose a voice based on the other parameters
