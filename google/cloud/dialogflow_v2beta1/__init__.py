@@ -133,7 +133,6 @@ from .types.webhook import WebhookResponse
 
 __all__ = (
     "Agent",
-    "AgentsClient",
     "AudioEncoding",
     "BatchCreateEntitiesRequest",
     "BatchDeleteEntitiesRequest",
@@ -163,6 +162,7 @@ __all__ = (
     "DetectIntentRequest",
     "DetectIntentResponse",
     "Document",
+    "DocumentsClient",
     "EntityType",
     "EntityTypeBatch",
     "EntityTypesClient",
@@ -245,5 +245,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "DocumentsClient",
+    "AgentsClient",
 )
