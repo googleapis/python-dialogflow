@@ -444,6 +444,70 @@ class DocumentsAsyncClient:
         # Done; return the response.
         return response
 
+    async def import_documents(
+        self,
+        request: document.ImportDocumentsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> operation_async.AsyncOperation:
+        r"""Create documents by importing data from external
+        sources.
+
+        Args:
+            request (:class:`google.cloud.dialogflow_v2beta1.types.ImportDocumentsRequest`):
+                The request object. Request message for
+                [Documents.ImportDocuments][google.cloud.dialogflow.v2beta1.Documents.ImportDocuments].
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            google.api_core.operation_async.AsyncOperation:
+                An object representing a long-running operation.
+
+                The result type for the operation will be
+                :class:`google.cloud.dialogflow_v2beta1.types.ImportDocumentsResponse`
+                Response message for
+                [Documents.ImportDocuments][google.cloud.dialogflow.v2beta1.Documents.ImportDocuments].
+
+        """
+        # Create or coerce a protobuf request object.
+
+        request = document.ImportDocumentsRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.import_documents,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+        )
+
+        # Send the request.
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # Wrap the response in an operation future.
+        response = operation_async.from_gapic(
+            response,
+            self._client._transport.operations_client,
+            document.ImportDocumentsResponse,
+            metadata_type=document.KnowledgeOperationMetadata,
+        )
+
+        # Done; return the response.
+        return response
+
     async def delete_document(
         self,
         request: document.DeleteDocumentRequest = None,

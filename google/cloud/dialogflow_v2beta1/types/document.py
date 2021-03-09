@@ -32,6 +32,9 @@ __protobuf__ = proto.module(
         "ListDocumentsRequest",
         "ListDocumentsResponse",
         "CreateDocumentRequest",
+        "ImportDocumentsRequest",
+        "ImportDocumentTemplate",
+        "ImportDocumentsResponse",
         "DeleteDocumentRequest",
         "UpdateDocumentRequest",
         "KnowledgeOperationMetadata",
@@ -107,6 +110,12 @@ class Document(proto.Message):
             latest reload. This reload may have been
             triggered automatically or manually and may not
             have succeeded.
+        metadata (Sequence[google.cloud.dialogflow_v2beta1.types.Document.MetadataEntry]):
+            Optional. Metadata for the document. The metadata supports
+            arbitrary key-value pairs. Suggested use cases include
+            storing a document's title, an external URL distinct from
+            the document's content_uri, etc. The max size of a ``key``
+            or a ``value`` of the metadata is 1024 bytes.
     """
 
     class KnowledgeType(proto.Enum):
@@ -114,6 +123,8 @@ class Document(proto.Message):
         KNOWLEDGE_TYPE_UNSPECIFIED = 0
         FAQ = 1
         EXTRACTIVE_QA = 2
+        ARTICLE_SUGGESTION = 3
+        SMART_REPLY = 4
 
     class ReloadStatus(proto.Message):
         r"""The status of a reload attempt.
@@ -150,6 +161,8 @@ class Document(proto.Message):
     enable_auto_reload = proto.Field(proto.BOOL, number=11)
 
     latest_reload_status = proto.Field(proto.MESSAGE, number=12, message=ReloadStatus,)
+
+    metadata = proto.MapField(proto.STRING, proto.STRING, number=7)
 
 
 class GetDocumentRequest(proto.Message):
@@ -259,6 +272,83 @@ class CreateDocumentRequest(proto.Message):
     document = proto.Field(proto.MESSAGE, number=2, message="Document",)
 
     import_gcs_custom_metadata = proto.Field(proto.BOOL, number=3)
+
+
+class ImportDocumentsRequest(proto.Message):
+    r"""Request message for
+    [Documents.ImportDocuments][google.cloud.dialogflow.v2beta1.Documents.ImportDocuments].
+
+    Attributes:
+        parent (str):
+            Required. The knowledge base to import documents into.
+            Format:
+            ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
+        gcs_source (google.cloud.dialogflow_v2beta1.types.GcsSources):
+            The Google Cloud Storage location for the documents. The
+            path can include a wildcard.
+
+            These URIs may have the forms
+            ``gs://<bucket-name>/<object-name>``.
+            ``gs://<bucket-name>/<object-path>/*.<extension>``.
+        document_template (google.cloud.dialogflow_v2beta1.types.ImportDocumentTemplate):
+            Required. Document template used for
+            importing all the documents.
+        import_gcs_custom_metadata (bool):
+            Whether to import custom metadata from Google
+            Cloud Storage. Only valid when the document
+            source is Google Cloud Storage URI.
+    """
+
+    parent = proto.Field(proto.STRING, number=1)
+
+    gcs_source = proto.Field(
+        proto.MESSAGE, number=2, oneof="source", message=gcs.GcsSources,
+    )
+
+    document_template = proto.Field(
+        proto.MESSAGE, number=3, message="ImportDocumentTemplate",
+    )
+
+    import_gcs_custom_metadata = proto.Field(proto.BOOL, number=4)
+
+
+class ImportDocumentTemplate(proto.Message):
+    r"""The template used for importing documents.
+
+    Attributes:
+        mime_type (str):
+            Required. The MIME type of the document.
+        knowledge_types (Sequence[google.cloud.dialogflow_v2beta1.types.Document.KnowledgeType]):
+            Required. The knowledge type of document
+            content.
+        metadata (Sequence[google.cloud.dialogflow_v2beta1.types.ImportDocumentTemplate.MetadataEntry]):
+            Metadata for the document. The metadata supports arbitrary
+            key-value pairs. Suggested use cases include storing a
+            document's title, an external URL distinct from the
+            document's content_uri, etc. The max size of a ``key`` or a
+            ``value`` of the metadata is 1024 bytes.
+    """
+
+    mime_type = proto.Field(proto.STRING, number=1)
+
+    knowledge_types = proto.RepeatedField(
+        proto.ENUM, number=2, enum="Document.KnowledgeType",
+    )
+
+    metadata = proto.MapField(proto.STRING, proto.STRING, number=3)
+
+
+class ImportDocumentsResponse(proto.Message):
+    r"""Response message for
+    [Documents.ImportDocuments][google.cloud.dialogflow.v2beta1.Documents.ImportDocuments].
+
+    Attributes:
+        warnings (Sequence[google.rpc.status_pb2.Status]):
+            Includes details about skipped documents or
+            any other warnings.
+    """
+
+    warnings = proto.RepeatedField(proto.MESSAGE, number=1, message=gr_status.Status,)
 
 
 class DeleteDocumentRequest(proto.Message):

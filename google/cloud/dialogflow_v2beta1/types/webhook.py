@@ -135,6 +135,11 @@ class WebhookResponse(proto.Message):
             Optional. Invokes the supplied events. When this field is
             set, Dialogflow ignores the ``fulfillment_text``,
             ``fulfillment_messages``, and ``payload`` fields.
+        live_agent_handoff (bool):
+            Indicates that a live agent should be brought in to handle
+            the interaction with the user. In most cases, when you set
+            this flag to true, you would also want to set
+            end_interaction to true as well. Default is false.
         end_interaction (bool):
             Optional. Indicates that this intent ends an
             interaction. Some integrations (e.g., Actions on
@@ -169,6 +174,8 @@ class WebhookResponse(proto.Message):
     followup_event_input = proto.Field(
         proto.MESSAGE, number=6, message=gcd_session.EventInput,
     )
+
+    live_agent_handoff = proto.Field(proto.BOOL, number=7)
 
     end_interaction = proto.Field(proto.BOOL, number=8)
 

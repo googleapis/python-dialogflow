@@ -769,6 +769,7 @@ def test_get_intent(transport: str = "grpc", request_type=intent.GetIntentReques
             is_fallback=True,
             ml_enabled=True,
             ml_disabled=True,
+            live_agent_handoff=True,
             end_interaction=True,
             input_context_names=["input_context_names_value"],
             events=["events_value"],
@@ -804,6 +805,8 @@ def test_get_intent(transport: str = "grpc", request_type=intent.GetIntentReques
     assert response.ml_enabled is True
 
     assert response.ml_disabled is True
+
+    assert response.live_agent_handoff is True
 
     assert response.end_interaction is True
 
@@ -868,6 +871,7 @@ async def test_get_intent_async(
                 is_fallback=True,
                 ml_enabled=True,
                 ml_disabled=True,
+                live_agent_handoff=True,
                 end_interaction=True,
                 input_context_names=["input_context_names_value"],
                 events=["events_value"],
@@ -903,6 +907,8 @@ async def test_get_intent_async(
     assert response.ml_enabled is True
 
     assert response.ml_disabled is True
+
+    assert response.live_agent_handoff is True
 
     assert response.end_interaction is True
 
@@ -1076,6 +1082,7 @@ def test_create_intent(
             is_fallback=True,
             ml_enabled=True,
             ml_disabled=True,
+            live_agent_handoff=True,
             end_interaction=True,
             input_context_names=["input_context_names_value"],
             events=["events_value"],
@@ -1113,6 +1120,8 @@ def test_create_intent(
     assert response.ml_enabled is True
 
     assert response.ml_disabled is True
+
+    assert response.live_agent_handoff is True
 
     assert response.end_interaction is True
 
@@ -1177,6 +1186,7 @@ async def test_create_intent_async(
                 is_fallback=True,
                 ml_enabled=True,
                 ml_disabled=True,
+                live_agent_handoff=True,
                 end_interaction=True,
                 input_context_names=["input_context_names_value"],
                 events=["events_value"],
@@ -1216,6 +1226,8 @@ async def test_create_intent_async(
     assert response.ml_enabled is True
 
     assert response.ml_disabled is True
+
+    assert response.live_agent_handoff is True
 
     assert response.end_interaction is True
 
@@ -1399,6 +1411,7 @@ def test_update_intent(
             is_fallback=True,
             ml_enabled=True,
             ml_disabled=True,
+            live_agent_handoff=True,
             end_interaction=True,
             input_context_names=["input_context_names_value"],
             events=["events_value"],
@@ -1436,6 +1449,8 @@ def test_update_intent(
     assert response.ml_enabled is True
 
     assert response.ml_disabled is True
+
+    assert response.live_agent_handoff is True
 
     assert response.end_interaction is True
 
@@ -1500,6 +1515,7 @@ async def test_update_intent_async(
                 is_fallback=True,
                 ml_enabled=True,
                 ml_disabled=True,
+                live_agent_handoff=True,
                 end_interaction=True,
                 input_context_names=["input_context_names_value"],
                 events=["events_value"],
@@ -1539,6 +1555,8 @@ async def test_update_intent_async(
     assert response.ml_enabled is True
 
     assert response.ml_disabled is True
+
+    assert response.live_agent_handoff is True
 
     assert response.end_interaction is True
 

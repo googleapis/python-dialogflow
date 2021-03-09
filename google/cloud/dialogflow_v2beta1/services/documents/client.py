@@ -625,6 +625,71 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         # Done; return the response.
         return response
 
+    def import_documents(
+        self,
+        request: document.ImportDocumentsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> operation.Operation:
+        r"""Create documents by importing data from external
+        sources.
+
+        Args:
+            request (google.cloud.dialogflow_v2beta1.types.ImportDocumentsRequest):
+                The request object. Request message for
+                [Documents.ImportDocuments][google.cloud.dialogflow.v2beta1.Documents.ImportDocuments].
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            google.api_core.operation.Operation:
+                An object representing a long-running operation.
+
+                The result type for the operation will be
+                :class:`google.cloud.dialogflow_v2beta1.types.ImportDocumentsResponse`
+                Response message for
+                [Documents.ImportDocuments][google.cloud.dialogflow.v2beta1.Documents.ImportDocuments].
+
+        """
+        # Create or coerce a protobuf request object.
+
+        # Minor optimization to avoid making a copy if the user passes
+        # in a document.ImportDocumentsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, document.ImportDocumentsRequest):
+            request = document.ImportDocumentsRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[self._transport.import_documents]
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+        )
+
+        # Send the request.
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # Wrap the response in an operation future.
+        response = operation.from_gapic(
+            response,
+            self._transport.operations_client,
+            document.ImportDocumentsResponse,
+            metadata_type=document.KnowledgeOperationMetadata,
+        )
+
+        # Done; return the response.
+        return response
+
     def delete_document(
         self,
         request: document.DeleteDocumentRequest = None,
