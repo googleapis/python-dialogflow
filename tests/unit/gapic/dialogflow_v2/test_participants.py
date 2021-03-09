@@ -27,25 +27,26 @@ from proto.marshal.rules.dates import DurationRule, TimestampRule
 from google import auth
 from google.api_core import client_options
 from google.api_core import exceptions
-from google.api_core import future
 from google.api_core import gapic_v1
 from google.api_core import grpc_helpers
 from google.api_core import grpc_helpers_async
-from google.api_core import operation_async  # type: ignore
-from google.api_core import operations_v1
 from google.auth import credentials
 from google.auth.exceptions import MutualTLSChannelError
-from google.cloud.dialogflow_v2.services.intents import IntentsAsyncClient
-from google.cloud.dialogflow_v2.services.intents import IntentsClient
-from google.cloud.dialogflow_v2.services.intents import pagers
-from google.cloud.dialogflow_v2.services.intents import transports
+from google.cloud.dialogflow_v2.services.participants import ParticipantsAsyncClient
+from google.cloud.dialogflow_v2.services.participants import ParticipantsClient
+from google.cloud.dialogflow_v2.services.participants import pagers
+from google.cloud.dialogflow_v2.services.participants import transports
+from google.cloud.dialogflow_v2.types import audio_config
 from google.cloud.dialogflow_v2.types import context
-from google.cloud.dialogflow_v2.types import intent
-from google.cloud.dialogflow_v2.types import intent as gcd_intent
-from google.longrunning import operations_pb2
+from google.cloud.dialogflow_v2.types import entity_type
+from google.cloud.dialogflow_v2.types import participant
+from google.cloud.dialogflow_v2.types import participant as gcd_participant
+from google.cloud.dialogflow_v2.types import session
+from google.cloud.dialogflow_v2.types import session_entity_type
 from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import struct_pb2 as struct  # type: ignore
+from google.type import latlng_pb2 as latlng  # type: ignore
 
 
 def client_cert_source_callback():
@@ -70,24 +71,27 @@ def test__get_default_mtls_endpoint():
     sandbox_mtls_endpoint = "example.mtls.sandbox.googleapis.com"
     non_googleapi = "api.example.com"
 
-    assert IntentsClient._get_default_mtls_endpoint(None) is None
-    assert IntentsClient._get_default_mtls_endpoint(api_endpoint) == api_mtls_endpoint
+    assert ParticipantsClient._get_default_mtls_endpoint(None) is None
     assert (
-        IntentsClient._get_default_mtls_endpoint(api_mtls_endpoint) == api_mtls_endpoint
+        ParticipantsClient._get_default_mtls_endpoint(api_endpoint) == api_mtls_endpoint
     )
     assert (
-        IntentsClient._get_default_mtls_endpoint(sandbox_endpoint)
+        ParticipantsClient._get_default_mtls_endpoint(api_mtls_endpoint)
+        == api_mtls_endpoint
+    )
+    assert (
+        ParticipantsClient._get_default_mtls_endpoint(sandbox_endpoint)
         == sandbox_mtls_endpoint
     )
     assert (
-        IntentsClient._get_default_mtls_endpoint(sandbox_mtls_endpoint)
+        ParticipantsClient._get_default_mtls_endpoint(sandbox_mtls_endpoint)
         == sandbox_mtls_endpoint
     )
-    assert IntentsClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
+    assert ParticipantsClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-@pytest.mark.parametrize("client_class", [IntentsClient, IntentsAsyncClient,])
-def test_intents_client_from_service_account_info(client_class):
+@pytest.mark.parametrize("client_class", [ParticipantsClient, ParticipantsAsyncClient,])
+def test_participants_client_from_service_account_info(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
@@ -101,8 +105,8 @@ def test_intents_client_from_service_account_info(client_class):
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
-@pytest.mark.parametrize("client_class", [IntentsClient, IntentsAsyncClient,])
-def test_intents_client_from_service_account_file(client_class):
+@pytest.mark.parametrize("client_class", [ParticipantsClient, ParticipantsAsyncClient,])
+def test_participants_client_from_service_account_file(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_file"
@@ -119,39 +123,47 @@ def test_intents_client_from_service_account_file(client_class):
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
-def test_intents_client_get_transport_class():
-    transport = IntentsClient.get_transport_class()
+def test_participants_client_get_transport_class():
+    transport = ParticipantsClient.get_transport_class()
     available_transports = [
-        transports.IntentsGrpcTransport,
+        transports.ParticipantsGrpcTransport,
     ]
     assert transport in available_transports
 
-    transport = IntentsClient.get_transport_class("grpc")
-    assert transport == transports.IntentsGrpcTransport
+    transport = ParticipantsClient.get_transport_class("grpc")
+    assert transport == transports.ParticipantsGrpcTransport
 
 
 @pytest.mark.parametrize(
     "client_class,transport_class,transport_name",
     [
-        (IntentsClient, transports.IntentsGrpcTransport, "grpc"),
-        (IntentsAsyncClient, transports.IntentsGrpcAsyncIOTransport, "grpc_asyncio"),
+        (ParticipantsClient, transports.ParticipantsGrpcTransport, "grpc"),
+        (
+            ParticipantsAsyncClient,
+            transports.ParticipantsGrpcAsyncIOTransport,
+            "grpc_asyncio",
+        ),
     ],
 )
 @mock.patch.object(
-    IntentsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(IntentsClient)
+    ParticipantsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ParticipantsClient)
 )
 @mock.patch.object(
-    IntentsAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(IntentsAsyncClient)
+    ParticipantsAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(ParticipantsAsyncClient),
 )
-def test_intents_client_client_options(client_class, transport_class, transport_name):
+def test_participants_client_client_options(
+    client_class, transport_class, transport_name
+):
     # Check that if channel is provided we won't create a new one.
-    with mock.patch.object(IntentsClient, "get_transport_class") as gtc:
+    with mock.patch.object(ParticipantsClient, "get_transport_class") as gtc:
         transport = transport_class(credentials=credentials.AnonymousCredentials())
         client = client_class(transport=transport)
         gtc.assert_not_called()
 
     # Check that if channel is provided via str we will create a new one.
-    with mock.patch.object(IntentsClient, "get_transport_class") as gtc:
+    with mock.patch.object(ParticipantsClient, "get_transport_class") as gtc:
         client = client_class(transport=transport_name)
         gtc.assert_called()
 
@@ -234,30 +246,32 @@ def test_intents_client_client_options(client_class, transport_class, transport_
 @pytest.mark.parametrize(
     "client_class,transport_class,transport_name,use_client_cert_env",
     [
-        (IntentsClient, transports.IntentsGrpcTransport, "grpc", "true"),
+        (ParticipantsClient, transports.ParticipantsGrpcTransport, "grpc", "true"),
         (
-            IntentsAsyncClient,
-            transports.IntentsGrpcAsyncIOTransport,
+            ParticipantsAsyncClient,
+            transports.ParticipantsGrpcAsyncIOTransport,
             "grpc_asyncio",
             "true",
         ),
-        (IntentsClient, transports.IntentsGrpcTransport, "grpc", "false"),
+        (ParticipantsClient, transports.ParticipantsGrpcTransport, "grpc", "false"),
         (
-            IntentsAsyncClient,
-            transports.IntentsGrpcAsyncIOTransport,
+            ParticipantsAsyncClient,
+            transports.ParticipantsGrpcAsyncIOTransport,
             "grpc_asyncio",
             "false",
         ),
     ],
 )
 @mock.patch.object(
-    IntentsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(IntentsClient)
+    ParticipantsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ParticipantsClient)
 )
 @mock.patch.object(
-    IntentsAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(IntentsAsyncClient)
+    ParticipantsAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(ParticipantsAsyncClient),
 )
 @mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "auto"})
-def test_intents_client_mtls_env_auto(
+def test_participants_client_mtls_env_auto(
     client_class, transport_class, transport_name, use_client_cert_env
 ):
     # This tests the endpoint autoswitch behavior. Endpoint is autoswitched to the default
@@ -350,11 +364,15 @@ def test_intents_client_mtls_env_auto(
 @pytest.mark.parametrize(
     "client_class,transport_class,transport_name",
     [
-        (IntentsClient, transports.IntentsGrpcTransport, "grpc"),
-        (IntentsAsyncClient, transports.IntentsGrpcAsyncIOTransport, "grpc_asyncio"),
+        (ParticipantsClient, transports.ParticipantsGrpcTransport, "grpc"),
+        (
+            ParticipantsAsyncClient,
+            transports.ParticipantsGrpcAsyncIOTransport,
+            "grpc_asyncio",
+        ),
     ],
 )
-def test_intents_client_client_options_scopes(
+def test_participants_client_client_options_scopes(
     client_class, transport_class, transport_name
 ):
     # Check the case scopes are provided.
@@ -376,11 +394,15 @@ def test_intents_client_client_options_scopes(
 @pytest.mark.parametrize(
     "client_class,transport_class,transport_name",
     [
-        (IntentsClient, transports.IntentsGrpcTransport, "grpc"),
-        (IntentsAsyncClient, transports.IntentsGrpcAsyncIOTransport, "grpc_asyncio"),
+        (ParticipantsClient, transports.ParticipantsGrpcTransport, "grpc"),
+        (
+            ParticipantsAsyncClient,
+            transports.ParticipantsGrpcAsyncIOTransport,
+            "grpc_asyncio",
+        ),
     ],
 )
-def test_intents_client_client_options_credentials_file(
+def test_participants_client_client_options_credentials_file(
     client_class, transport_class, transport_name
 ):
     # Check the case credentials file is provided.
@@ -399,12 +421,12 @@ def test_intents_client_client_options_credentials_file(
         )
 
 
-def test_intents_client_client_options_from_dict():
+def test_participants_client_client_options_from_dict():
     with mock.patch(
-        "google.cloud.dialogflow_v2.services.intents.transports.IntentsGrpcTransport.__init__"
+        "google.cloud.dialogflow_v2.services.participants.transports.ParticipantsGrpcTransport.__init__"
     ) as grpc_transport:
         grpc_transport.return_value = None
-        client = IntentsClient(client_options={"api_endpoint": "squid.clam.whelk"})
+        client = ParticipantsClient(client_options={"api_endpoint": "squid.clam.whelk"})
         grpc_transport.assert_called_once_with(
             credentials=None,
             credentials_file=None,
@@ -416,8 +438,10 @@ def test_intents_client_client_options_from_dict():
         )
 
 
-def test_list_intents(transport: str = "grpc", request_type=intent.ListIntentsRequest):
-    client = IntentsClient(
+def test_create_participant(
+    transport: str = "grpc", request_type=gcd_participant.CreateParticipantRequest
+):
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -426,52 +450,63 @@ def test_list_intents(transport: str = "grpc", request_type=intent.ListIntentsRe
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.create_participant), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = intent.ListIntentsResponse(
-            next_page_token="next_page_token_value",
+        call.return_value = gcd_participant.Participant(
+            name="name_value",
+            role=gcd_participant.Participant.Role.HUMAN_AGENT,
+            sip_recording_media_label="sip_recording_media_label_value",
         )
 
-        response = client.list_intents(request)
+        response = client.create_participant(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.ListIntentsRequest()
+        assert args[0] == gcd_participant.CreateParticipantRequest()
 
     # Establish that the response is the type that we expect.
 
-    assert isinstance(response, pagers.ListIntentsPager)
+    assert isinstance(response, gcd_participant.Participant)
 
-    assert response.next_page_token == "next_page_token_value"
+    assert response.name == "name_value"
+
+    assert response.role == gcd_participant.Participant.Role.HUMAN_AGENT
+
+    assert response.sip_recording_media_label == "sip_recording_media_label_value"
 
 
-def test_list_intents_from_dict():
-    test_list_intents(request_type=dict)
+def test_create_participant_from_dict():
+    test_create_participant(request_type=dict)
 
 
-def test_list_intents_empty_call():
+def test_create_participant_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
-    client = IntentsClient(
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
-        client.list_intents()
+    with mock.patch.object(
+        type(client.transport.create_participant), "__call__"
+    ) as call:
+        client.create_participant()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.ListIntentsRequest()
+        assert args[0] == gcd_participant.CreateParticipantRequest()
 
 
 @pytest.mark.asyncio
-async def test_list_intents_async(
-    transport: str = "grpc_asyncio", request_type=intent.ListIntentsRequest
+async def test_create_participant_async(
+    transport: str = "grpc_asyncio",
+    request_type=gcd_participant.CreateParticipantRequest,
 ):
-    client = IntentsAsyncClient(
+    client = ParticipantsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -480,44 +515,518 @@ async def test_list_intents_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.create_participant), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            intent.ListIntentsResponse(next_page_token="next_page_token_value",)
+            gcd_participant.Participant(
+                name="name_value",
+                role=gcd_participant.Participant.Role.HUMAN_AGENT,
+                sip_recording_media_label="sip_recording_media_label_value",
+            )
         )
 
-        response = await client.list_intents(request)
+        response = await client.create_participant(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.ListIntentsRequest()
+        assert args[0] == gcd_participant.CreateParticipantRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, pagers.ListIntentsAsyncPager)
+    assert isinstance(response, gcd_participant.Participant)
+
+    assert response.name == "name_value"
+
+    assert response.role == gcd_participant.Participant.Role.HUMAN_AGENT
+
+    assert response.sip_recording_media_label == "sip_recording_media_label_value"
+
+
+@pytest.mark.asyncio
+async def test_create_participant_async_from_dict():
+    await test_create_participant_async(request_type=dict)
+
+
+def test_create_participant_field_headers():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = gcd_participant.CreateParticipantRequest()
+    request.parent = "parent/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_participant), "__call__"
+    ) as call:
+        call.return_value = gcd_participant.Participant()
+
+        client.create_participant(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+
+
+@pytest.mark.asyncio
+async def test_create_participant_field_headers_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = gcd_participant.CreateParticipantRequest()
+    request.parent = "parent/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_participant), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            gcd_participant.Participant()
+        )
+
+        await client.create_participant(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+
+
+def test_create_participant_flattened():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_participant), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = gcd_participant.Participant()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.create_participant(
+            parent="parent_value",
+            participant=gcd_participant.Participant(name="name_value"),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+        assert args[0].participant == gcd_participant.Participant(name="name_value")
+
+
+def test_create_participant_flattened_error():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.create_participant(
+            gcd_participant.CreateParticipantRequest(),
+            parent="parent_value",
+            participant=gcd_participant.Participant(name="name_value"),
+        )
+
+
+@pytest.mark.asyncio
+async def test_create_participant_flattened_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_participant), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = gcd_participant.Participant()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            gcd_participant.Participant()
+        )
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.create_participant(
+            parent="parent_value",
+            participant=gcd_participant.Participant(name="name_value"),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+        assert args[0].participant == gcd_participant.Participant(name="name_value")
+
+
+@pytest.mark.asyncio
+async def test_create_participant_flattened_error_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.create_participant(
+            gcd_participant.CreateParticipantRequest(),
+            parent="parent_value",
+            participant=gcd_participant.Participant(name="name_value"),
+        )
+
+
+def test_get_participant(
+    transport: str = "grpc", request_type=participant.GetParticipantRequest
+):
+    client = ParticipantsClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_participant), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = participant.Participant(
+            name="name_value",
+            role=participant.Participant.Role.HUMAN_AGENT,
+            sip_recording_media_label="sip_recording_media_label_value",
+        )
+
+        response = client.get_participant(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.GetParticipantRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, participant.Participant)
+
+    assert response.name == "name_value"
+
+    assert response.role == participant.Participant.Role.HUMAN_AGENT
+
+    assert response.sip_recording_media_label == "sip_recording_media_label_value"
+
+
+def test_get_participant_from_dict():
+    test_get_participant(request_type=dict)
+
+
+def test_get_participant_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ParticipantsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_participant), "__call__") as call:
+        client.get_participant()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.GetParticipantRequest()
+
+
+@pytest.mark.asyncio
+async def test_get_participant_async(
+    transport: str = "grpc_asyncio", request_type=participant.GetParticipantRequest
+):
+    client = ParticipantsAsyncClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_participant), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            participant.Participant(
+                name="name_value",
+                role=participant.Participant.Role.HUMAN_AGENT,
+                sip_recording_media_label="sip_recording_media_label_value",
+            )
+        )
+
+        response = await client.get_participant(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.GetParticipantRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, participant.Participant)
+
+    assert response.name == "name_value"
+
+    assert response.role == participant.Participant.Role.HUMAN_AGENT
+
+    assert response.sip_recording_media_label == "sip_recording_media_label_value"
+
+
+@pytest.mark.asyncio
+async def test_get_participant_async_from_dict():
+    await test_get_participant_async(request_type=dict)
+
+
+def test_get_participant_field_headers():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = participant.GetParticipantRequest()
+    request.name = "name/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_participant), "__call__") as call:
+        call.return_value = participant.Participant()
+
+        client.get_participant(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+
+
+@pytest.mark.asyncio
+async def test_get_participant_field_headers_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = participant.GetParticipantRequest()
+    request.name = "name/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_participant), "__call__") as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            participant.Participant()
+        )
+
+        await client.get_participant(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+
+
+def test_get_participant_flattened():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_participant), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = participant.Participant()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.get_participant(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].name == "name_value"
+
+
+def test_get_participant_flattened_error():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.get_participant(
+            participant.GetParticipantRequest(), name="name_value",
+        )
+
+
+@pytest.mark.asyncio
+async def test_get_participant_flattened_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_participant), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = participant.Participant()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            participant.Participant()
+        )
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.get_participant(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].name == "name_value"
+
+
+@pytest.mark.asyncio
+async def test_get_participant_flattened_error_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.get_participant(
+            participant.GetParticipantRequest(), name="name_value",
+        )
+
+
+def test_list_participants(
+    transport: str = "grpc", request_type=participant.ListParticipantsRequest
+):
+    client = ParticipantsClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = participant.ListParticipantsResponse(
+            next_page_token="next_page_token_value",
+        )
+
+        response = client.list_participants(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.ListParticipantsRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, pagers.ListParticipantsPager)
+
+    assert response.next_page_token == "next_page_token_value"
+
+
+def test_list_participants_from_dict():
+    test_list_participants(request_type=dict)
+
+
+def test_list_participants_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ParticipantsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
+        client.list_participants()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.ListParticipantsRequest()
+
+
+@pytest.mark.asyncio
+async def test_list_participants_async(
+    transport: str = "grpc_asyncio", request_type=participant.ListParticipantsRequest
+):
+    client = ParticipantsAsyncClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            participant.ListParticipantsResponse(
+                next_page_token="next_page_token_value",
+            )
+        )
+
+        response = await client.list_participants(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.ListParticipantsRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, pagers.ListParticipantsAsyncPager)
 
     assert response.next_page_token == "next_page_token_value"
 
 
 @pytest.mark.asyncio
-async def test_list_intents_async_from_dict():
-    await test_list_intents_async(request_type=dict)
+async def test_list_participants_async_from_dict():
+    await test_list_participants_async(request_type=dict)
 
 
-def test_list_intents_field_headers():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_list_participants_field_headers():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.ListIntentsRequest()
+    request = participant.ListParticipantsRequest()
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
-        call.return_value = intent.ListIntentsResponse()
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
+        call.return_value = participant.ListParticipantsResponse()
 
-        client.list_intents(request)
+        client.list_participants(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -530,21 +1039,23 @@ def test_list_intents_field_headers():
 
 
 @pytest.mark.asyncio
-async def test_list_intents_field_headers_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_list_participants_field_headers_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.ListIntentsRequest()
+    request = participant.ListParticipantsRequest()
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            intent.ListIntentsResponse()
+            participant.ListParticipantsResponse()
         )
 
-        await client.list_intents(request)
+        await client.list_participants(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -556,19 +1067,19 @@ async def test_list_intents_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
-def test_list_intents_flattened():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_list_participants_flattened():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = intent.ListIntentsResponse()
+        call.return_value = participant.ListParticipantsResponse()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.list_intents(
-            parent="parent_value", language_code="language_code_value",
-        )
+        client.list_participants(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
@@ -577,39 +1088,35 @@ def test_list_intents_flattened():
 
         assert args[0].parent == "parent_value"
 
-        assert args[0].language_code == "language_code_value"
 
-
-def test_list_intents_flattened_error():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_list_participants_flattened_error():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        client.list_intents(
-            intent.ListIntentsRequest(),
-            parent="parent_value",
-            language_code="language_code_value",
+        client.list_participants(
+            participant.ListParticipantsRequest(), parent="parent_value",
         )
 
 
 @pytest.mark.asyncio
-async def test_list_intents_flattened_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_list_participants_flattened_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = intent.ListIntentsResponse()
+        call.return_value = participant.ListParticipantsResponse()
 
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            intent.ListIntentsResponse()
+            participant.ListParticipantsResponse()
         )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.list_intents(
-            parent="parent_value", language_code="language_code_value",
-        )
+        response = await client.list_participants(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
@@ -618,39 +1125,45 @@ async def test_list_intents_flattened_async():
 
         assert args[0].parent == "parent_value"
 
-        assert args[0].language_code == "language_code_value"
-
 
 @pytest.mark.asyncio
-async def test_list_intents_flattened_error_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_list_participants_flattened_error_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        await client.list_intents(
-            intent.ListIntentsRequest(),
-            parent="parent_value",
-            language_code="language_code_value",
+        await client.list_participants(
+            participant.ListParticipantsRequest(), parent="parent_value",
         )
 
 
-def test_list_intents_pager():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials,)
+def test_list_participants_pager():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(), intent.Intent(), intent.Intent(),],
+            participant.ListParticipantsResponse(
+                participants=[
+                    participant.Participant(),
+                    participant.Participant(),
+                    participant.Participant(),
+                ],
                 next_page_token="abc",
             ),
-            intent.ListIntentsResponse(intents=[], next_page_token="def",),
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(),], next_page_token="ghi",
+            participant.ListParticipantsResponse(
+                participants=[], next_page_token="def",
             ),
-            intent.ListIntentsResponse(intents=[intent.Intent(), intent.Intent(),],),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(),], next_page_token="ghi",
+            ),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(), participant.Participant(),],
+            ),
             RuntimeError,
         )
 
@@ -658,99 +1171,131 @@ def test_list_intents_pager():
         metadata = tuple(metadata) + (
             gapic_v1.routing_header.to_grpc_metadata((("parent", ""),)),
         )
-        pager = client.list_intents(request={})
+        pager = client.list_participants(request={})
 
         assert pager._metadata == metadata
 
         results = [i for i in pager]
         assert len(results) == 6
-        assert all(isinstance(i, intent.Intent) for i in results)
+        assert all(isinstance(i, participant.Participant) for i in results)
 
 
-def test_list_intents_pages():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials,)
+def test_list_participants_pages():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_intents), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.list_participants), "__call__"
+    ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(), intent.Intent(), intent.Intent(),],
+            participant.ListParticipantsResponse(
+                participants=[
+                    participant.Participant(),
+                    participant.Participant(),
+                    participant.Participant(),
+                ],
                 next_page_token="abc",
             ),
-            intent.ListIntentsResponse(intents=[], next_page_token="def",),
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(),], next_page_token="ghi",
+            participant.ListParticipantsResponse(
+                participants=[], next_page_token="def",
             ),
-            intent.ListIntentsResponse(intents=[intent.Intent(), intent.Intent(),],),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(),], next_page_token="ghi",
+            ),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(), participant.Participant(),],
+            ),
             RuntimeError,
         )
-        pages = list(client.list_intents(request={}).pages)
+        pages = list(client.list_participants(request={}).pages)
         for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
             assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
-async def test_list_intents_async_pager():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials,)
+async def test_list_participants_async_pager():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_intents), "__call__", new_callable=mock.AsyncMock
+        type(client.transport.list_participants),
+        "__call__",
+        new_callable=mock.AsyncMock,
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(), intent.Intent(), intent.Intent(),],
+            participant.ListParticipantsResponse(
+                participants=[
+                    participant.Participant(),
+                    participant.Participant(),
+                    participant.Participant(),
+                ],
                 next_page_token="abc",
             ),
-            intent.ListIntentsResponse(intents=[], next_page_token="def",),
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(),], next_page_token="ghi",
+            participant.ListParticipantsResponse(
+                participants=[], next_page_token="def",
             ),
-            intent.ListIntentsResponse(intents=[intent.Intent(), intent.Intent(),],),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(),], next_page_token="ghi",
+            ),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(), participant.Participant(),],
+            ),
             RuntimeError,
         )
-        async_pager = await client.list_intents(request={},)
+        async_pager = await client.list_participants(request={},)
         assert async_pager.next_page_token == "abc"
         responses = []
         async for response in async_pager:
             responses.append(response)
 
         assert len(responses) == 6
-        assert all(isinstance(i, intent.Intent) for i in responses)
+        assert all(isinstance(i, participant.Participant) for i in responses)
 
 
 @pytest.mark.asyncio
-async def test_list_intents_async_pages():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials,)
+async def test_list_participants_async_pages():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_intents), "__call__", new_callable=mock.AsyncMock
+        type(client.transport.list_participants),
+        "__call__",
+        new_callable=mock.AsyncMock,
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(), intent.Intent(), intent.Intent(),],
+            participant.ListParticipantsResponse(
+                participants=[
+                    participant.Participant(),
+                    participant.Participant(),
+                    participant.Participant(),
+                ],
                 next_page_token="abc",
             ),
-            intent.ListIntentsResponse(intents=[], next_page_token="def",),
-            intent.ListIntentsResponse(
-                intents=[intent.Intent(),], next_page_token="ghi",
+            participant.ListParticipantsResponse(
+                participants=[], next_page_token="def",
             ),
-            intent.ListIntentsResponse(intents=[intent.Intent(), intent.Intent(),],),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(),], next_page_token="ghi",
+            ),
+            participant.ListParticipantsResponse(
+                participants=[participant.Participant(), participant.Participant(),],
+            ),
             RuntimeError,
         )
         pages = []
-        async for page_ in (await client.list_intents(request={})).pages:
+        async for page_ in (await client.list_participants(request={})).pages:
             pages.append(page_)
         for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
             assert page_.raw_page.next_page_token == token
 
 
-def test_get_intent(transport: str = "grpc", request_type=intent.GetIntentRequest):
-    client = IntentsClient(
+def test_update_participant(
+    transport: str = "grpc", request_type=gcd_participant.UpdateParticipantRequest
+):
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -759,96 +1304,63 @@ def test_get_intent(transport: str = "grpc", request_type=intent.GetIntentReques
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_intent), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.update_participant), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = intent.Intent(
+        call.return_value = gcd_participant.Participant(
             name="name_value",
-            display_name="display_name_value",
-            webhook_state=intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED,
-            priority=898,
-            is_fallback=True,
-            ml_disabled=True,
-            live_agent_handoff=True,
-            end_interaction=True,
-            input_context_names=["input_context_names_value"],
-            events=["events_value"],
-            action="action_value",
-            reset_contexts=True,
-            default_response_platforms=[intent.Intent.Message.Platform.FACEBOOK],
-            root_followup_intent_name="root_followup_intent_name_value",
-            parent_followup_intent_name="parent_followup_intent_name_value",
+            role=gcd_participant.Participant.Role.HUMAN_AGENT,
+            sip_recording_media_label="sip_recording_media_label_value",
         )
 
-        response = client.get_intent(request)
+        response = client.update_participant(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.GetIntentRequest()
+        assert args[0] == gcd_participant.UpdateParticipantRequest()
 
     # Establish that the response is the type that we expect.
 
-    assert isinstance(response, intent.Intent)
+    assert isinstance(response, gcd_participant.Participant)
 
     assert response.name == "name_value"
 
-    assert response.display_name == "display_name_value"
+    assert response.role == gcd_participant.Participant.Role.HUMAN_AGENT
 
-    assert response.webhook_state == intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED
-
-    assert response.priority == 898
-
-    assert response.is_fallback is True
-
-    assert response.ml_disabled is True
-
-    assert response.live_agent_handoff is True
-
-    assert response.end_interaction is True
-
-    assert response.input_context_names == ["input_context_names_value"]
-
-    assert response.events == ["events_value"]
-
-    assert response.action == "action_value"
-
-    assert response.reset_contexts is True
-
-    assert response.default_response_platforms == [
-        intent.Intent.Message.Platform.FACEBOOK
-    ]
-
-    assert response.root_followup_intent_name == "root_followup_intent_name_value"
-
-    assert response.parent_followup_intent_name == "parent_followup_intent_name_value"
+    assert response.sip_recording_media_label == "sip_recording_media_label_value"
 
 
-def test_get_intent_from_dict():
-    test_get_intent(request_type=dict)
+def test_update_participant_from_dict():
+    test_update_participant(request_type=dict)
 
 
-def test_get_intent_empty_call():
+def test_update_participant_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
-    client = IntentsClient(
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_intent), "__call__") as call:
-        client.get_intent()
+    with mock.patch.object(
+        type(client.transport.update_participant), "__call__"
+    ) as call:
+        client.update_participant()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.GetIntentRequest()
+        assert args[0] == gcd_participant.UpdateParticipantRequest()
 
 
 @pytest.mark.asyncio
-async def test_get_intent_async(
-    transport: str = "grpc_asyncio", request_type=intent.GetIntentRequest
+async def test_update_participant_async(
+    transport: str = "grpc_asyncio",
+    request_type=gcd_participant.UpdateParticipantRequest,
 ):
-    client = IntentsAsyncClient(
+    client = ParticipantsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -857,90 +1369,56 @@ async def test_get_intent_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_intent), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.update_participant), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            intent.Intent(
+            gcd_participant.Participant(
                 name="name_value",
-                display_name="display_name_value",
-                webhook_state=intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED,
-                priority=898,
-                is_fallback=True,
-                ml_disabled=True,
-                live_agent_handoff=True,
-                end_interaction=True,
-                input_context_names=["input_context_names_value"],
-                events=["events_value"],
-                action="action_value",
-                reset_contexts=True,
-                default_response_platforms=[intent.Intent.Message.Platform.FACEBOOK],
-                root_followup_intent_name="root_followup_intent_name_value",
-                parent_followup_intent_name="parent_followup_intent_name_value",
+                role=gcd_participant.Participant.Role.HUMAN_AGENT,
+                sip_recording_media_label="sip_recording_media_label_value",
             )
         )
 
-        response = await client.get_intent(request)
+        response = await client.update_participant(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.GetIntentRequest()
+        assert args[0] == gcd_participant.UpdateParticipantRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, intent.Intent)
+    assert isinstance(response, gcd_participant.Participant)
 
     assert response.name == "name_value"
 
-    assert response.display_name == "display_name_value"
+    assert response.role == gcd_participant.Participant.Role.HUMAN_AGENT
 
-    assert response.webhook_state == intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED
-
-    assert response.priority == 898
-
-    assert response.is_fallback is True
-
-    assert response.ml_disabled is True
-
-    assert response.live_agent_handoff is True
-
-    assert response.end_interaction is True
-
-    assert response.input_context_names == ["input_context_names_value"]
-
-    assert response.events == ["events_value"]
-
-    assert response.action == "action_value"
-
-    assert response.reset_contexts is True
-
-    assert response.default_response_platforms == [
-        intent.Intent.Message.Platform.FACEBOOK
-    ]
-
-    assert response.root_followup_intent_name == "root_followup_intent_name_value"
-
-    assert response.parent_followup_intent_name == "parent_followup_intent_name_value"
+    assert response.sip_recording_media_label == "sip_recording_media_label_value"
 
 
 @pytest.mark.asyncio
-async def test_get_intent_async_from_dict():
-    await test_get_intent_async(request_type=dict)
+async def test_update_participant_async_from_dict():
+    await test_update_participant_async(request_type=dict)
 
 
-def test_get_intent_field_headers():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_update_participant_field_headers():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.GetIntentRequest()
-    request.name = "name/value"
+    request = gcd_participant.UpdateParticipantRequest()
+    request.participant.name = "participant.name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_intent), "__call__") as call:
-        call.return_value = intent.Intent()
+    with mock.patch.object(
+        type(client.transport.update_participant), "__call__"
+    ) as call:
+        call.return_value = gcd_participant.Participant()
 
-        client.get_intent(request)
+        client.update_participant(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -949,683 +1427,56 @@ def test_get_intent_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert ("x-goog-request-params", "participant.name=participant.name/value",) in kw[
+        "metadata"
+    ]
 
 
 @pytest.mark.asyncio
-async def test_get_intent_field_headers_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_update_participant_field_headers_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.GetIntentRequest()
-    request.name = "name/value"
+    request = gcd_participant.UpdateParticipantRequest()
+    request.participant.name = "participant.name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_intent), "__call__") as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(intent.Intent())
-
-        await client.get_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
-
-
-def test_get_intent_flattened():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = intent.Intent()
-
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.get_intent(
-            name="name_value", language_code="language_code_value",
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0].name == "name_value"
-
-        assert args[0].language_code == "language_code_value"
-
-
-def test_get_intent_flattened_error():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.get_intent(
-            intent.GetIntentRequest(),
-            name="name_value",
-            language_code="language_code_value",
-        )
-
-
-@pytest.mark.asyncio
-async def test_get_intent_flattened_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = intent.Intent()
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(intent.Intent())
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.get_intent(
-            name="name_value", language_code="language_code_value",
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0].name == "name_value"
-
-        assert args[0].language_code == "language_code_value"
-
-
-@pytest.mark.asyncio
-async def test_get_intent_flattened_error_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.get_intent(
-            intent.GetIntentRequest(),
-            name="name_value",
-            language_code="language_code_value",
-        )
-
-
-def test_create_intent(
-    transport: str = "grpc", request_type=gcd_intent.CreateIntentRequest
-):
-    client = IntentsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_intent.Intent(
-            name="name_value",
-            display_name="display_name_value",
-            webhook_state=gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED,
-            priority=898,
-            is_fallback=True,
-            ml_disabled=True,
-            live_agent_handoff=True,
-            end_interaction=True,
-            input_context_names=["input_context_names_value"],
-            events=["events_value"],
-            action="action_value",
-            reset_contexts=True,
-            default_response_platforms=[gcd_intent.Intent.Message.Platform.FACEBOOK],
-            root_followup_intent_name="root_followup_intent_name_value",
-            parent_followup_intent_name="parent_followup_intent_name_value",
-        )
-
-        response = client.create_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == gcd_intent.CreateIntentRequest()
-
-    # Establish that the response is the type that we expect.
-
-    assert isinstance(response, gcd_intent.Intent)
-
-    assert response.name == "name_value"
-
-    assert response.display_name == "display_name_value"
-
-    assert (
-        response.webhook_state == gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED
-    )
-
-    assert response.priority == 898
-
-    assert response.is_fallback is True
-
-    assert response.ml_disabled is True
-
-    assert response.live_agent_handoff is True
-
-    assert response.end_interaction is True
-
-    assert response.input_context_names == ["input_context_names_value"]
-
-    assert response.events == ["events_value"]
-
-    assert response.action == "action_value"
-
-    assert response.reset_contexts is True
-
-    assert response.default_response_platforms == [
-        gcd_intent.Intent.Message.Platform.FACEBOOK
-    ]
-
-    assert response.root_followup_intent_name == "root_followup_intent_name_value"
-
-    assert response.parent_followup_intent_name == "parent_followup_intent_name_value"
-
-
-def test_create_intent_from_dict():
-    test_create_intent(request_type=dict)
-
-
-def test_create_intent_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = IntentsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_intent), "__call__") as call:
-        client.create_intent()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == gcd_intent.CreateIntentRequest()
-
-
-@pytest.mark.asyncio
-async def test_create_intent_async(
-    transport: str = "grpc_asyncio", request_type=gcd_intent.CreateIntentRequest
-):
-    client = IntentsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
+    with mock.patch.object(
+        type(client.transport.update_participant), "__call__"
+    ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_intent.Intent(
-                name="name_value",
-                display_name="display_name_value",
-                webhook_state=gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED,
-                priority=898,
-                is_fallback=True,
-                ml_disabled=True,
-                live_agent_handoff=True,
-                end_interaction=True,
-                input_context_names=["input_context_names_value"],
-                events=["events_value"],
-                action="action_value",
-                reset_contexts=True,
-                default_response_platforms=[
-                    gcd_intent.Intent.Message.Platform.FACEBOOK
-                ],
-                root_followup_intent_name="root_followup_intent_name_value",
-                parent_followup_intent_name="parent_followup_intent_name_value",
-            )
+            gcd_participant.Participant()
         )
 
-        response = await client.create_intent(request)
+        await client.update_participant(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+        assert args[0] == request
 
-        assert args[0] == gcd_intent.CreateIntentRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, gcd_intent.Intent)
-
-    assert response.name == "name_value"
-
-    assert response.display_name == "display_name_value"
-
-    assert (
-        response.webhook_state == gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED
-    )
-
-    assert response.priority == 898
-
-    assert response.is_fallback is True
-
-    assert response.ml_disabled is True
-
-    assert response.live_agent_handoff is True
-
-    assert response.end_interaction is True
-
-    assert response.input_context_names == ["input_context_names_value"]
-
-    assert response.events == ["events_value"]
-
-    assert response.action == "action_value"
-
-    assert response.reset_contexts is True
-
-    assert response.default_response_platforms == [
-        gcd_intent.Intent.Message.Platform.FACEBOOK
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "participant.name=participant.name/value",) in kw[
+        "metadata"
     ]
 
-    assert response.root_followup_intent_name == "root_followup_intent_name_value"
 
-    assert response.parent_followup_intent_name == "parent_followup_intent_name_value"
-
-
-@pytest.mark.asyncio
-async def test_create_intent_async_from_dict():
-    await test_create_intent_async(request_type=dict)
-
-
-def test_create_intent_field_headers():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_intent.CreateIntentRequest()
-    request.parent = "parent/value"
+def test_update_participant_flattened():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_intent), "__call__") as call:
-        call.return_value = gcd_intent.Intent()
-
-        client.create_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
-
-
-@pytest.mark.asyncio
-async def test_create_intent_field_headers_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_intent.CreateIntentRequest()
-    request.parent = "parent/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_intent), "__call__") as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_intent.Intent())
-
-        await client.create_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
-
-
-def test_create_intent_flattened():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_intent), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.update_participant), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = gcd_intent.Intent()
+        call.return_value = gcd_participant.Participant()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.create_intent(
-            parent="parent_value",
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0].parent == "parent_value"
-
-        assert args[0].intent == gcd_intent.Intent(name="name_value")
-
-        assert args[0].language_code == "language_code_value"
-
-
-def test_create_intent_flattened_error():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.create_intent(
-            gcd_intent.CreateIntentRequest(),
-            parent="parent_value",
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
-        )
-
-
-@pytest.mark.asyncio
-async def test_create_intent_flattened_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_intent.Intent()
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_intent.Intent())
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.create_intent(
-            parent="parent_value",
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0].parent == "parent_value"
-
-        assert args[0].intent == gcd_intent.Intent(name="name_value")
-
-        assert args[0].language_code == "language_code_value"
-
-
-@pytest.mark.asyncio
-async def test_create_intent_flattened_error_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.create_intent(
-            gcd_intent.CreateIntentRequest(),
-            parent="parent_value",
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
-        )
-
-
-def test_update_intent(
-    transport: str = "grpc", request_type=gcd_intent.UpdateIntentRequest
-):
-    client = IntentsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_intent.Intent(
-            name="name_value",
-            display_name="display_name_value",
-            webhook_state=gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED,
-            priority=898,
-            is_fallback=True,
-            ml_disabled=True,
-            live_agent_handoff=True,
-            end_interaction=True,
-            input_context_names=["input_context_names_value"],
-            events=["events_value"],
-            action="action_value",
-            reset_contexts=True,
-            default_response_platforms=[gcd_intent.Intent.Message.Platform.FACEBOOK],
-            root_followup_intent_name="root_followup_intent_name_value",
-            parent_followup_intent_name="parent_followup_intent_name_value",
-        )
-
-        response = client.update_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == gcd_intent.UpdateIntentRequest()
-
-    # Establish that the response is the type that we expect.
-
-    assert isinstance(response, gcd_intent.Intent)
-
-    assert response.name == "name_value"
-
-    assert response.display_name == "display_name_value"
-
-    assert (
-        response.webhook_state == gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED
-    )
-
-    assert response.priority == 898
-
-    assert response.is_fallback is True
-
-    assert response.ml_disabled is True
-
-    assert response.live_agent_handoff is True
-
-    assert response.end_interaction is True
-
-    assert response.input_context_names == ["input_context_names_value"]
-
-    assert response.events == ["events_value"]
-
-    assert response.action == "action_value"
-
-    assert response.reset_contexts is True
-
-    assert response.default_response_platforms == [
-        gcd_intent.Intent.Message.Platform.FACEBOOK
-    ]
-
-    assert response.root_followup_intent_name == "root_followup_intent_name_value"
-
-    assert response.parent_followup_intent_name == "parent_followup_intent_name_value"
-
-
-def test_update_intent_from_dict():
-    test_update_intent(request_type=dict)
-
-
-def test_update_intent_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = IntentsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_intent), "__call__") as call:
-        client.update_intent()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == gcd_intent.UpdateIntentRequest()
-
-
-@pytest.mark.asyncio
-async def test_update_intent_async(
-    transport: str = "grpc_asyncio", request_type=gcd_intent.UpdateIntentRequest
-):
-    client = IntentsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_intent.Intent(
-                name="name_value",
-                display_name="display_name_value",
-                webhook_state=gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED,
-                priority=898,
-                is_fallback=True,
-                ml_disabled=True,
-                live_agent_handoff=True,
-                end_interaction=True,
-                input_context_names=["input_context_names_value"],
-                events=["events_value"],
-                action="action_value",
-                reset_contexts=True,
-                default_response_platforms=[
-                    gcd_intent.Intent.Message.Platform.FACEBOOK
-                ],
-                root_followup_intent_name="root_followup_intent_name_value",
-                parent_followup_intent_name="parent_followup_intent_name_value",
-            )
-        )
-
-        response = await client.update_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == gcd_intent.UpdateIntentRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, gcd_intent.Intent)
-
-    assert response.name == "name_value"
-
-    assert response.display_name == "display_name_value"
-
-    assert (
-        response.webhook_state == gcd_intent.Intent.WebhookState.WEBHOOK_STATE_ENABLED
-    )
-
-    assert response.priority == 898
-
-    assert response.is_fallback is True
-
-    assert response.ml_disabled is True
-
-    assert response.live_agent_handoff is True
-
-    assert response.end_interaction is True
-
-    assert response.input_context_names == ["input_context_names_value"]
-
-    assert response.events == ["events_value"]
-
-    assert response.action == "action_value"
-
-    assert response.reset_contexts is True
-
-    assert response.default_response_platforms == [
-        gcd_intent.Intent.Message.Platform.FACEBOOK
-    ]
-
-    assert response.root_followup_intent_name == "root_followup_intent_name_value"
-
-    assert response.parent_followup_intent_name == "parent_followup_intent_name_value"
-
-
-@pytest.mark.asyncio
-async def test_update_intent_async_from_dict():
-    await test_update_intent_async(request_type=dict)
-
-
-def test_update_intent_field_headers():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_intent.UpdateIntentRequest()
-    request.intent.name = "intent.name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_intent), "__call__") as call:
-        call.return_value = gcd_intent.Intent()
-
-        client.update_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "intent.name=intent.name/value",) in kw["metadata"]
-
-
-@pytest.mark.asyncio
-async def test_update_intent_field_headers_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_intent.UpdateIntentRequest()
-    request.intent.name = "intent.name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_intent), "__call__") as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_intent.Intent())
-
-        await client.update_intent(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "intent.name=intent.name/value",) in kw["metadata"]
-
-
-def test_update_intent_flattened():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_intent), "__call__") as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_intent.Intent()
-
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.update_intent(
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
+        client.update_participant(
+            participant=gcd_participant.Participant(name="name_value"),
             update_mask=field_mask.FieldMask(paths=["paths_value"]),
         )
 
@@ -1634,42 +1485,42 @@ def test_update_intent_flattened():
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].intent == gcd_intent.Intent(name="name_value")
-
-        assert args[0].language_code == "language_code_value"
+        assert args[0].participant == gcd_participant.Participant(name="name_value")
 
         assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
 
 
-def test_update_intent_flattened_error():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_update_participant_flattened_error():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        client.update_intent(
-            gcd_intent.UpdateIntentRequest(),
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
+        client.update_participant(
+            gcd_participant.UpdateParticipantRequest(),
+            participant=gcd_participant.Participant(name="name_value"),
             update_mask=field_mask.FieldMask(paths=["paths_value"]),
         )
 
 
 @pytest.mark.asyncio
-async def test_update_intent_flattened_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_update_participant_flattened_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_intent), "__call__") as call:
+    with mock.patch.object(
+        type(client.transport.update_participant), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = gcd_intent.Intent()
+        call.return_value = gcd_participant.Participant()
 
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_intent.Intent())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            gcd_participant.Participant()
+        )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.update_intent(
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
+        response = await client.update_participant(
+            participant=gcd_participant.Participant(name="name_value"),
             update_mask=field_mask.FieldMask(paths=["paths_value"]),
         )
 
@@ -1678,32 +1529,29 @@ async def test_update_intent_flattened_async():
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].intent == gcd_intent.Intent(name="name_value")
-
-        assert args[0].language_code == "language_code_value"
+        assert args[0].participant == gcd_participant.Participant(name="name_value")
 
         assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
 
 
 @pytest.mark.asyncio
-async def test_update_intent_flattened_error_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_update_participant_flattened_error_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        await client.update_intent(
-            gcd_intent.UpdateIntentRequest(),
-            intent=gcd_intent.Intent(name="name_value"),
-            language_code="language_code_value",
+        await client.update_participant(
+            gcd_participant.UpdateParticipantRequest(),
+            participant=gcd_participant.Participant(name="name_value"),
             update_mask=field_mask.FieldMask(paths=["paths_value"]),
         )
 
 
-def test_delete_intent(
-    transport: str = "grpc", request_type=intent.DeleteIntentRequest
+def test_analyze_content(
+    transport: str = "grpc", request_type=gcd_participant.AnalyzeContentRequest
 ):
-    client = IntentsClient(
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -1712,47 +1560,52 @@ def test_delete_intent(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_intent), "__call__") as call:
+    with mock.patch.object(type(client.transport.analyze_content), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = None
+        call.return_value = gcd_participant.AnalyzeContentResponse(
+            reply_text="reply_text_value",
+        )
 
-        response = client.delete_intent(request)
+        response = client.analyze_content(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.DeleteIntentRequest()
+        assert args[0] == gcd_participant.AnalyzeContentRequest()
 
     # Establish that the response is the type that we expect.
-    assert response is None
+
+    assert isinstance(response, gcd_participant.AnalyzeContentResponse)
+
+    assert response.reply_text == "reply_text_value"
 
 
-def test_delete_intent_from_dict():
-    test_delete_intent(request_type=dict)
+def test_analyze_content_from_dict():
+    test_analyze_content(request_type=dict)
 
 
-def test_delete_intent_empty_call():
+def test_analyze_content_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
-    client = IntentsClient(
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_intent), "__call__") as call:
-        client.delete_intent()
+    with mock.patch.object(type(client.transport.analyze_content), "__call__") as call:
+        client.analyze_content()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.DeleteIntentRequest()
+        assert args[0] == gcd_participant.AnalyzeContentRequest()
 
 
 @pytest.mark.asyncio
-async def test_delete_intent_async(
-    transport: str = "grpc_asyncio", request_type=intent.DeleteIntentRequest
+async def test_analyze_content_async(
+    transport: str = "grpc_asyncio", request_type=gcd_participant.AnalyzeContentRequest
 ):
-    client = IntentsAsyncClient(
+    client = ParticipantsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -1761,40 +1614,44 @@ async def test_delete_intent_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_intent), "__call__") as call:
+    with mock.patch.object(type(client.transport.analyze_content), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            gcd_participant.AnalyzeContentResponse(reply_text="reply_text_value",)
+        )
 
-        response = await client.delete_intent(request)
+        response = await client.analyze_content(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.DeleteIntentRequest()
+        assert args[0] == gcd_participant.AnalyzeContentRequest()
 
     # Establish that the response is the type that we expect.
-    assert response is None
+    assert isinstance(response, gcd_participant.AnalyzeContentResponse)
+
+    assert response.reply_text == "reply_text_value"
 
 
 @pytest.mark.asyncio
-async def test_delete_intent_async_from_dict():
-    await test_delete_intent_async(request_type=dict)
+async def test_analyze_content_async_from_dict():
+    await test_analyze_content_async(request_type=dict)
 
 
-def test_delete_intent_field_headers():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_analyze_content_field_headers():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.DeleteIntentRequest()
-    request.name = "name/value"
+    request = gcd_participant.AnalyzeContentRequest()
+    request.participant = "participant/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_intent), "__call__") as call:
-        call.return_value = None
+    with mock.patch.object(type(client.transport.analyze_content), "__call__") as call:
+        call.return_value = gcd_participant.AnalyzeContentResponse()
 
-        client.delete_intent(request)
+        client.analyze_content(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -1803,23 +1660,25 @@ def test_delete_intent_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert ("x-goog-request-params", "participant=participant/value",) in kw["metadata"]
 
 
 @pytest.mark.asyncio
-async def test_delete_intent_field_headers_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_analyze_content_field_headers_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.DeleteIntentRequest()
-    request.name = "name/value"
+    request = gcd_participant.AnalyzeContentRequest()
+    request.participant = "participant/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_intent), "__call__") as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+    with mock.patch.object(type(client.transport.analyze_content), "__call__") as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            gcd_participant.AnalyzeContentResponse()
+        )
 
-        await client.delete_intent(request)
+        await client.analyze_content(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -1828,78 +1687,413 @@ async def test_delete_intent_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert ("x-goog-request-params", "participant=participant/value",) in kw["metadata"]
 
 
-def test_delete_intent_flattened():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_analyze_content_flattened():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_intent), "__call__") as call:
+    with mock.patch.object(type(client.transport.analyze_content), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = None
+        call.return_value = gcd_participant.AnalyzeContentResponse()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.delete_intent(name="name_value",)
+        client.analyze_content(
+            participant="participant_value",
+            text_input=session.TextInput(text="text_value"),
+            audio_input=gcd_participant.AudioInput(
+                config=audio_config.InputAudioConfig(
+                    audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
+                )
+            ),
+            event_input=session.EventInput(name="name_value"),
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].name == "name_value"
+        assert args[0].participant == "participant_value"
+
+        assert args[0].event_input == session.EventInput(name="name_value")
 
 
-def test_delete_intent_flattened_error():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_analyze_content_flattened_error():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        client.delete_intent(
-            intent.DeleteIntentRequest(), name="name_value",
+        client.analyze_content(
+            gcd_participant.AnalyzeContentRequest(),
+            participant="participant_value",
+            text_input=session.TextInput(text="text_value"),
+            audio_input=gcd_participant.AudioInput(
+                config=audio_config.InputAudioConfig(
+                    audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
+                )
+            ),
+            event_input=session.EventInput(name="name_value"),
         )
 
 
 @pytest.mark.asyncio
-async def test_delete_intent_flattened_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_analyze_content_flattened_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_intent), "__call__") as call:
+    with mock.patch.object(type(client.transport.analyze_content), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = None
+        call.return_value = gcd_participant.AnalyzeContentResponse()
 
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            gcd_participant.AnalyzeContentResponse()
+        )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.delete_intent(name="name_value",)
+        response = await client.analyze_content(
+            participant="participant_value",
+            text_input=session.TextInput(text="text_value"),
+            audio_input=gcd_participant.AudioInput(
+                config=audio_config.InputAudioConfig(
+                    audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
+                )
+            ),
+            event_input=session.EventInput(name="name_value"),
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].name == "name_value"
+        assert args[0].participant == "participant_value"
+
+        assert args[0].event_input == session.EventInput(name="name_value")
 
 
 @pytest.mark.asyncio
-async def test_delete_intent_flattened_error_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_analyze_content_flattened_error_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        await client.delete_intent(
-            intent.DeleteIntentRequest(), name="name_value",
+        await client.analyze_content(
+            gcd_participant.AnalyzeContentRequest(),
+            participant="participant_value",
+            text_input=session.TextInput(text="text_value"),
+            audio_input=gcd_participant.AudioInput(
+                config=audio_config.InputAudioConfig(
+                    audio_encoding=audio_config.AudioEncoding.AUDIO_ENCODING_LINEAR_16
+                )
+            ),
+            event_input=session.EventInput(name="name_value"),
         )
 
 
-def test_batch_update_intents(
-    transport: str = "grpc", request_type=intent.BatchUpdateIntentsRequest
+def test_streaming_analyze_content(
+    transport: str = "grpc", request_type=participant.StreamingAnalyzeContentRequest
 ):
-    client = IntentsClient(
+    client = ParticipantsClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    requests = [request]
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.streaming_analyze_content), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = iter([participant.StreamingAnalyzeContentResponse()])
+
+        response = client.streaming_analyze_content(iter(requests))
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert next(args[0]) == request
+
+    # Establish that the response is the type that we expect.
+    for message in response:
+        assert isinstance(message, participant.StreamingAnalyzeContentResponse)
+
+
+def test_streaming_analyze_content_from_dict():
+    test_streaming_analyze_content(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_streaming_analyze_content_async(
+    transport: str = "grpc_asyncio",
+    request_type=participant.StreamingAnalyzeContentRequest,
+):
+    client = ParticipantsAsyncClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    requests = [request]
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.streaming_analyze_content), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = mock.Mock(aio.StreamStreamCall, autospec=True)
+        call.return_value.read = mock.AsyncMock(
+            side_effect=[participant.StreamingAnalyzeContentResponse()]
+        )
+
+        response = await client.streaming_analyze_content(iter(requests))
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert next(args[0]) == request
+
+    # Establish that the response is the type that we expect.
+    message = await response.read()
+    assert isinstance(message, participant.StreamingAnalyzeContentResponse)
+
+
+@pytest.mark.asyncio
+async def test_streaming_analyze_content_async_from_dict():
+    await test_streaming_analyze_content_async(request_type=dict)
+
+
+def test_suggest_articles(
+    transport: str = "grpc", request_type=participant.SuggestArticlesRequest
+):
+    client = ParticipantsClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.suggest_articles), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = participant.SuggestArticlesResponse(
+            latest_message="latest_message_value", context_size=1311,
+        )
+
+        response = client.suggest_articles(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.SuggestArticlesRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, participant.SuggestArticlesResponse)
+
+    assert response.latest_message == "latest_message_value"
+
+    assert response.context_size == 1311
+
+
+def test_suggest_articles_from_dict():
+    test_suggest_articles(request_type=dict)
+
+
+def test_suggest_articles_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ParticipantsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.suggest_articles), "__call__") as call:
+        client.suggest_articles()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.SuggestArticlesRequest()
+
+
+@pytest.mark.asyncio
+async def test_suggest_articles_async(
+    transport: str = "grpc_asyncio", request_type=participant.SuggestArticlesRequest
+):
+    client = ParticipantsAsyncClient(
+        credentials=credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.suggest_articles), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            participant.SuggestArticlesResponse(
+                latest_message="latest_message_value", context_size=1311,
+            )
+        )
+
+        response = await client.suggest_articles(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == participant.SuggestArticlesRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, participant.SuggestArticlesResponse)
+
+    assert response.latest_message == "latest_message_value"
+
+    assert response.context_size == 1311
+
+
+@pytest.mark.asyncio
+async def test_suggest_articles_async_from_dict():
+    await test_suggest_articles_async(request_type=dict)
+
+
+def test_suggest_articles_field_headers():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = participant.SuggestArticlesRequest()
+    request.parent = "parent/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.suggest_articles), "__call__") as call:
+        call.return_value = participant.SuggestArticlesResponse()
+
+        client.suggest_articles(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+
+
+@pytest.mark.asyncio
+async def test_suggest_articles_field_headers_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = participant.SuggestArticlesRequest()
+    request.parent = "parent/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.suggest_articles), "__call__") as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            participant.SuggestArticlesResponse()
+        )
+
+        await client.suggest_articles(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+
+
+def test_suggest_articles_flattened():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.suggest_articles), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = participant.SuggestArticlesResponse()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.suggest_articles(parent="parent_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+
+def test_suggest_articles_flattened_error():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.suggest_articles(
+            participant.SuggestArticlesRequest(), parent="parent_value",
+        )
+
+
+@pytest.mark.asyncio
+async def test_suggest_articles_flattened_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.suggest_articles), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = participant.SuggestArticlesResponse()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            participant.SuggestArticlesResponse()
+        )
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.suggest_articles(parent="parent_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+
+@pytest.mark.asyncio
+async def test_suggest_articles_flattened_error_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.suggest_articles(
+            participant.SuggestArticlesRequest(), parent="parent_value",
+        )
+
+
+def test_suggest_faq_answers(
+    transport: str = "grpc", request_type=participant.SuggestFaqAnswersRequest
+):
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -1909,50 +2103,57 @@ def test_batch_update_intents(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.batch_update_intents), "__call__"
+        type(client.transport.suggest_faq_answers), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/spam")
+        call.return_value = participant.SuggestFaqAnswersResponse(
+            latest_message="latest_message_value", context_size=1311,
+        )
 
-        response = client.batch_update_intents(request)
+        response = client.suggest_faq_answers(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.BatchUpdateIntentsRequest()
+        assert args[0] == participant.SuggestFaqAnswersRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, future.Future)
+
+    assert isinstance(response, participant.SuggestFaqAnswersResponse)
+
+    assert response.latest_message == "latest_message_value"
+
+    assert response.context_size == 1311
 
 
-def test_batch_update_intents_from_dict():
-    test_batch_update_intents(request_type=dict)
+def test_suggest_faq_answers_from_dict():
+    test_suggest_faq_answers(request_type=dict)
 
 
-def test_batch_update_intents_empty_call():
+def test_suggest_faq_answers_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
-    client = IntentsClient(
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.batch_update_intents), "__call__"
+        type(client.transport.suggest_faq_answers), "__call__"
     ) as call:
-        client.batch_update_intents()
+        client.suggest_faq_answers()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.BatchUpdateIntentsRequest()
+        assert args[0] == participant.SuggestFaqAnswersRequest()
 
 
 @pytest.mark.asyncio
-async def test_batch_update_intents_async(
-    transport: str = "grpc_asyncio", request_type=intent.BatchUpdateIntentsRequest
+async def test_suggest_faq_answers_async(
+    transport: str = "grpc_asyncio", request_type=participant.SuggestFaqAnswersRequest
 ):
-    client = IntentsAsyncClient(
+    client = ParticipantsAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -1962,45 +2163,51 @@ async def test_batch_update_intents_async(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.batch_update_intents), "__call__"
+        type(client.transport.suggest_faq_answers), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            operations_pb2.Operation(name="operations/spam")
+            participant.SuggestFaqAnswersResponse(
+                latest_message="latest_message_value", context_size=1311,
+            )
         )
 
-        response = await client.batch_update_intents(request)
+        response = await client.suggest_faq_answers(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == intent.BatchUpdateIntentsRequest()
+        assert args[0] == participant.SuggestFaqAnswersRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, future.Future)
+    assert isinstance(response, participant.SuggestFaqAnswersResponse)
+
+    assert response.latest_message == "latest_message_value"
+
+    assert response.context_size == 1311
 
 
 @pytest.mark.asyncio
-async def test_batch_update_intents_async_from_dict():
-    await test_batch_update_intents_async(request_type=dict)
+async def test_suggest_faq_answers_async_from_dict():
+    await test_suggest_faq_answers_async(request_type=dict)
 
 
-def test_batch_update_intents_field_headers():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_suggest_faq_answers_field_headers():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.BatchUpdateIntentsRequest()
+    request = participant.SuggestFaqAnswersRequest()
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.batch_update_intents), "__call__"
+        type(client.transport.suggest_faq_answers), "__call__"
     ) as call:
-        call.return_value = operations_pb2.Operation(name="operations/op")
+        call.return_value = participant.SuggestFaqAnswersResponse()
 
-        client.batch_update_intents(request)
+        client.suggest_faq_answers(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -2013,23 +2220,23 @@ def test_batch_update_intents_field_headers():
 
 
 @pytest.mark.asyncio
-async def test_batch_update_intents_field_headers_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_suggest_faq_answers_field_headers_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = intent.BatchUpdateIntentsRequest()
+    request = participant.SuggestFaqAnswersRequest()
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.batch_update_intents), "__call__"
+        type(client.transport.suggest_faq_answers), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            operations_pb2.Operation(name="operations/op")
+            participant.SuggestFaqAnswersResponse()
         )
 
-        await client.batch_update_intents(request)
+        await client.suggest_faq_answers(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -2041,25 +2248,19 @@ async def test_batch_update_intents_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
-def test_batch_update_intents_flattened():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_suggest_faq_answers_flattened():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.batch_update_intents), "__call__"
+        type(client.transport.suggest_faq_answers), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/op")
+        call.return_value = participant.SuggestFaqAnswersResponse()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.batch_update_intents(
-            parent="parent_value",
-            intent_batch_uri="intent_batch_uri_value",
-            intent_batch_inline=intent.IntentBatch(
-                intents=[intent.Intent(name="name_value")]
-            ),
-        )
+        client.suggest_faq_answers(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
@@ -2068,50 +2269,35 @@ def test_batch_update_intents_flattened():
 
         assert args[0].parent == "parent_value"
 
-        assert args[0].intent_batch_inline == intent.IntentBatch(
-            intents=[intent.Intent(name="name_value")]
-        )
 
-
-def test_batch_update_intents_flattened_error():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
+def test_suggest_faq_answers_flattened_error():
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        client.batch_update_intents(
-            intent.BatchUpdateIntentsRequest(),
-            parent="parent_value",
-            intent_batch_uri="intent_batch_uri_value",
-            intent_batch_inline=intent.IntentBatch(
-                intents=[intent.Intent(name="name_value")]
-            ),
+        client.suggest_faq_answers(
+            participant.SuggestFaqAnswersRequest(), parent="parent_value",
         )
 
 
 @pytest.mark.asyncio
-async def test_batch_update_intents_flattened_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_suggest_faq_answers_flattened_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.batch_update_intents), "__call__"
+        type(client.transport.suggest_faq_answers), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/op")
+        call.return_value = participant.SuggestFaqAnswersResponse()
 
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            operations_pb2.Operation(name="operations/spam")
+            participant.SuggestFaqAnswersResponse()
         )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.batch_update_intents(
-            parent="parent_value",
-            intent_batch_uri="intent_batch_uri_value",
-            intent_batch_inline=intent.IntentBatch(
-                intents=[intent.Intent(name="name_value")]
-            ),
-        )
+        response = await client.suggest_faq_answers(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
@@ -2120,304 +2306,67 @@ async def test_batch_update_intents_flattened_async():
 
         assert args[0].parent == "parent_value"
 
-        assert args[0].intent_batch_inline == intent.IntentBatch(
-            intents=[intent.Intent(name="name_value")]
-        )
-
 
 @pytest.mark.asyncio
-async def test_batch_update_intents_flattened_error_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+async def test_suggest_faq_answers_flattened_error_async():
+    client = ParticipantsAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        await client.batch_update_intents(
-            intent.BatchUpdateIntentsRequest(),
-            parent="parent_value",
-            intent_batch_uri="intent_batch_uri_value",
-            intent_batch_inline=intent.IntentBatch(
-                intents=[intent.Intent(name="name_value")]
-            ),
-        )
-
-
-def test_batch_delete_intents(
-    transport: str = "grpc", request_type=intent.BatchDeleteIntentsRequest
-):
-    client = IntentsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.batch_delete_intents), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/spam")
-
-        response = client.batch_delete_intents(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == intent.BatchDeleteIntentsRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, future.Future)
-
-
-def test_batch_delete_intents_from_dict():
-    test_batch_delete_intents(request_type=dict)
-
-
-def test_batch_delete_intents_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = IntentsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.batch_delete_intents), "__call__"
-    ) as call:
-        client.batch_delete_intents()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == intent.BatchDeleteIntentsRequest()
-
-
-@pytest.mark.asyncio
-async def test_batch_delete_intents_async(
-    transport: str = "grpc_asyncio", request_type=intent.BatchDeleteIntentsRequest
-):
-    client = IntentsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.batch_delete_intents), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            operations_pb2.Operation(name="operations/spam")
-        )
-
-        response = await client.batch_delete_intents(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == intent.BatchDeleteIntentsRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, future.Future)
-
-
-@pytest.mark.asyncio
-async def test_batch_delete_intents_async_from_dict():
-    await test_batch_delete_intents_async(request_type=dict)
-
-
-def test_batch_delete_intents_field_headers():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = intent.BatchDeleteIntentsRequest()
-    request.parent = "parent/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.batch_delete_intents), "__call__"
-    ) as call:
-        call.return_value = operations_pb2.Operation(name="operations/op")
-
-        client.batch_delete_intents(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
-
-
-@pytest.mark.asyncio
-async def test_batch_delete_intents_field_headers_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = intent.BatchDeleteIntentsRequest()
-    request.parent = "parent/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.batch_delete_intents), "__call__"
-    ) as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            operations_pb2.Operation(name="operations/op")
-        )
-
-        await client.batch_delete_intents(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
-
-
-def test_batch_delete_intents_flattened():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.batch_delete_intents), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/op")
-
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.batch_delete_intents(
-            parent="parent_value", intents=[intent.Intent(name="name_value")],
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0].parent == "parent_value"
-
-        assert args[0].intents == [intent.Intent(name="name_value")]
-
-
-def test_batch_delete_intents_flattened_error():
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.batch_delete_intents(
-            intent.BatchDeleteIntentsRequest(),
-            parent="parent_value",
-            intents=[intent.Intent(name="name_value")],
-        )
-
-
-@pytest.mark.asyncio
-async def test_batch_delete_intents_flattened_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.batch_delete_intents), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/op")
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            operations_pb2.Operation(name="operations/spam")
-        )
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.batch_delete_intents(
-            parent="parent_value", intents=[intent.Intent(name="name_value")],
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0].parent == "parent_value"
-
-        assert args[0].intents == [intent.Intent(name="name_value")]
-
-
-@pytest.mark.asyncio
-async def test_batch_delete_intents_flattened_error_async():
-    client = IntentsAsyncClient(credentials=credentials.AnonymousCredentials(),)
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.batch_delete_intents(
-            intent.BatchDeleteIntentsRequest(),
-            parent="parent_value",
-            intents=[intent.Intent(name="name_value")],
+        await client.suggest_faq_answers(
+            participant.SuggestFaqAnswersRequest(), parent="parent_value",
         )
 
 
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
-    transport = transports.IntentsGrpcTransport(
+    transport = transports.ParticipantsGrpcTransport(
         credentials=credentials.AnonymousCredentials(),
     )
     with pytest.raises(ValueError):
-        client = IntentsClient(
+        client = ParticipantsClient(
             credentials=credentials.AnonymousCredentials(), transport=transport,
         )
 
     # It is an error to provide a credentials file and a transport instance.
-    transport = transports.IntentsGrpcTransport(
+    transport = transports.ParticipantsGrpcTransport(
         credentials=credentials.AnonymousCredentials(),
     )
     with pytest.raises(ValueError):
-        client = IntentsClient(
+        client = ParticipantsClient(
             client_options={"credentials_file": "credentials.json"},
             transport=transport,
         )
 
     # It is an error to provide scopes and a transport instance.
-    transport = transports.IntentsGrpcTransport(
+    transport = transports.ParticipantsGrpcTransport(
         credentials=credentials.AnonymousCredentials(),
     )
     with pytest.raises(ValueError):
-        client = IntentsClient(
+        client = ParticipantsClient(
             client_options={"scopes": ["1", "2"]}, transport=transport,
         )
 
 
 def test_transport_instance():
     # A client may be instantiated with a custom transport instance.
-    transport = transports.IntentsGrpcTransport(
+    transport = transports.ParticipantsGrpcTransport(
         credentials=credentials.AnonymousCredentials(),
     )
-    client = IntentsClient(transport=transport)
+    client = ParticipantsClient(transport=transport)
     assert client.transport is transport
 
 
 def test_transport_get_channel():
     # A client may be instantiated with a custom transport instance.
-    transport = transports.IntentsGrpcTransport(
+    transport = transports.ParticipantsGrpcTransport(
         credentials=credentials.AnonymousCredentials(),
     )
     channel = transport.grpc_channel
     assert channel
 
-    transport = transports.IntentsGrpcAsyncIOTransport(
+    transport = transports.ParticipantsGrpcAsyncIOTransport(
         credentials=credentials.AnonymousCredentials(),
     )
     channel = transport.grpc_channel
@@ -2426,7 +2375,10 @@ def test_transport_get_channel():
 
 @pytest.mark.parametrize(
     "transport_class",
-    [transports.IntentsGrpcTransport, transports.IntentsGrpcAsyncIOTransport,],
+    [
+        transports.ParticipantsGrpcTransport,
+        transports.ParticipantsGrpcAsyncIOTransport,
+    ],
 )
 def test_transport_adc(transport_class):
     # Test default credentials are used if not provided.
@@ -2438,60 +2390,56 @@ def test_transport_adc(transport_class):
 
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
-    client = IntentsClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client.transport, transports.IntentsGrpcTransport,)
+    client = ParticipantsClient(credentials=credentials.AnonymousCredentials(),)
+    assert isinstance(client.transport, transports.ParticipantsGrpcTransport,)
 
 
-def test_intents_base_transport_error():
+def test_participants_base_transport_error():
     # Passing both a credentials object and credentials_file should raise an error
     with pytest.raises(exceptions.DuplicateCredentialArgs):
-        transport = transports.IntentsTransport(
+        transport = transports.ParticipantsTransport(
             credentials=credentials.AnonymousCredentials(),
             credentials_file="credentials.json",
         )
 
 
-def test_intents_base_transport():
+def test_participants_base_transport():
     # Instantiate the base transport.
     with mock.patch(
-        "google.cloud.dialogflow_v2.services.intents.transports.IntentsTransport.__init__"
+        "google.cloud.dialogflow_v2.services.participants.transports.ParticipantsTransport.__init__"
     ) as Transport:
         Transport.return_value = None
-        transport = transports.IntentsTransport(
+        transport = transports.ParticipantsTransport(
             credentials=credentials.AnonymousCredentials(),
         )
 
     # Every method on the transport should just blindly
     # raise NotImplementedError.
     methods = (
-        "list_intents",
-        "get_intent",
-        "create_intent",
-        "update_intent",
-        "delete_intent",
-        "batch_update_intents",
-        "batch_delete_intents",
+        "create_participant",
+        "get_participant",
+        "list_participants",
+        "update_participant",
+        "analyze_content",
+        "streaming_analyze_content",
+        "suggest_articles",
+        "suggest_faq_answers",
     )
     for method in methods:
         with pytest.raises(NotImplementedError):
             getattr(transport, method)(request=object())
 
-    # Additionally, the LRO client (a property) should
-    # also raise NotImplementedError
-    with pytest.raises(NotImplementedError):
-        transport.operations_client
 
-
-def test_intents_base_transport_with_credentials_file():
+def test_participants_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
     with mock.patch.object(
         auth, "load_credentials_from_file"
     ) as load_creds, mock.patch(
-        "google.cloud.dialogflow_v2.services.intents.transports.IntentsTransport._prep_wrapped_messages"
+        "google.cloud.dialogflow_v2.services.participants.transports.ParticipantsTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
-        transport = transports.IntentsTransport(
+        transport = transports.ParticipantsTransport(
             credentials_file="credentials.json", quota_project_id="octopus",
         )
         load_creds.assert_called_once_with(
@@ -2504,22 +2452,22 @@ def test_intents_base_transport_with_credentials_file():
         )
 
 
-def test_intents_base_transport_with_adc():
+def test_participants_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
     with mock.patch.object(auth, "default") as adc, mock.patch(
-        "google.cloud.dialogflow_v2.services.intents.transports.IntentsTransport._prep_wrapped_messages"
+        "google.cloud.dialogflow_v2.services.participants.transports.ParticipantsTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        transport = transports.IntentsTransport()
+        transport = transports.ParticipantsTransport()
         adc.assert_called_once()
 
 
-def test_intents_auth_adc():
+def test_participants_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
     with mock.patch.object(auth, "default") as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        IntentsClient()
+        ParticipantsClient()
         adc.assert_called_once_with(
             scopes=(
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -2529,12 +2477,12 @@ def test_intents_auth_adc():
         )
 
 
-def test_intents_transport_auth_adc():
+def test_participants_transport_auth_adc():
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
     with mock.patch.object(auth, "default") as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        transports.IntentsGrpcTransport(
+        transports.ParticipantsGrpcTransport(
             host="squid.clam.whelk", quota_project_id="octopus"
         )
         adc.assert_called_once_with(
@@ -2548,9 +2496,9 @@ def test_intents_transport_auth_adc():
 
 @pytest.mark.parametrize(
     "transport_class",
-    [transports.IntentsGrpcTransport, transports.IntentsGrpcAsyncIOTransport],
+    [transports.ParticipantsGrpcTransport, transports.ParticipantsGrpcAsyncIOTransport],
 )
-def test_intents_grpc_transport_client_cert_source_for_mtls(transport_class):
+def test_participants_grpc_transport_client_cert_source_for_mtls(transport_class):
     cred = credentials.AnonymousCredentials()
 
     # Check ssl_channel_credentials is used if provided.
@@ -2591,8 +2539,8 @@ def test_intents_grpc_transport_client_cert_source_for_mtls(transport_class):
             )
 
 
-def test_intents_host_no_port():
-    client = IntentsClient(
+def test_participants_host_no_port():
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(
             api_endpoint="dialogflow.googleapis.com"
@@ -2601,8 +2549,8 @@ def test_intents_host_no_port():
     assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
-def test_intents_host_with_port():
-    client = IntentsClient(
+def test_participants_host_with_port():
+    client = ParticipantsClient(
         credentials=credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(
             api_endpoint="dialogflow.googleapis.com:8000"
@@ -2611,11 +2559,11 @@ def test_intents_host_with_port():
     assert client.transport._host == "dialogflow.googleapis.com:8000"
 
 
-def test_intents_grpc_transport_channel():
+def test_participants_grpc_transport_channel():
     channel = grpc.secure_channel("http://localhost/", grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
-    transport = transports.IntentsGrpcTransport(
+    transport = transports.ParticipantsGrpcTransport(
         host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
@@ -2623,11 +2571,11 @@ def test_intents_grpc_transport_channel():
     assert transport._ssl_channel_credentials == None
 
 
-def test_intents_grpc_asyncio_transport_channel():
+def test_participants_grpc_asyncio_transport_channel():
     channel = aio.secure_channel("http://localhost/", grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
-    transport = transports.IntentsGrpcAsyncIOTransport(
+    transport = transports.ParticipantsGrpcAsyncIOTransport(
         host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
@@ -2639,9 +2587,9 @@ def test_intents_grpc_asyncio_transport_channel():
 # removed from grpc/grpc_asyncio transport constructor.
 @pytest.mark.parametrize(
     "transport_class",
-    [transports.IntentsGrpcTransport, transports.IntentsGrpcAsyncIOTransport],
+    [transports.ParticipantsGrpcTransport, transports.ParticipantsGrpcAsyncIOTransport],
 )
-def test_intents_transport_channel_mtls_with_client_cert_source(transport_class):
+def test_participants_transport_channel_mtls_with_client_cert_source(transport_class):
     with mock.patch(
         "grpc.ssl_channel_credentials", autospec=True
     ) as grpc_ssl_channel_cred:
@@ -2691,9 +2639,9 @@ def test_intents_transport_channel_mtls_with_client_cert_source(transport_class)
 # removed from grpc/grpc_asyncio transport constructor.
 @pytest.mark.parametrize(
     "transport_class",
-    [transports.IntentsGrpcTransport, transports.IntentsGrpcAsyncIOTransport],
+    [transports.ParticipantsGrpcTransport, transports.ParticipantsGrpcAsyncIOTransport],
 )
-def test_intents_transport_channel_mtls_with_adc(transport_class):
+def test_participants_transport_channel_mtls_with_adc(transport_class):
     mock_ssl_cred = mock.Mock()
     with mock.patch.multiple(
         "google.auth.transport.grpc.SslCredentials",
@@ -2733,32 +2681,6 @@ def test_intents_transport_channel_mtls_with_adc(transport_class):
             assert transport.grpc_channel == mock_grpc_channel
 
 
-def test_intents_grpc_lro_client():
-    client = IntentsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
-    )
-    transport = client.transport
-
-    # Ensure that we have a api-core operations client.
-    assert isinstance(transport.operations_client, operations_v1.OperationsClient,)
-
-    # Ensure that subsequent calls to the property send the exact same object.
-    assert transport.operations_client is transport.operations_client
-
-
-def test_intents_grpc_lro_async_client():
-    client = IntentsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc_asyncio",
-    )
-    transport = client.transport
-
-    # Ensure that we have a api-core operations client.
-    assert isinstance(transport.operations_client, operations_v1.OperationsAsyncClient,)
-
-    # Ensure that subsequent calls to the property send the exact same object.
-    assert transport.operations_client is transport.operations_client
-
-
 def test_context_path():
     project = "squid"
     session = "clam"
@@ -2767,7 +2689,7 @@ def test_context_path():
     expected = "projects/{project}/agent/sessions/{session}/contexts/{context}".format(
         project=project, session=session, context=context,
     )
-    actual = IntentsClient.context_path(project, session, context)
+    actual = ParticipantsClient.context_path(project, session, context)
     assert expected == actual
 
 
@@ -2777,10 +2699,10 @@ def test_parse_context_path():
         "session": "oyster",
         "context": "nudibranch",
     }
-    path = IntentsClient.context_path(**expected)
+    path = ParticipantsClient.context_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = IntentsClient.parse_context_path(path)
+    actual = ParticipantsClient.parse_context_path(path)
     assert expected == actual
 
 
@@ -2791,7 +2713,7 @@ def test_intent_path():
     expected = "projects/{project}/agent/intents/{intent}".format(
         project=project, intent=intent,
     )
-    actual = IntentsClient.intent_path(project, intent)
+    actual = ParticipantsClient.intent_path(project, intent)
     assert expected == actual
 
 
@@ -2800,111 +2722,186 @@ def test_parse_intent_path():
         "project": "winkle",
         "intent": "nautilus",
     }
-    path = IntentsClient.intent_path(**expected)
+    path = ParticipantsClient.intent_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = IntentsClient.parse_intent_path(path)
+    actual = ParticipantsClient.parse_intent_path(path)
+    assert expected == actual
+
+
+def test_message_path():
+    project = "scallop"
+    conversation = "abalone"
+    message = "squid"
+
+    expected = "projects/{project}/conversations/{conversation}/messages/{message}".format(
+        project=project, conversation=conversation, message=message,
+    )
+    actual = ParticipantsClient.message_path(project, conversation, message)
+    assert expected == actual
+
+
+def test_parse_message_path():
+    expected = {
+        "project": "clam",
+        "conversation": "whelk",
+        "message": "octopus",
+    }
+    path = ParticipantsClient.message_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = ParticipantsClient.parse_message_path(path)
+    assert expected == actual
+
+
+def test_participant_path():
+    project = "oyster"
+    conversation = "nudibranch"
+    participant = "cuttlefish"
+
+    expected = "projects/{project}/conversations/{conversation}/participants/{participant}".format(
+        project=project, conversation=conversation, participant=participant,
+    )
+    actual = ParticipantsClient.participant_path(project, conversation, participant)
+    assert expected == actual
+
+
+def test_parse_participant_path():
+    expected = {
+        "project": "mussel",
+        "conversation": "winkle",
+        "participant": "nautilus",
+    }
+    path = ParticipantsClient.participant_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = ParticipantsClient.parse_participant_path(path)
+    assert expected == actual
+
+
+def test_session_entity_type_path():
+    project = "scallop"
+    session = "abalone"
+    entity_type = "squid"
+
+    expected = "projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}".format(
+        project=project, session=session, entity_type=entity_type,
+    )
+    actual = ParticipantsClient.session_entity_type_path(project, session, entity_type)
+    assert expected == actual
+
+
+def test_parse_session_entity_type_path():
+    expected = {
+        "project": "clam",
+        "session": "whelk",
+        "entity_type": "octopus",
+    }
+    path = ParticipantsClient.session_entity_type_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = ParticipantsClient.parse_session_entity_type_path(path)
     assert expected == actual
 
 
 def test_common_billing_account_path():
-    billing_account = "scallop"
+    billing_account = "oyster"
 
     expected = "billingAccounts/{billing_account}".format(
         billing_account=billing_account,
     )
-    actual = IntentsClient.common_billing_account_path(billing_account)
+    actual = ParticipantsClient.common_billing_account_path(billing_account)
     assert expected == actual
 
 
 def test_parse_common_billing_account_path():
     expected = {
-        "billing_account": "abalone",
+        "billing_account": "nudibranch",
     }
-    path = IntentsClient.common_billing_account_path(**expected)
+    path = ParticipantsClient.common_billing_account_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = IntentsClient.parse_common_billing_account_path(path)
+    actual = ParticipantsClient.parse_common_billing_account_path(path)
     assert expected == actual
 
 
 def test_common_folder_path():
-    folder = "squid"
+    folder = "cuttlefish"
 
     expected = "folders/{folder}".format(folder=folder,)
-    actual = IntentsClient.common_folder_path(folder)
+    actual = ParticipantsClient.common_folder_path(folder)
     assert expected == actual
 
 
 def test_parse_common_folder_path():
     expected = {
-        "folder": "clam",
+        "folder": "mussel",
     }
-    path = IntentsClient.common_folder_path(**expected)
+    path = ParticipantsClient.common_folder_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = IntentsClient.parse_common_folder_path(path)
+    actual = ParticipantsClient.parse_common_folder_path(path)
     assert expected == actual
 
 
 def test_common_organization_path():
-    organization = "whelk"
+    organization = "winkle"
 
     expected = "organizations/{organization}".format(organization=organization,)
-    actual = IntentsClient.common_organization_path(organization)
+    actual = ParticipantsClient.common_organization_path(organization)
     assert expected == actual
 
 
 def test_parse_common_organization_path():
     expected = {
-        "organization": "octopus",
+        "organization": "nautilus",
     }
-    path = IntentsClient.common_organization_path(**expected)
+    path = ParticipantsClient.common_organization_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = IntentsClient.parse_common_organization_path(path)
+    actual = ParticipantsClient.parse_common_organization_path(path)
     assert expected == actual
 
 
 def test_common_project_path():
-    project = "oyster"
+    project = "scallop"
 
     expected = "projects/{project}".format(project=project,)
-    actual = IntentsClient.common_project_path(project)
+    actual = ParticipantsClient.common_project_path(project)
     assert expected == actual
 
 
 def test_parse_common_project_path():
     expected = {
-        "project": "nudibranch",
+        "project": "abalone",
     }
-    path = IntentsClient.common_project_path(**expected)
+    path = ParticipantsClient.common_project_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = IntentsClient.parse_common_project_path(path)
+    actual = ParticipantsClient.parse_common_project_path(path)
     assert expected == actual
 
 
 def test_common_location_path():
-    project = "cuttlefish"
-    location = "mussel"
+    project = "squid"
+    location = "clam"
 
     expected = "projects/{project}/locations/{location}".format(
         project=project, location=location,
     )
-    actual = IntentsClient.common_location_path(project, location)
+    actual = ParticipantsClient.common_location_path(project, location)
     assert expected == actual
 
 
 def test_parse_common_location_path():
     expected = {
-        "project": "winkle",
-        "location": "nautilus",
+        "project": "whelk",
+        "location": "octopus",
     }
-    path = IntentsClient.common_location_path(**expected)
+    path = ParticipantsClient.common_location_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = IntentsClient.parse_common_location_path(path)
+    actual = ParticipantsClient.parse_common_location_path(path)
     assert expected == actual
 
 
@@ -2912,17 +2909,17 @@ def test_client_withDEFAULT_CLIENT_INFO():
     client_info = gapic_v1.client_info.ClientInfo()
 
     with mock.patch.object(
-        transports.IntentsTransport, "_prep_wrapped_messages"
+        transports.ParticipantsTransport, "_prep_wrapped_messages"
     ) as prep:
-        client = IntentsClient(
+        client = ParticipantsClient(
             credentials=credentials.AnonymousCredentials(), client_info=client_info,
         )
         prep.assert_called_once_with(client_info)
 
     with mock.patch.object(
-        transports.IntentsTransport, "_prep_wrapped_messages"
+        transports.ParticipantsTransport, "_prep_wrapped_messages"
     ) as prep:
-        transport_class = IntentsClient.get_transport_class()
+        transport_class = ParticipantsClient.get_transport_class()
         transport = transport_class(
             credentials=credentials.AnonymousCredentials(), client_info=client_info,
         )

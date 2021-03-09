@@ -95,6 +95,17 @@ class Intent(proto.Message):
             then this intent is not taken into account during inference
             in ``ML ONLY`` match mode. Also, auto-markup in the UI is
             turned off.
+        live_agent_handoff (bool):
+            Optional. Indicates that a live agent should be brought in
+            to handle the interaction with the user. In most cases, when
+            you set this flag to true, you would also want to set
+            end_interaction to true as well. Default is false.
+        end_interaction (bool):
+            Optional. Indicates that this intent ends an
+            interaction. Some integrations (e.g., Actions on
+            Google or Dialogflow phone gateway) use this
+            information to close interaction with an end
+            user. Default is false.
         input_context_names (Sequence[str]):
             Optional. The list of context names required for this intent
             to be triggered. Format:
@@ -1067,6 +1078,10 @@ class Intent(proto.Message):
     is_fallback = proto.Field(proto.BOOL, number=4)
 
     ml_disabled = proto.Field(proto.BOOL, number=19)
+
+    live_agent_handoff = proto.Field(proto.BOOL, number=20)
+
+    end_interaction = proto.Field(proto.BOOL, number=21)
 
     input_context_names = proto.RepeatedField(proto.STRING, number=7)
 

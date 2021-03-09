@@ -28,12 +28,15 @@ __protobuf__ = proto.module(
         "SpeechModelVariant",
         "SsmlVoiceGender",
         "OutputAudioEncoding",
+        "TelephonyDtmf",
         "SpeechContext",
         "SpeechWordInfo",
         "InputAudioConfig",
         "VoiceSelectionParams",
         "SynthesizeSpeechConfig",
         "OutputAudioConfig",
+        "TelephonyDtmfEvents",
+        "SpeechToTextConfig",
     },
 )
 
@@ -87,6 +90,29 @@ class OutputAudioEncoding(proto.Enum):
     OUTPUT_AUDIO_ENCODING_LINEAR_16 = 1
     OUTPUT_AUDIO_ENCODING_MP3 = 2
     OUTPUT_AUDIO_ENCODING_OGG_OPUS = 3
+
+
+class TelephonyDtmf(proto.Enum):
+    r"""`DTMF <https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling>`__
+    digit in Telephony Gateway.
+    """
+    TELEPHONY_DTMF_UNSPECIFIED = 0
+    DTMF_ONE = 1
+    DTMF_TWO = 2
+    DTMF_THREE = 3
+    DTMF_FOUR = 4
+    DTMF_FIVE = 5
+    DTMF_SIX = 6
+    DTMF_SEVEN = 7
+    DTMF_EIGHT = 8
+    DTMF_NINE = 9
+    DTMF_ZERO = 10
+    DTMF_A = 11
+    DTMF_B = 12
+    DTMF_C = 13
+    DTMF_D = 14
+    DTMF_STAR = 15
+    DTMF_POUND = 16
 
 
 class SpeechContext(proto.Message):
@@ -241,6 +267,13 @@ class InputAudioConfig(proto.Message):
             only for streaming methods. Note: When specified,
             InputAudioConfig.single_utterance takes precedence over
             StreamingDetectIntentRequest.single_utterance.
+        disable_no_speech_recognized_event (bool):
+            Only used in
+            [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+            and
+            [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+            If ``false`` and recognition doesn't return any result,
+            trigger ``NO_SPEECH_RECOGNIZED`` event to Dialogflow agent.
     """
 
     audio_encoding = proto.Field(proto.ENUM, number=1, enum="AudioEncoding",)
@@ -262,6 +295,8 @@ class InputAudioConfig(proto.Message):
     model_variant = proto.Field(proto.ENUM, number=10, enum="SpeechModelVariant",)
 
     single_utterance = proto.Field(proto.BOOL, number=8)
+
+    disable_no_speech_recognized_event = proto.Field(proto.BOOL, number=14)
 
 
 class VoiceSelectionParams(proto.Message):
@@ -367,6 +402,35 @@ class OutputAudioConfig(proto.Message):
     synthesize_speech_config = proto.Field(
         proto.MESSAGE, number=3, message="SynthesizeSpeechConfig",
     )
+
+
+class TelephonyDtmfEvents(proto.Message):
+    r"""A wrapper of repeated TelephonyDtmf digits.
+
+    Attributes:
+        dtmf_events (Sequence[google.cloud.dialogflow_v2.types.TelephonyDtmf]):
+            A sequence of TelephonyDtmf digits.
+    """
+
+    dtmf_events = proto.RepeatedField(proto.ENUM, number=1, enum="TelephonyDtmf",)
+
+
+class SpeechToTextConfig(proto.Message):
+    r"""Configures speech transcription for
+    [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile].
+
+    Attributes:
+        speech_model_variant (google.cloud.dialogflow_v2.types.SpeechModelVariant):
+            Optional. The speech model used in speech to text.
+            ``SPEECH_MODEL_VARIANT_UNSPECIFIED``, ``USE_BEST_AVAILABLE``
+            will be treated as ``USE_ENHANCED``. It can be overridden in
+            [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest]
+            and
+            [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest]
+            request.
+    """
+
+    speech_model_variant = proto.Field(proto.ENUM, number=1, enum="SpeechModelVariant",)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
