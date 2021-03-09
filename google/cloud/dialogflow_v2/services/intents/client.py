@@ -1027,9 +1027,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
             if parent is not None:
                 request.parent = parent
-
-            if intents:
-                request.intents.extend(intents)
+            if intents is not None:
+                request.intents = intents
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

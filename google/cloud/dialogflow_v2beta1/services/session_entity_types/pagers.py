@@ -15,7 +15,16 @@
 # limitations under the License.
 #
 
-from typing import Any, AsyncIterable, Awaitable, Callable, Iterable, Sequence, Tuple
+from typing import (
+    Any,
+    AsyncIterable,
+    Awaitable,
+    Callable,
+    Iterable,
+    Sequence,
+    Tuple,
+    Optional,
+)
 
 from google.cloud.dialogflow_v2beta1.types import session_entity_type
 

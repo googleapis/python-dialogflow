@@ -992,9 +992,8 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
 
             if parent is not None:
                 request.parent = parent
-
-            if entity_type_names:
-                request.entity_type_names.extend(entity_type_names)
+            if entity_type_names is not None:
+                request.entity_type_names = entity_type_names
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1115,11 +1114,10 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
 
             if parent is not None:
                 request.parent = parent
+            if entities is not None:
+                request.entities = entities
             if language_code is not None:
                 request.language_code = language_code
-
-            if entities:
-                request.entities.extend(entities)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1242,11 +1240,10 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
 
             if parent is not None:
                 request.parent = parent
+            if entities is not None:
+                request.entities = entities
             if language_code is not None:
                 request.language_code = language_code
-
-            if entities:
-                request.entities.extend(entities)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1368,11 +1365,10 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
 
             if parent is not None:
                 request.parent = parent
+            if entity_values is not None:
+                request.entity_values = entity_values
             if language_code is not None:
                 request.language_code = language_code
-
-            if entity_values:
-                request.entity_values.extend(entity_values)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
