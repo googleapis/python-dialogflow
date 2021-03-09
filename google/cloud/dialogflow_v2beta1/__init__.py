@@ -166,6 +166,7 @@ __all__ = (
     "DocumentsClient",
     "EntityType",
     "EntityTypeBatch",
+    "EntityTypesClient",
     "Environment",
     "EnvironmentsClient",
     "EventInput",
@@ -219,7 +220,6 @@ __all__ = (
     "SentimentAnalysisResult",
     "SessionEntityType",
     "SessionEntityTypesClient",
-    "SessionsClient",
     "SetAgentRequest",
     "SpeechContext",
     "SpeechModelVariant",
@@ -245,5 +245,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "EntityTypesClient",
+    "SessionsClient",
 )
