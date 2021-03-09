@@ -186,6 +186,7 @@ __all__ = (
     "Intent",
     "IntentBatch",
     "IntentView",
+    "IntentsClient",
     "KnowledgeAnswers",
     "KnowledgeBase",
     "KnowledgeBasesClient",
@@ -219,7 +220,6 @@ __all__ = (
     "SentimentAnalysisResult",
     "SessionEntityType",
     "SessionEntityTypesClient",
-    "SessionsClient",
     "SetAgentRequest",
     "SpeechContext",
     "SpeechModelVariant",
@@ -245,5 +245,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "IntentsClient",
+    "SessionsClient",
 )
