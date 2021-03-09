@@ -80,6 +80,7 @@ class EntityTypesAsyncClient:
         EntityTypesClient.parse_common_location_path
     )
 
+    from_service_account_info = EntityTypesClient.from_service_account_info
     from_service_account_file = EntityTypesClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -158,7 +159,7 @@ class EntityTypesAsyncClient:
         agent.
 
         Args:
-            request (:class:`~.entity_type.ListEntityTypesRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.ListEntityTypesRequest`):
                 The request object. The request message for
                 [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.ListEntityTypes].
             parent (:class:`str`):
@@ -167,6 +168,7 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent``
                 -  ``projects/<Project ID>/locations/<Location ID>/agent``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -176,6 +178,7 @@ class EntityTypesAsyncClient:
                 used. For more information, see `Multilingual intent and
                 entity
                 data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+
                 This corresponds to the ``language_code`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -187,7 +190,7 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListEntityTypesAsyncPager:
+            google.cloud.dialogflow_v2beta1.services.entity_types.pagers.ListEntityTypesAsyncPager:
                 The response message for
                 [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.ListEntityTypes].
 
@@ -254,7 +257,7 @@ class EntityTypesAsyncClient:
         r"""Retrieves the specified entity type.
 
         Args:
-            request (:class:`~.entity_type.GetEntityTypeRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.GetEntityTypeRequest`):
                 The request object. The request message for
                 [EntityTypes.GetEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.GetEntityType].
             name (:class:`str`):
@@ -263,6 +266,7 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``
                 -  ``projects/<Project ID>/locations/<Location ID>/agent/entityTypes/<Entity Type ID>``
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -272,6 +276,7 @@ class EntityTypesAsyncClient:
                 used. For more information, see `Multilingual intent and
                 entity
                 data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+
                 This corresponds to the ``language_code`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -283,22 +288,22 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.entity_type.EntityType:
-                Each intent parameter has a type, called the entity
-                type, which dictates exactly how data from an end-user
-                expression is extracted.
+            google.cloud.dialogflow_v2beta1.types.EntityType:
+                Each intent parameter has a type, called the entity type, which dictates
+                   exactly how data from an end-user expression is
+                   extracted.
 
-                Dialogflow provides predefined system entities that can
-                match many common types of data. For example, there are
-                system entities for matching dates, times, colors, email
-                addresses, and so on. You can also create your own
-                custom entities for matching custom data. For example,
-                you could define a vegetable entity that can match the
-                types of vegetables available for purchase with a
-                grocery store agent.
+                   Dialogflow provides predefined system entities that
+                   can match many common types of data. For example,
+                   there are system entities for matching dates, times,
+                   colors, email addresses, and so on. You can also
+                   create your own custom entities for matching custom
+                   data. For example, you could define a vegetable
+                   entity that can match the types of vegetables
+                   available for purchase with a grocery store agent.
 
-                For more information, see the `Entity
-                guide <https://cloud.google.com/dialogflow/docs/entities-overview>`__.
+                   For more information, see the [Entity
+                   guide](\ https://cloud.google.com/dialogflow/docs/entities-overview).
 
         """
         # Create or coerce a protobuf request object.
@@ -355,7 +360,7 @@ class EntityTypesAsyncClient:
         r"""Creates an entity type in the specified agent.
 
         Args:
-            request (:class:`~.gcd_entity_type.CreateEntityTypeRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.CreateEntityTypeRequest`):
                 The request object. The request message for
                 [EntityTypes.CreateEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.CreateEntityType].
             parent (:class:`str`):
@@ -364,10 +369,11 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent``
                 -  ``projects/<Project ID>/locations/<Location ID>/agent``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            entity_type (:class:`~.gcd_entity_type.EntityType`):
+            entity_type (:class:`google.cloud.dialogflow_v2beta1.types.EntityType`):
                 Required. The entity type to create.
                 This corresponds to the ``entity_type`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -378,6 +384,7 @@ class EntityTypesAsyncClient:
                 used. For more information, see `Multilingual intent and
                 entity
                 data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+
                 This corresponds to the ``language_code`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -389,22 +396,22 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.gcd_entity_type.EntityType:
-                Each intent parameter has a type, called the entity
-                type, which dictates exactly how data from an end-user
-                expression is extracted.
+            google.cloud.dialogflow_v2beta1.types.EntityType:
+                Each intent parameter has a type, called the entity type, which dictates
+                   exactly how data from an end-user expression is
+                   extracted.
 
-                Dialogflow provides predefined system entities that can
-                match many common types of data. For example, there are
-                system entities for matching dates, times, colors, email
-                addresses, and so on. You can also create your own
-                custom entities for matching custom data. For example,
-                you could define a vegetable entity that can match the
-                types of vegetables available for purchase with a
-                grocery store agent.
+                   Dialogflow provides predefined system entities that
+                   can match many common types of data. For example,
+                   there are system entities for matching dates, times,
+                   colors, email addresses, and so on. You can also
+                   create your own custom entities for matching custom
+                   data. For example, you could define a vegetable
+                   entity that can match the types of vegetables
+                   available for purchase with a grocery store agent.
 
-                For more information, see the `Entity
-                guide <https://cloud.google.com/dialogflow/docs/entities-overview>`__.
+                   For more information, see the [Entity
+                   guide](\ https://cloud.google.com/dialogflow/docs/entities-overview).
 
         """
         # Create or coerce a protobuf request object.
@@ -463,10 +470,10 @@ class EntityTypesAsyncClient:
         r"""Updates the specified entity type.
 
         Args:
-            request (:class:`~.gcd_entity_type.UpdateEntityTypeRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.UpdateEntityTypeRequest`):
                 The request object. The request message for
                 [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.UpdateEntityType].
-            entity_type (:class:`~.gcd_entity_type.EntityType`):
+            entity_type (:class:`google.cloud.dialogflow_v2beta1.types.EntityType`):
                 Required. The entity type to update.
                 This corresponds to the ``entity_type`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -477,12 +484,14 @@ class EntityTypesAsyncClient:
                 used. For more information, see `Multilingual intent and
                 entity
                 data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+
                 This corresponds to the ``language_code`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`):
                 Optional. The mask to control which
                 fields get updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -494,22 +503,22 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.gcd_entity_type.EntityType:
-                Each intent parameter has a type, called the entity
-                type, which dictates exactly how data from an end-user
-                expression is extracted.
+            google.cloud.dialogflow_v2beta1.types.EntityType:
+                Each intent parameter has a type, called the entity type, which dictates
+                   exactly how data from an end-user expression is
+                   extracted.
 
-                Dialogflow provides predefined system entities that can
-                match many common types of data. For example, there are
-                system entities for matching dates, times, colors, email
-                addresses, and so on. You can also create your own
-                custom entities for matching custom data. For example,
-                you could define a vegetable entity that can match the
-                types of vegetables available for purchase with a
-                grocery store agent.
+                   Dialogflow provides predefined system entities that
+                   can match many common types of data. For example,
+                   there are system entities for matching dates, times,
+                   colors, email addresses, and so on. You can also
+                   create your own custom entities for matching custom
+                   data. For example, you could define a vegetable
+                   entity that can match the types of vegetables
+                   available for purchase with a grocery store agent.
 
-                For more information, see the `Entity
-                guide <https://cloud.google.com/dialogflow/docs/entities-overview>`__.
+                   For more information, see the [Entity
+                   guide](\ https://cloud.google.com/dialogflow/docs/entities-overview).
 
         """
         # Create or coerce a protobuf request object.
@@ -568,7 +577,7 @@ class EntityTypesAsyncClient:
         r"""Deletes the specified entity type.
 
         Args:
-            request (:class:`~.entity_type.DeleteEntityTypeRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.DeleteEntityTypeRequest`):
                 The request object. The request message for
                 [EntityTypes.DeleteEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.DeleteEntityType].
             name (:class:`str`):
@@ -577,6 +586,7 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``
                 -  ``projects/<Project ID>/locations/<Location ID>/agent/entityTypes/<Entity Type ID>``
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -637,7 +647,7 @@ class EntityTypesAsyncClient:
         [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse]>
 
         Args:
-            request (:class:`~.entity_type.BatchUpdateEntityTypesRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.BatchUpdateEntityTypesRequest`):
                 The request object. The request message for
                 [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
 
@@ -648,11 +658,11 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:``~.entity_type.BatchUpdateEntityTypesResponse``:
+                :class:`google.cloud.dialogflow_v2beta1.types.BatchUpdateEntityTypesResponse`
                 The response message for
                 [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
 
@@ -703,7 +713,7 @@ class EntityTypesAsyncClient:
         <response: [google.protobuf.Empty][google.protobuf.Empty]>
 
         Args:
-            request (:class:`~.entity_type.BatchDeleteEntityTypesRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.BatchDeleteEntityTypesRequest`):
                 The request object. The request message for
                 [EntityTypes.BatchDeleteEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchDeleteEntityTypes].
             parent (:class:`str`):
@@ -712,12 +722,14 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent``,
                 -  ``projects/<Project ID>/locations/<Location ID>/agent``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             entity_type_names (:class:`Sequence[str]`):
                 Required. The names entity types to delete. All names
                 must point to the same agent as ``parent``.
+
                 This corresponds to the ``entity_type_names`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -729,24 +741,22 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be
-                :class:``~.empty.Empty``: A generic empty message that
-                you can re-use to avoid defining duplicated empty
-                messages in your APIs. A typical example is to use it as
-                the request or the response type of an API method. For
-                instance:
+                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
+                   empty messages in your APIs. A typical example is to
+                   use it as the request or the response type of an API
+                   method. For instance:
 
-                ::
+                      service Foo {
+                         rpc Bar(google.protobuf.Empty) returns
+                         (google.protobuf.Empty);
 
-                    service Foo {
-                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
-                    }
+                      }
 
-                The JSON representation for ``Empty`` is empty JSON
-                object ``{}``.
+                   The JSON representation for Empty is empty JSON
+                   object {}.
 
         """
         # Create or coerce a protobuf request object.
@@ -815,7 +825,7 @@ class EntityTypesAsyncClient:
         [google.protobuf.Empty][google.protobuf.Empty]>
 
         Args:
-            request (:class:`~.entity_type.BatchCreateEntitiesRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.BatchCreateEntitiesRequest`):
                 The request object. The request message for
                 [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchCreateEntities].
             parent (:class:`str`):
@@ -824,10 +834,11 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``
                 -  ``projects/<Project ID>/locations/<Location ID>/agent/entityTypes/<Entity Type ID>``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            entities (:class:`Sequence[~.entity_type.EntityType.Entity]`):
+            entities (:class:`Sequence[google.cloud.dialogflow_v2beta1.types.EntityType.Entity]`):
                 Required. The entities to create.
                 This corresponds to the ``entities`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -838,6 +849,7 @@ class EntityTypesAsyncClient:
                 used. For more information, see `Multilingual intent and
                 entity
                 data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+
                 This corresponds to the ``language_code`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -849,24 +861,22 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be
-                :class:``~.empty.Empty``: A generic empty message that
-                you can re-use to avoid defining duplicated empty
-                messages in your APIs. A typical example is to use it as
-                the request or the response type of an API method. For
-                instance:
+                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
+                   empty messages in your APIs. A typical example is to
+                   use it as the request or the response type of an API
+                   method. For instance:
 
-                ::
+                      service Foo {
+                         rpc Bar(google.protobuf.Empty) returns
+                         (google.protobuf.Empty);
 
-                    service Foo {
-                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
-                    }
+                      }
 
-                The JSON representation for ``Empty`` is empty JSON
-                object ``{}``.
+                   The JSON representation for Empty is empty JSON
+                   object {}.
 
         """
         # Create or coerce a protobuf request object.
@@ -939,7 +949,7 @@ class EntityTypesAsyncClient:
         [google.protobuf.Empty][google.protobuf.Empty]>
 
         Args:
-            request (:class:`~.entity_type.BatchUpdateEntitiesRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.BatchUpdateEntitiesRequest`):
                 The request object. The request message for
                 [EntityTypes.BatchUpdateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntities].
             parent (:class:`str`):
@@ -948,12 +958,14 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``
                 -  ``projects/<Project ID>/locations/<Location ID>/agent/entityTypes/<Entity Type ID>``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            entities (:class:`Sequence[~.entity_type.EntityType.Entity]`):
+            entities (:class:`Sequence[google.cloud.dialogflow_v2beta1.types.EntityType.Entity]`):
                 Required. The entities to update or
                 create.
+
                 This corresponds to the ``entities`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -963,6 +975,7 @@ class EntityTypesAsyncClient:
                 used. For more information, see `Multilingual intent and
                 entity
                 data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+
                 This corresponds to the ``language_code`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -974,24 +987,22 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be
-                :class:``~.empty.Empty``: A generic empty message that
-                you can re-use to avoid defining duplicated empty
-                messages in your APIs. A typical example is to use it as
-                the request or the response type of an API method. For
-                instance:
+                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
+                   empty messages in your APIs. A typical example is to
+                   use it as the request or the response type of an API
+                   method. For instance:
 
-                ::
+                      service Foo {
+                         rpc Bar(google.protobuf.Empty) returns
+                         (google.protobuf.Empty);
 
-                    service Foo {
-                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
-                    }
+                      }
 
-                The JSON representation for ``Empty`` is empty JSON
-                object ``{}``.
+                   The JSON representation for Empty is empty JSON
+                   object {}.
 
         """
         # Create or coerce a protobuf request object.
@@ -1062,7 +1073,7 @@ class EntityTypesAsyncClient:
         [google.protobuf.Empty][google.protobuf.Empty]>
 
         Args:
-            request (:class:`~.entity_type.BatchDeleteEntitiesRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.BatchDeleteEntitiesRequest`):
                 The request object. The request message for
                 [EntityTypes.BatchDeleteEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchDeleteEntities].
             parent (:class:`str`):
@@ -1071,6 +1082,7 @@ class EntityTypesAsyncClient:
 
                 -  ``projects/<Project ID>/agent/entityTypes/<Entity Type ID>``
                 -  ``projects/<Project ID>/locations/<Location ID>/agent/entityTypes/<Entity Type ID>``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1078,6 +1090,7 @@ class EntityTypesAsyncClient:
                 Required. The reference ``values`` of the entities to
                 delete. Note that these are not fully-qualified names,
                 i.e. they don't start with ``projects/<Project ID>``.
+
                 This corresponds to the ``entity_values`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1087,6 +1100,7 @@ class EntityTypesAsyncClient:
                 used. For more information, see `Multilingual intent and
                 entity
                 data <https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity>`__.
+
                 This corresponds to the ``language_code`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1098,24 +1112,22 @@ class EntityTypesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be
-                :class:``~.empty.Empty``: A generic empty message that
-                you can re-use to avoid defining duplicated empty
-                messages in your APIs. A typical example is to use it as
-                the request or the response type of an API method. For
-                instance:
+                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
+                   empty messages in your APIs. A typical example is to
+                   use it as the request or the response type of an API
+                   method. For instance:
 
-                ::
+                      service Foo {
+                         rpc Bar(google.protobuf.Empty) returns
+                         (google.protobuf.Empty);
 
-                    service Foo {
-                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
-                    }
+                      }
 
-                The JSON representation for ``Empty`` is empty JSON
-                object ``{}``.
+                   The JSON representation for Empty is empty JSON
+                   object {}.
 
         """
         # Create or coerce a protobuf request object.

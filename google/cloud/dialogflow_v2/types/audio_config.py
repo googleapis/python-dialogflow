@@ -135,12 +135,12 @@ class SpeechWordInfo(proto.Message):
     Attributes:
         word (str):
             The word this info is for.
-        start_offset (~.duration.Duration):
+        start_offset (google.protobuf.duration_pb2.Duration):
             Time offset relative to the beginning of the
             audio that corresponds to the start of the
             spoken word. This is an experimental feature and
             the accuracy of the time offset can vary.
-        end_offset (~.duration.Duration):
+        end_offset (google.protobuf.duration_pb2.Duration):
             Time offset relative to the beginning of the
             audio that corresponds to the end of the spoken
             word. This is an experimental feature and the
@@ -172,7 +172,7 @@ class InputAudioConfig(proto.Message):
     content.
 
     Attributes:
-        audio_encoding (~.audio_config.AudioEncoding):
+        audio_encoding (google.cloud.dialogflow_v2.types.AudioEncoding):
             Required. Audio encoding of the audio content
             to process.
         sample_rate_hertz (int):
@@ -208,7 +208,7 @@ class InputAudioConfig(proto.Message):
             `speech_contexts <>`__, Dialogflow will treat the
             `phrase_hints <>`__ as a single additional
             `SpeechContext <>`__.
-        speech_contexts (Sequence[~.audio_config.SpeechContext]):
+        speech_contexts (Sequence[google.cloud.dialogflow_v2.types.SpeechContext]):
             Context information to assist speech recognition.
 
             See `the Cloud Speech
@@ -226,7 +226,7 @@ class InputAudioConfig(proto.Message):
             Speech API
             documentation <https://cloud.google.com/speech-to-text/docs/basics#select-model>`__
             for more details.
-        model_variant (~.audio_config.SpeechModelVariant):
+        model_variant (google.cloud.dialogflow_v2.types.SpeechModelVariant):
             Which variant of the [Speech
             model][google.cloud.dialogflow.v2.InputAudioConfig.model] to
             use.
@@ -273,7 +273,7 @@ class VoiceSelectionParams(proto.Message):
             will choose a voice based on the other parameters such as
             language_code and
             [ssml_gender][google.cloud.dialogflow.v2.VoiceSelectionParams.ssml_gender].
-        ssml_gender (~.audio_config.SsmlVoiceGender):
+        ssml_gender (google.cloud.dialogflow_v2.types.SsmlVoiceGender):
             Optional. The preferred gender of the voice. If not set, the
             service will choose a voice based on the other parameters
             such as language_code and
@@ -320,7 +320,7 @@ class SynthesizeSpeechConfig(proto.Message):
             synthesized) text to speech. Effects are applied
             on top of each other in the order they are
             given.
-        voice (~.audio_config.VoiceSelectionParams):
+        voice (google.cloud.dialogflow_v2.types.VoiceSelectionParams):
             Optional. The desired voice of the
             synthesized audio.
     """
@@ -343,7 +343,7 @@ class OutputAudioConfig(proto.Message):
     applied to the agent.
 
     Attributes:
-        audio_encoding (~.audio_config.OutputAudioEncoding):
+        audio_encoding (google.cloud.dialogflow_v2.types.OutputAudioEncoding):
             Required. Audio encoding of the synthesized
             audio content.
         sample_rate_hertz (int):
@@ -355,7 +355,7 @@ class OutputAudioConfig(proto.Message):
             synthesizer will honor this request by
             converting to the desired sample rate (which
             might result in worse audio quality).
-        synthesize_speech_config (~.audio_config.SynthesizeSpeechConfig):
+        synthesize_speech_config (google.cloud.dialogflow_v2.types.SynthesizeSpeechConfig):
             Configuration of how speech should be
             synthesized.
     """

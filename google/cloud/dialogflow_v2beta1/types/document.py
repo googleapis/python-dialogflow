@@ -61,7 +61,7 @@ class Document(proto.Message):
             the creation request fails.
         mime_type (str):
             Required. The MIME type of this document.
-        knowledge_types (Sequence[~.gcd_document.Document.KnowledgeType]):
+        knowledge_types (Sequence[google.cloud.dialogflow_v2beta1.types.Document.KnowledgeType]):
             Required. The knowledge type of document
             content.
         content_uri (str):
@@ -102,7 +102,7 @@ class Document(proto.Message):
             system will not try to reload the document anymore. You need
             to manually reload the document successfully by calling
             ``ReloadDocument`` and clear the errors.
-        latest_reload_status (~.gcd_document.Document.ReloadStatus):
+        latest_reload_status (google.cloud.dialogflow_v2beta1.types.Document.ReloadStatus):
             Output only. The time and status of the
             latest reload. This reload may have been
             triggered automatically or manually and may not
@@ -119,12 +119,12 @@ class Document(proto.Message):
         r"""The status of a reload attempt.
 
         Attributes:
-            time (~.timestamp.Timestamp):
+            time (google.protobuf.timestamp_pb2.Timestamp):
                 Output only. The time of a reload attempt.
                 This reload may have been triggered
                 automatically or manually and may not have
                 succeeded.
-            status (~.gr_status.Status):
+            status (google.rpc.status_pb2.Status):
                 Output only. The status of a reload attempt
                 or the initial load.
         """
@@ -220,7 +220,7 @@ class ListDocumentsResponse(proto.Message):
     [Documents.ListDocuments][google.cloud.dialogflow.v2beta1.Documents.ListDocuments].
 
     Attributes:
-        documents (Sequence[~.gcd_document.Document]):
+        documents (Sequence[google.cloud.dialogflow_v2beta1.types.Document]):
             The list of documents.
         next_page_token (str):
             Token to retrieve the next page of results,
@@ -246,7 +246,7 @@ class CreateDocumentRequest(proto.Message):
             Required. The knowledge base to create a document for.
             Format:
             ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
-        document (~.gcd_document.Document):
+        document (google.cloud.dialogflow_v2beta1.types.Document):
             Required. The document to create.
         import_gcs_custom_metadata (bool):
             Whether to import custom metadata from Google
@@ -279,9 +279,9 @@ class UpdateDocumentRequest(proto.Message):
     [Documents.UpdateDocument][google.cloud.dialogflow.v2beta1.Documents.UpdateDocument].
 
     Attributes:
-        document (~.gcd_document.Document):
+        document (google.cloud.dialogflow_v2beta1.types.Document):
             Required. The document to update.
-        update_mask (~.field_mask.FieldMask):
+        update_mask (google.protobuf.field_mask_pb2.FieldMask):
             Optional. Not specified means ``update all``. Currently,
             only ``display_name`` can be updated, an InvalidArgument
             will be returned for attempting to update other fields.
@@ -297,7 +297,7 @@ class KnowledgeOperationMetadata(proto.Message):
     operations.
 
     Attributes:
-        state (~.gcd_document.KnowledgeOperationMetadata.State):
+        state (google.cloud.dialogflow_v2beta1.types.KnowledgeOperationMetadata.State):
             Required. Output only. The current state of
             this operation.
     """
@@ -320,7 +320,7 @@ class ReloadDocumentRequest(proto.Message):
         name (str):
             Required. The name of the document to reload. Format:
             ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
-        gcs_source (~.gcs.GcsSource):
+        gcs_source (google.cloud.dialogflow_v2beta1.types.GcsSource):
             The path for a Cloud Storage source file for
             reloading document content. If not provided, the
             Document's existing source will be reloaded.

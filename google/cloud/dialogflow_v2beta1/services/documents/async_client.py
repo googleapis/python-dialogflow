@@ -78,6 +78,7 @@ class DocumentsAsyncClient:
         DocumentsClient.parse_common_location_path
     )
 
+    from_service_account_info = DocumentsClient.from_service_account_info
     from_service_account_file = DocumentsClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -157,13 +158,14 @@ class DocumentsAsyncClient:
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
         Args:
-            request (:class:`~.document.ListDocumentsRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.ListDocumentsRequest`):
                 The request object. Request message for
                 [Documents.ListDocuments][google.cloud.dialogflow.v2beta1.Documents.ListDocuments].
             parent (:class:`str`):
                 Required. The knowledge base to list all documents for.
                 Format:
                 ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -175,7 +177,7 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListDocumentsAsyncPager:
+            google.cloud.dialogflow_v2beta1.services.documents.pagers.ListDocumentsAsyncPager:
                 Response message for
                 [Documents.ListDocuments][google.cloud.dialogflow.v2beta1.Documents.ListDocuments].
 
@@ -242,12 +244,13 @@ class DocumentsAsyncClient:
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
         Args:
-            request (:class:`~.document.GetDocumentRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.GetDocumentRequest`):
                 The request object. Request message for
                 [Documents.GetDocument][google.cloud.dialogflow.v2beta1.Documents.GetDocument].
             name (:class:`str`):
                 Required. The name of the document to retrieve. Format
                 ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -259,16 +262,16 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.document.Document:
+            google.cloud.dialogflow_v2beta1.types.Document:
                 A knowledge document to be used by a
                 [KnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBase].
 
-                For more information, see the `knowledge base
-                guide <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+                   For more information, see the [knowledge base
+                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
 
-                Note: The ``projects.agent.knowledgeBases.documents``
-                resource is deprecated; only use
-                ``projects.knowledgeBases.documents``.
+                   Note: The projects.agent.knowledgeBases.documents
+                   resource is deprecated; only use
+                   projects.knowledgeBases.documents.
 
         """
         # Create or coerce a protobuf request object.
@@ -325,17 +328,18 @@ class DocumentsAsyncClient:
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
         Args:
-            request (:class:`~.gcd_document.CreateDocumentRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.CreateDocumentRequest`):
                 The request object. Request message for
                 [Documents.CreateDocument][google.cloud.dialogflow.v2beta1.Documents.CreateDocument].
             parent (:class:`str`):
                 Required. The knowledge base to create a document for.
                 Format:
                 ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            document (:class:`~.gcd_document.Document`):
+            document (:class:`google.cloud.dialogflow_v2beta1.types.Document`):
                 Required. The document to create.
                 This corresponds to the ``document`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -348,20 +352,20 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:``~.gcd_document.Document``: A knowledge document
-                to be used by a
+                :class:`google.cloud.dialogflow_v2beta1.types.Document`
+                A knowledge document to be used by a
                 [KnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBase].
 
-                For more information, see the `knowledge base
-                guide <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+                   For more information, see the [knowledge base
+                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
 
-                Note: The ``projects.agent.knowledgeBases.documents``
-                resource is deprecated; only use
-                ``projects.knowledgeBases.documents``.
+                   Note: The projects.agent.knowledgeBases.documents
+                   resource is deprecated; only use
+                   projects.knowledgeBases.documents.
 
         """
         # Create or coerce a protobuf request object.
@@ -427,12 +431,13 @@ class DocumentsAsyncClient:
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
         Args:
-            request (:class:`~.document.DeleteDocumentRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.DeleteDocumentRequest`):
                 The request object. Request message for
                 [Documents.DeleteDocument][google.cloud.dialogflow.v2beta1.Documents.DeleteDocument].
             name (:class:`str`):
                 Required. The name of the document to delete. Format:
                 ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -444,24 +449,22 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be
-                :class:``~.empty.Empty``: A generic empty message that
-                you can re-use to avoid defining duplicated empty
-                messages in your APIs. A typical example is to use it as
-                the request or the response type of an API method. For
-                instance:
+                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
+                   empty messages in your APIs. A typical example is to
+                   use it as the request or the response type of an API
+                   method. For instance:
 
-                ::
+                      service Foo {
+                         rpc Bar(google.protobuf.Empty) returns
+                         (google.protobuf.Empty);
 
-                    service Foo {
-                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
-                    }
+                      }
 
-                The JSON representation for ``Empty`` is empty JSON
-                object ``{}``.
+                   The JSON representation for Empty is empty JSON
+                   object {}.
 
         """
         # Create or coerce a protobuf request object.
@@ -526,18 +529,19 @@ class DocumentsAsyncClient:
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
         Args:
-            request (:class:`~.gcd_document.UpdateDocumentRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.UpdateDocumentRequest`):
                 The request object. Request message for
                 [Documents.UpdateDocument][google.cloud.dialogflow.v2beta1.Documents.UpdateDocument].
-            document (:class:`~.gcd_document.Document`):
+            document (:class:`google.cloud.dialogflow_v2beta1.types.Document`):
                 Required. The document to update.
                 This corresponds to the ``document`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`):
                 Optional. Not specified means ``update all``. Currently,
                 only ``display_name`` can be updated, an InvalidArgument
                 will be returned for attempting to update other fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -549,20 +553,20 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:``~.gcd_document.Document``: A knowledge document
-                to be used by a
+                :class:`google.cloud.dialogflow_v2beta1.types.Document`
+                A knowledge document to be used by a
                 [KnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBase].
 
-                For more information, see the `knowledge base
-                guide <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+                   For more information, see the [knowledge base
+                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
 
-                Note: The ``projects.agent.knowledgeBases.documents``
-                resource is deprecated; only use
-                ``projects.knowledgeBases.documents``.
+                   Note: The projects.agent.knowledgeBases.documents
+                   resource is deprecated; only use
+                   projects.knowledgeBases.documents.
 
         """
         # Create or coerce a protobuf request object.
@@ -639,20 +643,22 @@ class DocumentsAsyncClient:
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
         Args:
-            request (:class:`~.document.ReloadDocumentRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.ReloadDocumentRequest`):
                 The request object. Request message for
                 [Documents.ReloadDocument][google.cloud.dialogflow.v2beta1.Documents.ReloadDocument].
             name (:class:`str`):
                 Required. The name of the document to reload. Format:
                 ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            gcs_source (:class:`~.gcs.GcsSource`):
+            gcs_source (:class:`google.cloud.dialogflow_v2beta1.types.GcsSource`):
                 The path for a Cloud Storage source
                 file for reloading document content. If
                 not provided, the Document's existing
                 source will be reloaded.
+
                 This corresponds to the ``gcs_source`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -664,20 +670,20 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.operation_async.AsyncOperation:
+            google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:``~.document.Document``: A knowledge document to
-                be used by a
+                :class:`google.cloud.dialogflow_v2beta1.types.Document`
+                A knowledge document to be used by a
                 [KnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBase].
 
-                For more information, see the `knowledge base
-                guide <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+                   For more information, see the [knowledge base
+                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
 
-                Note: The ``projects.agent.knowledgeBases.documents``
-                resource is deprecated; only use
-                ``projects.knowledgeBases.documents``.
+                   Note: The projects.agent.knowledgeBases.documents
+                   resource is deprecated; only use
+                   projects.knowledgeBases.documents.
 
         """
         # Create or coerce a protobuf request object.
