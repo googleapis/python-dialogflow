@@ -226,6 +226,7 @@ __all__ = (
     "AnnotatedMessagePart",
     "AnswerFeedback",
     "AnswerRecord",
+    "AnswerRecordsClient",
     "ArticleAnswer",
     "AudioEncoding",
     "AudioInput",
@@ -278,7 +279,6 @@ __all__ = (
     "DetectIntentRequest",
     "DetectIntentResponse",
     "Document",
-    "DocumentsClient",
     "DtmfParameters",
     "EntityType",
     "EntityTypeBatch",
@@ -415,5 +415,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "AnswerRecordsClient",
+    "DocumentsClient",
 )
