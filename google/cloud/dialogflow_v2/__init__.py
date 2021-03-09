@@ -122,7 +122,6 @@ __all__ = (
     "BatchUpdateIntentsRequest",
     "BatchUpdateIntentsResponse",
     "Context",
-    "ContextsClient",
     "CreateContextRequest",
     "CreateEntityTypeRequest",
     "CreateIntentRequest",
@@ -139,6 +138,7 @@ __all__ = (
     "EntityTypeBatch",
     "EntityTypesClient",
     "Environment",
+    "EnvironmentsClient",
     "EventInput",
     "ExportAgentRequest",
     "ExportAgentResponse",
@@ -199,5 +199,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "EnvironmentsClient",
+    "ContextsClient",
 )
