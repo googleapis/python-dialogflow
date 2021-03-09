@@ -111,6 +111,22 @@ class EnvironmentsClient(metaclass=EnvironmentsClientMeta):
     )
 
     @classmethod
+    def from_service_account_info(cls, info: dict, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials info.
+
+        Args:
+            info (dict): The service account private key info.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            EnvironmentsClient: The constructed client.
+        """
+        credentials = service_account.Credentials.from_service_account_info(info)
+        kwargs["credentials"] = credentials
+        return cls(*args, **kwargs)
+
+    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -122,7 +138,7 @@ class EnvironmentsClient(metaclass=EnvironmentsClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            {@api.name}: The constructed client.
+            EnvironmentsClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -229,10 +245,10 @@ class EnvironmentsClient(metaclass=EnvironmentsClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, ~.EnvironmentsTransport]): The
+            transport (Union[str, EnvironmentsTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (client_options_lib.ClientOptions): Custom options for the
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -343,15 +359,16 @@ class EnvironmentsClient(metaclass=EnvironmentsClientMeta):
         specified agent.
 
         Args:
-            request (:class:`~.environment.ListEnvironmentsRequest`):
+            request (google.cloud.dialogflow_v2beta1.types.ListEnvironmentsRequest):
                 The request object. The request message for
                 [Environments.ListEnvironments][google.cloud.dialogflow.v2beta1.Environments.ListEnvironments].
-            parent (:class:`str`):
+            parent (str):
                 Required. The agent to list all environments from.
                 Format:
 
                 -  ``projects/<Project Number / ID>/agent``
                 -  ``projects/<Project Number / ID>/locations/<Location ID>/agent``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -363,7 +380,7 @@ class EnvironmentsClient(metaclass=EnvironmentsClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListEnvironmentsPager:
+            google.cloud.dialogflow_v2beta1.services.environments.pagers.ListEnvironmentsPager:
                 The response message for
                 [Environments.ListEnvironments][google.cloud.dialogflow.v2beta1.Environments.ListEnvironments].
 

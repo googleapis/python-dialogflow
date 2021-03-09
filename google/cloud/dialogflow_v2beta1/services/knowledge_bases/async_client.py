@@ -82,6 +82,7 @@ class KnowledgeBasesAsyncClient:
         KnowledgeBasesClient.parse_common_location_path
     )
 
+    from_service_account_info = KnowledgeBasesClient.from_service_account_info
     from_service_account_file = KnowledgeBasesClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -161,13 +162,14 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
         Args:
-            request (:class:`~.knowledge_base.ListKnowledgeBasesRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.ListKnowledgeBasesRequest`):
                 The request object. Request message for
                 [KnowledgeBases.ListKnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBases.ListKnowledgeBases].
             parent (:class:`str`):
                 Required. The project to list of knowledge bases for.
                 Format:
                 ``projects/<Project ID>/locations/<Location ID>``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -179,7 +181,7 @@ class KnowledgeBasesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListKnowledgeBasesAsyncPager:
+            google.cloud.dialogflow_v2beta1.services.knowledge_bases.pagers.ListKnowledgeBasesAsyncPager:
                 Response message for
                 [KnowledgeBases.ListKnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBases.ListKnowledgeBases].
 
@@ -246,13 +248,14 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
         Args:
-            request (:class:`~.knowledge_base.GetKnowledgeBaseRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.GetKnowledgeBaseRequest`):
                 The request object. Request message for
                 [KnowledgeBases.GetKnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBases.GetKnowledgeBase].
             name (:class:`str`):
                 Required. The name of the knowledge base to retrieve.
                 Format
                 ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -264,19 +267,19 @@ class KnowledgeBasesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.knowledge_base.KnowledgeBase:
-                A knowledge base represents a collection of knowledge
-                documents that you provide to Dialogflow. Your knowledge
-                documents contain information that may be useful during
-                conversations with end-users. Some Dialogflow features
-                use knowledge bases when looking for a response to an
-                end-user input.
+            google.cloud.dialogflow_v2beta1.types.KnowledgeBase:
+                A knowledge base represents a collection of knowledge documents that you
+                   provide to Dialogflow. Your knowledge documents
+                   contain information that may be useful during
+                   conversations with end-users. Some Dialogflow
+                   features use knowledge bases when looking for a
+                   response to an end-user input.
 
-                For more information, see the `knowledge base
-                guide <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+                   For more information, see the [knowledge base
+                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
 
-                Note: The ``projects.agent.knowledgeBases`` resource is
-                deprecated; only use ``projects.knowledgeBases``.
+                   Note: The projects.agent.knowledgeBases resource is
+                   deprecated; only use projects.knowledgeBases.
 
         """
         # Create or coerce a protobuf request object.
@@ -333,19 +336,21 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
         Args:
-            request (:class:`~.gcd_knowledge_base.CreateKnowledgeBaseRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.CreateKnowledgeBaseRequest`):
                 The request object. Request message for
                 [KnowledgeBases.CreateKnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBases.CreateKnowledgeBase].
             parent (:class:`str`):
                 Required. The project to create a knowledge base for.
                 Format:
                 ``projects/<Project ID>/locations/<Location ID>``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            knowledge_base (:class:`~.gcd_knowledge_base.KnowledgeBase`):
+            knowledge_base (:class:`google.cloud.dialogflow_v2beta1.types.KnowledgeBase`):
                 Required. The knowledge base to
                 create.
+
                 This corresponds to the ``knowledge_base`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -357,19 +362,19 @@ class KnowledgeBasesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.gcd_knowledge_base.KnowledgeBase:
-                A knowledge base represents a collection of knowledge
-                documents that you provide to Dialogflow. Your knowledge
-                documents contain information that may be useful during
-                conversations with end-users. Some Dialogflow features
-                use knowledge bases when looking for a response to an
-                end-user input.
+            google.cloud.dialogflow_v2beta1.types.KnowledgeBase:
+                A knowledge base represents a collection of knowledge documents that you
+                   provide to Dialogflow. Your knowledge documents
+                   contain information that may be useful during
+                   conversations with end-users. Some Dialogflow
+                   features use knowledge bases when looking for a
+                   response to an end-user input.
 
-                For more information, see the `knowledge base
-                guide <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+                   For more information, see the [knowledge base
+                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
 
-                Note: The ``projects.agent.knowledgeBases`` resource is
-                deprecated; only use ``projects.knowledgeBases``.
+                   Note: The projects.agent.knowledgeBases resource is
+                   deprecated; only use projects.knowledgeBases.
 
         """
         # Create or coerce a protobuf request object.
@@ -427,13 +432,14 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
         Args:
-            request (:class:`~.knowledge_base.DeleteKnowledgeBaseRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.DeleteKnowledgeBaseRequest`):
                 The request object. Request message for
                 [KnowledgeBases.DeleteKnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBases.DeleteKnowledgeBase].
             name (:class:`str`):
                 Required. The name of the knowledge base to delete.
                 Format:
                 ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -497,19 +503,21 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
         Args:
-            request (:class:`~.gcd_knowledge_base.UpdateKnowledgeBaseRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.UpdateKnowledgeBaseRequest`):
                 The request object. Request message for
                 [KnowledgeBases.UpdateKnowledgeBase][google.cloud.dialogflow.v2beta1.KnowledgeBases.UpdateKnowledgeBase].
-            knowledge_base (:class:`~.gcd_knowledge_base.KnowledgeBase`):
+            knowledge_base (:class:`google.cloud.dialogflow_v2beta1.types.KnowledgeBase`):
                 Required. The knowledge base to
                 update.
+
                 This corresponds to the ``knowledge_base`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`):
                 Optional. Not specified means ``update all``. Currently,
                 only ``display_name`` can be updated, an InvalidArgument
                 will be returned for attempting to update other fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -521,19 +529,19 @@ class KnowledgeBasesAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.gcd_knowledge_base.KnowledgeBase:
-                A knowledge base represents a collection of knowledge
-                documents that you provide to Dialogflow. Your knowledge
-                documents contain information that may be useful during
-                conversations with end-users. Some Dialogflow features
-                use knowledge bases when looking for a response to an
-                end-user input.
+            google.cloud.dialogflow_v2beta1.types.KnowledgeBase:
+                A knowledge base represents a collection of knowledge documents that you
+                   provide to Dialogflow. Your knowledge documents
+                   contain information that may be useful during
+                   conversations with end-users. Some Dialogflow
+                   features use knowledge bases when looking for a
+                   response to an end-user input.
 
-                For more information, see the `knowledge base
-                guide <https://cloud.google.com/dialogflow/docs/how/knowledge-bases>`__.
+                   For more information, see the [knowledge base
+                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
 
-                Note: The ``projects.agent.knowledgeBases`` resource is
-                deprecated; only use ``projects.knowledgeBases``.
+                   Note: The projects.agent.knowledgeBases resource is
+                   deprecated; only use projects.knowledgeBases.
 
         """
         # Create or coerce a protobuf request object.

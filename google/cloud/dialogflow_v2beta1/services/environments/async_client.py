@@ -74,6 +74,7 @@ class EnvironmentsAsyncClient:
         EnvironmentsClient.parse_common_location_path
     )
 
+    from_service_account_info = EnvironmentsClient.from_service_account_info
     from_service_account_file = EnvironmentsClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -151,7 +152,7 @@ class EnvironmentsAsyncClient:
         specified agent.
 
         Args:
-            request (:class:`~.environment.ListEnvironmentsRequest`):
+            request (:class:`google.cloud.dialogflow_v2beta1.types.ListEnvironmentsRequest`):
                 The request object. The request message for
                 [Environments.ListEnvironments][google.cloud.dialogflow.v2beta1.Environments.ListEnvironments].
             parent (:class:`str`):
@@ -160,6 +161,7 @@ class EnvironmentsAsyncClient:
 
                 -  ``projects/<Project Number / ID>/agent``
                 -  ``projects/<Project Number / ID>/locations/<Location ID>/agent``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -171,7 +173,7 @@ class EnvironmentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListEnvironmentsAsyncPager:
+            google.cloud.dialogflow_v2beta1.services.environments.pagers.ListEnvironmentsAsyncPager:
                 The response message for
                 [Environments.ListEnvironments][google.cloud.dialogflow.v2beta1.Environments.ListEnvironments].
 

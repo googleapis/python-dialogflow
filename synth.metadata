@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "4aaa73e6d7943da0a8e468cdb97c042f6ed90637",
-        "internalRef": "348809934"
+        "sha": "520682435235d9c503983a360a2090025aa47cd1",
+        "internalRef": "350246057"
       }
     },
     {
@@ -51,6 +51,7 @@
     }
   ],
   "generatedFiles": [
+    ".coveragerc",
     ".flake8",
     ".github/CONTRIBUTING.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
@@ -100,12 +101,29 @@
     "CONTRIBUTING.rst",
     "LICENSE",
     "MANIFEST.in",
+    "dialogflow-v2-py.tar.gz",
     "docs/_static/custom.css",
     "docs/_templates/layout.html",
     "docs/conf.py",
+    "docs/dialogflow_v2/agents.rst",
+    "docs/dialogflow_v2/contexts.rst",
+    "docs/dialogflow_v2/entity_types.rst",
+    "docs/dialogflow_v2/environments.rst",
+    "docs/dialogflow_v2/intents.rst",
     "docs/dialogflow_v2/services.rst",
+    "docs/dialogflow_v2/session_entity_types.rst",
+    "docs/dialogflow_v2/sessions.rst",
     "docs/dialogflow_v2/types.rst",
+    "docs/dialogflow_v2beta1/agents.rst",
+    "docs/dialogflow_v2beta1/contexts.rst",
+    "docs/dialogflow_v2beta1/documents.rst",
+    "docs/dialogflow_v2beta1/entity_types.rst",
+    "docs/dialogflow_v2beta1/environments.rst",
+    "docs/dialogflow_v2beta1/intents.rst",
+    "docs/dialogflow_v2beta1/knowledge_bases.rst",
     "docs/dialogflow_v2beta1/services.rst",
+    "docs/dialogflow_v2beta1/session_entity_types.rst",
+    "docs/dialogflow_v2beta1/sessions.rst",
     "docs/dialogflow_v2beta1/types.rst",
     "docs/multiprocessing.rst",
     "google/cloud/dialogflow/__init__.py",
