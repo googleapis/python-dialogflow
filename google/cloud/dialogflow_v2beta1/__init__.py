@@ -166,8 +166,8 @@ __all__ = (
     "DocumentsClient",
     "EntityType",
     "EntityTypeBatch",
-    "EntityTypesClient",
     "Environment",
+    "EnvironmentsClient",
     "EventInput",
     "ExportAgentRequest",
     "ExportAgentResponse",
@@ -245,5 +245,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "EnvironmentsClient",
+    "EntityTypesClient",
 )

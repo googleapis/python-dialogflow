@@ -82,15 +82,17 @@ def test__get_default_mtls_endpoint():
     assert ContextsClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-def test_contexts_client_from_service_account_info():
+@pytest.mark.parametrize("client_class", [ContextsClient, ContextsAsyncClient,])
+def test_contexts_client_from_service_account_info(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
     ) as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = ContextsClient.from_service_account_info(info)
+        client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
@@ -104,9 +106,11 @@ def test_contexts_client_from_service_account_file(client_class):
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
@@ -449,6 +453,22 @@ def test_list_contexts_from_dict():
     test_list_contexts(request_type=dict)
 
 
+def test_list_contexts_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+        client.list_contexts()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == context.ListContextsRequest()
+
+
 @pytest.mark.asyncio
 async def test_list_contexts_async(
     transport: str = "grpc_asyncio", request_type=context.ListContextsRequest
@@ -762,6 +782,22 @@ def test_get_context_from_dict():
     test_get_context(request_type=dict)
 
 
+def test_get_context_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+        client.get_context()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == context.GetContextRequest()
+
+
 @pytest.mark.asyncio
 async def test_get_context_async(
     transport: str = "grpc_asyncio", request_type=context.GetContextRequest
@@ -951,6 +987,22 @@ def test_create_context(
 
 def test_create_context_from_dict():
     test_create_context(request_type=dict)
+
+
+def test_create_context_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+        client.create_context()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == gcd_context.CreateContextRequest()
 
 
 @pytest.mark.asyncio
@@ -1154,6 +1206,22 @@ def test_update_context(
 
 def test_update_context_from_dict():
     test_update_context(request_type=dict)
+
+
+def test_update_context_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+        client.update_context()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == gcd_context.UpdateContextRequest()
 
 
 @pytest.mark.asyncio
@@ -1360,6 +1428,22 @@ def test_delete_context_from_dict():
     test_delete_context(request_type=dict)
 
 
+def test_delete_context_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+        client.delete_context()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == context.DeleteContextRequest()
+
+
 @pytest.mark.asyncio
 async def test_delete_context_async(
     transport: str = "grpc_asyncio", request_type=context.DeleteContextRequest
@@ -1540,6 +1624,24 @@ def test_delete_all_contexts(
 
 def test_delete_all_contexts_from_dict():
     test_delete_all_contexts(request_type=dict)
+
+
+def test_delete_all_contexts_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.delete_all_contexts), "__call__"
+    ) as call:
+        client.delete_all_contexts()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == context.DeleteAllContextsRequest()
 
 
 @pytest.mark.asyncio

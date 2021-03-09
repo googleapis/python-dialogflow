@@ -94,15 +94,19 @@ def test__get_default_mtls_endpoint():
     )
 
 
-def test_session_entity_types_client_from_service_account_info():
+@pytest.mark.parametrize(
+    "client_class", [SessionEntityTypesClient, SessionEntityTypesAsyncClient,]
+)
+def test_session_entity_types_client_from_service_account_info(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
     ) as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = SessionEntityTypesClient.from_service_account_info(info)
+        client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
@@ -118,9 +122,11 @@ def test_session_entity_types_client_from_service_account_file(client_class):
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
@@ -494,6 +500,24 @@ def test_list_session_entity_types(
 
 def test_list_session_entity_types_from_dict():
     test_list_session_entity_types(request_type=dict)
+
+
+def test_list_session_entity_types_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = SessionEntityTypesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_session_entity_types), "__call__"
+    ) as call:
+        client.list_session_entity_types()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == session_entity_type.ListSessionEntityTypesRequest()
 
 
 @pytest.mark.asyncio
@@ -895,6 +919,24 @@ def test_get_session_entity_type_from_dict():
     test_get_session_entity_type(request_type=dict)
 
 
+def test_get_session_entity_type_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = SessionEntityTypesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_session_entity_type), "__call__"
+    ) as call:
+        client.get_session_entity_type()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == session_entity_type.GetSessionEntityTypeRequest()
+
+
 @pytest.mark.asyncio
 async def test_get_session_entity_type_async(
     transport: str = "grpc_asyncio",
@@ -1120,6 +1162,24 @@ def test_create_session_entity_type(
 
 def test_create_session_entity_type_from_dict():
     test_create_session_entity_type(request_type=dict)
+
+
+def test_create_session_entity_type_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = SessionEntityTypesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_session_entity_type), "__call__"
+    ) as call:
+        client.create_session_entity_type()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == gcd_session_entity_type.CreateSessionEntityTypeRequest()
 
 
 @pytest.mark.asyncio
@@ -1375,6 +1435,24 @@ def test_update_session_entity_type_from_dict():
     test_update_session_entity_type(request_type=dict)
 
 
+def test_update_session_entity_type_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = SessionEntityTypesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.update_session_entity_type), "__call__"
+    ) as call:
+        client.update_session_entity_type()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == gcd_session_entity_type.UpdateSessionEntityTypeRequest()
+
+
 @pytest.mark.asyncio
 async def test_update_session_entity_type_async(
     transport: str = "grpc_asyncio",
@@ -1621,6 +1699,24 @@ def test_delete_session_entity_type(
 
 def test_delete_session_entity_type_from_dict():
     test_delete_session_entity_type(request_type=dict)
+
+
+def test_delete_session_entity_type_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = SessionEntityTypesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.delete_session_entity_type), "__call__"
+    ) as call:
+        client.delete_session_entity_type()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == session_entity_type.DeleteSessionEntityTypeRequest()
 
 
 @pytest.mark.asyncio

@@ -90,15 +90,19 @@ def test__get_default_mtls_endpoint():
     )
 
 
-def test_knowledge_bases_client_from_service_account_info():
+@pytest.mark.parametrize(
+    "client_class", [KnowledgeBasesClient, KnowledgeBasesAsyncClient,]
+)
+def test_knowledge_bases_client_from_service_account_info(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
     ) as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = KnowledgeBasesClient.from_service_account_info(info)
+        client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
@@ -114,9 +118,11 @@ def test_knowledge_bases_client_from_service_account_file(client_class):
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
@@ -479,6 +485,24 @@ def test_list_knowledge_bases(
 
 def test_list_knowledge_bases_from_dict():
     test_list_knowledge_bases(request_type=dict)
+
+
+def test_list_knowledge_bases_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = KnowledgeBasesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_knowledge_bases), "__call__"
+    ) as call:
+        client.list_knowledge_bases()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == knowledge_base.ListKnowledgeBasesRequest()
 
 
 @pytest.mark.asyncio
@@ -865,6 +889,24 @@ def test_get_knowledge_base_from_dict():
     test_get_knowledge_base(request_type=dict)
 
 
+def test_get_knowledge_base_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = KnowledgeBasesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_knowledge_base), "__call__"
+    ) as call:
+        client.get_knowledge_base()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == knowledge_base.GetKnowledgeBaseRequest()
+
+
 @pytest.mark.asyncio
 async def test_get_knowledge_base_async(
     transport: str = "grpc_asyncio", request_type=knowledge_base.GetKnowledgeBaseRequest
@@ -1082,6 +1124,24 @@ def test_create_knowledge_base(
 
 def test_create_knowledge_base_from_dict():
     test_create_knowledge_base(request_type=dict)
+
+
+def test_create_knowledge_base_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = KnowledgeBasesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_knowledge_base), "__call__"
+    ) as call:
+        client.create_knowledge_base()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == gcd_knowledge_base.CreateKnowledgeBaseRequest()
 
 
 @pytest.mark.asyncio
@@ -1311,6 +1371,24 @@ def test_delete_knowledge_base_from_dict():
     test_delete_knowledge_base(request_type=dict)
 
 
+def test_delete_knowledge_base_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = KnowledgeBasesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.delete_knowledge_base), "__call__"
+    ) as call:
+        client.delete_knowledge_base()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == knowledge_base.DeleteKnowledgeBaseRequest()
+
+
 @pytest.mark.asyncio
 async def test_delete_knowledge_base_async(
     transport: str = "grpc_asyncio",
@@ -1513,6 +1591,24 @@ def test_update_knowledge_base(
 
 def test_update_knowledge_base_from_dict():
     test_update_knowledge_base(request_type=dict)
+
+
+def test_update_knowledge_base_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = KnowledgeBasesClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.update_knowledge_base), "__call__"
+    ) as call:
+        client.update_knowledge_base()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == gcd_knowledge_base.UpdateKnowledgeBaseRequest()
 
 
 @pytest.mark.asyncio
