@@ -137,6 +137,7 @@ __all__ = (
     "DetectIntentResponse",
     "EntityType",
     "EntityTypeBatch",
+    "EntityTypesClient",
     "Environment",
     "EnvironmentsClient",
     "EventInput",
@@ -177,7 +178,6 @@ __all__ = (
     "SentimentAnalysisRequestConfig",
     "SentimentAnalysisResult",
     "SessionEntityType",
-    "SessionEntityTypesClient",
     "SessionsClient",
     "SetAgentRequest",
     "SpeechContext",
@@ -199,5 +199,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "EntityTypesClient",
+    "SessionEntityTypesClient",
 )
