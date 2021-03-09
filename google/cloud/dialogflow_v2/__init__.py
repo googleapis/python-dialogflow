@@ -178,7 +178,7 @@ __all__ = (
     "SentimentAnalysisRequestConfig",
     "SentimentAnalysisResult",
     "SessionEntityType",
-    "SessionsClient",
+    "SessionEntityTypesClient",
     "SetAgentRequest",
     "SpeechContext",
     "SpeechModelVariant",
@@ -199,5 +199,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "SessionEntityTypesClient",
+    "SessionsClient",
 )
