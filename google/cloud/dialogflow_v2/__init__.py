@@ -285,7 +285,6 @@ __all__ = (
     "IntentView",
     "IntentsClient",
     "KnowledgeBase",
-    "KnowledgeBasesClient",
     "KnowledgeOperationMetadata",
     "ListAnswerRecordsRequest",
     "ListAnswerRecordsResponse",
@@ -322,6 +321,7 @@ __all__ = (
     "OutputAudioConfig",
     "OutputAudioEncoding",
     "Participant",
+    "ParticipantsClient",
     "QueryInput",
     "QueryParameters",
     "QueryResult",
@@ -371,5 +371,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "ParticipantsClient",
+    "KnowledgeBasesClient",
 )
