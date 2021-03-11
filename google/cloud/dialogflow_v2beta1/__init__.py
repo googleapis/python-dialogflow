@@ -220,7 +220,6 @@ __all__ = (
     "Agent",
     "AgentAssistantFeedback",
     "AgentAssistantRecord",
-    "AgentsClient",
     "AnalyzeContentRequest",
     "AnalyzeContentResponse",
     "AnnotatedMessagePart",
@@ -321,6 +320,7 @@ __all__ = (
     "IntentsClient",
     "KnowledgeAnswers",
     "KnowledgeBase",
+    "KnowledgeBasesClient",
     "KnowledgeOperationMetadata",
     "ListAnswerRecordsRequest",
     "ListAnswerRecordsResponse",
@@ -415,5 +415,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "KnowledgeBasesClient",
+    "AgentsClient",
 )
