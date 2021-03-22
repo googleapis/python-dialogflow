@@ -14,10 +14,10 @@
 
 import os
 
+import answer_record_management
 import conversation_management
 import conversation_profile_management
 import participant_management
-import answer_record_management
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 SMART_REPLY_MODEL = os.getenv('SMART_REPLY_MODEL')

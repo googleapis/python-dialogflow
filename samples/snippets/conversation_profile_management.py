@@ -16,8 +16,6 @@
 """Dialogflow API Python sample showing how to manage Conversation Profiles.
 """
 
-import argparse
-
 
 # [START dialogflow_list_conversation_profiles]
 def list_conversation_profiles(project_id):
@@ -53,9 +51,9 @@ def create_conversation_profile_article_faq(
         suggestion
         faq_knowledge_base_id: knowledge base id for faq
     """
+
     from google.cloud import dialogflow_v2beta1 as dialogflow
     client = dialogflow.ConversationProfilesClient()
-    doc_client = dialogflow.DocumentsClient()
     project_path = client.common_project_path(project_id)
 
     conversation_profile = {
@@ -183,6 +181,7 @@ def create_conversation_profile_smart_reply(project_id, display_name,
     # Put Name is the last to make it easier to retrieve.
     print('Name: {}'.format(response.name))
     return response
+
 
 # [END dialogflow_create_conversation_profile_smart_reply]
 

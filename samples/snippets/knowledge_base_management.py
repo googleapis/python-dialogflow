@@ -30,6 +30,7 @@ Examples:
 
 import argparse
 
+
 # [START dialogflow_list_knowledge_base]
 def list_knowledge_bases(project_id):
     """Lists the Knowledge bases belonging to a project.
@@ -47,6 +48,7 @@ def list_knowledge_bases(project_id):
         print(' - Knowledge ID: {}\n'.format(knowledge_base.name))
     return response
 # [END dialogflow_list_knowledge_base]
+
 
 # [START dialogflow_create_knowledge_base]
 def create_knowledge_base(project_id, display_name):

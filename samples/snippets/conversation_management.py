@@ -16,8 +16,6 @@
 """Dialogflow API Python sample showing how to manage Conversations.
 """
 
-import argparse
-
 
 # [START dialogflow_list_conversations]
 def list_conversations(project_id):

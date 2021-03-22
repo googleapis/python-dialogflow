@@ -16,8 +16,6 @@
 """Dialogflow API Python sample showing how to manage AnswerRecord.
 """
 
-import argparse
-
 
 # [START dialogflow_update_answer_record]
 def update_anwer_record(project_id, answer_record_id, click):

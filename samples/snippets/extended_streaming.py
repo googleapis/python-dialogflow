@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
- 
+
 """Google Cloud Dialogflow API sample application using the extended streaming
 API.
 NOTE: This module requires the dependencies `pyaudio` and `termcolor`.
@@ -28,26 +28,23 @@ Example usage:
 
 Then say "I want to cancel an order" or "What's the return policy". You should
 see suggestions in the console.
+
+Extended streaming is only available on dialogflow v2beta1 for now.
 """
- 
-import time
+
+
+import os
 import re
 import sys
-import os
-
-import conversation_management
-import conversation_profile_management
-import document_management
-import knowledge_base_management
-import participant_management
-
-# Extended streaming is only available on dialogflow v2beta1 for now.
+import time
 
 import pyaudio
+
+import conversation_management
+import participant_management
+
 from six.moves import queue
-from google.api_core import client_options
 from google.api_core.exceptions import DeadlineExceeded
-from google.cloud import dialogflow_v2beta1 as dialogflow
 
 PROJECT_ID = os.getenv('GCLOUD_PROJECT')
 CONVERSATION_PROFILE_ID = os.getenv('EXTENDING_STREAMING_CONVERSATION_PROFILE')
@@ -65,11 +62,11 @@ def get_current_time():
     """Return Current Time in MS."""
 
     return int(round(time.time() * 1000))
- 
- 
+
+
 class ResumableMicrophoneStream:
     """Opens a recording stream as a generator yielding the audio chunks."""
- 
+
     def __init__(self, rate, chunk_size):
         self._rate = rate
         self.chunk_size = chunk_size
@@ -97,14 +94,14 @@ class ResumableMicrophoneStream:
             # overflow while the calling thread makes network requests, etc.
             stream_callback=self._fill_buffer,
         )
- 
+
     def __enter__(self):
- 
+
         self.closed = False
         return self
- 
+
     def __exit__(self, type, value, traceback):
- 
+
         self._audio_stream.stop_stream()
         self._audio_stream.close()
         self.closed = True
@@ -112,11 +109,11 @@ class ResumableMicrophoneStream:
         # streaming_recognize method will not block the process termination.
         self._buff.put(None)
         self._audio_interface.terminate()
- 
+
     def _fill_buffer(self, in_data, *args, **kwargs):
         """Continuously collect data from the audio stream, into the buffer in
         chunksize."""
- 
+
         self._buff.put(in_data)
         return None, pyaudio.paContinue
 
@@ -136,16 +133,16 @@ class ResumableMicrophoneStream:
                     int(len(audio_bytes) - processed_bytes_length),
                     int(MAX_LOOKBACK * SAMPLE_RATE * 16 / 8))
                 # Note that you need to explicitly use `int` type for substring.
-                need_to_process_bytes = audio_bytes[(-1)*need_to_process_length:]           
+                need_to_process_bytes = audio_bytes[(-1)*need_to_process_length:]
                 yield need_to_process_bytes
-                
+
         while not self.closed:
             data = []
             # Use a blocking get() to ensure there's at least one chunk of
             # data, and stop iteration if the chunk is None, indicating the
             # end of the audio stream.
             chunk = self._buff.get()
- 
+
             if chunk is None:
                 return
             data.append(chunk)
@@ -153,18 +150,18 @@ class ResumableMicrophoneStream:
             while True:
                 try:
                     chunk = self._buff.get(block=False)
- 
+
                     if chunk is None:
                         return
                     data.append(chunk)
- 
+
                 except queue.Empty:
                     break
             self.audio_input_chunks.extend(data)
             if data:
                 yield b''.join(data)
- 
- 
+
+
 def main():
     """start bidirectional streaming from microphone input to Dialogflow API"""
     # Create conversation.
@@ -183,9 +180,9 @@ def main():
     sys.stdout.write('\nListening, say "Quit" or "Exit" to stop.\n\n')
     sys.stdout.write('End (ms)       Transcript Results/Status\n')
     sys.stdout.write('=====================================================\n')
- 
+
     with mic_manager as stream:
- 
+
         while not stream.closed:
             terminate = False
             while not terminate:
@@ -199,7 +196,7 @@ def main():
                         stream=stream,
                         timeout=RESTART_TIMEOUT,
                         enable_extended_streaming=True)
-        
+
                     # Now, put the transcription responses to user.
                     for response in responses:
                         if response.human_agent_suggestion_results:
@@ -225,8 +222,8 @@ def main():
                 conversation_management.complete_conversation(
                     project_id=PROJECT_ID, conversation_id=conversation_id)
                 break
- 
- 
+
+
 if __name__ == '__main__':
- 
+
     main()

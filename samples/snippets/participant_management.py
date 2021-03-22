@@ -16,10 +16,8 @@
 """Dialogflow API Python sample showing how to manage Participants.
 """
 
-import time
 
 from google.cloud import dialogflow_v2beta1 as dialogflow
-from google.api_core import client_options
 
 ROLES = ['HUMAN_AGENT', 'AUTOMATED_AGENT', 'END_USER']
 
