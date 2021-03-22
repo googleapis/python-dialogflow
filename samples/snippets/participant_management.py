@@ -24,7 +24,7 @@ from google.api_core import client_options
 ROLES = ['HUMAN_AGENT', 'AUTOMATED_AGENT', 'END_USER']
 
 
-# [START list_participants]
+# [START dialogflow_list_participants]
 def list_participants(project_id, conversation_id):
     """Lists the participants belonging to a conversation.
 
@@ -40,10 +40,10 @@ def list_participants(project_id, conversation_id):
         print('Name: {}'.format(participant.name))
 
 
-# [END list_participants]
+# [END dialogflow_list_participants]
 
 
-# [START create_participant]
+# [START dialogflow_create_participant]
 def create_participant(project_id, conversation_id, role):
     """Creates a participant in a given conversation.
 
@@ -64,10 +64,10 @@ def create_participant(project_id, conversation_id, role):
         return response
 
 
-# [END create_participant]
+# [END dialogflow_create_participant]
 
 
-# [START update_participant]
+# [START dialogflow_update_participant]
 def update_participant(participant, update_mask=None):
     """Update the participant.
 
@@ -84,10 +84,10 @@ def update_participant(participant, update_mask=None):
     return response
 
 
-# [END update_participant]
+# [END dialogflow_update_participant]
 
 
-# [START analyze_content_text]
+# [START dialogflow_analyze_content_text]
 def analyze_content_text(project_id, conversation_id, participant_id, text):
     """Analyze text message content from a participant.
 
@@ -141,10 +141,10 @@ def analyze_content_text(project_id, conversation_id, participant_id, text):
     return response
 
 
-# [END analyze_content_text]
+# [END dialogflow_analyze_content_text]
 
 
-# [START streaming_analyze_content_audio]
+# [START dialogflow_streaming_analyze_content_audio]
 def streaming_analyze_content_audio(participant_name,
                                     sample_rate_herz,
                                     stream,
@@ -187,4 +187,4 @@ def streaming_analyze_content_audio(participant_name,
                                             timeout=timeout)
 
 
-# [END streaming_analyze_content_audio]
+# [END dialogflow_streaming_analyze_content_audio]

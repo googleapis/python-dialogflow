@@ -19,7 +19,7 @@
 import argparse
 
 
-# [START list_conversations]
+# [START dialogflow_list_conversations]
 def list_conversations(project_id):
     """Lists the conversation belonging to a project.
 
@@ -37,10 +37,10 @@ def list_conversations(project_id):
     return response
 
 
-# [END list_conversations]
+# [END dialogflow_list_conversations]
 
 
-# [START create_conversation]
+# [START dialogflow_create_conversation]
 def create_conversation(project_id, conversation_profile_id):
     """Creates a conversation with given values
 
@@ -62,10 +62,10 @@ def create_conversation(project_id, conversation_profile_id):
         response.conversation_profile))
     print('Name: {}'.format(response.name))
     return response
-# [END create_conversation]
+# [END dialogflow_create_conversation]
 
 
-# [START get_conversation]
+# [START dialogflow_get_conversation]
 def get_conversation(project_id, conversation_id):
     """Gets a specific conversation profile.
 
@@ -83,10 +83,10 @@ def get_conversation(project_id, conversation_id):
         response.conversation_profile))
     print('Name: {}'.format(response.name))
     return response
-# [END get_conversation]
+# [END dialogflow_get_conversation]
 
 
-# [START add_conversation_phone_number]
+# [START dialogflow_add_conversation_phone_number]
 def add_conversation_phone_number(project_id, conversation_id):
     """Sets a phone number for this converstion to connect to.
     Note that the conversation in the request must be in IN_PROGRESS state and must have no phone number attached.
@@ -103,10 +103,10 @@ def add_conversation_phone_number(project_id, conversation_id):
     print('Country Code: {}'.format(phone_number.country_code))
     print('Phone Number: {}'.format(phone_number.phone_number))
     return phone_number
-# [END add_conversation_phone_number]
+# [END dialogflow_add_conversation_phone_number]
 
 
-# [START complete_conversation]
+# [START dialogflow_complete_conversation]
 def complete_conversation(project_id, conversation_id):
     """Completes the specified conversation. Finished conversations are purged from the database after 30 days.
 
@@ -123,10 +123,10 @@ def complete_conversation(project_id, conversation_id):
         conversation.conversation_profile))
     print('Name: {}'.format(conversation.name))
     return conversation
-# [END complete_conversation]
+# [END dialogflow_complete_conversation]
 
 
-# [START list_message]
+# [START dialogflow_list_message]
 def list_message(project_id, conversation_id):
     """Lists messages that belong to a given conversation.
 
@@ -144,4 +144,5 @@ def list_message(project_id, conversation_id):
         print('Create Time: {}'.format(message.create_time))
         print('Name: {}'.format(message.name))
     return messages
-# [END list_message]
+
+# [END dialogflow_list_message]

@@ -19,7 +19,7 @@
 import argparse
 
 
-# [START list_conversation_profiles]
+# [START dialogflow_list_conversation_profiles]
 def list_conversation_profiles(project_id):
     """Lists the conversation profiles belonging to a project.
 
@@ -34,7 +34,7 @@ def list_conversation_profiles(project_id):
     return response
 
 
-# [END list_conversation_profiles] [START create_conversation_profile_article_faq]
+# [END dialogflow_list_conversation_profiles] [START create_conversation_profile_article_faq]
 
 
 def create_conversation_profile_article_faq(
@@ -122,10 +122,10 @@ def create_conversation_profile_article_faq(
     return response
 
 
-# [END create_conversation_profile_article_faq]
+# [END dialogflow_create_conversation_profile_article_faq]
 
 
-# [START create_conversation_profile_smart_reply]
+# [START dialogflow_create_conversation_profile_smart_reply]
 def create_conversation_profile_smart_reply(project_id, display_name,
                                             smart_reply_allowlist_name,
                                             smart_reply_model_name):
@@ -182,10 +182,11 @@ def create_conversation_profile_smart_reply(project_id, display_name,
     # Put Name is the last to make it easier to retrieve.
     print('Name: {}'.format(response.name))
     return response
-    # [END create_conversation_profile_smart_reply]
+
+# [END dialogflow_create_conversation_profile_smart_reply]
 
 
-# [START get_conversation_profile]
+# [START dialogflow_get_conversation_profile]
 def get_conversation_profile(project_id, conversation_profile_id):
     """Gets a specific conversation profile.
 
@@ -204,10 +205,10 @@ def get_conversation_profile(project_id, conversation_profile_id):
     return response
 
 
-# [END get_conversation_profile]
+# [END dialogflow_get_conversation_profile]
 
 
-# [START delete_conversation_profile]
+# [START dialogflow_delete_conversation_profile]
 def delete_conversation_profile(project_id, conversation_profile_id):
     """Deletes a specific conversation profile.
 
@@ -223,4 +224,4 @@ def delete_conversation_profile(project_id, conversation_profile_id):
     print('Conversation Profile deleted.')
 
 
-# [END delete_conversation_profile]
+# [END dialogflow_delete_conversation_profile]

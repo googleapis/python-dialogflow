@@ -19,7 +19,7 @@
 import argparse
 
 
-# [START update_answer_record]
+# [START dialogflow_update_answer_record]
 def update_anwer_record(project_id, answer_record_id, click):
     """Update the answer record.
 
@@ -45,4 +45,4 @@ def update_anwer_record(project_id, answer_record_id, click):
     return response
 
 
-# [END update_answer_record]
+# [END dialogflow_update_answer_record]
