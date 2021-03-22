@@ -104,7 +104,7 @@ def create_document(project_id, knowledge_base_id, display_name, mime_type,
     for knowledge_type in document.knowledge_types:
         print('    - {}'.format(KNOWLEDGE_TYPES[knowledge_type]))
     print(' - Source: {}\n'.format(document.content_uri))
-# [END dialogflow_create_document
+# [END dialogflow_create_document]
 
 
 # [START dialogflow_get_document]]

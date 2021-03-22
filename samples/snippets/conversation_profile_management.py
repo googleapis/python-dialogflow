@@ -34,9 +34,10 @@ def list_conversation_profiles(project_id):
     return response
 
 
-# [END dialogflow_list_conversation_profiles] [START create_conversation_profile_article_faq]
+# [END dialogflow_list_conversation_profiles]
 
 
+# [START dialogflow_create_conversation_profile_article_faq]
 def create_conversation_profile_article_faq(
         project_id,
         display_name,
