@@ -31,25 +31,6 @@ Examples:
 import argparse
 
 
-# [START dialogflow_list_knowledge_base]
-def list_knowledge_bases(project_id):
-    """Lists the Knowledge bases belonging to a project.
-
-    Args:
-        project_id: The GCP project linked with the agent."""
-    from google.cloud import dialogflow_v2beta1 as dialogflow
-    client = dialogflow.KnowledgeBasesClient()
-    project_path = client.common_project_path(project_id)
-
-    print('Knowledge Bases for: {}'.format(project_id))
-    response = client.list_knowledge_bases(parent=project_path)
-    for knowledge_base in response:
-        print(' - Display Name: {}'.format(knowledge_base.display_name))
-        print(' - Knowledge ID: {}\n'.format(knowledge_base.name))
-    return response
-# [END dialogflow_list_knowledge_base]
-
-
 # [START dialogflow_create_knowledge_base]
 def create_knowledge_base(project_id, display_name):
     """Creates a Knowledge base.
