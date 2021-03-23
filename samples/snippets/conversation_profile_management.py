@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2019 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
@@ -16,18 +16,20 @@
 """Dialogflow API Python sample showing how to manage Conversation Profiles.
 """
 
+from google.cloud import dialogflow_v2beta1 as dialogflow
+
 
 # [START dialogflow_list_conversation_profiles]
 def list_conversation_profiles(project_id):
     """Lists the conversation profiles belonging to a project.
 
     Args: project_id: The GCP project linked with the conversation profile."""
-    from google.cloud import dialogflow_v2beta1 as dialogflow
+
     client = dialogflow.ConversationProfilesClient()
     project_path = client.common_project_path(project_id)
     response = client.list_conversation_profiles(parent=project_path)
     for conversation_profile in response:
-        print('Display Name: {}\n'.format(conversation_profile.display_name))
+        print('Display Name: {}'.format(conversation_profile.display_name))
         print('Name: {}'.format(conversation_profile.name))
     return response
 
@@ -49,10 +51,8 @@ def create_conversation_profile_article_faq(
         created.
         article_suggestion_knowledge_base_id: knowledge base id for article
         suggestion
-        faq_knowledge_base_id: knowledge base id for faq
-    """
+        faq_knowledge_base_id: knowledge base id for faq"""
 
-    from google.cloud import dialogflow_v2beta1 as dialogflow
     client = dialogflow.ConversationProfilesClient()
     project_path = client.common_project_path(project_id)
 
@@ -77,7 +77,6 @@ def create_conversation_profile_article_faq(
                 'no_small_talk': True,
                 'only_end_user': True,
             },
-            'enable_inline_suggestion': True,
             'query_config': {
                 'knowledge_base_query_source': {
                     'knowledge_bases': [as_kb_path]
@@ -99,7 +98,6 @@ def create_conversation_profile_article_faq(
                 'no_small_talk': True,
                 'only_end_user': True,
             },
-            'enable_inline_suggestion': True,
             'query_config': {
                 'knowledge_base_query_source': {
                     'knowledge_bases': [faq_kb_path]
@@ -114,8 +112,8 @@ def create_conversation_profile_article_faq(
     response = client.create_conversation_profile(
         parent=project_path, conversation_profile=conversation_profile)
 
-    print('Conversation Profile created:\n')
-    print('Display Name: {}\n'.format(response.display_name))
+    print('Conversation Profile created:')
+    print('Display Name: {}'.format(response.display_name))
     # Put Name is the last to make it easier to retrieve.
     print('Name: {}'.format(response.name))
     return response
@@ -135,9 +133,8 @@ def create_conversation_profile_smart_reply(project_id, display_name,
         display_name: The display name for the conversation profile to be
         created.
         smart_reply_allowlist_name: document name for smart reply allowlist
-        smart_reply_model_name: conversation model name for smart reply
-    """
-    from google.cloud import dialogflow_v2beta1 as dialogflow
+        smart_reply_model_name: conversation model name for smart reply."""
+
     client = dialogflow.ConversationProfilesClient()
     project_path = client.common_project_path(project_id)
 
@@ -158,7 +155,6 @@ def create_conversation_profile_smart_reply(project_id, display_name,
             'no_small_talk': True,
             'only_end_user': True,
         },
-        'enable_inline_suggestion': True,
         'query_config': {
             'document_query_source': {
                 'documents': [smart_reply_allowlist_name]
@@ -176,8 +172,8 @@ def create_conversation_profile_smart_reply(project_id, display_name,
     response = client.create_conversation_profile(
         parent=project_path, conversation_profile=conversation_profile)
 
-    print('Conversation Profile created:\n')
-    print('Display Name: {}\n'.format(response.display_name))
+    print('Conversation Profile created:')
+    print('Display Name: {}'.format(response.display_name))
     # Put Name is the last to make it easier to retrieve.
     print('Name: {}'.format(response.name))
     return response
@@ -192,15 +188,15 @@ def get_conversation_profile(project_id, conversation_profile_id):
 
     Args: project_id: The GCP project linked with the conversation profile.
         conversation_profile_id: Id of the conversation profile."""
-    from google.cloud import dialogflow_v2beta1 as dialogflow
+
     client = dialogflow.ConversationProfilesClient()
     conversation_profile_path = client.conversation_profile_path(
         project_id, conversation_profile_id)
 
     response = client.get_conversation_profile(name=conversation_profile_path)
 
-    print('Got conversation profile:\n')
-    print('Display Name: {}\n'.format(response.display_name))
+    print('Got conversation profile:')
+    print('Display Name: {}'.format(response.display_name))
     print('Name: {}'.format(response.name))
     return response
 
@@ -214,7 +210,7 @@ def delete_conversation_profile(project_id, conversation_profile_id):
 
     Args: project_id: The GCP project linked with the conversation profile.
         conversation_profile_id: Id of the conversation profile."""
-    from google.cloud import dialogflow_v2beta1 as dialogflow
+
     client = dialogflow.ConversationProfilesClient()
     conversation_profile_path = client.conversation_profile_path(
         project_id, conversation_profile_id)

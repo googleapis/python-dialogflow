@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -81,8 +81,10 @@ def test_smart_reply(capsys):
     answer_record_id = response.human_agent_suggestion_results[
         0].suggest_smart_replies_response.smart_reply_answers[
             0].answer_record.split('answerRecords/')[1].rstrip()
-    answer_record_management.update_anwer_record(
-        project_id=PROJECT_ID, answer_record_id=answer_record_id, click=True)
+    answer_record_management.update_answer_record(
+        project_id=PROJECT_ID,
+        answer_record_id=answer_record_id,
+        is_clicked=True)
     out, _ = capsys.readouterr()
     assert 'Clicked: True' in out
 

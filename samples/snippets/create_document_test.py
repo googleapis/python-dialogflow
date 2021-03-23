@@ -16,11 +16,11 @@ from __future__ import absolute_import
 
 import os
 import uuid
-
-from google.cloud import dialogflow_v2beta1
 import pytest
 
 import document_management
+
+from google.cloud import dialogflow_v2beta1 as dialogflow
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 KNOWLEDGE_BASE_NAME = "knowledge_{}".format(uuid.uuid4())
@@ -31,9 +31,9 @@ pytest.KNOWLEDGE_BASE_ID = None
 @pytest.fixture(scope="function", autouse=True)
 def setup_teardown():
     # Create a knowledge base to use in document management
-    client = dialogflow_v2beta1.KnowledgeBasesClient()
+    client = dialogflow.KnowledgeBasesClient()
     project_path = client.common_project_path(PROJECT_ID)
-    knowledge_base = dialogflow_v2beta1.KnowledgeBase(display_name=KNOWLEDGE_BASE_NAME)
+    knowledge_base = dialogflow.KnowledgeBase(display_name=KNOWLEDGE_BASE_NAME)
     response = client.create_knowledge_base(
         parent=project_path, knowledge_base=knowledge_base
     )
@@ -45,7 +45,7 @@ def setup_teardown():
     knowledge_base_path = client.knowledge_base_path(
         PROJECT_ID, pytest.KNOWLEDGE_BASE_ID
     )
-    request = dialogflow_v2beta1.DeleteKnowledgeBaseRequest(
+    request = dialogflow.DeleteKnowledgeBaseRequest(
         name=knowledge_base_path, force=True
     )
     client.delete_knowledge_base(request=request)

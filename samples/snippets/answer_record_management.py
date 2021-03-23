@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2019 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,16 +16,18 @@
 """Dialogflow API Python sample showing how to manage AnswerRecord.
 """
 
+from google.cloud import dialogflow_v2beta1 as dialogflow
 
 # [START dialogflow_update_answer_record]
-def update_anwer_record(project_id, answer_record_id, click):
+def update_answer_record(project_id, answer_record_id, is_clicked):
     """Update the answer record.
 
     Args:
         project_id: The GCP project linked with the conversation profile.
         answer_record_id: The answer record id returned along with the
-        suggestion."""
-    from google.cloud import dialogflow_v2 as dialogflow
+        suggestion.
+        is_clicked: whether the answer record is clicked."""
+
     client = dialogflow.AnswerRecordsClient()
     answer_record_path = client.answer_record_path(project_id,
                                                    answer_record_id)
@@ -34,7 +36,7 @@ def update_anwer_record(project_id, answer_record_id, click):
         answer_record={
             'name': answer_record_path,
             'answer_feedback': {
-                'clicked': click
+                'clicked': is_clicked
             }
         },
         update_mask={'paths': ['answer_feedback']})
