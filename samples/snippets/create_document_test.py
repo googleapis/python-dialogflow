@@ -19,9 +19,9 @@ import uuid
 
 import pytest
 
-import document_management
-
 from google.cloud import dialogflow_v2beta1 as dialogflow
+
+import document_management
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 KNOWLEDGE_BASE_NAME = "knowledge_{}".format(uuid.uuid4())
