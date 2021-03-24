@@ -130,9 +130,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if args.command == 'list':
-        list_knowledge_bases(args.project_id)
-    elif args.command == 'create':
+    if args.command == 'create':
         create_knowledge_base(args.project_id, args.display_name)
     elif args.command == 'get':
         get_knowledge_base(args.project_id, args.knowledge_base_id)

@@ -45,13 +45,12 @@ def create_conversation_profile_article_faq(
         faq_knowledge_base_id=None):
     """Creates a conversation profile with given values
 
-    Args: 
-        project_id:  The GCP project linked with the conversation profile.
+    Args: project_id:  The GCP project linked with the conversation profile.
         display_name: The display name for the conversation profile to be
         created.
         article_suggestion_knowledge_base_id: knowledge base id for article
-        suggestion
-        faq_knowledge_base_id: knowledge base id for faq"""
+        suggestion.
+        faq_knowledge_base_id: knowledge base id for faq."""
 
     client = dialogflow.ConversationProfilesClient()
     project_path = client.common_project_path(project_id)
@@ -128,11 +127,10 @@ def create_conversation_profile_smart_reply(project_id, display_name,
                                             smart_reply_model_name):
     """Creates a conversation profile with given values for smart reply
 
-    Args: 
-        project_id:  The GCP project linked with the conversation profile.
+    Args: project_id:  The GCP project linked with the conversation profile.
         display_name: The display name for the conversation profile to be
         created.
-        smart_reply_allowlist_name: document name for smart reply allowlist
+        smart_reply_allowlist_name: document name for smart reply allowlist.
         smart_reply_model_name: conversation model name for smart reply."""
 
     client = dialogflow.ConversationProfilesClient()

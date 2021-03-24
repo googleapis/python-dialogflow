@@ -18,6 +18,7 @@
 
 from google.cloud import dialogflow_v2beta1 as dialogflow
 
+
 # [START dialogflow_update_answer_record]
 def update_answer_record(project_id, answer_record_id, is_clicked):
     """Update the answer record.
