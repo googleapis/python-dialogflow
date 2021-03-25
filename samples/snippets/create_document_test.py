@@ -17,9 +17,9 @@ from __future__ import absolute_import
 import os
 import uuid
 
-import pytest
-
 from google.cloud import dialogflow_v2beta1 as dialogflow
+
+import pytest
 
 import document_management
 
