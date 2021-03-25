@@ -19,7 +19,7 @@ import conversation_management
 import conversation_profile_management
 import participant_management
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
 SMART_REPLY_MODEL = os.getenv('SMART_REPLY_MODEL')
 SMART_REPLY_ALLOWLIST = os.getenv('SMART_REPLY_ALLOWLIST')
 CONVERSATION_PROFILE_DISPLAY_NAME = 'sample code profile for smart reply'

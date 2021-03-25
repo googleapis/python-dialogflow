@@ -18,7 +18,7 @@ import os
 
 import conversation_profile_management
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
 
 CONVERSATION_PROFILE_DISPLAY_NAME = 'fake_conversation_profile_name'
 

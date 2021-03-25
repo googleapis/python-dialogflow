@@ -20,7 +20,7 @@ import document_management
 import knowledge_base_management
 import participant_management
 
-PROJECT_ID = os.getenv('GCLOUD_PROJECT')
+PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
 KNOWLEDGE_BASE_DISPLAY_NAME = 'fake_KNOWLEDGE_BASE_DISPLAY_NAME'
 DOCUMENT_DISPLAY_NAME = 'Cancel an order'
 CONVERSATION_PROFILE_DISPLAY_NAME = 'fake_conversation_profile'
