@@ -18,14 +18,14 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import grpc_helpers_async         # type: ignore
-from google.api_core import operations_v1              # type: ignore
-from google import auth                                # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import grpc_helpers_async  # type: ignore
+from google.api_core import operations_v1  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc                        # type: ignore
+import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import entity_type
@@ -55,13 +55,15 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'dialogflow.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: Optional[str] = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> aio.Channel:
+    def create_channel(
+        cls,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -90,22 +92,24 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
-    def __init__(self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            channel: aio.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            ssl_channel_credentials: grpc.ChannelCredentials = None,
-            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id=None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        channel: aio.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id=None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -244,9 +248,12 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         return self._operations_client
 
     @property
-    def list_entity_types(self) -> Callable[
-            [entity_type.ListEntityTypesRequest],
-            Awaitable[entity_type.ListEntityTypesResponse]]:
+    def list_entity_types(
+        self,
+    ) -> Callable[
+        [entity_type.ListEntityTypesRequest],
+        Awaitable[entity_type.ListEntityTypesResponse],
+    ]:
         r"""Return a callable for the list entity types method over gRPC.
 
         Returns the list of all entity types in the specified
@@ -262,18 +269,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_entity_types' not in self._stubs:
-            self._stubs['list_entity_types'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/ListEntityTypes',
+        if "list_entity_types" not in self._stubs:
+            self._stubs["list_entity_types"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/ListEntityTypes",
                 request_serializer=entity_type.ListEntityTypesRequest.serialize,
                 response_deserializer=entity_type.ListEntityTypesResponse.deserialize,
             )
-        return self._stubs['list_entity_types']
+        return self._stubs["list_entity_types"]
 
     @property
-    def get_entity_type(self) -> Callable[
-            [entity_type.GetEntityTypeRequest],
-            Awaitable[entity_type.EntityType]]:
+    def get_entity_type(
+        self,
+    ) -> Callable[
+        [entity_type.GetEntityTypeRequest], Awaitable[entity_type.EntityType]
+    ]:
         r"""Return a callable for the get entity type method over gRPC.
 
         Retrieves the specified entity type.
@@ -288,18 +297,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_entity_type' not in self._stubs:
-            self._stubs['get_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/GetEntityType',
+        if "get_entity_type" not in self._stubs:
+            self._stubs["get_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/GetEntityType",
                 request_serializer=entity_type.GetEntityTypeRequest.serialize,
                 response_deserializer=entity_type.EntityType.deserialize,
             )
-        return self._stubs['get_entity_type']
+        return self._stubs["get_entity_type"]
 
     @property
-    def create_entity_type(self) -> Callable[
-            [gcd_entity_type.CreateEntityTypeRequest],
-            Awaitable[gcd_entity_type.EntityType]]:
+    def create_entity_type(
+        self,
+    ) -> Callable[
+        [gcd_entity_type.CreateEntityTypeRequest], Awaitable[gcd_entity_type.EntityType]
+    ]:
         r"""Return a callable for the create entity type method over gRPC.
 
         Creates an entity type in the specified agent.
@@ -314,18 +325,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_entity_type' not in self._stubs:
-            self._stubs['create_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/CreateEntityType',
+        if "create_entity_type" not in self._stubs:
+            self._stubs["create_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/CreateEntityType",
                 request_serializer=gcd_entity_type.CreateEntityTypeRequest.serialize,
                 response_deserializer=gcd_entity_type.EntityType.deserialize,
             )
-        return self._stubs['create_entity_type']
+        return self._stubs["create_entity_type"]
 
     @property
-    def update_entity_type(self) -> Callable[
-            [gcd_entity_type.UpdateEntityTypeRequest],
-            Awaitable[gcd_entity_type.EntityType]]:
+    def update_entity_type(
+        self,
+    ) -> Callable[
+        [gcd_entity_type.UpdateEntityTypeRequest], Awaitable[gcd_entity_type.EntityType]
+    ]:
         r"""Return a callable for the update entity type method over gRPC.
 
         Updates the specified entity type.
@@ -340,18 +353,18 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_entity_type' not in self._stubs:
-            self._stubs['update_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/UpdateEntityType',
+        if "update_entity_type" not in self._stubs:
+            self._stubs["update_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/UpdateEntityType",
                 request_serializer=gcd_entity_type.UpdateEntityTypeRequest.serialize,
                 response_deserializer=gcd_entity_type.EntityType.deserialize,
             )
-        return self._stubs['update_entity_type']
+        return self._stubs["update_entity_type"]
 
     @property
-    def delete_entity_type(self) -> Callable[
-            [entity_type.DeleteEntityTypeRequest],
-            Awaitable[empty.Empty]]:
+    def delete_entity_type(
+        self,
+    ) -> Callable[[entity_type.DeleteEntityTypeRequest], Awaitable[empty.Empty]]:
         r"""Return a callable for the delete entity type method over gRPC.
 
         Deletes the specified entity type.
@@ -366,18 +379,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_entity_type' not in self._stubs:
-            self._stubs['delete_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/DeleteEntityType',
+        if "delete_entity_type" not in self._stubs:
+            self._stubs["delete_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/DeleteEntityType",
                 request_serializer=entity_type.DeleteEntityTypeRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs['delete_entity_type']
+        return self._stubs["delete_entity_type"]
 
     @property
-    def batch_update_entity_types(self) -> Callable[
-            [entity_type.BatchUpdateEntityTypesRequest],
-            Awaitable[operations.Operation]]:
+    def batch_update_entity_types(
+        self,
+    ) -> Callable[
+        [entity_type.BatchUpdateEntityTypesRequest], Awaitable[operations.Operation]
+    ]:
         r"""Return a callable for the batch update entity types method over gRPC.
 
         Updates/Creates multiple entity types in the specified agent.
@@ -394,18 +409,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'batch_update_entity_types' not in self._stubs:
-            self._stubs['batch_update_entity_types'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/BatchUpdateEntityTypes',
+        if "batch_update_entity_types" not in self._stubs:
+            self._stubs["batch_update_entity_types"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/BatchUpdateEntityTypes",
                 request_serializer=entity_type.BatchUpdateEntityTypesRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['batch_update_entity_types']
+        return self._stubs["batch_update_entity_types"]
 
     @property
-    def batch_delete_entity_types(self) -> Callable[
-            [entity_type.BatchDeleteEntityTypesRequest],
-            Awaitable[operations.Operation]]:
+    def batch_delete_entity_types(
+        self,
+    ) -> Callable[
+        [entity_type.BatchDeleteEntityTypesRequest], Awaitable[operations.Operation]
+    ]:
         r"""Return a callable for the batch delete entity types method over gRPC.
 
         Deletes entity types in the specified agent. Operation
@@ -421,18 +438,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'batch_delete_entity_types' not in self._stubs:
-            self._stubs['batch_delete_entity_types'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/BatchDeleteEntityTypes',
+        if "batch_delete_entity_types" not in self._stubs:
+            self._stubs["batch_delete_entity_types"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/BatchDeleteEntityTypes",
                 request_serializer=entity_type.BatchDeleteEntityTypesRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['batch_delete_entity_types']
+        return self._stubs["batch_delete_entity_types"]
 
     @property
-    def batch_create_entities(self) -> Callable[
-            [entity_type.BatchCreateEntitiesRequest],
-            Awaitable[operations.Operation]]:
+    def batch_create_entities(
+        self,
+    ) -> Callable[
+        [entity_type.BatchCreateEntitiesRequest], Awaitable[operations.Operation]
+    ]:
         r"""Return a callable for the batch create entities method over gRPC.
 
         Creates multiple new entities in the specified entity type.
@@ -450,18 +469,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'batch_create_entities' not in self._stubs:
-            self._stubs['batch_create_entities'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/BatchCreateEntities',
+        if "batch_create_entities" not in self._stubs:
+            self._stubs["batch_create_entities"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/BatchCreateEntities",
                 request_serializer=entity_type.BatchCreateEntitiesRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['batch_create_entities']
+        return self._stubs["batch_create_entities"]
 
     @property
-    def batch_update_entities(self) -> Callable[
-            [entity_type.BatchUpdateEntitiesRequest],
-            Awaitable[operations.Operation]]:
+    def batch_update_entities(
+        self,
+    ) -> Callable[
+        [entity_type.BatchUpdateEntitiesRequest], Awaitable[operations.Operation]
+    ]:
         r"""Return a callable for the batch update entities method over gRPC.
 
         Updates or creates multiple entities in the specified entity
@@ -481,18 +502,20 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'batch_update_entities' not in self._stubs:
-            self._stubs['batch_update_entities'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/BatchUpdateEntities',
+        if "batch_update_entities" not in self._stubs:
+            self._stubs["batch_update_entities"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/BatchUpdateEntities",
                 request_serializer=entity_type.BatchUpdateEntitiesRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['batch_update_entities']
+        return self._stubs["batch_update_entities"]
 
     @property
-    def batch_delete_entities(self) -> Callable[
-            [entity_type.BatchDeleteEntitiesRequest],
-            Awaitable[operations.Operation]]:
+    def batch_delete_entities(
+        self,
+    ) -> Callable[
+        [entity_type.BatchDeleteEntitiesRequest], Awaitable[operations.Operation]
+    ]:
         r"""Return a callable for the batch delete entities method over gRPC.
 
         Deletes entities in the specified entity type.
@@ -510,15 +533,13 @@ class EntityTypesGrpcAsyncIOTransport(EntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'batch_delete_entities' not in self._stubs:
-            self._stubs['batch_delete_entities'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.EntityTypes/BatchDeleteEntities',
+        if "batch_delete_entities" not in self._stubs:
+            self._stubs["batch_delete_entities"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.EntityTypes/BatchDeleteEntities",
                 request_serializer=entity_type.BatchDeleteEntitiesRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['batch_delete_entities']
+        return self._stubs["batch_delete_entities"]
 
 
-__all__ = (
-    'EntityTypesGrpcAsyncIOTransport',
-)
+__all__ = ("EntityTypesGrpcAsyncIOTransport",)

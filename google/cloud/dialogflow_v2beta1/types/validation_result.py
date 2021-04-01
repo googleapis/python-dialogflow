@@ -19,11 +19,8 @@ import proto  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2beta1',
-    manifest={
-        'ValidationError',
-        'ValidationResult',
-    },
+    package="google.cloud.dialogflow.v2beta1",
+    manifest={"ValidationError", "ValidationResult",},
 )
 
 
@@ -56,6 +53,7 @@ class ValidationError(proto.Message):
         error_message (str):
             The detailed error messsage.
     """
+
     class Severity(proto.Enum):
         r"""Represents a level of severity."""
         SEVERITY_UNSPECIFIED = 0
@@ -64,9 +62,7 @@ class ValidationError(proto.Message):
         ERROR = 3
         CRITICAL = 4
 
-    severity = proto.Field(proto.ENUM, number=1,
-        enum=Severity,
-    )
+    severity = proto.Field(proto.ENUM, number=1, enum=Severity,)
 
     entries = proto.RepeatedField(proto.STRING, number=3)
 
@@ -81,8 +77,8 @@ class ValidationResult(proto.Message):
             Contains all validation errors.
     """
 
-    validation_errors = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='ValidationError',
+    validation_errors = proto.RepeatedField(
+        proto.MESSAGE, number=1, message="ValidationError",
     )
 
 

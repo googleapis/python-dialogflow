@@ -19,6 +19,6 @@ from .client import AnswerRecordsClient
 from .async_client import AnswerRecordsAsyncClient
 
 __all__ = (
-    'AnswerRecordsClient',
-    'AnswerRecordsAsyncClient',
+    "AnswerRecordsClient",
+    "AnswerRecordsAsyncClient",
 )

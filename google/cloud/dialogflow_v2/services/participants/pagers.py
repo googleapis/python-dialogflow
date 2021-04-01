@@ -15,7 +15,16 @@
 # limitations under the License.
 #
 
-from typing import Any, AsyncIterable, Awaitable, Callable, Iterable, Sequence, Tuple, Optional
+from typing import (
+    Any,
+    AsyncIterable,
+    Awaitable,
+    Callable,
+    Iterable,
+    Sequence,
+    Tuple,
+    Optional,
+)
 
 from google.cloud.dialogflow_v2.types import participant
 
@@ -37,12 +46,15 @@ class ListParticipantsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., participant.ListParticipantsResponse],
-            request: participant.ListParticipantsRequest,
-            response: participant.ListParticipantsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., participant.ListParticipantsResponse],
+        request: participant.ListParticipantsRequest,
+        response: participant.ListParticipantsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -76,7 +88,7 @@ class ListParticipantsPager:
             yield from page.participants
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListParticipantsAsyncPager:
@@ -96,12 +108,15 @@ class ListParticipantsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[participant.ListParticipantsResponse]],
-            request: participant.ListParticipantsRequest,
-            response: participant.ListParticipantsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[participant.ListParticipantsResponse]],
+        request: participant.ListParticipantsRequest,
+        response: participant.ListParticipantsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -139,4 +154,4 @@ class ListParticipantsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)

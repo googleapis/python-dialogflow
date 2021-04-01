@@ -19,6 +19,6 @@ from .client import ContextsClient
 from .async_client import ContextsAsyncClient
 
 __all__ = (
-    'ContextsClient',
-    'ContextsAsyncClient',
+    "ContextsClient",
+    "ContextsAsyncClient",
 )

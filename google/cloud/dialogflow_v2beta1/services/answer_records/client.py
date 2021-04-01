@@ -23,14 +23,14 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions                            # type: ignore
-from google.api_core import gapic_v1                              # type: ignore
-from google.api_core import retry as retries                      # type: ignore
-from google.auth import credentials                               # type: ignore
-from google.auth.transport import mtls                            # type: ignore
-from google.auth.transport.grpc import SslCredentials             # type: ignore
-from google.auth.exceptions import MutualTLSChannelError          # type: ignore
-from google.oauth2 import service_account                         # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.auth.transport import mtls  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.exceptions import MutualTLSChannelError  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.answer_records import pagers
 from google.cloud.dialogflow_v2beta1.types import answer_record
@@ -49,13 +49,12 @@ class AnswerRecordsClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[AnswerRecordsTransport]]
-    _transport_registry['grpc'] = AnswerRecordsGrpcTransport
-    _transport_registry['grpc_asyncio'] = AnswerRecordsGrpcAsyncIOTransport
 
-    def get_transport_class(cls,
-            label: str = None,
-        ) -> Type[AnswerRecordsTransport]:
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[AnswerRecordsTransport]]
+    _transport_registry["grpc"] = AnswerRecordsGrpcTransport
+    _transport_registry["grpc_asyncio"] = AnswerRecordsGrpcAsyncIOTransport
+
+    def get_transport_class(cls, label: str = None,) -> Type[AnswerRecordsTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -108,7 +107,7 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'dialogflow.googleapis.com'
+    DEFAULT_ENDPOINT = "dialogflow.googleapis.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -143,9 +142,8 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         Returns:
             AnswerRecordsClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
@@ -160,77 +158,87 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         return self._transport
 
     @staticmethod
-    def answer_record_path(project: str,answer_record: str,) -> str:
+    def answer_record_path(project: str, answer_record: str,) -> str:
         """Return a fully-qualified answer_record string."""
-        return "projects/{project}/answerRecords/{answer_record}".format(project=project, answer_record=answer_record, )
+        return "projects/{project}/answerRecords/{answer_record}".format(
+            project=project, answer_record=answer_record,
+        )
 
     @staticmethod
-    def parse_answer_record_path(path: str) -> Dict[str,str]:
+    def parse_answer_record_path(path: str) -> Dict[str, str]:
         """Parse a answer_record path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/answerRecords/(?P<answer_record>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/answerRecords/(?P<answer_record>.+?)$", path
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_billing_account_path(billing_account: str, ) -> str:
+    def common_billing_account_path(billing_account: str,) -> str:
         """Return a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
+        return "billingAccounts/{billing_account}".format(
+            billing_account=billing_account,
+        )
 
     @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
+    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
         """Parse a billing_account path into its component segments."""
         m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_folder_path(folder: str, ) -> str:
+    def common_folder_path(folder: str,) -> str:
         """Return a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder, )
+        return "folders/{folder}".format(folder=folder,)
 
     @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str,str]:
+    def parse_common_folder_path(path: str) -> Dict[str, str]:
         """Parse a folder path into its component segments."""
         m = re.match(r"^folders/(?P<folder>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_organization_path(organization: str, ) -> str:
+    def common_organization_path(organization: str,) -> str:
         """Return a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization, )
+        return "organizations/{organization}".format(organization=organization,)
 
     @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str,str]:
+    def parse_common_organization_path(path: str) -> Dict[str, str]:
         """Parse a organization path into its component segments."""
         m = re.match(r"^organizations/(?P<organization>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_project_path(project: str, ) -> str:
+    def common_project_path(project: str,) -> str:
         """Return a fully-qualified project string."""
-        return "projects/{project}".format(project=project, )
+        return "projects/{project}".format(project=project,)
 
     @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str,str]:
+    def parse_common_project_path(path: str) -> Dict[str, str]:
         """Parse a project path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_location_path(project: str, location: str, ) -> str:
+    def common_location_path(project: str, location: str,) -> str:
         """Return a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(project=project, location=location, )
+        return "projects/{project}/locations/{location}".format(
+            project=project, location=location,
+        )
 
     @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str,str]:
+    def parse_common_location_path(path: str) -> Dict[str, str]:
         """Parse a location path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(self, *,
-            credentials: Optional[credentials.Credentials] = None,
-            transport: Union[str, AnswerRecordsTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: Optional[credentials.Credentials] = None,
+        transport: Union[str, AnswerRecordsTransport, None] = None,
+        client_options: Optional[client_options_lib.ClientOptions] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the answer records client.
 
         Args:
@@ -274,7 +282,9 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
             client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
+        use_client_cert = bool(
+            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
+        )
 
         client_cert_source_func = None
         is_mtls = False
@@ -284,7 +294,9 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
                 client_cert_source_func = client_options.client_cert_source
             else:
                 is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
+                client_cert_source_func = (
+                    mtls.default_client_cert_source() if is_mtls else None
+                )
 
         # Figure out which api endpoint to use.
         if client_options.api_endpoint is not None:
@@ -296,7 +308,9 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
             elif use_mtls_env == "always":
                 api_endpoint = self.DEFAULT_MTLS_ENDPOINT
             elif use_mtls_env == "auto":
-                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
+                api_endpoint = (
+                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
+                )
             else:
                 raise MutualTLSChannelError(
                     "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
@@ -308,8 +322,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         if isinstance(transport, AnswerRecordsTransport):
             # transport is a AnswerRecordsTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+                raise ValueError(
+                    "When providing a transport instance, "
+                    "provide its credentials directly."
+                )
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -328,13 +344,14 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
                 client_info=client_info,
             )
 
-    def get_answer_record(self,
-            request: answer_record.GetAnswerRecordRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> answer_record.AnswerRecord:
+    def get_answer_record(
+        self,
+        request: answer_record.GetAnswerRecordRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> answer_record.AnswerRecord:
         r"""Deprecated.
         Retrieves a specific answer record.
 
@@ -403,30 +420,24 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_answer_records(self,
-            request: answer_record.ListAnswerRecordsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAnswerRecordsPager:
+    def list_answer_records(
+        self,
+        request: answer_record.ListAnswerRecordsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAnswerRecordsPager:
         r"""Returns the list of all answer records in the
         specified project in reverse chronological order.
 
@@ -463,8 +474,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a answer_record.ListAnswerRecordsRequest.
@@ -486,40 +499,31 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListAnswerRecordsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def update_answer_record(self,
-            request: gcd_answer_record.UpdateAnswerRecordRequest = None,
-            *,
-            answer_record: gcd_answer_record.AnswerRecord = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_answer_record.AnswerRecord:
+    def update_answer_record(
+        self,
+        request: gcd_answer_record.UpdateAnswerRecordRequest = None,
+        *,
+        answer_record: gcd_answer_record.AnswerRecord = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_answer_record.AnswerRecord:
         r"""Updates the specified answer record.
 
         Args:
@@ -588,8 +592,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([answer_record, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_answer_record.UpdateAnswerRecordRequest.
@@ -613,38 +619,26 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('answer_record.name', request.answer_record.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("answer_record.name", request.answer_record.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'AnswerRecordsClient',
-)
+__all__ = ("AnswerRecordsClient",)

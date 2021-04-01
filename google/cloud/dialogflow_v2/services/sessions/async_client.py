@@ -18,15 +18,24 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, AsyncIterable, Awaitable, AsyncIterator, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    AsyncIterable,
+    Awaitable,
+    AsyncIterator,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2.types import audio_config
 from google.cloud.dialogflow_v2.types import session
@@ -57,16 +66,24 @@ class SessionsAsyncClient:
     session_path = staticmethod(SessionsClient.session_path)
     parse_session_path = staticmethod(SessionsClient.parse_session_path)
     session_entity_type_path = staticmethod(SessionsClient.session_entity_type_path)
-    parse_session_entity_type_path = staticmethod(SessionsClient.parse_session_entity_type_path)
+    parse_session_entity_type_path = staticmethod(
+        SessionsClient.parse_session_entity_type_path
+    )
 
-    common_billing_account_path = staticmethod(SessionsClient.common_billing_account_path)
-    parse_common_billing_account_path = staticmethod(SessionsClient.parse_common_billing_account_path)
+    common_billing_account_path = staticmethod(
+        SessionsClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        SessionsClient.parse_common_billing_account_path
+    )
 
     common_folder_path = staticmethod(SessionsClient.common_folder_path)
     parse_common_folder_path = staticmethod(SessionsClient.parse_common_folder_path)
 
     common_organization_path = staticmethod(SessionsClient.common_organization_path)
-    parse_common_organization_path = staticmethod(SessionsClient.parse_common_organization_path)
+    parse_common_organization_path = staticmethod(
+        SessionsClient.parse_common_organization_path
+    )
 
     common_project_path = staticmethod(SessionsClient.common_project_path)
     parse_common_project_path = staticmethod(SessionsClient.parse_common_project_path)
@@ -115,14 +132,18 @@ class SessionsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(type(SessionsClient).get_transport_class, type(SessionsClient))
+    get_transport_class = functools.partial(
+        type(SessionsClient).get_transport_class, type(SessionsClient)
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, SessionsTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, SessionsTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the sessions client.
 
         Args:
@@ -161,18 +182,18 @@ class SessionsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
-
         )
 
-    async def detect_intent(self,
-            request: gcd_session.DetectIntentRequest = None,
-            *,
-            session: str = None,
-            query_input: gcd_session.QueryInput = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_session.DetectIntentResponse:
+    async def detect_intent(
+        self,
+        request: gcd_session.DetectIntentRequest = None,
+        *,
+        session: str = None,
+        query_input: gcd_session.QueryInput = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_session.DetectIntentResponse:
         r"""Processes a natural language query and returns structured,
         actionable data as a result. This method is not idempotent,
         because it may cause contexts and session entity types to be
@@ -244,8 +265,10 @@ class SessionsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([session, query_input])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = gcd_session.DetectIntentRequest(request)
 
@@ -265,9 +288,7 @@ class SessionsAsyncClient:
                 initial=0.1,
                 maximum=60.0,
                 multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable,
-                ),
+                predicate=retries.if_exception_type(exceptions.ServiceUnavailable,),
                 deadline=220.0,
             ),
             default_timeout=220.0,
@@ -277,29 +298,23 @@ class SessionsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('session', request.session),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("session", request.session),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def streaming_detect_intent(self,
-            requests: AsyncIterator[session.StreamingDetectIntentRequest] = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> Awaitable[AsyncIterable[session.StreamingDetectIntentResponse]]:
+    def streaming_detect_intent(
+        self,
+        requests: AsyncIterator[session.StreamingDetectIntentRequest] = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> Awaitable[AsyncIterable[session.StreamingDetectIntentResponse]]:
         r"""Processes a natural language query in audio format in a
         streaming fashion and returns structured, actionable data as a
         result. This method is only available via the gRPC API (not
@@ -380,32 +395,20 @@ class SessionsAsyncClient:
         )
 
         # Send the request.
-        response = rpc(
-            requests,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(requests, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'SessionsAsyncClient',
-)
+__all__ = ("SessionsAsyncClient",)

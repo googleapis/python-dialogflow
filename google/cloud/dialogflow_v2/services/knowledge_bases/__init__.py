@@ -19,6 +19,6 @@ from .client import KnowledgeBasesClient
 from .async_client import KnowledgeBasesAsyncClient
 
 __all__ = (
-    'KnowledgeBasesClient',
-    'KnowledgeBasesAsyncClient',
+    "KnowledgeBasesClient",
+    "KnowledgeBasesAsyncClient",
 )

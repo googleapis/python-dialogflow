@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2.services.contexts import pagers
 from google.cloud.dialogflow_v2.types import context
@@ -50,14 +50,20 @@ class ContextsAsyncClient:
     context_path = staticmethod(ContextsClient.context_path)
     parse_context_path = staticmethod(ContextsClient.parse_context_path)
 
-    common_billing_account_path = staticmethod(ContextsClient.common_billing_account_path)
-    parse_common_billing_account_path = staticmethod(ContextsClient.parse_common_billing_account_path)
+    common_billing_account_path = staticmethod(
+        ContextsClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        ContextsClient.parse_common_billing_account_path
+    )
 
     common_folder_path = staticmethod(ContextsClient.common_folder_path)
     parse_common_folder_path = staticmethod(ContextsClient.parse_common_folder_path)
 
     common_organization_path = staticmethod(ContextsClient.common_organization_path)
-    parse_common_organization_path = staticmethod(ContextsClient.parse_common_organization_path)
+    parse_common_organization_path = staticmethod(
+        ContextsClient.parse_common_organization_path
+    )
 
     common_project_path = staticmethod(ContextsClient.common_project_path)
     parse_common_project_path = staticmethod(ContextsClient.parse_common_project_path)
@@ -106,14 +112,18 @@ class ContextsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(type(ContextsClient).get_transport_class, type(ContextsClient))
+    get_transport_class = functools.partial(
+        type(ContextsClient).get_transport_class, type(ContextsClient)
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, ContextsTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, ContextsTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the contexts client.
 
         Args:
@@ -152,17 +162,17 @@ class ContextsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
-
         )
 
-    async def list_contexts(self,
-            request: context.ListContextsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListContextsAsyncPager:
+    async def list_contexts(
+        self,
+        request: context.ListContextsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListContextsAsyncPager:
         r"""Returns the list of all contexts in the specified
         session.
 
@@ -202,8 +212,10 @@ class ContextsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = context.ListContextsRequest(request)
 
@@ -224,39 +236,30 @@ class ContextsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListContextsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_context(self,
-            request: context.GetContextRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> context.Context:
+    async def get_context(
+        self,
+        request: context.GetContextRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> context.Context:
         r"""Retrieves the specified context.
 
         Args:
@@ -310,8 +313,10 @@ class ContextsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = context.GetContextRequest(request)
 
@@ -332,31 +337,25 @@ class ContextsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_context(self,
-            request: gcd_context.CreateContextRequest = None,
-            *,
-            parent: str = None,
-            context: gcd_context.Context = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_context.Context:
+    async def create_context(
+        self,
+        request: gcd_context.CreateContextRequest = None,
+        *,
+        parent: str = None,
+        context: gcd_context.Context = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_context.Context:
         r"""Creates a context.
         If the specified context already exists, overrides the
         context.
@@ -416,8 +415,10 @@ class ContextsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, context])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = gcd_context.CreateContextRequest(request)
 
@@ -440,31 +441,25 @@ class ContextsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_context(self,
-            request: gcd_context.UpdateContextRequest = None,
-            *,
-            context: gcd_context.Context = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_context.Context:
+    async def update_context(
+        self,
+        request: gcd_context.UpdateContextRequest = None,
+        *,
+        context: gcd_context.Context = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_context.Context:
         r"""Updates the specified context.
 
         Args:
@@ -518,8 +513,10 @@ class ContextsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([context, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = gcd_context.UpdateContextRequest(request)
 
@@ -542,30 +539,26 @@ class ContextsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('context.name', request.context.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("context.name", request.context.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_context(self,
-            request: context.DeleteContextRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_context(
+        self,
+        request: context.DeleteContextRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes the specified context.
 
         Args:
@@ -596,8 +589,10 @@ class ContextsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = context.DeleteContextRequest(request)
 
@@ -618,27 +613,23 @@ class ContextsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def delete_all_contexts(self,
-            request: context.DeleteAllContextsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_all_contexts(
+        self,
+        request: context.DeleteAllContextsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes all active contexts in the specified session.
 
         Args:
@@ -669,8 +660,10 @@ class ContextsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = context.DeleteAllContextsRequest(request)
 
@@ -691,35 +684,23 @@ class ContextsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
-
-
-
-
-
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'ContextsAsyncClient',
-)
+__all__ = ("ContextsAsyncClient",)

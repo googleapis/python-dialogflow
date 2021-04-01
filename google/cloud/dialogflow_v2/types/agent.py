@@ -22,20 +22,20 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2',
+    package="google.cloud.dialogflow.v2",
     manifest={
-        'Agent',
-        'GetAgentRequest',
-        'SetAgentRequest',
-        'DeleteAgentRequest',
-        'SearchAgentsRequest',
-        'SearchAgentsResponse',
-        'TrainAgentRequest',
-        'ExportAgentRequest',
-        'ExportAgentResponse',
-        'ImportAgentRequest',
-        'RestoreAgentRequest',
-        'GetValidationResultRequest',
+        "Agent",
+        "GetAgentRequest",
+        "SetAgentRequest",
+        "DeleteAgentRequest",
+        "SearchAgentsRequest",
+        "SearchAgentsResponse",
+        "TrainAgentRequest",
+        "ExportAgentRequest",
+        "ExportAgentResponse",
+        "ImportAgentRequest",
+        "RestoreAgentRequest",
+        "GetValidationResultRequest",
     },
 )
 
@@ -110,6 +110,7 @@ class Agent(proto.Message):
             Optional. The agent tier. If not specified, TIER_STANDARD is
             assumed.
     """
+
     class MatchMode(proto.Enum):
         r"""Match mode determines how intents are detected from user
         queries.
@@ -148,19 +149,13 @@ class Agent(proto.Message):
 
     enable_logging = proto.Field(proto.BOOL, number=8)
 
-    match_mode = proto.Field(proto.ENUM, number=9,
-        enum=MatchMode,
-    )
+    match_mode = proto.Field(proto.ENUM, number=9, enum=MatchMode,)
 
     classification_threshold = proto.Field(proto.FLOAT, number=10)
 
-    api_version = proto.Field(proto.ENUM, number=14,
-        enum=ApiVersion,
-    )
+    api_version = proto.Field(proto.ENUM, number=14, enum=ApiVersion,)
 
-    tier = proto.Field(proto.ENUM, number=15,
-        enum=Tier,
-    )
+    tier = proto.Field(proto.ENUM, number=15, enum=Tier,)
 
 
 class GetAgentRequest(proto.Message):
@@ -188,13 +183,9 @@ class SetAgentRequest(proto.Message):
             get updated.
     """
 
-    agent = proto.Field(proto.MESSAGE, number=1,
-        message='Agent',
-    )
+    agent = proto.Field(proto.MESSAGE, number=1, message="Agent",)
 
-    update_mask = proto.Field(proto.MESSAGE, number=2,
-        message=field_mask.FieldMask,
-    )
+    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
 
 
 class DeleteAgentRequest(proto.Message):
@@ -252,9 +243,7 @@ class SearchAgentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    agents = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='Agent',
-    )
+    agents = proto.RepeatedField(proto.MESSAGE, number=1, message="Agent",)
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -306,9 +295,9 @@ class ExportAgentResponse(proto.Message):
             Zip compressed raw byte content for agent.
     """
 
-    agent_uri = proto.Field(proto.STRING, number=1, oneof='agent')
+    agent_uri = proto.Field(proto.STRING, number=1, oneof="agent")
 
-    agent_content = proto.Field(proto.BYTES, number=2, oneof='agent')
+    agent_content = proto.Field(proto.BYTES, number=2, oneof="agent")
 
 
 class ImportAgentRequest(proto.Message):
@@ -329,9 +318,9 @@ class ImportAgentRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    agent_uri = proto.Field(proto.STRING, number=2, oneof='agent')
+    agent_uri = proto.Field(proto.STRING, number=2, oneof="agent")
 
-    agent_content = proto.Field(proto.BYTES, number=3, oneof='agent')
+    agent_content = proto.Field(proto.BYTES, number=3, oneof="agent")
 
 
 class RestoreAgentRequest(proto.Message):
@@ -352,9 +341,9 @@ class RestoreAgentRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    agent_uri = proto.Field(proto.STRING, number=2, oneof='agent')
+    agent_uri = proto.Field(proto.STRING, number=2, oneof="agent")
 
-    agent_content = proto.Field(proto.BYTES, number=3, oneof='agent')
+    agent_content = proto.Field(proto.BYTES, number=3, oneof="agent")
 
 
 class GetValidationResultRequest(proto.Message):

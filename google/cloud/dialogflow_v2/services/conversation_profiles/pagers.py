@@ -15,7 +15,16 @@
 # limitations under the License.
 #
 
-from typing import Any, AsyncIterable, Awaitable, Callable, Iterable, Sequence, Tuple, Optional
+from typing import (
+    Any,
+    AsyncIterable,
+    Awaitable,
+    Callable,
+    Iterable,
+    Sequence,
+    Tuple,
+    Optional,
+)
 
 from google.cloud.dialogflow_v2.types import conversation_profile
 
@@ -37,12 +46,15 @@ class ListConversationProfilesPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., conversation_profile.ListConversationProfilesResponse],
-            request: conversation_profile.ListConversationProfilesRequest,
-            response: conversation_profile.ListConversationProfilesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., conversation_profile.ListConversationProfilesResponse],
+        request: conversation_profile.ListConversationProfilesRequest,
+        response: conversation_profile.ListConversationProfilesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -76,7 +88,7 @@ class ListConversationProfilesPager:
             yield from page.conversation_profiles
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListConversationProfilesAsyncPager:
@@ -96,12 +108,17 @@ class ListConversationProfilesAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[conversation_profile.ListConversationProfilesResponse]],
-            request: conversation_profile.ListConversationProfilesRequest,
-            response: conversation_profile.ListConversationProfilesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[
+            ..., Awaitable[conversation_profile.ListConversationProfilesResponse]
+        ],
+        request: conversation_profile.ListConversationProfilesRequest,
+        response: conversation_profile.ListConversationProfilesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -123,7 +140,9 @@ class ListConversationProfilesAsyncPager:
         return getattr(self._response, name)
 
     @property
-    async def pages(self) -> AsyncIterable[conversation_profile.ListConversationProfilesResponse]:
+    async def pages(
+        self,
+    ) -> AsyncIterable[conversation_profile.ListConversationProfilesResponse]:
         yield self._response
         while self._response.next_page_token:
             self._request.page_token = self._response.next_page_token
@@ -139,4 +158,4 @@ class ListConversationProfilesAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)

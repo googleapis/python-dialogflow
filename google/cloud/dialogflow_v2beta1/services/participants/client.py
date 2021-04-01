@@ -23,14 +23,14 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions                            # type: ignore
-from google.api_core import gapic_v1                              # type: ignore
-from google.api_core import retry as retries                      # type: ignore
-from google.auth import credentials                               # type: ignore
-from google.auth.transport import mtls                            # type: ignore
-from google.auth.transport.grpc import SslCredentials             # type: ignore
-from google.auth.exceptions import MutualTLSChannelError          # type: ignore
-from google.oauth2 import service_account                         # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.auth.transport import mtls  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.exceptions import MutualTLSChannelError  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.participants import pagers
 from google.cloud.dialogflow_v2beta1.types import participant
@@ -50,13 +50,12 @@ class ParticipantsClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[ParticipantsTransport]]
-    _transport_registry['grpc'] = ParticipantsGrpcTransport
-    _transport_registry['grpc_asyncio'] = ParticipantsGrpcAsyncIOTransport
 
-    def get_transport_class(cls,
-            label: str = None,
-        ) -> Type[ParticipantsTransport]:
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[ParticipantsTransport]]
+    _transport_registry["grpc"] = ParticipantsGrpcTransport
+    _transport_registry["grpc_asyncio"] = ParticipantsGrpcAsyncIOTransport
+
+    def get_transport_class(cls, label: str = None,) -> Type[ParticipantsTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -109,7 +108,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'dialogflow.googleapis.com'
+    DEFAULT_ENDPOINT = "dialogflow.googleapis.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -144,9 +143,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         Returns:
             ParticipantsClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
@@ -161,132 +159,165 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         return self._transport
 
     @staticmethod
-    def context_path(project: str,session: str,context: str,) -> str:
+    def context_path(project: str, session: str, context: str,) -> str:
         """Return a fully-qualified context string."""
-        return "projects/{project}/agent/sessions/{session}/contexts/{context}".format(project=project, session=session, context=context, )
+        return "projects/{project}/agent/sessions/{session}/contexts/{context}".format(
+            project=project, session=session, context=context,
+        )
 
     @staticmethod
-    def parse_context_path(path: str) -> Dict[str,str]:
+    def parse_context_path(path: str) -> Dict[str, str]:
         """Parse a context path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/contexts/(?P<context>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/contexts/(?P<context>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def document_path(project: str,knowledge_base: str,document: str,) -> str:
+    def document_path(project: str, knowledge_base: str, document: str,) -> str:
         """Return a fully-qualified document string."""
-        return "projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}".format(project=project, knowledge_base=knowledge_base, document=document, )
+        return "projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}".format(
+            project=project, knowledge_base=knowledge_base, document=document,
+        )
 
     @staticmethod
-    def parse_document_path(path: str) -> Dict[str,str]:
+    def parse_document_path(path: str) -> Dict[str, str]:
         """Parse a document path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)/documents/(?P<document>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)/documents/(?P<document>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def intent_path(project: str,intent: str,) -> str:
+    def intent_path(project: str, intent: str,) -> str:
         """Return a fully-qualified intent string."""
-        return "projects/{project}/agent/intents/{intent}".format(project=project, intent=intent, )
+        return "projects/{project}/agent/intents/{intent}".format(
+            project=project, intent=intent,
+        )
 
     @staticmethod
-    def parse_intent_path(path: str) -> Dict[str,str]:
+    def parse_intent_path(path: str) -> Dict[str, str]:
         """Parse a intent path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/agent/intents/(?P<intent>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def message_path(project: str,conversation: str,message: str,) -> str:
+    def message_path(project: str, conversation: str, message: str,) -> str:
         """Return a fully-qualified message string."""
-        return "projects/{project}/conversations/{conversation}/messages/{message}".format(project=project, conversation=conversation, message=message, )
+        return "projects/{project}/conversations/{conversation}/messages/{message}".format(
+            project=project, conversation=conversation, message=message,
+        )
 
     @staticmethod
-    def parse_message_path(path: str) -> Dict[str,str]:
+    def parse_message_path(path: str) -> Dict[str, str]:
         """Parse a message path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/conversations/(?P<conversation>.+?)/messages/(?P<message>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/conversations/(?P<conversation>.+?)/messages/(?P<message>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def participant_path(project: str,conversation: str,participant: str,) -> str:
+    def participant_path(project: str, conversation: str, participant: str,) -> str:
         """Return a fully-qualified participant string."""
-        return "projects/{project}/conversations/{conversation}/participants/{participant}".format(project=project, conversation=conversation, participant=participant, )
+        return "projects/{project}/conversations/{conversation}/participants/{participant}".format(
+            project=project, conversation=conversation, participant=participant,
+        )
 
     @staticmethod
-    def parse_participant_path(path: str) -> Dict[str,str]:
+    def parse_participant_path(path: str) -> Dict[str, str]:
         """Parse a participant path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/conversations/(?P<conversation>.+?)/participants/(?P<participant>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/conversations/(?P<conversation>.+?)/participants/(?P<participant>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def session_entity_type_path(project: str,session: str,entity_type: str,) -> str:
+    def session_entity_type_path(project: str, session: str, entity_type: str,) -> str:
         """Return a fully-qualified session_entity_type string."""
-        return "projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}".format(project=project, session=session, entity_type=entity_type, )
+        return "projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}".format(
+            project=project, session=session, entity_type=entity_type,
+        )
 
     @staticmethod
-    def parse_session_entity_type_path(path: str) -> Dict[str,str]:
+    def parse_session_entity_type_path(path: str) -> Dict[str, str]:
         """Parse a session_entity_type path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/entityTypes/(?P<entity_type>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/entityTypes/(?P<entity_type>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_billing_account_path(billing_account: str, ) -> str:
+    def common_billing_account_path(billing_account: str,) -> str:
         """Return a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
+        return "billingAccounts/{billing_account}".format(
+            billing_account=billing_account,
+        )
 
     @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
+    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
         """Parse a billing_account path into its component segments."""
         m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_folder_path(folder: str, ) -> str:
+    def common_folder_path(folder: str,) -> str:
         """Return a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder, )
+        return "folders/{folder}".format(folder=folder,)
 
     @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str,str]:
+    def parse_common_folder_path(path: str) -> Dict[str, str]:
         """Parse a folder path into its component segments."""
         m = re.match(r"^folders/(?P<folder>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_organization_path(organization: str, ) -> str:
+    def common_organization_path(organization: str,) -> str:
         """Return a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization, )
+        return "organizations/{organization}".format(organization=organization,)
 
     @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str,str]:
+    def parse_common_organization_path(path: str) -> Dict[str, str]:
         """Parse a organization path into its component segments."""
         m = re.match(r"^organizations/(?P<organization>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_project_path(project: str, ) -> str:
+    def common_project_path(project: str,) -> str:
         """Return a fully-qualified project string."""
-        return "projects/{project}".format(project=project, )
+        return "projects/{project}".format(project=project,)
 
     @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str,str]:
+    def parse_common_project_path(path: str) -> Dict[str, str]:
         """Parse a project path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_location_path(project: str, location: str, ) -> str:
+    def common_location_path(project: str, location: str,) -> str:
         """Return a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(project=project, location=location, )
+        return "projects/{project}/locations/{location}".format(
+            project=project, location=location,
+        )
 
     @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str,str]:
+    def parse_common_location_path(path: str) -> Dict[str, str]:
         """Parse a location path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(self, *,
-            credentials: Optional[credentials.Credentials] = None,
-            transport: Union[str, ParticipantsTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: Optional[credentials.Credentials] = None,
+        transport: Union[str, ParticipantsTransport, None] = None,
+        client_options: Optional[client_options_lib.ClientOptions] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the participants client.
 
         Args:
@@ -330,7 +361,9 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
             client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
+        use_client_cert = bool(
+            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
+        )
 
         client_cert_source_func = None
         is_mtls = False
@@ -340,7 +373,9 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 client_cert_source_func = client_options.client_cert_source
             else:
                 is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
+                client_cert_source_func = (
+                    mtls.default_client_cert_source() if is_mtls else None
+                )
 
         # Figure out which api endpoint to use.
         if client_options.api_endpoint is not None:
@@ -352,7 +387,9 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
             elif use_mtls_env == "always":
                 api_endpoint = self.DEFAULT_MTLS_ENDPOINT
             elif use_mtls_env == "auto":
-                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
+                api_endpoint = (
+                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
+                )
             else:
                 raise MutualTLSChannelError(
                     "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
@@ -364,8 +401,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         if isinstance(transport, ParticipantsTransport):
             # transport is a ParticipantsTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+                raise ValueError(
+                    "When providing a transport instance, "
+                    "provide its credentials directly."
+                )
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -384,15 +423,16 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 client_info=client_info,
             )
 
-    def create_participant(self,
-            request: gcd_participant.CreateParticipantRequest = None,
-            *,
-            parent: str = None,
-            participant: gcd_participant.Participant = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_participant.Participant:
+    def create_participant(
+        self,
+        request: gcd_participant.CreateParticipantRequest = None,
+        *,
+        parent: str = None,
+        participant: gcd_participant.Participant = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_participant.Participant:
         r"""Creates a new participant in a conversation.
 
         Args:
@@ -430,8 +470,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, participant])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_participant.CreateParticipantRequest.
@@ -455,30 +497,24 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_participant(self,
-            request: participant.GetParticipantRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> participant.Participant:
+    def get_participant(
+        self,
+        request: participant.GetParticipantRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> participant.Participant:
         r"""Retrieves a conversation participant.
 
         Args:
@@ -510,8 +546,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.GetParticipantRequest.
@@ -533,30 +571,24 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_participants(self,
-            request: participant.ListParticipantsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListParticipantsPager:
+    def list_participants(
+        self,
+        request: participant.ListParticipantsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListParticipantsPager:
         r"""Returns the list of all participants in the specified
         conversation.
 
@@ -593,8 +625,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.ListParticipantsRequest.
@@ -616,40 +650,31 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListParticipantsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def update_participant(self,
-            request: gcd_participant.UpdateParticipantRequest = None,
-            *,
-            participant: gcd_participant.Participant = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_participant.Participant:
+    def update_participant(
+        self,
+        request: gcd_participant.UpdateParticipantRequest = None,
+        *,
+        participant: gcd_participant.Participant = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_participant.Participant:
         r"""Updates the specified participant.
 
         Args:
@@ -686,8 +711,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([participant, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_participant.UpdateParticipantRequest.
@@ -711,32 +738,28 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('participant.name', request.participant.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("participant.name", request.participant.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def analyze_content(self,
-            request: gcd_participant.AnalyzeContentRequest = None,
-            *,
-            participant: str = None,
-            text_input: session.TextInput = None,
-            event_input: session.EventInput = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_participant.AnalyzeContentResponse:
+    def analyze_content(
+        self,
+        request: gcd_participant.AnalyzeContentRequest = None,
+        *,
+        participant: str = None,
+        text_input: session.TextInput = None,
+        event_input: session.EventInput = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_participant.AnalyzeContentResponse:
         r"""Adds a text (chat, for example), or audio (phone recording, for
         example) message from a participant into the conversation.
 
@@ -786,8 +809,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([participant, text_input, event_input])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_participant.AnalyzeContentRequest.
@@ -813,30 +838,26 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('participant', request.participant),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("participant", request.participant),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def suggest_articles(self,
-            request: participant.SuggestArticlesRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> participant.SuggestArticlesResponse:
+    def suggest_articles(
+        self,
+        request: participant.SuggestArticlesRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> participant.SuggestArticlesResponse:
         r"""Gets suggested articles for a participant based on specific
         historical messages.
 
@@ -877,8 +898,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.SuggestArticlesRequest.
@@ -900,30 +923,24 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def suggest_faq_answers(self,
-            request: participant.SuggestFaqAnswersRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> participant.SuggestFaqAnswersResponse:
+    def suggest_faq_answers(
+        self,
+        request: participant.SuggestFaqAnswersRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> participant.SuggestFaqAnswersResponse:
         r"""Gets suggested faq answers for a participant based on
         specific historical messages.
 
@@ -957,8 +974,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.SuggestFaqAnswersRequest.
@@ -980,30 +999,24 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def suggest_smart_replies(self,
-            request: participant.SuggestSmartRepliesRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> participant.SuggestSmartRepliesResponse:
+    def suggest_smart_replies(
+        self,
+        request: participant.SuggestSmartRepliesRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> participant.SuggestSmartRepliesResponse:
         r"""Gets smart replies for a participant based on
         specific historical messages.
 
@@ -1037,8 +1050,10 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.SuggestSmartRepliesRequest.
@@ -1060,29 +1075,23 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_suggestions(self,
-            request: participant.ListSuggestionsRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListSuggestionsPager:
+    def list_suggestions(
+        self,
+        request: participant.ListSuggestionsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListSuggestionsPager:
         r"""Deprecated: Use inline suggestion, event based suggestion or
         Suggestion\* API instead. See
         [HumanAgentAssistantConfig.name][google.cloud.dialogflow.v2beta1.HumanAgentAssistantConfig.name]
@@ -1140,38 +1149,29 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListSuggestionsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def compile_suggestion(self,
-            request: participant.CompileSuggestionRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> participant.CompileSuggestionResponse:
+    def compile_suggestion(
+        self,
+        request: participant.CompileSuggestionRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> participant.CompileSuggestionResponse:
         r"""Deprecated. use
         [SuggestArticles][google.cloud.dialogflow.v2beta1.Participants.SuggestArticles]
         and
@@ -1221,38 +1221,24 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'ParticipantsClient',
-)
+__all__ = ("ParticipantsClient",)

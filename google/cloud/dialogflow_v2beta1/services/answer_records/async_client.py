@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.answer_records import pagers
 from google.cloud.dialogflow_v2beta1.types import answer_record
@@ -49,22 +49,38 @@ class AnswerRecordsAsyncClient:
     DEFAULT_MTLS_ENDPOINT = AnswerRecordsClient.DEFAULT_MTLS_ENDPOINT
 
     answer_record_path = staticmethod(AnswerRecordsClient.answer_record_path)
-    parse_answer_record_path = staticmethod(AnswerRecordsClient.parse_answer_record_path)
+    parse_answer_record_path = staticmethod(
+        AnswerRecordsClient.parse_answer_record_path
+    )
 
-    common_billing_account_path = staticmethod(AnswerRecordsClient.common_billing_account_path)
-    parse_common_billing_account_path = staticmethod(AnswerRecordsClient.parse_common_billing_account_path)
+    common_billing_account_path = staticmethod(
+        AnswerRecordsClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        AnswerRecordsClient.parse_common_billing_account_path
+    )
 
     common_folder_path = staticmethod(AnswerRecordsClient.common_folder_path)
-    parse_common_folder_path = staticmethod(AnswerRecordsClient.parse_common_folder_path)
+    parse_common_folder_path = staticmethod(
+        AnswerRecordsClient.parse_common_folder_path
+    )
 
-    common_organization_path = staticmethod(AnswerRecordsClient.common_organization_path)
-    parse_common_organization_path = staticmethod(AnswerRecordsClient.parse_common_organization_path)
+    common_organization_path = staticmethod(
+        AnswerRecordsClient.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        AnswerRecordsClient.parse_common_organization_path
+    )
 
     common_project_path = staticmethod(AnswerRecordsClient.common_project_path)
-    parse_common_project_path = staticmethod(AnswerRecordsClient.parse_common_project_path)
+    parse_common_project_path = staticmethod(
+        AnswerRecordsClient.parse_common_project_path
+    )
 
     common_location_path = staticmethod(AnswerRecordsClient.common_location_path)
-    parse_common_location_path = staticmethod(AnswerRecordsClient.parse_common_location_path)
+    parse_common_location_path = staticmethod(
+        AnswerRecordsClient.parse_common_location_path
+    )
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -107,14 +123,18 @@ class AnswerRecordsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(type(AnswerRecordsClient).get_transport_class, type(AnswerRecordsClient))
+    get_transport_class = functools.partial(
+        type(AnswerRecordsClient).get_transport_class, type(AnswerRecordsClient)
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, AnswerRecordsTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, AnswerRecordsTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the answer records client.
 
         Args:
@@ -153,16 +173,16 @@ class AnswerRecordsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
-
         )
 
-    async def get_answer_record(self,
-            request: answer_record.GetAnswerRecordRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> answer_record.AnswerRecord:
+    async def get_answer_record(
+        self,
+        request: answer_record.GetAnswerRecordRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> answer_record.AnswerRecord:
         r"""Deprecated.
         Retrieves a specific answer record.
 
@@ -230,30 +250,24 @@ class AnswerRecordsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_answer_records(self,
-            request: answer_record.ListAnswerRecordsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAnswerRecordsAsyncPager:
+    async def list_answer_records(
+        self,
+        request: answer_record.ListAnswerRecordsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAnswerRecordsAsyncPager:
         r"""Returns the list of all answer records in the
         specified project in reverse chronological order.
 
@@ -290,8 +304,10 @@ class AnswerRecordsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = answer_record.ListAnswerRecordsRequest(request)
 
@@ -312,40 +328,31 @@ class AnswerRecordsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListAnswerRecordsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def update_answer_record(self,
-            request: gcd_answer_record.UpdateAnswerRecordRequest = None,
-            *,
-            answer_record: gcd_answer_record.AnswerRecord = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_answer_record.AnswerRecord:
+    async def update_answer_record(
+        self,
+        request: gcd_answer_record.UpdateAnswerRecordRequest = None,
+        *,
+        answer_record: gcd_answer_record.AnswerRecord = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_answer_record.AnswerRecord:
         r"""Updates the specified answer record.
 
         Args:
@@ -414,8 +421,10 @@ class AnswerRecordsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([answer_record, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = gcd_answer_record.UpdateAnswerRecordRequest(request)
 
@@ -438,38 +447,26 @@ class AnswerRecordsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('answer_record.name', request.answer_record.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("answer_record.name", request.answer_record.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'AnswerRecordsAsyncClient',
-)
+__all__ = ("AnswerRecordsAsyncClient",)

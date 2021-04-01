@@ -21,17 +21,19 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.conversation_profiles import pagers
 from google.cloud.dialogflow_v2beta1.types import audio_config
 from google.cloud.dialogflow_v2beta1.types import conversation_profile
-from google.cloud.dialogflow_v2beta1.types import conversation_profile as gcd_conversation_profile
+from google.cloud.dialogflow_v2beta1.types import (
+    conversation_profile as gcd_conversation_profile,
+)
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
@@ -52,27 +54,47 @@ class ConversationProfilesAsyncClient:
 
     agent_path = staticmethod(ConversationProfilesClient.agent_path)
     parse_agent_path = staticmethod(ConversationProfilesClient.parse_agent_path)
-    conversation_profile_path = staticmethod(ConversationProfilesClient.conversation_profile_path)
-    parse_conversation_profile_path = staticmethod(ConversationProfilesClient.parse_conversation_profile_path)
+    conversation_profile_path = staticmethod(
+        ConversationProfilesClient.conversation_profile_path
+    )
+    parse_conversation_profile_path = staticmethod(
+        ConversationProfilesClient.parse_conversation_profile_path
+    )
     document_path = staticmethod(ConversationProfilesClient.document_path)
     parse_document_path = staticmethod(ConversationProfilesClient.parse_document_path)
     knowledge_base_path = staticmethod(ConversationProfilesClient.knowledge_base_path)
-    parse_knowledge_base_path = staticmethod(ConversationProfilesClient.parse_knowledge_base_path)
+    parse_knowledge_base_path = staticmethod(
+        ConversationProfilesClient.parse_knowledge_base_path
+    )
 
-    common_billing_account_path = staticmethod(ConversationProfilesClient.common_billing_account_path)
-    parse_common_billing_account_path = staticmethod(ConversationProfilesClient.parse_common_billing_account_path)
+    common_billing_account_path = staticmethod(
+        ConversationProfilesClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        ConversationProfilesClient.parse_common_billing_account_path
+    )
 
     common_folder_path = staticmethod(ConversationProfilesClient.common_folder_path)
-    parse_common_folder_path = staticmethod(ConversationProfilesClient.parse_common_folder_path)
+    parse_common_folder_path = staticmethod(
+        ConversationProfilesClient.parse_common_folder_path
+    )
 
-    common_organization_path = staticmethod(ConversationProfilesClient.common_organization_path)
-    parse_common_organization_path = staticmethod(ConversationProfilesClient.parse_common_organization_path)
+    common_organization_path = staticmethod(
+        ConversationProfilesClient.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        ConversationProfilesClient.parse_common_organization_path
+    )
 
     common_project_path = staticmethod(ConversationProfilesClient.common_project_path)
-    parse_common_project_path = staticmethod(ConversationProfilesClient.parse_common_project_path)
+    parse_common_project_path = staticmethod(
+        ConversationProfilesClient.parse_common_project_path
+    )
 
     common_location_path = staticmethod(ConversationProfilesClient.common_location_path)
-    parse_common_location_path = staticmethod(ConversationProfilesClient.parse_common_location_path)
+    parse_common_location_path = staticmethod(
+        ConversationProfilesClient.parse_common_location_path
+    )
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -115,14 +137,19 @@ class ConversationProfilesAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(type(ConversationProfilesClient).get_transport_class, type(ConversationProfilesClient))
+    get_transport_class = functools.partial(
+        type(ConversationProfilesClient).get_transport_class,
+        type(ConversationProfilesClient),
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, ConversationProfilesTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, ConversationProfilesTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the conversation profiles client.
 
         Args:
@@ -161,17 +188,17 @@ class ConversationProfilesAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
-
         )
 
-    async def list_conversation_profiles(self,
-            request: conversation_profile.ListConversationProfilesRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListConversationProfilesAsyncPager:
+    async def list_conversation_profiles(
+        self,
+        request: conversation_profile.ListConversationProfilesRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListConversationProfilesAsyncPager:
         r"""Returns the list of all conversation profiles in the
         specified project.
 
@@ -208,8 +235,10 @@ class ConversationProfilesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = conversation_profile.ListConversationProfilesRequest(request)
 
@@ -230,39 +259,30 @@ class ConversationProfilesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListConversationProfilesAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_conversation_profile(self,
-            request: conversation_profile.GetConversationProfileRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> conversation_profile.ConversationProfile:
+    async def get_conversation_profile(
+        self,
+        request: conversation_profile.GetConversationProfileRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> conversation_profile.ConversationProfile:
         r"""Retrieves the specified conversation profile.
 
         Args:
@@ -295,8 +315,10 @@ class ConversationProfilesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = conversation_profile.GetConversationProfileRequest(request)
 
@@ -317,31 +339,25 @@ class ConversationProfilesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_conversation_profile(self,
-            request: gcd_conversation_profile.CreateConversationProfileRequest = None,
-            *,
-            parent: str = None,
-            conversation_profile: gcd_conversation_profile.ConversationProfile = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_conversation_profile.ConversationProfile:
+    async def create_conversation_profile(
+        self,
+        request: gcd_conversation_profile.CreateConversationProfileRequest = None,
+        *,
+        parent: str = None,
+        conversation_profile: gcd_conversation_profile.ConversationProfile = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_conversation_profile.ConversationProfile:
         r"""Creates a conversation profile in the specified project.
 
         [ConversationProfile.CreateTime][] and
@@ -387,8 +403,10 @@ class ConversationProfilesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, conversation_profile])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = gcd_conversation_profile.CreateConversationProfileRequest(request)
 
@@ -411,31 +429,25 @@ class ConversationProfilesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_conversation_profile(self,
-            request: gcd_conversation_profile.UpdateConversationProfileRequest = None,
-            *,
-            conversation_profile: gcd_conversation_profile.ConversationProfile = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> gcd_conversation_profile.ConversationProfile:
+    async def update_conversation_profile(
+        self,
+        request: gcd_conversation_profile.UpdateConversationProfileRequest = None,
+        *,
+        conversation_profile: gcd_conversation_profile.ConversationProfile = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> gcd_conversation_profile.ConversationProfile:
         r"""Updates the specified conversation profile.
 
         [ConversationProfile.CreateTime][] and
@@ -480,8 +492,10 @@ class ConversationProfilesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([conversation_profile, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = gcd_conversation_profile.UpdateConversationProfileRequest(request)
 
@@ -504,30 +518,26 @@ class ConversationProfilesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('conversation_profile.name', request.conversation_profile.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("conversation_profile.name", request.conversation_profile.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_conversation_profile(self,
-            request: conversation_profile.DeleteConversationProfileRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_conversation_profile(
+        self,
+        request: conversation_profile.DeleteConversationProfileRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes the specified conversation profile.
 
         Args:
@@ -556,8 +566,10 @@ class ConversationProfilesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = conversation_profile.DeleteConversationProfileRequest(request)
 
@@ -578,35 +590,23 @@ class ConversationProfilesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
-
-
-
-
-
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'ConversationProfilesAsyncClient',
-)
+__all__ = ("ConversationProfilesAsyncClient",)

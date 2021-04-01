@@ -18,10 +18,10 @@
 import warnings
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers   # type: ignore
-from google.api_core import gapic_v1       # type: ignore
-from google import auth                    # type: ignore
-from google.auth import credentials        # type: ignore
+from google.api_core import grpc_helpers  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 import grpc  # type: ignore
@@ -47,21 +47,24 @@ class SessionsGrpcTransport(SessionsTransport):
     It sends protocol buffers over the wire using gRPC (which is built on
     top of HTTP/2); the ``grpcio`` package must be installed.
     """
+
     _stubs: Dict[str, Callable]
 
-    def __init__(self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: str = None,
-            scopes: Sequence[str] = None,
-            channel: grpc.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            ssl_channel_credentials: grpc.ChannelCredentials = None,
-            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: str = None,
+        scopes: Sequence[str] = None,
+        channel: grpc.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -172,13 +175,15 @@ class SessionsGrpcTransport(SessionsTransport):
         self._prep_wrapped_messages(client_info)
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'dialogflow.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: str = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> grpc.Channel:
+    def create_channel(
+        cls,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: str = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -211,7 +216,7 @@ class SessionsGrpcTransport(SessionsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
     @property
@@ -221,9 +226,9 @@ class SessionsGrpcTransport(SessionsTransport):
         return self._grpc_channel
 
     @property
-    def detect_intent(self) -> Callable[
-            [gcd_session.DetectIntentRequest],
-            gcd_session.DetectIntentResponse]:
+    def detect_intent(
+        self,
+    ) -> Callable[[gcd_session.DetectIntentRequest], gcd_session.DetectIntentResponse]:
         r"""Return a callable for the detect intent method over gRPC.
 
         Processes a natural language query and returns structured,
@@ -245,18 +250,20 @@ class SessionsGrpcTransport(SessionsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'detect_intent' not in self._stubs:
-            self._stubs['detect_intent'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2.Sessions/DetectIntent',
+        if "detect_intent" not in self._stubs:
+            self._stubs["detect_intent"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.Sessions/DetectIntent",
                 request_serializer=gcd_session.DetectIntentRequest.serialize,
                 response_deserializer=gcd_session.DetectIntentResponse.deserialize,
             )
-        return self._stubs['detect_intent']
+        return self._stubs["detect_intent"]
 
     @property
-    def streaming_detect_intent(self) -> Callable[
-            [session.StreamingDetectIntentRequest],
-            session.StreamingDetectIntentResponse]:
+    def streaming_detect_intent(
+        self,
+    ) -> Callable[
+        [session.StreamingDetectIntentRequest], session.StreamingDetectIntentResponse
+    ]:
         r"""Return a callable for the streaming detect intent method over gRPC.
 
         Processes a natural language query in audio format in a
@@ -278,15 +285,13 @@ class SessionsGrpcTransport(SessionsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'streaming_detect_intent' not in self._stubs:
-            self._stubs['streaming_detect_intent'] = self.grpc_channel.stream_stream(
-                '/google.cloud.dialogflow.v2.Sessions/StreamingDetectIntent',
+        if "streaming_detect_intent" not in self._stubs:
+            self._stubs["streaming_detect_intent"] = self.grpc_channel.stream_stream(
+                "/google.cloud.dialogflow.v2.Sessions/StreamingDetectIntent",
                 request_serializer=session.StreamingDetectIntentRequest.serialize,
                 response_deserializer=session.StreamingDetectIntentResponse.deserialize,
             )
-        return self._stubs['streaming_detect_intent']
+        return self._stubs["streaming_detect_intent"]
 
 
-__all__ = (
-    'SessionsGrpcTransport',
-)
+__all__ = ("SessionsGrpcTransport",)

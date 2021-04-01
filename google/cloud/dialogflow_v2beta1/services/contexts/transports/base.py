@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
@@ -33,30 +33,32 @@ from google.protobuf import empty_pb2 as empty  # type: ignore
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
+
 class ContextsTransport(abc.ABC):
     """Abstract transport class for Contexts."""
 
     AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/dialogflow',
+        "https://www.googleapis.com/auth/cloud-platform",
+        "https://www.googleapis.com/auth/dialogflow",
     )
 
     def __init__(
-            self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: typing.Optional[str] = None,
-            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-            quota_project_id: typing.Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        quota_project_id: typing.Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -79,8 +81,8 @@ class ContextsTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # Save the scopes.
@@ -89,17 +91,19 @@ class ContextsTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                                credentials_file,
-                                scopes=self._scopes,
-                                quota_project_id=quota_project_id
-                            )
+                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
+            )
 
         elif credentials is None:
-            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
+            credentials, _ = auth.default(
+                scopes=self._scopes, quota_project_id=quota_project_id
+            )
 
         # Save the credentials.
         self._credentials = credentials
@@ -108,93 +112,80 @@ class ContextsTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.list_contexts: gapic_v1.method.wrap_method(
-                self.list_contexts,
-                default_timeout=None,
-                client_info=client_info,
+                self.list_contexts, default_timeout=None, client_info=client_info,
             ),
             self.get_context: gapic_v1.method.wrap_method(
-                self.get_context,
-                default_timeout=None,
-                client_info=client_info,
+                self.get_context, default_timeout=None, client_info=client_info,
             ),
             self.create_context: gapic_v1.method.wrap_method(
-                self.create_context,
-                default_timeout=None,
-                client_info=client_info,
+                self.create_context, default_timeout=None, client_info=client_info,
             ),
             self.update_context: gapic_v1.method.wrap_method(
-                self.update_context,
-                default_timeout=None,
-                client_info=client_info,
+                self.update_context, default_timeout=None, client_info=client_info,
             ),
             self.delete_context: gapic_v1.method.wrap_method(
-                self.delete_context,
-                default_timeout=None,
-                client_info=client_info,
+                self.delete_context, default_timeout=None, client_info=client_info,
             ),
             self.delete_all_contexts: gapic_v1.method.wrap_method(
-                self.delete_all_contexts,
-                default_timeout=None,
-                client_info=client_info,
+                self.delete_all_contexts, default_timeout=None, client_info=client_info,
             ),
-
         }
 
     @property
-    def list_contexts(self) -> typing.Callable[
-            [context.ListContextsRequest],
-            typing.Union[
-                context.ListContextsResponse,
-                typing.Awaitable[context.ListContextsResponse]
-            ]]:
+    def list_contexts(
+        self,
+    ) -> typing.Callable[
+        [context.ListContextsRequest],
+        typing.Union[
+            context.ListContextsResponse, typing.Awaitable[context.ListContextsResponse]
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def get_context(self) -> typing.Callable[
-            [context.GetContextRequest],
-            typing.Union[
-                context.Context,
-                typing.Awaitable[context.Context]
-            ]]:
+    def get_context(
+        self,
+    ) -> typing.Callable[
+        [context.GetContextRequest],
+        typing.Union[context.Context, typing.Awaitable[context.Context]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def create_context(self) -> typing.Callable[
-            [gcd_context.CreateContextRequest],
-            typing.Union[
-                gcd_context.Context,
-                typing.Awaitable[gcd_context.Context]
-            ]]:
+    def create_context(
+        self,
+    ) -> typing.Callable[
+        [gcd_context.CreateContextRequest],
+        typing.Union[gcd_context.Context, typing.Awaitable[gcd_context.Context]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def update_context(self) -> typing.Callable[
-            [gcd_context.UpdateContextRequest],
-            typing.Union[
-                gcd_context.Context,
-                typing.Awaitable[gcd_context.Context]
-            ]]:
+    def update_context(
+        self,
+    ) -> typing.Callable[
+        [gcd_context.UpdateContextRequest],
+        typing.Union[gcd_context.Context, typing.Awaitable[gcd_context.Context]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def delete_context(self) -> typing.Callable[
-            [context.DeleteContextRequest],
-            typing.Union[
-                empty.Empty,
-                typing.Awaitable[empty.Empty]
-            ]]:
+    def delete_context(
+        self,
+    ) -> typing.Callable[
+        [context.DeleteContextRequest],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def delete_all_contexts(self) -> typing.Callable[
-            [context.DeleteAllContextsRequest],
-            typing.Union[
-                empty.Empty,
-                typing.Awaitable[empty.Empty]
-            ]]:
+    def delete_all_contexts(
+        self,
+    ) -> typing.Callable[
+        [context.DeleteAllContextsRequest],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
+    ]:
         raise NotImplementedError()
 
 
-__all__ = (
-    'ContextsTransport',
-)
+__all__ = ("ContextsTransport",)

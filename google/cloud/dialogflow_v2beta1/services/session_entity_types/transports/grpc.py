@@ -18,16 +18,18 @@
 import warnings
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers   # type: ignore
-from google.api_core import gapic_v1       # type: ignore
-from google import auth                    # type: ignore
-from google.auth import credentials        # type: ignore
+from google.api_core import grpc_helpers  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 import grpc  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import session_entity_type
-from google.cloud.dialogflow_v2beta1.types import session_entity_type as gcd_session_entity_type
+from google.cloud.dialogflow_v2beta1.types import (
+    session_entity_type as gcd_session_entity_type,
+)
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 from .base import SessionEntityTypesTransport, DEFAULT_CLIENT_INFO
@@ -46,21 +48,24 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
     It sends protocol buffers over the wire using gRPC (which is built on
     top of HTTP/2); the ``grpcio`` package must be installed.
     """
+
     _stubs: Dict[str, Callable]
 
-    def __init__(self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: str = None,
-            scopes: Sequence[str] = None,
-            channel: grpc.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            ssl_channel_credentials: grpc.ChannelCredentials = None,
-            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: str = None,
+        scopes: Sequence[str] = None,
+        channel: grpc.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -171,13 +176,15 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
         self._prep_wrapped_messages(client_info)
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'dialogflow.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: str = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> grpc.Channel:
+    def create_channel(
+        cls,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: str = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -210,7 +217,7 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
     @property
@@ -220,9 +227,12 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
         return self._grpc_channel
 
     @property
-    def list_session_entity_types(self) -> Callable[
-            [session_entity_type.ListSessionEntityTypesRequest],
-            session_entity_type.ListSessionEntityTypesResponse]:
+    def list_session_entity_types(
+        self,
+    ) -> Callable[
+        [session_entity_type.ListSessionEntityTypesRequest],
+        session_entity_type.ListSessionEntityTypesResponse,
+    ]:
         r"""Return a callable for the list session entity types method over gRPC.
 
         Returns the list of all session entity types in the
@@ -241,18 +251,21 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_session_entity_types' not in self._stubs:
-            self._stubs['list_session_entity_types'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/ListSessionEntityTypes',
+        if "list_session_entity_types" not in self._stubs:
+            self._stubs["list_session_entity_types"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.SessionEntityTypes/ListSessionEntityTypes",
                 request_serializer=session_entity_type.ListSessionEntityTypesRequest.serialize,
                 response_deserializer=session_entity_type.ListSessionEntityTypesResponse.deserialize,
             )
-        return self._stubs['list_session_entity_types']
+        return self._stubs["list_session_entity_types"]
 
     @property
-    def get_session_entity_type(self) -> Callable[
-            [session_entity_type.GetSessionEntityTypeRequest],
-            session_entity_type.SessionEntityType]:
+    def get_session_entity_type(
+        self,
+    ) -> Callable[
+        [session_entity_type.GetSessionEntityTypeRequest],
+        session_entity_type.SessionEntityType,
+    ]:
         r"""Return a callable for the get session entity type method over gRPC.
 
         Retrieves the specified session entity type.
@@ -270,18 +283,21 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_session_entity_type' not in self._stubs:
-            self._stubs['get_session_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/GetSessionEntityType',
+        if "get_session_entity_type" not in self._stubs:
+            self._stubs["get_session_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.SessionEntityTypes/GetSessionEntityType",
                 request_serializer=session_entity_type.GetSessionEntityTypeRequest.serialize,
                 response_deserializer=session_entity_type.SessionEntityType.deserialize,
             )
-        return self._stubs['get_session_entity_type']
+        return self._stubs["get_session_entity_type"]
 
     @property
-    def create_session_entity_type(self) -> Callable[
-            [gcd_session_entity_type.CreateSessionEntityTypeRequest],
-            gcd_session_entity_type.SessionEntityType]:
+    def create_session_entity_type(
+        self,
+    ) -> Callable[
+        [gcd_session_entity_type.CreateSessionEntityTypeRequest],
+        gcd_session_entity_type.SessionEntityType,
+    ]:
         r"""Return a callable for the create session entity type method over gRPC.
 
         Creates a session entity type.
@@ -302,18 +318,21 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_session_entity_type' not in self._stubs:
-            self._stubs['create_session_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/CreateSessionEntityType',
+        if "create_session_entity_type" not in self._stubs:
+            self._stubs["create_session_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.SessionEntityTypes/CreateSessionEntityType",
                 request_serializer=gcd_session_entity_type.CreateSessionEntityTypeRequest.serialize,
                 response_deserializer=gcd_session_entity_type.SessionEntityType.deserialize,
             )
-        return self._stubs['create_session_entity_type']
+        return self._stubs["create_session_entity_type"]
 
     @property
-    def update_session_entity_type(self) -> Callable[
-            [gcd_session_entity_type.UpdateSessionEntityTypeRequest],
-            gcd_session_entity_type.SessionEntityType]:
+    def update_session_entity_type(
+        self,
+    ) -> Callable[
+        [gcd_session_entity_type.UpdateSessionEntityTypeRequest],
+        gcd_session_entity_type.SessionEntityType,
+    ]:
         r"""Return a callable for the update session entity type method over gRPC.
 
         Updates the specified session entity type.
@@ -331,18 +350,18 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_session_entity_type' not in self._stubs:
-            self._stubs['update_session_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/UpdateSessionEntityType',
+        if "update_session_entity_type" not in self._stubs:
+            self._stubs["update_session_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.SessionEntityTypes/UpdateSessionEntityType",
                 request_serializer=gcd_session_entity_type.UpdateSessionEntityTypeRequest.serialize,
                 response_deserializer=gcd_session_entity_type.SessionEntityType.deserialize,
             )
-        return self._stubs['update_session_entity_type']
+        return self._stubs["update_session_entity_type"]
 
     @property
-    def delete_session_entity_type(self) -> Callable[
-            [session_entity_type.DeleteSessionEntityTypeRequest],
-            empty.Empty]:
+    def delete_session_entity_type(
+        self,
+    ) -> Callable[[session_entity_type.DeleteSessionEntityTypeRequest], empty.Empty]:
         r"""Return a callable for the delete session entity type method over gRPC.
 
         Deletes the specified session entity type.
@@ -360,15 +379,13 @@ class SessionEntityTypesGrpcTransport(SessionEntityTypesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_session_entity_type' not in self._stubs:
-            self._stubs['delete_session_entity_type'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.SessionEntityTypes/DeleteSessionEntityType',
+        if "delete_session_entity_type" not in self._stubs:
+            self._stubs["delete_session_entity_type"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.SessionEntityTypes/DeleteSessionEntityType",
                 request_serializer=session_entity_type.DeleteSessionEntityTypeRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs['delete_session_entity_type']
+        return self._stubs["delete_session_entity_type"]
 
 
-__all__ = (
-    'SessionEntityTypesGrpcTransport',
-)
+__all__ = ("SessionEntityTypesGrpcTransport",)

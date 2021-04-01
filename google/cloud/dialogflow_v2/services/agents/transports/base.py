@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.api_core import operations_v1  # type: ignore
 from google.auth import credentials  # type: ignore
@@ -36,30 +36,32 @@ from google.protobuf import empty_pb2 as empty  # type: ignore
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
+
 class AgentsTransport(abc.ABC):
     """Abstract transport class for Agents."""
 
     AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/dialogflow',
+        "https://www.googleapis.com/auth/cloud-platform",
+        "https://www.googleapis.com/auth/dialogflow",
     )
 
     def __init__(
-            self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: typing.Optional[str] = None,
-            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-            quota_project_id: typing.Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        quota_project_id: typing.Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -82,8 +84,8 @@ class AgentsTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # Save the scopes.
@@ -92,17 +94,19 @@ class AgentsTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                                credentials_file,
-                                scopes=self._scopes,
-                                quota_project_id=quota_project_id
-                            )
+                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
+            )
 
         elif credentials is None:
-            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
+            credentials, _ = auth.default(
+                scopes=self._scopes, quota_project_id=quota_project_id
+            )
 
         # Save the credentials.
         self._credentials = credentials
@@ -111,51 +115,34 @@ class AgentsTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.get_agent: gapic_v1.method.wrap_method(
-                self.get_agent,
-                default_timeout=None,
-                client_info=client_info,
+                self.get_agent, default_timeout=None, client_info=client_info,
             ),
             self.set_agent: gapic_v1.method.wrap_method(
-                self.set_agent,
-                default_timeout=None,
-                client_info=client_info,
+                self.set_agent, default_timeout=None, client_info=client_info,
             ),
             self.delete_agent: gapic_v1.method.wrap_method(
-                self.delete_agent,
-                default_timeout=None,
-                client_info=client_info,
+                self.delete_agent, default_timeout=None, client_info=client_info,
             ),
             self.search_agents: gapic_v1.method.wrap_method(
-                self.search_agents,
-                default_timeout=None,
-                client_info=client_info,
+                self.search_agents, default_timeout=None, client_info=client_info,
             ),
             self.train_agent: gapic_v1.method.wrap_method(
-                self.train_agent,
-                default_timeout=None,
-                client_info=client_info,
+                self.train_agent, default_timeout=None, client_info=client_info,
             ),
             self.export_agent: gapic_v1.method.wrap_method(
-                self.export_agent,
-                default_timeout=None,
-                client_info=client_info,
+                self.export_agent, default_timeout=None, client_info=client_info,
             ),
             self.import_agent: gapic_v1.method.wrap_method(
-                self.import_agent,
-                default_timeout=None,
-                client_info=client_info,
+                self.import_agent, default_timeout=None, client_info=client_info,
             ),
             self.restore_agent: gapic_v1.method.wrap_method(
-                self.restore_agent,
-                default_timeout=None,
-                client_info=client_info,
+                self.restore_agent, default_timeout=None, client_info=client_info,
             ),
             self.get_validation_result: gapic_v1.method.wrap_method(
                 self.get_validation_result,
                 default_timeout=None,
                 client_info=client_info,
             ),
-
         }
 
     @property
@@ -164,87 +151,90 @@ class AgentsTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def get_agent(self) -> typing.Callable[
-            [agent.GetAgentRequest],
-            typing.Union[
-                agent.Agent,
-                typing.Awaitable[agent.Agent]
-            ]]:
+    def get_agent(
+        self,
+    ) -> typing.Callable[
+        [agent.GetAgentRequest],
+        typing.Union[agent.Agent, typing.Awaitable[agent.Agent]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def set_agent(self) -> typing.Callable[
-            [gcd_agent.SetAgentRequest],
-            typing.Union[
-                gcd_agent.Agent,
-                typing.Awaitable[gcd_agent.Agent]
-            ]]:
+    def set_agent(
+        self,
+    ) -> typing.Callable[
+        [gcd_agent.SetAgentRequest],
+        typing.Union[gcd_agent.Agent, typing.Awaitable[gcd_agent.Agent]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def delete_agent(self) -> typing.Callable[
-            [agent.DeleteAgentRequest],
-            typing.Union[
-                empty.Empty,
-                typing.Awaitable[empty.Empty]
-            ]]:
+    def delete_agent(
+        self,
+    ) -> typing.Callable[
+        [agent.DeleteAgentRequest],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def search_agents(self) -> typing.Callable[
-            [agent.SearchAgentsRequest],
-            typing.Union[
-                agent.SearchAgentsResponse,
-                typing.Awaitable[agent.SearchAgentsResponse]
-            ]]:
+    def search_agents(
+        self,
+    ) -> typing.Callable[
+        [agent.SearchAgentsRequest],
+        typing.Union[
+            agent.SearchAgentsResponse, typing.Awaitable[agent.SearchAgentsResponse]
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def train_agent(self) -> typing.Callable[
-            [agent.TrainAgentRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def train_agent(
+        self,
+    ) -> typing.Callable[
+        [agent.TrainAgentRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def export_agent(self) -> typing.Callable[
-            [agent.ExportAgentRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def export_agent(
+        self,
+    ) -> typing.Callable[
+        [agent.ExportAgentRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def import_agent(self) -> typing.Callable[
-            [agent.ImportAgentRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def import_agent(
+        self,
+    ) -> typing.Callable[
+        [agent.ImportAgentRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def restore_agent(self) -> typing.Callable[
-            [agent.RestoreAgentRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def restore_agent(
+        self,
+    ) -> typing.Callable[
+        [agent.RestoreAgentRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def get_validation_result(self) -> typing.Callable[
-            [agent.GetValidationResultRequest],
-            typing.Union[
-                validation_result.ValidationResult,
-                typing.Awaitable[validation_result.ValidationResult]
-            ]]:
+    def get_validation_result(
+        self,
+    ) -> typing.Callable[
+        [agent.GetValidationResultRequest],
+        typing.Union[
+            validation_result.ValidationResult,
+            typing.Awaitable[validation_result.ValidationResult],
+        ],
+    ]:
         raise NotImplementedError()
 
 
-__all__ = (
-    'AgentsTransport',
-)
+__all__ = ("AgentsTransport",)

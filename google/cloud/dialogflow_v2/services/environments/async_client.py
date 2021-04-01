@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2.services.environments import pagers
 from google.cloud.dialogflow_v2.types import environment
@@ -49,20 +49,30 @@ class EnvironmentsAsyncClient:
     environment_path = staticmethod(EnvironmentsClient.environment_path)
     parse_environment_path = staticmethod(EnvironmentsClient.parse_environment_path)
 
-    common_billing_account_path = staticmethod(EnvironmentsClient.common_billing_account_path)
-    parse_common_billing_account_path = staticmethod(EnvironmentsClient.parse_common_billing_account_path)
+    common_billing_account_path = staticmethod(
+        EnvironmentsClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        EnvironmentsClient.parse_common_billing_account_path
+    )
 
     common_folder_path = staticmethod(EnvironmentsClient.common_folder_path)
     parse_common_folder_path = staticmethod(EnvironmentsClient.parse_common_folder_path)
 
     common_organization_path = staticmethod(EnvironmentsClient.common_organization_path)
-    parse_common_organization_path = staticmethod(EnvironmentsClient.parse_common_organization_path)
+    parse_common_organization_path = staticmethod(
+        EnvironmentsClient.parse_common_organization_path
+    )
 
     common_project_path = staticmethod(EnvironmentsClient.common_project_path)
-    parse_common_project_path = staticmethod(EnvironmentsClient.parse_common_project_path)
+    parse_common_project_path = staticmethod(
+        EnvironmentsClient.parse_common_project_path
+    )
 
     common_location_path = staticmethod(EnvironmentsClient.common_location_path)
-    parse_common_location_path = staticmethod(EnvironmentsClient.parse_common_location_path)
+    parse_common_location_path = staticmethod(
+        EnvironmentsClient.parse_common_location_path
+    )
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -105,14 +115,18 @@ class EnvironmentsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(type(EnvironmentsClient).get_transport_class, type(EnvironmentsClient))
+    get_transport_class = functools.partial(
+        type(EnvironmentsClient).get_transport_class, type(EnvironmentsClient)
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, EnvironmentsTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, EnvironmentsTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the environments client.
 
         Args:
@@ -151,16 +165,16 @@ class EnvironmentsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
-
         )
 
-    async def list_environments(self,
-            request: environment.ListEnvironmentsRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListEnvironmentsAsyncPager:
+    async def list_environments(
+        self,
+        request: environment.ListEnvironmentsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListEnvironmentsAsyncPager:
         r"""Returns the list of all non-draft environments of the
         specified agent.
 
@@ -199,47 +213,30 @@ class EnvironmentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListEnvironmentsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'EnvironmentsAsyncClient',
-)
+__all__ = ("EnvironmentsAsyncClient",)

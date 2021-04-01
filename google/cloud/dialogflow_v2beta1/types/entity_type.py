@@ -22,22 +22,22 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2beta1',
+    package="google.cloud.dialogflow.v2beta1",
     manifest={
-        'EntityType',
-        'ListEntityTypesRequest',
-        'ListEntityTypesResponse',
-        'GetEntityTypeRequest',
-        'CreateEntityTypeRequest',
-        'UpdateEntityTypeRequest',
-        'DeleteEntityTypeRequest',
-        'BatchUpdateEntityTypesRequest',
-        'BatchUpdateEntityTypesResponse',
-        'BatchDeleteEntityTypesRequest',
-        'BatchCreateEntitiesRequest',
-        'BatchUpdateEntitiesRequest',
-        'BatchDeleteEntitiesRequest',
-        'EntityTypeBatch',
+        "EntityType",
+        "ListEntityTypesRequest",
+        "ListEntityTypesResponse",
+        "GetEntityTypeRequest",
+        "CreateEntityTypeRequest",
+        "UpdateEntityTypeRequest",
+        "DeleteEntityTypeRequest",
+        "BatchUpdateEntityTypesRequest",
+        "BatchUpdateEntityTypesResponse",
+        "BatchDeleteEntityTypesRequest",
+        "BatchCreateEntitiesRequest",
+        "BatchUpdateEntitiesRequest",
+        "BatchDeleteEntitiesRequest",
+        "EntityTypeBatch",
     },
 )
 
@@ -81,6 +81,7 @@ class EntityType(proto.Message):
             Optional. Enables fuzzy entity extraction
             during classification.
     """
+
     class Kind(proto.Enum):
         r"""Represents kinds of entities."""
         KIND_UNSPECIFIED = 0
@@ -133,17 +134,11 @@ class EntityType(proto.Message):
 
     display_name = proto.Field(proto.STRING, number=2)
 
-    kind = proto.Field(proto.ENUM, number=3,
-        enum=Kind,
-    )
+    kind = proto.Field(proto.ENUM, number=3, enum=Kind,)
 
-    auto_expansion_mode = proto.Field(proto.ENUM, number=4,
-        enum=AutoExpansionMode,
-    )
+    auto_expansion_mode = proto.Field(proto.ENUM, number=4, enum=AutoExpansionMode,)
 
-    entities = proto.RepeatedField(proto.MESSAGE, number=6,
-        message=Entity,
-    )
+    entities = proto.RepeatedField(proto.MESSAGE, number=6, message=Entity,)
 
     enable_fuzzy_extraction = proto.Field(proto.BOOL, number=7)
 
@@ -202,9 +197,7 @@ class ListEntityTypesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    entity_types = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='EntityType',
-    )
+    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message="EntityType",)
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -255,9 +248,7 @@ class CreateEntityTypeRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    entity_type = proto.Field(proto.MESSAGE, number=2,
-        message='EntityType',
-    )
+    entity_type = proto.Field(proto.MESSAGE, number=2, message="EntityType",)
 
     language_code = proto.Field(proto.STRING, number=3)
 
@@ -280,15 +271,11 @@ class UpdateEntityTypeRequest(proto.Message):
             get updated.
     """
 
-    entity_type = proto.Field(proto.MESSAGE, number=1,
-        message='EntityType',
-    )
+    entity_type = proto.Field(proto.MESSAGE, number=1, message="EntityType",)
 
     language_code = proto.Field(proto.STRING, number=2)
 
-    update_mask = proto.Field(proto.MESSAGE, number=3,
-        message=field_mask.FieldMask,
-    )
+    update_mask = proto.Field(proto.MESSAGE, number=3, message=field_mask.FieldMask,)
 
 
 class DeleteEntityTypeRequest(proto.Message):
@@ -340,17 +327,17 @@ class BatchUpdateEntityTypesRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    entity_type_batch_uri = proto.Field(proto.STRING, number=2, oneof='entity_type_batch')
+    entity_type_batch_uri = proto.Field(
+        proto.STRING, number=2, oneof="entity_type_batch"
+    )
 
-    entity_type_batch_inline = proto.Field(proto.MESSAGE, number=3, oneof='entity_type_batch',
-        message='EntityTypeBatch',
+    entity_type_batch_inline = proto.Field(
+        proto.MESSAGE, number=3, oneof="entity_type_batch", message="EntityTypeBatch",
     )
 
     language_code = proto.Field(proto.STRING, number=4)
 
-    update_mask = proto.Field(proto.MESSAGE, number=5,
-        message=field_mask.FieldMask,
-    )
+    update_mask = proto.Field(proto.MESSAGE, number=5, message=field_mask.FieldMask,)
 
 
 class BatchUpdateEntityTypesResponse(proto.Message):
@@ -363,9 +350,7 @@ class BatchUpdateEntityTypesResponse(proto.Message):
             types.
     """
 
-    entity_types = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='EntityType',
-    )
+    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message="EntityType",)
 
 
 class BatchDeleteEntityTypesRequest(proto.Message):
@@ -412,8 +397,8 @@ class BatchCreateEntitiesRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    entities = proto.RepeatedField(proto.MESSAGE, number=2,
-        message='EntityType.Entity',
+    entities = proto.RepeatedField(
+        proto.MESSAGE, number=2, message="EntityType.Entity",
     )
 
     language_code = proto.Field(proto.STRING, number=3)
@@ -445,15 +430,13 @@ class BatchUpdateEntitiesRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    entities = proto.RepeatedField(proto.MESSAGE, number=2,
-        message='EntityType.Entity',
+    entities = proto.RepeatedField(
+        proto.MESSAGE, number=2, message="EntityType.Entity",
     )
 
     language_code = proto.Field(proto.STRING, number=3)
 
-    update_mask = proto.Field(proto.MESSAGE, number=4,
-        message=field_mask.FieldMask,
-    )
+    update_mask = proto.Field(proto.MESSAGE, number=4, message=field_mask.FieldMask,)
 
 
 class BatchDeleteEntitiesRequest(proto.Message):
@@ -495,9 +478,7 @@ class EntityTypeBatch(proto.Message):
             A collection of entity types.
     """
 
-    entity_types = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='EntityType',
-    )
+    entity_types = proto.RepeatedField(proto.MESSAGE, number=1, message="EntityType",)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

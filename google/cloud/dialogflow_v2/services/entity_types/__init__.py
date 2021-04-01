@@ -19,6 +19,6 @@ from .client import EntityTypesClient
 from .async_client import EntityTypesAsyncClient
 
 __all__ = (
-    'EntityTypesClient',
-    'EntityTypesAsyncClient',
+    "EntityTypesClient",
+    "EntityTypesAsyncClient",
 )

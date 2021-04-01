@@ -19,6 +19,6 @@ from .client import EnvironmentsClient
 from .async_client import EnvironmentsAsyncClient
 
 __all__ = (
-    'EnvironmentsClient',
-    'EnvironmentsAsyncClient',
+    "EnvironmentsClient",
+    "EnvironmentsAsyncClient",
 )

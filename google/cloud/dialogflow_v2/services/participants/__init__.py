@@ -19,6 +19,6 @@ from .client import ParticipantsClient
 from .async_client import ParticipantsAsyncClient
 
 __all__ = (
-    'ParticipantsClient',
-    'ParticipantsAsyncClient',
+    "ParticipantsClient",
+    "ParticipantsAsyncClient",
 )

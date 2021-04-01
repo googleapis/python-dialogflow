@@ -16,11 +16,7 @@
 #
 
 
-__protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2',
-    manifest={
-    },
-)
+__protobuf__ = proto.module(package="google.cloud.dialogflow.v2", manifest={},)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -18,13 +18,13 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import grpc_helpers_async         # type: ignore
-from google import auth                                # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import grpc_helpers_async  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc                        # type: ignore
+import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import answer_record
@@ -52,13 +52,15 @@ class AnswerRecordsGrpcAsyncIOTransport(AnswerRecordsTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'dialogflow.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: Optional[str] = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> aio.Channel:
+    def create_channel(
+        cls,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -87,22 +89,24 @@ class AnswerRecordsGrpcAsyncIOTransport(AnswerRecordsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
-    def __init__(self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            channel: aio.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            ssl_channel_credentials: grpc.ChannelCredentials = None,
-            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id=None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        channel: aio.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id=None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -224,9 +228,11 @@ class AnswerRecordsGrpcAsyncIOTransport(AnswerRecordsTransport):
         return self._grpc_channel
 
     @property
-    def get_answer_record(self) -> Callable[
-            [answer_record.GetAnswerRecordRequest],
-            Awaitable[answer_record.AnswerRecord]]:
+    def get_answer_record(
+        self,
+    ) -> Callable[
+        [answer_record.GetAnswerRecordRequest], Awaitable[answer_record.AnswerRecord]
+    ]:
         r"""Return a callable for the get answer record method over gRPC.
 
         Deprecated.
@@ -242,18 +248,21 @@ class AnswerRecordsGrpcAsyncIOTransport(AnswerRecordsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_answer_record' not in self._stubs:
-            self._stubs['get_answer_record'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.AnswerRecords/GetAnswerRecord',
+        if "get_answer_record" not in self._stubs:
+            self._stubs["get_answer_record"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.AnswerRecords/GetAnswerRecord",
                 request_serializer=answer_record.GetAnswerRecordRequest.serialize,
                 response_deserializer=answer_record.AnswerRecord.deserialize,
             )
-        return self._stubs['get_answer_record']
+        return self._stubs["get_answer_record"]
 
     @property
-    def list_answer_records(self) -> Callable[
-            [answer_record.ListAnswerRecordsRequest],
-            Awaitable[answer_record.ListAnswerRecordsResponse]]:
+    def list_answer_records(
+        self,
+    ) -> Callable[
+        [answer_record.ListAnswerRecordsRequest],
+        Awaitable[answer_record.ListAnswerRecordsResponse],
+    ]:
         r"""Return a callable for the list answer records method over gRPC.
 
         Returns the list of all answer records in the
@@ -269,18 +278,21 @@ class AnswerRecordsGrpcAsyncIOTransport(AnswerRecordsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_answer_records' not in self._stubs:
-            self._stubs['list_answer_records'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.AnswerRecords/ListAnswerRecords',
+        if "list_answer_records" not in self._stubs:
+            self._stubs["list_answer_records"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.AnswerRecords/ListAnswerRecords",
                 request_serializer=answer_record.ListAnswerRecordsRequest.serialize,
                 response_deserializer=answer_record.ListAnswerRecordsResponse.deserialize,
             )
-        return self._stubs['list_answer_records']
+        return self._stubs["list_answer_records"]
 
     @property
-    def update_answer_record(self) -> Callable[
-            [gcd_answer_record.UpdateAnswerRecordRequest],
-            Awaitable[gcd_answer_record.AnswerRecord]]:
+    def update_answer_record(
+        self,
+    ) -> Callable[
+        [gcd_answer_record.UpdateAnswerRecordRequest],
+        Awaitable[gcd_answer_record.AnswerRecord],
+    ]:
         r"""Return a callable for the update answer record method over gRPC.
 
         Updates the specified answer record.
@@ -295,15 +307,13 @@ class AnswerRecordsGrpcAsyncIOTransport(AnswerRecordsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_answer_record' not in self._stubs:
-            self._stubs['update_answer_record'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.AnswerRecords/UpdateAnswerRecord',
+        if "update_answer_record" not in self._stubs:
+            self._stubs["update_answer_record"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.AnswerRecords/UpdateAnswerRecord",
                 request_serializer=gcd_answer_record.UpdateAnswerRecordRequest.serialize,
                 response_deserializer=gcd_answer_record.AnswerRecord.deserialize,
             )
-        return self._stubs['update_answer_record']
+        return self._stubs["update_answer_record"]
 
 
-__all__ = (
-    'AnswerRecordsGrpcAsyncIOTransport',
-)
+__all__ = ("AnswerRecordsGrpcAsyncIOTransport",)

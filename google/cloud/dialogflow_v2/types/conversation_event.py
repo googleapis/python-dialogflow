@@ -23,10 +23,7 @@ from google.rpc import status_pb2 as status  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2',
-    manifest={
-        'ConversationEvent',
-    },
+    package="google.cloud.dialogflow.v2", manifest={"ConversationEvent",},
 )
 
 
@@ -48,6 +45,7 @@ class ConversationEvent(proto.Message):
         new_message_payload (google.cloud.dialogflow_v2.types.Message):
             Payload of NEW_MESSAGE event.
     """
+
     class Type(proto.Enum):
         r"""Enumeration of the types of events available."""
         TYPE_UNSPECIFIED = 0
@@ -59,16 +57,12 @@ class ConversationEvent(proto.Message):
 
     conversation = proto.Field(proto.STRING, number=1)
 
-    type_ = proto.Field(proto.ENUM, number=2,
-        enum=Type,
-    )
+    type_ = proto.Field(proto.ENUM, number=2, enum=Type,)
 
-    error_status = proto.Field(proto.MESSAGE, number=3,
-        message=status.Status,
-    )
+    error_status = proto.Field(proto.MESSAGE, number=3, message=status.Status,)
 
-    new_message_payload = proto.Field(proto.MESSAGE, number=4, oneof='payload',
-        message=participant.Message,
+    new_message_payload = proto.Field(
+        proto.MESSAGE, number=4, oneof="payload", message=participant.Message,
     )
 
 

@@ -22,21 +22,21 @@ from google.protobuf import duration_pb2 as duration  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2beta1',
+    package="google.cloud.dialogflow.v2beta1",
     manifest={
-        'AudioEncoding',
-        'SpeechModelVariant',
-        'SsmlVoiceGender',
-        'OutputAudioEncoding',
-        'TelephonyDtmf',
-        'SpeechContext',
-        'SpeechWordInfo',
-        'InputAudioConfig',
-        'VoiceSelectionParams',
-        'SynthesizeSpeechConfig',
-        'OutputAudioConfig',
-        'TelephonyDtmfEvents',
-        'SpeechToTextConfig',
+        "AudioEncoding",
+        "SpeechModelVariant",
+        "SsmlVoiceGender",
+        "OutputAudioEncoding",
+        "TelephonyDtmf",
+        "SpeechContext",
+        "SpeechWordInfo",
+        "InputAudioConfig",
+        "VoiceSelectionParams",
+        "SynthesizeSpeechConfig",
+        "OutputAudioConfig",
+        "TelephonyDtmfEvents",
+        "SpeechToTextConfig",
     },
 )
 
@@ -189,13 +189,9 @@ class SpeechWordInfo(proto.Message):
 
     word = proto.Field(proto.STRING, number=3)
 
-    start_offset = proto.Field(proto.MESSAGE, number=1,
-        message=duration.Duration,
-    )
+    start_offset = proto.Field(proto.MESSAGE, number=1, message=duration.Duration,)
 
-    end_offset = proto.Field(proto.MESSAGE, number=2,
-        message=duration.Duration,
-    )
+    end_offset = proto.Field(proto.MESSAGE, number=2, message=duration.Duration,)
 
     confidence = proto.Field(proto.FLOAT, number=4)
 
@@ -283,9 +279,7 @@ class InputAudioConfig(proto.Message):
             trigger ``NO_SPEECH_RECOGNIZED`` event to Dialogflow agent.
     """
 
-    audio_encoding = proto.Field(proto.ENUM, number=1,
-        enum='AudioEncoding',
-    )
+    audio_encoding = proto.Field(proto.ENUM, number=1, enum="AudioEncoding",)
 
     sample_rate_hertz = proto.Field(proto.INT32, number=2)
 
@@ -295,15 +289,13 @@ class InputAudioConfig(proto.Message):
 
     phrase_hints = proto.RepeatedField(proto.STRING, number=4)
 
-    speech_contexts = proto.RepeatedField(proto.MESSAGE, number=11,
-        message='SpeechContext',
+    speech_contexts = proto.RepeatedField(
+        proto.MESSAGE, number=11, message="SpeechContext",
     )
 
     model = proto.Field(proto.STRING, number=7)
 
-    model_variant = proto.Field(proto.ENUM, number=10,
-        enum='SpeechModelVariant',
-    )
+    model_variant = proto.Field(proto.ENUM, number=10, enum="SpeechModelVariant",)
 
     single_utterance = proto.Field(proto.BOOL, number=8)
 
@@ -336,9 +328,7 @@ class VoiceSelectionParams(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    ssml_gender = proto.Field(proto.ENUM, number=2,
-        enum='SsmlVoiceGender',
-    )
+    ssml_gender = proto.Field(proto.ENUM, number=2, enum="SsmlVoiceGender",)
 
 
 class SynthesizeSpeechConfig(proto.Message):
@@ -385,9 +375,7 @@ class SynthesizeSpeechConfig(proto.Message):
 
     effects_profile_id = proto.RepeatedField(proto.STRING, number=5)
 
-    voice = proto.Field(proto.MESSAGE, number=4,
-        message='VoiceSelectionParams',
-    )
+    voice = proto.Field(proto.MESSAGE, number=4, message="VoiceSelectionParams",)
 
 
 class OutputAudioConfig(proto.Message):
@@ -414,14 +402,12 @@ class OutputAudioConfig(proto.Message):
             synthesized.
     """
 
-    audio_encoding = proto.Field(proto.ENUM, number=1,
-        enum='OutputAudioEncoding',
-    )
+    audio_encoding = proto.Field(proto.ENUM, number=1, enum="OutputAudioEncoding",)
 
     sample_rate_hertz = proto.Field(proto.INT32, number=2)
 
-    synthesize_speech_config = proto.Field(proto.MESSAGE, number=3,
-        message='SynthesizeSpeechConfig',
+    synthesize_speech_config = proto.Field(
+        proto.MESSAGE, number=3, message="SynthesizeSpeechConfig",
     )
 
 
@@ -433,9 +419,7 @@ class TelephonyDtmfEvents(proto.Message):
             A sequence of TelephonyDtmf digits.
     """
 
-    dtmf_events = proto.RepeatedField(proto.ENUM, number=1,
-        enum='TelephonyDtmf',
-    )
+    dtmf_events = proto.RepeatedField(proto.ENUM, number=1, enum="TelephonyDtmf",)
 
 
 class SpeechToTextConfig(proto.Message):
@@ -453,9 +437,7 @@ class SpeechToTextConfig(proto.Message):
             request.
     """
 
-    speech_model_variant = proto.Field(proto.ENUM, number=1,
-        enum='SpeechModelVariant',
-    )
+    speech_model_variant = proto.Field(proto.ENUM, number=1, enum="SpeechModelVariant",)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

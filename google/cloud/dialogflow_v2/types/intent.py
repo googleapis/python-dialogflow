@@ -24,20 +24,20 @@ from google.protobuf import struct_pb2 as struct  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2',
+    package="google.cloud.dialogflow.v2",
     manifest={
-        'IntentView',
-        'Intent',
-        'ListIntentsRequest',
-        'ListIntentsResponse',
-        'GetIntentRequest',
-        'CreateIntentRequest',
-        'UpdateIntentRequest',
-        'DeleteIntentRequest',
-        'BatchUpdateIntentsRequest',
-        'BatchUpdateIntentsResponse',
-        'BatchDeleteIntentsRequest',
-        'IntentBatch',
+        "IntentView",
+        "Intent",
+        "ListIntentsRequest",
+        "ListIntentsResponse",
+        "GetIntentRequest",
+        "CreateIntentRequest",
+        "UpdateIntentRequest",
+        "DeleteIntentRequest",
+        "BatchUpdateIntentsRequest",
+        "BatchUpdateIntentsResponse",
+        "BatchDeleteIntentsRequest",
+        "IntentBatch",
     },
 )
 
@@ -169,6 +169,7 @@ class Intent(proto.Message):
             indirect parent. We populate this field only in
             the output.
     """
+
     class WebhookState(proto.Enum):
         r"""Represents the different states that webhooks can be in."""
         WEBHOOK_STATE_UNSPECIFIED = 0
@@ -215,6 +216,7 @@ class Intent(proto.Message):
                 developer adds an existing sample by editing an
                 intent or training, this counter is increased.
         """
+
         class Type(proto.Enum):
             r"""Represents different types of training phrases."""
             TYPE_UNSPECIFIED = 0
@@ -254,12 +256,10 @@ class Intent(proto.Message):
 
         name = proto.Field(proto.STRING, number=1)
 
-        type_ = proto.Field(proto.ENUM, number=2,
-            enum='Intent.TrainingPhrase.Type',
-        )
+        type_ = proto.Field(proto.ENUM, number=2, enum="Intent.TrainingPhrase.Type",)
 
-        parts = proto.RepeatedField(proto.MESSAGE, number=3,
-            message='Intent.TrainingPhrase.Part',
+        parts = proto.RepeatedField(
+            proto.MESSAGE, number=3, message="Intent.TrainingPhrase.Part",
         )
 
         times_added_count = proto.Field(proto.INT32, number=4)
@@ -363,6 +363,7 @@ class Intent(proto.Message):
                 Optional. The platform that this message is
                 intended for.
         """
+
         class Platform(proto.Enum):
             r"""The rich response message integration platform. See
             `Integrations <https://cloud.google.com/dialogflow/docs/integrations>`__.
@@ -433,6 +434,7 @@ class Intent(proto.Message):
                 buttons (Sequence[google.cloud.dialogflow_v2.types.Intent.Message.Card.Button]):
                     Optional. The collection of card buttons.
             """
+
             class Button(proto.Message):
                 r"""Contains information about a button.
 
@@ -454,8 +456,8 @@ class Intent(proto.Message):
 
             image_uri = proto.Field(proto.STRING, number=3)
 
-            buttons = proto.RepeatedField(proto.MESSAGE, number=4,
-                message='Intent.Message.Card.Button',
+            buttons = proto.RepeatedField(
+                proto.MESSAGE, number=4, message="Intent.Message.Card.Button",
             )
 
         class SimpleResponse(proto.Message):
@@ -490,8 +492,8 @@ class Intent(proto.Message):
                     Required. The list of simple responses.
             """
 
-            simple_responses = proto.RepeatedField(proto.MESSAGE, number=1,
-                message='Intent.Message.SimpleResponse',
+            simple_responses = proto.RepeatedField(
+                proto.MESSAGE, number=1, message="Intent.Message.SimpleResponse",
             )
 
         class BasicCard(proto.Message):
@@ -510,6 +512,7 @@ class Intent(proto.Message):
                 buttons (Sequence[google.cloud.dialogflow_v2.types.Intent.Message.BasicCard.Button]):
                     Optional. The collection of card buttons.
             """
+
             class Button(proto.Message):
                 r"""The button object that appears at the bottom of a card.
 
@@ -520,6 +523,7 @@ class Intent(proto.Message):
                         Required. Action to take when a user taps on
                         the button.
                 """
+
                 class OpenUriAction(proto.Message):
                     r"""Opens the given URI.
 
@@ -532,8 +536,10 @@ class Intent(proto.Message):
 
                 title = proto.Field(proto.STRING, number=1)
 
-                open_uri_action = proto.Field(proto.MESSAGE, number=2,
-                    message='Intent.Message.BasicCard.Button.OpenUriAction',
+                open_uri_action = proto.Field(
+                    proto.MESSAGE,
+                    number=2,
+                    message="Intent.Message.BasicCard.Button.OpenUriAction",
                 )
 
             title = proto.Field(proto.STRING, number=1)
@@ -542,12 +548,12 @@ class Intent(proto.Message):
 
             formatted_text = proto.Field(proto.STRING, number=3)
 
-            image = proto.Field(proto.MESSAGE, number=4,
-                message='Intent.Message.Image',
+            image = proto.Field(
+                proto.MESSAGE, number=4, message="Intent.Message.Image",
             )
 
-            buttons = proto.RepeatedField(proto.MESSAGE, number=5,
-                message='Intent.Message.BasicCard.Button',
+            buttons = proto.RepeatedField(
+                proto.MESSAGE, number=5, message="Intent.Message.BasicCard.Button",
             )
 
         class Suggestion(proto.Message):
@@ -570,8 +576,8 @@ class Intent(proto.Message):
                     Required. The list of suggested replies.
             """
 
-            suggestions = proto.RepeatedField(proto.MESSAGE, number=1,
-                message='Intent.Message.Suggestion',
+            suggestions = proto.RepeatedField(
+                proto.MESSAGE, number=1, message="Intent.Message.Suggestion",
             )
 
         class LinkOutSuggestion(proto.Message):
@@ -602,6 +608,7 @@ class Intent(proto.Message):
                 subtitle (str):
                     Optional. Subtitle of the list.
             """
+
             class Item(proto.Message):
                 r"""An item in the list.
 
@@ -617,22 +624,22 @@ class Intent(proto.Message):
                         Optional. The image to display.
                 """
 
-                info = proto.Field(proto.MESSAGE, number=1,
-                    message='Intent.Message.SelectItemInfo',
+                info = proto.Field(
+                    proto.MESSAGE, number=1, message="Intent.Message.SelectItemInfo",
                 )
 
                 title = proto.Field(proto.STRING, number=2)
 
                 description = proto.Field(proto.STRING, number=3)
 
-                image = proto.Field(proto.MESSAGE, number=4,
-                    message='Intent.Message.Image',
+                image = proto.Field(
+                    proto.MESSAGE, number=4, message="Intent.Message.Image",
                 )
 
             title = proto.Field(proto.STRING, number=1)
 
-            items = proto.RepeatedField(proto.MESSAGE, number=2,
-                message='Intent.Message.ListSelect.Item',
+            items = proto.RepeatedField(
+                proto.MESSAGE, number=2, message="Intent.Message.ListSelect.Item",
             )
 
             subtitle = proto.Field(proto.STRING, number=3)
@@ -644,6 +651,7 @@ class Intent(proto.Message):
                 items (Sequence[google.cloud.dialogflow_v2.types.Intent.Message.CarouselSelect.Item]):
                     Required. Carousel items.
             """
+
             class Item(proto.Message):
                 r"""An item in the carousel.
 
@@ -659,20 +667,20 @@ class Intent(proto.Message):
                         Optional. The image to display.
                 """
 
-                info = proto.Field(proto.MESSAGE, number=1,
-                    message='Intent.Message.SelectItemInfo',
+                info = proto.Field(
+                    proto.MESSAGE, number=1, message="Intent.Message.SelectItemInfo",
                 )
 
                 title = proto.Field(proto.STRING, number=2)
 
                 description = proto.Field(proto.STRING, number=3)
 
-                image = proto.Field(proto.MESSAGE, number=4,
-                    message='Intent.Message.Image',
+                image = proto.Field(
+                    proto.MESSAGE, number=4, message="Intent.Message.Image",
                 )
 
-            items = proto.RepeatedField(proto.MESSAGE, number=1,
-                message='Intent.Message.CarouselSelect.Item',
+            items = proto.RepeatedField(
+                proto.MESSAGE, number=1, message="Intent.Message.CarouselSelect.Item",
             )
 
         class SelectItemInfo(proto.Message):
@@ -702,6 +710,7 @@ class Intent(proto.Message):
                 media_objects (Sequence[google.cloud.dialogflow_v2.types.Intent.Message.MediaContent.ResponseMediaObject]):
                     Required. List of media objects.
             """
+
             class ResponseMediaType(proto.Enum):
                 r"""Format of response media type."""
                 RESPONSE_MEDIA_TYPE_UNSPECIFIED = 0
@@ -729,22 +738,32 @@ class Intent(proto.Message):
 
                 description = proto.Field(proto.STRING, number=2)
 
-                large_image = proto.Field(proto.MESSAGE, number=3, oneof='image',
-                    message='Intent.Message.Image',
+                large_image = proto.Field(
+                    proto.MESSAGE,
+                    number=3,
+                    oneof="image",
+                    message="Intent.Message.Image",
                 )
 
-                icon = proto.Field(proto.MESSAGE, number=4, oneof='image',
-                    message='Intent.Message.Image',
+                icon = proto.Field(
+                    proto.MESSAGE,
+                    number=4,
+                    oneof="image",
+                    message="Intent.Message.Image",
                 )
 
                 content_url = proto.Field(proto.STRING, number=5)
 
-            media_type = proto.Field(proto.ENUM, number=1,
-                enum='Intent.Message.MediaContent.ResponseMediaType',
+            media_type = proto.Field(
+                proto.ENUM,
+                number=1,
+                enum="Intent.Message.MediaContent.ResponseMediaType",
             )
 
-            media_objects = proto.RepeatedField(proto.MESSAGE, number=2,
-                message='Intent.Message.MediaContent.ResponseMediaObject',
+            media_objects = proto.RepeatedField(
+                proto.MESSAGE,
+                number=2,
+                message="Intent.Message.MediaContent.ResponseMediaObject",
             )
 
         class BrowseCarouselCard(proto.Message):
@@ -761,6 +780,7 @@ class Intent(proto.Message):
                     every image in
                     [items][google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.items].
             """
+
             class ImageDisplayOptions(proto.Enum):
                 r"""Image display options for Actions on Google. This should be
                 used for when the image's aspect ratio does not match the image
@@ -791,6 +811,7 @@ class Intent(proto.Message):
                         the Browse Carousel Card. Maximum of one line of
                         text.
                 """
+
                 class OpenUrlAction(proto.Message):
                     r"""Actions on Google action to open a given url.
 
@@ -802,6 +823,7 @@ class Intent(proto.Message):
                             is used when opening the URL. Defaults to
                             opening via web browser.
                     """
+
                     class UrlTypeHint(proto.Enum):
                         r"""Type of the URI."""
                         URL_TYPE_HINT_UNSPECIFIED = 0
@@ -810,30 +832,38 @@ class Intent(proto.Message):
 
                     url = proto.Field(proto.STRING, number=1)
 
-                    url_type_hint = proto.Field(proto.ENUM, number=3,
-                        enum='Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint',
+                    url_type_hint = proto.Field(
+                        proto.ENUM,
+                        number=3,
+                        enum="Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint",
                     )
 
-                open_uri_action = proto.Field(proto.MESSAGE, number=1,
-                    message='Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction',
+                open_uri_action = proto.Field(
+                    proto.MESSAGE,
+                    number=1,
+                    message="Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction",
                 )
 
                 title = proto.Field(proto.STRING, number=2)
 
                 description = proto.Field(proto.STRING, number=3)
 
-                image = proto.Field(proto.MESSAGE, number=4,
-                    message='Intent.Message.Image',
+                image = proto.Field(
+                    proto.MESSAGE, number=4, message="Intent.Message.Image",
                 )
 
                 footer = proto.Field(proto.STRING, number=5)
 
-            items = proto.RepeatedField(proto.MESSAGE, number=1,
-                message='Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem',
+            items = proto.RepeatedField(
+                proto.MESSAGE,
+                number=1,
+                message="Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem",
             )
 
-            image_display_options = proto.Field(proto.ENUM, number=2,
-                enum='Intent.Message.BrowseCarouselCard.ImageDisplayOptions',
+            image_display_options = proto.Field(
+                proto.ENUM,
+                number=2,
+                enum="Intent.Message.BrowseCarouselCard.ImageDisplayOptions",
             )
 
         class TableCard(proto.Message):
@@ -860,20 +890,20 @@ class Intent(proto.Message):
 
             subtitle = proto.Field(proto.STRING, number=2)
 
-            image = proto.Field(proto.MESSAGE, number=3,
-                message='Intent.Message.Image',
+            image = proto.Field(
+                proto.MESSAGE, number=3, message="Intent.Message.Image",
             )
 
-            column_properties = proto.RepeatedField(proto.MESSAGE, number=4,
-                message='Intent.Message.ColumnProperties',
+            column_properties = proto.RepeatedField(
+                proto.MESSAGE, number=4, message="Intent.Message.ColumnProperties",
             )
 
-            rows = proto.RepeatedField(proto.MESSAGE, number=5,
-                message='Intent.Message.TableCardRow',
+            rows = proto.RepeatedField(
+                proto.MESSAGE, number=5, message="Intent.Message.TableCardRow",
             )
 
-            buttons = proto.RepeatedField(proto.MESSAGE, number=6,
-                message='Intent.Message.BasicCard.Button',
+            buttons = proto.RepeatedField(
+                proto.MESSAGE, number=6, message="Intent.Message.BasicCard.Button",
             )
 
         class ColumnProperties(proto.Message):
@@ -887,6 +917,7 @@ class Intent(proto.Message):
                     Optional. Defines text alignment for all
                     cells in this column.
             """
+
             class HorizontalAlignment(proto.Enum):
                 r"""Text alignments within a cell."""
                 HORIZONTAL_ALIGNMENT_UNSPECIFIED = 0
@@ -896,8 +927,10 @@ class Intent(proto.Message):
 
             header = proto.Field(proto.STRING, number=1)
 
-            horizontal_alignment = proto.Field(proto.ENUM, number=2,
-                enum='Intent.Message.ColumnProperties.HorizontalAlignment',
+            horizontal_alignment = proto.Field(
+                proto.ENUM,
+                number=2,
+                enum="Intent.Message.ColumnProperties.HorizontalAlignment",
             )
 
         class TableCardRow(proto.Message):
@@ -913,8 +946,8 @@ class Intent(proto.Message):
                     after this row.
             """
 
-            cells = proto.RepeatedField(proto.MESSAGE, number=1,
-                message='Intent.Message.TableCardCell',
+            cells = proto.RepeatedField(
+                proto.MESSAGE, number=1, message="Intent.Message.TableCardCell",
             )
 
             divider_after = proto.Field(proto.BOOL, number=2)
@@ -930,65 +963,93 @@ class Intent(proto.Message):
 
             text = proto.Field(proto.STRING, number=1)
 
-        text = proto.Field(proto.MESSAGE, number=1, oneof='message',
-            message='Intent.Message.Text',
+        text = proto.Field(
+            proto.MESSAGE, number=1, oneof="message", message="Intent.Message.Text",
         )
 
-        image = proto.Field(proto.MESSAGE, number=2, oneof='message',
-            message='Intent.Message.Image',
+        image = proto.Field(
+            proto.MESSAGE, number=2, oneof="message", message="Intent.Message.Image",
         )
 
-        quick_replies = proto.Field(proto.MESSAGE, number=3, oneof='message',
-            message='Intent.Message.QuickReplies',
+        quick_replies = proto.Field(
+            proto.MESSAGE,
+            number=3,
+            oneof="message",
+            message="Intent.Message.QuickReplies",
         )
 
-        card = proto.Field(proto.MESSAGE, number=4, oneof='message',
-            message='Intent.Message.Card',
+        card = proto.Field(
+            proto.MESSAGE, number=4, oneof="message", message="Intent.Message.Card",
         )
 
-        payload = proto.Field(proto.MESSAGE, number=5, oneof='message',
-            message=struct.Struct,
+        payload = proto.Field(
+            proto.MESSAGE, number=5, oneof="message", message=struct.Struct,
         )
 
-        simple_responses = proto.Field(proto.MESSAGE, number=7, oneof='message',
-            message='Intent.Message.SimpleResponses',
+        simple_responses = proto.Field(
+            proto.MESSAGE,
+            number=7,
+            oneof="message",
+            message="Intent.Message.SimpleResponses",
         )
 
-        basic_card = proto.Field(proto.MESSAGE, number=8, oneof='message',
-            message='Intent.Message.BasicCard',
+        basic_card = proto.Field(
+            proto.MESSAGE,
+            number=8,
+            oneof="message",
+            message="Intent.Message.BasicCard",
         )
 
-        suggestions = proto.Field(proto.MESSAGE, number=9, oneof='message',
-            message='Intent.Message.Suggestions',
+        suggestions = proto.Field(
+            proto.MESSAGE,
+            number=9,
+            oneof="message",
+            message="Intent.Message.Suggestions",
         )
 
-        link_out_suggestion = proto.Field(proto.MESSAGE, number=10, oneof='message',
-            message='Intent.Message.LinkOutSuggestion',
+        link_out_suggestion = proto.Field(
+            proto.MESSAGE,
+            number=10,
+            oneof="message",
+            message="Intent.Message.LinkOutSuggestion",
         )
 
-        list_select = proto.Field(proto.MESSAGE, number=11, oneof='message',
-            message='Intent.Message.ListSelect',
+        list_select = proto.Field(
+            proto.MESSAGE,
+            number=11,
+            oneof="message",
+            message="Intent.Message.ListSelect",
         )
 
-        carousel_select = proto.Field(proto.MESSAGE, number=12, oneof='message',
-            message='Intent.Message.CarouselSelect',
+        carousel_select = proto.Field(
+            proto.MESSAGE,
+            number=12,
+            oneof="message",
+            message="Intent.Message.CarouselSelect",
         )
 
-        browse_carousel_card = proto.Field(proto.MESSAGE, number=22, oneof='message',
-            message='Intent.Message.BrowseCarouselCard',
+        browse_carousel_card = proto.Field(
+            proto.MESSAGE,
+            number=22,
+            oneof="message",
+            message="Intent.Message.BrowseCarouselCard",
         )
 
-        table_card = proto.Field(proto.MESSAGE, number=23, oneof='message',
-            message='Intent.Message.TableCard',
+        table_card = proto.Field(
+            proto.MESSAGE,
+            number=23,
+            oneof="message",
+            message="Intent.Message.TableCard",
         )
 
-        media_content = proto.Field(proto.MESSAGE, number=24, oneof='message',
-            message='Intent.Message.MediaContent',
+        media_content = proto.Field(
+            proto.MESSAGE,
+            number=24,
+            oneof="message",
+            message="Intent.Message.MediaContent",
         )
 
-        platform = proto.Field(proto.ENUM, number=6,
-            enum='Intent.Message.Platform',
-        )
+        platform = proto.Field(proto.ENUM, number=6, enum="Intent.Message.Platform",)
 
     class FollowupIntentInfo(proto.Message):
         r"""Represents a single followup intent in the chain.
@@ -1010,9 +1071,7 @@ class Intent(proto.Message):
 
     display_name = proto.Field(proto.STRING, number=2)
 
-    webhook_state = proto.Field(proto.ENUM, number=6,
-        enum=WebhookState,
-    )
+    webhook_state = proto.Field(proto.ENUM, number=6, enum=WebhookState,)
 
     priority = proto.Field(proto.INT32, number=3)
 
@@ -1028,36 +1087,32 @@ class Intent(proto.Message):
 
     events = proto.RepeatedField(proto.STRING, number=8)
 
-    training_phrases = proto.RepeatedField(proto.MESSAGE, number=9,
-        message=TrainingPhrase,
+    training_phrases = proto.RepeatedField(
+        proto.MESSAGE, number=9, message=TrainingPhrase,
     )
 
     action = proto.Field(proto.STRING, number=10)
 
-    output_contexts = proto.RepeatedField(proto.MESSAGE, number=11,
-        message=context.Context,
+    output_contexts = proto.RepeatedField(
+        proto.MESSAGE, number=11, message=context.Context,
     )
 
     reset_contexts = proto.Field(proto.BOOL, number=12)
 
-    parameters = proto.RepeatedField(proto.MESSAGE, number=13,
-        message=Parameter,
-    )
+    parameters = proto.RepeatedField(proto.MESSAGE, number=13, message=Parameter,)
 
-    messages = proto.RepeatedField(proto.MESSAGE, number=14,
-        message=Message,
-    )
+    messages = proto.RepeatedField(proto.MESSAGE, number=14, message=Message,)
 
-    default_response_platforms = proto.RepeatedField(proto.ENUM, number=15,
-        enum=Message.Platform,
+    default_response_platforms = proto.RepeatedField(
+        proto.ENUM, number=15, enum=Message.Platform,
     )
 
     root_followup_intent_name = proto.Field(proto.STRING, number=16)
 
     parent_followup_intent_name = proto.Field(proto.STRING, number=17)
 
-    followup_intent_info = proto.RepeatedField(proto.MESSAGE, number=18,
-        message=FollowupIntentInfo,
+    followup_intent_info = proto.RepeatedField(
+        proto.MESSAGE, number=18, message=FollowupIntentInfo,
     )
 
 
@@ -1091,9 +1146,7 @@ class ListIntentsRequest(proto.Message):
 
     language_code = proto.Field(proto.STRING, number=2)
 
-    intent_view = proto.Field(proto.ENUM, number=3,
-        enum='IntentView',
-    )
+    intent_view = proto.Field(proto.ENUM, number=3, enum="IntentView",)
 
     page_size = proto.Field(proto.INT32, number=4)
 
@@ -1118,9 +1171,7 @@ class ListIntentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='Intent',
-    )
+    intents = proto.RepeatedField(proto.MESSAGE, number=1, message="Intent",)
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -1148,9 +1199,7 @@ class GetIntentRequest(proto.Message):
 
     language_code = proto.Field(proto.STRING, number=2)
 
-    intent_view = proto.Field(proto.ENUM, number=3,
-        enum='IntentView',
-    )
+    intent_view = proto.Field(proto.ENUM, number=3, enum="IntentView",)
 
 
 class CreateIntentRequest(proto.Message):
@@ -1176,15 +1225,11 @@ class CreateIntentRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    intent = proto.Field(proto.MESSAGE, number=2,
-        message='Intent',
-    )
+    intent = proto.Field(proto.MESSAGE, number=2, message="Intent",)
 
     language_code = proto.Field(proto.STRING, number=3)
 
-    intent_view = proto.Field(proto.ENUM, number=4,
-        enum='IntentView',
-    )
+    intent_view = proto.Field(proto.ENUM, number=4, enum="IntentView",)
 
 
 class UpdateIntentRequest(proto.Message):
@@ -1208,19 +1253,13 @@ class UpdateIntentRequest(proto.Message):
             returned intent.
     """
 
-    intent = proto.Field(proto.MESSAGE, number=1,
-        message='Intent',
-    )
+    intent = proto.Field(proto.MESSAGE, number=1, message="Intent",)
 
     language_code = proto.Field(proto.STRING, number=2)
 
-    update_mask = proto.Field(proto.MESSAGE, number=3,
-        message=field_mask.FieldMask,
-    )
+    update_mask = proto.Field(proto.MESSAGE, number=3, message=field_mask.FieldMask,)
 
-    intent_view = proto.Field(proto.ENUM, number=4,
-        enum='IntentView',
-    )
+    intent_view = proto.Field(proto.ENUM, number=4, enum="IntentView",)
 
 
 class DeleteIntentRequest(proto.Message):
@@ -1270,21 +1309,17 @@ class BatchUpdateIntentsRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    intent_batch_uri = proto.Field(proto.STRING, number=2, oneof='intent_batch')
+    intent_batch_uri = proto.Field(proto.STRING, number=2, oneof="intent_batch")
 
-    intent_batch_inline = proto.Field(proto.MESSAGE, number=3, oneof='intent_batch',
-        message='IntentBatch',
+    intent_batch_inline = proto.Field(
+        proto.MESSAGE, number=3, oneof="intent_batch", message="IntentBatch",
     )
 
     language_code = proto.Field(proto.STRING, number=4)
 
-    update_mask = proto.Field(proto.MESSAGE, number=5,
-        message=field_mask.FieldMask,
-    )
+    update_mask = proto.Field(proto.MESSAGE, number=5, message=field_mask.FieldMask,)
 
-    intent_view = proto.Field(proto.ENUM, number=6,
-        enum='IntentView',
-    )
+    intent_view = proto.Field(proto.ENUM, number=6, enum="IntentView",)
 
 
 class BatchUpdateIntentsResponse(proto.Message):
@@ -1296,9 +1331,7 @@ class BatchUpdateIntentsResponse(proto.Message):
             The collection of updated or created intents.
     """
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='Intent',
-    )
+    intents = proto.RepeatedField(proto.MESSAGE, number=1, message="Intent",)
 
 
 class BatchDeleteIntentsRequest(proto.Message):
@@ -1316,9 +1349,7 @@ class BatchDeleteIntentsRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=2,
-        message='Intent',
-    )
+    intents = proto.RepeatedField(proto.MESSAGE, number=2, message="Intent",)
 
 
 class IntentBatch(proto.Message):
@@ -1329,9 +1360,7 @@ class IntentBatch(proto.Message):
             A collection of intents.
     """
 
-    intents = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='Intent',
-    )
+    intents = proto.RepeatedField(proto.MESSAGE, number=1, message="Intent",)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

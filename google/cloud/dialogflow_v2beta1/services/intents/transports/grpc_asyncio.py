@@ -18,14 +18,14 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import grpc_helpers_async         # type: ignore
-from google.api_core import operations_v1              # type: ignore
-from google import auth                                # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import grpc_helpers_async  # type: ignore
+from google.api_core import operations_v1  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc                        # type: ignore
+import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import intent
@@ -55,13 +55,15 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'dialogflow.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: Optional[str] = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> aio.Channel:
+    def create_channel(
+        cls,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -90,22 +92,24 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
-    def __init__(self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            channel: aio.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            ssl_channel_credentials: grpc.ChannelCredentials = None,
-            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id=None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        channel: aio.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id=None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -244,9 +248,9 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         return self._operations_client
 
     @property
-    def list_intents(self) -> Callable[
-            [intent.ListIntentsRequest],
-            Awaitable[intent.ListIntentsResponse]]:
+    def list_intents(
+        self,
+    ) -> Callable[[intent.ListIntentsRequest], Awaitable[intent.ListIntentsResponse]]:
         r"""Return a callable for the list intents method over gRPC.
 
         Returns the list of all intents in the specified
@@ -262,18 +266,18 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_intents' not in self._stubs:
-            self._stubs['list_intents'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Intents/ListIntents',
+        if "list_intents" not in self._stubs:
+            self._stubs["list_intents"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Intents/ListIntents",
                 request_serializer=intent.ListIntentsRequest.serialize,
                 response_deserializer=intent.ListIntentsResponse.deserialize,
             )
-        return self._stubs['list_intents']
+        return self._stubs["list_intents"]
 
     @property
-    def get_intent(self) -> Callable[
-            [intent.GetIntentRequest],
-            Awaitable[intent.Intent]]:
+    def get_intent(
+        self,
+    ) -> Callable[[intent.GetIntentRequest], Awaitable[intent.Intent]]:
         r"""Return a callable for the get intent method over gRPC.
 
         Retrieves the specified intent.
@@ -288,18 +292,18 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_intent' not in self._stubs:
-            self._stubs['get_intent'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Intents/GetIntent',
+        if "get_intent" not in self._stubs:
+            self._stubs["get_intent"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Intents/GetIntent",
                 request_serializer=intent.GetIntentRequest.serialize,
                 response_deserializer=intent.Intent.deserialize,
             )
-        return self._stubs['get_intent']
+        return self._stubs["get_intent"]
 
     @property
-    def create_intent(self) -> Callable[
-            [gcd_intent.CreateIntentRequest],
-            Awaitable[gcd_intent.Intent]]:
+    def create_intent(
+        self,
+    ) -> Callable[[gcd_intent.CreateIntentRequest], Awaitable[gcd_intent.Intent]]:
         r"""Return a callable for the create intent method over gRPC.
 
         Creates an intent in the specified agent.
@@ -314,18 +318,18 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_intent' not in self._stubs:
-            self._stubs['create_intent'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Intents/CreateIntent',
+        if "create_intent" not in self._stubs:
+            self._stubs["create_intent"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Intents/CreateIntent",
                 request_serializer=gcd_intent.CreateIntentRequest.serialize,
                 response_deserializer=gcd_intent.Intent.deserialize,
             )
-        return self._stubs['create_intent']
+        return self._stubs["create_intent"]
 
     @property
-    def update_intent(self) -> Callable[
-            [gcd_intent.UpdateIntentRequest],
-            Awaitable[gcd_intent.Intent]]:
+    def update_intent(
+        self,
+    ) -> Callable[[gcd_intent.UpdateIntentRequest], Awaitable[gcd_intent.Intent]]:
         r"""Return a callable for the update intent method over gRPC.
 
         Updates the specified intent.
@@ -340,18 +344,18 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_intent' not in self._stubs:
-            self._stubs['update_intent'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Intents/UpdateIntent',
+        if "update_intent" not in self._stubs:
+            self._stubs["update_intent"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Intents/UpdateIntent",
                 request_serializer=gcd_intent.UpdateIntentRequest.serialize,
                 response_deserializer=gcd_intent.Intent.deserialize,
             )
-        return self._stubs['update_intent']
+        return self._stubs["update_intent"]
 
     @property
-    def delete_intent(self) -> Callable[
-            [intent.DeleteIntentRequest],
-            Awaitable[empty.Empty]]:
+    def delete_intent(
+        self,
+    ) -> Callable[[intent.DeleteIntentRequest], Awaitable[empty.Empty]]:
         r"""Return a callable for the delete intent method over gRPC.
 
         Deletes the specified intent and its direct or
@@ -367,18 +371,18 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_intent' not in self._stubs:
-            self._stubs['delete_intent'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Intents/DeleteIntent',
+        if "delete_intent" not in self._stubs:
+            self._stubs["delete_intent"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Intents/DeleteIntent",
                 request_serializer=intent.DeleteIntentRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs['delete_intent']
+        return self._stubs["delete_intent"]
 
     @property
-    def batch_update_intents(self) -> Callable[
-            [intent.BatchUpdateIntentsRequest],
-            Awaitable[operations.Operation]]:
+    def batch_update_intents(
+        self,
+    ) -> Callable[[intent.BatchUpdateIntentsRequest], Awaitable[operations.Operation]]:
         r"""Return a callable for the batch update intents method over gRPC.
 
         Updates/Creates multiple intents in the specified agent.
@@ -396,18 +400,18 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'batch_update_intents' not in self._stubs:
-            self._stubs['batch_update_intents'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Intents/BatchUpdateIntents',
+        if "batch_update_intents" not in self._stubs:
+            self._stubs["batch_update_intents"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Intents/BatchUpdateIntents",
                 request_serializer=intent.BatchUpdateIntentsRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['batch_update_intents']
+        return self._stubs["batch_update_intents"]
 
     @property
-    def batch_delete_intents(self) -> Callable[
-            [intent.BatchDeleteIntentsRequest],
-            Awaitable[operations.Operation]]:
+    def batch_delete_intents(
+        self,
+    ) -> Callable[[intent.BatchDeleteIntentsRequest], Awaitable[operations.Operation]]:
         r"""Return a callable for the batch delete intents method over gRPC.
 
         Deletes intents in the specified agent.
@@ -425,15 +429,13 @@ class IntentsGrpcAsyncIOTransport(IntentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'batch_delete_intents' not in self._stubs:
-            self._stubs['batch_delete_intents'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Intents/BatchDeleteIntents',
+        if "batch_delete_intents" not in self._stubs:
+            self._stubs["batch_delete_intents"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Intents/BatchDeleteIntents",
                 request_serializer=intent.BatchDeleteIntentsRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['batch_delete_intents']
+        return self._stubs["batch_delete_intents"]
 
 
-__all__ = (
-    'IntentsGrpcAsyncIOTransport',
-)
+__all__ = ("IntentsGrpcAsyncIOTransport",)

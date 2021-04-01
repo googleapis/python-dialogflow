@@ -23,20 +23,20 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2beta1',
+    package="google.cloud.dialogflow.v2beta1",
     manifest={
-        'Conversation',
-        'ConversationPhoneNumber',
-        'CreateConversationRequest',
-        'ListConversationsRequest',
-        'ListConversationsResponse',
-        'GetConversationRequest',
-        'CompleteConversationRequest',
-        'CreateMessageRequest',
-        'BatchCreateMessagesRequest',
-        'BatchCreateMessagesResponse',
-        'ListMessagesRequest',
-        'ListMessagesResponse',
+        "Conversation",
+        "ConversationPhoneNumber",
+        "CreateConversationRequest",
+        "ListConversationsRequest",
+        "ListConversationsResponse",
+        "GetConversationRequest",
+        "CompleteConversationRequest",
+        "CreateMessageRequest",
+        "BatchCreateMessagesRequest",
+        "BatchCreateMessagesResponse",
+        "ListMessagesRequest",
+        "ListMessagesResponse",
     },
 )
 
@@ -88,6 +88,7 @@ class Conversation(proto.Message):
             Output only. The time the conversation was
             finished.
     """
+
     class LifecycleState(proto.Enum):
         r"""Enumeration of the completion status of the conversation."""
         LIFECYCLE_STATE_UNSPECIFIED = 0
@@ -106,27 +107,19 @@ class Conversation(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    lifecycle_state = proto.Field(proto.ENUM, number=2,
-        enum=LifecycleState,
-    )
+    lifecycle_state = proto.Field(proto.ENUM, number=2, enum=LifecycleState,)
 
     conversation_profile = proto.Field(proto.STRING, number=3)
 
-    phone_number = proto.Field(proto.MESSAGE, number=4,
-        message='ConversationPhoneNumber',
+    phone_number = proto.Field(
+        proto.MESSAGE, number=4, message="ConversationPhoneNumber",
     )
 
-    conversation_stage = proto.Field(proto.ENUM, number=7,
-        enum=ConversationStage,
-    )
+    conversation_stage = proto.Field(proto.ENUM, number=7, enum=ConversationStage,)
 
-    start_time = proto.Field(proto.MESSAGE, number=5,
-        message=timestamp.Timestamp,
-    )
+    start_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
 
-    end_time = proto.Field(proto.MESSAGE, number=6,
-        message=timestamp.Timestamp,
-    )
+    end_time = proto.Field(proto.MESSAGE, number=6, message=timestamp.Timestamp,)
 
 
 class ConversationPhoneNumber(proto.Message):
@@ -171,9 +164,7 @@ class CreateConversationRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    conversation = proto.Field(proto.MESSAGE, number=2,
-        message='Conversation',
-    )
+    conversation = proto.Field(proto.MESSAGE, number=2, message="Conversation",)
 
     conversation_id = proto.Field(proto.STRING, number=3)
 
@@ -244,8 +235,8 @@ class ListConversationsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    conversations = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='Conversation',
+    conversations = proto.RepeatedField(
+        proto.MESSAGE, number=1, message="Conversation",
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -295,9 +286,7 @@ class CreateMessageRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    message = proto.Field(proto.MESSAGE, number=2,
-        message=participant.Message,
-    )
+    message = proto.Field(proto.MESSAGE, number=2, message=participant.Message,)
 
 
 class BatchCreateMessagesRequest(proto.Message):
@@ -318,8 +307,8 @@ class BatchCreateMessagesRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    requests = proto.RepeatedField(proto.MESSAGE, number=2,
-        message='CreateMessageRequest',
+    requests = proto.RepeatedField(
+        proto.MESSAGE, number=2, message="CreateMessageRequest",
     )
 
 
@@ -332,8 +321,8 @@ class BatchCreateMessagesResponse(proto.Message):
             Messages created.
     """
 
-    messages = proto.RepeatedField(proto.MESSAGE, number=1,
-        message=participant.Message,
+    messages = proto.RepeatedField(
+        proto.MESSAGE, number=1, message=participant.Message,
     )
 
 
@@ -394,8 +383,8 @@ class ListMessagesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    messages = proto.RepeatedField(proto.MESSAGE, number=1,
-        message=participant.Message,
+    messages = proto.RepeatedField(
+        proto.MESSAGE, number=1, message=participant.Message,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)

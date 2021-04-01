@@ -18,14 +18,14 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import grpc_helpers_async         # type: ignore
-from google.api_core import operations_v1              # type: ignore
-from google import auth                                # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import grpc_helpers_async  # type: ignore
+from google.api_core import operations_v1  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc                        # type: ignore
+import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import document
@@ -54,13 +54,15 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'dialogflow.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: Optional[str] = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> aio.Channel:
+    def create_channel(
+        cls,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -89,22 +91,24 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
-    def __init__(self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            channel: aio.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            ssl_channel_credentials: grpc.ChannelCredentials = None,
-            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id=None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        channel: aio.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id=None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -243,9 +247,11 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         return self._operations_client
 
     @property
-    def list_documents(self) -> Callable[
-            [document.ListDocumentsRequest],
-            Awaitable[document.ListDocumentsResponse]]:
+    def list_documents(
+        self,
+    ) -> Callable[
+        [document.ListDocumentsRequest], Awaitable[document.ListDocumentsResponse]
+    ]:
         r"""Return a callable for the list documents method over gRPC.
 
         Returns the list of all documents of the knowledge base.
@@ -263,18 +269,18 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_documents' not in self._stubs:
-            self._stubs['list_documents'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Documents/ListDocuments',
+        if "list_documents" not in self._stubs:
+            self._stubs["list_documents"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Documents/ListDocuments",
                 request_serializer=document.ListDocumentsRequest.serialize,
                 response_deserializer=document.ListDocumentsResponse.deserialize,
             )
-        return self._stubs['list_documents']
+        return self._stubs["list_documents"]
 
     @property
-    def get_document(self) -> Callable[
-            [document.GetDocumentRequest],
-            Awaitable[document.Document]]:
+    def get_document(
+        self,
+    ) -> Callable[[document.GetDocumentRequest], Awaitable[document.Document]]:
         r"""Return a callable for the get document method over gRPC.
 
         Retrieves the specified document.
@@ -292,18 +298,20 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_document' not in self._stubs:
-            self._stubs['get_document'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Documents/GetDocument',
+        if "get_document" not in self._stubs:
+            self._stubs["get_document"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Documents/GetDocument",
                 request_serializer=document.GetDocumentRequest.serialize,
                 response_deserializer=document.Document.deserialize,
             )
-        return self._stubs['get_document']
+        return self._stubs["get_document"]
 
     @property
-    def create_document(self) -> Callable[
-            [gcd_document.CreateDocumentRequest],
-            Awaitable[operations.Operation]]:
+    def create_document(
+        self,
+    ) -> Callable[
+        [gcd_document.CreateDocumentRequest], Awaitable[operations.Operation]
+    ]:
         r"""Return a callable for the create document method over gRPC.
 
         Creates a new document.
@@ -321,18 +329,18 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_document' not in self._stubs:
-            self._stubs['create_document'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Documents/CreateDocument',
+        if "create_document" not in self._stubs:
+            self._stubs["create_document"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Documents/CreateDocument",
                 request_serializer=gcd_document.CreateDocumentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['create_document']
+        return self._stubs["create_document"]
 
     @property
-    def import_documents(self) -> Callable[
-            [document.ImportDocumentsRequest],
-            Awaitable[operations.Operation]]:
+    def import_documents(
+        self,
+    ) -> Callable[[document.ImportDocumentsRequest], Awaitable[operations.Operation]]:
         r"""Return a callable for the import documents method over gRPC.
 
         Create documents by importing data from external
@@ -348,18 +356,18 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'import_documents' not in self._stubs:
-            self._stubs['import_documents'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Documents/ImportDocuments',
+        if "import_documents" not in self._stubs:
+            self._stubs["import_documents"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Documents/ImportDocuments",
                 request_serializer=document.ImportDocumentsRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['import_documents']
+        return self._stubs["import_documents"]
 
     @property
-    def delete_document(self) -> Callable[
-            [document.DeleteDocumentRequest],
-            Awaitable[operations.Operation]]:
+    def delete_document(
+        self,
+    ) -> Callable[[document.DeleteDocumentRequest], Awaitable[operations.Operation]]:
         r"""Return a callable for the delete document method over gRPC.
 
         Deletes the specified document.
@@ -377,18 +385,20 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_document' not in self._stubs:
-            self._stubs['delete_document'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Documents/DeleteDocument',
+        if "delete_document" not in self._stubs:
+            self._stubs["delete_document"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Documents/DeleteDocument",
                 request_serializer=document.DeleteDocumentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['delete_document']
+        return self._stubs["delete_document"]
 
     @property
-    def update_document(self) -> Callable[
-            [gcd_document.UpdateDocumentRequest],
-            Awaitable[operations.Operation]]:
+    def update_document(
+        self,
+    ) -> Callable[
+        [gcd_document.UpdateDocumentRequest], Awaitable[operations.Operation]
+    ]:
         r"""Return a callable for the update document method over gRPC.
 
         Updates the specified document.
@@ -406,18 +416,18 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_document' not in self._stubs:
-            self._stubs['update_document'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Documents/UpdateDocument',
+        if "update_document" not in self._stubs:
+            self._stubs["update_document"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Documents/UpdateDocument",
                 request_serializer=gcd_document.UpdateDocumentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['update_document']
+        return self._stubs["update_document"]
 
     @property
-    def reload_document(self) -> Callable[
-            [document.ReloadDocumentRequest],
-            Awaitable[operations.Operation]]:
+    def reload_document(
+        self,
+    ) -> Callable[[document.ReloadDocumentRequest], Awaitable[operations.Operation]]:
         r"""Return a callable for the reload document method over gRPC.
 
         Reloads the specified document from its specified source,
@@ -443,15 +453,13 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'reload_document' not in self._stubs:
-            self._stubs['reload_document'] = self.grpc_channel.unary_unary(
-                '/google.cloud.dialogflow.v2beta1.Documents/ReloadDocument',
+        if "reload_document" not in self._stubs:
+            self._stubs["reload_document"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2beta1.Documents/ReloadDocument",
                 request_serializer=document.ReloadDocumentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs['reload_document']
+        return self._stubs["reload_document"]
 
 
-__all__ = (
-    'DocumentsGrpcAsyncIOTransport',
-)
+__all__ = ("DocumentsGrpcAsyncIOTransport",)

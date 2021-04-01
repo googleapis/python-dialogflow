@@ -25,11 +25,11 @@ from .grpc_asyncio import KnowledgeBasesGrpcAsyncIOTransport
 
 # Compile a registry of transports.
 _transport_registry = OrderedDict()  # type: Dict[str, Type[KnowledgeBasesTransport]]
-_transport_registry['grpc'] = KnowledgeBasesGrpcTransport
-_transport_registry['grpc_asyncio'] = KnowledgeBasesGrpcAsyncIOTransport
+_transport_registry["grpc"] = KnowledgeBasesGrpcTransport
+_transport_registry["grpc_asyncio"] = KnowledgeBasesGrpcAsyncIOTransport
 
 __all__ = (
-    'KnowledgeBasesTransport',
-    'KnowledgeBasesGrpcTransport',
-    'KnowledgeBasesGrpcAsyncIOTransport',
+    "KnowledgeBasesTransport",
+    "KnowledgeBasesGrpcTransport",
+    "KnowledgeBasesGrpcAsyncIOTransport",
 )

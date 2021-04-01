@@ -15,7 +15,16 @@
 # limitations under the License.
 #
 
-from typing import Any, AsyncIterable, Awaitable, Callable, Iterable, Sequence, Tuple, Optional
+from typing import (
+    Any,
+    AsyncIterable,
+    Awaitable,
+    Callable,
+    Iterable,
+    Sequence,
+    Tuple,
+    Optional,
+)
 
 from google.cloud.dialogflow_v2beta1.types import conversation
 from google.cloud.dialogflow_v2beta1.types import participant
@@ -38,12 +47,15 @@ class ListConversationsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., conversation.ListConversationsResponse],
-            request: conversation.ListConversationsRequest,
-            response: conversation.ListConversationsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., conversation.ListConversationsResponse],
+        request: conversation.ListConversationsRequest,
+        response: conversation.ListConversationsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -77,7 +89,7 @@ class ListConversationsPager:
             yield from page.conversations
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListConversationsAsyncPager:
@@ -97,12 +109,15 @@ class ListConversationsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[conversation.ListConversationsResponse]],
-            request: conversation.ListConversationsRequest,
-            response: conversation.ListConversationsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[conversation.ListConversationsResponse]],
+        request: conversation.ListConversationsRequest,
+        response: conversation.ListConversationsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -140,7 +155,7 @@ class ListConversationsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListMessagesPager:
@@ -160,12 +175,15 @@ class ListMessagesPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., conversation.ListMessagesResponse],
-            request: conversation.ListMessagesRequest,
-            response: conversation.ListMessagesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., conversation.ListMessagesResponse],
+        request: conversation.ListMessagesRequest,
+        response: conversation.ListMessagesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -199,7 +217,7 @@ class ListMessagesPager:
             yield from page.messages
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListMessagesAsyncPager:
@@ -219,12 +237,15 @@ class ListMessagesAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[conversation.ListMessagesResponse]],
-            request: conversation.ListMessagesRequest,
-            response: conversation.ListMessagesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[conversation.ListMessagesResponse]],
+        request: conversation.ListMessagesRequest,
+        response: conversation.ListMessagesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -262,4 +283,4 @@ class ListMessagesAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)

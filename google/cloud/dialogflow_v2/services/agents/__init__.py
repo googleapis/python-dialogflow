@@ -19,6 +19,6 @@ from .client import AgentsClient
 from .async_client import AgentsAsyncClient
 
 __all__ = (
-    'AgentsClient',
-    'AgentsAsyncClient',
+    "AgentsClient",
+    "AgentsAsyncClient",
 )

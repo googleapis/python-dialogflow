@@ -25,11 +25,11 @@ from .grpc_asyncio import IntentsGrpcAsyncIOTransport
 
 # Compile a registry of transports.
 _transport_registry = OrderedDict()  # type: Dict[str, Type[IntentsTransport]]
-_transport_registry['grpc'] = IntentsGrpcTransport
-_transport_registry['grpc_asyncio'] = IntentsGrpcAsyncIOTransport
+_transport_registry["grpc"] = IntentsGrpcTransport
+_transport_registry["grpc_asyncio"] = IntentsGrpcAsyncIOTransport
 
 __all__ = (
-    'IntentsTransport',
-    'IntentsGrpcTransport',
-    'IntentsGrpcAsyncIOTransport',
+    "IntentsTransport",
+    "IntentsGrpcTransport",
+    "IntentsGrpcAsyncIOTransport",
 )

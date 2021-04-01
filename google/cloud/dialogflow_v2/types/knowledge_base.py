@@ -22,15 +22,15 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.dialogflow.v2',
+    package="google.cloud.dialogflow.v2",
     manifest={
-        'KnowledgeBase',
-        'ListKnowledgeBasesRequest',
-        'ListKnowledgeBasesResponse',
-        'GetKnowledgeBaseRequest',
-        'CreateKnowledgeBaseRequest',
-        'DeleteKnowledgeBaseRequest',
-        'UpdateKnowledgeBaseRequest',
+        "KnowledgeBase",
+        "ListKnowledgeBasesRequest",
+        "ListKnowledgeBasesResponse",
+        "GetKnowledgeBaseRequest",
+        "CreateKnowledgeBaseRequest",
+        "DeleteKnowledgeBaseRequest",
+        "UpdateKnowledgeBaseRequest",
     },
 )
 
@@ -112,8 +112,8 @@ class ListKnowledgeBasesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    knowledge_bases = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='KnowledgeBase',
+    knowledge_bases = proto.RepeatedField(
+        proto.MESSAGE, number=1, message="KnowledgeBase",
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -146,9 +146,7 @@ class CreateKnowledgeBaseRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    knowledge_base = proto.Field(proto.MESSAGE, number=2,
-        message='KnowledgeBase',
-    )
+    knowledge_base = proto.Field(proto.MESSAGE, number=2, message="KnowledgeBase",)
 
 
 class DeleteKnowledgeBaseRequest(proto.Message):
@@ -183,13 +181,9 @@ class UpdateKnowledgeBaseRequest(proto.Message):
             will be returned for attempting to update other fields.
     """
 
-    knowledge_base = proto.Field(proto.MESSAGE, number=1,
-        message='KnowledgeBase',
-    )
+    knowledge_base = proto.Field(proto.MESSAGE, number=1, message="KnowledgeBase",)
 
-    update_mask = proto.Field(proto.MESSAGE, number=2,
-        message=field_mask.FieldMask,
-    )
+    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

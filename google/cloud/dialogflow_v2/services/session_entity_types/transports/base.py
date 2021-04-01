@@ -21,42 +21,46 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
 from google.cloud.dialogflow_v2.types import session_entity_type
-from google.cloud.dialogflow_v2.types import session_entity_type as gcd_session_entity_type
+from google.cloud.dialogflow_v2.types import (
+    session_entity_type as gcd_session_entity_type,
+)
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-dialogflow',
+            "google-cloud-dialogflow",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
+
 class SessionEntityTypesTransport(abc.ABC):
     """Abstract transport class for SessionEntityTypes."""
 
     AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/dialogflow',
+        "https://www.googleapis.com/auth/cloud-platform",
+        "https://www.googleapis.com/auth/dialogflow",
     )
 
     def __init__(
-            self, *,
-            host: str = 'dialogflow.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: typing.Optional[str] = None,
-            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-            quota_project_id: typing.Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = "dialogflow.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        quota_project_id: typing.Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -79,8 +83,8 @@ class SessionEntityTypesTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # Save the scopes.
@@ -89,17 +93,19 @@ class SessionEntityTypesTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                                credentials_file,
-                                scopes=self._scopes,
-                                quota_project_id=quota_project_id
-                            )
+                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
+            )
 
         elif credentials is None:
-            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
+            credentials, _ = auth.default(
+                scopes=self._scopes, quota_project_id=quota_project_id
+            )
 
         # Save the credentials.
         self._credentials = credentials
@@ -132,55 +138,64 @@ class SessionEntityTypesTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
-
         }
 
     @property
-    def list_session_entity_types(self) -> typing.Callable[
-            [session_entity_type.ListSessionEntityTypesRequest],
-            typing.Union[
-                session_entity_type.ListSessionEntityTypesResponse,
-                typing.Awaitable[session_entity_type.ListSessionEntityTypesResponse]
-            ]]:
+    def list_session_entity_types(
+        self,
+    ) -> typing.Callable[
+        [session_entity_type.ListSessionEntityTypesRequest],
+        typing.Union[
+            session_entity_type.ListSessionEntityTypesResponse,
+            typing.Awaitable[session_entity_type.ListSessionEntityTypesResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def get_session_entity_type(self) -> typing.Callable[
-            [session_entity_type.GetSessionEntityTypeRequest],
-            typing.Union[
-                session_entity_type.SessionEntityType,
-                typing.Awaitable[session_entity_type.SessionEntityType]
-            ]]:
+    def get_session_entity_type(
+        self,
+    ) -> typing.Callable[
+        [session_entity_type.GetSessionEntityTypeRequest],
+        typing.Union[
+            session_entity_type.SessionEntityType,
+            typing.Awaitable[session_entity_type.SessionEntityType],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def create_session_entity_type(self) -> typing.Callable[
-            [gcd_session_entity_type.CreateSessionEntityTypeRequest],
-            typing.Union[
-                gcd_session_entity_type.SessionEntityType,
-                typing.Awaitable[gcd_session_entity_type.SessionEntityType]
-            ]]:
+    def create_session_entity_type(
+        self,
+    ) -> typing.Callable[
+        [gcd_session_entity_type.CreateSessionEntityTypeRequest],
+        typing.Union[
+            gcd_session_entity_type.SessionEntityType,
+            typing.Awaitable[gcd_session_entity_type.SessionEntityType],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def update_session_entity_type(self) -> typing.Callable[
-            [gcd_session_entity_type.UpdateSessionEntityTypeRequest],
-            typing.Union[
-                gcd_session_entity_type.SessionEntityType,
-                typing.Awaitable[gcd_session_entity_type.SessionEntityType]
-            ]]:
+    def update_session_entity_type(
+        self,
+    ) -> typing.Callable[
+        [gcd_session_entity_type.UpdateSessionEntityTypeRequest],
+        typing.Union[
+            gcd_session_entity_type.SessionEntityType,
+            typing.Awaitable[gcd_session_entity_type.SessionEntityType],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def delete_session_entity_type(self) -> typing.Callable[
-            [session_entity_type.DeleteSessionEntityTypeRequest],
-            typing.Union[
-                empty.Empty,
-                typing.Awaitable[empty.Empty]
-            ]]:
+    def delete_session_entity_type(
+        self,
+    ) -> typing.Callable[
+        [session_entity_type.DeleteSessionEntityTypeRequest],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
+    ]:
         raise NotImplementedError()
 
 
-__all__ = (
-    'SessionEntityTypesTransport',
-)
+__all__ = ("SessionEntityTypesTransport",)
