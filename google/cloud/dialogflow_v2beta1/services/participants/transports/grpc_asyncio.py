@@ -18,13 +18,13 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import grpc_helpers_async  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import grpc_helpers_async         # type: ignore
+from google import auth                                # type: ignore
+from google.auth import credentials                    # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc  # type: ignore
+import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import participant
@@ -52,15 +52,13 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> aio.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: Optional[str] = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -89,24 +87,22 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        channel: aio.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id=None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: Optional[str] = None,
+            scopes: Optional[Sequence[str]] = None,
+            channel: aio.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id=None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -228,12 +224,9 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         return self._grpc_channel
 
     @property
-    def create_participant(
-        self,
-    ) -> Callable[
-        [gcd_participant.CreateParticipantRequest],
-        Awaitable[gcd_participant.Participant],
-    ]:
+    def create_participant(self) -> Callable[
+            [gcd_participant.CreateParticipantRequest],
+            Awaitable[gcd_participant.Participant]]:
         r"""Return a callable for the create participant method over gRPC.
 
         Creates a new participant in a conversation.
@@ -248,20 +241,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_participant" not in self._stubs:
-            self._stubs["create_participant"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/CreateParticipant",
+        if 'create_participant' not in self._stubs:
+            self._stubs['create_participant'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/CreateParticipant',
                 request_serializer=gcd_participant.CreateParticipantRequest.serialize,
                 response_deserializer=gcd_participant.Participant.deserialize,
             )
-        return self._stubs["create_participant"]
+        return self._stubs['create_participant']
 
     @property
-    def get_participant(
-        self,
-    ) -> Callable[
-        [participant.GetParticipantRequest], Awaitable[participant.Participant]
-    ]:
+    def get_participant(self) -> Callable[
+            [participant.GetParticipantRequest],
+            Awaitable[participant.Participant]]:
         r"""Return a callable for the get participant method over gRPC.
 
         Retrieves a conversation participant.
@@ -276,21 +267,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_participant" not in self._stubs:
-            self._stubs["get_participant"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/GetParticipant",
+        if 'get_participant' not in self._stubs:
+            self._stubs['get_participant'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/GetParticipant',
                 request_serializer=participant.GetParticipantRequest.serialize,
                 response_deserializer=participant.Participant.deserialize,
             )
-        return self._stubs["get_participant"]
+        return self._stubs['get_participant']
 
     @property
-    def list_participants(
-        self,
-    ) -> Callable[
-        [participant.ListParticipantsRequest],
-        Awaitable[participant.ListParticipantsResponse],
-    ]:
+    def list_participants(self) -> Callable[
+            [participant.ListParticipantsRequest],
+            Awaitable[participant.ListParticipantsResponse]]:
         r"""Return a callable for the list participants method over gRPC.
 
         Returns the list of all participants in the specified
@@ -306,21 +294,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_participants" not in self._stubs:
-            self._stubs["list_participants"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/ListParticipants",
+        if 'list_participants' not in self._stubs:
+            self._stubs['list_participants'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/ListParticipants',
                 request_serializer=participant.ListParticipantsRequest.serialize,
                 response_deserializer=participant.ListParticipantsResponse.deserialize,
             )
-        return self._stubs["list_participants"]
+        return self._stubs['list_participants']
 
     @property
-    def update_participant(
-        self,
-    ) -> Callable[
-        [gcd_participant.UpdateParticipantRequest],
-        Awaitable[gcd_participant.Participant],
-    ]:
+    def update_participant(self) -> Callable[
+            [gcd_participant.UpdateParticipantRequest],
+            Awaitable[gcd_participant.Participant]]:
         r"""Return a callable for the update participant method over gRPC.
 
         Updates the specified participant.
@@ -335,21 +320,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_participant" not in self._stubs:
-            self._stubs["update_participant"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/UpdateParticipant",
+        if 'update_participant' not in self._stubs:
+            self._stubs['update_participant'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/UpdateParticipant',
                 request_serializer=gcd_participant.UpdateParticipantRequest.serialize,
                 response_deserializer=gcd_participant.Participant.deserialize,
             )
-        return self._stubs["update_participant"]
+        return self._stubs['update_participant']
 
     @property
-    def analyze_content(
-        self,
-    ) -> Callable[
-        [gcd_participant.AnalyzeContentRequest],
-        Awaitable[gcd_participant.AnalyzeContentResponse],
-    ]:
+    def analyze_content(self) -> Callable[
+            [gcd_participant.AnalyzeContentRequest],
+            Awaitable[gcd_participant.AnalyzeContentResponse]]:
         r"""Return a callable for the analyze content method over gRPC.
 
         Adds a text (chat, for example), or audio (phone recording, for
@@ -369,21 +351,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "analyze_content" not in self._stubs:
-            self._stubs["analyze_content"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/AnalyzeContent",
+        if 'analyze_content' not in self._stubs:
+            self._stubs['analyze_content'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/AnalyzeContent',
                 request_serializer=gcd_participant.AnalyzeContentRequest.serialize,
                 response_deserializer=gcd_participant.AnalyzeContentResponse.deserialize,
             )
-        return self._stubs["analyze_content"]
+        return self._stubs['analyze_content']
 
     @property
-    def suggest_articles(
-        self,
-    ) -> Callable[
-        [participant.SuggestArticlesRequest],
-        Awaitable[participant.SuggestArticlesResponse],
-    ]:
+    def suggest_articles(self) -> Callable[
+            [participant.SuggestArticlesRequest],
+            Awaitable[participant.SuggestArticlesResponse]]:
         r"""Return a callable for the suggest articles method over gRPC.
 
         Gets suggested articles for a participant based on specific
@@ -406,21 +385,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "suggest_articles" not in self._stubs:
-            self._stubs["suggest_articles"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/SuggestArticles",
+        if 'suggest_articles' not in self._stubs:
+            self._stubs['suggest_articles'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/SuggestArticles',
                 request_serializer=participant.SuggestArticlesRequest.serialize,
                 response_deserializer=participant.SuggestArticlesResponse.deserialize,
             )
-        return self._stubs["suggest_articles"]
+        return self._stubs['suggest_articles']
 
     @property
-    def suggest_faq_answers(
-        self,
-    ) -> Callable[
-        [participant.SuggestFaqAnswersRequest],
-        Awaitable[participant.SuggestFaqAnswersResponse],
-    ]:
+    def suggest_faq_answers(self) -> Callable[
+            [participant.SuggestFaqAnswersRequest],
+            Awaitable[participant.SuggestFaqAnswersResponse]]:
         r"""Return a callable for the suggest faq answers method over gRPC.
 
         Gets suggested faq answers for a participant based on
@@ -436,21 +412,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "suggest_faq_answers" not in self._stubs:
-            self._stubs["suggest_faq_answers"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/SuggestFaqAnswers",
+        if 'suggest_faq_answers' not in self._stubs:
+            self._stubs['suggest_faq_answers'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/SuggestFaqAnswers',
                 request_serializer=participant.SuggestFaqAnswersRequest.serialize,
                 response_deserializer=participant.SuggestFaqAnswersResponse.deserialize,
             )
-        return self._stubs["suggest_faq_answers"]
+        return self._stubs['suggest_faq_answers']
 
     @property
-    def suggest_smart_replies(
-        self,
-    ) -> Callable[
-        [participant.SuggestSmartRepliesRequest],
-        Awaitable[participant.SuggestSmartRepliesResponse],
-    ]:
+    def suggest_smart_replies(self) -> Callable[
+            [participant.SuggestSmartRepliesRequest],
+            Awaitable[participant.SuggestSmartRepliesResponse]]:
         r"""Return a callable for the suggest smart replies method over gRPC.
 
         Gets smart replies for a participant based on
@@ -466,21 +439,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "suggest_smart_replies" not in self._stubs:
-            self._stubs["suggest_smart_replies"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/SuggestSmartReplies",
+        if 'suggest_smart_replies' not in self._stubs:
+            self._stubs['suggest_smart_replies'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/SuggestSmartReplies',
                 request_serializer=participant.SuggestSmartRepliesRequest.serialize,
                 response_deserializer=participant.SuggestSmartRepliesResponse.deserialize,
             )
-        return self._stubs["suggest_smart_replies"]
+        return self._stubs['suggest_smart_replies']
 
     @property
-    def list_suggestions(
-        self,
-    ) -> Callable[
-        [participant.ListSuggestionsRequest],
-        Awaitable[participant.ListSuggestionsResponse],
-    ]:
+    def list_suggestions(self) -> Callable[
+            [participant.ListSuggestionsRequest],
+            Awaitable[participant.ListSuggestionsResponse]]:
         r"""Return a callable for the list suggestions method over gRPC.
 
         Deprecated: Use inline suggestion, event based suggestion or
@@ -514,21 +484,18 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_suggestions" not in self._stubs:
-            self._stubs["list_suggestions"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/ListSuggestions",
+        if 'list_suggestions' not in self._stubs:
+            self._stubs['list_suggestions'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/ListSuggestions',
                 request_serializer=participant.ListSuggestionsRequest.serialize,
                 response_deserializer=participant.ListSuggestionsResponse.deserialize,
             )
-        return self._stubs["list_suggestions"]
+        return self._stubs['list_suggestions']
 
     @property
-    def compile_suggestion(
-        self,
-    ) -> Callable[
-        [participant.CompileSuggestionRequest],
-        Awaitable[participant.CompileSuggestionResponse],
-    ]:
+    def compile_suggestion(self) -> Callable[
+            [participant.CompileSuggestionRequest],
+            Awaitable[participant.CompileSuggestionResponse]]:
         r"""Return a callable for the compile suggestion method over gRPC.
 
         Deprecated. use
@@ -557,13 +524,15 @@ class ParticipantsGrpcAsyncIOTransport(ParticipantsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "compile_suggestion" not in self._stubs:
-            self._stubs["compile_suggestion"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.Participants/CompileSuggestion",
+        if 'compile_suggestion' not in self._stubs:
+            self._stubs['compile_suggestion'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.Participants/CompileSuggestion',
                 request_serializer=participant.CompileSuggestionRequest.serialize,
                 response_deserializer=participant.CompileSuggestionResponse.deserialize,
             )
-        return self._stubs["compile_suggestion"]
+        return self._stubs['compile_suggestion']
 
 
-__all__ = ("ParticipantsGrpcAsyncIOTransport",)
+__all__ = (
+    'ParticipantsGrpcAsyncIOTransport',
+)

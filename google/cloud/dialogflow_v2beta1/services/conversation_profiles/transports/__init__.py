@@ -24,14 +24,12 @@ from .grpc_asyncio import ConversationProfilesGrpcAsyncIOTransport
 
 
 # Compile a registry of transports.
-_transport_registry = (
-    OrderedDict()
-)  # type: Dict[str, Type[ConversationProfilesTransport]]
-_transport_registry["grpc"] = ConversationProfilesGrpcTransport
-_transport_registry["grpc_asyncio"] = ConversationProfilesGrpcAsyncIOTransport
+_transport_registry = OrderedDict()  # type: Dict[str, Type[ConversationProfilesTransport]]
+_transport_registry['grpc'] = ConversationProfilesGrpcTransport
+_transport_registry['grpc_asyncio'] = ConversationProfilesGrpcAsyncIOTransport
 
 __all__ = (
-    "ConversationProfilesTransport",
-    "ConversationProfilesGrpcTransport",
-    "ConversationProfilesGrpcAsyncIOTransport",
+    'ConversationProfilesTransport',
+    'ConversationProfilesGrpcTransport',
+    'ConversationProfilesGrpcAsyncIOTransport',
 )

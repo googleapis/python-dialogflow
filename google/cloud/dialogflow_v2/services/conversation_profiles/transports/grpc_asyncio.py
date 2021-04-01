@@ -18,19 +18,17 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import grpc_helpers_async  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import grpc_helpers_async         # type: ignore
+from google import auth                                # type: ignore
+from google.auth import credentials                    # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc  # type: ignore
+import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2.types import conversation_profile
-from google.cloud.dialogflow_v2.types import (
-    conversation_profile as gcd_conversation_profile,
-)
+from google.cloud.dialogflow_v2.types import conversation_profile as gcd_conversation_profile
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 from .base import ConversationProfilesTransport, DEFAULT_CLIENT_INFO
@@ -55,15 +53,13 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> aio.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: Optional[str] = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -92,24 +88,22 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        channel: aio.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id=None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: Optional[str] = None,
+            scopes: Optional[Sequence[str]] = None,
+            channel: aio.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id=None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -231,12 +225,9 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         return self._grpc_channel
 
     @property
-    def list_conversation_profiles(
-        self,
-    ) -> Callable[
-        [conversation_profile.ListConversationProfilesRequest],
-        Awaitable[conversation_profile.ListConversationProfilesResponse],
-    ]:
+    def list_conversation_profiles(self) -> Callable[
+            [conversation_profile.ListConversationProfilesRequest],
+            Awaitable[conversation_profile.ListConversationProfilesResponse]]:
         r"""Return a callable for the list conversation profiles method over gRPC.
 
         Returns the list of all conversation profiles in the
@@ -252,21 +243,18 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_conversation_profiles" not in self._stubs:
-            self._stubs["list_conversation_profiles"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/ListConversationProfiles",
+        if 'list_conversation_profiles' not in self._stubs:
+            self._stubs['list_conversation_profiles'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.ConversationProfiles/ListConversationProfiles',
                 request_serializer=conversation_profile.ListConversationProfilesRequest.serialize,
                 response_deserializer=conversation_profile.ListConversationProfilesResponse.deserialize,
             )
-        return self._stubs["list_conversation_profiles"]
+        return self._stubs['list_conversation_profiles']
 
     @property
-    def get_conversation_profile(
-        self,
-    ) -> Callable[
-        [conversation_profile.GetConversationProfileRequest],
-        Awaitable[conversation_profile.ConversationProfile],
-    ]:
+    def get_conversation_profile(self) -> Callable[
+            [conversation_profile.GetConversationProfileRequest],
+            Awaitable[conversation_profile.ConversationProfile]]:
         r"""Return a callable for the get conversation profile method over gRPC.
 
         Retrieves the specified conversation profile.
@@ -281,21 +269,18 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_conversation_profile" not in self._stubs:
-            self._stubs["get_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/GetConversationProfile",
+        if 'get_conversation_profile' not in self._stubs:
+            self._stubs['get_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.ConversationProfiles/GetConversationProfile',
                 request_serializer=conversation_profile.GetConversationProfileRequest.serialize,
                 response_deserializer=conversation_profile.ConversationProfile.deserialize,
             )
-        return self._stubs["get_conversation_profile"]
+        return self._stubs['get_conversation_profile']
 
     @property
-    def create_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.CreateConversationProfileRequest],
-        Awaitable[gcd_conversation_profile.ConversationProfile],
-    ]:
+    def create_conversation_profile(self) -> Callable[
+            [gcd_conversation_profile.CreateConversationProfileRequest],
+            Awaitable[gcd_conversation_profile.ConversationProfile]]:
         r"""Return a callable for the create conversation profile method over gRPC.
 
         Creates a conversation profile in the specified project.
@@ -316,21 +301,18 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_conversation_profile" not in self._stubs:
-            self._stubs["create_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/CreateConversationProfile",
+        if 'create_conversation_profile' not in self._stubs:
+            self._stubs['create_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.ConversationProfiles/CreateConversationProfile',
                 request_serializer=gcd_conversation_profile.CreateConversationProfileRequest.serialize,
                 response_deserializer=gcd_conversation_profile.ConversationProfile.deserialize,
             )
-        return self._stubs["create_conversation_profile"]
+        return self._stubs['create_conversation_profile']
 
     @property
-    def update_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.UpdateConversationProfileRequest],
-        Awaitable[gcd_conversation_profile.ConversationProfile],
-    ]:
+    def update_conversation_profile(self) -> Callable[
+            [gcd_conversation_profile.UpdateConversationProfileRequest],
+            Awaitable[gcd_conversation_profile.ConversationProfile]]:
         r"""Return a callable for the update conversation profile method over gRPC.
 
         Updates the specified conversation profile.
@@ -351,20 +333,18 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_conversation_profile" not in self._stubs:
-            self._stubs["update_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/UpdateConversationProfile",
+        if 'update_conversation_profile' not in self._stubs:
+            self._stubs['update_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.ConversationProfiles/UpdateConversationProfile',
                 request_serializer=gcd_conversation_profile.UpdateConversationProfileRequest.serialize,
                 response_deserializer=gcd_conversation_profile.ConversationProfile.deserialize,
             )
-        return self._stubs["update_conversation_profile"]
+        return self._stubs['update_conversation_profile']
 
     @property
-    def delete_conversation_profile(
-        self,
-    ) -> Callable[
-        [conversation_profile.DeleteConversationProfileRequest], Awaitable[empty.Empty]
-    ]:
+    def delete_conversation_profile(self) -> Callable[
+            [conversation_profile.DeleteConversationProfileRequest],
+            Awaitable[empty.Empty]]:
         r"""Return a callable for the delete conversation profile method over gRPC.
 
         Deletes the specified conversation profile.
@@ -379,13 +359,15 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_conversation_profile" not in self._stubs:
-            self._stubs["delete_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/DeleteConversationProfile",
+        if 'delete_conversation_profile' not in self._stubs:
+            self._stubs['delete_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.ConversationProfiles/DeleteConversationProfile',
                 request_serializer=conversation_profile.DeleteConversationProfileRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs["delete_conversation_profile"]
+        return self._stubs['delete_conversation_profile']
 
 
-__all__ = ("ConversationProfilesGrpcAsyncIOTransport",)
+__all__ = (
+    'ConversationProfilesGrpcAsyncIOTransport',
+)

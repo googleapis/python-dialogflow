@@ -25,11 +25,11 @@ from .grpc_asyncio import AgentsGrpcAsyncIOTransport
 
 # Compile a registry of transports.
 _transport_registry = OrderedDict()  # type: Dict[str, Type[AgentsTransport]]
-_transport_registry["grpc"] = AgentsGrpcTransport
-_transport_registry["grpc_asyncio"] = AgentsGrpcAsyncIOTransport
+_transport_registry['grpc'] = AgentsGrpcTransport
+_transport_registry['grpc_asyncio'] = AgentsGrpcAsyncIOTransport
 
 __all__ = (
-    "AgentsTransport",
-    "AgentsGrpcTransport",
-    "AgentsGrpcAsyncIOTransport",
+    'AgentsTransport',
+    'AgentsGrpcTransport',
+    'AgentsGrpcAsyncIOTransport',
 )

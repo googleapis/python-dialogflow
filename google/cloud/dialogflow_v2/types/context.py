@@ -23,16 +23,16 @@ from google.protobuf import struct_pb2 as struct  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2",
+    package='google.cloud.dialogflow.v2',
     manifest={
-        "Context",
-        "ListContextsRequest",
-        "ListContextsResponse",
-        "GetContextRequest",
-        "CreateContextRequest",
-        "UpdateContextRequest",
-        "DeleteContextRequest",
-        "DeleteAllContextsRequest",
+        'Context',
+        'ListContextsRequest',
+        'ListContextsResponse',
+        'GetContextRequest',
+        'CreateContextRequest',
+        'UpdateContextRequest',
+        'DeleteContextRequest',
+        'DeleteAllContextsRequest',
     },
 )
 
@@ -109,7 +109,9 @@ class Context(proto.Message):
 
     lifespan_count = proto.Field(proto.INT32, number=2)
 
-    parameters = proto.Field(proto.MESSAGE, number=3, message=struct.Struct,)
+    parameters = proto.Field(proto.MESSAGE, number=3,
+        message=struct.Struct,
+    )
 
 
 class ListContextsRequest(proto.Message):
@@ -158,7 +160,9 @@ class ListContextsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    contexts = proto.RepeatedField(proto.MESSAGE, number=1, message="Context",)
+    contexts = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='Context',
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -199,7 +203,9 @@ class CreateContextRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    context = proto.Field(proto.MESSAGE, number=2, message="Context",)
+    context = proto.Field(proto.MESSAGE, number=2,
+        message='Context',
+    )
 
 
 class UpdateContextRequest(proto.Message):
@@ -214,9 +220,13 @@ class UpdateContextRequest(proto.Message):
             get updated.
     """
 
-    context = proto.Field(proto.MESSAGE, number=1, message="Context",)
+    context = proto.Field(proto.MESSAGE, number=1,
+        message='Context',
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class DeleteContextRequest(proto.Message):

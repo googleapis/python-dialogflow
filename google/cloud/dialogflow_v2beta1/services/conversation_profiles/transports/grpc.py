@@ -18,18 +18,16 @@
 import warnings
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import grpc_helpers   # type: ignore
+from google.api_core import gapic_v1       # type: ignore
+from google import auth                    # type: ignore
+from google.auth import credentials        # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 import grpc  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import conversation_profile
-from google.cloud.dialogflow_v2beta1.types import (
-    conversation_profile as gcd_conversation_profile,
-)
+from google.cloud.dialogflow_v2beta1.types import conversation_profile as gcd_conversation_profile
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 from .base import ConversationProfilesTransport, DEFAULT_CLIENT_INFO
@@ -48,24 +46,21 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
     It sends protocol buffers over the wire using gRPC (which is built on
     top of HTTP/2); the ``grpcio`` package must be installed.
     """
-
     _stubs: Dict[str, Callable]
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Sequence[str] = None,
-        channel: grpc.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id: Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: str = None,
+            scopes: Sequence[str] = None,
+            channel: grpc.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id: Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -176,15 +171,13 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
         self._prep_wrapped_messages(client_info)
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> grpc.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: str = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -217,7 +210,7 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
     @property
@@ -227,12 +220,9 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
         return self._grpc_channel
 
     @property
-    def list_conversation_profiles(
-        self,
-    ) -> Callable[
-        [conversation_profile.ListConversationProfilesRequest],
-        conversation_profile.ListConversationProfilesResponse,
-    ]:
+    def list_conversation_profiles(self) -> Callable[
+            [conversation_profile.ListConversationProfilesRequest],
+            conversation_profile.ListConversationProfilesResponse]:
         r"""Return a callable for the list conversation profiles method over gRPC.
 
         Returns the list of all conversation profiles in the
@@ -248,21 +238,18 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_conversation_profiles" not in self._stubs:
-            self._stubs["list_conversation_profiles"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.ConversationProfiles/ListConversationProfiles",
+        if 'list_conversation_profiles' not in self._stubs:
+            self._stubs['list_conversation_profiles'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.ConversationProfiles/ListConversationProfiles',
                 request_serializer=conversation_profile.ListConversationProfilesRequest.serialize,
                 response_deserializer=conversation_profile.ListConversationProfilesResponse.deserialize,
             )
-        return self._stubs["list_conversation_profiles"]
+        return self._stubs['list_conversation_profiles']
 
     @property
-    def get_conversation_profile(
-        self,
-    ) -> Callable[
-        [conversation_profile.GetConversationProfileRequest],
-        conversation_profile.ConversationProfile,
-    ]:
+    def get_conversation_profile(self) -> Callable[
+            [conversation_profile.GetConversationProfileRequest],
+            conversation_profile.ConversationProfile]:
         r"""Return a callable for the get conversation profile method over gRPC.
 
         Retrieves the specified conversation profile.
@@ -277,21 +264,18 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_conversation_profile" not in self._stubs:
-            self._stubs["get_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.ConversationProfiles/GetConversationProfile",
+        if 'get_conversation_profile' not in self._stubs:
+            self._stubs['get_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.ConversationProfiles/GetConversationProfile',
                 request_serializer=conversation_profile.GetConversationProfileRequest.serialize,
                 response_deserializer=conversation_profile.ConversationProfile.deserialize,
             )
-        return self._stubs["get_conversation_profile"]
+        return self._stubs['get_conversation_profile']
 
     @property
-    def create_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.CreateConversationProfileRequest],
-        gcd_conversation_profile.ConversationProfile,
-    ]:
+    def create_conversation_profile(self) -> Callable[
+            [gcd_conversation_profile.CreateConversationProfileRequest],
+            gcd_conversation_profile.ConversationProfile]:
         r"""Return a callable for the create conversation profile method over gRPC.
 
         Creates a conversation profile in the specified project.
@@ -312,21 +296,18 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_conversation_profile" not in self._stubs:
-            self._stubs["create_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.ConversationProfiles/CreateConversationProfile",
+        if 'create_conversation_profile' not in self._stubs:
+            self._stubs['create_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.ConversationProfiles/CreateConversationProfile',
                 request_serializer=gcd_conversation_profile.CreateConversationProfileRequest.serialize,
                 response_deserializer=gcd_conversation_profile.ConversationProfile.deserialize,
             )
-        return self._stubs["create_conversation_profile"]
+        return self._stubs['create_conversation_profile']
 
     @property
-    def update_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.UpdateConversationProfileRequest],
-        gcd_conversation_profile.ConversationProfile,
-    ]:
+    def update_conversation_profile(self) -> Callable[
+            [gcd_conversation_profile.UpdateConversationProfileRequest],
+            gcd_conversation_profile.ConversationProfile]:
         r"""Return a callable for the update conversation profile method over gRPC.
 
         Updates the specified conversation profile.
@@ -347,18 +328,18 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_conversation_profile" not in self._stubs:
-            self._stubs["update_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.ConversationProfiles/UpdateConversationProfile",
+        if 'update_conversation_profile' not in self._stubs:
+            self._stubs['update_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.ConversationProfiles/UpdateConversationProfile',
                 request_serializer=gcd_conversation_profile.UpdateConversationProfileRequest.serialize,
                 response_deserializer=gcd_conversation_profile.ConversationProfile.deserialize,
             )
-        return self._stubs["update_conversation_profile"]
+        return self._stubs['update_conversation_profile']
 
     @property
-    def delete_conversation_profile(
-        self,
-    ) -> Callable[[conversation_profile.DeleteConversationProfileRequest], empty.Empty]:
+    def delete_conversation_profile(self) -> Callable[
+            [conversation_profile.DeleteConversationProfileRequest],
+            empty.Empty]:
         r"""Return a callable for the delete conversation profile method over gRPC.
 
         Deletes the specified conversation profile.
@@ -373,13 +354,15 @@ class ConversationProfilesGrpcTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_conversation_profile" not in self._stubs:
-            self._stubs["delete_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2beta1.ConversationProfiles/DeleteConversationProfile",
+        if 'delete_conversation_profile' not in self._stubs:
+            self._stubs['delete_conversation_profile'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2beta1.ConversationProfiles/DeleteConversationProfile',
                 request_serializer=conversation_profile.DeleteConversationProfileRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs["delete_conversation_profile"]
+        return self._stubs['delete_conversation_profile']
 
 
-__all__ = ("ConversationProfilesGrpcTransport",)
+__all__ = (
+    'ConversationProfilesGrpcTransport',
+)

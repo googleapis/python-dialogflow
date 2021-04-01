@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.api_core import operation  # type: ignore
 from google.api_core import operation_async  # type: ignore
@@ -54,28 +54,20 @@ class DocumentsAsyncClient:
     document_path = staticmethod(DocumentsClient.document_path)
     parse_document_path = staticmethod(DocumentsClient.parse_document_path)
 
-    common_billing_account_path = staticmethod(
-        DocumentsClient.common_billing_account_path
-    )
-    parse_common_billing_account_path = staticmethod(
-        DocumentsClient.parse_common_billing_account_path
-    )
+    common_billing_account_path = staticmethod(DocumentsClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(DocumentsClient.parse_common_billing_account_path)
 
     common_folder_path = staticmethod(DocumentsClient.common_folder_path)
     parse_common_folder_path = staticmethod(DocumentsClient.parse_common_folder_path)
 
     common_organization_path = staticmethod(DocumentsClient.common_organization_path)
-    parse_common_organization_path = staticmethod(
-        DocumentsClient.parse_common_organization_path
-    )
+    parse_common_organization_path = staticmethod(DocumentsClient.parse_common_organization_path)
 
     common_project_path = staticmethod(DocumentsClient.common_project_path)
     parse_common_project_path = staticmethod(DocumentsClient.parse_common_project_path)
 
     common_location_path = staticmethod(DocumentsClient.common_location_path)
-    parse_common_location_path = staticmethod(
-        DocumentsClient.parse_common_location_path
-    )
+    parse_common_location_path = staticmethod(DocumentsClient.parse_common_location_path)
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -118,18 +110,14 @@ class DocumentsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(
-        type(DocumentsClient).get_transport_class, type(DocumentsClient)
-    )
+    get_transport_class = functools.partial(type(DocumentsClient).get_transport_class, type(DocumentsClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, DocumentsTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, DocumentsTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the documents client.
 
         Args:
@@ -168,17 +156,17 @@ class DocumentsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
+
         )
 
-    async def list_documents(
-        self,
-        request: document.ListDocumentsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListDocumentsAsyncPager:
+    async def list_documents(self,
+            request: document.ListDocumentsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListDocumentsAsyncPager:
         r"""Returns the list of all documents of the knowledge
         base.
 
@@ -215,10 +203,8 @@ class DocumentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = document.ListDocumentsRequest(request)
 
@@ -239,30 +225,39 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListDocumentsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_document(
-        self,
-        request: document.GetDocumentRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> document.Document:
+    async def get_document(self,
+            request: document.GetDocumentRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> document.Document:
         r"""Retrieves the specified document.
 
         Args:
@@ -301,10 +296,8 @@ class DocumentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = document.GetDocumentRequest(request)
 
@@ -325,25 +318,31 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_document(
-        self,
-        request: gcd_document.CreateDocumentRequest = None,
-        *,
-        parent: str = None,
-        document: gcd_document.Document = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def create_document(self,
+            request: gcd_document.CreateDocumentRequest = None,
+            *,
+            parent: str = None,
+            document: gcd_document.Document = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Creates a new document.
 
         Operation <response:
@@ -396,10 +395,8 @@ class DocumentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, document])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_document.CreateDocumentRequest(request)
 
@@ -422,11 +419,18 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -439,15 +443,14 @@ class DocumentsAsyncClient:
         # Done; return the response.
         return response
 
-    async def delete_document(
-        self,
-        request: document.DeleteDocumentRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def delete_document(self,
+            request: document.DeleteDocumentRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Deletes the specified document.
 
         Operation <response:
@@ -496,10 +499,8 @@ class DocumentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = document.DeleteDocumentRequest(request)
 
@@ -520,11 +521,18 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -537,16 +545,15 @@ class DocumentsAsyncClient:
         # Done; return the response.
         return response
 
-    async def update_document(
-        self,
-        request: gcd_document.UpdateDocumentRequest = None,
-        *,
-        document: gcd_document.Document = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def update_document(self,
+            request: gcd_document.UpdateDocumentRequest = None,
+            *,
+            document: gcd_document.Document = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Updates the specified document.
 
         Operation <response:
@@ -599,10 +606,8 @@ class DocumentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([document, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_document.UpdateDocumentRequest(request)
 
@@ -625,13 +630,18 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("document.name", request.document.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('document.name', request.document.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -644,16 +654,15 @@ class DocumentsAsyncClient:
         # Done; return the response.
         return response
 
-    async def reload_document(
-        self,
-        request: document.ReloadDocumentRequest = None,
-        *,
-        name: str = None,
-        content_uri: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def reload_document(self,
+            request: document.ReloadDocumentRequest = None,
+            *,
+            name: str = None,
+            content_uri: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Reloads the specified document from its specified source,
         content_uri or content. The previously loaded content of the
         document will be deleted. Note: Even when the content of the
@@ -717,10 +726,8 @@ class DocumentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, content_uri])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = document.ReloadDocumentRequest(request)
 
@@ -743,11 +750,18 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -761,14 +775,21 @@ class DocumentsAsyncClient:
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("DocumentsAsyncClient",)
+__all__ = (
+    'DocumentsAsyncClient',
+)

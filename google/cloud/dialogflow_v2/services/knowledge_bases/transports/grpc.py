@@ -18,10 +18,10 @@
 import warnings
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import grpc_helpers   # type: ignore
+from google.api_core import gapic_v1       # type: ignore
+from google import auth                    # type: ignore
+from google.auth import credentials        # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 import grpc  # type: ignore
@@ -46,24 +46,21 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
     It sends protocol buffers over the wire using gRPC (which is built on
     top of HTTP/2); the ``grpcio`` package must be installed.
     """
-
     _stubs: Dict[str, Callable]
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Sequence[str] = None,
-        channel: grpc.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id: Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: str = None,
+            scopes: Sequence[str] = None,
+            channel: grpc.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id: Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -174,15 +171,13 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
         self._prep_wrapped_messages(client_info)
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> grpc.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: str = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -215,7 +210,7 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
     @property
@@ -225,12 +220,9 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
         return self._grpc_channel
 
     @property
-    def list_knowledge_bases(
-        self,
-    ) -> Callable[
-        [knowledge_base.ListKnowledgeBasesRequest],
-        knowledge_base.ListKnowledgeBasesResponse,
-    ]:
+    def list_knowledge_bases(self) -> Callable[
+            [knowledge_base.ListKnowledgeBasesRequest],
+            knowledge_base.ListKnowledgeBasesResponse]:
         r"""Return a callable for the list knowledge bases method over gRPC.
 
         Returns the list of all knowledge bases of the
@@ -246,20 +238,18 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_knowledge_bases" not in self._stubs:
-            self._stubs["list_knowledge_bases"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.KnowledgeBases/ListKnowledgeBases",
+        if 'list_knowledge_bases' not in self._stubs:
+            self._stubs['list_knowledge_bases'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.KnowledgeBases/ListKnowledgeBases',
                 request_serializer=knowledge_base.ListKnowledgeBasesRequest.serialize,
                 response_deserializer=knowledge_base.ListKnowledgeBasesResponse.deserialize,
             )
-        return self._stubs["list_knowledge_bases"]
+        return self._stubs['list_knowledge_bases']
 
     @property
-    def get_knowledge_base(
-        self,
-    ) -> Callable[
-        [knowledge_base.GetKnowledgeBaseRequest], knowledge_base.KnowledgeBase
-    ]:
+    def get_knowledge_base(self) -> Callable[
+            [knowledge_base.GetKnowledgeBaseRequest],
+            knowledge_base.KnowledgeBase]:
         r"""Return a callable for the get knowledge base method over gRPC.
 
         Retrieves the specified knowledge base.
@@ -274,21 +264,18 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_knowledge_base" not in self._stubs:
-            self._stubs["get_knowledge_base"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.KnowledgeBases/GetKnowledgeBase",
+        if 'get_knowledge_base' not in self._stubs:
+            self._stubs['get_knowledge_base'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.KnowledgeBases/GetKnowledgeBase',
                 request_serializer=knowledge_base.GetKnowledgeBaseRequest.serialize,
                 response_deserializer=knowledge_base.KnowledgeBase.deserialize,
             )
-        return self._stubs["get_knowledge_base"]
+        return self._stubs['get_knowledge_base']
 
     @property
-    def create_knowledge_base(
-        self,
-    ) -> Callable[
-        [gcd_knowledge_base.CreateKnowledgeBaseRequest],
-        gcd_knowledge_base.KnowledgeBase,
-    ]:
+    def create_knowledge_base(self) -> Callable[
+            [gcd_knowledge_base.CreateKnowledgeBaseRequest],
+            gcd_knowledge_base.KnowledgeBase]:
         r"""Return a callable for the create knowledge base method over gRPC.
 
         Creates a knowledge base.
@@ -303,18 +290,18 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_knowledge_base" not in self._stubs:
-            self._stubs["create_knowledge_base"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.KnowledgeBases/CreateKnowledgeBase",
+        if 'create_knowledge_base' not in self._stubs:
+            self._stubs['create_knowledge_base'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.KnowledgeBases/CreateKnowledgeBase',
                 request_serializer=gcd_knowledge_base.CreateKnowledgeBaseRequest.serialize,
                 response_deserializer=gcd_knowledge_base.KnowledgeBase.deserialize,
             )
-        return self._stubs["create_knowledge_base"]
+        return self._stubs['create_knowledge_base']
 
     @property
-    def delete_knowledge_base(
-        self,
-    ) -> Callable[[knowledge_base.DeleteKnowledgeBaseRequest], empty.Empty]:
+    def delete_knowledge_base(self) -> Callable[
+            [knowledge_base.DeleteKnowledgeBaseRequest],
+            empty.Empty]:
         r"""Return a callable for the delete knowledge base method over gRPC.
 
         Deletes the specified knowledge base.
@@ -329,21 +316,18 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_knowledge_base" not in self._stubs:
-            self._stubs["delete_knowledge_base"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.KnowledgeBases/DeleteKnowledgeBase",
+        if 'delete_knowledge_base' not in self._stubs:
+            self._stubs['delete_knowledge_base'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.KnowledgeBases/DeleteKnowledgeBase',
                 request_serializer=knowledge_base.DeleteKnowledgeBaseRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs["delete_knowledge_base"]
+        return self._stubs['delete_knowledge_base']
 
     @property
-    def update_knowledge_base(
-        self,
-    ) -> Callable[
-        [gcd_knowledge_base.UpdateKnowledgeBaseRequest],
-        gcd_knowledge_base.KnowledgeBase,
-    ]:
+    def update_knowledge_base(self) -> Callable[
+            [gcd_knowledge_base.UpdateKnowledgeBaseRequest],
+            gcd_knowledge_base.KnowledgeBase]:
         r"""Return a callable for the update knowledge base method over gRPC.
 
         Updates the specified knowledge base.
@@ -358,13 +342,15 @@ class KnowledgeBasesGrpcTransport(KnowledgeBasesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_knowledge_base" not in self._stubs:
-            self._stubs["update_knowledge_base"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.KnowledgeBases/UpdateKnowledgeBase",
+        if 'update_knowledge_base' not in self._stubs:
+            self._stubs['update_knowledge_base'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.KnowledgeBases/UpdateKnowledgeBase',
                 request_serializer=gcd_knowledge_base.UpdateKnowledgeBaseRequest.serialize,
                 response_deserializer=gcd_knowledge_base.KnowledgeBase.deserialize,
             )
-        return self._stubs["update_knowledge_base"]
+        return self._stubs['update_knowledge_base']
 
 
-__all__ = ("KnowledgeBasesGrpcTransport",)
+__all__ = (
+    'KnowledgeBasesGrpcTransport',
+)

@@ -26,8 +26,12 @@ from google.protobuf import struct_pb2 as struct  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2",
-    manifest={"WebhookRequest", "WebhookResponse", "OriginalDetectIntentRequest",},
+    package='google.cloud.dialogflow.v2',
+    manifest={
+        'WebhookRequest',
+        'WebhookResponse',
+        'OriginalDetectIntentRequest',
+    },
 )
 
 
@@ -57,12 +61,12 @@ class WebhookRequest(proto.Message):
 
     response_id = proto.Field(proto.STRING, number=1)
 
-    query_result = proto.Field(
-        proto.MESSAGE, number=2, message=gcd_session.QueryResult,
+    query_result = proto.Field(proto.MESSAGE, number=2,
+        message=gcd_session.QueryResult,
     )
 
-    original_detect_intent_request = proto.Field(
-        proto.MESSAGE, number=3, message="OriginalDetectIntentRequest",
+    original_detect_intent_request = proto.Field(proto.MESSAGE, number=3,
+        message='OriginalDetectIntentRequest',
     )
 
 
@@ -138,24 +142,26 @@ class WebhookResponse(proto.Message):
 
     fulfillment_text = proto.Field(proto.STRING, number=1)
 
-    fulfillment_messages = proto.RepeatedField(
-        proto.MESSAGE, number=2, message=intent.Intent.Message,
+    fulfillment_messages = proto.RepeatedField(proto.MESSAGE, number=2,
+        message=intent.Intent.Message,
     )
 
     source = proto.Field(proto.STRING, number=3)
 
-    payload = proto.Field(proto.MESSAGE, number=4, message=struct.Struct,)
-
-    output_contexts = proto.RepeatedField(
-        proto.MESSAGE, number=5, message=context.Context,
+    payload = proto.Field(proto.MESSAGE, number=4,
+        message=struct.Struct,
     )
 
-    followup_event_input = proto.Field(
-        proto.MESSAGE, number=6, message=gcd_session.EventInput,
+    output_contexts = proto.RepeatedField(proto.MESSAGE, number=5,
+        message=context.Context,
     )
 
-    session_entity_types = proto.RepeatedField(
-        proto.MESSAGE, number=10, message=session_entity_type.SessionEntityType,
+    followup_event_input = proto.Field(proto.MESSAGE, number=6,
+        message=gcd_session.EventInput,
+    )
+
+    session_entity_types = proto.RepeatedField(proto.MESSAGE, number=10,
+        message=session_entity_type.SessionEntityType,
     )
 
 
@@ -197,7 +203,9 @@ class OriginalDetectIntentRequest(proto.Message):
 
     version = proto.Field(proto.STRING, number=2)
 
-    payload = proto.Field(proto.MESSAGE, number=3, message=struct.Struct,)
+    payload = proto.Field(proto.MESSAGE, number=3,
+        message=struct.Struct,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

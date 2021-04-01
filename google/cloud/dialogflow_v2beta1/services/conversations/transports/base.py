@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
+from google.api_core import gapic_v1    # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
@@ -32,32 +32,30 @@ from google.cloud.dialogflow_v2beta1.types import conversation as gcd_conversati
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
-
 class ConversationsTransport(abc.ABC):
     """Abstract transport class for Conversations."""
 
     AUTH_SCOPES = (
-        "https://www.googleapis.com/auth/cloud-platform",
-        "https://www.googleapis.com/auth/dialogflow",
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     )
 
     def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: typing.Optional[str] = None,
-        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-        quota_project_id: typing.Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-        **kwargs,
-    ) -> None:
+            self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: typing.Optional[str] = None,
+            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+            quota_project_id: typing.Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            **kwargs,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -80,8 +78,8 @@ class ConversationsTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ":" not in host:
-            host += ":443"
+        if ':' not in host:
+            host += ':443'
         self._host = host
 
         # Save the scopes.
@@ -90,19 +88,17 @@ class ConversationsTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs(
-                "'credentials_file' and 'credentials' are mutually exclusive"
-            )
+            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
-            )
+                                credentials_file,
+                                scopes=self._scopes,
+                                quota_project_id=quota_project_id
+                            )
 
         elif credentials is None:
-            credentials, _ = auth.default(
-                scopes=self._scopes, quota_project_id=quota_project_id
-            )
+            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
 
         # Save the credentials.
         self._credentials = credentials
@@ -111,13 +107,19 @@ class ConversationsTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.create_conversation: gapic_v1.method.wrap_method(
-                self.create_conversation, default_timeout=None, client_info=client_info,
+                self.create_conversation,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.list_conversations: gapic_v1.method.wrap_method(
-                self.list_conversations, default_timeout=None, client_info=client_info,
+                self.list_conversations,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.get_conversation: gapic_v1.method.wrap_method(
-                self.get_conversation, default_timeout=None, client_info=client_info,
+                self.get_conversation,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.complete_conversation: gapic_v1.method.wrap_method(
                 self.complete_conversation,
@@ -130,79 +132,68 @@ class ConversationsTransport(abc.ABC):
                 client_info=client_info,
             ),
             self.list_messages: gapic_v1.method.wrap_method(
-                self.list_messages, default_timeout=None, client_info=client_info,
+                self.list_messages,
+                default_timeout=None,
+                client_info=client_info,
             ),
+
         }
 
     @property
-    def create_conversation(
-        self,
-    ) -> typing.Callable[
-        [gcd_conversation.CreateConversationRequest],
-        typing.Union[
-            gcd_conversation.Conversation,
-            typing.Awaitable[gcd_conversation.Conversation],
-        ],
-    ]:
+    def create_conversation(self) -> typing.Callable[
+            [gcd_conversation.CreateConversationRequest],
+            typing.Union[
+                gcd_conversation.Conversation,
+                typing.Awaitable[gcd_conversation.Conversation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def list_conversations(
-        self,
-    ) -> typing.Callable[
-        [conversation.ListConversationsRequest],
-        typing.Union[
-            conversation.ListConversationsResponse,
-            typing.Awaitable[conversation.ListConversationsResponse],
-        ],
-    ]:
+    def list_conversations(self) -> typing.Callable[
+            [conversation.ListConversationsRequest],
+            typing.Union[
+                conversation.ListConversationsResponse,
+                typing.Awaitable[conversation.ListConversationsResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_conversation(
-        self,
-    ) -> typing.Callable[
-        [conversation.GetConversationRequest],
-        typing.Union[
-            conversation.Conversation, typing.Awaitable[conversation.Conversation]
-        ],
-    ]:
+    def get_conversation(self) -> typing.Callable[
+            [conversation.GetConversationRequest],
+            typing.Union[
+                conversation.Conversation,
+                typing.Awaitable[conversation.Conversation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def complete_conversation(
-        self,
-    ) -> typing.Callable[
-        [conversation.CompleteConversationRequest],
-        typing.Union[
-            conversation.Conversation, typing.Awaitable[conversation.Conversation]
-        ],
-    ]:
+    def complete_conversation(self) -> typing.Callable[
+            [conversation.CompleteConversationRequest],
+            typing.Union[
+                conversation.Conversation,
+                typing.Awaitable[conversation.Conversation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def batch_create_messages(
-        self,
-    ) -> typing.Callable[
-        [conversation.BatchCreateMessagesRequest],
-        typing.Union[
-            conversation.BatchCreateMessagesResponse,
-            typing.Awaitable[conversation.BatchCreateMessagesResponse],
-        ],
-    ]:
+    def batch_create_messages(self) -> typing.Callable[
+            [conversation.BatchCreateMessagesRequest],
+            typing.Union[
+                conversation.BatchCreateMessagesResponse,
+                typing.Awaitable[conversation.BatchCreateMessagesResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def list_messages(
-        self,
-    ) -> typing.Callable[
-        [conversation.ListMessagesRequest],
-        typing.Union[
-            conversation.ListMessagesResponse,
-            typing.Awaitable[conversation.ListMessagesResponse],
-        ],
-    ]:
+    def list_messages(self) -> typing.Callable[
+            [conversation.ListMessagesRequest],
+            typing.Union[
+                conversation.ListMessagesResponse,
+                typing.Awaitable[conversation.ListMessagesResponse]
+            ]]:
         raise NotImplementedError()
 
 
-__all__ = ("ConversationsTransport",)
+__all__ = (
+    'ConversationsTransport',
+)

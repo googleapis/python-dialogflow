@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
+from google.api_core import gapic_v1    # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
@@ -32,32 +32,30 @@ from google.cloud.dialogflow_v2beta1.types import session as gcd_session
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
-
 class SessionsTransport(abc.ABC):
     """Abstract transport class for Sessions."""
 
     AUTH_SCOPES = (
-        "https://www.googleapis.com/auth/cloud-platform",
-        "https://www.googleapis.com/auth/dialogflow",
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     )
 
     def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: typing.Optional[str] = None,
-        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-        quota_project_id: typing.Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-        **kwargs,
-    ) -> None:
+            self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: typing.Optional[str] = None,
+            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+            quota_project_id: typing.Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            **kwargs,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -80,8 +78,8 @@ class SessionsTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ":" not in host:
-            host += ":443"
+        if ':' not in host:
+            host += ':443'
         self._host = host
 
         # Save the scopes.
@@ -90,19 +88,17 @@ class SessionsTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs(
-                "'credentials_file' and 'credentials' are mutually exclusive"
-            )
+            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
-            )
+                                credentials_file,
+                                scopes=self._scopes,
+                                quota_project_id=quota_project_id
+                            )
 
         elif credentials is None:
-            credentials, _ = auth.default(
-                scopes=self._scopes, quota_project_id=quota_project_id
-            )
+            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
 
         # Save the credentials.
         self._credentials = credentials
@@ -116,7 +112,9 @@ class SessionsTransport(abc.ABC):
                     initial=0.1,
                     maximum=60.0,
                     multiplier=1.3,
-                    predicate=retries.if_exception_type(exceptions.ServiceUnavailable,),
+                    predicate=retries.if_exception_type(
+                        exceptions.ServiceUnavailable,
+                    ),
                     deadline=220.0,
                 ),
                 default_timeout=220.0,
@@ -127,31 +125,28 @@ class SessionsTransport(abc.ABC):
                 default_timeout=220.0,
                 client_info=client_info,
             ),
+
         }
 
     @property
-    def detect_intent(
-        self,
-    ) -> typing.Callable[
-        [gcd_session.DetectIntentRequest],
-        typing.Union[
-            gcd_session.DetectIntentResponse,
-            typing.Awaitable[gcd_session.DetectIntentResponse],
-        ],
-    ]:
+    def detect_intent(self) -> typing.Callable[
+            [gcd_session.DetectIntentRequest],
+            typing.Union[
+                gcd_session.DetectIntentResponse,
+                typing.Awaitable[gcd_session.DetectIntentResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def streaming_detect_intent(
-        self,
-    ) -> typing.Callable[
-        [session.StreamingDetectIntentRequest],
-        typing.Union[
-            session.StreamingDetectIntentResponse,
-            typing.Awaitable[session.StreamingDetectIntentResponse],
-        ],
-    ]:
+    def streaming_detect_intent(self) -> typing.Callable[
+            [session.StreamingDetectIntentRequest],
+            typing.Union[
+                session.StreamingDetectIntentResponse,
+                typing.Awaitable[session.StreamingDetectIntentResponse]
+            ]]:
         raise NotImplementedError()
 
 
-__all__ = ("SessionsTransport",)
+__all__ = (
+    'SessionsTransport',
+)

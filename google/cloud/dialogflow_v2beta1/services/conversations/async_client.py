@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.conversations import pagers
 from google.cloud.dialogflow_v2beta1.types import conversation
@@ -51,43 +51,25 @@ class ConversationsAsyncClient:
 
     conversation_path = staticmethod(ConversationsClient.conversation_path)
     parse_conversation_path = staticmethod(ConversationsClient.parse_conversation_path)
-    conversation_profile_path = staticmethod(
-        ConversationsClient.conversation_profile_path
-    )
-    parse_conversation_profile_path = staticmethod(
-        ConversationsClient.parse_conversation_profile_path
-    )
+    conversation_profile_path = staticmethod(ConversationsClient.conversation_profile_path)
+    parse_conversation_profile_path = staticmethod(ConversationsClient.parse_conversation_profile_path)
     message_path = staticmethod(ConversationsClient.message_path)
     parse_message_path = staticmethod(ConversationsClient.parse_message_path)
 
-    common_billing_account_path = staticmethod(
-        ConversationsClient.common_billing_account_path
-    )
-    parse_common_billing_account_path = staticmethod(
-        ConversationsClient.parse_common_billing_account_path
-    )
+    common_billing_account_path = staticmethod(ConversationsClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(ConversationsClient.parse_common_billing_account_path)
 
     common_folder_path = staticmethod(ConversationsClient.common_folder_path)
-    parse_common_folder_path = staticmethod(
-        ConversationsClient.parse_common_folder_path
-    )
+    parse_common_folder_path = staticmethod(ConversationsClient.parse_common_folder_path)
 
-    common_organization_path = staticmethod(
-        ConversationsClient.common_organization_path
-    )
-    parse_common_organization_path = staticmethod(
-        ConversationsClient.parse_common_organization_path
-    )
+    common_organization_path = staticmethod(ConversationsClient.common_organization_path)
+    parse_common_organization_path = staticmethod(ConversationsClient.parse_common_organization_path)
 
     common_project_path = staticmethod(ConversationsClient.common_project_path)
-    parse_common_project_path = staticmethod(
-        ConversationsClient.parse_common_project_path
-    )
+    parse_common_project_path = staticmethod(ConversationsClient.parse_common_project_path)
 
     common_location_path = staticmethod(ConversationsClient.common_location_path)
-    parse_common_location_path = staticmethod(
-        ConversationsClient.parse_common_location_path
-    )
+    parse_common_location_path = staticmethod(ConversationsClient.parse_common_location_path)
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -130,18 +112,14 @@ class ConversationsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(
-        type(ConversationsClient).get_transport_class, type(ConversationsClient)
-    )
+    get_transport_class = functools.partial(type(ConversationsClient).get_transport_class, type(ConversationsClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, ConversationsTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, ConversationsTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the conversations client.
 
         Args:
@@ -180,18 +158,18 @@ class ConversationsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
+
         )
 
-    async def create_conversation(
-        self,
-        request: gcd_conversation.CreateConversationRequest = None,
-        *,
-        parent: str = None,
-        conversation: gcd_conversation.Conversation = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_conversation.Conversation:
+    async def create_conversation(self,
+            request: gcd_conversation.CreateConversationRequest = None,
+            *,
+            parent: str = None,
+            conversation: gcd_conversation.Conversation = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_conversation.Conversation:
         r"""Creates a new conversation. Conversations are auto-completed
         after 24 hours.
 
@@ -254,10 +232,8 @@ class ConversationsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, conversation])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_conversation.CreateConversationRequest(request)
 
@@ -280,24 +256,30 @@ class ConversationsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def list_conversations(
-        self,
-        request: conversation.ListConversationsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListConversationsAsyncPager:
+    async def list_conversations(self,
+            request: conversation.ListConversationsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListConversationsAsyncPager:
         r"""Returns the list of all conversations in the
         specified project.
 
@@ -334,10 +316,8 @@ class ConversationsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = conversation.ListConversationsRequest(request)
 
@@ -358,30 +338,39 @@ class ConversationsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListConversationsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_conversation(
-        self,
-        request: conversation.GetConversationRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> conversation.Conversation:
+    async def get_conversation(self,
+            request: conversation.GetConversationRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> conversation.Conversation:
         r"""Retrieves the specific conversation.
 
         Args:
@@ -418,10 +407,8 @@ class ConversationsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = conversation.GetConversationRequest(request)
 
@@ -442,24 +429,30 @@ class ConversationsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def complete_conversation(
-        self,
-        request: conversation.CompleteConversationRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> conversation.Conversation:
+    async def complete_conversation(self,
+            request: conversation.CompleteConversationRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> conversation.Conversation:
         r"""Completes the specified conversation. Finished
         conversations are purged from the database after 30
         days.
@@ -499,10 +492,8 @@ class ConversationsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = conversation.CompleteConversationRequest(request)
 
@@ -523,24 +514,30 @@ class ConversationsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def batch_create_messages(
-        self,
-        request: conversation.BatchCreateMessagesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> conversation.BatchCreateMessagesResponse:
+    async def batch_create_messages(self,
+            request: conversation.BatchCreateMessagesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> conversation.BatchCreateMessagesResponse:
         r"""Batch ingests messages to conversation. Customers can
         use this RPC to ingest historical messages to
         conversation.
@@ -575,10 +572,8 @@ class ConversationsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = conversation.BatchCreateMessagesRequest(request)
 
@@ -599,24 +594,30 @@ class ConversationsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def list_messages(
-        self,
-        request: conversation.ListMessagesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListMessagesAsyncPager:
+    async def list_messages(self,
+            request: conversation.ListMessagesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListMessagesAsyncPager:
         r"""Lists messages that belong to a given conversation. ``messages``
         are ordered by ``create_time`` in descending order. To fetch
         updates without duplication, send request with filter
@@ -656,10 +657,8 @@ class ConversationsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = conversation.ListMessagesRequest(request)
 
@@ -680,30 +679,47 @@ class ConversationsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListMessagesAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("ConversationsAsyncClient",)
+__all__ = (
+    'ConversationsAsyncClient',
+)

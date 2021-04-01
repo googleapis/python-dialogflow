@@ -18,14 +18,14 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import grpc_helpers_async  # type: ignore
-from google.api_core import operations_v1  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import grpc_helpers_async         # type: ignore
+from google.api_core import operations_v1              # type: ignore
+from google import auth                                # type: ignore
+from google.auth import credentials                    # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc  # type: ignore
+import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2.types import agent
@@ -55,15 +55,13 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> aio.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: Optional[str] = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -92,24 +90,22 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        channel: aio.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id=None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: Optional[str] = None,
+            scopes: Optional[Sequence[str]] = None,
+            channel: aio.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id=None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -248,7 +244,9 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         return self._operations_client
 
     @property
-    def get_agent(self) -> Callable[[agent.GetAgentRequest], Awaitable[agent.Agent]]:
+    def get_agent(self) -> Callable[
+            [agent.GetAgentRequest],
+            Awaitable[agent.Agent]]:
         r"""Return a callable for the get agent method over gRPC.
 
         Retrieves the specified agent.
@@ -263,18 +261,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_agent" not in self._stubs:
-            self._stubs["get_agent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/GetAgent",
+        if 'get_agent' not in self._stubs:
+            self._stubs['get_agent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/GetAgent',
                 request_serializer=agent.GetAgentRequest.serialize,
                 response_deserializer=agent.Agent.deserialize,
             )
-        return self._stubs["get_agent"]
+        return self._stubs['get_agent']
 
     @property
-    def set_agent(
-        self,
-    ) -> Callable[[gcd_agent.SetAgentRequest], Awaitable[gcd_agent.Agent]]:
+    def set_agent(self) -> Callable[
+            [gcd_agent.SetAgentRequest],
+            Awaitable[gcd_agent.Agent]]:
         r"""Return a callable for the set agent method over gRPC.
 
         Creates/updates the specified agent.
@@ -289,18 +287,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "set_agent" not in self._stubs:
-            self._stubs["set_agent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/SetAgent",
+        if 'set_agent' not in self._stubs:
+            self._stubs['set_agent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/SetAgent',
                 request_serializer=gcd_agent.SetAgentRequest.serialize,
                 response_deserializer=gcd_agent.Agent.deserialize,
             )
-        return self._stubs["set_agent"]
+        return self._stubs['set_agent']
 
     @property
-    def delete_agent(
-        self,
-    ) -> Callable[[agent.DeleteAgentRequest], Awaitable[empty.Empty]]:
+    def delete_agent(self) -> Callable[
+            [agent.DeleteAgentRequest],
+            Awaitable[empty.Empty]]:
         r"""Return a callable for the delete agent method over gRPC.
 
         Deletes the specified agent.
@@ -315,18 +313,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_agent" not in self._stubs:
-            self._stubs["delete_agent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/DeleteAgent",
+        if 'delete_agent' not in self._stubs:
+            self._stubs['delete_agent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/DeleteAgent',
                 request_serializer=agent.DeleteAgentRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs["delete_agent"]
+        return self._stubs['delete_agent']
 
     @property
-    def search_agents(
-        self,
-    ) -> Callable[[agent.SearchAgentsRequest], Awaitable[agent.SearchAgentsResponse]]:
+    def search_agents(self) -> Callable[
+            [agent.SearchAgentsRequest],
+            Awaitable[agent.SearchAgentsResponse]]:
         r"""Return a callable for the search agents method over gRPC.
 
         Returns the list of agents.
@@ -347,18 +345,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "search_agents" not in self._stubs:
-            self._stubs["search_agents"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/SearchAgents",
+        if 'search_agents' not in self._stubs:
+            self._stubs['search_agents'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/SearchAgents',
                 request_serializer=agent.SearchAgentsRequest.serialize,
                 response_deserializer=agent.SearchAgentsResponse.deserialize,
             )
-        return self._stubs["search_agents"]
+        return self._stubs['search_agents']
 
     @property
-    def train_agent(
-        self,
-    ) -> Callable[[agent.TrainAgentRequest], Awaitable[operations.Operation]]:
+    def train_agent(self) -> Callable[
+            [agent.TrainAgentRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the train agent method over gRPC.
 
         Trains the specified agent.
@@ -376,18 +374,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "train_agent" not in self._stubs:
-            self._stubs["train_agent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/TrainAgent",
+        if 'train_agent' not in self._stubs:
+            self._stubs['train_agent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/TrainAgent',
                 request_serializer=agent.TrainAgentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["train_agent"]
+        return self._stubs['train_agent']
 
     @property
-    def export_agent(
-        self,
-    ) -> Callable[[agent.ExportAgentRequest], Awaitable[operations.Operation]]:
+    def export_agent(self) -> Callable[
+            [agent.ExportAgentRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the export agent method over gRPC.
 
         Exports the specified agent to a ZIP file.
@@ -405,18 +403,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "export_agent" not in self._stubs:
-            self._stubs["export_agent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/ExportAgent",
+        if 'export_agent' not in self._stubs:
+            self._stubs['export_agent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/ExportAgent',
                 request_serializer=agent.ExportAgentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["export_agent"]
+        return self._stubs['export_agent']
 
     @property
-    def import_agent(
-        self,
-    ) -> Callable[[agent.ImportAgentRequest], Awaitable[operations.Operation]]:
+    def import_agent(self) -> Callable[
+            [agent.ImportAgentRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the import agent method over gRPC.
 
         Imports the specified agent from a ZIP file.
@@ -447,18 +445,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "import_agent" not in self._stubs:
-            self._stubs["import_agent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/ImportAgent",
+        if 'import_agent' not in self._stubs:
+            self._stubs['import_agent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/ImportAgent',
                 request_serializer=agent.ImportAgentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["import_agent"]
+        return self._stubs['import_agent']
 
     @property
-    def restore_agent(
-        self,
-    ) -> Callable[[agent.RestoreAgentRequest], Awaitable[operations.Operation]]:
+    def restore_agent(self) -> Callable[
+            [agent.RestoreAgentRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the restore agent method over gRPC.
 
         Restores the specified agent from a ZIP file.
@@ -487,21 +485,18 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "restore_agent" not in self._stubs:
-            self._stubs["restore_agent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/RestoreAgent",
+        if 'restore_agent' not in self._stubs:
+            self._stubs['restore_agent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/RestoreAgent',
                 request_serializer=agent.RestoreAgentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["restore_agent"]
+        return self._stubs['restore_agent']
 
     @property
-    def get_validation_result(
-        self,
-    ) -> Callable[
-        [agent.GetValidationResultRequest],
-        Awaitable[validation_result.ValidationResult],
-    ]:
+    def get_validation_result(self) -> Callable[
+            [agent.GetValidationResultRequest],
+            Awaitable[validation_result.ValidationResult]]:
         r"""Return a callable for the get validation result method over gRPC.
 
         Gets agent validation result. Agent validation is
@@ -518,13 +513,15 @@ class AgentsGrpcAsyncIOTransport(AgentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_validation_result" not in self._stubs:
-            self._stubs["get_validation_result"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Agents/GetValidationResult",
+        if 'get_validation_result' not in self._stubs:
+            self._stubs['get_validation_result'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Agents/GetValidationResult',
                 request_serializer=agent.GetValidationResultRequest.serialize,
                 response_deserializer=validation_result.ValidationResult.deserialize,
             )
-        return self._stubs["get_validation_result"]
+        return self._stubs['get_validation_result']
 
 
-__all__ = ("AgentsGrpcAsyncIOTransport",)
+__all__ = (
+    'AgentsGrpcAsyncIOTransport',
+)

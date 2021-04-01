@@ -19,6 +19,6 @@ from .client import SessionsClient
 from .async_client import SessionsAsyncClient
 
 __all__ = (
-    "SessionsClient",
-    "SessionsAsyncClient",
+    'SessionsClient',
+    'SessionsAsyncClient',
 )

@@ -24,17 +24,17 @@ from google.rpc import status_pb2 as gr_status  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2",
+    package='google.cloud.dialogflow.v2',
     manifest={
-        "Document",
-        "GetDocumentRequest",
-        "ListDocumentsRequest",
-        "ListDocumentsResponse",
-        "CreateDocumentRequest",
-        "DeleteDocumentRequest",
-        "UpdateDocumentRequest",
-        "ReloadDocumentRequest",
-        "KnowledgeOperationMetadata",
+        'Document',
+        'GetDocumentRequest',
+        'ListDocumentsRequest',
+        'ListDocumentsResponse',
+        'CreateDocumentRequest',
+        'DeleteDocumentRequest',
+        'UpdateDocumentRequest',
+        'ReloadDocumentRequest',
+        'KnowledgeOperationMetadata',
     },
 )
 
@@ -108,7 +108,6 @@ class Document(proto.Message):
             the document's content_uri, etc. The max size of a ``key``
             or a ``value`` of the metadata is 1024 bytes.
     """
-
     class KnowledgeType(proto.Enum):
         r"""The knowledge type of document content."""
         KNOWLEDGE_TYPE_UNSPECIFIED = 0
@@ -130,9 +129,13 @@ class Document(proto.Message):
                 load.
         """
 
-        time = proto.Field(proto.MESSAGE, number=1, message=timestamp.Timestamp,)
+        time = proto.Field(proto.MESSAGE, number=1,
+            message=timestamp.Timestamp,
+        )
 
-        status = proto.Field(proto.MESSAGE, number=2, message=gr_status.Status,)
+        status = proto.Field(proto.MESSAGE, number=2,
+            message=gr_status.Status,
+        )
 
     name = proto.Field(proto.STRING, number=1)
 
@@ -140,15 +143,19 @@ class Document(proto.Message):
 
     mime_type = proto.Field(proto.STRING, number=3)
 
-    knowledge_types = proto.RepeatedField(proto.ENUM, number=4, enum=KnowledgeType,)
+    knowledge_types = proto.RepeatedField(proto.ENUM, number=4,
+        enum=KnowledgeType,
+    )
 
-    content_uri = proto.Field(proto.STRING, number=5, oneof="source")
+    content_uri = proto.Field(proto.STRING, number=5, oneof='source')
 
-    raw_content = proto.Field(proto.BYTES, number=9, oneof="source")
+    raw_content = proto.Field(proto.BYTES, number=9, oneof='source')
 
     enable_auto_reload = proto.Field(proto.BOOL, number=11)
 
-    latest_reload_status = proto.Field(proto.MESSAGE, number=12, message=ReloadStatus,)
+    latest_reload_status = proto.Field(proto.MESSAGE, number=12,
+        message=ReloadStatus,
+    )
 
     metadata = proto.MapField(proto.STRING, proto.STRING, number=7)
 
@@ -207,7 +214,9 @@ class ListDocumentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    documents = proto.RepeatedField(proto.MESSAGE, number=1, message="Document",)
+    documents = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='Document',
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -227,7 +236,9 @@ class CreateDocumentRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    document = proto.Field(proto.MESSAGE, number=2, message="Document",)
+    document = proto.Field(proto.MESSAGE, number=2,
+        message='Document',
+    )
 
 
 class DeleteDocumentRequest(proto.Message):
@@ -256,9 +267,13 @@ class UpdateDocumentRequest(proto.Message):
             will be returned for attempting to update other fields.
     """
 
-    document = proto.Field(proto.MESSAGE, number=1, message="Document",)
+    document = proto.Field(proto.MESSAGE, number=1,
+        message='Document',
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class ReloadDocumentRequest(proto.Message):
@@ -279,7 +294,7 @@ class ReloadDocumentRequest(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    content_uri = proto.Field(proto.STRING, number=3, oneof="source")
+    content_uri = proto.Field(proto.STRING, number=3, oneof='source')
 
 
 class KnowledgeOperationMetadata(proto.Message):
@@ -291,7 +306,6 @@ class KnowledgeOperationMetadata(proto.Message):
             Output only. The current state of this
             operation.
     """
-
     class State(proto.Enum):
         r"""States of the operation."""
         STATE_UNSPECIFIED = 0
@@ -299,7 +313,9 @@ class KnowledgeOperationMetadata(proto.Message):
         RUNNING = 2
         DONE = 3
 
-    state = proto.Field(proto.ENUM, number=1, enum=State,)
+    state = proto.Field(proto.ENUM, number=1,
+        enum=State,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -27,29 +27,29 @@ from google.rpc import status_pb2 as status  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2",
+    package='google.cloud.dialogflow.v2',
     manifest={
-        "Participant",
-        "Message",
-        "CreateParticipantRequest",
-        "GetParticipantRequest",
-        "ListParticipantsRequest",
-        "ListParticipantsResponse",
-        "UpdateParticipantRequest",
-        "AnalyzeContentRequest",
-        "DtmfParameters",
-        "AnalyzeContentResponse",
-        "SuggestArticlesRequest",
-        "SuggestArticlesResponse",
-        "SuggestFaqAnswersRequest",
-        "SuggestFaqAnswersResponse",
-        "OutputAudio",
-        "AutomatedAgentReply",
-        "ArticleAnswer",
-        "FaqAnswer",
-        "SuggestionResult",
-        "AnnotatedMessagePart",
-        "MessageAnnotation",
+        'Participant',
+        'Message',
+        'CreateParticipantRequest',
+        'GetParticipantRequest',
+        'ListParticipantsRequest',
+        'ListParticipantsResponse',
+        'UpdateParticipantRequest',
+        'AnalyzeContentRequest',
+        'DtmfParameters',
+        'AnalyzeContentResponse',
+        'SuggestArticlesRequest',
+        'SuggestArticlesResponse',
+        'SuggestFaqAnswersRequest',
+        'SuggestFaqAnswersResponse',
+        'OutputAudio',
+        'AutomatedAgentReply',
+        'ArticleAnswer',
+        'FaqAnswer',
+        'SuggestionResult',
+        'AnnotatedMessagePart',
+        'MessageAnnotation',
     },
 )
 
@@ -73,7 +73,6 @@ class Participant(proto.Message):
             transcriptions from that media stream to this
             participant. This field can be updated.
     """
-
     class Role(proto.Enum):
         r"""Enumeration of the roles a participant can play in a
         conversation.
@@ -85,7 +84,9 @@ class Participant(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    role = proto.Field(proto.ENUM, number=2, enum=Role,)
+    role = proto.Field(proto.ENUM, number=2,
+        enum=Role,
+    )
 
     sip_recording_media_label = proto.Field(proto.STRING, number=6)
 
@@ -123,12 +124,16 @@ class Message(proto.Message):
 
     participant = proto.Field(proto.STRING, number=4)
 
-    participant_role = proto.Field(proto.ENUM, number=5, enum="Participant.Role",)
+    participant_role = proto.Field(proto.ENUM, number=5,
+        enum='Participant.Role',
+    )
 
-    create_time = proto.Field(proto.MESSAGE, number=6, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=6,
+        message=timestamp.Timestamp,
+    )
 
-    message_annotation = proto.Field(
-        proto.MESSAGE, number=7, message="MessageAnnotation",
+    message_annotation = proto.Field(proto.MESSAGE, number=7,
+        message='MessageAnnotation',
     )
 
 
@@ -147,7 +152,9 @@ class CreateParticipantRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    participant = proto.Field(proto.MESSAGE, number=2, message="Participant",)
+    participant = proto.Field(proto.MESSAGE, number=2,
+        message='Participant',
+    )
 
 
 class GetParticipantRequest(proto.Message):
@@ -205,7 +212,9 @@ class ListParticipantsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    participants = proto.RepeatedField(proto.MESSAGE, number=1, message="Participant",)
+    participants = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='Participant',
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -222,9 +231,13 @@ class UpdateParticipantRequest(proto.Message):
             update.
     """
 
-    participant = proto.Field(proto.MESSAGE, number=1, message="Participant",)
+    participant = proto.Field(proto.MESSAGE, number=1,
+        message='Participant',
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class AnalyzeContentRequest(proto.Message):
@@ -258,20 +271,20 @@ class AnalyzeContentRequest(proto.Message):
 
     participant = proto.Field(proto.STRING, number=1)
 
-    text_input = proto.Field(
-        proto.MESSAGE, number=6, oneof="input", message=session.TextInput,
+    text_input = proto.Field(proto.MESSAGE, number=6, oneof='input',
+        message=session.TextInput,
     )
 
-    event_input = proto.Field(
-        proto.MESSAGE, number=8, oneof="input", message=session.EventInput,
+    event_input = proto.Field(proto.MESSAGE, number=8, oneof='input',
+        message=session.EventInput,
     )
 
-    reply_audio_config = proto.Field(
-        proto.MESSAGE, number=5, message=audio_config.OutputAudioConfig,
+    reply_audio_config = proto.Field(proto.MESSAGE, number=5,
+        message=audio_config.OutputAudioConfig,
     )
 
-    query_params = proto.Field(
-        proto.MESSAGE, number=9, message=session.QueryParameters,
+    query_params = proto.Field(proto.MESSAGE, number=9,
+        message=session.QueryParameters,
     )
 
     request_id = proto.Field(proto.STRING, number=11)
@@ -339,23 +352,29 @@ class AnalyzeContentResponse(proto.Message):
 
     reply_text = proto.Field(proto.STRING, number=1)
 
-    reply_audio = proto.Field(proto.MESSAGE, number=2, message="OutputAudio",)
-
-    automated_agent_reply = proto.Field(
-        proto.MESSAGE, number=3, message="AutomatedAgentReply",
+    reply_audio = proto.Field(proto.MESSAGE, number=2,
+        message='OutputAudio',
     )
 
-    message = proto.Field(proto.MESSAGE, number=5, message="Message",)
-
-    human_agent_suggestion_results = proto.RepeatedField(
-        proto.MESSAGE, number=6, message="SuggestionResult",
+    automated_agent_reply = proto.Field(proto.MESSAGE, number=3,
+        message='AutomatedAgentReply',
     )
 
-    end_user_suggestion_results = proto.RepeatedField(
-        proto.MESSAGE, number=7, message="SuggestionResult",
+    message = proto.Field(proto.MESSAGE, number=5,
+        message='Message',
     )
 
-    dtmf_parameters = proto.Field(proto.MESSAGE, number=9, message="DtmfParameters",)
+    human_agent_suggestion_results = proto.RepeatedField(proto.MESSAGE, number=6,
+        message='SuggestionResult',
+    )
+
+    end_user_suggestion_results = proto.RepeatedField(proto.MESSAGE, number=7,
+        message='SuggestionResult',
+    )
+
+    dtmf_parameters = proto.Field(proto.MESSAGE, number=9,
+        message='DtmfParameters',
+    )
 
 
 class SuggestArticlesRequest(proto.Message):
@@ -411,8 +430,8 @@ class SuggestArticlesResponse(proto.Message):
             the conversation.
     """
 
-    article_answers = proto.RepeatedField(
-        proto.MESSAGE, number=1, message="ArticleAnswer",
+    article_answers = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='ArticleAnswer',
     )
 
     latest_message = proto.Field(proto.STRING, number=2)
@@ -471,7 +490,9 @@ class SuggestFaqAnswersResponse(proto.Message):
             the conversation.
     """
 
-    faq_answers = proto.RepeatedField(proto.MESSAGE, number=1, message="FaqAnswer",)
+    faq_answers = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='FaqAnswer',
+    )
 
     latest_message = proto.Field(proto.STRING, number=2)
 
@@ -490,8 +511,8 @@ class OutputAudio(proto.Message):
             The natural language speech audio.
     """
 
-    config = proto.Field(
-        proto.MESSAGE, number=1, message=audio_config.OutputAudioConfig,
+    config = proto.Field(proto.MESSAGE, number=1,
+        message=audio_config.OutputAudioConfig,
     )
 
     audio = proto.Field(proto.BYTES, number=2)
@@ -507,8 +528,8 @@ class AutomatedAgentReply(proto.Message):
             call.
     """
 
-    detect_intent_response = proto.Field(
-        proto.MESSAGE, number=1, message=session.DetectIntentResponse,
+    detect_intent_response = proto.Field(proto.MESSAGE, number=1,
+        message=session.DetectIntentResponse,
     )
 
 
@@ -609,22 +630,16 @@ class SuggestionResult(proto.Message):
             SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
     """
 
-    error = proto.Field(
-        proto.MESSAGE, number=1, oneof="suggestion_response", message=status.Status,
+    error = proto.Field(proto.MESSAGE, number=1, oneof='suggestion_response',
+        message=status.Status,
     )
 
-    suggest_articles_response = proto.Field(
-        proto.MESSAGE,
-        number=2,
-        oneof="suggestion_response",
-        message="SuggestArticlesResponse",
+    suggest_articles_response = proto.Field(proto.MESSAGE, number=2, oneof='suggestion_response',
+        message='SuggestArticlesResponse',
     )
 
-    suggest_faq_answers_response = proto.Field(
-        proto.MESSAGE,
-        number=3,
-        oneof="suggestion_response",
-        message="SuggestFaqAnswersResponse",
+    suggest_faq_answers_response = proto.Field(proto.MESSAGE, number=3, oneof='suggestion_response',
+        message='SuggestFaqAnswersResponse',
     )
 
 
@@ -662,7 +677,9 @@ class AnnotatedMessagePart(proto.Message):
 
     entity_type = proto.Field(proto.STRING, number=2)
 
-    formatted_value = proto.Field(proto.MESSAGE, number=3, message=struct.Value,)
+    formatted_value = proto.Field(proto.MESSAGE, number=3,
+        message=struct.Value,
+    )
 
 
 class MessageAnnotation(proto.Message):
@@ -678,8 +695,8 @@ class MessageAnnotation(proto.Message):
             entities.
     """
 
-    parts = proto.RepeatedField(
-        proto.MESSAGE, number=1, message="AnnotatedMessagePart",
+    parts = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='AnnotatedMessagePart',
     )
 
     contain_entities = proto.Field(proto.BOOL, number=2)

@@ -19,7 +19,11 @@ import proto  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2beta1", manifest={"GcsSources", "GcsSource",},
+    package='google.cloud.dialogflow.v2beta1',
+    manifest={
+        'GcsSources',
+        'GcsSource',
+    },
 )
 
 

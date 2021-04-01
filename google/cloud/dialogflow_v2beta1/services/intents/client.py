@@ -23,14 +23,14 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.auth.transport import mtls  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+from google.api_core import exceptions                            # type: ignore
+from google.api_core import gapic_v1                              # type: ignore
+from google.api_core import retry as retries                      # type: ignore
+from google.auth import credentials                               # type: ignore
+from google.auth.transport import mtls                            # type: ignore
+from google.auth.transport.grpc import SslCredentials             # type: ignore
+from google.auth.exceptions import MutualTLSChannelError          # type: ignore
+from google.oauth2 import service_account                         # type: ignore
 
 from google.api_core import operation  # type: ignore
 from google.api_core import operation_async  # type: ignore
@@ -54,12 +54,13 @@ class IntentsClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-
     _transport_registry = OrderedDict()  # type: Dict[str, Type[IntentsTransport]]
-    _transport_registry["grpc"] = IntentsGrpcTransport
-    _transport_registry["grpc_asyncio"] = IntentsGrpcAsyncIOTransport
+    _transport_registry['grpc'] = IntentsGrpcTransport
+    _transport_registry['grpc_asyncio'] = IntentsGrpcAsyncIOTransport
 
-    def get_transport_class(cls, label: str = None,) -> Type[IntentsTransport]:
+    def get_transport_class(cls,
+            label: str = None,
+        ) -> Type[IntentsTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -112,7 +113,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = "dialogflow.googleapis.com"
+    DEFAULT_ENDPOINT = 'dialogflow.googleapis.com'
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -147,8 +148,9 @@ class IntentsClient(metaclass=IntentsClientMeta):
         Returns:
             IntentsClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(filename)
-        kwargs["credentials"] = credentials
+        credentials = service_account.Credentials.from_service_account_file(
+            filename)
+        kwargs['credentials'] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
@@ -163,101 +165,88 @@ class IntentsClient(metaclass=IntentsClientMeta):
         return self._transport
 
     @staticmethod
-    def context_path(project: str, session: str, context: str,) -> str:
+    def context_path(project: str,session: str,context: str,) -> str:
         """Return a fully-qualified context string."""
-        return "projects/{project}/agent/sessions/{session}/contexts/{context}".format(
-            project=project, session=session, context=context,
-        )
+        return "projects/{project}/agent/sessions/{session}/contexts/{context}".format(project=project, session=session, context=context, )
 
     @staticmethod
-    def parse_context_path(path: str) -> Dict[str, str]:
+    def parse_context_path(path: str) -> Dict[str,str]:
         """Parse a context path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/contexts/(?P<context>.+?)$",
-            path,
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/contexts/(?P<context>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def intent_path(project: str, intent: str,) -> str:
+    def intent_path(project: str,intent: str,) -> str:
         """Return a fully-qualified intent string."""
-        return "projects/{project}/agent/intents/{intent}".format(
-            project=project, intent=intent,
-        )
+        return "projects/{project}/agent/intents/{intent}".format(project=project, intent=intent, )
 
     @staticmethod
-    def parse_intent_path(path: str) -> Dict[str, str]:
+    def parse_intent_path(path: str) -> Dict[str,str]:
         """Parse a intent path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/agent/intents/(?P<intent>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_billing_account_path(billing_account: str,) -> str:
+    def common_billing_account_path(billing_account: str, ) -> str:
         """Return a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(
-            billing_account=billing_account,
-        )
+        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
 
     @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
+    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
         """Parse a billing_account path into its component segments."""
         m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_folder_path(folder: str,) -> str:
+    def common_folder_path(folder: str, ) -> str:
         """Return a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder,)
+        return "folders/{folder}".format(folder=folder, )
 
     @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str, str]:
+    def parse_common_folder_path(path: str) -> Dict[str,str]:
         """Parse a folder path into its component segments."""
         m = re.match(r"^folders/(?P<folder>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_organization_path(organization: str,) -> str:
+    def common_organization_path(organization: str, ) -> str:
         """Return a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization,)
+        return "organizations/{organization}".format(organization=organization, )
 
     @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str, str]:
+    def parse_common_organization_path(path: str) -> Dict[str,str]:
         """Parse a organization path into its component segments."""
         m = re.match(r"^organizations/(?P<organization>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_project_path(project: str,) -> str:
+    def common_project_path(project: str, ) -> str:
         """Return a fully-qualified project string."""
-        return "projects/{project}".format(project=project,)
+        return "projects/{project}".format(project=project, )
 
     @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str, str]:
+    def parse_common_project_path(path: str) -> Dict[str,str]:
         """Parse a project path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_location_path(project: str, location: str,) -> str:
+    def common_location_path(project: str, location: str, ) -> str:
         """Return a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(
-            project=project, location=location,
-        )
+        return "projects/{project}/locations/{location}".format(project=project, location=location, )
 
     @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str, str]:
+    def parse_common_location_path(path: str) -> Dict[str,str]:
         """Parse a location path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(
-        self,
-        *,
-        credentials: Optional[credentials.Credentials] = None,
-        transport: Union[str, IntentsTransport, None] = None,
-        client_options: Optional[client_options_lib.ClientOptions] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: Optional[credentials.Credentials] = None,
+            transport: Union[str, IntentsTransport, None] = None,
+            client_options: Optional[client_options_lib.ClientOptions] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the intents client.
 
         Args:
@@ -301,9 +290,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
             client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(
-            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
-        )
+        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
 
         client_cert_source_func = None
         is_mtls = False
@@ -313,9 +300,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
                 client_cert_source_func = client_options.client_cert_source
             else:
                 is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = (
-                    mtls.default_client_cert_source() if is_mtls else None
-                )
+                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
 
         # Figure out which api endpoint to use.
         if client_options.api_endpoint is not None:
@@ -327,9 +312,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
             elif use_mtls_env == "always":
                 api_endpoint = self.DEFAULT_MTLS_ENDPOINT
             elif use_mtls_env == "auto":
-                api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
-                )
+                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
             else:
                 raise MutualTLSChannelError(
                     "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
@@ -341,10 +324,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         if isinstance(transport, IntentsTransport):
             # transport is a IntentsTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its credentials directly."
-                )
+                raise ValueError('When providing a transport instance, '
+                                 'provide its credentials directly.')
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -363,16 +344,15 @@ class IntentsClient(metaclass=IntentsClientMeta):
                 client_info=client_info,
             )
 
-    def list_intents(
-        self,
-        request: intent.ListIntentsRequest = None,
-        *,
-        parent: str = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListIntentsPager:
+    def list_intents(self,
+            request: intent.ListIntentsRequest = None,
+            *,
+            parent: str = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListIntentsPager:
         r"""Returns the list of all intents in the specified
         agent.
 
@@ -418,10 +398,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a intent.ListIntentsRequest.
@@ -445,31 +423,40 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListIntentsPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_intent(
-        self,
-        request: intent.GetIntentRequest = None,
-        *,
-        name: str = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> intent.Intent:
+    def get_intent(self,
+            request: intent.GetIntentRequest = None,
+            *,
+            name: str = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> intent.Intent:
         r"""Retrieves the specified intent.
 
         Args:
@@ -522,10 +509,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a intent.GetIntentRequest.
@@ -549,26 +534,32 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def create_intent(
-        self,
-        request: gcd_intent.CreateIntentRequest = None,
-        *,
-        parent: str = None,
-        intent: gcd_intent.Intent = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_intent.Intent:
+    def create_intent(self,
+            request: gcd_intent.CreateIntentRequest = None,
+            *,
+            parent: str = None,
+            intent: gcd_intent.Intent = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_intent.Intent:
         r"""Creates an intent in the specified agent.
 
         Args:
@@ -627,10 +618,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, intent, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_intent.CreateIntentRequest.
@@ -656,26 +645,32 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def update_intent(
-        self,
-        request: gcd_intent.UpdateIntentRequest = None,
-        *,
-        intent: gcd_intent.Intent = None,
-        update_mask: field_mask.FieldMask = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_intent.Intent:
+    def update_intent(self,
+            request: gcd_intent.UpdateIntentRequest = None,
+            *,
+            intent: gcd_intent.Intent = None,
+            update_mask: field_mask.FieldMask = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_intent.Intent:
         r"""Updates the specified intent.
 
         Args:
@@ -731,10 +726,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([intent, update_mask, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_intent.UpdateIntentRequest.
@@ -760,26 +753,30 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("intent.name", request.intent.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('intent.name', request.intent.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def delete_intent(
-        self,
-        request: intent.DeleteIntentRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    def delete_intent(self,
+            request: intent.DeleteIntentRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified intent and its direct or
         indirect followup intents.
 
@@ -812,10 +809,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a intent.DeleteIntentRequest.
@@ -837,25 +832,29 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    def batch_update_intents(
-        self,
-        request: intent.BatchUpdateIntentsRequest = None,
-        *,
-        parent: str = None,
-        intent_batch_uri: str = None,
-        intent_batch_inline: intent.IntentBatch = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation.Operation:
+    def batch_update_intents(self,
+            request: intent.BatchUpdateIntentsRequest = None,
+            *,
+            parent: str = None,
+            intent_batch_uri: str = None,
+            intent_batch_inline: intent.IntentBatch = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation.Operation:
         r"""Updates/Creates multiple intents in the specified agent.
 
         Operation <response:
@@ -915,10 +914,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, intent_batch_uri, intent_batch_inline])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a intent.BatchUpdateIntentsRequest.
@@ -944,11 +941,18 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation.from_gapic(
@@ -961,16 +965,15 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Done; return the response.
         return response
 
-    def batch_delete_intents(
-        self,
-        request: intent.BatchDeleteIntentsRequest = None,
-        *,
-        parent: str = None,
-        intents: Sequence[intent.Intent] = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation.Operation:
+    def batch_delete_intents(self,
+            request: intent.BatchDeleteIntentsRequest = None,
+            *,
+            parent: str = None,
+            intents: Sequence[intent.Intent] = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation.Operation:
         r"""Deletes intents in the specified agent.
 
         Operation <response:
@@ -1028,10 +1031,8 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, intents])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a intent.BatchDeleteIntentsRequest.
@@ -1055,11 +1056,18 @@ class IntentsClient(metaclass=IntentsClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation.from_gapic(
@@ -1073,14 +1081,21 @@ class IntentsClient(metaclass=IntentsClientMeta):
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("IntentsClient",)
+__all__ = (
+    'IntentsClient',
+)

@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
+from google.api_core import gapic_v1    # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.api_core import operations_v1  # type: ignore
 from google.auth import credentials  # type: ignore
@@ -34,32 +34,30 @@ from google.longrunning import operations_pb2 as operations  # type: ignore
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
-
 class DocumentsTransport(abc.ABC):
     """Abstract transport class for Documents."""
 
     AUTH_SCOPES = (
-        "https://www.googleapis.com/auth/cloud-platform",
-        "https://www.googleapis.com/auth/dialogflow",
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     )
 
     def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: typing.Optional[str] = None,
-        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-        quota_project_id: typing.Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-        **kwargs,
-    ) -> None:
+            self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: typing.Optional[str] = None,
+            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+            quota_project_id: typing.Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            **kwargs,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -82,8 +80,8 @@ class DocumentsTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ":" not in host:
-            host += ":443"
+        if ':' not in host:
+            host += ':443'
         self._host = host
 
         # Save the scopes.
@@ -92,19 +90,17 @@ class DocumentsTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs(
-                "'credentials_file' and 'credentials' are mutually exclusive"
-            )
+            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
-            )
+                                credentials_file,
+                                scopes=self._scopes,
+                                quota_project_id=quota_project_id
+                            )
 
         elif credentials is None:
-            credentials, _ = auth.default(
-                scopes=self._scopes, quota_project_id=quota_project_id
-            )
+            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
 
         # Save the credentials.
         self._credentials = credentials
@@ -113,26 +109,41 @@ class DocumentsTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.list_documents: gapic_v1.method.wrap_method(
-                self.list_documents, default_timeout=None, client_info=client_info,
+                self.list_documents,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.get_document: gapic_v1.method.wrap_method(
-                self.get_document, default_timeout=None, client_info=client_info,
+                self.get_document,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.create_document: gapic_v1.method.wrap_method(
-                self.create_document, default_timeout=None, client_info=client_info,
+                self.create_document,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.import_documents: gapic_v1.method.wrap_method(
-                self.import_documents, default_timeout=None, client_info=client_info,
+                self.import_documents,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.delete_document: gapic_v1.method.wrap_method(
-                self.delete_document, default_timeout=None, client_info=client_info,
+                self.delete_document,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.update_document: gapic_v1.method.wrap_method(
-                self.update_document, default_timeout=None, client_info=client_info,
+                self.update_document,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.reload_document: gapic_v1.method.wrap_method(
-                self.reload_document, default_timeout=None, client_info=client_info,
+                self.reload_document,
+                default_timeout=None,
+                client_info=client_info,
             ),
+
         }
 
     @property
@@ -141,70 +152,69 @@ class DocumentsTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def list_documents(
-        self,
-    ) -> typing.Callable[
-        [document.ListDocumentsRequest],
-        typing.Union[
-            document.ListDocumentsResponse,
-            typing.Awaitable[document.ListDocumentsResponse],
-        ],
-    ]:
+    def list_documents(self) -> typing.Callable[
+            [document.ListDocumentsRequest],
+            typing.Union[
+                document.ListDocumentsResponse,
+                typing.Awaitable[document.ListDocumentsResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_document(
-        self,
-    ) -> typing.Callable[
-        [document.GetDocumentRequest],
-        typing.Union[document.Document, typing.Awaitable[document.Document]],
-    ]:
+    def get_document(self) -> typing.Callable[
+            [document.GetDocumentRequest],
+            typing.Union[
+                document.Document,
+                typing.Awaitable[document.Document]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def create_document(
-        self,
-    ) -> typing.Callable[
-        [gcd_document.CreateDocumentRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def create_document(self) -> typing.Callable[
+            [gcd_document.CreateDocumentRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def import_documents(
-        self,
-    ) -> typing.Callable[
-        [document.ImportDocumentsRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def import_documents(self) -> typing.Callable[
+            [document.ImportDocumentsRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def delete_document(
-        self,
-    ) -> typing.Callable[
-        [document.DeleteDocumentRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def delete_document(self) -> typing.Callable[
+            [document.DeleteDocumentRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def update_document(
-        self,
-    ) -> typing.Callable[
-        [gcd_document.UpdateDocumentRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def update_document(self) -> typing.Callable[
+            [gcd_document.UpdateDocumentRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def reload_document(
-        self,
-    ) -> typing.Callable[
-        [document.ReloadDocumentRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def reload_document(self) -> typing.Callable[
+            [document.ReloadDocumentRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
 
-__all__ = ("DocumentsTransport",)
+__all__ = (
+    'DocumentsTransport',
+)

@@ -19,6 +19,6 @@ from .client import IntentsClient
 from .async_client import IntentsAsyncClient
 
 __all__ = (
-    "IntentsClient",
-    "IntentsAsyncClient",
+    'IntentsClient',
+    'IntentsAsyncClient',
 )

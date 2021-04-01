@@ -18,13 +18,13 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import grpc_helpers_async  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import grpc_helpers_async         # type: ignore
+from google import auth                                # type: ignore
+from google.auth import credentials                    # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc  # type: ignore
+import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2.types import context
@@ -52,15 +52,13 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> aio.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: Optional[str] = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -89,24 +87,22 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        channel: aio.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id=None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: Optional[str] = None,
+            scopes: Optional[Sequence[str]] = None,
+            channel: aio.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id=None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -228,11 +224,9 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
         return self._grpc_channel
 
     @property
-    def list_contexts(
-        self,
-    ) -> Callable[
-        [context.ListContextsRequest], Awaitable[context.ListContextsResponse]
-    ]:
+    def list_contexts(self) -> Callable[
+            [context.ListContextsRequest],
+            Awaitable[context.ListContextsResponse]]:
         r"""Return a callable for the list contexts method over gRPC.
 
         Returns the list of all contexts in the specified
@@ -248,18 +242,18 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_contexts" not in self._stubs:
-            self._stubs["list_contexts"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Contexts/ListContexts",
+        if 'list_contexts' not in self._stubs:
+            self._stubs['list_contexts'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Contexts/ListContexts',
                 request_serializer=context.ListContextsRequest.serialize,
                 response_deserializer=context.ListContextsResponse.deserialize,
             )
-        return self._stubs["list_contexts"]
+        return self._stubs['list_contexts']
 
     @property
-    def get_context(
-        self,
-    ) -> Callable[[context.GetContextRequest], Awaitable[context.Context]]:
+    def get_context(self) -> Callable[
+            [context.GetContextRequest],
+            Awaitable[context.Context]]:
         r"""Return a callable for the get context method over gRPC.
 
         Retrieves the specified context.
@@ -274,18 +268,18 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_context" not in self._stubs:
-            self._stubs["get_context"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Contexts/GetContext",
+        if 'get_context' not in self._stubs:
+            self._stubs['get_context'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Contexts/GetContext',
                 request_serializer=context.GetContextRequest.serialize,
                 response_deserializer=context.Context.deserialize,
             )
-        return self._stubs["get_context"]
+        return self._stubs['get_context']
 
     @property
-    def create_context(
-        self,
-    ) -> Callable[[gcd_context.CreateContextRequest], Awaitable[gcd_context.Context]]:
+    def create_context(self) -> Callable[
+            [gcd_context.CreateContextRequest],
+            Awaitable[gcd_context.Context]]:
         r"""Return a callable for the create context method over gRPC.
 
         Creates a context.
@@ -302,18 +296,18 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_context" not in self._stubs:
-            self._stubs["create_context"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Contexts/CreateContext",
+        if 'create_context' not in self._stubs:
+            self._stubs['create_context'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Contexts/CreateContext',
                 request_serializer=gcd_context.CreateContextRequest.serialize,
                 response_deserializer=gcd_context.Context.deserialize,
             )
-        return self._stubs["create_context"]
+        return self._stubs['create_context']
 
     @property
-    def update_context(
-        self,
-    ) -> Callable[[gcd_context.UpdateContextRequest], Awaitable[gcd_context.Context]]:
+    def update_context(self) -> Callable[
+            [gcd_context.UpdateContextRequest],
+            Awaitable[gcd_context.Context]]:
         r"""Return a callable for the update context method over gRPC.
 
         Updates the specified context.
@@ -328,18 +322,18 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_context" not in self._stubs:
-            self._stubs["update_context"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Contexts/UpdateContext",
+        if 'update_context' not in self._stubs:
+            self._stubs['update_context'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Contexts/UpdateContext',
                 request_serializer=gcd_context.UpdateContextRequest.serialize,
                 response_deserializer=gcd_context.Context.deserialize,
             )
-        return self._stubs["update_context"]
+        return self._stubs['update_context']
 
     @property
-    def delete_context(
-        self,
-    ) -> Callable[[context.DeleteContextRequest], Awaitable[empty.Empty]]:
+    def delete_context(self) -> Callable[
+            [context.DeleteContextRequest],
+            Awaitable[empty.Empty]]:
         r"""Return a callable for the delete context method over gRPC.
 
         Deletes the specified context.
@@ -354,18 +348,18 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_context" not in self._stubs:
-            self._stubs["delete_context"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Contexts/DeleteContext",
+        if 'delete_context' not in self._stubs:
+            self._stubs['delete_context'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Contexts/DeleteContext',
                 request_serializer=context.DeleteContextRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs["delete_context"]
+        return self._stubs['delete_context']
 
     @property
-    def delete_all_contexts(
-        self,
-    ) -> Callable[[context.DeleteAllContextsRequest], Awaitable[empty.Empty]]:
+    def delete_all_contexts(self) -> Callable[
+            [context.DeleteAllContextsRequest],
+            Awaitable[empty.Empty]]:
         r"""Return a callable for the delete all contexts method over gRPC.
 
         Deletes all active contexts in the specified session.
@@ -380,13 +374,15 @@ class ContextsGrpcAsyncIOTransport(ContextsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_all_contexts" not in self._stubs:
-            self._stubs["delete_all_contexts"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Contexts/DeleteAllContexts",
+        if 'delete_all_contexts' not in self._stubs:
+            self._stubs['delete_all_contexts'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Contexts/DeleteAllContexts',
                 request_serializer=context.DeleteAllContextsRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs["delete_all_contexts"]
+        return self._stubs['delete_all_contexts']
 
 
-__all__ = ("ContextsGrpcAsyncIOTransport",)
+__all__ = (
+    'ContextsGrpcAsyncIOTransport',
+)

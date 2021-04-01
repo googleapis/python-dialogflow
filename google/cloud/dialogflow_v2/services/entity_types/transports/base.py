@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
+from google.api_core import gapic_v1    # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.api_core import operations_v1  # type: ignore
 from google.auth import credentials  # type: ignore
@@ -35,32 +35,30 @@ from google.protobuf import empty_pb2 as empty  # type: ignore
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
-
 class EntityTypesTransport(abc.ABC):
     """Abstract transport class for EntityTypes."""
 
     AUTH_SCOPES = (
-        "https://www.googleapis.com/auth/cloud-platform",
-        "https://www.googleapis.com/auth/dialogflow",
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     )
 
     def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: typing.Optional[str] = None,
-        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-        quota_project_id: typing.Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-        **kwargs,
-    ) -> None:
+            self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: typing.Optional[str] = None,
+            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+            quota_project_id: typing.Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            **kwargs,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -83,8 +81,8 @@ class EntityTypesTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ":" not in host:
-            host += ":443"
+        if ':' not in host:
+            host += ':443'
         self._host = host
 
         # Save the scopes.
@@ -93,19 +91,17 @@ class EntityTypesTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs(
-                "'credentials_file' and 'credentials' are mutually exclusive"
-            )
+            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
-            )
+                                credentials_file,
+                                scopes=self._scopes,
+                                quota_project_id=quota_project_id
+                            )
 
         elif credentials is None:
-            credentials, _ = auth.default(
-                scopes=self._scopes, quota_project_id=quota_project_id
-            )
+            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
 
         # Save the credentials.
         self._credentials = credentials
@@ -114,19 +110,29 @@ class EntityTypesTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.list_entity_types: gapic_v1.method.wrap_method(
-                self.list_entity_types, default_timeout=None, client_info=client_info,
+                self.list_entity_types,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.get_entity_type: gapic_v1.method.wrap_method(
-                self.get_entity_type, default_timeout=None, client_info=client_info,
+                self.get_entity_type,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.create_entity_type: gapic_v1.method.wrap_method(
-                self.create_entity_type, default_timeout=None, client_info=client_info,
+                self.create_entity_type,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.update_entity_type: gapic_v1.method.wrap_method(
-                self.update_entity_type, default_timeout=None, client_info=client_info,
+                self.update_entity_type,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.delete_entity_type: gapic_v1.method.wrap_method(
-                self.delete_entity_type, default_timeout=None, client_info=client_info,
+                self.delete_entity_type,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.batch_update_entity_types: gapic_v1.method.wrap_method(
                 self.batch_update_entity_types,
@@ -153,6 +159,7 @@ class EntityTypesTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+
         }
 
     @property
@@ -161,101 +168,96 @@ class EntityTypesTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def list_entity_types(
-        self,
-    ) -> typing.Callable[
-        [entity_type.ListEntityTypesRequest],
-        typing.Union[
-            entity_type.ListEntityTypesResponse,
-            typing.Awaitable[entity_type.ListEntityTypesResponse],
-        ],
-    ]:
+    def list_entity_types(self) -> typing.Callable[
+            [entity_type.ListEntityTypesRequest],
+            typing.Union[
+                entity_type.ListEntityTypesResponse,
+                typing.Awaitable[entity_type.ListEntityTypesResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_entity_type(
-        self,
-    ) -> typing.Callable[
-        [entity_type.GetEntityTypeRequest],
-        typing.Union[entity_type.EntityType, typing.Awaitable[entity_type.EntityType]],
-    ]:
+    def get_entity_type(self) -> typing.Callable[
+            [entity_type.GetEntityTypeRequest],
+            typing.Union[
+                entity_type.EntityType,
+                typing.Awaitable[entity_type.EntityType]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def create_entity_type(
-        self,
-    ) -> typing.Callable[
-        [gcd_entity_type.CreateEntityTypeRequest],
-        typing.Union[
-            gcd_entity_type.EntityType, typing.Awaitable[gcd_entity_type.EntityType]
-        ],
-    ]:
+    def create_entity_type(self) -> typing.Callable[
+            [gcd_entity_type.CreateEntityTypeRequest],
+            typing.Union[
+                gcd_entity_type.EntityType,
+                typing.Awaitable[gcd_entity_type.EntityType]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def update_entity_type(
-        self,
-    ) -> typing.Callable[
-        [gcd_entity_type.UpdateEntityTypeRequest],
-        typing.Union[
-            gcd_entity_type.EntityType, typing.Awaitable[gcd_entity_type.EntityType]
-        ],
-    ]:
+    def update_entity_type(self) -> typing.Callable[
+            [gcd_entity_type.UpdateEntityTypeRequest],
+            typing.Union[
+                gcd_entity_type.EntityType,
+                typing.Awaitable[gcd_entity_type.EntityType]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def delete_entity_type(
-        self,
-    ) -> typing.Callable[
-        [entity_type.DeleteEntityTypeRequest],
-        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
-    ]:
+    def delete_entity_type(self) -> typing.Callable[
+            [entity_type.DeleteEntityTypeRequest],
+            typing.Union[
+                empty.Empty,
+                typing.Awaitable[empty.Empty]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def batch_update_entity_types(
-        self,
-    ) -> typing.Callable[
-        [entity_type.BatchUpdateEntityTypesRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def batch_update_entity_types(self) -> typing.Callable[
+            [entity_type.BatchUpdateEntityTypesRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def batch_delete_entity_types(
-        self,
-    ) -> typing.Callable[
-        [entity_type.BatchDeleteEntityTypesRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def batch_delete_entity_types(self) -> typing.Callable[
+            [entity_type.BatchDeleteEntityTypesRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def batch_create_entities(
-        self,
-    ) -> typing.Callable[
-        [entity_type.BatchCreateEntitiesRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def batch_create_entities(self) -> typing.Callable[
+            [entity_type.BatchCreateEntitiesRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def batch_update_entities(
-        self,
-    ) -> typing.Callable[
-        [entity_type.BatchUpdateEntitiesRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def batch_update_entities(self) -> typing.Callable[
+            [entity_type.BatchUpdateEntitiesRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def batch_delete_entities(
-        self,
-    ) -> typing.Callable[
-        [entity_type.BatchDeleteEntitiesRequest],
-        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
-    ]:
+    def batch_delete_entities(self) -> typing.Callable[
+            [entity_type.BatchDeleteEntitiesRequest],
+            typing.Union[
+                operations.Operation,
+                typing.Awaitable[operations.Operation]
+            ]]:
         raise NotImplementedError()
 
 
-__all__ = ("EntityTypesTransport",)
+__all__ = (
+    'EntityTypesTransport',
+)

@@ -23,15 +23,15 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2beta1",
+    package='google.cloud.dialogflow.v2beta1',
     manifest={
-        "SessionEntityType",
-        "ListSessionEntityTypesRequest",
-        "ListSessionEntityTypesResponse",
-        "GetSessionEntityTypeRequest",
-        "CreateSessionEntityTypeRequest",
-        "UpdateSessionEntityTypeRequest",
-        "DeleteSessionEntityTypeRequest",
+        'SessionEntityType',
+        'ListSessionEntityTypesRequest',
+        'ListSessionEntityTypesResponse',
+        'GetSessionEntityTypeRequest',
+        'CreateSessionEntityTypeRequest',
+        'UpdateSessionEntityTypeRequest',
+        'DeleteSessionEntityTypeRequest',
     },
 )
 
@@ -72,7 +72,6 @@ class SessionEntityType(proto.Message):
             Required. The collection of entities
             associated with this session entity type.
     """
-
     class EntityOverrideMode(proto.Enum):
         r"""The types of modifications for a session entity type."""
         ENTITY_OVERRIDE_MODE_UNSPECIFIED = 0
@@ -81,10 +80,12 @@ class SessionEntityType(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    entity_override_mode = proto.Field(proto.ENUM, number=2, enum=EntityOverrideMode,)
+    entity_override_mode = proto.Field(proto.ENUM, number=2,
+        enum=EntityOverrideMode,
+    )
 
-    entities = proto.RepeatedField(
-        proto.MESSAGE, number=3, message=entity_type.EntityType.Entity,
+    entities = proto.RepeatedField(proto.MESSAGE, number=3,
+        message=entity_type.EntityType.Entity,
     )
 
 
@@ -141,8 +142,8 @@ class ListSessionEntityTypesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    session_entity_types = proto.RepeatedField(
-        proto.MESSAGE, number=1, message="SessionEntityType",
+    session_entity_types = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='SessionEntityType',
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -195,8 +196,8 @@ class CreateSessionEntityTypeRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    session_entity_type = proto.Field(
-        proto.MESSAGE, number=2, message="SessionEntityType",
+    session_entity_type = proto.Field(proto.MESSAGE, number=2,
+        message='SessionEntityType',
     )
 
 
@@ -212,11 +213,13 @@ class UpdateSessionEntityTypeRequest(proto.Message):
             get updated.
     """
 
-    session_entity_type = proto.Field(
-        proto.MESSAGE, number=1, message="SessionEntityType",
+    session_entity_type = proto.Field(proto.MESSAGE, number=1,
+        message='SessionEntityType',
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class DeleteSessionEntityTypeRequest(proto.Message):

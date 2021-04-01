@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.knowledge_bases import pagers
 from google.cloud.dialogflow_v2beta1.types import knowledge_base
@@ -49,38 +49,22 @@ class KnowledgeBasesAsyncClient:
     DEFAULT_MTLS_ENDPOINT = KnowledgeBasesClient.DEFAULT_MTLS_ENDPOINT
 
     knowledge_base_path = staticmethod(KnowledgeBasesClient.knowledge_base_path)
-    parse_knowledge_base_path = staticmethod(
-        KnowledgeBasesClient.parse_knowledge_base_path
-    )
+    parse_knowledge_base_path = staticmethod(KnowledgeBasesClient.parse_knowledge_base_path)
 
-    common_billing_account_path = staticmethod(
-        KnowledgeBasesClient.common_billing_account_path
-    )
-    parse_common_billing_account_path = staticmethod(
-        KnowledgeBasesClient.parse_common_billing_account_path
-    )
+    common_billing_account_path = staticmethod(KnowledgeBasesClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(KnowledgeBasesClient.parse_common_billing_account_path)
 
     common_folder_path = staticmethod(KnowledgeBasesClient.common_folder_path)
-    parse_common_folder_path = staticmethod(
-        KnowledgeBasesClient.parse_common_folder_path
-    )
+    parse_common_folder_path = staticmethod(KnowledgeBasesClient.parse_common_folder_path)
 
-    common_organization_path = staticmethod(
-        KnowledgeBasesClient.common_organization_path
-    )
-    parse_common_organization_path = staticmethod(
-        KnowledgeBasesClient.parse_common_organization_path
-    )
+    common_organization_path = staticmethod(KnowledgeBasesClient.common_organization_path)
+    parse_common_organization_path = staticmethod(KnowledgeBasesClient.parse_common_organization_path)
 
     common_project_path = staticmethod(KnowledgeBasesClient.common_project_path)
-    parse_common_project_path = staticmethod(
-        KnowledgeBasesClient.parse_common_project_path
-    )
+    parse_common_project_path = staticmethod(KnowledgeBasesClient.parse_common_project_path)
 
     common_location_path = staticmethod(KnowledgeBasesClient.common_location_path)
-    parse_common_location_path = staticmethod(
-        KnowledgeBasesClient.parse_common_location_path
-    )
+    parse_common_location_path = staticmethod(KnowledgeBasesClient.parse_common_location_path)
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -123,18 +107,14 @@ class KnowledgeBasesAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(
-        type(KnowledgeBasesClient).get_transport_class, type(KnowledgeBasesClient)
-    )
+    get_transport_class = functools.partial(type(KnowledgeBasesClient).get_transport_class, type(KnowledgeBasesClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, KnowledgeBasesTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, KnowledgeBasesTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the knowledge bases client.
 
         Args:
@@ -173,17 +153,17 @@ class KnowledgeBasesAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
+
         )
 
-    async def list_knowledge_bases(
-        self,
-        request: knowledge_base.ListKnowledgeBasesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListKnowledgeBasesAsyncPager:
+    async def list_knowledge_bases(self,
+            request: knowledge_base.ListKnowledgeBasesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListKnowledgeBasesAsyncPager:
         r"""Returns the list of all knowledge bases of the specified agent.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -222,10 +202,8 @@ class KnowledgeBasesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = knowledge_base.ListKnowledgeBasesRequest(request)
 
@@ -246,30 +224,39 @@ class KnowledgeBasesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListKnowledgeBasesAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_knowledge_base(
-        self,
-        request: knowledge_base.GetKnowledgeBaseRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> knowledge_base.KnowledgeBase:
+    async def get_knowledge_base(self,
+            request: knowledge_base.GetKnowledgeBaseRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> knowledge_base.KnowledgeBase:
         r"""Retrieves the specified knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -315,10 +302,8 @@ class KnowledgeBasesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = knowledge_base.GetKnowledgeBaseRequest(request)
 
@@ -339,25 +324,31 @@ class KnowledgeBasesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_knowledge_base(
-        self,
-        request: gcd_knowledge_base.CreateKnowledgeBaseRequest = None,
-        *,
-        parent: str = None,
-        knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_knowledge_base.KnowledgeBase:
+    async def create_knowledge_base(self,
+            request: gcd_knowledge_base.CreateKnowledgeBaseRequest = None,
+            *,
+            parent: str = None,
+            knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_knowledge_base.KnowledgeBase:
         r"""Creates a knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -410,10 +401,8 @@ class KnowledgeBasesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, knowledge_base])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_knowledge_base.CreateKnowledgeBaseRequest(request)
 
@@ -436,24 +425,30 @@ class KnowledgeBasesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def delete_knowledge_base(
-        self,
-        request: knowledge_base.DeleteKnowledgeBaseRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    async def delete_knowledge_base(self,
+            request: knowledge_base.DeleteKnowledgeBaseRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -483,10 +478,8 @@ class KnowledgeBasesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = knowledge_base.DeleteKnowledgeBaseRequest(request)
 
@@ -507,24 +500,28 @@ class KnowledgeBasesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         await rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    async def update_knowledge_base(
-        self,
-        request: gcd_knowledge_base.UpdateKnowledgeBaseRequest = None,
-        *,
-        knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_knowledge_base.KnowledgeBase:
+    async def update_knowledge_base(self,
+            request: gcd_knowledge_base.UpdateKnowledgeBaseRequest = None,
+            *,
+            knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_knowledge_base.KnowledgeBase:
         r"""Updates the specified knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -577,10 +574,8 @@ class KnowledgeBasesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([knowledge_base, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_knowledge_base.UpdateKnowledgeBaseRequest(request)
 
@@ -603,26 +598,38 @@ class KnowledgeBasesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("knowledge_base.name", request.knowledge_base.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('knowledge_base.name', request.knowledge_base.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("KnowledgeBasesAsyncClient",)
+__all__ = (
+    'KnowledgeBasesAsyncClient',
+)

@@ -15,16 +15,7 @@
 # limitations under the License.
 #
 
-from typing import (
-    Any,
-    AsyncIterable,
-    Awaitable,
-    Callable,
-    Iterable,
-    Sequence,
-    Tuple,
-    Optional,
-)
+from typing import Any, AsyncIterable, Awaitable, Callable, Iterable, Sequence, Tuple, Optional
 
 from google.cloud.dialogflow_v2beta1.types import session_entity_type
 
@@ -46,15 +37,12 @@ class ListSessionEntityTypesPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., session_entity_type.ListSessionEntityTypesResponse],
-        request: session_entity_type.ListSessionEntityTypesRequest,
-        response: session_entity_type.ListSessionEntityTypesResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., session_entity_type.ListSessionEntityTypesResponse],
+            request: session_entity_type.ListSessionEntityTypesRequest,
+            response: session_entity_type.ListSessionEntityTypesResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -88,7 +76,7 @@ class ListSessionEntityTypesPager:
             yield from page.session_entity_types
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListSessionEntityTypesAsyncPager:
@@ -108,17 +96,12 @@ class ListSessionEntityTypesAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[
-            ..., Awaitable[session_entity_type.ListSessionEntityTypesResponse]
-        ],
-        request: session_entity_type.ListSessionEntityTypesRequest,
-        response: session_entity_type.ListSessionEntityTypesResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., Awaitable[session_entity_type.ListSessionEntityTypesResponse]],
+            request: session_entity_type.ListSessionEntityTypesRequest,
+            response: session_entity_type.ListSessionEntityTypesResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -140,9 +123,7 @@ class ListSessionEntityTypesAsyncPager:
         return getattr(self._response, name)
 
     @property
-    async def pages(
-        self,
-    ) -> AsyncIterable[session_entity_type.ListSessionEntityTypesResponse]:
+    async def pages(self) -> AsyncIterable[session_entity_type.ListSessionEntityTypesResponse]:
         yield self._response
         while self._response.next_page_token:
             self._request.page_token = self._response.next_page_token
@@ -158,4 +139,4 @@ class ListSessionEntityTypesAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)

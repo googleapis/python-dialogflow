@@ -21,19 +21,17 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.cloud.dialogflow_v2.services.session_entity_types import pagers
 from google.cloud.dialogflow_v2.types import entity_type
 from google.cloud.dialogflow_v2.types import session_entity_type
-from google.cloud.dialogflow_v2.types import (
-    session_entity_type as gcd_session_entity_type,
-)
+from google.cloud.dialogflow_v2.types import session_entity_type as gcd_session_entity_type
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 from .transports.base import SessionEntityTypesTransport, DEFAULT_CLIENT_INFO
@@ -51,41 +49,23 @@ class SessionEntityTypesAsyncClient:
     DEFAULT_ENDPOINT = SessionEntityTypesClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = SessionEntityTypesClient.DEFAULT_MTLS_ENDPOINT
 
-    session_entity_type_path = staticmethod(
-        SessionEntityTypesClient.session_entity_type_path
-    )
-    parse_session_entity_type_path = staticmethod(
-        SessionEntityTypesClient.parse_session_entity_type_path
-    )
+    session_entity_type_path = staticmethod(SessionEntityTypesClient.session_entity_type_path)
+    parse_session_entity_type_path = staticmethod(SessionEntityTypesClient.parse_session_entity_type_path)
 
-    common_billing_account_path = staticmethod(
-        SessionEntityTypesClient.common_billing_account_path
-    )
-    parse_common_billing_account_path = staticmethod(
-        SessionEntityTypesClient.parse_common_billing_account_path
-    )
+    common_billing_account_path = staticmethod(SessionEntityTypesClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(SessionEntityTypesClient.parse_common_billing_account_path)
 
     common_folder_path = staticmethod(SessionEntityTypesClient.common_folder_path)
-    parse_common_folder_path = staticmethod(
-        SessionEntityTypesClient.parse_common_folder_path
-    )
+    parse_common_folder_path = staticmethod(SessionEntityTypesClient.parse_common_folder_path)
 
-    common_organization_path = staticmethod(
-        SessionEntityTypesClient.common_organization_path
-    )
-    parse_common_organization_path = staticmethod(
-        SessionEntityTypesClient.parse_common_organization_path
-    )
+    common_organization_path = staticmethod(SessionEntityTypesClient.common_organization_path)
+    parse_common_organization_path = staticmethod(SessionEntityTypesClient.parse_common_organization_path)
 
     common_project_path = staticmethod(SessionEntityTypesClient.common_project_path)
-    parse_common_project_path = staticmethod(
-        SessionEntityTypesClient.parse_common_project_path
-    )
+    parse_common_project_path = staticmethod(SessionEntityTypesClient.parse_common_project_path)
 
     common_location_path = staticmethod(SessionEntityTypesClient.common_location_path)
-    parse_common_location_path = staticmethod(
-        SessionEntityTypesClient.parse_common_location_path
-    )
+    parse_common_location_path = staticmethod(SessionEntityTypesClient.parse_common_location_path)
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -128,19 +108,14 @@ class SessionEntityTypesAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(
-        type(SessionEntityTypesClient).get_transport_class,
-        type(SessionEntityTypesClient),
-    )
+    get_transport_class = functools.partial(type(SessionEntityTypesClient).get_transport_class, type(SessionEntityTypesClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, SessionEntityTypesTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, SessionEntityTypesTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the session entity types client.
 
         Args:
@@ -179,17 +154,17 @@ class SessionEntityTypesAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
+
         )
 
-    async def list_session_entity_types(
-        self,
-        request: session_entity_type.ListSessionEntityTypesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListSessionEntityTypesAsyncPager:
+    async def list_session_entity_types(self,
+            request: session_entity_type.ListSessionEntityTypesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListSessionEntityTypesAsyncPager:
         r"""Returns the list of all session entity types in the
         specified session.
         This method doesn't work with Google Assistant
@@ -233,10 +208,8 @@ class SessionEntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = session_entity_type.ListSessionEntityTypesRequest(request)
 
@@ -257,30 +230,39 @@ class SessionEntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListSessionEntityTypesAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_session_entity_type(
-        self,
-        request: session_entity_type.GetSessionEntityTypeRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> session_entity_type.SessionEntityType:
+    async def get_session_entity_type(self,
+            request: session_entity_type.GetSessionEntityTypeRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> session_entity_type.SessionEntityType:
         r"""Retrieves the specified session entity type.
         This method doesn't work with Google Assistant
         integration. Contact Dialogflow support if you need to
@@ -328,10 +310,8 @@ class SessionEntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = session_entity_type.GetSessionEntityTypeRequest(request)
 
@@ -352,25 +332,31 @@ class SessionEntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_session_entity_type(
-        self,
-        request: gcd_session_entity_type.CreateSessionEntityTypeRequest = None,
-        *,
-        parent: str = None,
-        session_entity_type: gcd_session_entity_type.SessionEntityType = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_session_entity_type.SessionEntityType:
+    async def create_session_entity_type(self,
+            request: gcd_session_entity_type.CreateSessionEntityTypeRequest = None,
+            *,
+            parent: str = None,
+            session_entity_type: gcd_session_entity_type.SessionEntityType = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_session_entity_type.SessionEntityType:
         r"""Creates a session entity type.
         If the specified session entity type already exists,
         overrides the session entity type.
@@ -428,10 +414,8 @@ class SessionEntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, session_entity_type])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_session_entity_type.CreateSessionEntityTypeRequest(request)
 
@@ -454,25 +438,31 @@ class SessionEntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def update_session_entity_type(
-        self,
-        request: gcd_session_entity_type.UpdateSessionEntityTypeRequest = None,
-        *,
-        session_entity_type: gcd_session_entity_type.SessionEntityType = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_session_entity_type.SessionEntityType:
+    async def update_session_entity_type(self,
+            request: gcd_session_entity_type.UpdateSessionEntityTypeRequest = None,
+            *,
+            session_entity_type: gcd_session_entity_type.SessionEntityType = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_session_entity_type.SessionEntityType:
         r"""Updates the specified session entity type.
         This method doesn't work with Google Assistant
         integration. Contact Dialogflow support if you need to
@@ -522,10 +512,8 @@ class SessionEntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([session_entity_type, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_session_entity_type.UpdateSessionEntityTypeRequest(request)
 
@@ -548,26 +536,30 @@ class SessionEntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("session_entity_type.name", request.session_entity_type.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('session_entity_type.name', request.session_entity_type.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def delete_session_entity_type(
-        self,
-        request: session_entity_type.DeleteSessionEntityTypeRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    async def delete_session_entity_type(self,
+            request: session_entity_type.DeleteSessionEntityTypeRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified session entity type.
         This method doesn't work with Google Assistant
         integration. Contact Dialogflow support if you need to
@@ -601,10 +593,8 @@ class SessionEntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = session_entity_type.DeleteSessionEntityTypeRequest(request)
 
@@ -625,23 +615,35 @@ class SessionEntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         await rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
+
+
+
+
+
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("SessionEntityTypesAsyncClient",)
+__all__ = (
+    'SessionEntityTypesAsyncClient',
+)

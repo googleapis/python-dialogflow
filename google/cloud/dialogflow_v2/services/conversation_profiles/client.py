@@ -23,21 +23,19 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.auth.transport import mtls  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+from google.api_core import exceptions                            # type: ignore
+from google.api_core import gapic_v1                              # type: ignore
+from google.api_core import retry as retries                      # type: ignore
+from google.auth import credentials                               # type: ignore
+from google.auth.transport import mtls                            # type: ignore
+from google.auth.transport.grpc import SslCredentials             # type: ignore
+from google.auth.exceptions import MutualTLSChannelError          # type: ignore
+from google.oauth2 import service_account                         # type: ignore
 
 from google.cloud.dialogflow_v2.services.conversation_profiles import pagers
 from google.cloud.dialogflow_v2.types import audio_config
 from google.cloud.dialogflow_v2.types import conversation_profile
-from google.cloud.dialogflow_v2.types import (
-    conversation_profile as gcd_conversation_profile,
-)
+from google.cloud.dialogflow_v2.types import conversation_profile as gcd_conversation_profile
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
@@ -53,16 +51,13 @@ class ConversationProfilesClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[ConversationProfilesTransport]]
+    _transport_registry['grpc'] = ConversationProfilesGrpcTransport
+    _transport_registry['grpc_asyncio'] = ConversationProfilesGrpcAsyncIOTransport
 
-    _transport_registry = (
-        OrderedDict()
-    )  # type: Dict[str, Type[ConversationProfilesTransport]]
-    _transport_registry["grpc"] = ConversationProfilesGrpcTransport
-    _transport_registry["grpc_asyncio"] = ConversationProfilesGrpcAsyncIOTransport
-
-    def get_transport_class(
-        cls, label: str = None,
-    ) -> Type[ConversationProfilesTransport]:
+    def get_transport_class(cls,
+            label: str = None,
+        ) -> Type[ConversationProfilesTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -115,7 +110,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = "dialogflow.googleapis.com"
+    DEFAULT_ENDPOINT = 'dialogflow.googleapis.com'
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -150,8 +145,9 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         Returns:
             ConversationProfilesClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(filename)
-        kwargs["credentials"] = credentials
+        credentials = service_account.Credentials.from_service_account_file(
+            filename)
+        kwargs['credentials'] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
@@ -168,128 +164,108 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
     @staticmethod
     def agent_path(project: str,) -> str:
         """Return a fully-qualified agent string."""
-        return "projects/{project}/agent".format(project=project,)
+        return "projects/{project}/agent".format(project=project, )
 
     @staticmethod
-    def parse_agent_path(path: str) -> Dict[str, str]:
+    def parse_agent_path(path: str) -> Dict[str,str]:
         """Parse a agent path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/agent$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def conversation_profile_path(project: str, conversation_profile: str,) -> str:
+    def conversation_profile_path(project: str,conversation_profile: str,) -> str:
         """Return a fully-qualified conversation_profile string."""
-        return "projects/{project}/conversationProfiles/{conversation_profile}".format(
-            project=project, conversation_profile=conversation_profile,
-        )
+        return "projects/{project}/conversationProfiles/{conversation_profile}".format(project=project, conversation_profile=conversation_profile, )
 
     @staticmethod
-    def parse_conversation_profile_path(path: str) -> Dict[str, str]:
+    def parse_conversation_profile_path(path: str) -> Dict[str,str]:
         """Parse a conversation_profile path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/conversationProfiles/(?P<conversation_profile>.+?)$",
-            path,
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/conversationProfiles/(?P<conversation_profile>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def document_path(project: str, knowledge_base: str, document: str,) -> str:
+    def document_path(project: str,knowledge_base: str,document: str,) -> str:
         """Return a fully-qualified document string."""
-        return "projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}".format(
-            project=project, knowledge_base=knowledge_base, document=document,
-        )
+        return "projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}".format(project=project, knowledge_base=knowledge_base, document=document, )
 
     @staticmethod
-    def parse_document_path(path: str) -> Dict[str, str]:
+    def parse_document_path(path: str) -> Dict[str,str]:
         """Parse a document path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)/documents/(?P<document>.+?)$",
-            path,
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)/documents/(?P<document>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def knowledge_base_path(project: str, knowledge_base: str,) -> str:
+    def knowledge_base_path(project: str,knowledge_base: str,) -> str:
         """Return a fully-qualified knowledge_base string."""
-        return "projects/{project}/knowledgeBases/{knowledge_base}".format(
-            project=project, knowledge_base=knowledge_base,
-        )
+        return "projects/{project}/knowledgeBases/{knowledge_base}".format(project=project, knowledge_base=knowledge_base, )
 
     @staticmethod
-    def parse_knowledge_base_path(path: str) -> Dict[str, str]:
+    def parse_knowledge_base_path(path: str) -> Dict[str,str]:
         """Parse a knowledge_base path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)$", path
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_billing_account_path(billing_account: str,) -> str:
+    def common_billing_account_path(billing_account: str, ) -> str:
         """Return a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(
-            billing_account=billing_account,
-        )
+        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
 
     @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
+    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
         """Parse a billing_account path into its component segments."""
         m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_folder_path(folder: str,) -> str:
+    def common_folder_path(folder: str, ) -> str:
         """Return a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder,)
+        return "folders/{folder}".format(folder=folder, )
 
     @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str, str]:
+    def parse_common_folder_path(path: str) -> Dict[str,str]:
         """Parse a folder path into its component segments."""
         m = re.match(r"^folders/(?P<folder>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_organization_path(organization: str,) -> str:
+    def common_organization_path(organization: str, ) -> str:
         """Return a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization,)
+        return "organizations/{organization}".format(organization=organization, )
 
     @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str, str]:
+    def parse_common_organization_path(path: str) -> Dict[str,str]:
         """Parse a organization path into its component segments."""
         m = re.match(r"^organizations/(?P<organization>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_project_path(project: str,) -> str:
+    def common_project_path(project: str, ) -> str:
         """Return a fully-qualified project string."""
-        return "projects/{project}".format(project=project,)
+        return "projects/{project}".format(project=project, )
 
     @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str, str]:
+    def parse_common_project_path(path: str) -> Dict[str,str]:
         """Parse a project path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_location_path(project: str, location: str,) -> str:
+    def common_location_path(project: str, location: str, ) -> str:
         """Return a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(
-            project=project, location=location,
-        )
+        return "projects/{project}/locations/{location}".format(project=project, location=location, )
 
     @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str, str]:
+    def parse_common_location_path(path: str) -> Dict[str,str]:
         """Parse a location path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(
-        self,
-        *,
-        credentials: Optional[credentials.Credentials] = None,
-        transport: Union[str, ConversationProfilesTransport, None] = None,
-        client_options: Optional[client_options_lib.ClientOptions] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: Optional[credentials.Credentials] = None,
+            transport: Union[str, ConversationProfilesTransport, None] = None,
+            client_options: Optional[client_options_lib.ClientOptions] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the conversation profiles client.
 
         Args:
@@ -333,9 +309,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
             client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(
-            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
-        )
+        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
 
         client_cert_source_func = None
         is_mtls = False
@@ -345,9 +319,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
                 client_cert_source_func = client_options.client_cert_source
             else:
                 is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = (
-                    mtls.default_client_cert_source() if is_mtls else None
-                )
+                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
 
         # Figure out which api endpoint to use.
         if client_options.api_endpoint is not None:
@@ -359,9 +331,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
             elif use_mtls_env == "always":
                 api_endpoint = self.DEFAULT_MTLS_ENDPOINT
             elif use_mtls_env == "auto":
-                api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
-                )
+                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
             else:
                 raise MutualTLSChannelError(
                     "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
@@ -373,10 +343,8 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         if isinstance(transport, ConversationProfilesTransport):
             # transport is a ConversationProfilesTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its credentials directly."
-                )
+                raise ValueError('When providing a transport instance, '
+                                 'provide its credentials directly.')
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -395,15 +363,14 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
                 client_info=client_info,
             )
 
-    def list_conversation_profiles(
-        self,
-        request: conversation_profile.ListConversationProfilesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListConversationProfilesPager:
+    def list_conversation_profiles(self,
+            request: conversation_profile.ListConversationProfilesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListConversationProfilesPager:
         r"""Returns the list of all conversation profiles in the
         specified project.
 
@@ -440,18 +407,14 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a conversation_profile.ListConversationProfilesRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(
-            request, conversation_profile.ListConversationProfilesRequest
-        ):
+        if not isinstance(request, conversation_profile.ListConversationProfilesRequest):
             request = conversation_profile.ListConversationProfilesRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -462,37 +425,44 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.list_conversation_profiles
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.list_conversation_profiles]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListConversationProfilesPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_conversation_profile(
-        self,
-        request: conversation_profile.GetConversationProfileRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> conversation_profile.ConversationProfile:
+    def get_conversation_profile(self,
+            request: conversation_profile.GetConversationProfileRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> conversation_profile.ConversationProfile:
         r"""Retrieves the specified conversation profile.
 
         Args:
@@ -525,10 +495,8 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a conversation_profile.GetConversationProfileRequest.
@@ -550,25 +518,31 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def create_conversation_profile(
-        self,
-        request: gcd_conversation_profile.CreateConversationProfileRequest = None,
-        *,
-        parent: str = None,
-        conversation_profile: gcd_conversation_profile.ConversationProfile = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_conversation_profile.ConversationProfile:
+    def create_conversation_profile(self,
+            request: gcd_conversation_profile.CreateConversationProfileRequest = None,
+            *,
+            parent: str = None,
+            conversation_profile: gcd_conversation_profile.ConversationProfile = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_conversation_profile.ConversationProfile:
         r"""Creates a conversation profile in the specified project.
 
         [ConversationProfile.CreateTime][] and
@@ -614,18 +588,14 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, conversation_profile])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_conversation_profile.CreateConversationProfileRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(
-            request, gcd_conversation_profile.CreateConversationProfileRequest
-        ):
+        if not isinstance(request, gcd_conversation_profile.CreateConversationProfileRequest):
             request = gcd_conversation_profile.CreateConversationProfileRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -638,32 +608,36 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.create_conversation_profile
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.create_conversation_profile]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def update_conversation_profile(
-        self,
-        request: gcd_conversation_profile.UpdateConversationProfileRequest = None,
-        *,
-        conversation_profile: gcd_conversation_profile.ConversationProfile = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_conversation_profile.ConversationProfile:
+    def update_conversation_profile(self,
+            request: gcd_conversation_profile.UpdateConversationProfileRequest = None,
+            *,
+            conversation_profile: gcd_conversation_profile.ConversationProfile = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_conversation_profile.ConversationProfile:
         r"""Updates the specified conversation profile.
 
         [ConversationProfile.CreateTime][] and
@@ -708,18 +682,14 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([conversation_profile, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_conversation_profile.UpdateConversationProfileRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(
-            request, gcd_conversation_profile.UpdateConversationProfileRequest
-        ):
+        if not isinstance(request, gcd_conversation_profile.UpdateConversationProfileRequest):
             request = gcd_conversation_profile.UpdateConversationProfileRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -732,33 +702,35 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.update_conversation_profile
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.update_conversation_profile]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("conversation_profile.name", request.conversation_profile.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('conversation_profile.name', request.conversation_profile.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def delete_conversation_profile(
-        self,
-        request: conversation_profile.DeleteConversationProfileRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    def delete_conversation_profile(self,
+            request: conversation_profile.DeleteConversationProfileRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified conversation profile.
 
         Args:
@@ -787,18 +759,14 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a conversation_profile.DeleteConversationProfileRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(
-            request, conversation_profile.DeleteConversationProfileRequest
-        ):
+        if not isinstance(request, conversation_profile.DeleteConversationProfileRequest):
             request = conversation_profile.DeleteConversationProfileRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -809,30 +777,40 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.delete_conversation_profile
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.delete_conversation_profile]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
+
+
+
+
+
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("ConversationProfilesClient",)
+__all__ = (
+    'ConversationProfilesClient',
+)

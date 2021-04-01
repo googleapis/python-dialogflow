@@ -23,21 +23,19 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.auth.transport import mtls  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+from google.api_core import exceptions                            # type: ignore
+from google.api_core import gapic_v1                              # type: ignore
+from google.api_core import retry as retries                      # type: ignore
+from google.auth import credentials                               # type: ignore
+from google.auth.transport import mtls                            # type: ignore
+from google.auth.transport.grpc import SslCredentials             # type: ignore
+from google.auth.exceptions import MutualTLSChannelError          # type: ignore
+from google.oauth2 import service_account                         # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.session_entity_types import pagers
 from google.cloud.dialogflow_v2beta1.types import entity_type
 from google.cloud.dialogflow_v2beta1.types import session_entity_type
-from google.cloud.dialogflow_v2beta1.types import (
-    session_entity_type as gcd_session_entity_type,
-)
+from google.cloud.dialogflow_v2beta1.types import session_entity_type as gcd_session_entity_type
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 from .transports.base import SessionEntityTypesTransport, DEFAULT_CLIENT_INFO
@@ -52,16 +50,13 @@ class SessionEntityTypesClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[SessionEntityTypesTransport]]
+    _transport_registry['grpc'] = SessionEntityTypesGrpcTransport
+    _transport_registry['grpc_asyncio'] = SessionEntityTypesGrpcAsyncIOTransport
 
-    _transport_registry = (
-        OrderedDict()
-    )  # type: Dict[str, Type[SessionEntityTypesTransport]]
-    _transport_registry["grpc"] = SessionEntityTypesGrpcTransport
-    _transport_registry["grpc_asyncio"] = SessionEntityTypesGrpcAsyncIOTransport
-
-    def get_transport_class(
-        cls, label: str = None,
-    ) -> Type[SessionEntityTypesTransport]:
+    def get_transport_class(cls,
+            label: str = None,
+        ) -> Type[SessionEntityTypesTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -114,7 +109,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = "dialogflow.googleapis.com"
+    DEFAULT_ENDPOINT = 'dialogflow.googleapis.com'
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -149,8 +144,9 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         Returns:
             SessionEntityTypesClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(filename)
-        kwargs["credentials"] = credentials
+        credentials = service_account.Credentials.from_service_account_file(
+            filename)
+        kwargs['credentials'] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
@@ -165,88 +161,77 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         return self._transport
 
     @staticmethod
-    def session_entity_type_path(project: str, session: str, entity_type: str,) -> str:
+    def session_entity_type_path(project: str,session: str,entity_type: str,) -> str:
         """Return a fully-qualified session_entity_type string."""
-        return "projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}".format(
-            project=project, session=session, entity_type=entity_type,
-        )
+        return "projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}".format(project=project, session=session, entity_type=entity_type, )
 
     @staticmethod
-    def parse_session_entity_type_path(path: str) -> Dict[str, str]:
+    def parse_session_entity_type_path(path: str) -> Dict[str,str]:
         """Parse a session_entity_type path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/entityTypes/(?P<entity_type>.+?)$",
-            path,
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/entityTypes/(?P<entity_type>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_billing_account_path(billing_account: str,) -> str:
+    def common_billing_account_path(billing_account: str, ) -> str:
         """Return a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(
-            billing_account=billing_account,
-        )
+        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
 
     @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
+    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
         """Parse a billing_account path into its component segments."""
         m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_folder_path(folder: str,) -> str:
+    def common_folder_path(folder: str, ) -> str:
         """Return a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder,)
+        return "folders/{folder}".format(folder=folder, )
 
     @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str, str]:
+    def parse_common_folder_path(path: str) -> Dict[str,str]:
         """Parse a folder path into its component segments."""
         m = re.match(r"^folders/(?P<folder>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_organization_path(organization: str,) -> str:
+    def common_organization_path(organization: str, ) -> str:
         """Return a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization,)
+        return "organizations/{organization}".format(organization=organization, )
 
     @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str, str]:
+    def parse_common_organization_path(path: str) -> Dict[str,str]:
         """Parse a organization path into its component segments."""
         m = re.match(r"^organizations/(?P<organization>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_project_path(project: str,) -> str:
+    def common_project_path(project: str, ) -> str:
         """Return a fully-qualified project string."""
-        return "projects/{project}".format(project=project,)
+        return "projects/{project}".format(project=project, )
 
     @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str, str]:
+    def parse_common_project_path(path: str) -> Dict[str,str]:
         """Parse a project path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_location_path(project: str, location: str,) -> str:
+    def common_location_path(project: str, location: str, ) -> str:
         """Return a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(
-            project=project, location=location,
-        )
+        return "projects/{project}/locations/{location}".format(project=project, location=location, )
 
     @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str, str]:
+    def parse_common_location_path(path: str) -> Dict[str,str]:
         """Parse a location path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(
-        self,
-        *,
-        credentials: Optional[credentials.Credentials] = None,
-        transport: Union[str, SessionEntityTypesTransport, None] = None,
-        client_options: Optional[client_options_lib.ClientOptions] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: Optional[credentials.Credentials] = None,
+            transport: Union[str, SessionEntityTypesTransport, None] = None,
+            client_options: Optional[client_options_lib.ClientOptions] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the session entity types client.
 
         Args:
@@ -290,9 +275,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
             client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(
-            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
-        )
+        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
 
         client_cert_source_func = None
         is_mtls = False
@@ -302,9 +285,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
                 client_cert_source_func = client_options.client_cert_source
             else:
                 is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = (
-                    mtls.default_client_cert_source() if is_mtls else None
-                )
+                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
 
         # Figure out which api endpoint to use.
         if client_options.api_endpoint is not None:
@@ -316,9 +297,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
             elif use_mtls_env == "always":
                 api_endpoint = self.DEFAULT_MTLS_ENDPOINT
             elif use_mtls_env == "auto":
-                api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
-                )
+                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
             else:
                 raise MutualTLSChannelError(
                     "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
@@ -330,10 +309,8 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         if isinstance(transport, SessionEntityTypesTransport):
             # transport is a SessionEntityTypesTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its credentials directly."
-                )
+                raise ValueError('When providing a transport instance, '
+                                 'provide its credentials directly.')
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -352,15 +329,14 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
                 client_info=client_info,
             )
 
-    def list_session_entity_types(
-        self,
-        request: session_entity_type.ListSessionEntityTypesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListSessionEntityTypesPager:
+    def list_session_entity_types(self,
+            request: session_entity_type.ListSessionEntityTypesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListSessionEntityTypesPager:
         r"""Returns the list of all session entity types in the
         specified session.
         This method doesn't work with Google Assistant
@@ -409,10 +385,8 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a session_entity_type.ListSessionEntityTypesRequest.
@@ -429,37 +403,44 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.list_session_entity_types
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.list_session_entity_types]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListSessionEntityTypesPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_session_entity_type(
-        self,
-        request: session_entity_type.GetSessionEntityTypeRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> session_entity_type.SessionEntityType:
+    def get_session_entity_type(self,
+            request: session_entity_type.GetSessionEntityTypeRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> session_entity_type.SessionEntityType:
         r"""Retrieves the specified session entity type.
         This method doesn't work with Google Assistant
         integration. Contact Dialogflow support if you need to
@@ -512,10 +493,8 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a session_entity_type.GetSessionEntityTypeRequest.
@@ -537,25 +516,31 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def create_session_entity_type(
-        self,
-        request: gcd_session_entity_type.CreateSessionEntityTypeRequest = None,
-        *,
-        parent: str = None,
-        session_entity_type: gcd_session_entity_type.SessionEntityType = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_session_entity_type.SessionEntityType:
+    def create_session_entity_type(self,
+            request: gcd_session_entity_type.CreateSessionEntityTypeRequest = None,
+            *,
+            parent: str = None,
+            session_entity_type: gcd_session_entity_type.SessionEntityType = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_session_entity_type.SessionEntityType:
         r"""Creates a session entity type.
         If the specified session entity type already exists,
         overrides the session entity type.
@@ -618,18 +603,14 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, session_entity_type])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_session_entity_type.CreateSessionEntityTypeRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(
-            request, gcd_session_entity_type.CreateSessionEntityTypeRequest
-        ):
+        if not isinstance(request, gcd_session_entity_type.CreateSessionEntityTypeRequest):
             request = gcd_session_entity_type.CreateSessionEntityTypeRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -642,32 +623,36 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.create_session_entity_type
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.create_session_entity_type]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def update_session_entity_type(
-        self,
-        request: gcd_session_entity_type.UpdateSessionEntityTypeRequest = None,
-        *,
-        session_entity_type: gcd_session_entity_type.SessionEntityType = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_session_entity_type.SessionEntityType:
+    def update_session_entity_type(self,
+            request: gcd_session_entity_type.UpdateSessionEntityTypeRequest = None,
+            *,
+            session_entity_type: gcd_session_entity_type.SessionEntityType = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_session_entity_type.SessionEntityType:
         r"""Updates the specified session entity type.
         This method doesn't work with Google Assistant
         integration. Contact Dialogflow support if you need to
@@ -717,18 +702,14 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([session_entity_type, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_session_entity_type.UpdateSessionEntityTypeRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(
-            request, gcd_session_entity_type.UpdateSessionEntityTypeRequest
-        ):
+        if not isinstance(request, gcd_session_entity_type.UpdateSessionEntityTypeRequest):
             request = gcd_session_entity_type.UpdateSessionEntityTypeRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -741,33 +722,35 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.update_session_entity_type
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.update_session_entity_type]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("session_entity_type.name", request.session_entity_type.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('session_entity_type.name', request.session_entity_type.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def delete_session_entity_type(
-        self,
-        request: session_entity_type.DeleteSessionEntityTypeRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    def delete_session_entity_type(self,
+            request: session_entity_type.DeleteSessionEntityTypeRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified session entity type.
         This method doesn't work with Google Assistant
         integration. Contact Dialogflow support if you need to
@@ -806,10 +789,8 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a session_entity_type.DeleteSessionEntityTypeRequest.
@@ -826,30 +807,40 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.delete_session_entity_type
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.delete_session_entity_type]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
+
+
+
+
+
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("SessionEntityTypesClient",)
+__all__ = (
+    'SessionEntityTypesClient',
+)

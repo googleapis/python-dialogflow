@@ -22,8 +22,12 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2",
-    manifest={"Environment", "ListEnvironmentsRequest", "ListEnvironmentsResponse",},
+    package='google.cloud.dialogflow.v2',
+    manifest={
+        'Environment',
+        'ListEnvironmentsRequest',
+        'ListEnvironmentsResponse',
+    },
 )
 
 
@@ -72,7 +76,6 @@ class Environment(proto.Message):
             environment. This field is read-only, i.e., it
             cannot be set by create and update methods.
     """
-
     class State(proto.Enum):
         r"""Represents an environment state. When an environment is pointed to a
         new agent version, the environment is temporarily set to the
@@ -92,9 +95,13 @@ class Environment(proto.Message):
 
     agent_version = proto.Field(proto.STRING, number=3)
 
-    state = proto.Field(proto.ENUM, number=4, enum=State,)
+    state = proto.Field(proto.ENUM, number=4,
+        enum=State,
+    )
 
-    update_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
+    update_time = proto.Field(proto.MESSAGE, number=5,
+        message=timestamp.Timestamp,
+    )
 
 
 class ListEnvironmentsRequest(proto.Message):
@@ -140,7 +147,9 @@ class ListEnvironmentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    environments = proto.RepeatedField(proto.MESSAGE, number=1, message="Environment",)
+    environments = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='Environment',
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 

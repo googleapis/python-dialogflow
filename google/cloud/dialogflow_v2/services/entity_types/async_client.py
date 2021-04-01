@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.api_core import operation  # type: ignore
 from google.api_core import operation_async  # type: ignore
@@ -54,30 +54,20 @@ class EntityTypesAsyncClient:
     entity_type_path = staticmethod(EntityTypesClient.entity_type_path)
     parse_entity_type_path = staticmethod(EntityTypesClient.parse_entity_type_path)
 
-    common_billing_account_path = staticmethod(
-        EntityTypesClient.common_billing_account_path
-    )
-    parse_common_billing_account_path = staticmethod(
-        EntityTypesClient.parse_common_billing_account_path
-    )
+    common_billing_account_path = staticmethod(EntityTypesClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(EntityTypesClient.parse_common_billing_account_path)
 
     common_folder_path = staticmethod(EntityTypesClient.common_folder_path)
     parse_common_folder_path = staticmethod(EntityTypesClient.parse_common_folder_path)
 
     common_organization_path = staticmethod(EntityTypesClient.common_organization_path)
-    parse_common_organization_path = staticmethod(
-        EntityTypesClient.parse_common_organization_path
-    )
+    parse_common_organization_path = staticmethod(EntityTypesClient.parse_common_organization_path)
 
     common_project_path = staticmethod(EntityTypesClient.common_project_path)
-    parse_common_project_path = staticmethod(
-        EntityTypesClient.parse_common_project_path
-    )
+    parse_common_project_path = staticmethod(EntityTypesClient.parse_common_project_path)
 
     common_location_path = staticmethod(EntityTypesClient.common_location_path)
-    parse_common_location_path = staticmethod(
-        EntityTypesClient.parse_common_location_path
-    )
+    parse_common_location_path = staticmethod(EntityTypesClient.parse_common_location_path)
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -120,18 +110,14 @@ class EntityTypesAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(
-        type(EntityTypesClient).get_transport_class, type(EntityTypesClient)
-    )
+    get_transport_class = functools.partial(type(EntityTypesClient).get_transport_class, type(EntityTypesClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, EntityTypesTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, EntityTypesTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the entity types client.
 
         Args:
@@ -170,18 +156,18 @@ class EntityTypesAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
+
         )
 
-    async def list_entity_types(
-        self,
-        request: entity_type.ListEntityTypesRequest = None,
-        *,
-        parent: str = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListEntityTypesAsyncPager:
+    async def list_entity_types(self,
+            request: entity_type.ListEntityTypesRequest = None,
+            *,
+            parent: str = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListEntityTypesAsyncPager:
         r"""Returns the list of all entity types in the specified
         agent.
 
@@ -227,10 +213,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = entity_type.ListEntityTypesRequest(request)
 
@@ -253,31 +237,40 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListEntityTypesAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_entity_type(
-        self,
-        request: entity_type.GetEntityTypeRequest = None,
-        *,
-        name: str = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> entity_type.EntityType:
+    async def get_entity_type(self,
+            request: entity_type.GetEntityTypeRequest = None,
+            *,
+            name: str = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> entity_type.EntityType:
         r"""Retrieves the specified entity type.
 
         Args:
@@ -332,10 +325,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = entity_type.GetEntityTypeRequest(request)
 
@@ -358,26 +349,32 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_entity_type(
-        self,
-        request: gcd_entity_type.CreateEntityTypeRequest = None,
-        *,
-        parent: str = None,
-        entity_type: gcd_entity_type.EntityType = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_entity_type.EntityType:
+    async def create_entity_type(self,
+            request: gcd_entity_type.CreateEntityTypeRequest = None,
+            *,
+            parent: str = None,
+            entity_type: gcd_entity_type.EntityType = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_entity_type.EntityType:
         r"""Creates an entity type in the specified agent.
 
         Args:
@@ -437,10 +434,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, entity_type, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_entity_type.CreateEntityTypeRequest(request)
 
@@ -465,25 +460,31 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def update_entity_type(
-        self,
-        request: gcd_entity_type.UpdateEntityTypeRequest = None,
-        *,
-        entity_type: gcd_entity_type.EntityType = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_entity_type.EntityType:
+    async def update_entity_type(self,
+            request: gcd_entity_type.UpdateEntityTypeRequest = None,
+            *,
+            entity_type: gcd_entity_type.EntityType = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_entity_type.EntityType:
         r"""Updates the specified entity type.
 
         Args:
@@ -536,10 +537,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([entity_type, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_entity_type.UpdateEntityTypeRequest(request)
 
@@ -562,26 +561,30 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("entity_type.name", request.entity_type.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('entity_type.name', request.entity_type.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def delete_entity_type(
-        self,
-        request: entity_type.DeleteEntityTypeRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    async def delete_entity_type(self,
+            request: entity_type.DeleteEntityTypeRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified entity type.
 
         Args:
@@ -607,10 +610,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = entity_type.DeleteEntityTypeRequest(request)
 
@@ -631,22 +632,26 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         await rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    async def batch_update_entity_types(
-        self,
-        request: entity_type.BatchUpdateEntityTypesRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def batch_update_entity_types(self,
+            request: entity_type.BatchUpdateEntityTypesRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Updates/Creates multiple entity types in the specified agent.
 
         Operation <response:
@@ -688,11 +693,18 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -705,16 +717,15 @@ class EntityTypesAsyncClient:
         # Done; return the response.
         return response
 
-    async def batch_delete_entity_types(
-        self,
-        request: entity_type.BatchDeleteEntityTypesRequest = None,
-        *,
-        parent: str = None,
-        entity_type_names: Sequence[str] = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def batch_delete_entity_types(self,
+            request: entity_type.BatchDeleteEntityTypesRequest = None,
+            *,
+            parent: str = None,
+            entity_type_names: Sequence[str] = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Deletes entity types in the specified agent.
 
         Operation <response:
@@ -769,10 +780,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, entity_type_names])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = entity_type.BatchDeleteEntityTypesRequest(request)
 
@@ -796,11 +805,18 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -813,17 +829,16 @@ class EntityTypesAsyncClient:
         # Done; return the response.
         return response
 
-    async def batch_create_entities(
-        self,
-        request: entity_type.BatchCreateEntitiesRequest = None,
-        *,
-        parent: str = None,
-        entities: Sequence[entity_type.EntityType.Entity] = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def batch_create_entities(self,
+            request: entity_type.BatchCreateEntitiesRequest = None,
+            *,
+            parent: str = None,
+            entities: Sequence[entity_type.EntityType.Entity] = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Creates multiple new entities in the specified entity type.
 
         Operation <response:
@@ -887,10 +902,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, entities, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = entity_type.BatchCreateEntitiesRequest(request)
 
@@ -916,11 +929,18 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -933,17 +953,16 @@ class EntityTypesAsyncClient:
         # Done; return the response.
         return response
 
-    async def batch_update_entities(
-        self,
-        request: entity_type.BatchUpdateEntitiesRequest = None,
-        *,
-        parent: str = None,
-        entities: Sequence[entity_type.EntityType.Entity] = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def batch_update_entities(self,
+            request: entity_type.BatchUpdateEntitiesRequest = None,
+            *,
+            parent: str = None,
+            entities: Sequence[entity_type.EntityType.Entity] = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Updates or creates multiple entities in the specified entity
         type. This method does not affect entities in the entity type
         that aren't explicitly specified in the request.
@@ -1011,10 +1030,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, entities, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = entity_type.BatchUpdateEntitiesRequest(request)
 
@@ -1040,11 +1057,18 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -1057,17 +1081,16 @@ class EntityTypesAsyncClient:
         # Done; return the response.
         return response
 
-    async def batch_delete_entities(
-        self,
-        request: entity_type.BatchDeleteEntitiesRequest = None,
-        *,
-        parent: str = None,
-        entity_values: Sequence[str] = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def batch_delete_entities(self,
+            request: entity_type.BatchDeleteEntitiesRequest = None,
+            *,
+            parent: str = None,
+            entity_values: Sequence[str] = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Deletes entities in the specified entity type.
 
         Operation <response:
@@ -1134,10 +1157,8 @@ class EntityTypesAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, entity_values, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = entity_type.BatchDeleteEntitiesRequest(request)
 
@@ -1163,11 +1184,18 @@ class EntityTypesAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -1181,14 +1209,21 @@ class EntityTypesAsyncClient:
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("EntityTypesAsyncClient",)
+__all__ = (
+    'EntityTypesAsyncClient',
+)

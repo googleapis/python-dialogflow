@@ -18,13 +18,13 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import grpc_helpers_async  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import grpc_helpers_async         # type: ignore
+from google import auth                                # type: ignore
+from google.auth import credentials                    # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc  # type: ignore
+import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.dialogflow_v2.types import session
@@ -54,15 +54,13 @@ class SessionsGrpcAsyncIOTransport(SessionsTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> aio.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: Optional[str] = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -91,24 +89,22 @@ class SessionsGrpcAsyncIOTransport(SessionsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        channel: aio.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id=None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: Optional[str] = None,
+            scopes: Optional[Sequence[str]] = None,
+            channel: aio.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id=None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -230,11 +226,9 @@ class SessionsGrpcAsyncIOTransport(SessionsTransport):
         return self._grpc_channel
 
     @property
-    def detect_intent(
-        self,
-    ) -> Callable[
-        [gcd_session.DetectIntentRequest], Awaitable[gcd_session.DetectIntentResponse]
-    ]:
+    def detect_intent(self) -> Callable[
+            [gcd_session.DetectIntentRequest],
+            Awaitable[gcd_session.DetectIntentResponse]]:
         r"""Return a callable for the detect intent method over gRPC.
 
         Processes a natural language query and returns structured,
@@ -256,21 +250,18 @@ class SessionsGrpcAsyncIOTransport(SessionsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "detect_intent" not in self._stubs:
-            self._stubs["detect_intent"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Sessions/DetectIntent",
+        if 'detect_intent' not in self._stubs:
+            self._stubs['detect_intent'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Sessions/DetectIntent',
                 request_serializer=gcd_session.DetectIntentRequest.serialize,
                 response_deserializer=gcd_session.DetectIntentResponse.deserialize,
             )
-        return self._stubs["detect_intent"]
+        return self._stubs['detect_intent']
 
     @property
-    def streaming_detect_intent(
-        self,
-    ) -> Callable[
-        [session.StreamingDetectIntentRequest],
-        Awaitable[session.StreamingDetectIntentResponse],
-    ]:
+    def streaming_detect_intent(self) -> Callable[
+            [session.StreamingDetectIntentRequest],
+            Awaitable[session.StreamingDetectIntentResponse]]:
         r"""Return a callable for the streaming detect intent method over gRPC.
 
         Processes a natural language query in audio format in a
@@ -292,13 +283,15 @@ class SessionsGrpcAsyncIOTransport(SessionsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "streaming_detect_intent" not in self._stubs:
-            self._stubs["streaming_detect_intent"] = self.grpc_channel.stream_stream(
-                "/google.cloud.dialogflow.v2.Sessions/StreamingDetectIntent",
+        if 'streaming_detect_intent' not in self._stubs:
+            self._stubs['streaming_detect_intent'] = self.grpc_channel.stream_stream(
+                '/google.cloud.dialogflow.v2.Sessions/StreamingDetectIntent',
                 request_serializer=session.StreamingDetectIntentRequest.serialize,
                 response_deserializer=session.StreamingDetectIntentResponse.deserialize,
             )
-        return self._stubs["streaming_detect_intent"]
+        return self._stubs['streaming_detect_intent']
 
 
-__all__ = ("SessionsGrpcAsyncIOTransport",)
+__all__ = (
+    'SessionsGrpcAsyncIOTransport',
+)

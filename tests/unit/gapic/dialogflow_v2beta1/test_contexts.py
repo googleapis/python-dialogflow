@@ -51,11 +51,7 @@ def client_cert_source_callback():
 # This method modifies the default endpoint so the client can produce a different
 # mtls endpoint for endpoint testing purposes.
 def modify_default_endpoint(client):
-    return (
-        "foo.googleapis.com"
-        if ("localhost" in client.DEFAULT_ENDPOINT)
-        else client.DEFAULT_ENDPOINT
-    )
+    return "foo.googleapis.com" if ("localhost" in client.DEFAULT_ENDPOINT) else client.DEFAULT_ENDPOINT
 
 
 def test__get_default_mtls_endpoint():
@@ -67,42 +63,35 @@ def test__get_default_mtls_endpoint():
 
     assert ContextsClient._get_default_mtls_endpoint(None) is None
     assert ContextsClient._get_default_mtls_endpoint(api_endpoint) == api_mtls_endpoint
-    assert (
-        ContextsClient._get_default_mtls_endpoint(api_mtls_endpoint)
-        == api_mtls_endpoint
-    )
-    assert (
-        ContextsClient._get_default_mtls_endpoint(sandbox_endpoint)
-        == sandbox_mtls_endpoint
-    )
-    assert (
-        ContextsClient._get_default_mtls_endpoint(sandbox_mtls_endpoint)
-        == sandbox_mtls_endpoint
-    )
+    assert ContextsClient._get_default_mtls_endpoint(api_mtls_endpoint) == api_mtls_endpoint
+    assert ContextsClient._get_default_mtls_endpoint(sandbox_endpoint) == sandbox_mtls_endpoint
+    assert ContextsClient._get_default_mtls_endpoint(sandbox_mtls_endpoint) == sandbox_mtls_endpoint
     assert ContextsClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-@pytest.mark.parametrize("client_class", [ContextsClient, ContextsAsyncClient,])
+@pytest.mark.parametrize("client_class", [
+    ContextsClient,
+    ContextsAsyncClient,
+])
 def test_contexts_client_from_service_account_info(client_class):
     creds = credentials.AnonymousCredentials()
-    with mock.patch.object(
-        service_account.Credentials, "from_service_account_info"
-    ) as factory:
+    with mock.patch.object(service_account.Credentials, 'from_service_account_info') as factory:
         factory.return_value = creds
         info = {"valid": True}
         client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == "dialogflow.googleapis.com:443"
+        assert client.transport._host == 'dialogflow.googleapis.com:443'
 
 
-@pytest.mark.parametrize("client_class", [ContextsClient, ContextsAsyncClient,])
+@pytest.mark.parametrize("client_class", [
+    ContextsClient,
+    ContextsAsyncClient,
+])
 def test_contexts_client_from_service_account_file(client_class):
     creds = credentials.AnonymousCredentials()
-    with mock.patch.object(
-        service_account.Credentials, "from_service_account_file"
-    ) as factory:
+    with mock.patch.object(service_account.Credentials, 'from_service_account_file') as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
@@ -112,7 +101,7 @@ def test_contexts_client_from_service_account_file(client_class):
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == "dialogflow.googleapis.com:443"
+        assert client.transport._host == 'dialogflow.googleapis.com:443'
 
 
 def test_contexts_client_get_transport_class():
@@ -126,36 +115,29 @@ def test_contexts_client_get_transport_class():
     assert transport == transports.ContextsGrpcTransport
 
 
-@pytest.mark.parametrize(
-    "client_class,transport_class,transport_name",
-    [
-        (ContextsClient, transports.ContextsGrpcTransport, "grpc"),
-        (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio"),
-    ],
-)
-@mock.patch.object(
-    ContextsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ContextsClient)
-)
-@mock.patch.object(
-    ContextsAsyncClient,
-    "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ContextsAsyncClient),
-)
+@pytest.mark.parametrize("client_class,transport_class,transport_name", [
+    (ContextsClient, transports.ContextsGrpcTransport, "grpc"),
+    (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio"),
+])
+@mock.patch.object(ContextsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ContextsClient))
+@mock.patch.object(ContextsAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ContextsAsyncClient))
 def test_contexts_client_client_options(client_class, transport_class, transport_name):
     # Check that if channel is provided we won't create a new one.
-    with mock.patch.object(ContextsClient, "get_transport_class") as gtc:
-        transport = transport_class(credentials=credentials.AnonymousCredentials())
+    with mock.patch.object(ContextsClient, 'get_transport_class') as gtc:
+        transport = transport_class(
+            credentials=credentials.AnonymousCredentials()
+        )
         client = client_class(transport=transport)
         gtc.assert_not_called()
 
     # Check that if channel is provided via str we will create a new one.
-    with mock.patch.object(ContextsClient, "get_transport_class") as gtc:
+    with mock.patch.object(ContextsClient, 'get_transport_class') as gtc:
         client = client_class(transport=transport_name)
         gtc.assert_called()
 
     # Check the case api_endpoint is provided.
     options = client_options.ClientOptions(api_endpoint="squid.clam.whelk")
-    with mock.patch.object(transport_class, "__init__") as patched:
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -171,7 +153,7 @@ def test_contexts_client_client_options(client_class, transport_class, transport
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
     # "never".
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "never"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
+        with mock.patch.object(transport_class, '__init__') as patched:
             patched.return_value = None
             client = client_class()
             patched.assert_called_once_with(
@@ -187,7 +169,7 @@ def test_contexts_client_client_options(client_class, transport_class, transport
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
     # "always".
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "always"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
+        with mock.patch.object(transport_class, '__init__') as patched:
             patched.return_value = None
             client = client_class()
             patched.assert_called_once_with(
@@ -207,15 +189,13 @@ def test_contexts_client_client_options(client_class, transport_class, transport
             client = client_class()
 
     # Check the case GOOGLE_API_USE_CLIENT_CERTIFICATE has unsupported value.
-    with mock.patch.dict(
-        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "Unsupported"}
-    ):
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "Unsupported"}):
         with pytest.raises(ValueError):
             client = client_class()
 
     # Check the case quota_project_id is provided
     options = client_options.ClientOptions(quota_project_id="octopus")
-    with mock.patch.object(transport_class, "__init__") as patched:
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -228,50 +208,26 @@ def test_contexts_client_client_options(client_class, transport_class, transport
             client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
+@pytest.mark.parametrize("client_class,transport_class,transport_name,use_client_cert_env", [
 
-@pytest.mark.parametrize(
-    "client_class,transport_class,transport_name,use_client_cert_env",
-    [
-        (ContextsClient, transports.ContextsGrpcTransport, "grpc", "true"),
-        (
-            ContextsAsyncClient,
-            transports.ContextsGrpcAsyncIOTransport,
-            "grpc_asyncio",
-            "true",
-        ),
-        (ContextsClient, transports.ContextsGrpcTransport, "grpc", "false"),
-        (
-            ContextsAsyncClient,
-            transports.ContextsGrpcAsyncIOTransport,
-            "grpc_asyncio",
-            "false",
-        ),
-    ],
-)
-@mock.patch.object(
-    ContextsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ContextsClient)
-)
-@mock.patch.object(
-    ContextsAsyncClient,
-    "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ContextsAsyncClient),
-)
+    (ContextsClient, transports.ContextsGrpcTransport, "grpc", "true"),
+    (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio", "true"),
+    (ContextsClient, transports.ContextsGrpcTransport, "grpc", "false"),
+    (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio", "false"),
+
+])
+@mock.patch.object(ContextsClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ContextsClient))
+@mock.patch.object(ContextsAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(ContextsAsyncClient))
 @mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "auto"})
-def test_contexts_client_mtls_env_auto(
-    client_class, transport_class, transport_name, use_client_cert_env
-):
+def test_contexts_client_mtls_env_auto(client_class, transport_class, transport_name, use_client_cert_env):
     # This tests the endpoint autoswitch behavior. Endpoint is autoswitched to the default
     # mtls endpoint, if GOOGLE_API_USE_CLIENT_CERTIFICATE is "true" and client cert exists.
 
     # Check the case client_cert_source is provided. Whether client cert is used depends on
     # GOOGLE_API_USE_CLIENT_CERTIFICATE value.
-    with mock.patch.dict(
-        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
-    ):
-        options = client_options.ClientOptions(
-            client_cert_source=client_cert_source_callback
-        )
-        with mock.patch.object(transport_class, "__init__") as patched:
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}):
+        options = client_options.ClientOptions(client_cert_source=client_cert_source_callback)
+        with mock.patch.object(transport_class, '__init__') as patched:
             patched.return_value = None
             client = client_class(client_options=options)
 
@@ -294,18 +250,10 @@ def test_contexts_client_mtls_env_auto(
 
     # Check the case ADC client cert is provided. Whether client cert is used depends on
     # GOOGLE_API_USE_CLIENT_CERTIFICATE value.
-    with mock.patch.dict(
-        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
-    ):
-        with mock.patch.object(transport_class, "__init__") as patched:
-            with mock.patch(
-                "google.auth.transport.mtls.has_default_client_cert_source",
-                return_value=True,
-            ):
-                with mock.patch(
-                    "google.auth.transport.mtls.default_client_cert_source",
-                    return_value=client_cert_source_callback,
-                ):
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=True):
+                with mock.patch('google.auth.transport.mtls.default_client_cert_source', return_value=client_cert_source_callback):
                     if use_client_cert_env == "false":
                         expected_host = client.DEFAULT_ENDPOINT
                         expected_client_cert_source = None
@@ -326,14 +274,9 @@ def test_contexts_client_mtls_env_auto(
                     )
 
     # Check the case client_cert_source and ADC client cert are not provided.
-    with mock.patch.dict(
-        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
-    ):
-        with mock.patch.object(transport_class, "__init__") as patched:
-            with mock.patch(
-                "google.auth.transport.mtls.has_default_client_cert_source",
-                return_value=False,
-            ):
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            with mock.patch("google.auth.transport.mtls.has_default_client_cert_source", return_value=False):
                 patched.return_value = None
                 client = client_class()
                 patched.assert_called_once_with(
@@ -347,19 +290,16 @@ def test_contexts_client_mtls_env_auto(
                 )
 
 
-@pytest.mark.parametrize(
-    "client_class,transport_class,transport_name",
-    [
-        (ContextsClient, transports.ContextsGrpcTransport, "grpc"),
-        (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio"),
-    ],
-)
-def test_contexts_client_client_options_scopes(
-    client_class, transport_class, transport_name
-):
+@pytest.mark.parametrize("client_class,transport_class,transport_name", [
+    (ContextsClient, transports.ContextsGrpcTransport, "grpc"),
+    (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio"),
+])
+def test_contexts_client_client_options_scopes(client_class, transport_class, transport_name):
     # Check the case scopes are provided.
-    options = client_options.ClientOptions(scopes=["1", "2"],)
-    with mock.patch.object(transport_class, "__init__") as patched:
+    options = client_options.ClientOptions(
+        scopes=["1", "2"],
+    )
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -372,20 +312,16 @@ def test_contexts_client_client_options_scopes(
             client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
-
-@pytest.mark.parametrize(
-    "client_class,transport_class,transport_name",
-    [
-        (ContextsClient, transports.ContextsGrpcTransport, "grpc"),
-        (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio"),
-    ],
-)
-def test_contexts_client_client_options_credentials_file(
-    client_class, transport_class, transport_name
-):
+@pytest.mark.parametrize("client_class,transport_class,transport_name", [
+    (ContextsClient, transports.ContextsGrpcTransport, "grpc"),
+    (ContextsAsyncClient, transports.ContextsGrpcAsyncIOTransport, "grpc_asyncio"),
+])
+def test_contexts_client_client_options_credentials_file(client_class, transport_class, transport_name):
     # Check the case credentials file is provided.
-    options = client_options.ClientOptions(credentials_file="credentials.json")
-    with mock.patch.object(transport_class, "__init__") as patched:
+    options = client_options.ClientOptions(
+        credentials_file="credentials.json"
+    )
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -400,11 +336,11 @@ def test_contexts_client_client_options_credentials_file(
 
 
 def test_contexts_client_client_options_from_dict():
-    with mock.patch(
-        "google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsGrpcTransport.__init__"
-    ) as grpc_transport:
+    with mock.patch('google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsGrpcTransport.__init__') as grpc_transport:
         grpc_transport.return_value = None
-        client = ContextsClient(client_options={"api_endpoint": "squid.clam.whelk"})
+        client = ContextsClient(
+            client_options={'api_endpoint': 'squid.clam.whelk'}
+        )
         grpc_transport.assert_called_once_with(
             credentials=None,
             credentials_file=None,
@@ -416,11 +352,10 @@ def test_contexts_client_client_options_from_dict():
         )
 
 
-def test_list_contexts(
-    transport: str = "grpc", request_type=context.ListContextsRequest
-):
+def test_list_contexts(transport: str = 'grpc', request_type=context.ListContextsRequest):
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -428,10 +363,13 @@ def test_list_contexts(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = context.ListContextsResponse(
-            next_page_token="next_page_token_value",
+            next_page_token='next_page_token_value',
+
         )
 
         response = client.list_contexts(request)
@@ -446,7 +384,7 @@ def test_list_contexts(
 
     assert isinstance(response, pagers.ListContextsPager)
 
-    assert response.next_page_token == "next_page_token_value"
+    assert response.next_page_token == 'next_page_token_value'
 
 
 def test_list_contexts_from_dict():
@@ -457,24 +395,25 @@ def test_list_contexts_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
+        credentials=credentials.AnonymousCredentials(),
+        transport='grpc',
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         client.list_contexts()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
         assert args[0] == context.ListContextsRequest()
 
-
 @pytest.mark.asyncio
-async def test_list_contexts_async(
-    transport: str = "grpc_asyncio", request_type=context.ListContextsRequest
-):
+async def test_list_contexts_async(transport: str = 'grpc_asyncio', request_type=context.ListContextsRequest):
     client = ContextsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -482,11 +421,13 @@ async def test_list_contexts_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            context.ListContextsResponse(next_page_token="next_page_token_value",)
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(context.ListContextsResponse(
+            next_page_token='next_page_token_value',
+        ))
 
         response = await client.list_contexts(request)
 
@@ -499,7 +440,7 @@ async def test_list_contexts_async(
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListContextsAsyncPager)
 
-    assert response.next_page_token == "next_page_token_value"
+    assert response.next_page_token == 'next_page_token_value'
 
 
 @pytest.mark.asyncio
@@ -508,15 +449,19 @@ async def test_list_contexts_async_from_dict():
 
 
 def test_list_contexts_field_headers():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.ListContextsRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         call.return_value = context.ListContextsResponse()
 
         client.list_contexts(request)
@@ -528,23 +473,28 @@ def test_list_contexts_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_list_contexts_field_headers_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.ListContextsRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            context.ListContextsResponse()
-        )
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(context.ListContextsResponse())
 
         await client.list_contexts(request)
 
@@ -555,100 +505,138 @@ async def test_list_contexts_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 def test_list_contexts_flattened():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = context.ListContextsResponse()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.list_contexts(parent="parent_value",)
+        client.list_contexts(
+            parent='parent_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].parent == "parent_value"
+        assert args[0].parent == 'parent_value'
 
 
 def test_list_contexts_flattened_error():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.list_contexts(
-            context.ListContextsRequest(), parent="parent_value",
+            context.ListContextsRequest(),
+            parent='parent_value',
         )
 
 
 @pytest.mark.asyncio
 async def test_list_contexts_flattened_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = context.ListContextsResponse()
 
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            context.ListContextsResponse()
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(context.ListContextsResponse())
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.list_contexts(parent="parent_value",)
+        response = await client.list_contexts(
+            parent='parent_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].parent == "parent_value"
+        assert args[0].parent == 'parent_value'
 
 
 @pytest.mark.asyncio
 async def test_list_contexts_flattened_error_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.list_contexts(
-            context.ListContextsRequest(), parent="parent_value",
+            context.ListContextsRequest(),
+            parent='parent_value',
         )
 
 
 def test_list_contexts_pager():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials,)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         # Set the response to a series of pages.
         call.side_effect = (
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(), context.Context(),],
-                next_page_token="abc",
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                    context.Context(),
+                ],
+                next_page_token='abc',
             ),
-            context.ListContextsResponse(contexts=[], next_page_token="def",),
             context.ListContextsResponse(
-                contexts=[context.Context(),], next_page_token="ghi",
+                contexts=[],
+                next_page_token='def',
             ),
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(),],
+                contexts=[
+                    context.Context(),
+                ],
+                next_page_token='ghi',
+            ),
+            context.ListContextsResponse(
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                ],
             ),
             RuntimeError,
         )
 
         metadata = ()
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", ""),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', ''),
+            )),
         )
         pager = client.list_contexts(request={})
 
@@ -656,100 +644,147 @@ def test_list_contexts_pager():
 
         results = [i for i in pager]
         assert len(results) == 6
-        assert all(isinstance(i, context.Context) for i in results)
-
+        assert all(isinstance(i, context.Context)
+                   for i in results)
 
 def test_list_contexts_pages():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials,)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.list_contexts), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.list_contexts),
+            '__call__') as call:
         # Set the response to a series of pages.
         call.side_effect = (
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(), context.Context(),],
-                next_page_token="abc",
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                    context.Context(),
+                ],
+                next_page_token='abc',
             ),
-            context.ListContextsResponse(contexts=[], next_page_token="def",),
             context.ListContextsResponse(
-                contexts=[context.Context(),], next_page_token="ghi",
+                contexts=[],
+                next_page_token='def',
             ),
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(),],
+                contexts=[
+                    context.Context(),
+                ],
+                next_page_token='ghi',
+            ),
+            context.ListContextsResponse(
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                ],
             ),
             RuntimeError,
         )
         pages = list(client.list_contexts(request={}).pages)
-        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+        for page_, token in zip(pages, ['abc','def','ghi', '']):
             assert page_.raw_page.next_page_token == token
-
 
 @pytest.mark.asyncio
 async def test_list_contexts_async_pager():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials,)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_contexts), "__call__", new_callable=mock.AsyncMock
-    ) as call:
+            type(client.transport.list_contexts),
+            '__call__', new_callable=mock.AsyncMock) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(), context.Context(),],
-                next_page_token="abc",
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                    context.Context(),
+                ],
+                next_page_token='abc',
             ),
-            context.ListContextsResponse(contexts=[], next_page_token="def",),
             context.ListContextsResponse(
-                contexts=[context.Context(),], next_page_token="ghi",
+                contexts=[],
+                next_page_token='def',
             ),
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(),],
+                contexts=[
+                    context.Context(),
+                ],
+                next_page_token='ghi',
+            ),
+            context.ListContextsResponse(
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                ],
             ),
             RuntimeError,
         )
         async_pager = await client.list_contexts(request={},)
-        assert async_pager.next_page_token == "abc"
+        assert async_pager.next_page_token == 'abc'
         responses = []
         async for response in async_pager:
             responses.append(response)
 
         assert len(responses) == 6
-        assert all(isinstance(i, context.Context) for i in responses)
-
+        assert all(isinstance(i, context.Context)
+                   for i in responses)
 
 @pytest.mark.asyncio
 async def test_list_contexts_async_pages():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials,)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_contexts), "__call__", new_callable=mock.AsyncMock
-    ) as call:
+            type(client.transport.list_contexts),
+            '__call__', new_callable=mock.AsyncMock) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(), context.Context(),],
-                next_page_token="abc",
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                    context.Context(),
+                ],
+                next_page_token='abc',
             ),
-            context.ListContextsResponse(contexts=[], next_page_token="def",),
             context.ListContextsResponse(
-                contexts=[context.Context(),], next_page_token="ghi",
+                contexts=[],
+                next_page_token='def',
             ),
             context.ListContextsResponse(
-                contexts=[context.Context(), context.Context(),],
+                contexts=[
+                    context.Context(),
+                ],
+                next_page_token='ghi',
+            ),
+            context.ListContextsResponse(
+                contexts=[
+                    context.Context(),
+                    context.Context(),
+                ],
             ),
             RuntimeError,
         )
         pages = []
         async for page_ in (await client.list_contexts(request={})).pages:
             pages.append(page_)
-        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+        for page_, token in zip(pages, ['abc','def','ghi', '']):
             assert page_.raw_page.next_page_token == token
 
 
-def test_get_context(transport: str = "grpc", request_type=context.GetContextRequest):
+def test_get_context(transport: str = 'grpc', request_type=context.GetContextRequest):
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -757,9 +792,16 @@ def test_get_context(transport: str = "grpc", request_type=context.GetContextReq
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.get_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = context.Context(name="name_value", lifespan_count=1498,)
+        call.return_value = context.Context(
+            name='name_value',
+
+            lifespan_count=1498,
+
+        )
 
         response = client.get_context(request)
 
@@ -773,7 +815,7 @@ def test_get_context(transport: str = "grpc", request_type=context.GetContextReq
 
     assert isinstance(response, context.Context)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
     assert response.lifespan_count == 1498
 
@@ -786,24 +828,25 @@ def test_get_context_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
+        credentials=credentials.AnonymousCredentials(),
+        transport='grpc',
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.get_context),
+            '__call__') as call:
         client.get_context()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
         assert args[0] == context.GetContextRequest()
 
-
 @pytest.mark.asyncio
-async def test_get_context_async(
-    transport: str = "grpc_asyncio", request_type=context.GetContextRequest
-):
+async def test_get_context_async(transport: str = 'grpc_asyncio', request_type=context.GetContextRequest):
     client = ContextsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -811,11 +854,14 @@ async def test_get_context_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.get_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            context.Context(name="name_value", lifespan_count=1498,)
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(context.Context(
+            name='name_value',
+            lifespan_count=1498,
+        ))
 
         response = await client.get_context(request)
 
@@ -828,7 +874,7 @@ async def test_get_context_async(
     # Establish that the response is the type that we expect.
     assert isinstance(response, context.Context)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
     assert response.lifespan_count == 1498
 
@@ -839,15 +885,19 @@ async def test_get_context_async_from_dict():
 
 
 def test_get_context_field_headers():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.GetContextRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.get_context),
+            '__call__') as call:
         call.return_value = context.Context()
 
         client.get_context(request)
@@ -859,20 +909,27 @@ def test_get_context_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_get_context_field_headers_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.GetContextRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.get_context),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(context.Context())
 
         await client.get_context(request)
@@ -884,79 +941,99 @@ async def test_get_context_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
 def test_get_context_flattened():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.get_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = context.Context()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.get_context(name="name_value",)
+        client.get_context(
+            name='name_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].name == "name_value"
+        assert args[0].name == 'name_value'
 
 
 def test_get_context_flattened_error():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.get_context(
-            context.GetContextRequest(), name="name_value",
+            context.GetContextRequest(),
+            name='name_value',
         )
 
 
 @pytest.mark.asyncio
 async def test_get_context_flattened_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.get_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.get_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = context.Context()
 
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(context.Context())
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.get_context(name="name_value",)
+        response = await client.get_context(
+            name='name_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].name == "name_value"
+        assert args[0].name == 'name_value'
 
 
 @pytest.mark.asyncio
 async def test_get_context_flattened_error_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.get_context(
-            context.GetContextRequest(), name="name_value",
+            context.GetContextRequest(),
+            name='name_value',
         )
 
 
-def test_create_context(
-    transport: str = "grpc", request_type=gcd_context.CreateContextRequest
-):
+def test_create_context(transport: str = 'grpc', request_type=gcd_context.CreateContextRequest):
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -964,9 +1041,16 @@ def test_create_context(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.create_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = gcd_context.Context(name="name_value", lifespan_count=1498,)
+        call.return_value = gcd_context.Context(
+            name='name_value',
+
+            lifespan_count=1498,
+
+        )
 
         response = client.create_context(request)
 
@@ -980,7 +1064,7 @@ def test_create_context(
 
     assert isinstance(response, gcd_context.Context)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
     assert response.lifespan_count == 1498
 
@@ -993,24 +1077,25 @@ def test_create_context_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
+        credentials=credentials.AnonymousCredentials(),
+        transport='grpc',
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.create_context),
+            '__call__') as call:
         client.create_context()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
         assert args[0] == gcd_context.CreateContextRequest()
 
-
 @pytest.mark.asyncio
-async def test_create_context_async(
-    transport: str = "grpc_asyncio", request_type=gcd_context.CreateContextRequest
-):
+async def test_create_context_async(transport: str = 'grpc_asyncio', request_type=gcd_context.CreateContextRequest):
     client = ContextsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1018,11 +1103,14 @@ async def test_create_context_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.create_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_context.Context(name="name_value", lifespan_count=1498,)
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_context.Context(
+            name='name_value',
+            lifespan_count=1498,
+        ))
 
         response = await client.create_context(request)
 
@@ -1035,7 +1123,7 @@ async def test_create_context_async(
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcd_context.Context)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
     assert response.lifespan_count == 1498
 
@@ -1046,15 +1134,19 @@ async def test_create_context_async_from_dict():
 
 
 def test_create_context_field_headers():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = gcd_context.CreateContextRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.create_context),
+            '__call__') as call:
         call.return_value = gcd_context.Context()
 
         client.create_context(request)
@@ -1066,20 +1158,27 @@ def test_create_context_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_create_context_field_headers_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = gcd_context.CreateContextRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.create_context),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_context.Context())
 
         await client.create_context(request)
@@ -1091,21 +1190,29 @@ async def test_create_context_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 def test_create_context_flattened():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.create_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_context.Context()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.create_context(
-            parent="parent_value", context=gcd_context.Context(name="name_value"),
+            parent='parent_value',
+            context=gcd_context.Context(name='name_value'),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1113,30 +1220,36 @@ def test_create_context_flattened():
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].parent == "parent_value"
+        assert args[0].parent == 'parent_value'
 
-        assert args[0].context == gcd_context.Context(name="name_value")
+        assert args[0].context == gcd_context.Context(name='name_value')
 
 
 def test_create_context_flattened_error():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.create_context(
             gcd_context.CreateContextRequest(),
-            parent="parent_value",
-            context=gcd_context.Context(name="name_value"),
+            parent='parent_value',
+            context=gcd_context.Context(name='name_value'),
         )
 
 
 @pytest.mark.asyncio
 async def test_create_context_flattened_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.create_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.create_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_context.Context()
 
@@ -1144,7 +1257,8 @@ async def test_create_context_flattened_async():
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         response = await client.create_context(
-            parent="parent_value", context=gcd_context.Context(name="name_value"),
+            parent='parent_value',
+            context=gcd_context.Context(name='name_value'),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1152,30 +1266,31 @@ async def test_create_context_flattened_async():
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].parent == "parent_value"
+        assert args[0].parent == 'parent_value'
 
-        assert args[0].context == gcd_context.Context(name="name_value")
+        assert args[0].context == gcd_context.Context(name='name_value')
 
 
 @pytest.mark.asyncio
 async def test_create_context_flattened_error_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.create_context(
             gcd_context.CreateContextRequest(),
-            parent="parent_value",
-            context=gcd_context.Context(name="name_value"),
+            parent='parent_value',
+            context=gcd_context.Context(name='name_value'),
         )
 
 
-def test_update_context(
-    transport: str = "grpc", request_type=gcd_context.UpdateContextRequest
-):
+def test_update_context(transport: str = 'grpc', request_type=gcd_context.UpdateContextRequest):
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1183,9 +1298,16 @@ def test_update_context(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.update_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = gcd_context.Context(name="name_value", lifespan_count=1498,)
+        call.return_value = gcd_context.Context(
+            name='name_value',
+
+            lifespan_count=1498,
+
+        )
 
         response = client.update_context(request)
 
@@ -1199,7 +1321,7 @@ def test_update_context(
 
     assert isinstance(response, gcd_context.Context)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
     assert response.lifespan_count == 1498
 
@@ -1212,24 +1334,25 @@ def test_update_context_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
+        credentials=credentials.AnonymousCredentials(),
+        transport='grpc',
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.update_context),
+            '__call__') as call:
         client.update_context()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
         assert args[0] == gcd_context.UpdateContextRequest()
 
-
 @pytest.mark.asyncio
-async def test_update_context_async(
-    transport: str = "grpc_asyncio", request_type=gcd_context.UpdateContextRequest
-):
+async def test_update_context_async(transport: str = 'grpc_asyncio', request_type=gcd_context.UpdateContextRequest):
     client = ContextsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1237,11 +1360,14 @@ async def test_update_context_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.update_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_context.Context(name="name_value", lifespan_count=1498,)
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_context.Context(
+            name='name_value',
+            lifespan_count=1498,
+        ))
 
         response = await client.update_context(request)
 
@@ -1254,7 +1380,7 @@ async def test_update_context_async(
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcd_context.Context)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
     assert response.lifespan_count == 1498
 
@@ -1265,15 +1391,19 @@ async def test_update_context_async_from_dict():
 
 
 def test_update_context_field_headers():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = gcd_context.UpdateContextRequest()
-    request.context.name = "context.name/value"
+    request.context.name = 'context.name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.update_context),
+            '__call__') as call:
         call.return_value = gcd_context.Context()
 
         client.update_context(request)
@@ -1285,22 +1415,27 @@ def test_update_context_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "context.name=context.name/value",) in kw[
-        "metadata"
-    ]
+    assert (
+        'x-goog-request-params',
+        'context.name=context.name/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_update_context_field_headers_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = gcd_context.UpdateContextRequest()
-    request.context.name = "context.name/value"
+    request.context.name = 'context.name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.update_context),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcd_context.Context())
 
         await client.update_context(request)
@@ -1312,24 +1447,29 @@ async def test_update_context_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "context.name=context.name/value",) in kw[
-        "metadata"
-    ]
+    assert (
+        'x-goog-request-params',
+        'context.name=context.name/value',
+    ) in kw['metadata']
 
 
 def test_update_context_flattened():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.update_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_context.Context()
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.update_context(
-            context=gcd_context.Context(name="name_value"),
-            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+            context=gcd_context.Context(name='name_value'),
+            update_mask=field_mask.FieldMask(paths=['paths_value']),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1337,30 +1477,36 @@ def test_update_context_flattened():
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].context == gcd_context.Context(name="name_value")
+        assert args[0].context == gcd_context.Context(name='name_value')
 
-        assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
+        assert args[0].update_mask == field_mask.FieldMask(paths=['paths_value'])
 
 
 def test_update_context_flattened_error():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.update_context(
             gcd_context.UpdateContextRequest(),
-            context=gcd_context.Context(name="name_value"),
-            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+            context=gcd_context.Context(name='name_value'),
+            update_mask=field_mask.FieldMask(paths=['paths_value']),
         )
 
 
 @pytest.mark.asyncio
 async def test_update_context_flattened_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.update_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.update_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcd_context.Context()
 
@@ -1368,8 +1514,8 @@ async def test_update_context_flattened_async():
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         response = await client.update_context(
-            context=gcd_context.Context(name="name_value"),
-            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+            context=gcd_context.Context(name='name_value'),
+            update_mask=field_mask.FieldMask(paths=['paths_value']),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1377,30 +1523,31 @@ async def test_update_context_flattened_async():
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].context == gcd_context.Context(name="name_value")
+        assert args[0].context == gcd_context.Context(name='name_value')
 
-        assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
+        assert args[0].update_mask == field_mask.FieldMask(paths=['paths_value'])
 
 
 @pytest.mark.asyncio
 async def test_update_context_flattened_error_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.update_context(
             gcd_context.UpdateContextRequest(),
-            context=gcd_context.Context(name="name_value"),
-            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+            context=gcd_context.Context(name='name_value'),
+            update_mask=field_mask.FieldMask(paths=['paths_value']),
         )
 
 
-def test_delete_context(
-    transport: str = "grpc", request_type=context.DeleteContextRequest
-):
+def test_delete_context(transport: str = 'grpc', request_type=context.DeleteContextRequest):
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1408,7 +1555,9 @@ def test_delete_context(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.delete_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1432,24 +1581,25 @@ def test_delete_context_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
+        credentials=credentials.AnonymousCredentials(),
+        transport='grpc',
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.delete_context),
+            '__call__') as call:
         client.delete_context()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
         assert args[0] == context.DeleteContextRequest()
 
-
 @pytest.mark.asyncio
-async def test_delete_context_async(
-    transport: str = "grpc_asyncio", request_type=context.DeleteContextRequest
-):
+async def test_delete_context_async(transport: str = 'grpc_asyncio', request_type=context.DeleteContextRequest):
     client = ContextsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1457,7 +1607,9 @@ async def test_delete_context_async(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.delete_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
@@ -1479,15 +1631,19 @@ async def test_delete_context_async_from_dict():
 
 
 def test_delete_context_field_headers():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.DeleteContextRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.delete_context),
+            '__call__') as call:
         call.return_value = None
 
         client.delete_context(request)
@@ -1499,20 +1655,27 @@ def test_delete_context_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_delete_context_field_headers_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.DeleteContextRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.delete_context),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
         await client.delete_context(request)
@@ -1524,79 +1687,99 @@ async def test_delete_context_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
 def test_delete_context_flattened():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.delete_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.delete_context(name="name_value",)
+        client.delete_context(
+            name='name_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].name == "name_value"
+        assert args[0].name == 'name_value'
 
 
 def test_delete_context_flattened_error():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.delete_context(
-            context.DeleteContextRequest(), name="name_value",
+            context.DeleteContextRequest(),
+            name='name_value',
         )
 
 
 @pytest.mark.asyncio
 async def test_delete_context_flattened_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client.transport.delete_context), "__call__") as call:
+    with mock.patch.object(
+            type(client.transport.delete_context),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.delete_context(name="name_value",)
+        response = await client.delete_context(
+            name='name_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].name == "name_value"
+        assert args[0].name == 'name_value'
 
 
 @pytest.mark.asyncio
 async def test_delete_context_flattened_error_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.delete_context(
-            context.DeleteContextRequest(), name="name_value",
+            context.DeleteContextRequest(),
+            name='name_value',
         )
 
 
-def test_delete_all_contexts(
-    transport: str = "grpc", request_type=context.DeleteAllContextsRequest
-):
+def test_delete_all_contexts(transport: str = 'grpc', request_type=context.DeleteAllContextsRequest):
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1605,8 +1788,8 @@ def test_delete_all_contexts(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.delete_all_contexts), "__call__"
-    ) as call:
+            type(client.transport.delete_all_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1630,26 +1813,25 @@ def test_delete_all_contexts_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = ContextsClient(
-        credentials=credentials.AnonymousCredentials(), transport="grpc",
+        credentials=credentials.AnonymousCredentials(),
+        transport='grpc',
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.delete_all_contexts), "__call__"
-    ) as call:
+            type(client.transport.delete_all_contexts),
+            '__call__') as call:
         client.delete_all_contexts()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
 
         assert args[0] == context.DeleteAllContextsRequest()
 
-
 @pytest.mark.asyncio
-async def test_delete_all_contexts_async(
-    transport: str = "grpc_asyncio", request_type=context.DeleteAllContextsRequest
-):
+async def test_delete_all_contexts_async(transport: str = 'grpc_asyncio', request_type=context.DeleteAllContextsRequest):
     client = ContextsAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1658,8 +1840,8 @@ async def test_delete_all_contexts_async(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.delete_all_contexts), "__call__"
-    ) as call:
+            type(client.transport.delete_all_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
@@ -1681,17 +1863,19 @@ async def test_delete_all_contexts_async_from_dict():
 
 
 def test_delete_all_contexts_field_headers():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.DeleteAllContextsRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.delete_all_contexts), "__call__"
-    ) as call:
+            type(client.transport.delete_all_contexts),
+            '__call__') as call:
         call.return_value = None
 
         client.delete_all_contexts(request)
@@ -1703,22 +1887,27 @@ def test_delete_all_contexts_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_delete_all_contexts_field_headers_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = context.DeleteAllContextsRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.delete_all_contexts), "__call__"
-    ) as call:
+            type(client.transport.delete_all_contexts),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
         await client.delete_all_contexts(request)
@@ -1730,75 +1919,92 @@ async def test_delete_all_contexts_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 def test_delete_all_contexts_flattened():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.delete_all_contexts), "__call__"
-    ) as call:
+            type(client.transport.delete_all_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.delete_all_contexts(parent="parent_value",)
+        client.delete_all_contexts(
+            parent='parent_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].parent == "parent_value"
+        assert args[0].parent == 'parent_value'
 
 
 def test_delete_all_contexts_flattened_error():
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.delete_all_contexts(
-            context.DeleteAllContextsRequest(), parent="parent_value",
+            context.DeleteAllContextsRequest(),
+            parent='parent_value',
         )
 
 
 @pytest.mark.asyncio
 async def test_delete_all_contexts_flattened_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.delete_all_contexts), "__call__"
-    ) as call:
+            type(client.transport.delete_all_contexts),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.delete_all_contexts(parent="parent_value",)
+        response = await client.delete_all_contexts(
+            parent='parent_value',
+        )
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0].parent == "parent_value"
+        assert args[0].parent == 'parent_value'
 
 
 @pytest.mark.asyncio
 async def test_delete_all_contexts_flattened_error_async():
-    client = ContextsAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = ContextsAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.delete_all_contexts(
-            context.DeleteAllContextsRequest(), parent="parent_value",
+            context.DeleteAllContextsRequest(),
+            parent='parent_value',
         )
 
 
@@ -1809,7 +2015,8 @@ def test_credentials_transport_error():
     )
     with pytest.raises(ValueError):
         client = ContextsClient(
-            credentials=credentials.AnonymousCredentials(), transport=transport,
+            credentials=credentials.AnonymousCredentials(),
+            transport=transport,
         )
 
     # It is an error to provide a credentials file and a transport instance.
@@ -1828,7 +2035,8 @@ def test_credentials_transport_error():
     )
     with pytest.raises(ValueError):
         client = ContextsClient(
-            client_options={"scopes": ["1", "2"]}, transport=transport,
+            client_options={"scopes": ["1", "2"]},
+            transport=transport,
         )
 
 
@@ -1856,13 +2064,13 @@ def test_transport_get_channel():
     assert channel
 
 
-@pytest.mark.parametrize(
-    "transport_class",
-    [transports.ContextsGrpcTransport, transports.ContextsGrpcAsyncIOTransport,],
-)
+@pytest.mark.parametrize("transport_class", [
+    transports.ContextsGrpcTransport,
+    transports.ContextsGrpcAsyncIOTransport,
+])
 def test_transport_adc(transport_class):
     # Test default credentials are used if not provided.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, 'default') as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
         transport_class()
         adc.assert_called_once()
@@ -1870,8 +2078,13 @@ def test_transport_adc(transport_class):
 
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
-    client = ContextsClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client.transport, transports.ContextsGrpcTransport,)
+    client = ContextsClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
+    assert isinstance(
+        client.transport,
+        transports.ContextsGrpcTransport,
+    )
 
 
 def test_contexts_base_transport_error():
@@ -1879,15 +2092,13 @@ def test_contexts_base_transport_error():
     with pytest.raises(exceptions.DuplicateCredentialArgs):
         transport = transports.ContextsTransport(
             credentials=credentials.AnonymousCredentials(),
-            credentials_file="credentials.json",
+            credentials_file="credentials.json"
         )
 
 
 def test_contexts_base_transport():
     # Instantiate the base transport.
-    with mock.patch(
-        "google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsTransport.__init__"
-    ) as Transport:
+    with mock.patch('google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsTransport.__init__') as Transport:
         Transport.return_value = None
         transport = transports.ContextsTransport(
             credentials=credentials.AnonymousCredentials(),
@@ -1896,13 +2107,13 @@ def test_contexts_base_transport():
     # Every method on the transport should just blindly
     # raise NotImplementedError.
     methods = (
-        "list_contexts",
-        "get_context",
-        "create_context",
-        "update_context",
-        "delete_context",
-        "delete_all_contexts",
-    )
+        'list_contexts',
+        'get_context',
+        'create_context',
+        'update_context',
+        'delete_context',
+        'delete_all_contexts',
+        )
     for method in methods:
         with pytest.raises(NotImplementedError):
             getattr(transport, method)(request=object())
@@ -1910,21 +2121,16 @@ def test_contexts_base_transport():
 
 def test_contexts_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
-    with mock.patch.object(
-        auth, "load_credentials_from_file"
-    ) as load_creds, mock.patch(
-        "google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsTransport._prep_wrapped_messages"
-    ) as Transport:
+    with mock.patch.object(auth, 'load_credentials_from_file') as load_creds, mock.patch('google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsTransport._prep_wrapped_messages') as Transport:
         Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
         transport = transports.ContextsTransport(
-            credentials_file="credentials.json", quota_project_id="octopus",
+            credentials_file="credentials.json",
+            quota_project_id="octopus",
         )
-        load_creds.assert_called_once_with(
-            "credentials.json",
-            scopes=(
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/dialogflow",
+        load_creds.assert_called_once_with("credentials.json", scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/dialogflow',
             ),
             quota_project_id="octopus",
         )
@@ -1932,9 +2138,7 @@ def test_contexts_base_transport_with_credentials_file():
 
 def test_contexts_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
-    with mock.patch.object(auth, "default") as adc, mock.patch(
-        "google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsTransport._prep_wrapped_messages"
-    ) as Transport:
+    with mock.patch.object(auth, 'default') as adc, mock.patch('google.cloud.dialogflow_v2beta1.services.contexts.transports.ContextsTransport._prep_wrapped_messages') as Transport:
         Transport.return_value = None
         adc.return_value = (credentials.AnonymousCredentials(), None)
         transport = transports.ContextsTransport()
@@ -1943,14 +2147,12 @@ def test_contexts_base_transport_with_adc():
 
 def test_contexts_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, 'default') as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
         ContextsClient()
-        adc.assert_called_once_with(
-            scopes=(
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/dialogflow",
-            ),
+        adc.assert_called_once_with(scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/dialogflow',),
             quota_project_id=None,
         )
 
@@ -1958,25 +2160,20 @@ def test_contexts_auth_adc():
 def test_contexts_transport_auth_adc():
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, 'default') as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        transports.ContextsGrpcTransport(
-            host="squid.clam.whelk", quota_project_id="octopus"
-        )
-        adc.assert_called_once_with(
-            scopes=(
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/dialogflow",
-            ),
+        transports.ContextsGrpcTransport(host="squid.clam.whelk", quota_project_id="octopus")
+        adc.assert_called_once_with(scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/dialogflow',),
             quota_project_id="octopus",
         )
 
 
-@pytest.mark.parametrize(
-    "transport_class",
-    [transports.ContextsGrpcTransport, transports.ContextsGrpcAsyncIOTransport],
-)
-def test_contexts_grpc_transport_client_cert_source_for_mtls(transport_class):
+@pytest.mark.parametrize("transport_class", [transports.ContextsGrpcTransport, transports.ContextsGrpcAsyncIOTransport])
+def test_contexts_grpc_transport_client_cert_source_for_mtls(
+    transport_class
+):
     cred = credentials.AnonymousCredentials()
 
     # Check ssl_channel_credentials is used if provided.
@@ -1985,15 +2182,15 @@ def test_contexts_grpc_transport_client_cert_source_for_mtls(transport_class):
         transport_class(
             host="squid.clam.whelk",
             credentials=cred,
-            ssl_channel_credentials=mock_ssl_channel_creds,
+            ssl_channel_credentials=mock_ssl_channel_creds
         )
         mock_create_channel.assert_called_once_with(
             "squid.clam.whelk:443",
             credentials=cred,
             credentials_file=None,
             scopes=(
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/dialogflow",
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/dialogflow',
             ),
             ssl_credentials=mock_ssl_channel_creds,
             quota_project_id=None,
@@ -2009,40 +2206,38 @@ def test_contexts_grpc_transport_client_cert_source_for_mtls(transport_class):
         with mock.patch("grpc.ssl_channel_credentials") as mock_ssl_cred:
             transport_class(
                 credentials=cred,
-                client_cert_source_for_mtls=client_cert_source_callback,
+                client_cert_source_for_mtls=client_cert_source_callback
             )
             expected_cert, expected_key = client_cert_source_callback()
             mock_ssl_cred.assert_called_once_with(
-                certificate_chain=expected_cert, private_key=expected_key
+                certificate_chain=expected_cert,
+                private_key=expected_key
             )
 
 
 def test_contexts_host_no_port():
     client = ContextsClient(
         credentials=credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(
-            api_endpoint="dialogflow.googleapis.com"
-        ),
+        client_options=client_options.ClientOptions(api_endpoint='dialogflow.googleapis.com'),
     )
-    assert client.transport._host == "dialogflow.googleapis.com:443"
+    assert client.transport._host == 'dialogflow.googleapis.com:443'
 
 
 def test_contexts_host_with_port():
     client = ContextsClient(
         credentials=credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(
-            api_endpoint="dialogflow.googleapis.com:8000"
-        ),
+        client_options=client_options.ClientOptions(api_endpoint='dialogflow.googleapis.com:8000'),
     )
-    assert client.transport._host == "dialogflow.googleapis.com:8000"
+    assert client.transport._host == 'dialogflow.googleapis.com:8000'
 
 
 def test_contexts_grpc_transport_channel():
-    channel = grpc.secure_channel("http://localhost/", grpc.local_channel_credentials())
+    channel = grpc.secure_channel('http://localhost/', grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
     transport = transports.ContextsGrpcTransport(
-        host="squid.clam.whelk", channel=channel,
+        host="squid.clam.whelk",
+        channel=channel,
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
@@ -2050,11 +2245,12 @@ def test_contexts_grpc_transport_channel():
 
 
 def test_contexts_grpc_asyncio_transport_channel():
-    channel = aio.secure_channel("http://localhost/", grpc.local_channel_credentials())
+    channel = aio.secure_channel('http://localhost/', grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
     transport = transports.ContextsGrpcAsyncIOTransport(
-        host="squid.clam.whelk", channel=channel,
+        host="squid.clam.whelk",
+        channel=channel,
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
@@ -2063,17 +2259,12 @@ def test_contexts_grpc_asyncio_transport_channel():
 
 # Remove this test when deprecated arguments (api_mtls_endpoint, client_cert_source) are
 # removed from grpc/grpc_asyncio transport constructor.
-@pytest.mark.parametrize(
-    "transport_class",
-    [transports.ContextsGrpcTransport, transports.ContextsGrpcAsyncIOTransport],
-)
-def test_contexts_transport_channel_mtls_with_client_cert_source(transport_class):
-    with mock.patch(
-        "grpc.ssl_channel_credentials", autospec=True
-    ) as grpc_ssl_channel_cred:
-        with mock.patch.object(
-            transport_class, "create_channel"
-        ) as grpc_create_channel:
+@pytest.mark.parametrize("transport_class", [transports.ContextsGrpcTransport, transports.ContextsGrpcAsyncIOTransport])
+def test_contexts_transport_channel_mtls_with_client_cert_source(
+    transport_class
+):
+    with mock.patch("grpc.ssl_channel_credentials", autospec=True) as grpc_ssl_channel_cred:
+        with mock.patch.object(transport_class, "create_channel") as grpc_create_channel:
             mock_ssl_cred = mock.Mock()
             grpc_ssl_channel_cred.return_value = mock_ssl_cred
 
@@ -2082,7 +2273,7 @@ def test_contexts_transport_channel_mtls_with_client_cert_source(transport_class
 
             cred = credentials.AnonymousCredentials()
             with pytest.warns(DeprecationWarning):
-                with mock.patch.object(auth, "default") as adc:
+                with mock.patch.object(auth, 'default') as adc:
                     adc.return_value = (cred, None)
                     transport = transport_class(
                         host="squid.clam.whelk",
@@ -2099,8 +2290,8 @@ def test_contexts_transport_channel_mtls_with_client_cert_source(transport_class
                 credentials=cred,
                 credentials_file=None,
                 scopes=(
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/dialogflow",
+                    'https://www.googleapis.com/auth/cloud-platform',
+                    'https://www.googleapis.com/auth/dialogflow',
                 ),
                 ssl_credentials=mock_ssl_cred,
                 quota_project_id=None,
@@ -2115,20 +2306,17 @@ def test_contexts_transport_channel_mtls_with_client_cert_source(transport_class
 
 # Remove this test when deprecated arguments (api_mtls_endpoint, client_cert_source) are
 # removed from grpc/grpc_asyncio transport constructor.
-@pytest.mark.parametrize(
-    "transport_class",
-    [transports.ContextsGrpcTransport, transports.ContextsGrpcAsyncIOTransport],
-)
-def test_contexts_transport_channel_mtls_with_adc(transport_class):
+@pytest.mark.parametrize("transport_class", [transports.ContextsGrpcTransport, transports.ContextsGrpcAsyncIOTransport])
+def test_contexts_transport_channel_mtls_with_adc(
+    transport_class
+):
     mock_ssl_cred = mock.Mock()
     with mock.patch.multiple(
         "google.auth.transport.grpc.SslCredentials",
         __init__=mock.Mock(return_value=None),
         ssl_credentials=mock.PropertyMock(return_value=mock_ssl_cred),
     ):
-        with mock.patch.object(
-            transport_class, "create_channel"
-        ) as grpc_create_channel:
+        with mock.patch.object(transport_class, "create_channel") as grpc_create_channel:
             mock_grpc_channel = mock.Mock()
             grpc_create_channel.return_value = mock_grpc_channel
             mock_cred = mock.Mock()
@@ -2146,8 +2334,8 @@ def test_contexts_transport_channel_mtls_with_adc(transport_class):
                 credentials=mock_cred,
                 credentials_file=None,
                 scopes=(
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/dialogflow",
+                    'https://www.googleapis.com/auth/cloud-platform',
+                    'https://www.googleapis.com/auth/dialogflow',
                 ),
                 ssl_credentials=mock_ssl_cred,
                 quota_project_id=None,
@@ -2164,18 +2352,17 @@ def test_context_path():
     session = "clam"
     context = "whelk"
 
-    expected = "projects/{project}/agent/sessions/{session}/contexts/{context}".format(
-        project=project, session=session, context=context,
-    )
+    expected = "projects/{project}/agent/sessions/{session}/contexts/{context}".format(project=project, session=session, context=context, )
     actual = ContextsClient.context_path(project, session, context)
     assert expected == actual
 
 
 def test_parse_context_path():
     expected = {
-        "project": "octopus",
-        "session": "oyster",
-        "context": "nudibranch",
+    "project": "octopus",
+    "session": "oyster",
+    "context": "nudibranch",
+
     }
     path = ContextsClient.context_path(**expected)
 
@@ -2183,20 +2370,18 @@ def test_parse_context_path():
     actual = ContextsClient.parse_context_path(path)
     assert expected == actual
 
-
 def test_common_billing_account_path():
     billing_account = "cuttlefish"
 
-    expected = "billingAccounts/{billing_account}".format(
-        billing_account=billing_account,
-    )
+    expected = "billingAccounts/{billing_account}".format(billing_account=billing_account, )
     actual = ContextsClient.common_billing_account_path(billing_account)
     assert expected == actual
 
 
 def test_parse_common_billing_account_path():
     expected = {
-        "billing_account": "mussel",
+    "billing_account": "mussel",
+
     }
     path = ContextsClient.common_billing_account_path(**expected)
 
@@ -2204,18 +2389,18 @@ def test_parse_common_billing_account_path():
     actual = ContextsClient.parse_common_billing_account_path(path)
     assert expected == actual
 
-
 def test_common_folder_path():
     folder = "winkle"
 
-    expected = "folders/{folder}".format(folder=folder,)
+    expected = "folders/{folder}".format(folder=folder, )
     actual = ContextsClient.common_folder_path(folder)
     assert expected == actual
 
 
 def test_parse_common_folder_path():
     expected = {
-        "folder": "nautilus",
+    "folder": "nautilus",
+
     }
     path = ContextsClient.common_folder_path(**expected)
 
@@ -2223,18 +2408,18 @@ def test_parse_common_folder_path():
     actual = ContextsClient.parse_common_folder_path(path)
     assert expected == actual
 
-
 def test_common_organization_path():
     organization = "scallop"
 
-    expected = "organizations/{organization}".format(organization=organization,)
+    expected = "organizations/{organization}".format(organization=organization, )
     actual = ContextsClient.common_organization_path(organization)
     assert expected == actual
 
 
 def test_parse_common_organization_path():
     expected = {
-        "organization": "abalone",
+    "organization": "abalone",
+
     }
     path = ContextsClient.common_organization_path(**expected)
 
@@ -2242,18 +2427,18 @@ def test_parse_common_organization_path():
     actual = ContextsClient.parse_common_organization_path(path)
     assert expected == actual
 
-
 def test_common_project_path():
     project = "squid"
 
-    expected = "projects/{project}".format(project=project,)
+    expected = "projects/{project}".format(project=project, )
     actual = ContextsClient.common_project_path(project)
     assert expected == actual
 
 
 def test_parse_common_project_path():
     expected = {
-        "project": "clam",
+    "project": "clam",
+
     }
     path = ContextsClient.common_project_path(**expected)
 
@@ -2261,22 +2446,20 @@ def test_parse_common_project_path():
     actual = ContextsClient.parse_common_project_path(path)
     assert expected == actual
 
-
 def test_common_location_path():
     project = "whelk"
     location = "octopus"
 
-    expected = "projects/{project}/locations/{location}".format(
-        project=project, location=location,
-    )
+    expected = "projects/{project}/locations/{location}".format(project=project, location=location, )
     actual = ContextsClient.common_location_path(project, location)
     assert expected == actual
 
 
 def test_parse_common_location_path():
     expected = {
-        "project": "oyster",
-        "location": "nudibranch",
+    "project": "oyster",
+    "location": "nudibranch",
+
     }
     path = ContextsClient.common_location_path(**expected)
 
@@ -2288,19 +2471,17 @@ def test_parse_common_location_path():
 def test_client_withDEFAULT_CLIENT_INFO():
     client_info = gapic_v1.client_info.ClientInfo()
 
-    with mock.patch.object(
-        transports.ContextsTransport, "_prep_wrapped_messages"
-    ) as prep:
+    with mock.patch.object(transports.ContextsTransport, '_prep_wrapped_messages') as prep:
         client = ContextsClient(
-            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+            credentials=credentials.AnonymousCredentials(),
+            client_info=client_info,
         )
         prep.assert_called_once_with(client_info)
 
-    with mock.patch.object(
-        transports.ContextsTransport, "_prep_wrapped_messages"
-    ) as prep:
+    with mock.patch.object(transports.ContextsTransport, '_prep_wrapped_messages') as prep:
         transport_class = ContextsClient.get_transport_class()
         transport = transport_class(
-            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+            credentials=credentials.AnonymousCredentials(),
+            client_info=client_info,
         )
         prep.assert_called_once_with(client_info)

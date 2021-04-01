@@ -18,10 +18,10 @@
 import warnings
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import grpc_helpers   # type: ignore
+from google.api_core import gapic_v1       # type: ignore
+from google import auth                    # type: ignore
+from google.auth import credentials        # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 import grpc  # type: ignore
@@ -44,24 +44,21 @@ class EnvironmentsGrpcTransport(EnvironmentsTransport):
     It sends protocol buffers over the wire using gRPC (which is built on
     top of HTTP/2); the ``grpcio`` package must be installed.
     """
-
     _stubs: Dict[str, Callable]
 
-    def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Sequence[str] = None,
-        channel: grpc.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        ssl_channel_credentials: grpc.ChannelCredentials = None,
-        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id: Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: str = None,
+            scopes: Sequence[str] = None,
+            channel: grpc.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            ssl_channel_credentials: grpc.ChannelCredentials = None,
+            client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id: Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -172,15 +169,13 @@ class EnvironmentsGrpcTransport(EnvironmentsTransport):
         self._prep_wrapped_messages(client_info)
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> grpc.Channel:
+    def create_channel(cls,
+                       host: str = 'dialogflow.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: str = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
             host (Optional[str]): The host for the channel to use.
@@ -213,7 +208,7 @@ class EnvironmentsGrpcTransport(EnvironmentsTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
     @property
@@ -223,11 +218,9 @@ class EnvironmentsGrpcTransport(EnvironmentsTransport):
         return self._grpc_channel
 
     @property
-    def list_environments(
-        self,
-    ) -> Callable[
-        [environment.ListEnvironmentsRequest], environment.ListEnvironmentsResponse
-    ]:
+    def list_environments(self) -> Callable[
+            [environment.ListEnvironmentsRequest],
+            environment.ListEnvironmentsResponse]:
         r"""Return a callable for the list environments method over gRPC.
 
         Returns the list of all non-draft environments of the
@@ -243,13 +236,15 @@ class EnvironmentsGrpcTransport(EnvironmentsTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_environments" not in self._stubs:
-            self._stubs["list_environments"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.Environments/ListEnvironments",
+        if 'list_environments' not in self._stubs:
+            self._stubs['list_environments'] = self.grpc_channel.unary_unary(
+                '/google.cloud.dialogflow.v2.Environments/ListEnvironments',
                 request_serializer=environment.ListEnvironmentsRequest.serialize,
                 response_deserializer=environment.ListEnvironmentsResponse.deserialize,
             )
-        return self._stubs["list_environments"]
+        return self._stubs['list_environments']
 
 
-__all__ = ("EnvironmentsGrpcTransport",)
+__all__ = (
+    'EnvironmentsGrpcTransport',
+)

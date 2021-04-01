@@ -23,14 +23,14 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.auth.transport import mtls  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+from google.api_core import exceptions                            # type: ignore
+from google.api_core import gapic_v1                              # type: ignore
+from google.api_core import retry as retries                      # type: ignore
+from google.auth import credentials                               # type: ignore
+from google.auth.transport import mtls                            # type: ignore
+from google.auth.transport.grpc import SslCredentials             # type: ignore
+from google.auth.exceptions import MutualTLSChannelError          # type: ignore
+from google.oauth2 import service_account                         # type: ignore
 
 from google.cloud.dialogflow_v2beta1.services.knowledge_bases import pagers
 from google.cloud.dialogflow_v2beta1.types import knowledge_base
@@ -49,14 +49,13 @@ class KnowledgeBasesClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[KnowledgeBasesTransport]]
+    _transport_registry['grpc'] = KnowledgeBasesGrpcTransport
+    _transport_registry['grpc_asyncio'] = KnowledgeBasesGrpcAsyncIOTransport
 
-    _transport_registry = (
-        OrderedDict()
-    )  # type: Dict[str, Type[KnowledgeBasesTransport]]
-    _transport_registry["grpc"] = KnowledgeBasesGrpcTransport
-    _transport_registry["grpc_asyncio"] = KnowledgeBasesGrpcAsyncIOTransport
-
-    def get_transport_class(cls, label: str = None,) -> Type[KnowledgeBasesTransport]:
+    def get_transport_class(cls,
+            label: str = None,
+        ) -> Type[KnowledgeBasesTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -109,7 +108,7 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = "dialogflow.googleapis.com"
+    DEFAULT_ENDPOINT = 'dialogflow.googleapis.com'
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -144,8 +143,9 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         Returns:
             KnowledgeBasesClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(filename)
-        kwargs["credentials"] = credentials
+        credentials = service_account.Credentials.from_service_account_file(
+            filename)
+        kwargs['credentials'] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
@@ -160,87 +160,77 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         return self._transport
 
     @staticmethod
-    def knowledge_base_path(project: str, knowledge_base: str,) -> str:
+    def knowledge_base_path(project: str,knowledge_base: str,) -> str:
         """Return a fully-qualified knowledge_base string."""
-        return "projects/{project}/knowledgeBases/{knowledge_base}".format(
-            project=project, knowledge_base=knowledge_base,
-        )
+        return "projects/{project}/knowledgeBases/{knowledge_base}".format(project=project, knowledge_base=knowledge_base, )
 
     @staticmethod
-    def parse_knowledge_base_path(path: str) -> Dict[str, str]:
+    def parse_knowledge_base_path(path: str) -> Dict[str,str]:
         """Parse a knowledge_base path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)$", path
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/knowledgeBases/(?P<knowledge_base>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_billing_account_path(billing_account: str,) -> str:
+    def common_billing_account_path(billing_account: str, ) -> str:
         """Return a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(
-            billing_account=billing_account,
-        )
+        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
 
     @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
+    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
         """Parse a billing_account path into its component segments."""
         m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_folder_path(folder: str,) -> str:
+    def common_folder_path(folder: str, ) -> str:
         """Return a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder,)
+        return "folders/{folder}".format(folder=folder, )
 
     @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str, str]:
+    def parse_common_folder_path(path: str) -> Dict[str,str]:
         """Parse a folder path into its component segments."""
         m = re.match(r"^folders/(?P<folder>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_organization_path(organization: str,) -> str:
+    def common_organization_path(organization: str, ) -> str:
         """Return a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization,)
+        return "organizations/{organization}".format(organization=organization, )
 
     @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str, str]:
+    def parse_common_organization_path(path: str) -> Dict[str,str]:
         """Parse a organization path into its component segments."""
         m = re.match(r"^organizations/(?P<organization>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_project_path(project: str,) -> str:
+    def common_project_path(project: str, ) -> str:
         """Return a fully-qualified project string."""
-        return "projects/{project}".format(project=project,)
+        return "projects/{project}".format(project=project, )
 
     @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str, str]:
+    def parse_common_project_path(path: str) -> Dict[str,str]:
         """Parse a project path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_location_path(project: str, location: str,) -> str:
+    def common_location_path(project: str, location: str, ) -> str:
         """Return a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(
-            project=project, location=location,
-        )
+        return "projects/{project}/locations/{location}".format(project=project, location=location, )
 
     @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str, str]:
+    def parse_common_location_path(path: str) -> Dict[str,str]:
         """Parse a location path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(
-        self,
-        *,
-        credentials: Optional[credentials.Credentials] = None,
-        transport: Union[str, KnowledgeBasesTransport, None] = None,
-        client_options: Optional[client_options_lib.ClientOptions] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: Optional[credentials.Credentials] = None,
+            transport: Union[str, KnowledgeBasesTransport, None] = None,
+            client_options: Optional[client_options_lib.ClientOptions] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the knowledge bases client.
 
         Args:
@@ -284,9 +274,7 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
             client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(
-            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
-        )
+        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
 
         client_cert_source_func = None
         is_mtls = False
@@ -296,9 +284,7 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
                 client_cert_source_func = client_options.client_cert_source
             else:
                 is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = (
-                    mtls.default_client_cert_source() if is_mtls else None
-                )
+                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
 
         # Figure out which api endpoint to use.
         if client_options.api_endpoint is not None:
@@ -310,9 +296,7 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
             elif use_mtls_env == "always":
                 api_endpoint = self.DEFAULT_MTLS_ENDPOINT
             elif use_mtls_env == "auto":
-                api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
-                )
+                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
             else:
                 raise MutualTLSChannelError(
                     "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
@@ -324,10 +308,8 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         if isinstance(transport, KnowledgeBasesTransport):
             # transport is a KnowledgeBasesTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its credentials directly."
-                )
+                raise ValueError('When providing a transport instance, '
+                                 'provide its credentials directly.')
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -346,15 +328,14 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
                 client_info=client_info,
             )
 
-    def list_knowledge_bases(
-        self,
-        request: knowledge_base.ListKnowledgeBasesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListKnowledgeBasesPager:
+    def list_knowledge_bases(self,
+            request: knowledge_base.ListKnowledgeBasesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListKnowledgeBasesPager:
         r"""Returns the list of all knowledge bases of the specified agent.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -393,10 +374,8 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a knowledge_base.ListKnowledgeBasesRequest.
@@ -418,30 +397,39 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListKnowledgeBasesPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_knowledge_base(
-        self,
-        request: knowledge_base.GetKnowledgeBaseRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> knowledge_base.KnowledgeBase:
+    def get_knowledge_base(self,
+            request: knowledge_base.GetKnowledgeBaseRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> knowledge_base.KnowledgeBase:
         r"""Retrieves the specified knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -487,10 +475,8 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a knowledge_base.GetKnowledgeBaseRequest.
@@ -512,25 +498,31 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def create_knowledge_base(
-        self,
-        request: gcd_knowledge_base.CreateKnowledgeBaseRequest = None,
-        *,
-        parent: str = None,
-        knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_knowledge_base.KnowledgeBase:
+    def create_knowledge_base(self,
+            request: gcd_knowledge_base.CreateKnowledgeBaseRequest = None,
+            *,
+            parent: str = None,
+            knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_knowledge_base.KnowledgeBase:
         r"""Creates a knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -583,10 +575,8 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, knowledge_base])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_knowledge_base.CreateKnowledgeBaseRequest.
@@ -610,24 +600,30 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def delete_knowledge_base(
-        self,
-        request: knowledge_base.DeleteKnowledgeBaseRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    def delete_knowledge_base(self,
+            request: knowledge_base.DeleteKnowledgeBaseRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -657,10 +653,8 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a knowledge_base.DeleteKnowledgeBaseRequest.
@@ -682,24 +676,28 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    def update_knowledge_base(
-        self,
-        request: gcd_knowledge_base.UpdateKnowledgeBaseRequest = None,
-        *,
-        knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_knowledge_base.KnowledgeBase:
+    def update_knowledge_base(self,
+            request: gcd_knowledge_base.UpdateKnowledgeBaseRequest = None,
+            *,
+            knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_knowledge_base.KnowledgeBase:
         r"""Updates the specified knowledge base.
 
         Note: The ``projects.agent.knowledgeBases`` resource is
@@ -752,10 +750,8 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([knowledge_base, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a gcd_knowledge_base.UpdateKnowledgeBaseRequest.
@@ -779,26 +775,38 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("knowledge_base.name", request.knowledge_base.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('knowledge_base.name', request.knowledge_base.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("KnowledgeBasesClient",)
+__all__ = (
+    'KnowledgeBasesClient',
+)

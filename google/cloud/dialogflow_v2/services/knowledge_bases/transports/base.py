@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
+from google.api_core import gapic_v1    # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
@@ -33,32 +33,30 @@ from google.protobuf import empty_pb2 as empty  # type: ignore
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
-
 class KnowledgeBasesTransport(abc.ABC):
     """Abstract transport class for KnowledgeBases."""
 
     AUTH_SCOPES = (
-        "https://www.googleapis.com/auth/cloud-platform",
-        "https://www.googleapis.com/auth/dialogflow",
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     )
 
     def __init__(
-        self,
-        *,
-        host: str = "dialogflow.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: typing.Optional[str] = None,
-        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-        quota_project_id: typing.Optional[str] = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-        **kwargs,
-    ) -> None:
+            self, *,
+            host: str = 'dialogflow.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: typing.Optional[str] = None,
+            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+            quota_project_id: typing.Optional[str] = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            **kwargs,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -81,8 +79,8 @@ class KnowledgeBasesTransport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ":" not in host:
-            host += ":443"
+        if ':' not in host:
+            host += ':443'
         self._host = host
 
         # Save the scopes.
@@ -91,19 +89,17 @@ class KnowledgeBasesTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs(
-                "'credentials_file' and 'credentials' are mutually exclusive"
-            )
+            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
-            )
+                                credentials_file,
+                                scopes=self._scopes,
+                                quota_project_id=quota_project_id
+                            )
 
         elif credentials is None:
-            credentials, _ = auth.default(
-                scopes=self._scopes, quota_project_id=quota_project_id
-            )
+            credentials, _ = auth.default(scopes=self._scopes, quota_project_id=quota_project_id)
 
         # Save the credentials.
         self._credentials = credentials
@@ -117,7 +113,9 @@ class KnowledgeBasesTransport(abc.ABC):
                 client_info=client_info,
             ),
             self.get_knowledge_base: gapic_v1.method.wrap_method(
-                self.get_knowledge_base, default_timeout=None, client_info=client_info,
+                self.get_knowledge_base,
+                default_timeout=None,
+                client_info=client_info,
             ),
             self.create_knowledge_base: gapic_v1.method.wrap_method(
                 self.create_knowledge_base,
@@ -134,63 +132,55 @@ class KnowledgeBasesTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+
         }
 
     @property
-    def list_knowledge_bases(
-        self,
-    ) -> typing.Callable[
-        [knowledge_base.ListKnowledgeBasesRequest],
-        typing.Union[
-            knowledge_base.ListKnowledgeBasesResponse,
-            typing.Awaitable[knowledge_base.ListKnowledgeBasesResponse],
-        ],
-    ]:
+    def list_knowledge_bases(self) -> typing.Callable[
+            [knowledge_base.ListKnowledgeBasesRequest],
+            typing.Union[
+                knowledge_base.ListKnowledgeBasesResponse,
+                typing.Awaitable[knowledge_base.ListKnowledgeBasesResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_knowledge_base(
-        self,
-    ) -> typing.Callable[
-        [knowledge_base.GetKnowledgeBaseRequest],
-        typing.Union[
-            knowledge_base.KnowledgeBase, typing.Awaitable[knowledge_base.KnowledgeBase]
-        ],
-    ]:
+    def get_knowledge_base(self) -> typing.Callable[
+            [knowledge_base.GetKnowledgeBaseRequest],
+            typing.Union[
+                knowledge_base.KnowledgeBase,
+                typing.Awaitable[knowledge_base.KnowledgeBase]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def create_knowledge_base(
-        self,
-    ) -> typing.Callable[
-        [gcd_knowledge_base.CreateKnowledgeBaseRequest],
-        typing.Union[
-            gcd_knowledge_base.KnowledgeBase,
-            typing.Awaitable[gcd_knowledge_base.KnowledgeBase],
-        ],
-    ]:
+    def create_knowledge_base(self) -> typing.Callable[
+            [gcd_knowledge_base.CreateKnowledgeBaseRequest],
+            typing.Union[
+                gcd_knowledge_base.KnowledgeBase,
+                typing.Awaitable[gcd_knowledge_base.KnowledgeBase]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def delete_knowledge_base(
-        self,
-    ) -> typing.Callable[
-        [knowledge_base.DeleteKnowledgeBaseRequest],
-        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
-    ]:
+    def delete_knowledge_base(self) -> typing.Callable[
+            [knowledge_base.DeleteKnowledgeBaseRequest],
+            typing.Union[
+                empty.Empty,
+                typing.Awaitable[empty.Empty]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def update_knowledge_base(
-        self,
-    ) -> typing.Callable[
-        [gcd_knowledge_base.UpdateKnowledgeBaseRequest],
-        typing.Union[
-            gcd_knowledge_base.KnowledgeBase,
-            typing.Awaitable[gcd_knowledge_base.KnowledgeBase],
-        ],
-    ]:
+    def update_knowledge_base(self) -> typing.Callable[
+            [gcd_knowledge_base.UpdateKnowledgeBaseRequest],
+            typing.Union[
+                gcd_knowledge_base.KnowledgeBase,
+                typing.Awaitable[gcd_knowledge_base.KnowledgeBase]
+            ]]:
         raise NotImplementedError()
 
 
-__all__ = ("KnowledgeBasesTransport",)
+__all__ = (
+    'KnowledgeBasesTransport',
+)

@@ -24,15 +24,15 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.dialogflow.v2",
+    package='google.cloud.dialogflow.v2',
     manifest={
-        "AnswerRecord",
-        "ListAnswerRecordsRequest",
-        "ListAnswerRecordsResponse",
-        "UpdateAnswerRecordRequest",
-        "AnswerFeedback",
-        "AgentAssistantFeedback",
-        "AgentAssistantRecord",
+        'AnswerRecord',
+        'ListAnswerRecordsRequest',
+        'ListAnswerRecordsResponse',
+        'UpdateAnswerRecordRequest',
+        'AnswerFeedback',
+        'AgentAssistantFeedback',
+        'AgentAssistantRecord',
     },
 )
 
@@ -83,10 +83,12 @@ class AnswerRecord(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    answer_feedback = proto.Field(proto.MESSAGE, number=2, message="AnswerFeedback",)
+    answer_feedback = proto.Field(proto.MESSAGE, number=2,
+        message='AnswerFeedback',
+    )
 
-    agent_assistant_record = proto.Field(
-        proto.MESSAGE, number=4, oneof="record", message="AgentAssistantRecord",
+    agent_assistant_record = proto.Field(proto.MESSAGE, number=4, oneof='record',
+        message='AgentAssistantRecord',
     )
 
 
@@ -147,8 +149,8 @@ class ListAnswerRecordsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    answer_records = proto.RepeatedField(
-        proto.MESSAGE, number=1, message="AnswerRecord",
+    answer_records = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='AnswerRecord',
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -166,9 +168,13 @@ class UpdateAnswerRecordRequest(proto.Message):
             get updated.
     """
 
-    answer_record = proto.Field(proto.MESSAGE, number=1, message="AnswerRecord",)
+    answer_record = proto.Field(proto.MESSAGE, number=1,
+        message='AnswerRecord',
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class AnswerFeedback(proto.Message):
@@ -192,7 +198,6 @@ class AnswerFeedback(proto.Message):
         display_time (google.protobuf.timestamp_pb2.Timestamp):
             Time when the answer/item was displayed.
     """
-
     class CorrectnessLevel(proto.Enum):
         r"""The correctness level of an answer."""
         CORRECTNESS_LEVEL_UNSPECIFIED = 0
@@ -200,22 +205,25 @@ class AnswerFeedback(proto.Message):
         PARTIALLY_CORRECT = 2
         FULLY_CORRECT = 3
 
-    correctness_level = proto.Field(proto.ENUM, number=1, enum=CorrectnessLevel,)
+    correctness_level = proto.Field(proto.ENUM, number=1,
+        enum=CorrectnessLevel,
+    )
 
-    agent_assistant_detail_feedback = proto.Field(
-        proto.MESSAGE,
-        number=2,
-        oneof="detail_feedback",
-        message="AgentAssistantFeedback",
+    agent_assistant_detail_feedback = proto.Field(proto.MESSAGE, number=2, oneof='detail_feedback',
+        message='AgentAssistantFeedback',
     )
 
     clicked = proto.Field(proto.BOOL, number=3)
 
-    click_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
+    click_time = proto.Field(proto.MESSAGE, number=5,
+        message=timestamp.Timestamp,
+    )
 
     displayed = proto.Field(proto.BOOL, number=4)
 
-    display_time = proto.Field(proto.MESSAGE, number=6, message=timestamp.Timestamp,)
+    display_time = proto.Field(proto.MESSAGE, number=6,
+        message=timestamp.Timestamp,
+    )
 
 
 class AgentAssistantFeedback(proto.Message):
@@ -253,7 +261,6 @@ class AgentAssistantFeedback(proto.Message):
             is
             [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
     """
-
     class AnswerRelevance(proto.Enum):
         r"""Relevance of an answer."""
         ANSWER_RELEVANCE_UNSPECIFIED = 0
@@ -272,11 +279,17 @@ class AgentAssistantFeedback(proto.Message):
         INEFFICIENT = 1
         EFFICIENT = 2
 
-    answer_relevance = proto.Field(proto.ENUM, number=1, enum=AnswerRelevance,)
+    answer_relevance = proto.Field(proto.ENUM, number=1,
+        enum=AnswerRelevance,
+    )
 
-    document_correctness = proto.Field(proto.ENUM, number=2, enum=DocumentCorrectness,)
+    document_correctness = proto.Field(proto.ENUM, number=2,
+        enum=DocumentCorrectness,
+    )
 
-    document_efficiency = proto.Field(proto.ENUM, number=3, enum=DocumentEfficiency,)
+    document_efficiency = proto.Field(proto.ENUM, number=3,
+        enum=DocumentEfficiency,
+    )
 
 
 class AgentAssistantRecord(proto.Message):
@@ -289,12 +302,12 @@ class AgentAssistantRecord(proto.Message):
             Output only. The FAQ answer.
     """
 
-    article_suggestion_answer = proto.Field(
-        proto.MESSAGE, number=5, oneof="answer", message=participant.ArticleAnswer,
+    article_suggestion_answer = proto.Field(proto.MESSAGE, number=5, oneof='answer',
+        message=participant.ArticleAnswer,
     )
 
-    faq_answer = proto.Field(
-        proto.MESSAGE, number=6, oneof="answer", message=participant.FaqAnswer,
+    faq_answer = proto.Field(proto.MESSAGE, number=6, oneof='answer',
+        message=participant.FaqAnswer,
     )
 
 

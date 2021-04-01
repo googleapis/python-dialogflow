@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.api_core import operation  # type: ignore
 from google.api_core import operation_async  # type: ignore
@@ -56,20 +56,14 @@ class IntentsAsyncClient:
     intent_path = staticmethod(IntentsClient.intent_path)
     parse_intent_path = staticmethod(IntentsClient.parse_intent_path)
 
-    common_billing_account_path = staticmethod(
-        IntentsClient.common_billing_account_path
-    )
-    parse_common_billing_account_path = staticmethod(
-        IntentsClient.parse_common_billing_account_path
-    )
+    common_billing_account_path = staticmethod(IntentsClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(IntentsClient.parse_common_billing_account_path)
 
     common_folder_path = staticmethod(IntentsClient.common_folder_path)
     parse_common_folder_path = staticmethod(IntentsClient.parse_common_folder_path)
 
     common_organization_path = staticmethod(IntentsClient.common_organization_path)
-    parse_common_organization_path = staticmethod(
-        IntentsClient.parse_common_organization_path
-    )
+    parse_common_organization_path = staticmethod(IntentsClient.parse_common_organization_path)
 
     common_project_path = staticmethod(IntentsClient.common_project_path)
     parse_common_project_path = staticmethod(IntentsClient.parse_common_project_path)
@@ -118,18 +112,14 @@ class IntentsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(
-        type(IntentsClient).get_transport_class, type(IntentsClient)
-    )
+    get_transport_class = functools.partial(type(IntentsClient).get_transport_class, type(IntentsClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, IntentsTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, IntentsTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the intents client.
 
         Args:
@@ -168,18 +158,18 @@ class IntentsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
+
         )
 
-    async def list_intents(
-        self,
-        request: intent.ListIntentsRequest = None,
-        *,
-        parent: str = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListIntentsAsyncPager:
+    async def list_intents(self,
+            request: intent.ListIntentsRequest = None,
+            *,
+            parent: str = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListIntentsAsyncPager:
         r"""Returns the list of all intents in the specified
         agent.
 
@@ -225,10 +215,8 @@ class IntentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = intent.ListIntentsRequest(request)
 
@@ -251,31 +239,40 @@ class IntentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListIntentsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_intent(
-        self,
-        request: intent.GetIntentRequest = None,
-        *,
-        name: str = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> intent.Intent:
+    async def get_intent(self,
+            request: intent.GetIntentRequest = None,
+            *,
+            name: str = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> intent.Intent:
         r"""Retrieves the specified intent.
 
         Args:
@@ -326,10 +323,8 @@ class IntentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = intent.GetIntentRequest(request)
 
@@ -352,26 +347,32 @@ class IntentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_intent(
-        self,
-        request: gcd_intent.CreateIntentRequest = None,
-        *,
-        parent: str = None,
-        intent: gcd_intent.Intent = None,
-        language_code: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_intent.Intent:
+    async def create_intent(self,
+            request: gcd_intent.CreateIntentRequest = None,
+            *,
+            parent: str = None,
+            intent: gcd_intent.Intent = None,
+            language_code: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_intent.Intent:
         r"""Creates an intent in the specified agent.
 
         Args:
@@ -427,10 +428,8 @@ class IntentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, intent, language_code])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_intent.CreateIntentRequest(request)
 
@@ -455,26 +454,32 @@ class IntentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def update_intent(
-        self,
-        request: gcd_intent.UpdateIntentRequest = None,
-        *,
-        intent: gcd_intent.Intent = None,
-        language_code: str = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_intent.Intent:
+    async def update_intent(self,
+            request: gcd_intent.UpdateIntentRequest = None,
+            *,
+            intent: gcd_intent.Intent = None,
+            language_code: str = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_intent.Intent:
         r"""Updates the specified intent.
 
         Args:
@@ -530,10 +535,8 @@ class IntentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([intent, language_code, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_intent.UpdateIntentRequest(request)
 
@@ -558,26 +561,30 @@ class IntentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("intent.name", request.intent.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('intent.name', request.intent.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def delete_intent(
-        self,
-        request: intent.DeleteIntentRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    async def delete_intent(self,
+            request: intent.DeleteIntentRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes the specified intent and its direct or
         indirect followup intents.
 
@@ -606,10 +613,8 @@ class IntentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = intent.DeleteIntentRequest(request)
 
@@ -630,25 +635,29 @@ class IntentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         await rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    async def batch_update_intents(
-        self,
-        request: intent.BatchUpdateIntentsRequest = None,
-        *,
-        parent: str = None,
-        intent_batch_uri: str = None,
-        intent_batch_inline: intent.IntentBatch = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def batch_update_intents(self,
+            request: intent.BatchUpdateIntentsRequest = None,
+            *,
+            parent: str = None,
+            intent_batch_uri: str = None,
+            intent_batch_inline: intent.IntentBatch = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Updates/Creates multiple intents in the specified agent.
 
         Operation <response:
@@ -704,10 +713,8 @@ class IntentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, intent_batch_uri, intent_batch_inline])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = intent.BatchUpdateIntentsRequest(request)
 
@@ -732,11 +739,18 @@ class IntentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -749,16 +763,15 @@ class IntentsAsyncClient:
         # Done; return the response.
         return response
 
-    async def batch_delete_intents(
-        self,
-        request: intent.BatchDeleteIntentsRequest = None,
-        *,
-        parent: str = None,
-        intents: Sequence[intent.Intent] = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def batch_delete_intents(self,
+            request: intent.BatchDeleteIntentsRequest = None,
+            *,
+            parent: str = None,
+            intents: Sequence[intent.Intent] = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Deletes intents in the specified agent.
 
         Operation <response:
@@ -813,10 +826,8 @@ class IntentsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, intents])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = intent.BatchDeleteIntentsRequest(request)
 
@@ -840,11 +851,18 @@ class IntentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -858,14 +876,21 @@ class IntentsAsyncClient:
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("IntentsAsyncClient",)
+__all__ = (
+    'IntentsAsyncClient',
+)

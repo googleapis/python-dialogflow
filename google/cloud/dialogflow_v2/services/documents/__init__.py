@@ -19,6 +19,6 @@ from .client import DocumentsClient
 from .async_client import DocumentsAsyncClient
 
 __all__ = (
-    "DocumentsClient",
-    "DocumentsAsyncClient",
+    'DocumentsClient',
+    'DocumentsAsyncClient',
 )

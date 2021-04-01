@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.cloud.dialogflow_v2.services.participants import pagers
 from google.cloud.dialogflow_v2.types import participant
@@ -58,34 +58,22 @@ class ParticipantsAsyncClient:
     participant_path = staticmethod(ParticipantsClient.participant_path)
     parse_participant_path = staticmethod(ParticipantsClient.parse_participant_path)
     session_entity_type_path = staticmethod(ParticipantsClient.session_entity_type_path)
-    parse_session_entity_type_path = staticmethod(
-        ParticipantsClient.parse_session_entity_type_path
-    )
+    parse_session_entity_type_path = staticmethod(ParticipantsClient.parse_session_entity_type_path)
 
-    common_billing_account_path = staticmethod(
-        ParticipantsClient.common_billing_account_path
-    )
-    parse_common_billing_account_path = staticmethod(
-        ParticipantsClient.parse_common_billing_account_path
-    )
+    common_billing_account_path = staticmethod(ParticipantsClient.common_billing_account_path)
+    parse_common_billing_account_path = staticmethod(ParticipantsClient.parse_common_billing_account_path)
 
     common_folder_path = staticmethod(ParticipantsClient.common_folder_path)
     parse_common_folder_path = staticmethod(ParticipantsClient.parse_common_folder_path)
 
     common_organization_path = staticmethod(ParticipantsClient.common_organization_path)
-    parse_common_organization_path = staticmethod(
-        ParticipantsClient.parse_common_organization_path
-    )
+    parse_common_organization_path = staticmethod(ParticipantsClient.parse_common_organization_path)
 
     common_project_path = staticmethod(ParticipantsClient.common_project_path)
-    parse_common_project_path = staticmethod(
-        ParticipantsClient.parse_common_project_path
-    )
+    parse_common_project_path = staticmethod(ParticipantsClient.parse_common_project_path)
 
     common_location_path = staticmethod(ParticipantsClient.common_location_path)
-    parse_common_location_path = staticmethod(
-        ParticipantsClient.parse_common_location_path
-    )
+    parse_common_location_path = staticmethod(ParticipantsClient.parse_common_location_path)
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
@@ -128,18 +116,14 @@ class ParticipantsAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(
-        type(ParticipantsClient).get_transport_class, type(ParticipantsClient)
-    )
+    get_transport_class = functools.partial(type(ParticipantsClient).get_transport_class, type(ParticipantsClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, ParticipantsTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, ParticipantsTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+            ) -> None:
         """Instantiate the participants client.
 
         Args:
@@ -178,18 +162,18 @@ class ParticipantsAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
+
         )
 
-    async def create_participant(
-        self,
-        request: gcd_participant.CreateParticipantRequest = None,
-        *,
-        parent: str = None,
-        participant: gcd_participant.Participant = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_participant.Participant:
+    async def create_participant(self,
+            request: gcd_participant.CreateParticipantRequest = None,
+            *,
+            parent: str = None,
+            participant: gcd_participant.Participant = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_participant.Participant:
         r"""Creates a new participant in a conversation.
 
         Args:
@@ -227,10 +211,8 @@ class ParticipantsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, participant])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_participant.CreateParticipantRequest(request)
 
@@ -253,24 +235,30 @@ class ParticipantsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def get_participant(
-        self,
-        request: participant.GetParticipantRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> participant.Participant:
+    async def get_participant(self,
+            request: participant.GetParticipantRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> participant.Participant:
         r"""Retrieves a conversation participant.
 
         Args:
@@ -302,10 +290,8 @@ class ParticipantsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = participant.GetParticipantRequest(request)
 
@@ -326,24 +312,30 @@ class ParticipantsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def list_participants(
-        self,
-        request: participant.ListParticipantsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListParticipantsAsyncPager:
+    async def list_participants(self,
+            request: participant.ListParticipantsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListParticipantsAsyncPager:
         r"""Returns the list of all participants in the specified
         conversation.
 
@@ -380,10 +372,8 @@ class ParticipantsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = participant.ListParticipantsRequest(request)
 
@@ -404,31 +394,40 @@ class ParticipantsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListParticipantsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def update_participant(
-        self,
-        request: gcd_participant.UpdateParticipantRequest = None,
-        *,
-        participant: gcd_participant.Participant = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_participant.Participant:
+    async def update_participant(self,
+            request: gcd_participant.UpdateParticipantRequest = None,
+            *,
+            participant: gcd_participant.Participant = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_participant.Participant:
         r"""Updates the specified participant.
 
         Args:
@@ -465,10 +464,8 @@ class ParticipantsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([participant, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_participant.UpdateParticipantRequest(request)
 
@@ -491,28 +488,32 @@ class ParticipantsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("participant.name", request.participant.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('participant.name', request.participant.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def analyze_content(
-        self,
-        request: gcd_participant.AnalyzeContentRequest = None,
-        *,
-        participant: str = None,
-        text_input: session.TextInput = None,
-        event_input: session.EventInput = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcd_participant.AnalyzeContentResponse:
+    async def analyze_content(self,
+            request: gcd_participant.AnalyzeContentRequest = None,
+            *,
+            participant: str = None,
+            text_input: session.TextInput = None,
+            event_input: session.EventInput = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcd_participant.AnalyzeContentResponse:
         r"""Adds a text (chat, for example), or audio (phone recording, for
         example) message from a participant into the conversation.
 
@@ -562,10 +563,8 @@ class ParticipantsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([participant, text_input, event_input])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = gcd_participant.AnalyzeContentRequest(request)
 
@@ -587,7 +586,9 @@ class ParticipantsAsyncClient:
                 initial=0.1,
                 maximum=60.0,
                 multiplier=1.3,
-                predicate=retries.if_exception_type(exceptions.ServiceUnavailable,),
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable,
+                ),
                 deadline=220.0,
             ),
             default_timeout=220.0,
@@ -597,26 +598,30 @@ class ParticipantsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("participant", request.participant),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('participant', request.participant),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def suggest_articles(
-        self,
-        request: participant.SuggestArticlesRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> participant.SuggestArticlesResponse:
+    async def suggest_articles(self,
+            request: participant.SuggestArticlesRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> participant.SuggestArticlesResponse:
         r"""Gets suggested articles for a participant based on
         specific historical messages.
 
@@ -650,10 +655,8 @@ class ParticipantsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = participant.SuggestArticlesRequest(request)
 
@@ -674,24 +677,30 @@ class ParticipantsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def suggest_faq_answers(
-        self,
-        request: participant.SuggestFaqAnswersRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> participant.SuggestFaqAnswersResponse:
+    async def suggest_faq_answers(self,
+            request: participant.SuggestFaqAnswersRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> participant.SuggestFaqAnswersResponse:
         r"""Gets suggested faq answers for a participant based on
         specific historical messages.
 
@@ -725,10 +734,8 @@ class ParticipantsAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = participant.SuggestFaqAnswersRequest(request)
 
@@ -749,24 +756,38 @@ class ParticipantsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
 
+
+
+
+
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-dialogflow",
+            'google-cloud-dialogflow',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("ParticipantsAsyncClient",)
+__all__ = (
+    'ParticipantsAsyncClient',
+)
