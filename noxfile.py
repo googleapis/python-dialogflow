@@ -95,12 +95,12 @@ def default(session):
         CURRENT_DIRECTORY / "testing" / f"constraints-{session.python}.txt"
     )
     session.install("asyncmock", "pytest-asyncio", "-c", constraints_path)
-    
+
     session.install("mock", "pytest", "pytest-cov",  "-c", constraints_path)
-    
-    
+
+
     session.install("-e", ".", "-c", constraints_path)
-    
+
 
     # Run py.test against the unit tests.
     session.run(
@@ -155,7 +155,7 @@ def system(session):
     # virtualenv's dist-packages.
     session.install("mock", "pytest", "google-cloud-testutils", "-c", constraints_path)
     session.install("-e", ".", "-c", constraints_path)
-    
+
 
     # Run py.test against the system tests.
     if system_test_exists:
@@ -185,7 +185,7 @@ def cover(session):
     test runs (not system test runs), and then erases coverage data.
     """
     session.install("coverage", "pytest-cov")
-    session.run("coverage", "report", "--show-missing", "--fail-under=99")
+    session.run("coverage", "report", "--show-missing", "--fail-under=98")
 
     session.run("coverage", "erase")
 
@@ -199,7 +199,7 @@ def docs(session):
     shutil.rmtree(os.path.join('docs', '_build'), ignore_errors=True)
     session.run(
         'sphinx-build',
-        
+
         '-T',  # show full traceback on exception
         '-N',  # no colors
         '-b', 'html',
