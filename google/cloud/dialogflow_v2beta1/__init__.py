@@ -235,7 +235,6 @@ __all__ = (
     "CompileSuggestionResponse",
     "CompleteConversationRequest",
     "Context",
-    "ContextsClient",
     "Conversation",
     "ConversationEvent",
     "ConversationPhoneNumber",
@@ -264,6 +263,7 @@ __all__ = (
     "DetectIntentRequest",
     "DetectIntentResponse",
     "Document",
+    "DocumentsClient",
     "DtmfParameters",
     "EntityType",
     "EntityTypeBatch",
@@ -393,5 +393,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "DocumentsClient",
+    "ContextsClient",
 )
