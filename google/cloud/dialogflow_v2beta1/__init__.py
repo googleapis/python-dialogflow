@@ -304,9 +304,9 @@ __all__ = (
     "Intent",
     "IntentBatch",
     "IntentView",
-    "IntentsClient",
     "KnowledgeAnswers",
     "KnowledgeBase",
+    "KnowledgeBasesClient",
     "KnowledgeOperationMetadata",
     "ListAnswerRecordsRequest",
     "ListAnswerRecordsResponse",
@@ -397,5 +397,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "KnowledgeBasesClient",
+    "IntentsClient",
 )
