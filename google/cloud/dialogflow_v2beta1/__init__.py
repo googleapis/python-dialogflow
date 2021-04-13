@@ -264,6 +264,7 @@ __all__ = (
     "DetectIntentRequest",
     "DetectIntentResponse",
     "Document",
+    "DocumentsClient",
     "DtmfParameters",
     "EntityType",
     "EntityTypeBatch",
@@ -302,7 +303,6 @@ __all__ = (
     "IntentsClient",
     "KnowledgeAnswers",
     "KnowledgeBase",
-    "KnowledgeBasesClient",
     "KnowledgeOperationMetadata",
     "ListAnswerRecordsRequest",
     "ListAnswerRecordsResponse",
@@ -393,5 +393,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "DocumentsClient",
+    "KnowledgeBasesClient",
 )
