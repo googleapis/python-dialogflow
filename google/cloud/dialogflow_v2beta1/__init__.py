@@ -211,6 +211,7 @@ __all__ = (
     "Agent",
     "AgentAssistantFeedback",
     "AgentAssistantRecord",
+    "AgentsClient",
     "AnalyzeContentRequest",
     "AnalyzeContentResponse",
     "AnnotatedMessagePart",
@@ -241,7 +242,6 @@ __all__ = (
     "ConversationEvent",
     "ConversationPhoneNumber",
     "ConversationProfile",
-    "ConversationProfilesClient",
     "ConversationsClient",
     "CreateContextRequest",
     "CreateConversationProfileRequest",
@@ -397,5 +397,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "AgentsClient",
+    "ConversationProfilesClient",
 )
