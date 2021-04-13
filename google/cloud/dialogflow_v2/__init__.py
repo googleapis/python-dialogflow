@@ -187,7 +187,6 @@ __all__ = (
     "Agent",
     "AgentAssistantFeedback",
     "AgentAssistantRecord",
-    "AgentsClient",
     "AnalyzeContentRequest",
     "AnalyzeContentResponse",
     "AnnotatedMessagePart",
@@ -316,6 +315,7 @@ __all__ = (
     "SentimentAnalysisRequestConfig",
     "SentimentAnalysisResult",
     "SessionEntityType",
+    "SessionEntityTypesClient",
     "SessionsClient",
     "SetAgentRequest",
     "SpeechContext",
@@ -349,5 +349,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "SessionEntityTypesClient",
+    "AgentsClient",
 )
