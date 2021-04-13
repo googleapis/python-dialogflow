@@ -187,6 +187,7 @@ __all__ = (
     "Agent",
     "AgentAssistantFeedback",
     "AgentAssistantRecord",
+    "AgentsClient",
     "AnalyzeContentRequest",
     "AnalyzeContentResponse",
     "AnnotatedMessagePart",
@@ -303,7 +304,6 @@ __all__ = (
     "OutputAudioConfig",
     "OutputAudioEncoding",
     "Participant",
-    "ParticipantsClient",
     "QueryInput",
     "QueryParameters",
     "QueryResult",
@@ -349,5 +349,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "AgentsClient",
+    "ParticipantsClient",
 )
