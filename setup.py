@@ -35,7 +35,7 @@ setuptools.setup(
     name="google-cloud-dialogflow",
     description=description,
     long_description=readme,
-    version=version,
+    version=setuptools.sic(version),
     author="Google LLC",
     author_email="googleapis-packages@google.com",
     license="Apache 2.0",
