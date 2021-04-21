@@ -209,6 +209,7 @@ __all__ = (
     "BatchUpdateIntentsResponse",
     "CompleteConversationRequest",
     "Context",
+    "ContextsClient",
     "Conversation",
     "ConversationEvent",
     "ConversationPhoneNumber",
@@ -240,7 +241,6 @@ __all__ = (
     "DtmfParameters",
     "EntityType",
     "EntityTypeBatch",
-    "EntityTypesClient",
     "Environment",
     "EnvironmentsClient",
     "EventInput",
@@ -349,5 +349,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "ContextsClient",
+    "EntityTypesClient",
 )
