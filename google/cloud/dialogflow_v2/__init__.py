@@ -241,6 +241,7 @@ __all__ = (
     "DtmfParameters",
     "EntityType",
     "EntityTypeBatch",
+    "EntityTypesClient",
     "Environment",
     "EnvironmentsClient",
     "EventInput",
@@ -266,7 +267,6 @@ __all__ = (
     "Intent",
     "IntentBatch",
     "IntentView",
-    "IntentsClient",
     "KnowledgeBase",
     "KnowledgeBasesClient",
     "KnowledgeOperationMetadata",
@@ -349,5 +349,5 @@ __all__ = (
     "VoiceSelectionParams",
     "WebhookRequest",
     "WebhookResponse",
-    "EntityTypesClient",
+    "IntentsClient",
 )
