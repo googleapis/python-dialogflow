@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 from distutils import util
 import os
@@ -23,10 +21,10 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
+from google.api_core import exceptions as core_exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
@@ -36,8 +34,7 @@ from google.cloud.dialogflow_v2.services.participants import pagers
 from google.cloud.dialogflow_v2.types import participant
 from google.cloud.dialogflow_v2.types import participant as gcd_participant
 from google.cloud.dialogflow_v2.types import session
-from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
-
+from google.protobuf import field_mask_pb2  # type: ignore
 from .transports.base import ParticipantsTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import ParticipantsGrpcTransport
 from .transports.grpc_asyncio import ParticipantsGrpcAsyncIOTransport
@@ -297,7 +294,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
     def __init__(
         self,
         *,
-        credentials: Optional[credentials.Credentials] = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, ParticipantsTransport, None] = None,
         client_options: Optional[client_options_lib.ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
@@ -436,7 +433,6 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 This corresponds to the ``participant`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -465,10 +461,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, gcd_participant.CreateParticipantRequest):
             request = gcd_participant.CreateParticipantRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if participant is not None:
@@ -512,7 +506,6 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -541,10 +534,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, participant.GetParticipantRequest):
             request = participant.GetParticipantRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -588,7 +579,6 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -620,10 +610,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, participant.ListParticipantsRequest):
             request = participant.ListParticipantsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -654,7 +642,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         request: gcd_participant.UpdateParticipantRequest = None,
         *,
         participant: gcd_participant.Participant = None,
-        update_mask: field_mask.FieldMask = None,
+        update_mask: field_mask_pb2.FieldMask = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -677,7 +665,6 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -706,10 +693,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, gcd_participant.UpdateParticipantRequest):
             request = gcd_participant.UpdateParticipantRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if participant is not None:
                 request.participant = participant
             if update_mask is not None:
@@ -775,7 +760,6 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 This corresponds to the ``event_input`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -804,10 +788,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, gcd_participant.AnalyzeContentRequest):
             request = gcd_participant.AnalyzeContentRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if participant is not None:
                 request.participant = participant
             if text_input is not None:
@@ -857,7 +839,6 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -886,10 +867,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, participant.SuggestArticlesRequest):
             request = participant.SuggestArticlesRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -933,7 +912,6 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -962,10 +940,8 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, participant.SuggestFaqAnswersRequest):
             request = participant.SuggestFaqAnswersRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 

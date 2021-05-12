@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 from distutils import util
 import os
@@ -23,10 +21,10 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
+from google.api_core import exceptions as core_exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
@@ -38,9 +36,8 @@ from google.cloud.dialogflow_v2beta1.services.documents import pagers
 from google.cloud.dialogflow_v2beta1.types import document
 from google.cloud.dialogflow_v2beta1.types import document as gcd_document
 from google.cloud.dialogflow_v2beta1.types import gcs
-from google.protobuf import empty_pb2 as empty  # type: ignore
-from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
-
+from google.protobuf import empty_pb2  # type: ignore
+from google.protobuf import field_mask_pb2  # type: ignore
 from .transports.base import DocumentsTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import DocumentsGrpcTransport
 from .transports.grpc_asyncio import DocumentsGrpcAsyncIOTransport
@@ -239,7 +236,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
     def __init__(
         self,
         *,
-        credentials: Optional[credentials.Credentials] = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, DocumentsTransport, None] = None,
         client_options: Optional[client_options_lib.ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
@@ -375,7 +372,6 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -407,10 +403,8 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, document.ListDocumentsRequest):
             request = document.ListDocumentsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -461,7 +455,6 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -497,10 +490,8 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, document.GetDocumentRequest):
             request = document.GetDocumentRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -552,7 +543,6 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 This corresponds to the ``document`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -592,10 +582,8 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, gcd_document.CreateDocumentRequest):
             request = gcd_document.CreateDocumentRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if document is not None:
@@ -634,13 +622,14 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Create documents by importing data from external
-        sources.
+        sources. Dialogflow supports up to 350 documents in each
+        request. If you try to import more, Dialogflow will
+        return an error.
 
         Args:
             request (google.cloud.dialogflow_v2beta1.types.ImportDocumentsRequest):
                 The request object. Request message for
                 [Documents.ImportDocuments][google.cloud.dialogflow.v2beta1.Documents.ImportDocuments].
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -658,7 +647,6 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a document.ImportDocumentsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -715,7 +703,6 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -757,10 +744,8 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, document.DeleteDocumentRequest):
             request = document.DeleteDocumentRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -781,7 +766,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         response = operation.from_gapic(
             response,
             self._transport.operations_client,
-            empty.Empty,
+            empty_pb2.Empty,
             metadata_type=document.KnowledgeOperationMetadata,
         )
 
@@ -793,7 +778,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         request: gcd_document.UpdateDocumentRequest = None,
         *,
         document: gcd_document.Document = None,
-        update_mask: field_mask.FieldMask = None,
+        update_mask: field_mask_pb2.FieldMask = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -820,7 +805,6 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -860,10 +844,8 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, gcd_document.UpdateDocumentRequest):
             request = gcd_document.UpdateDocumentRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if document is not None:
                 request.document = document
             if update_mask is not None:
@@ -938,7 +920,6 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 This corresponds to the ``gcs_source`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -978,10 +959,8 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         # there are no flattened fields.
         if not isinstance(request, document.ReloadDocumentRequest):
             request = document.ReloadDocumentRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if gcs_source is not None:
