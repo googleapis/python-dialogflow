@@ -1111,6 +1111,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 resolve additional pages automatically.
 
         """
+        warnings.warn("list_suggestions is deprecated", warnings.DeprecationWarning)
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.ListSuggestionsRequest.
@@ -1181,6 +1182,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 [Participants.CompileSuggestion][google.cloud.dialogflow.v2beta1.Participants.CompileSuggestion].
 
         """
+        warnings.warn("compile_suggestion is deprecated", warnings.DeprecationWarning)
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.CompileSuggestionRequest.

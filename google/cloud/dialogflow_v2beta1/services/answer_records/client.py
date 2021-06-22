@@ -405,6 +405,7 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
                       is wrong.
 
         """
+        warnings.warn("get_answer_record is deprecated", warnings.DeprecationWarning)
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
         # in a answer_record.GetAnswerRecordRequest.
