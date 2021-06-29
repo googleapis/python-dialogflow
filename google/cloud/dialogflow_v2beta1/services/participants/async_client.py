@@ -18,6 +18,7 @@ import functools
 import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
+import warnings
 
 import google.api_core.client_options as ClientOptions  # type: ignore
 from google.api_core import exceptions as core_exceptions  # type: ignore
@@ -868,6 +869,11 @@ class ParticipantsAsyncClient:
                 resolve additional pages automatically.
 
         """
+        warnings.warn(
+            "ParticipantsAsyncClient.list_suggestions is deprecated",
+            warnings.DeprecationWarning,
+        )
+
         # Create or coerce a protobuf request object.
         request = participant.ListSuggestionsRequest(request)
 
@@ -937,6 +943,11 @@ class ParticipantsAsyncClient:
                 [Participants.CompileSuggestion][google.cloud.dialogflow.v2beta1.Participants.CompileSuggestion].
 
         """
+        warnings.warn(
+            "ParticipantsAsyncClient.compile_suggestion is deprecated",
+            warnings.DeprecationWarning,
+        )
+
         # Create or coerce a protobuf request object.
         request = participant.CompileSuggestionRequest(request)
 

@@ -19,6 +19,7 @@ import os
 import re
 from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
+import warnings
 
 from google.api_core import client_options as client_options_lib  # type: ignore
 from google.api_core import exceptions as core_exceptions  # type: ignore
@@ -1111,6 +1112,11 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 resolve additional pages automatically.
 
         """
+        warnings.warn(
+            "ParticipantsClient.list_suggestions is deprecated",
+            warnings.DeprecationWarning,
+        )
+
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.ListSuggestionsRequest.
@@ -1181,6 +1187,11 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
                 [Participants.CompileSuggestion][google.cloud.dialogflow.v2beta1.Participants.CompileSuggestion].
 
         """
+        warnings.warn(
+            "ParticipantsClient.compile_suggestion is deprecated",
+            warnings.DeprecationWarning,
+        )
+
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
         # in a participant.CompileSuggestionRequest.
