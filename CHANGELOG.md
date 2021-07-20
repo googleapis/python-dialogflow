@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/dialogflow/#history
 
+### [2.6.1](https://www.github.com/googleapis/python-dialogflow/compare/v2.6.0...v2.6.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* **deps:** pin 'google-{api,cloud}-core', 'google-auth' to allow 2.x versions ([#339](https://www.github.com/googleapis/python-dialogflow/issues/339)) ([3bfe5b6](https://www.github.com/googleapis/python-dialogflow/commit/3bfe5b6c4c2d81ec3f1cb5e1b7aa96c60a269eb4))
+
 ## [2.6.0](https://www.github.com/googleapis/python-dialogflow/compare/v2.5.0...v2.6.0) (2021-07-10)
 
 
