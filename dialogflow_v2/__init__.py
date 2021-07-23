@@ -38,11 +38,21 @@ if sys.version_info[:2] == (2, 7):
     )
     warnings.warn(message, DeprecationWarning)
 
-raise RuntimeError(
-    "'dialogflow' has been renamed to 'google-cloud-dialogflow'. "
+package_deprecation_message = (
+    "The package 'dialogflow' has been renamed to 'google-cloud-dialogflow'. "
     "'dialogflow' will no longer be updated. "
-    "For help upgrading to google-cloud-dialogflow>=2.0.0, see "
-    "https://github.com/googleapis/python-dialogflow/blob/master/UPGRADING.md"
+    "For help upgrading to google-cloud-dialogflow>=2.0.0, "
+    "see https://github.com/googleapis/python-dialogflow/blob/master/UPGRADING.md. "
+    "\n\nAfter October 20, 2021, importing code from the latest release of 'dialogflow' "
+    "will result in a RuntimeError. If you need to continue to use 'dialogflow' after this date, "
+    "please pin to a specific version of 'dialogflow' (e.g., dialogflow==1.1.1). "
+    "If you have questions, please file an issue: "
+    "https://github.com/googleapis/python-dialogflow/issues."
+)
+
+warnings.warn(
+    package_deprecation_message,
+    DeprecationWarning
 )
 
 
