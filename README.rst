@@ -1,20 +1,21 @@
 Dialogflow: Python Client
 =========================
 
+
 .. warning::
     The package `dialogflow`_ has been renamed to `google-cloud-dialogflow`_.
     `dialogflow`_ will no longer be updated.
 
     For help upgrading to ``google-cloud-dialogflow>=2.0.0``, see the `Migration Guide`_.
 
-    After **October 20, 2021**, importing code from the latest release of `dialogflow`_ will result in a ``RuntimeError``. If you need to continue to use `dialogflow`_ after this date, please pin to a specific version of `dialogflow`_ (e.g., ``dialogflow==1.1.1``). If you have questions, please `file an issue`_.
+    After **October 28, 2021**, importing code from the latest release of `dialogflow`_ will result in a ``RuntimeError``. If you need to continue to use `dialogflow`_ after this date, please pin to a specific version of `dialogflow`_ (e.g., ``dialogflow==1.1.1``). If you have questions, please `file an issue`_.
 
 .. _dialogflow: https://pypi.org/project/dialogflow
 .. _google-cloud-dialogflow: https://pypi.org/project/google-cloud-dialogflow
 .. _Migration Guide: https://github.com/googleapis/python-dialogflow/blob/master/UPGRADING.md
 .. _file an issue: https://github.com/googleapis/python-dialogflow/issues
 
-|release level|
+
 
     Python idiomatic client for `Dialogflow <https://dialogflow.com/`_
 

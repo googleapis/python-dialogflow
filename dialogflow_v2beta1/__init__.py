@@ -46,7 +46,7 @@ package_deprecation_message = (
     "'dialogflow' will no longer be updated. "
     "For help upgrading to google-cloud-dialogflow>=2.0.0, "
     "see https://github.com/googleapis/python-dialogflow/blob/master/UPGRADING.md. "
-    "\n\nAfter October 20, 2021, importing code from the latest release of 'dialogflow' "
+    "\n\nAfter October 28, 2021, importing code from the latest release of 'dialogflow' "
     "will result in a RuntimeError. If you need to continue to use 'dialogflow' after this date, "
     "please pin to a specific version of 'dialogflow' (e.g., dialogflow==1.1.1). "
     "If you have questions, please file an issue: "
