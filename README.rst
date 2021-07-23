@@ -16,9 +16,9 @@ Dialogflow: Python Client
 
 |release level|
 
-    Python idiomatic client for Dialogflow_
+    Python idiomatic client for `Dialogflow <https://dialogflow.com/`_
 
-Dialogflow_ is an enterprise-grade NLU platform that makes it easy for
+`Dialogflow <https://dialogflow.com/`_ is an enterprise-grade NLU platform that makes it easy for
 developers to design and integrate conversational user interfaces into
 mobile apps, web applications, devices, and bots.
 
@@ -29,8 +29,6 @@ mobile apps, web applications, devices, and bots.
 Read more about the client libraries for Cloud APIs, including the older
 Google APIs Client Libraries, in
 `Client Libraries Explained <https://cloud.google.com/apis/docs/client-libraries-explained>`_.
-
-.. _Dialogflow: https://dialogflow.com/
 
 
 Before you begin
