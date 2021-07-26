@@ -19,7 +19,7 @@ Dialogflow: Python Client
 
     Python idiomatic client for `Dialogflow <https://dialogflow.com/>`_
 
-`Dialogflow <https://dialogflow.com/`_ is an enterprise-grade NLU platform that makes it easy for
+`Dialogflow <https://dialogflow.com/>`_ is an enterprise-grade NLU platform that makes it easy for
 developers to design and integrate conversational user interfaces into
 mobile apps, web applications, devices, and bots.
 
