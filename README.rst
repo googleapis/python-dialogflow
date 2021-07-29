@@ -1,11 +1,25 @@
 Dialogflow: Python Client
 =========================
 
-|release level|
 
-    Python idiomatic client for `Dialogflow`_
+.. warning::
+    The package `dialogflow`_ has been renamed to `google-cloud-dialogflow`_.
+    `dialogflow`_ will no longer be updated.
 
-`Dialogflow`_ is an enterprise-grade NLU platform that makes it easy for
+    For help upgrading to ``google-cloud-dialogflow>=2.0.0``, see the `Migration Guide`_.
+
+    After **October 28, 2021**, importing code from the latest release of `dialogflow`_ will result in a ``RuntimeError``. If you need to continue to use `dialogflow`_ after this date, please pin to a specific version of `dialogflow`_ (e.g., ``dialogflow==1.1.1``). If you have questions, please `file an issue`_.
+
+.. _dialogflow: https://pypi.org/project/dialogflow
+.. _google-cloud-dialogflow: https://pypi.org/project/google-cloud-dialogflow
+.. _Migration Guide: https://github.com/googleapis/python-dialogflow/blob/master/UPGRADING.md
+.. _file an issue: https://github.com/googleapis/python-dialogflow/issues
+
+
+
+    Python idiomatic client for `Dialogflow <https://dialogflow.com/>`_
+
+`Dialogflow <https://dialogflow.com/>`_ is an enterprise-grade NLU platform that makes it easy for
 developers to design and integrate conversational user interfaces into
 mobile apps, web applications, devices, and bots.
 
@@ -16,8 +30,6 @@ mobile apps, web applications, devices, and bots.
 Read more about the client libraries for Cloud APIs, including the older
 Google APIs Client Libraries, in
 `Client Libraries Explained <https://cloud.google.com/apis/docs/client-libraries-explained>`_.
-
-.. _Dialogflow: https://dialogflow.com/
 
 
 Before you begin
