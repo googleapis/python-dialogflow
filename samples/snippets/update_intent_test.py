@@ -9,16 +9,9 @@ from google.cloud.dialogflow_v2.types.agent import (
     SearchAgentsRequest,
 )
 
-from update_intent_ES import updateIntent
-
-
-os.environ[
-    "GOOGLE_APPLICATION_CREDENTIALS"
-] = "/Users/galzahavi/Documents/Dialogflow Snippets/valiant-marker-319718-a597e6688ab0.json"
-os.environ["GOOGLE_CLOUD_PROJECT"] = "valiant-marker-319718"
+from update_intent import updateIntent
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
-
 
 def create_agent(project_id, display_name):
     parent = "projects/" + project_id
