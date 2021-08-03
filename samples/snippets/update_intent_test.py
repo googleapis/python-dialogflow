@@ -1,9 +1,9 @@
-import os
 from datetime import date
+import os
 import unittest
 
-from google.cloud.dialogflow_v2.services.agents.client import AgentsClient
 from google.cloud.dialogflow_v2 import Agent
+from google.cloud.dialogflow_v2.services.agents.client import AgentsClient
 from google.cloud.dialogflow_v2.services.intents.client import IntentsClient
 from google.cloud.dialogflow_v2.types.agent import (
     DeleteAgentRequest,
@@ -57,21 +57,21 @@ def list_intent(self, project_id):
 class fieldmaskTest(unittest.TestCase):
     def setUp(self):
         parent_id = PROJECT_ID or ""
-        if self.list_agent(parent_id) > 0:
-            self.delete_agent(parent_id)
+        if list_agent(parent_id) > 0:
+            delete_agent(parent_id)
             print("Deleted in setUp")
             today = date.today()
             agentName = "tempAgent." + today.strftime("%d.%m.%Y")
             create_agent(PROJECT_ID or "", agentName)
             print("Created Agent in setUp")
-            self.intent_id = self.list_intent(project_id=PROJECT_ID or "")
+            self.intent_id = list_intent(project_id=PROJECT_ID or "")
             print("Created Intent in setUp")
         else:
             today = date.today()
             agentName = "tempAgent." + today.strftime("%d.%m.%Y")
             create_agent(PROJECT_ID or "", agentName)
             print("Created Agent in setUp")
-            self.intent_id = self.list_intent(project_id=PROJECT_ID or "")
+            self.intent_id = list_intent(project_id=PROJECT_ID or "")
             print("Created Intent in setUp")
 
     def test_update_intent(self):
@@ -83,8 +83,8 @@ class fieldmaskTest(unittest.TestCase):
 
     def tearDown(self):
         parent_id = PROJECT_ID or ""
-        if self.list_agent(parent_id) > 0:
-            self.delete_agent(parent_id)
+        if list_agent(parent_id) > 0:
+            delete_agent(parent_id)
             print("Deleted in tearDown")
 
 
