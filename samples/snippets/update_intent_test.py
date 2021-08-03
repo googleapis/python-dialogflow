@@ -28,7 +28,7 @@ def create_agent(project_id, display_name):
     agents_client.set_agent(request={"agent": agent})
 
 
-def list_agent(self, project_id):
+def list_agent(project_id):
     parent = "projects/" + project_id
     agents_client = AgentsClient()
     agent = SearchAgentsRequest(parent=parent)
@@ -36,14 +36,14 @@ def list_agent(self, project_id):
     return len(response._response.agents)
 
 
-def delete_agent(self, project_id):
+def delete_agent(project_id):
     parent = "projects/" + project_id
     agents_client = AgentsClient()
     agent = DeleteAgentRequest(parent=parent)
     agents_client.delete_agent(agent)
 
 
-def list_intent(self, project_id):
+def list_intent(project_id):
     intents_client = IntentsClient()
 
     parent = AgentsClient.agent_path(project_id)
@@ -56,9 +56,8 @@ def list_intent(self, project_id):
 
 class fieldmaskTest(unittest.TestCase):
     def setUp(self):
-        parent_id = PROJECT_ID or ""
-        if list_agent(parent_id) > 0:
-            delete_agent(parent_id)
+        if list_agent(PROJECT_ID) > 0:
+            delete_agent(PROJECT_ID)
             print("Deleted in setUp")
             today = date.today()
             agentName = "tempAgent." + today.strftime("%d.%m.%Y")
@@ -82,9 +81,8 @@ class fieldmaskTest(unittest.TestCase):
         self.assertEqual(actualResponse.display_name, expectedResponse)
 
     def tearDown(self):
-        parent_id = PROJECT_ID or ""
-        if list_agent(parent_id) > 0:
-            delete_agent(parent_id)
+        if list_agent(PROJECT_ID) > 0:
+            delete_agent(PROJECT_ID)
             print("Deleted in tearDown")
 
 
