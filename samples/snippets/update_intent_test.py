@@ -1,6 +1,6 @@
 from datetime import date
 import os
-import unittest
+import pytest
 
 from google.cloud.dialogflow_v2 import Agent
 from google.cloud.dialogflow_v2.services.agents.client import AgentsClient
@@ -13,7 +13,7 @@ from google.cloud.dialogflow_v2.types.agent import (
 from update_intent import update_intent
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
-
+pytest.INTENT_ID = None
 
 def create_agent(project_id, display_name):
     parent = "projects/" + project_id
@@ -53,38 +53,35 @@ def list_intent(project_id):
     for intent in intents:
         return intent.name.split("/")[4]
 
+@pytest.fixture(scope="function", autouse=True)
+def setup_teardown():
+    if list_agent(PROJECT_ID) > 0:
+        delete_agent(PROJECT_ID)
+        print("Deleted in setUp")
+        today = date.today()
+        agentName = "tempAgent." + today.strftime("%d.%m.%Y")
+        create_agent(PROJECT_ID, agentName)
+        print("Created Agent in setUp")
+        pytest.INTENT_ID = list_intent(project_id=PROJECT_ID or "")
+        print("Created Intent in setUp")
+    else:
+        today = date.today()
+        agentName = "tempAgent." + today.strftime("%d.%m.%Y")
+        create_agent(PROJECT_ID, agentName)
+        print("Created Agent in setUp")
+        pytest.INTENT_ID = list_intent(project_id=PROJECT_ID or "")
+        print("Created Intent in setUp")
+    
+    yield
 
-class fieldmaskTest(unittest.TestCase):
-    def setUp(self):
-        if list_agent(PROJECT_ID) > 0:
-            delete_agent(PROJECT_ID)
-            print("Deleted in setUp")
-            today = date.today()
-            agentName = "tempAgent." + today.strftime("%d.%m.%Y")
-            create_agent(PROJECT_ID or "", agentName)
-            print("Created Agent in setUp")
-            self.intent_id = list_intent(project_id=PROJECT_ID or "")
-            print("Created Intent in setUp")
-        else:
-            today = date.today()
-            agentName = "tempAgent." + today.strftime("%d.%m.%Y")
-            create_agent(PROJECT_ID or "", agentName)
-            print("Created Agent in setUp")
-            self.intent_id = list_intent(project_id=PROJECT_ID or "")
-            print("Created Intent in setUp")
-
-    def test_update_intent(self):
+    delete_agent(PROJECT_ID)
+    print("Deleted in tearDown")
+    
+def test_update_intent():
         actualResponse = update_intent(
-            PROJECT_ID or "", self.intent_id, "Updated Intent"
+            PROJECT_ID or "", pytest.INTENT_ID, "Updated Intent"
         )
         expectedResponse = "Updated Intent"
-        self.assertEqual(actualResponse.display_name, expectedResponse)
-
-    def tearDown(self):
-        if list_agent(PROJECT_ID) > 0:
-            delete_agent(PROJECT_ID)
-            print("Deleted in tearDown")
+        assert actualResponse.display_name == expectedResponse
 
 
-if __name__ == "__main__":
-    unittest.main()
