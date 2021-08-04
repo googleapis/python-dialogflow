@@ -1,4 +1,3 @@
-from datetime import date
 import os
 
 from google.cloud.dialogflow_v2.services.agents.client import AgentsClient
