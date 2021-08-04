@@ -1,9 +1,10 @@
 from datetime import date
 import os
-import pytest
 
 from google.cloud.dialogflow_v2.services.agents.client import AgentsClient
 from google.cloud.dialogflow_v2.services.intents.client import IntentsClient
+
+import pytest
 
 from update_intent import update_intent
 
