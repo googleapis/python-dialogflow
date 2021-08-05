@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import os
+import uuid
 
 from google.cloud.dialogflow_v2.services.agents.client import AgentsClient
 from google.cloud.dialogflow_v2.services.intents.client import IntentsClient
@@ -43,6 +44,9 @@ def setup_teardown():
 
 
 def test_update_intent():
-    actualResponse = update_intent(PROJECT_ID, pytest.INTENT_ID, "Updated Intent")
-    expectedResponse = "Updated Intent"
+
+    fake_intent = "fake_intent_{}".format(uuid.uuid4())
+
+    actualResponse = update_intent(PROJECT_ID, pytest.INTENT_ID, fake_intent)
+    expectedResponse = fake_intent
     assert actualResponse.display_name == expectedResponse
