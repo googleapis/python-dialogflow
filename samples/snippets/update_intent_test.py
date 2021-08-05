@@ -34,7 +34,8 @@ def list_intent(project_id):
     intents = intents_client.list_intents(request={"parent": parent})
 
     for intent in intents:
-        return intent.name.split("/")[4]
+        if intent.display_name.contains("fake_intent"):
+            return intent.name.split("/")[4]
 
 
 @pytest.fixture(scope="function", autouse=True)
