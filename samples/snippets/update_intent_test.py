@@ -34,7 +34,7 @@ def list_intent(project_id):
     intents = intents_client.list_intents(request={"parent": parent})
 
     for intent in intents:
-        if intent.display_name.contains("fake_intent"):
+        if "fake_intent" in intent.display_name:
             return intent.name.split("/")[4]
 
 
