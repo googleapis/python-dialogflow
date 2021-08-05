@@ -30,9 +30,6 @@ Examples:
 import argparse
 
 
-
-
-
 # [START dialogflow_delete_intent]
 def delete_intent(project_id, intent_id):
     """Delete intent with the given intent type and intent value."""
