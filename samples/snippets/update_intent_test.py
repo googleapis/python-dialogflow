@@ -49,4 +49,9 @@ def test_update_intent():
 
     actualResponse = update_intent(PROJECT_ID, pytest.INTENT_ID, fake_intent)
     expectedResponse = fake_intent
+
+    intents_client = IntentsClient()
+
+    intents_client.delete_intent(name=actualResponse.name)
+
     assert actualResponse.display_name == expectedResponse
