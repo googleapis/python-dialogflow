@@ -14,8 +14,9 @@
 
 # [START dialogflow_set_agent_sample]
 
-from google.cloud.dialogflow_v2 import AgentsClient
 from google.cloud.dialogflow_v2 import Agent
+from google.cloud.dialogflow_v2 import AgentsClient
+
 
 def set_agent(project_id, display_name):
 
