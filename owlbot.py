@@ -90,8 +90,3 @@ s.replace(
   "main"
 )
 
-s.replace(
-  "samples/*",
-  "master",
-  "main"
-)
