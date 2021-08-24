@@ -46,6 +46,8 @@ python.py_samples(skip_readmes=True)
 )
 s.move(templated_files, excludes=[".coveragerc"])  # microgenerator has a good .coveragerc file
 
+python.py_samples(skip_readmes=True)
+
 # Don't treat warnings as errors
 # Docstrings have unexpected idnentation and block quote formatting issues
 s.replace(
@@ -91,8 +93,8 @@ s.replace(
 )
 
 s.replace(
-  "samples/*",
-  "master",
-  "main"
+  "README.rst",
+  "google-cloud-python/blob/main/README.rst",
+  "google-cloud-python/blob/master/README.rst"
 )
 
