@@ -18,11 +18,11 @@ from google.api_core.exceptions import InvalidArgument
 
 import pytest
 
-import set_agent
+from set_agent import set_agent
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 
 
 def test_set_agent():
     with pytest.raises(InvalidArgument):
-        set_agent(PROJECT_ID,"")
+        set_agent(PROJECT_ID, "")
