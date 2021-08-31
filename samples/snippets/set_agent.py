@@ -20,9 +20,9 @@ from google.cloud.dialogflow_v2 import AgentsClient
 
 def set_agent(project_id, display_name):
 
-    parent = "projects/" + project_id
-
     agents_client = AgentsClient()
+
+    parent = agents_client.common_project_path(project_id)
 
     agent = Agent(
         parent=parent,
