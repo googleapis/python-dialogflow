@@ -17,7 +17,7 @@ Google APIs Client Libraries, in
 `Client Libraries Explained <https://cloud.google.com/apis/docs/client-libraries-explained>`_.
 
 .. |ga| image:: https://img.shields.io/badge/support-ga-gold.svg
-   :target: https://github.com/googleapis/google-cloud-python/blob/master/README.rst#ga-support
+   :target: https://github.com/googleapis/google-cloud-python/blob/main/README.rst#ga-support
 .. |pypi| image:: https://img.shields.io/pypi/v/google-cloud-dialogflow.svg
    :target: https://pypi.org/project/google-cloud-dialogflow/
 .. |versions| image:: https://img.shields.io/pypi/pyversions/google-cloud-dialogflow.svg
@@ -77,7 +77,7 @@ This library is considered to be stable. This means and that the code surface wi
 ways unless either absolutely necessary (e.g. because of critical security issues) or with an extensive deprecation
 period. Issues and requests against GA libraries are addressed with the highest priority.
 
-More Information: `Google Cloud Python Library Support <https://github.com/googleapis/google-cloud-python/blob/master/README.rst#general-availability>`_
+More Information: `Google Cloud Python Library Support <https://github.com/googleapis/google-cloud-python/blob/main/README.rst#general-availability>`_
 
 Contributing
 ------------
