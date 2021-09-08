@@ -23,8 +23,8 @@ from set_agent import set_agent
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 
 
-# We cannot test setAgent because Dialogflow ES can only have one agent 
-# and if we create a agent it will delete the exisitng testing agent and 
+# We cannot test setAgent because Dialogflow ES can only have one agent
+# and if we create a agent it will delete the exisitng testing agent and
 # would cause all tests to fail
 def test_set_agent():
     with pytest.raises(InvalidArgument):
