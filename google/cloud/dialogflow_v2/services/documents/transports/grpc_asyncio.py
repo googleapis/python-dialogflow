@@ -131,7 +131,7 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
             api_mtls_endpoint (Optional[str]): Deprecated. The mutual TLS endpoint.
                 If provided, it overrides the ``host`` argument and tries to create
                 a mutual TLS channel with client SSL credentials from
-                ``client_cert_source`` or application default SSL credentials.
+                ``client_cert_source`` or applicatin default SSL credentials.
             client_cert_source (Optional[Callable[[], Tuple[bytes, bytes]]]):
                 Deprecated. A callback to provide client SSL certificate bytes and
                 private key bytes, both in PEM format. It is ignored if
@@ -314,9 +314,14 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
 
         Creates a new document.
 
-        Operation <response:
-        [Document][google.cloud.dialogflow.v2.Document], metadata:
-        [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
+        This method is a `long-running
+        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
+        The returned ``Operation`` type has the following
+        method-specific fields:
+
+        -  ``metadata``:
+           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+        -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
 
         Returns:
             Callable[[~.CreateDocumentRequest],
@@ -346,9 +351,15 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
 
         Deletes the specified document.
 
-        Operation <response:
-        [google.protobuf.Empty][google.protobuf.Empty], metadata:
-        [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
+        This method is a `long-running
+        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
+        The returned ``Operation`` type has the following
+        method-specific fields:
+
+        -  ``metadata``:
+           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+        -  ``response``: An `Empty
+           message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
 
         Returns:
             Callable[[~.DeleteDocumentRequest],
@@ -378,9 +389,14 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
 
         Updates the specified document.
 
-        Operation <response:
-        [Document][google.cloud.dialogflow.v2.Document], metadata:
-        [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
+        This method is a `long-running
+        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
+        The returned ``Operation`` type has the following
+        method-specific fields:
+
+        -  ``metadata``:
+           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+        -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
 
         Returns:
             Callable[[~.UpdateDocumentRequest],
@@ -414,12 +430,17 @@ class DocumentsGrpcAsyncIOTransport(DocumentsTransport):
         document has not changed, there still may be side effects
         because of internal implementation changes.
 
+        This method is a `long-running
+        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
+        The returned ``Operation`` type has the following
+        method-specific fields:
+
+        -  ``metadata``:
+           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+        -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
+
         Note: The ``projects.agent.knowledgeBases.documents`` resource
         is deprecated; only use ``projects.knowledgeBases.documents``.
-
-        Operation <response:
-        [Document][google.cloud.dialogflow.v2.Document], metadata:
-        [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
 
         Returns:
             Callable[[~.ReloadDocumentRequest],
