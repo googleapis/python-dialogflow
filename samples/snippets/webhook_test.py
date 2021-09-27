@@ -15,6 +15,7 @@ request = {
   }
 }
 
+
 @pytest.fixture(scope='module')
 def app():
     return flask.Flask(__name__)
@@ -23,3 +24,4 @@ def test_handleWebhook(app):
     with app.test_request_context(json=request):
         res = handleWebhook(flask.request)
         assert 'Hello from a GCF Webhook' in str(res)
+
