@@ -11,24 +11,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 # [START dialogflow_webhook]
-
-
 def handleWebhook(request):
 
     req = request.get_json()
 
-    if req["queryResult"]["intent"]["displayName"] == "Default Welcome Intent":
-        # You can also use the google.cloud.dialogflowcx_v3.types.WebhookRequest protos instead of manually writing the json object
-        res = {
-            "fulfillmentMessages": [{"text": {"text": ["Hello from a GCF Webhook"]}}]
-        }
-    elif req["queryResult"]["intent"]["displayName"] == "get-agent-name":
-        res = {"fulfillmentMessages": [{"text": {"text": ["My name is Flowhook"]}}]}
+    responseText = ""
+    intent = req["queryResult"]["intent"]["displayName"]
+
+    if intent == "Default Welcome Intent":
+        responseText = "Hello from a GCF Webhook"
+    elif intent == "get-agent-name":
+        responseText = "My name is Flowhook"
     else:
-        res = {"fulfillmentMessages": [{"text": {"text": ["Sorry I didn't get that"]}}]}
+        responseText = f"There are no fulfillment responses defined for Intent {intent}"
+
+    # You can also use the google.cloud.dialogflowcx_v3.types.WebhookRequest protos instead of manually writing the json object
+    res = {
+        "fulfillmentMessages": [{"text": {"text": [ responseText ]}}]
+    }
 
     return res
-
 
 # [END dialogflow_webhook]
