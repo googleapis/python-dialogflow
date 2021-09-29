@@ -10,8 +10,6 @@
 ### Bug Fixes
 
 * add 'dict' annotation type to 'request' ([12b4f60](https://www.github.com/googleapis/python-dialogflow/commit/12b4f6050d0b5f741f106798643bef6ebbbe1e28))
-* added increased timout ([#400](https://www.github.com/googleapis/python-dialogflow/issues/400)) ([2126dc9](https://www.github.com/googleapis/python-dialogflow/commit/2126dc9040be3f98dd1d236cdb32162bb46e9fac))
-* increased timeout to 600 ([#402](https://www.github.com/googleapis/python-dialogflow/issues/402)) ([148afc6](https://www.github.com/googleapis/python-dialogflow/commit/148afc65b89bc0505eb6e4d8ff4adc626f0ef107))
 
 ## [2.8.0](https://www.github.com/googleapis/python-dialogflow/compare/v2.7.1...v2.8.0) (2021-09-08)
 
