@@ -11,6 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# returns fullfillment response for dialogflow detect_intent call
 
 # [START dialogflow_webhook]
 def handleWebhook(request):
