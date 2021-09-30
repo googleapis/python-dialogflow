@@ -17,6 +17,8 @@
 """
 
 # [START dialogflow_list_training_phrases]
+
+
 def list_training_phrases(project_id, intent_id):
     """Returns all training phrases for a specified intent."""
 
