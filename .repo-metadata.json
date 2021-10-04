@@ -11,6 +11,6 @@
     "distribution_name": "google-cloud-dialogflow",
     "api_id": "dialogflow.googleapis.com",
     "requires_billing": true,
-    "default_version": "",
+    "default_version": "v2",
     "codeowner_team": ""
 }
