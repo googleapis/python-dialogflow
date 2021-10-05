@@ -28,6 +28,7 @@ PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 def test_dumby():
     
     credentials = GoogleCredentials.get_application_default()
+    print(credentials)
     service = discovery.build('cloudresourcemanager', 'v1', credentials=credentials)
     project_body = {
         'name': 'GalsDumbyTestingProject',
