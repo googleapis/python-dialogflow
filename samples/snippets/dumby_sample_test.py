@@ -14,14 +14,10 @@
 
 import os
 
-from google.api_core.exceptions import InvalidArgument
 from googleapiclient import discovery
-from oauth2client.client import OAuth2Credentials as creds
-import httplib2
+from oauth2client.client import GoogleCredentials
 
 import pytest
-
-from set_agent import set_agent
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -31,11 +27,12 @@ PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 # would cause all tests to fail
 def test_dumby():
     
-    crm = discovery.build(
-        'cloudresourcemanager', 'v3', http=creds.authorize(httplib2.Http()))
-
-    operation = crm.projects().create(
-    body={
-        'project_id': PROJECT_ID,
-        'name': 'GalsTestingDumbyProject'
-    }).execute()
+    credentials = GoogleCredentials.get_application_default()
+    service = discovery.build('cloudresourcemanager', 'v1', credentials=credentials)
+            project_body = {
+                'name': 'GalsDumbyTestingProject',
+                'projectId': 'gals-testing-123'
+            }
+            request = service.projects().create(body=project_body)
+            request.execute()
+            pprint(request)
