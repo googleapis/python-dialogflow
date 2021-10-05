@@ -17,7 +17,7 @@ import os
 from google.api_core.exceptions import InvalidArgument
 from googleapiclient import discovery
 from oauth2client.client import OAuth2Credentials as creds
-
+import httplib2
 
 import pytest
 
