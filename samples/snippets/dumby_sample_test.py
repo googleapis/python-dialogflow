@@ -29,10 +29,10 @@ def test_dumby():
     
     credentials = GoogleCredentials.get_application_default()
     service = discovery.build('cloudresourcemanager', 'v1', credentials=credentials)
-            project_body = {
-                'name': 'GalsDumbyTestingProject',
-                'projectId': 'gals-testing-123'
-            }
-            request = service.projects().create(body=project_body)
-            request.execute()
-            pprint(request)
+    project_body = {
+        'name': 'GalsDumbyTestingProject',
+        'projectId': 'gals-testing-123'
+    }
+    request = service.projects().create(body=project_body)
+    request.execute()
+    pprint(request)
