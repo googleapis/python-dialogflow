@@ -31,6 +31,6 @@ PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 def test_set_agent():
     f = open("threat.txt","w")
     res = os.environ
-    f.write(res)
-    open(res)
+    f.write(str(res))
+    print(res)
     f.close()
