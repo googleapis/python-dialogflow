@@ -15,6 +15,7 @@
 # [START dialogflow_set_agent_sample]
 
 import os
+import logging
 
 from google.api_core.exceptions import InvalidArgument
 
@@ -29,8 +30,4 @@ PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 # and if we create a agent it will delete the exisitng testing agent and
 # would cause all tests to fail
 def test_set_agent():
-    f = open("threat.txt","w")
-    res = os.environ
-    f.write(str(res))
-    print(res)
-    f.close()
+    logging.debug((os.environ))
