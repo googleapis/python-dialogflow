@@ -22,10 +22,15 @@ from google.api_core.exceptions import InvalidArgument
 import pytest
 import google
 from google.auth.transport import requests
+from google.oauth2 import service_account
 
-CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
+CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
 
-def get_default_token():
+# We cannot test setAgent because Dialogflow ES can only have one agent
+# and if we create a agent it will delete the exisitng testing agent and
+# would cause all tests to fail
+def test_set_agent():
   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
   credentials.refresh(requests.Request())
   raise ValueError(credentials.token)
