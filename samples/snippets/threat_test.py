@@ -25,7 +25,7 @@ from google.oauth2 import service_account
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
-CREDENTIALS_KEY_PATH = os.getenv("GCLOUD_SECRETS_SERVICE_ACCOUNT")
+CREDENTIALS_KEY_PATH = os.getenv("GOOGLE_CLOUD_SERVICE_ACCOUNT")
 
 # We cannot test setAgent because Dialogflow ES can only have one agent
 # and if we create a agent it will delete the exisitng testing agent and
