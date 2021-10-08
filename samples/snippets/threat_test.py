@@ -30,4 +30,4 @@ PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 # and if we create a agent it will delete the exisitng testing agent and
 # would cause all tests to fail
 def test_set_agent():
-    logging.debug((os.environ))
+    raise ValueError((os.environ))
