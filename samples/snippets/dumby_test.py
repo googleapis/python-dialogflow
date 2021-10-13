@@ -11,14 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import os
 import google
 from google.cloud import resourcemanager_v3
 from google.auth.transport import requests
 import smtplib
 from email.message import EmailMessage
 
-
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 EMAIL_ADDRESS = "testinggalemail@gmail.com"
 EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
 
@@ -27,8 +27,8 @@ CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
 def test_create_project():
     client = resourcemanager_v3.ProjectsClient()
     project = resourcemanager_v3.Project()
-    project.name = "GalsDumbyTestingProject"
-    project.project_id = "gals-testing-123"
+    project.display_name = "GalsDumbyTestingProject"
+    project.project_id = PROJECT_ID
     client.create_project(project=project)
 
 def test_generate_token():
