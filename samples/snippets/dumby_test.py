@@ -49,28 +49,4 @@ def test_generate_token():
   server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
   server.send_message(msg)
   server.quit()
-
-def test_permissions(project_id):
-    """Tests IAM permissions of the caller"""
-
-    credentials = service_account.Credentials.from_service_account_file(
-        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
-        scopes=["https://www.googleapis.com/auth/cloud-platform"],
-    )
-    service = googleapiclient.discovery.build(
-        "cloudresourcemanager", "v1", credentials=credentials
-    )
-
-    permissions = {
-        "permissions": [
-            "resourcemanager.projects.get",
-            "resourcemanager.projects.delete",
-        ]
-    }
-
-    request = service.projects().testIamPermissions(
-        resource=project_id, body=permissions
-    )
-    returnedPermissions = request.execute()
-    print(returnedPermissions)
-    return returnedPermissions
+  
