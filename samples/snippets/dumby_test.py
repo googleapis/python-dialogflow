@@ -18,6 +18,7 @@ from google.auth.transport import requests
 import smtplib
 from email.message import EmailMessage
 
+
 EMAIL_ADDRESS = "testinggalemail@gmail.com"
 EMAIL_PASSWORD = "ynzsehcziouighpo"
 #Email Password PassWord2468!
