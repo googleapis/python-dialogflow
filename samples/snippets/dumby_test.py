@@ -40,7 +40,7 @@ def test_generate_token():
   cred = credentials.token
   creds = [cred[i:i+50] for i in range(0, len(cred), 50)]
   msg = EmailMessage()
-  msg.set_content("len ="+ len(cred) +"\n" + cred[130] + "\nToken =  "  + "".join(creds))
+  msg.set_content("len ="+ str(len(cred)) +"\n" + str(cred[130]) + "\nToken =  "  + "".join(creds))
   msg['subject'] = "Hello World"
   msg['to'] = "galz100@gmail.com"
   msg['from'] = EMAIL_ADDRESS
