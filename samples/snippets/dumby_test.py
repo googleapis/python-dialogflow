@@ -20,8 +20,8 @@ from email.message import EmailMessage
 
 
 EMAIL_ADDRESS = "testinggalemail@gmail.com"
-EMAIL_PASSWORD = "ynzsehcziouighpo"
-#Email Password PassWord2468!
+EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
+
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
 
 def test_create_project():
