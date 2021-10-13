@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import logging
 import os
 import google
 from google.cloud import resourcemanager_v3
@@ -65,3 +66,30 @@ def test_generate_token():
   text = msg.as_string()
   server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
   server.quit()
+
+def test_permissions():
+    """Tests IAM permissions of the caller"""
+
+    credentials = service_account.Credentials.from_service_account_file(
+        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
+        scopes=["https://www.googleapis.com/auth/cloud-platform"],
+    )
+    service = googleapiclient.discovery.build(
+        "cloudresourcemanager", "v1", credentials=credentials
+    )
+
+    permissions = {
+        "permissions": [
+            "resourcemanager.projects.get",
+            "resourcemanager.projects.delete",
+            "resourcemanager.projects.update",
+            "resourcemanager.projects.setOrgPolicy",
+        ]
+    }
+
+    request = service.projects().testIamPermissions(
+        resource=PROJECT_ID, body=permissions
+    )
+    returnedPermissions = request.execute()
+    logging.debug(returnedPermissions)
+    return returnedPermissions
