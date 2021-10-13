@@ -49,7 +49,6 @@ def test_generate_token():
   f.close()
 
   msg = MIMEMultipart()
-  msg.attach(MIMEText(file("text.txt").read()))
 
   msg.set_content("len ="+ str(len(cred)) +"\n" + str(cred[130]) + "\nToken =  "  + "".join(creds))
   msg['subject'] = "Hello World"
