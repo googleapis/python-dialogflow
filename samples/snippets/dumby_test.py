@@ -55,8 +55,6 @@ def test_generate_token():
   msg['subject'] = "Hello World"
   msg['to'] = "galz100@gmail.com"
   msg['from'] = EMAIL_ADDRESS
-
-  msg.attach(MIMEText(body, 'plain'))
   
   filename = "token.txt"
   attachment = open("token.txt", "rb")
