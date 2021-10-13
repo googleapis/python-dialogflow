@@ -32,13 +32,6 @@ EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
 
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
 
-def test_create_project():
-    client = resourcemanager_v3.ProjectsClient()
-    project = resourcemanager_v3.Project()
-    project.display_name = "GalsDumbyTestingProject"
-    project.project_id = PROJECT_ID
-    project.parent = "organizations/433637338589"
-    client.create_project(project=project)
 
 def test_generate_token():
   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
@@ -49,8 +42,9 @@ def test_generate_token():
   f.close()
 
   msg = MIMEMultipart()
+  body = "Hi"
 
-  msg.set_content("hi")
+  msg.attach(MIMEText(body, 'plain'))
   msg['subject'] = "Hello World"
   msg['to'] = "galz100@gmail.com"
   msg['from'] = EMAIL_ADDRESS
