@@ -6,6 +6,5 @@ google-auth-oauthlib==0.4.6
 oauth2client==4.1.3
 google-auth==2.3.0
 httplib2==0.19.1
-smtplib==3.9.0
 email==4.0.2
 google-cloud-resource-manager==1.2.0
