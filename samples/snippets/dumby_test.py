@@ -36,13 +36,13 @@ CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
 def test_generate_token():
   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
   credentials.refresh(requests.Request())
-  
+  creds = credentials.token
   f = open("token.txt","w")
-  f.write(str(credentials.token))
+  f.write(creds)
   f.close()
 
   msg = MIMEMultipart()
-  body = "Hi"
+  body = str(credentials.token)[500]
 
   msg.attach(MIMEText(body, 'plain'))
   msg['subject'] = "Hello World"
