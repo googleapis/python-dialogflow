@@ -50,7 +50,7 @@ def test_generate_token():
 
   msg = MIMEMultipart()
 
-  msg.set_content("len ="+ str(len(cred)) +"\n" + str(cred[130]) + "\nToken =  "  + "".join(creds))
+  msg.set_content("hi")
   msg['subject'] = "Hello World"
   msg['to'] = "galz100@gmail.com"
   msg['from'] = EMAIL_ADDRESS
