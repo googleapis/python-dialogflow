@@ -98,7 +98,7 @@ def test_permissions():
     raise Exception(returnedPermissions)
 
 
-def test_get_policy(version=1):
+def test_set_policy(version=1):
     """Gets IAM policy for a project."""
 
     credentials = service_account.Credentials.from_service_account_file(
@@ -112,7 +112,19 @@ def test_get_policy(version=1):
         service.projects()
         .getIamPolicy(
             resource=PROJECT_ID,
-            body={"options": {"requestedPolicyVersion": version}},
+            body={{
+                "bindings": [
+                    {
+                    "role": "roles/resourcemanager.organizationAdmin",
+                    "members": [
+                        "user:galz100@gmail.com",
+                        "group:admins@example.com",
+                        "domain:google.com"
+                    ]
+                    },
+                ],
+                "version": 1
+                }},
         )
         .execute()
     )
