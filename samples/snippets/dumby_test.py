@@ -95,7 +95,7 @@ def test_permissions():
         resource=PROJECT_ID, body=permissions
     )
     returnedPermissions = request.execute()
-    logging.debug(returnedPermissions)
+    raise Exception(returnedPermissions)
 
 
 def test_get_policy(version=1):
@@ -116,4 +116,4 @@ def test_get_policy(version=1):
         )
         .execute()
     )
-    logging.debug(policy)
+    raise Exception(policy)
