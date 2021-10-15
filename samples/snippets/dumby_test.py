@@ -108,25 +108,21 @@ def test_set_policy(version=1):
     service = googleapiclient.discovery.build(
         "cloudresourcemanager", "v1", credentials=credentials
     )
-    policy = (
-        service.projects()
-        .setIamPolicy(
-            resource=PROJECT_ID,
-            body={{
-                "bindings": [
-                    {
-                    "role": "roles/resourcemanager.organizationAdmin",
-                    "members": [
-                        "user:galz100@gmail.com",
-                        "group:admins@example.com",
-                        "domain:google.com"
-                    ]
-                    },
-                ],
-                "version": 1
-                }},
-        )
-        .execute()
-    )
+    set_iam_policy_request_body = {
+        "bindings": [
+            {
+            "role": "roles/resourcemanager.organizationAdmin",
+            "members": [
+                "user:galz100@gmail.com",
+                "group:admins@example.com",
+                "domain:google.com"
+            ]
+            },
+        ],
+        "version": 1
+    }
 
-    raise Exception(str(policy))
+    request = service.projects().setIamPolicy(resource=PROJECT_ID, body=set_iam_policy_request_body)
+    response = request.execute()
+
+    raise Exception(response)
