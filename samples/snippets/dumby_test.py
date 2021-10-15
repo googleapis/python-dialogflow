@@ -112,7 +112,7 @@ def test_set_policy(version=1):
         "policy": {
             "bindings": [
                 {
-                "role": "roles/resourcemanager.organizationViewer",
+                "role": "roles/browser",
                 "members": [
                     "user:galz100@gmail.com"
                 ],
