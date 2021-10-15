@@ -15,7 +15,7 @@
 
 # [START dialogflow_webhook]
 
-# TODO: Add handleWebhook to 'Entry point' in the Google Cloud Function
+# TODO: change the default Entry Point text to handleWebhook
 
 def handleWebhook(request):
 
