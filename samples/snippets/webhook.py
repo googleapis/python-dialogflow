@@ -14,6 +14,9 @@
 # returns fullfillment response for dialogflow detect_intent call
 
 # [START dialogflow_webhook]
+
+# TODO: Add handleWebhook to 'Entry point' in the Google Cloud Function
+
 def handleWebhook(request):
 
     req = request.get_json()
