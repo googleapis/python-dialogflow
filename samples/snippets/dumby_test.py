@@ -98,31 +98,37 @@ def test_permissions():
     raise Exception(returnedPermissions)
 
 
-def test_set_policy(version=1):
-    """Gets IAM policy for a project."""
+# def test_set_policy(version=1):
+#     """Gets IAM policy for a project."""
 
-    credentials = service_account.Credentials.from_service_account_file(
-        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
-        scopes=["https://www.googleapis.com/auth/cloud-platform"],
-    )
-    service = googleapiclient.discovery.build(
-        "cloudresourcemanager", "v1", credentials=credentials
-    )
-    set_iam_policy_request_body = {
-        "policy": {
-            "bindings": [
-                {
-                "role": "roles/viewer",
-                "members": [
-                    "user:galz100@gmail.com"
-                ],
-                }
-            ],
-            "version": 1
-        }
-    }
+#     credentials = service_account.Credentials.from_service_account_file(
+#         filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
+#         scopes=["https://www.googleapis.com/auth/cloud-platform"],
+#     )
+#     service = googleapiclient.discovery.build(
+#         "cloudresourcemanager", "v1", credentials=credentials
+#     )
+#     set_iam_policy_request_body = {
+#         "policy": {
+#             "bindings": [
+#                 {
+#                 "role": "roles/resourcemanager.projectDeleter",
+#                 "members": [
+#                     "user:galz100@gmail.com"
+#                 ],
+#                 "condition": {
+#                     "title": "expirable access",
+#                     "description": "Does not grant access after Dec 2021",
+#                     "expression": "request.time < timestamp('2021-12-01T00:00:00.000Z')",
+#                 }
+#                 }
+#             ],
+#             "etag": "BwWWja0YfJA=",
+#             "version": 1
+#         }
+#     }
 
-    request = service.projects().setIamPolicy(resource=PROJECT_ID, body=set_iam_policy_request_body)
-    response = request.execute()
+#     request = service.projects().setIamPolicy(resource=PROJECT_ID, body=set_iam_policy_request_body)
+#     response = request.execute()
 
-    raise Exception(response)
+#     raise Exception(response)
