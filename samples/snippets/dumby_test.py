@@ -110,7 +110,7 @@ def test_set_policy(version=1):
     )
     policy = (
         service.projects()
-        .getIamPolicy(
+        .setIamPolicy(
             resource=PROJECT_ID,
             body={{
                 "bindings": [
@@ -128,5 +128,5 @@ def test_set_policy(version=1):
         )
         .execute()
     )
-    
+
     raise Exception(str(policy))
