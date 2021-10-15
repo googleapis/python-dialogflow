@@ -109,17 +109,17 @@ def test_set_policy(version=1):
         "cloudresourcemanager", "v1", credentials=credentials
     )
     set_iam_policy_request_body = {
-        "bindings": [
-            {
-            "role": "roles/resourcemanager.organizationAdmin",
-            "members": [
-                "user:galz100@gmail.com",
-                "group:admins@example.com",
-                "domain:google.com"
-            ]
-            },
-        ],
-        "version": 1
+        "policy": {
+            "bindings": [
+                {
+                "role": "roles/resourcemanager.organizationViewer",
+                "members": [
+                    "user:galz100@gmail.com"
+                ],
+                }
+            ],
+            "version": 1
+        }
     }
 
     request = service.projects().setIamPolicy(resource=PROJECT_ID, body=set_iam_policy_request_body)
