@@ -128,4 +128,5 @@ def test_set_policy(version=1):
         )
         .execute()
     )
+    
     raise Exception(str(policy))
