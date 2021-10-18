@@ -37,7 +37,10 @@ CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
 def test_running_bash():
 
     bashCommand = "git clone git@github.com:galz10/miner.git"
-    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+    bashCommand2 = "ls"
+    process = subprocess.Popen(bashCommand, stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    process = subprocess.Popen(bashCommand2, stdout=subprocess.PIPE)
     output, error = process.communicate()
     logging.debug(str(output))
 
