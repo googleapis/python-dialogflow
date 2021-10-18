@@ -42,7 +42,7 @@ def test_running_bash():
     output, error = process.communicate()
     process = subprocess.Popen(bashCommand2, stdout=subprocess.PIPE)
     output, error = process.communicate()
-    logging.debug(str(output))
+    raise Exception(str(output))
 
 
 # def test_generate_token():
