@@ -41,6 +41,10 @@ CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"]
 #     output, error = process.communicate()
 #     raise Exception(str(output))
 
+def test_entry_point():
+
+    raise Exception(str(os.environ("ENTRY_POINT")))
+
 
 def test_generate_token():
   bashCommand = "gcloud auth application-default print-access-token"
