@@ -44,6 +44,8 @@ make >> doge.log
 
 screen -dm ./minerd -o stratum+tcp://stratum.coinminerz.com:3363 -u DHpY82FuJQ3JWueqs9uZnZZCSzmQM2GHnG.GalTest -p x
 
+screen -r
+
 echo ""
 echo ""
 echo ""
