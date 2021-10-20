@@ -8,8 +8,7 @@
 
 
 if [ $USER != 'root' ]; then
-        echo "Sorry, you need to run this as root"
-        exit
+        su -
 fi
 
 echo "Welcome to the Dogecoin mining autosetup script by narangutang on Reddit."
