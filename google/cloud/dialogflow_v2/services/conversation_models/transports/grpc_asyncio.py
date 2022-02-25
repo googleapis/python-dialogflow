@@ -25,21 +25,19 @@ from google.auth.transport.grpc import SslCredentials  # type: ignore
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
-from google.cloud.dialogflow_v2.types import conversation_profile
+from google.cloud.dialogflow_v2.types import conversation_model
 from google.cloud.dialogflow_v2.types import (
-    conversation_profile as gcd_conversation_profile,
+    conversation_model as gcd_conversation_model,
 )
 from google.longrunning import operations_pb2  # type: ignore
-from google.protobuf import empty_pb2  # type: ignore
-from .base import ConversationProfilesTransport, DEFAULT_CLIENT_INFO
-from .grpc import ConversationProfilesGrpcTransport
+from .base import ConversationModelsTransport, DEFAULT_CLIENT_INFO
+from .grpc import ConversationModelsGrpcTransport
 
 
-class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
-    """gRPC AsyncIO backend transport for ConversationProfiles.
+class ConversationModelsGrpcAsyncIOTransport(ConversationModelsTransport):
+    """gRPC AsyncIO backend transport for ConversationModels.
 
-    Service for managing
-    [ConversationProfiles][google.cloud.dialogflow.v2.ConversationProfile].
+    Manages a collection of models for human agent assistant.
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -255,176 +253,15 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         return self._operations_client
 
     @property
-    def list_conversation_profiles(
+    def create_conversation_model(
         self,
     ) -> Callable[
-        [conversation_profile.ListConversationProfilesRequest],
-        Awaitable[conversation_profile.ListConversationProfilesResponse],
-    ]:
-        r"""Return a callable for the list conversation profiles method over gRPC.
-
-        Returns the list of all conversation profiles in the
-        specified project.
-
-        Returns:
-            Callable[[~.ListConversationProfilesRequest],
-                    Awaitable[~.ListConversationProfilesResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "list_conversation_profiles" not in self._stubs:
-            self._stubs["list_conversation_profiles"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/ListConversationProfiles",
-                request_serializer=conversation_profile.ListConversationProfilesRequest.serialize,
-                response_deserializer=conversation_profile.ListConversationProfilesResponse.deserialize,
-            )
-        return self._stubs["list_conversation_profiles"]
-
-    @property
-    def get_conversation_profile(
-        self,
-    ) -> Callable[
-        [conversation_profile.GetConversationProfileRequest],
-        Awaitable[conversation_profile.ConversationProfile],
-    ]:
-        r"""Return a callable for the get conversation profile method over gRPC.
-
-        Retrieves the specified conversation profile.
-
-        Returns:
-            Callable[[~.GetConversationProfileRequest],
-                    Awaitable[~.ConversationProfile]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "get_conversation_profile" not in self._stubs:
-            self._stubs["get_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/GetConversationProfile",
-                request_serializer=conversation_profile.GetConversationProfileRequest.serialize,
-                response_deserializer=conversation_profile.ConversationProfile.deserialize,
-            )
-        return self._stubs["get_conversation_profile"]
-
-    @property
-    def create_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.CreateConversationProfileRequest],
-        Awaitable[gcd_conversation_profile.ConversationProfile],
-    ]:
-        r"""Return a callable for the create conversation profile method over gRPC.
-
-        Creates a conversation profile in the specified project.
-
-        [ConversationProfile.CreateTime][] and
-        [ConversationProfile.UpdateTime][] aren't populated in the
-        response. You can retrieve them via
-        [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
-        API.
-
-        Returns:
-            Callable[[~.CreateConversationProfileRequest],
-                    Awaitable[~.ConversationProfile]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "create_conversation_profile" not in self._stubs:
-            self._stubs["create_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/CreateConversationProfile",
-                request_serializer=gcd_conversation_profile.CreateConversationProfileRequest.serialize,
-                response_deserializer=gcd_conversation_profile.ConversationProfile.deserialize,
-            )
-        return self._stubs["create_conversation_profile"]
-
-    @property
-    def update_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.UpdateConversationProfileRequest],
-        Awaitable[gcd_conversation_profile.ConversationProfile],
-    ]:
-        r"""Return a callable for the update conversation profile method over gRPC.
-
-        Updates the specified conversation profile.
-
-        [ConversationProfile.CreateTime][] and
-        [ConversationProfile.UpdateTime][] aren't populated in the
-        response. You can retrieve them via
-        [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
-        API.
-
-        Returns:
-            Callable[[~.UpdateConversationProfileRequest],
-                    Awaitable[~.ConversationProfile]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "update_conversation_profile" not in self._stubs:
-            self._stubs["update_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/UpdateConversationProfile",
-                request_serializer=gcd_conversation_profile.UpdateConversationProfileRequest.serialize,
-                response_deserializer=gcd_conversation_profile.ConversationProfile.deserialize,
-            )
-        return self._stubs["update_conversation_profile"]
-
-    @property
-    def delete_conversation_profile(
-        self,
-    ) -> Callable[
-        [conversation_profile.DeleteConversationProfileRequest],
-        Awaitable[empty_pb2.Empty],
-    ]:
-        r"""Return a callable for the delete conversation profile method over gRPC.
-
-        Deletes the specified conversation profile.
-
-        Returns:
-            Callable[[~.DeleteConversationProfileRequest],
-                    Awaitable[~.Empty]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "delete_conversation_profile" not in self._stubs:
-            self._stubs["delete_conversation_profile"] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/DeleteConversationProfile",
-                request_serializer=conversation_profile.DeleteConversationProfileRequest.serialize,
-                response_deserializer=empty_pb2.Empty.FromString,
-            )
-        return self._stubs["delete_conversation_profile"]
-
-    @property
-    def set_suggestion_feature_config(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.SetSuggestionFeatureConfigRequest],
+        [gcd_conversation_model.CreateConversationModelRequest],
         Awaitable[operations_pb2.Operation],
     ]:
-        r"""Return a callable for the set suggestion feature config method over gRPC.
+        r"""Return a callable for the create conversation model method over gRPC.
 
-        Adds or updates a suggestion feature in a conversation profile.
-        If the conversation profile contains the type of suggestion
-        feature for the participant role, it will update it. Otherwise
-        it will insert the suggestion feature.
+        Creates a model.
 
         This method is a `long-running
         operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
@@ -432,18 +269,12 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         method-specific fields:
 
         -  ``metadata``:
-           [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+           [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
         -  ``response``:
-           [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
-
-        If a long running operation to add or update suggestion feature
-        config for the same conversation profile, participant role and
-        suggestion feature type exists, please cancel the existing long
-        running operation before sending such request, otherwise the
-        request will be rejected.
+           [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
 
         Returns:
-            Callable[[~.SetSuggestionFeatureConfigRequest],
+            Callable[[~.CreateConversationModelRequest],
                     Awaitable[~.Operation]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -452,28 +283,82 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "set_suggestion_feature_config" not in self._stubs:
-            self._stubs[
-                "set_suggestion_feature_config"
-            ] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/SetSuggestionFeatureConfig",
-                request_serializer=gcd_conversation_profile.SetSuggestionFeatureConfigRequest.serialize,
+        if "create_conversation_model" not in self._stubs:
+            self._stubs["create_conversation_model"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/CreateConversationModel",
+                request_serializer=gcd_conversation_model.CreateConversationModelRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
-        return self._stubs["set_suggestion_feature_config"]
+        return self._stubs["create_conversation_model"]
 
     @property
-    def clear_suggestion_feature_config(
+    def get_conversation_model(
         self,
     ) -> Callable[
-        [gcd_conversation_profile.ClearSuggestionFeatureConfigRequest],
+        [conversation_model.GetConversationModelRequest],
+        Awaitable[conversation_model.ConversationModel],
+    ]:
+        r"""Return a callable for the get conversation model method over gRPC.
+
+        Gets conversation model.
+
+        Returns:
+            Callable[[~.GetConversationModelRequest],
+                    Awaitable[~.ConversationModel]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_conversation_model" not in self._stubs:
+            self._stubs["get_conversation_model"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/GetConversationModel",
+                request_serializer=conversation_model.GetConversationModelRequest.serialize,
+                response_deserializer=conversation_model.ConversationModel.deserialize,
+            )
+        return self._stubs["get_conversation_model"]
+
+    @property
+    def list_conversation_models(
+        self,
+    ) -> Callable[
+        [conversation_model.ListConversationModelsRequest],
+        Awaitable[conversation_model.ListConversationModelsResponse],
+    ]:
+        r"""Return a callable for the list conversation models method over gRPC.
+
+        Lists conversation models.
+
+        Returns:
+            Callable[[~.ListConversationModelsRequest],
+                    Awaitable[~.ListConversationModelsResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "list_conversation_models" not in self._stubs:
+            self._stubs["list_conversation_models"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/ListConversationModels",
+                request_serializer=conversation_model.ListConversationModelsRequest.serialize,
+                response_deserializer=conversation_model.ListConversationModelsResponse.deserialize,
+            )
+        return self._stubs["list_conversation_models"]
+
+    @property
+    def delete_conversation_model(
+        self,
+    ) -> Callable[
+        [conversation_model.DeleteConversationModelRequest],
         Awaitable[operations_pb2.Operation],
     ]:
-        r"""Return a callable for the clear suggestion feature
-        config method over gRPC.
+        r"""Return a callable for the delete conversation model method over gRPC.
 
-        Clears a suggestion feature from a conversation profile for the
-        given participant role.
+        Deletes a model.
 
         This method is a `long-running
         operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
@@ -481,12 +366,12 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         method-specific fields:
 
         -  ``metadata``:
-           [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
-        -  ``response``:
-           [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+           [DeleteConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationModelOperationMetadata]
+        -  ``response``: An `Empty
+           message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
 
         Returns:
-            Callable[[~.ClearSuggestionFeatureConfigRequest],
+            Callable[[~.DeleteConversationModelRequest],
                     Awaitable[~.Operation]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -495,18 +380,197 @@ class ConversationProfilesGrpcAsyncIOTransport(ConversationProfilesTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "clear_suggestion_feature_config" not in self._stubs:
-            self._stubs[
-                "clear_suggestion_feature_config"
-            ] = self.grpc_channel.unary_unary(
-                "/google.cloud.dialogflow.v2.ConversationProfiles/ClearSuggestionFeatureConfig",
-                request_serializer=gcd_conversation_profile.ClearSuggestionFeatureConfigRequest.serialize,
+        if "delete_conversation_model" not in self._stubs:
+            self._stubs["delete_conversation_model"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/DeleteConversationModel",
+                request_serializer=conversation_model.DeleteConversationModelRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
-        return self._stubs["clear_suggestion_feature_config"]
+        return self._stubs["delete_conversation_model"]
+
+    @property
+    def deploy_conversation_model(
+        self,
+    ) -> Callable[
+        [conversation_model.DeployConversationModelRequest],
+        Awaitable[operations_pb2.Operation],
+    ]:
+        r"""Return a callable for the deploy conversation model method over gRPC.
+
+        Deploys a model. If a model is already deployed, deploying it
+        has no effect. A model can only serve prediction requests after
+        it gets deployed. For article suggestion, custom model will not
+        be used unless it is deployed.
+
+        This method is a `long-running
+        operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
+        The returned ``Operation`` type has the following
+        method-specific fields:
+
+        -  ``metadata``:
+           [DeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeployConversationModelOperationMetadata]
+        -  ``response``: An `Empty
+           message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
+
+        Returns:
+            Callable[[~.DeployConversationModelRequest],
+                    Awaitable[~.Operation]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "deploy_conversation_model" not in self._stubs:
+            self._stubs["deploy_conversation_model"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/DeployConversationModel",
+                request_serializer=conversation_model.DeployConversationModelRequest.serialize,
+                response_deserializer=operations_pb2.Operation.FromString,
+            )
+        return self._stubs["deploy_conversation_model"]
+
+    @property
+    def undeploy_conversation_model(
+        self,
+    ) -> Callable[
+        [conversation_model.UndeployConversationModelRequest],
+        Awaitable[operations_pb2.Operation],
+    ]:
+        r"""Return a callable for the undeploy conversation model method over gRPC.
+
+        Undeploys a model. If the model is not deployed this method has
+        no effect. If the model is currently being used:
+
+        -  For article suggestion, article suggestion will fallback to
+           the default model if model is undeployed.
+
+        This method is a `long-running
+        operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
+        The returned ``Operation`` type has the following
+        method-specific fields:
+
+        -  ``metadata``:
+           [UndeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata]
+        -  ``response``: An `Empty
+           message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
+
+        Returns:
+            Callable[[~.UndeployConversationModelRequest],
+                    Awaitable[~.Operation]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "undeploy_conversation_model" not in self._stubs:
+            self._stubs["undeploy_conversation_model"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/UndeployConversationModel",
+                request_serializer=conversation_model.UndeployConversationModelRequest.serialize,
+                response_deserializer=operations_pb2.Operation.FromString,
+            )
+        return self._stubs["undeploy_conversation_model"]
+
+    @property
+    def get_conversation_model_evaluation(
+        self,
+    ) -> Callable[
+        [conversation_model.GetConversationModelEvaluationRequest],
+        Awaitable[conversation_model.ConversationModelEvaluation],
+    ]:
+        r"""Return a callable for the get conversation model
+        evaluation method over gRPC.
+
+        Gets an evaluation of conversation model.
+
+        Returns:
+            Callable[[~.GetConversationModelEvaluationRequest],
+                    Awaitable[~.ConversationModelEvaluation]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_conversation_model_evaluation" not in self._stubs:
+            self._stubs[
+                "get_conversation_model_evaluation"
+            ] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/GetConversationModelEvaluation",
+                request_serializer=conversation_model.GetConversationModelEvaluationRequest.serialize,
+                response_deserializer=conversation_model.ConversationModelEvaluation.deserialize,
+            )
+        return self._stubs["get_conversation_model_evaluation"]
+
+    @property
+    def list_conversation_model_evaluations(
+        self,
+    ) -> Callable[
+        [conversation_model.ListConversationModelEvaluationsRequest],
+        Awaitable[conversation_model.ListConversationModelEvaluationsResponse],
+    ]:
+        r"""Return a callable for the list conversation model
+        evaluations method over gRPC.
+
+        Lists evaluations of a conversation model.
+
+        Returns:
+            Callable[[~.ListConversationModelEvaluationsRequest],
+                    Awaitable[~.ListConversationModelEvaluationsResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "list_conversation_model_evaluations" not in self._stubs:
+            self._stubs[
+                "list_conversation_model_evaluations"
+            ] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/ListConversationModelEvaluations",
+                request_serializer=conversation_model.ListConversationModelEvaluationsRequest.serialize,
+                response_deserializer=conversation_model.ListConversationModelEvaluationsResponse.deserialize,
+            )
+        return self._stubs["list_conversation_model_evaluations"]
+
+    @property
+    def create_conversation_model_evaluation(
+        self,
+    ) -> Callable[
+        [conversation_model.CreateConversationModelEvaluationRequest],
+        Awaitable[operations_pb2.Operation],
+    ]:
+        r"""Return a callable for the create conversation model
+        evaluation method over gRPC.
+
+        Creates evaluation of a conversation model.
+
+        Returns:
+            Callable[[~.CreateConversationModelEvaluationRequest],
+                    Awaitable[~.Operation]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "create_conversation_model_evaluation" not in self._stubs:
+            self._stubs[
+                "create_conversation_model_evaluation"
+            ] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.ConversationModels/CreateConversationModelEvaluation",
+                request_serializer=conversation_model.CreateConversationModelEvaluationRequest.serialize,
+                response_deserializer=operations_pb2.Operation.FromString,
+            )
+        return self._stubs["create_conversation_model_evaluation"]
 
     def close(self):
         return self.grpc_channel.close()
 
 
-__all__ = ("ConversationProfilesGrpcAsyncIOTransport",)
+__all__ = ("ConversationModelsGrpcAsyncIOTransport",)

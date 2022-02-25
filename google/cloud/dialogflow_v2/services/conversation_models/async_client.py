@@ -33,45 +33,69 @@ except AttributeError:  # pragma: NO COVER
 
 from google.api_core import operation  # type: ignore
 from google.api_core import operation_async  # type: ignore
-from google.cloud.dialogflow_v2.services.documents import pagers
-from google.cloud.dialogflow_v2.types import document
-from google.cloud.dialogflow_v2.types import document as gcd_document
+from google.cloud.dialogflow_v2.services.conversation_models import pagers
+from google.cloud.dialogflow_v2.types import conversation_model
+from google.cloud.dialogflow_v2.types import (
+    conversation_model as gcd_conversation_model,
+)
 from google.protobuf import empty_pb2  # type: ignore
-from google.protobuf import field_mask_pb2  # type: ignore
-from .transports.base import DocumentsTransport, DEFAULT_CLIENT_INFO
-from .transports.grpc_asyncio import DocumentsGrpcAsyncIOTransport
-from .client import DocumentsClient
+from google.protobuf import timestamp_pb2  # type: ignore
+from .transports.base import ConversationModelsTransport, DEFAULT_CLIENT_INFO
+from .transports.grpc_asyncio import ConversationModelsGrpcAsyncIOTransport
+from .client import ConversationModelsClient
 
 
-class DocumentsAsyncClient:
-    """Service for managing knowledge
-    [Documents][google.cloud.dialogflow.v2.Document].
-    """
+class ConversationModelsAsyncClient:
+    """Manages a collection of models for human agent assistant."""
 
-    _client: DocumentsClient
+    _client: ConversationModelsClient
 
-    DEFAULT_ENDPOINT = DocumentsClient.DEFAULT_ENDPOINT
-    DEFAULT_MTLS_ENDPOINT = DocumentsClient.DEFAULT_MTLS_ENDPOINT
+    DEFAULT_ENDPOINT = ConversationModelsClient.DEFAULT_ENDPOINT
+    DEFAULT_MTLS_ENDPOINT = ConversationModelsClient.DEFAULT_MTLS_ENDPOINT
 
-    document_path = staticmethod(DocumentsClient.document_path)
-    parse_document_path = staticmethod(DocumentsClient.parse_document_path)
+    conversation_dataset_path = staticmethod(
+        ConversationModelsClient.conversation_dataset_path
+    )
+    parse_conversation_dataset_path = staticmethod(
+        ConversationModelsClient.parse_conversation_dataset_path
+    )
+    conversation_model_path = staticmethod(
+        ConversationModelsClient.conversation_model_path
+    )
+    parse_conversation_model_path = staticmethod(
+        ConversationModelsClient.parse_conversation_model_path
+    )
+    conversation_model_evaluation_path = staticmethod(
+        ConversationModelsClient.conversation_model_evaluation_path
+    )
+    parse_conversation_model_evaluation_path = staticmethod(
+        ConversationModelsClient.parse_conversation_model_evaluation_path
+    )
+    document_path = staticmethod(ConversationModelsClient.document_path)
+    parse_document_path = staticmethod(ConversationModelsClient.parse_document_path)
     common_billing_account_path = staticmethod(
-        DocumentsClient.common_billing_account_path
+        ConversationModelsClient.common_billing_account_path
     )
     parse_common_billing_account_path = staticmethod(
-        DocumentsClient.parse_common_billing_account_path
+        ConversationModelsClient.parse_common_billing_account_path
     )
-    common_folder_path = staticmethod(DocumentsClient.common_folder_path)
-    parse_common_folder_path = staticmethod(DocumentsClient.parse_common_folder_path)
-    common_organization_path = staticmethod(DocumentsClient.common_organization_path)
+    common_folder_path = staticmethod(ConversationModelsClient.common_folder_path)
+    parse_common_folder_path = staticmethod(
+        ConversationModelsClient.parse_common_folder_path
+    )
+    common_organization_path = staticmethod(
+        ConversationModelsClient.common_organization_path
+    )
     parse_common_organization_path = staticmethod(
-        DocumentsClient.parse_common_organization_path
+        ConversationModelsClient.parse_common_organization_path
     )
-    common_project_path = staticmethod(DocumentsClient.common_project_path)
-    parse_common_project_path = staticmethod(DocumentsClient.parse_common_project_path)
-    common_location_path = staticmethod(DocumentsClient.common_location_path)
+    common_project_path = staticmethod(ConversationModelsClient.common_project_path)
+    parse_common_project_path = staticmethod(
+        ConversationModelsClient.parse_common_project_path
+    )
+    common_location_path = staticmethod(ConversationModelsClient.common_location_path)
     parse_common_location_path = staticmethod(
-        DocumentsClient.parse_common_location_path
+        ConversationModelsClient.parse_common_location_path
     )
 
     @classmethod
@@ -85,9 +109,9 @@ class DocumentsAsyncClient:
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            DocumentsAsyncClient: The constructed client.
+            ConversationModelsAsyncClient: The constructed client.
         """
-        return DocumentsClient.from_service_account_info.__func__(DocumentsAsyncClient, info, *args, **kwargs)  # type: ignore
+        return ConversationModelsClient.from_service_account_info.__func__(ConversationModelsAsyncClient, info, *args, **kwargs)  # type: ignore
 
     @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
@@ -101,9 +125,9 @@ class DocumentsAsyncClient:
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            DocumentsAsyncClient: The constructed client.
+            ConversationModelsAsyncClient: The constructed client.
         """
-        return DocumentsClient.from_service_account_file.__func__(DocumentsAsyncClient, filename, *args, **kwargs)  # type: ignore
+        return ConversationModelsClient.from_service_account_file.__func__(ConversationModelsAsyncClient, filename, *args, **kwargs)  # type: ignore
 
     from_service_account_json = from_service_account_file
 
@@ -141,30 +165,31 @@ class DocumentsAsyncClient:
         Raises:
             google.auth.exceptions.MutualTLSChannelError: If any errors happen.
         """
-        return DocumentsClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
+        return ConversationModelsClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
 
     @property
-    def transport(self) -> DocumentsTransport:
+    def transport(self) -> ConversationModelsTransport:
         """Returns the transport used by the client instance.
 
         Returns:
-            DocumentsTransport: The transport used by the client instance.
+            ConversationModelsTransport: The transport used by the client instance.
         """
         return self._client.transport
 
     get_transport_class = functools.partial(
-        type(DocumentsClient).get_transport_class, type(DocumentsClient)
+        type(ConversationModelsClient).get_transport_class,
+        type(ConversationModelsClient),
     )
 
     def __init__(
         self,
         *,
         credentials: ga_credentials.Credentials = None,
-        transport: Union[str, DocumentsTransport] = "grpc_asyncio",
+        transport: Union[str, ConversationModelsTransport] = "grpc_asyncio",
         client_options: ClientOptions = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
-        """Instantiates the documents client.
+        """Instantiates the conversation models client.
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -172,7 +197,7 @@ class DocumentsAsyncClient:
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, ~.DocumentsTransport]): The
+            transport (Union[str, ~.ConversationModelsTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
             client_options (ClientOptions): Custom options for the client. It
@@ -196,56 +221,81 @@ class DocumentsAsyncClient:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
-        self._client = DocumentsClient(
+        self._client = ConversationModelsClient(
             credentials=credentials,
             transport=transport,
             client_options=client_options,
             client_info=client_info,
         )
 
-    async def list_documents(
+    async def create_conversation_model(
         self,
-        request: Union[document.ListDocumentsRequest, dict] = None,
+        request: Union[
+            gcd_conversation_model.CreateConversationModelRequest, dict
+        ] = None,
         *,
         parent: str = None,
+        conversation_model: gcd_conversation_model.ConversationModel = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListDocumentsAsyncPager:
-        r"""Returns the list of all documents of the knowledge
-        base.
+    ) -> operation_async.AsyncOperation:
+        r"""Creates a model.
+
+        This method is a `long-running
+        operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
+        The returned ``Operation`` type has the following
+        method-specific fields:
+
+        -  ``metadata``:
+           [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
+        -  ``response``:
+           [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
 
 
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
-            def sample_list_documents():
+            def sample_create_conversation_model():
                 # Create a client
-                client = dialogflow_v2.DocumentsClient()
+                client = dialogflow_v2.ConversationModelsClient()
 
                 # Initialize request argument(s)
-                request = dialogflow_v2.ListDocumentsRequest(
-                    parent="parent_value",
+                conversation_model = dialogflow_v2.ConversationModel()
+                conversation_model.display_name = "display_name_value"
+                conversation_model.datasets.dataset = "dataset_value"
+
+                request = dialogflow_v2.CreateConversationModelRequest(
+                    conversation_model=conversation_model,
                 )
 
                 # Make the request
-                page_result = client.list_documents(request=request)
+                operation = client.create_conversation_model(request=request)
+
+                print("Waiting for operation to complete...")
+
+                response = operation.result()
 
                 # Handle the response
-                for response in page_result:
-                    print(response)
+                print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.ListDocumentsRequest, dict]):
-                The request object. Request message for
-                [Documents.ListDocuments][google.cloud.dialogflow.v2.Documents.ListDocuments].
+            request (Union[google.cloud.dialogflow_v2.types.CreateConversationModelRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.CreateConversationModel][google.cloud.dialogflow.v2.ConversationModels.CreateConversationModel]
             parent (:class:`str`):
-                Required. The knowledge base to list all documents for.
-                Format:
-                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
+                The project to create conversation model for. Format:
+                ``projects/<Project ID>``
 
                 This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
+            conversation_model (:class:`google.cloud.dialogflow_v2.types.ConversationModel`):
+                Required. The conversation model to
+                create.
+
+                This corresponds to the ``conversation_model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -255,35 +305,37 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.services.documents.pagers.ListDocumentsAsyncPager:
-                Response message for
-                [Documents.ListDocuments][google.cloud.dialogflow.v2.Documents.ListDocuments].
+            google.api_core.operation_async.AsyncOperation:
+                An object representing a long-running operation.
 
-                Iterating over this object will yield results and
-                resolve additional pages automatically.
+                The result type for the operation will be
+                :class:`google.cloud.dialogflow_v2.types.ConversationModel`
+                Represents a conversation model.
 
         """
         # Create or coerce a protobuf request object.
         # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        has_flattened_params = any([parent])
+        has_flattened_params = any([parent, conversation_model])
         if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = document.ListDocumentsRequest(request)
+        request = gcd_conversation_model.CreateConversationModelRequest(request)
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
         if parent is not None:
             request.parent = parent
+        if conversation_model is not None:
+            request.conversation_model = conversation_model
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.list_documents,
+            self._client._transport.create_conversation_model,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -297,52 +349,54 @@ class DocumentsAsyncClient:
         # Send the request.
         response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
-        # This method is paged; wrap the response in a pager, which provides
-        # an `__aiter__` convenience method.
-        response = pagers.ListDocumentsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+        # Wrap the response in an operation future.
+        response = operation_async.from_gapic(
+            response,
+            self._client._transport.operations_client,
+            gcd_conversation_model.ConversationModel,
+            metadata_type=gcd_conversation_model.CreateConversationModelOperationMetadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_document(
+    async def get_conversation_model(
         self,
-        request: Union[document.GetDocumentRequest, dict] = None,
+        request: Union[conversation_model.GetConversationModelRequest, dict] = None,
         *,
         name: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> document.Document:
-        r"""Retrieves the specified document.
+    ) -> conversation_model.ConversationModel:
+        r"""Gets conversation model.
 
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
-            def sample_get_document():
+            def sample_get_conversation_model():
                 # Create a client
-                client = dialogflow_v2.DocumentsClient()
+                client = dialogflow_v2.ConversationModelsClient()
 
                 # Initialize request argument(s)
-                request = dialogflow_v2.GetDocumentRequest(
+                request = dialogflow_v2.GetConversationModelRequest(
                     name="name_value",
                 )
 
                 # Make the request
-                response = client.get_document(request=request)
+                response = client.get_conversation_model(request=request)
 
                 # Handle the response
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.GetDocumentRequest, dict]):
-                The request object. Request message for
-                [Documents.GetDocument][google.cloud.dialogflow.v2.Documents.GetDocument].
+            request (Union[google.cloud.dialogflow_v2.types.GetConversationModelRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.GetConversationModel][google.cloud.dialogflow.v2.ConversationModels.GetConversationModel]
             name (:class:`str`):
-                Required. The name of the document to retrieve. Format
-                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+                Required. The conversation model to retrieve. Format:
+                ``projects/<Project ID>/conversationModels/<Conversation Model ID>``
 
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -354,17 +408,8 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.dialogflow_v2.types.Document:
-                A knowledge document to be used by a
-                [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
-
-                   For more information, see the [knowledge base
-                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
-
-                   Note: The projects.agent.knowledgeBases.documents
-                   resource is deprecated; only use
-                   projects.knowledgeBases.documents.
-
+            google.cloud.dialogflow_v2.types.ConversationModel:
+                Represents a conversation model.
         """
         # Create or coerce a protobuf request object.
         # Quick check: If we got a request object, we should *not* have
@@ -376,7 +421,7 @@ class DocumentsAsyncClient:
                 "the individual field arguments should be set."
             )
 
-        request = document.GetDocumentRequest(request)
+        request = conversation_model.GetConversationModelRequest(request)
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
@@ -386,7 +431,7 @@ class DocumentsAsyncClient:
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.get_document,
+            self._client._transport.get_conversation_model,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -403,73 +448,46 @@ class DocumentsAsyncClient:
         # Done; return the response.
         return response
 
-    async def create_document(
+    async def list_conversation_models(
         self,
-        request: Union[gcd_document.CreateDocumentRequest, dict] = None,
+        request: Union[conversation_model.ListConversationModelsRequest, dict] = None,
         *,
         parent: str = None,
-        document: gcd_document.Document = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
-        r"""Creates a new document.
-
-        This method is a `long-running
-        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
-        The returned ``Operation`` type has the following
-        method-specific fields:
-
-        -  ``metadata``:
-           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
-        -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
-
+    ) -> pagers.ListConversationModelsAsyncPager:
+        r"""Lists conversation models.
 
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
-            def sample_create_document():
+            def sample_list_conversation_models():
                 # Create a client
-                client = dialogflow_v2.DocumentsClient()
+                client = dialogflow_v2.ConversationModelsClient()
 
                 # Initialize request argument(s)
-                document = dialogflow_v2.Document()
-                document.content_uri = "content_uri_value"
-                document.display_name = "display_name_value"
-                document.mime_type = "mime_type_value"
-                document.knowledge_types = "AGENT_FACING_SMART_REPLY"
-
-                request = dialogflow_v2.CreateDocumentRequest(
+                request = dialogflow_v2.ListConversationModelsRequest(
                     parent="parent_value",
-                    document=document,
                 )
 
                 # Make the request
-                operation = client.create_document(request=request)
-
-                print("Waiting for operation to complete...")
-
-                response = operation.result()
+                page_result = client.list_conversation_models(request=request)
 
                 # Handle the response
-                print(response)
+                for response in page_result:
+                    print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.CreateDocumentRequest, dict]):
-                The request object. Request message for
-                [Documents.CreateDocument][google.cloud.dialogflow.v2.Documents.CreateDocument].
+            request (Union[google.cloud.dialogflow_v2.types.ListConversationModelsRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.ListConversationModels][google.cloud.dialogflow.v2.ConversationModels.ListConversationModels]
             parent (:class:`str`):
-                Required. The knowledge base to create a document for.
-                Format:
-                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
+                Required. The project to list all conversation models
+                for. Format: ``projects/<Project ID>``
 
                 This corresponds to the ``parent`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
-            document (:class:`google.cloud.dialogflow_v2.types.Document`):
-                Required. The document to create.
-                This corresponds to the ``document`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -479,45 +497,35 @@ class DocumentsAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
-                An object representing a long-running operation.
+            google.cloud.dialogflow_v2.services.conversation_models.pagers.ListConversationModelsAsyncPager:
+                The response message for
+                   [ConversationModels.ListConversationModels][google.cloud.dialogflow.v2.ConversationModels.ListConversationModels]
 
-                The result type for the operation will be
-                :class:`google.cloud.dialogflow_v2.types.Document` A
-                knowledge document to be used by a
-                [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
-
-                   For more information, see the [knowledge base
-                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
-
-                   Note: The projects.agent.knowledgeBases.documents
-                   resource is deprecated; only use
-                   projects.knowledgeBases.documents.
+                Iterating over this object will yield results and
+                resolve additional pages automatically.
 
         """
         # Create or coerce a protobuf request object.
         # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        has_flattened_params = any([parent, document])
+        has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = gcd_document.CreateDocumentRequest(request)
+        request = conversation_model.ListConversationModelsRequest(request)
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
         if parent is not None:
             request.parent = parent
-        if document is not None:
-            request.document = document
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.create_document,
+            self._client._transport.list_conversation_models,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -531,141 +539,33 @@ class DocumentsAsyncClient:
         # Send the request.
         response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
-        # Wrap the response in an operation future.
-        response = operation_async.from_gapic(
-            response,
-            self._client._transport.operations_client,
-            gcd_document.Document,
-            metadata_type=gcd_document.KnowledgeOperationMetadata,
+        # This method is paged; wrap the response in a pager, which provides
+        # an `__aiter__` convenience method.
+        response = pagers.ListConversationModelsAsyncPager(
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def import_documents(
+    async def delete_conversation_model(
         self,
-        request: Union[document.ImportDocumentsRequest, dict] = None,
-        *,
-        retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
-        r"""Creates documents by importing data from external sources.
-        Dialogflow supports up to 350 documents in each request. If you
-        try to import more, Dialogflow will return an error.
-
-        This method is a `long-running
-        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
-        The returned ``Operation`` type has the following
-        method-specific fields:
-
-        -  ``metadata``:
-           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
-        -  ``response``:
-           [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
-
-
-        .. code-block:: python
-
-            from google.cloud import dialogflow_v2
-
-            def sample_import_documents():
-                # Create a client
-                client = dialogflow_v2.DocumentsClient()
-
-                # Initialize request argument(s)
-                gcs_source = dialogflow_v2.GcsSources()
-                gcs_source.uris = ['uris_value_1', 'uris_value_2']
-
-                document_template = dialogflow_v2.ImportDocumentTemplate()
-                document_template.mime_type = "mime_type_value"
-                document_template.knowledge_types = "AGENT_FACING_SMART_REPLY"
-
-                request = dialogflow_v2.ImportDocumentsRequest(
-                    gcs_source=gcs_source,
-                    parent="parent_value",
-                    document_template=document_template,
-                )
-
-                # Make the request
-                operation = client.import_documents(request=request)
-
-                print("Waiting for operation to complete...")
-
-                response = operation.result()
-
-                # Handle the response
-                print(response)
-
-        Args:
-            request (Union[google.cloud.dialogflow_v2.types.ImportDocumentsRequest, dict]):
-                The request object. Request message for
-                [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
-            retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                should be retried.
-            timeout (float): The timeout for this request.
-            metadata (Sequence[Tuple[str, str]]): Strings which should be
-                sent along with the request as metadata.
-
-        Returns:
-            google.api_core.operation_async.AsyncOperation:
-                An object representing a long-running operation.
-
-                The result type for the operation will be
-                :class:`google.cloud.dialogflow_v2.types.ImportDocumentsResponse`
-                Response message for
-                [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
-
-        """
-        # Create or coerce a protobuf request object.
-        request = document.ImportDocumentsRequest(request)
-
-        # Wrap the RPC method; this adds retry and timeout information,
-        # and friendly error handling.
-        rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.import_documents,
-            default_timeout=None,
-            client_info=DEFAULT_CLIENT_INFO,
-        )
-
-        # Certain fields should be provided within the metadata header;
-        # add these here.
-        metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
-        )
-
-        # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
-
-        # Wrap the response in an operation future.
-        response = operation_async.from_gapic(
-            response,
-            self._client._transport.operations_client,
-            document.ImportDocumentsResponse,
-            metadata_type=document.KnowledgeOperationMetadata,
-        )
-
-        # Done; return the response.
-        return response
-
-    async def delete_document(
-        self,
-        request: Union[document.DeleteDocumentRequest, dict] = None,
+        request: Union[conversation_model.DeleteConversationModelRequest, dict] = None,
         *,
         name: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
-        r"""Deletes the specified document.
+        r"""Deletes a model.
 
         This method is a `long-running
-        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
+        operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
         The returned ``Operation`` type has the following
         method-specific fields:
 
         -  ``metadata``:
-           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+           [DeleteConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationModelOperationMetadata]
         -  ``response``: An `Empty
            message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
 
@@ -674,17 +574,17 @@ class DocumentsAsyncClient:
 
             from google.cloud import dialogflow_v2
 
-            def sample_delete_document():
+            def sample_delete_conversation_model():
                 # Create a client
-                client = dialogflow_v2.DocumentsClient()
+                client = dialogflow_v2.ConversationModelsClient()
 
                 # Initialize request argument(s)
-                request = dialogflow_v2.DeleteDocumentRequest(
+                request = dialogflow_v2.DeleteConversationModelRequest(
                     name="name_value",
                 )
 
                 # Make the request
-                operation = client.delete_document(request=request)
+                operation = client.delete_conversation_model(request=request)
 
                 print("Waiting for operation to complete...")
 
@@ -694,12 +594,12 @@ class DocumentsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.DeleteDocumentRequest, dict]):
-                The request object. Request message for
-                [Documents.DeleteDocument][google.cloud.dialogflow.v2.Documents.DeleteDocument].
+            request (Union[google.cloud.dialogflow_v2.types.DeleteConversationModelRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.DeleteConversationModel][google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]
             name (:class:`str`):
-                Required. The name of the document to delete. Format:
-                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``.
+                Required. The conversation model to delete. Format:
+                ``projects/<Project ID>/conversationModels/<Conversation Model ID>``
 
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -739,7 +639,7 @@ class DocumentsAsyncClient:
                 "the individual field arguments should be set."
             )
 
-        request = document.DeleteDocumentRequest(request)
+        request = conversation_model.DeleteConversationModelRequest(request)
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
@@ -749,7 +649,7 @@ class DocumentsAsyncClient:
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.delete_document,
+            self._client._transport.delete_conversation_model,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -768,55 +668,51 @@ class DocumentsAsyncClient:
             response,
             self._client._transport.operations_client,
             empty_pb2.Empty,
-            metadata_type=document.KnowledgeOperationMetadata,
+            metadata_type=conversation_model.DeleteConversationModelOperationMetadata,
         )
 
         # Done; return the response.
         return response
 
-    async def update_document(
+    async def deploy_conversation_model(
         self,
-        request: Union[gcd_document.UpdateDocumentRequest, dict] = None,
+        request: Union[conversation_model.DeployConversationModelRequest, dict] = None,
         *,
-        document: gcd_document.Document = None,
-        update_mask: field_mask_pb2.FieldMask = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
-        r"""Updates the specified document.
+        r"""Deploys a model. If a model is already deployed, deploying it
+        has no effect. A model can only serve prediction requests after
+        it gets deployed. For article suggestion, custom model will not
+        be used unless it is deployed.
 
         This method is a `long-running
-        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
+        operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
         The returned ``Operation`` type has the following
         method-specific fields:
 
         -  ``metadata``:
-           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
-        -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
+           [DeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeployConversationModelOperationMetadata]
+        -  ``response``: An `Empty
+           message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
 
 
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
-            def sample_update_document():
+            def sample_deploy_conversation_model():
                 # Create a client
-                client = dialogflow_v2.DocumentsClient()
+                client = dialogflow_v2.ConversationModelsClient()
 
                 # Initialize request argument(s)
-                document = dialogflow_v2.Document()
-                document.content_uri = "content_uri_value"
-                document.display_name = "display_name_value"
-                document.mime_type = "mime_type_value"
-                document.knowledge_types = "AGENT_FACING_SMART_REPLY"
-
-                request = dialogflow_v2.UpdateDocumentRequest(
-                    document=document,
+                request = dialogflow_v2.DeployConversationModelRequest(
+                    name="name_value",
                 )
 
                 # Make the request
-                operation = client.update_document(request=request)
+                operation = client.deploy_conversation_model(request=request)
 
                 print("Waiting for operation to complete...")
 
@@ -826,22 +722,9 @@ class DocumentsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.UpdateDocumentRequest, dict]):
-                The request object. Request message for
-                [Documents.UpdateDocument][google.cloud.dialogflow.v2.Documents.UpdateDocument].
-            document (:class:`google.cloud.dialogflow_v2.types.Document`):
-                Required. The document to update.
-                This corresponds to the ``document`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
-            update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`):
-                Optional. Not specified means ``update all``. Currently,
-                only ``display_name`` can be updated, an InvalidArgument
-                will be returned for attempting to update other fields.
-
-                This corresponds to the ``update_mask`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
+            request (Union[google.cloud.dialogflow_v2.types.DeployConversationModelRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.DeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.DeployConversationModel]
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -852,42 +735,28 @@ class DocumentsAsyncClient:
             google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be
-                :class:`google.cloud.dialogflow_v2.types.Document` A
-                knowledge document to be used by a
-                [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
+                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
+                   empty messages in your APIs. A typical example is to
+                   use it as the request or the response type of an API
+                   method. For instance:
 
-                   For more information, see the [knowledge base
-                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
+                      service Foo {
+                         rpc Bar(google.protobuf.Empty) returns
+                         (google.protobuf.Empty);
 
-                   Note: The projects.agent.knowledgeBases.documents
-                   resource is deprecated; only use
-                   projects.knowledgeBases.documents.
+                      }
+
+                   The JSON representation for Empty is empty JSON
+                   object {}.
 
         """
         # Create or coerce a protobuf request object.
-        # Quick check: If we got a request object, we should *not* have
-        # gotten any keyword arguments that map to the request.
-        has_flattened_params = any([document, update_mask])
-        if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
-
-        request = gcd_document.UpdateDocumentRequest(request)
-
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
-        if document is not None:
-            request.document = document
-        if update_mask is not None:
-            request.update_mask = update_mask
+        request = conversation_model.DeployConversationModelRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.update_document,
+            self._client._transport.deploy_conversation_model,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -895,9 +764,7 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("document.name", request.document.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
@@ -907,58 +774,55 @@ class DocumentsAsyncClient:
         response = operation_async.from_gapic(
             response,
             self._client._transport.operations_client,
-            gcd_document.Document,
-            metadata_type=gcd_document.KnowledgeOperationMetadata,
+            empty_pb2.Empty,
+            metadata_type=conversation_model.DeployConversationModelOperationMetadata,
         )
 
         # Done; return the response.
         return response
 
-    async def reload_document(
+    async def undeploy_conversation_model(
         self,
-        request: Union[document.ReloadDocumentRequest, dict] = None,
+        request: Union[
+            conversation_model.UndeployConversationModelRequest, dict
+        ] = None,
         *,
-        name: str = None,
-        content_uri: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
-        r"""Reloads the specified document from its specified source,
-        content_uri or content. The previously loaded content of the
-        document will be deleted. Note: Even when the content of the
-        document has not changed, there still may be side effects
-        because of internal implementation changes.
+        r"""Undeploys a model. If the model is not deployed this method has
+        no effect. If the model is currently being used:
+
+        -  For article suggestion, article suggestion will fallback to
+           the default model if model is undeployed.
 
         This method is a `long-running
-        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
+        operation <https://cloud.google.com/dialogflow/es/docs/how/long-running-operations>`__.
         The returned ``Operation`` type has the following
         method-specific fields:
 
         -  ``metadata``:
-           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
-        -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
-
-        Note: The ``projects.agent.knowledgeBases.documents`` resource
-        is deprecated; only use ``projects.knowledgeBases.documents``.
+           [UndeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata]
+        -  ``response``: An `Empty
+           message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
 
 
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
-            def sample_reload_document():
+            def sample_undeploy_conversation_model():
                 # Create a client
-                client = dialogflow_v2.DocumentsClient()
+                client = dialogflow_v2.ConversationModelsClient()
 
                 # Initialize request argument(s)
-                request = dialogflow_v2.ReloadDocumentRequest(
-                    content_uri="content_uri_value",
+                request = dialogflow_v2.UndeployConversationModelRequest(
                     name="name_value",
                 )
 
                 # Make the request
-                operation = client.reload_document(request=request)
+                operation = client.undeploy_conversation_model(request=request)
 
                 print("Waiting for operation to complete...")
 
@@ -968,26 +832,9 @@ class DocumentsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.ReloadDocumentRequest, dict]):
-                The request object. Request message for
-                [Documents.ReloadDocument][google.cloud.dialogflow.v2.Documents.ReloadDocument].
-            name (:class:`str`):
-                Required. The name of the document to reload. Format:
-                ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>``
-
-                This corresponds to the ``name`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
-            content_uri (:class:`str`):
-                Optional. The path of gcs source file for reloading
-                document content. For now, only gcs uri is supported.
-
-                For documents stored in Google Cloud Storage, these URIs
-                must have the form ``gs://<bucket-name>/<object-name>``.
-
-                This corresponds to the ``content_uri`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
+            request (Union[google.cloud.dialogflow_v2.types.UndeployConversationModelRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.UndeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -998,42 +845,129 @@ class DocumentsAsyncClient:
             google.api_core.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be
-                :class:`google.cloud.dialogflow_v2.types.Document` A
-                knowledge document to be used by a
-                [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
+                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
+                   empty messages in your APIs. A typical example is to
+                   use it as the request or the response type of an API
+                   method. For instance:
 
-                   For more information, see the [knowledge base
-                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
+                      service Foo {
+                         rpc Bar(google.protobuf.Empty) returns
+                         (google.protobuf.Empty);
 
-                   Note: The projects.agent.knowledgeBases.documents
-                   resource is deprecated; only use
-                   projects.knowledgeBases.documents.
+                      }
+
+                   The JSON representation for Empty is empty JSON
+                   object {}.
+
+        """
+        # Create or coerce a protobuf request object.
+        request = conversation_model.UndeployConversationModelRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.undeploy_conversation_model,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+        )
+
+        # Send the request.
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # Wrap the response in an operation future.
+        response = operation_async.from_gapic(
+            response,
+            self._client._transport.operations_client,
+            empty_pb2.Empty,
+            metadata_type=conversation_model.UndeployConversationModelOperationMetadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def get_conversation_model_evaluation(
+        self,
+        request: Union[
+            conversation_model.GetConversationModelEvaluationRequest, dict
+        ] = None,
+        *,
+        name: str = None,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> conversation_model.ConversationModelEvaluation:
+        r"""Gets an evaluation of conversation model.
+
+        .. code-block:: python
+
+            from google.cloud import dialogflow_v2
+
+            def sample_get_conversation_model_evaluation():
+                # Create a client
+                client = dialogflow_v2.ConversationModelsClient()
+
+                # Initialize request argument(s)
+                request = dialogflow_v2.GetConversationModelEvaluationRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_conversation_model_evaluation(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[google.cloud.dialogflow_v2.types.GetConversationModelEvaluationRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.GetConversationModelEvaluation][google.cloud.dialogflow.v2.ConversationModels.GetConversationModelEvaluation]
+            name (:class:`str`):
+                Required. The conversation model evaluation resource
+                name. Format:
+                ``projects/<Project ID>/conversationModels/<Conversation Model ID>/evaluations/<Evaluation ID>``
+
+                This corresponds to the ``name`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            google.cloud.dialogflow_v2.types.ConversationModelEvaluation:
+                Represents evaluation result of a
+                conversation model.
 
         """
         # Create or coerce a protobuf request object.
         # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        has_flattened_params = any([name, content_uri])
+        has_flattened_params = any([name])
         if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = document.ReloadDocumentRequest(request)
+        request = conversation_model.GetConversationModelEvaluationRequest(request)
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
         if name is not None:
             request.name = name
-        if content_uri is not None:
-            request.content_uri = content_uri
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.reload_document,
+            self._client._transport.get_conversation_model_evaluation,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -1047,53 +981,140 @@ class DocumentsAsyncClient:
         # Send the request.
         response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
-        # Wrap the response in an operation future.
-        response = operation_async.from_gapic(
-            response,
-            self._client._transport.operations_client,
-            document.Document,
-            metadata_type=document.KnowledgeOperationMetadata,
-        )
-
         # Done; return the response.
         return response
 
-    async def export_document(
+    async def list_conversation_model_evaluations(
         self,
-        request: Union[document.ExportDocumentRequest, dict] = None,
+        request: Union[
+            conversation_model.ListConversationModelEvaluationsRequest, dict
+        ] = None,
         *,
+        parent: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
-        r"""Exports a smart messaging candidate document into the specified
-        destination.
-
-        This method is a `long-running
-        operation <https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation>`__.
-        The returned ``Operation`` type has the following
-        method-specific fields:
-
-        -  ``metadata``:
-           [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
-        -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
-
+    ) -> pagers.ListConversationModelEvaluationsAsyncPager:
+        r"""Lists evaluations of a conversation model.
 
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
-            def sample_export_document():
+            def sample_list_conversation_model_evaluations():
                 # Create a client
-                client = dialogflow_v2.DocumentsClient()
+                client = dialogflow_v2.ConversationModelsClient()
 
                 # Initialize request argument(s)
-                request = dialogflow_v2.ExportDocumentRequest(
-                    name="name_value",
+                request = dialogflow_v2.ListConversationModelEvaluationsRequest(
+                    parent="parent_value",
                 )
 
                 # Make the request
-                operation = client.export_document(request=request)
+                page_result = client.list_conversation_model_evaluations(request=request)
+
+                # Handle the response
+                for response in page_result:
+                    print(response)
+
+        Args:
+            request (Union[google.cloud.dialogflow_v2.types.ListConversationModelEvaluationsRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.ListConversationModelEvaluations][google.cloud.dialogflow.v2.ConversationModels.ListConversationModelEvaluations]
+            parent (:class:`str`):
+                Required. The conversation model resource name. Format:
+                ``projects/<Project ID>/conversationModels/<Conversation Model ID>``
+
+                This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            google.cloud.dialogflow_v2.services.conversation_models.pagers.ListConversationModelEvaluationsAsyncPager:
+                The response message for
+                   [ConversationModels.ListConversationModelEvaluations][google.cloud.dialogflow.v2.ConversationModels.ListConversationModelEvaluations]
+
+                Iterating over this object will yield results and
+                resolve additional pages automatically.
+
+        """
+        # Create or coerce a protobuf request object.
+        # Quick check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
+
+        request = conversation_model.ListConversationModelEvaluationsRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+        if parent is not None:
+            request.parent = parent
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.list_conversation_model_evaluations,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+        )
+
+        # Send the request.
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # This method is paged; wrap the response in a pager, which provides
+        # an `__aiter__` convenience method.
+        response = pagers.ListConversationModelEvaluationsAsyncPager(
+            method=rpc, request=request, response=response, metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def create_conversation_model_evaluation(
+        self,
+        request: Union[
+            conversation_model.CreateConversationModelEvaluationRequest, dict
+        ] = None,
+        *,
+        parent: str = None,
+        conversation_model_evaluation: conversation_model.ConversationModelEvaluation = None,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> operation_async.AsyncOperation:
+        r"""Creates evaluation of a conversation model.
+
+        .. code-block:: python
+
+            from google.cloud import dialogflow_v2
+
+            def sample_create_conversation_model_evaluation():
+                # Create a client
+                client = dialogflow_v2.ConversationModelsClient()
+
+                # Initialize request argument(s)
+                request = dialogflow_v2.CreateConversationModelEvaluationRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                operation = client.create_conversation_model_evaluation(request=request)
 
                 print("Waiting for operation to complete...")
 
@@ -1103,9 +1124,23 @@ class DocumentsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.ExportDocumentRequest, dict]):
-                The request object. Request message for
-                [Documents.ExportDocument][google.cloud.dialogflow.v2.Documents.ExportDocument].
+            request (Union[google.cloud.dialogflow_v2.types.CreateConversationModelEvaluationRequest, dict]):
+                The request object. The request message for
+                [ConversationModels.CreateConversationModelEvaluation][google.cloud.dialogflow.v2.ConversationModels.CreateConversationModelEvaluation]
+            parent (:class:`str`):
+                Required. The conversation model resource name. Format:
+                ``projects/<Project ID>/locations/<Location ID>/conversationModels/<Conversation Model ID>``
+
+                This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
+            conversation_model_evaluation (:class:`google.cloud.dialogflow_v2.types.ConversationModelEvaluation`):
+                Required. The conversation model
+                evaluation to be created.
+
+                This corresponds to the ``conversation_model_evaluation`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1117,25 +1152,33 @@ class DocumentsAsyncClient:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.dialogflow_v2.types.Document` A
-                knowledge document to be used by a
-                [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
-
-                   For more information, see the [knowledge base
-                   guide](\ https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
-
-                   Note: The projects.agent.knowledgeBases.documents
-                   resource is deprecated; only use
-                   projects.knowledgeBases.documents.
+                :class:`google.cloud.dialogflow_v2.types.ConversationModelEvaluation`
+                Represents evaluation result of a conversation model.
 
         """
         # Create or coerce a protobuf request object.
-        request = document.ExportDocumentRequest(request)
+        # Quick check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([parent, conversation_model_evaluation])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
+
+        request = conversation_model.CreateConversationModelEvaluationRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+        if parent is not None:
+            request.parent = parent
+        if conversation_model_evaluation is not None:
+            request.conversation_model_evaluation = conversation_model_evaluation
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.export_document,
+            self._client._transport.create_conversation_model_evaluation,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -1143,7 +1186,7 @@ class DocumentsAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
@@ -1153,8 +1196,8 @@ class DocumentsAsyncClient:
         response = operation_async.from_gapic(
             response,
             self._client._transport.operations_client,
-            document.Document,
-            metadata_type=document.KnowledgeOperationMetadata,
+            conversation_model.ConversationModelEvaluation,
+            metadata_type=conversation_model.CreateConversationModelEvaluationOperationMetadata,
         )
 
         # Done; return the response.
@@ -1177,4 +1220,4 @@ except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("DocumentsAsyncClient",)
+__all__ = ("ConversationModelsAsyncClient",)
