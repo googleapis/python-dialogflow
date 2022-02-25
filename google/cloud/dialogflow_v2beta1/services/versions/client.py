@@ -414,8 +414,7 @@ class VersionsClient(metaclass=VersionsClientMeta):
         agent.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -518,8 +517,7 @@ class VersionsClient(metaclass=VersionsClientMeta):
     ) -> version.Version:
         r"""Retrieves the specified agent version.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -634,8 +632,7 @@ class VersionsClient(metaclass=VersionsClientMeta):
         "default" environment.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -760,8 +757,7 @@ class VersionsClient(metaclass=VersionsClientMeta):
         version resource.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -882,8 +878,7 @@ class VersionsClient(metaclass=VersionsClientMeta):
     ) -> None:
         r"""Delete the specified agent version.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

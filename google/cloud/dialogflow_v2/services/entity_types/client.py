@@ -417,8 +417,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         agent.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -531,8 +530,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
     ) -> entity_type.EntityType:
         r"""Retrieves the specified entity type.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -654,8 +652,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -788,8 +785,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -913,8 +909,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1008,8 +1003,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1114,8 +1108,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1259,8 +1252,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1419,8 +1411,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1579,8 +1570,7 @@ class EntityTypesClient(metaclass=EntityTypesClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 

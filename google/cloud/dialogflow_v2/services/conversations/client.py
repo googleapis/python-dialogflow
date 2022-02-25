@@ -466,8 +466,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
         is triggered, conversation will transfer to Assist Stage.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -576,8 +575,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
         specified project.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -678,8 +676,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
     ) -> conversation.Conversation:
         r"""Retrieves the specific conversation.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -777,8 +774,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
         days.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -879,8 +875,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
         and empty page_token.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 

@@ -221,7 +221,7 @@ class AnswerRecordsAsyncClient:
         Retrieves a specific answer record.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -327,7 +327,7 @@ class AnswerRecordsAsyncClient:
         specified project in reverse chronological order.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -428,7 +428,7 @@ class AnswerRecordsAsyncClient:
     ) -> gcd_answer_record.AnswerRecord:
         r"""Updates the specified answer record.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

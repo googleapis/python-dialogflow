@@ -250,7 +250,7 @@ class ConversationProfilesAsyncClient:
         specified project.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -351,7 +351,7 @@ class ConversationProfilesAsyncClient:
     ) -> conversation_profile.ConversationProfile:
         r"""Retrieves the specified conversation profile.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -452,7 +452,7 @@ class ConversationProfilesAsyncClient:
         API.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -566,7 +566,7 @@ class ConversationProfilesAsyncClient:
         API.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -672,7 +672,7 @@ class ConversationProfilesAsyncClient:
     ) -> None:
         r"""Deletes the specified conversation profile.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

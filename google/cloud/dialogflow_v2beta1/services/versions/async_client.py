@@ -212,7 +212,7 @@ class VersionsAsyncClient:
         agent.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -315,7 +315,7 @@ class VersionsAsyncClient:
     ) -> version.Version:
         r"""Retrieves the specified agent version.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -430,7 +430,7 @@ class VersionsAsyncClient:
         "default" environment.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -555,7 +555,7 @@ class VersionsAsyncClient:
         version resource.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -676,7 +676,7 @@ class VersionsAsyncClient:
     ) -> None:
         r"""Delete the specified agent version.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

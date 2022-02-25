@@ -406,8 +406,7 @@ class FulfillmentsClient(metaclass=FulfillmentsClientMeta):
     ) -> fulfillment.Fulfillment:
         r"""Retrieves the fulfillment.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -511,8 +510,7 @@ class FulfillmentsClient(metaclass=FulfillmentsClientMeta):
     ) -> gcd_fulfillment.Fulfillment:
         r"""Updates the fulfillment.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

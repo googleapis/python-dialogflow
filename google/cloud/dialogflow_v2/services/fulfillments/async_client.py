@@ -212,7 +212,7 @@ class FulfillmentsAsyncClient:
     ) -> fulfillment.Fulfillment:
         r"""Retrieves the fulfillment.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -313,7 +313,7 @@ class FulfillmentsAsyncClient:
     ) -> gcd_fulfillment.Fulfillment:
         r"""Updates the fulfillment.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 

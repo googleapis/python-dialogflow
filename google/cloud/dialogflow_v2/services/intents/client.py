@@ -431,8 +431,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
         agent.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -554,8 +553,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
     ) -> intent.Intent:
         r"""Retrieves the specified intent.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -673,8 +671,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -803,8 +800,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -933,8 +929,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1033,8 +1028,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1178,8 +1172,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 

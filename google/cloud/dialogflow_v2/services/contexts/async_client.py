@@ -210,7 +210,7 @@ class ContextsAsyncClient:
         session.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -314,7 +314,7 @@ class ContextsAsyncClient:
     ) -> context.Context:
         r"""Retrieves the specified context.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -430,7 +430,7 @@ class ContextsAsyncClient:
         context.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -553,7 +553,7 @@ class ContextsAsyncClient:
     ) -> gcd_context.Context:
         r"""Updates the specified context.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -672,7 +672,7 @@ class ContextsAsyncClient:
     ) -> None:
         r"""Deletes the specified context.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -757,7 +757,7 @@ class ContextsAsyncClient:
     ) -> None:
         r"""Deletes all active contexts in the specified session.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
