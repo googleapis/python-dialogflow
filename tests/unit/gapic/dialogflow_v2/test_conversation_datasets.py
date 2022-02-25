@@ -35,23 +35,21 @@ from google.api_core import operations_v1
 from google.api_core import path_template
 from google.auth import credentials as ga_credentials
 from google.auth.exceptions import MutualTLSChannelError
-from google.cloud.dialogflow_v2.services.conversation_profiles import (
-    ConversationProfilesAsyncClient,
+from google.cloud.dialogflow_v2.services.conversation_datasets import (
+    ConversationDatasetsAsyncClient,
 )
-from google.cloud.dialogflow_v2.services.conversation_profiles import (
-    ConversationProfilesClient,
+from google.cloud.dialogflow_v2.services.conversation_datasets import (
+    ConversationDatasetsClient,
 )
-from google.cloud.dialogflow_v2.services.conversation_profiles import pagers
-from google.cloud.dialogflow_v2.services.conversation_profiles import transports
-from google.cloud.dialogflow_v2.types import audio_config
-from google.cloud.dialogflow_v2.types import conversation_profile
+from google.cloud.dialogflow_v2.services.conversation_datasets import pagers
+from google.cloud.dialogflow_v2.services.conversation_datasets import transports
+from google.cloud.dialogflow_v2.types import conversation_dataset
 from google.cloud.dialogflow_v2.types import (
-    conversation_profile as gcd_conversation_profile,
+    conversation_dataset as gcd_conversation_dataset,
 )
-from google.cloud.dialogflow_v2.types import participant
+from google.cloud.dialogflow_v2.types import gcs
 from google.longrunning import operations_pb2
 from google.oauth2 import service_account
-from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 import google.auth
 
@@ -78,33 +76,33 @@ def test__get_default_mtls_endpoint():
     sandbox_mtls_endpoint = "example.mtls.sandbox.googleapis.com"
     non_googleapi = "api.example.com"
 
-    assert ConversationProfilesClient._get_default_mtls_endpoint(None) is None
+    assert ConversationDatasetsClient._get_default_mtls_endpoint(None) is None
     assert (
-        ConversationProfilesClient._get_default_mtls_endpoint(api_endpoint)
+        ConversationDatasetsClient._get_default_mtls_endpoint(api_endpoint)
         == api_mtls_endpoint
     )
     assert (
-        ConversationProfilesClient._get_default_mtls_endpoint(api_mtls_endpoint)
+        ConversationDatasetsClient._get_default_mtls_endpoint(api_mtls_endpoint)
         == api_mtls_endpoint
     )
     assert (
-        ConversationProfilesClient._get_default_mtls_endpoint(sandbox_endpoint)
+        ConversationDatasetsClient._get_default_mtls_endpoint(sandbox_endpoint)
         == sandbox_mtls_endpoint
     )
     assert (
-        ConversationProfilesClient._get_default_mtls_endpoint(sandbox_mtls_endpoint)
+        ConversationDatasetsClient._get_default_mtls_endpoint(sandbox_mtls_endpoint)
         == sandbox_mtls_endpoint
     )
     assert (
-        ConversationProfilesClient._get_default_mtls_endpoint(non_googleapi)
+        ConversationDatasetsClient._get_default_mtls_endpoint(non_googleapi)
         == non_googleapi
     )
 
 
 @pytest.mark.parametrize(
-    "client_class", [ConversationProfilesClient, ConversationProfilesAsyncClient,]
+    "client_class", [ConversationDatasetsClient, ConversationDatasetsAsyncClient,]
 )
-def test_conversation_profiles_client_from_service_account_info(client_class):
+def test_conversation_datasets_client_from_service_account_info(client_class):
     creds = ga_credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
@@ -121,11 +119,11 @@ def test_conversation_profiles_client_from_service_account_info(client_class):
 @pytest.mark.parametrize(
     "transport_class,transport_name",
     [
-        (transports.ConversationProfilesGrpcTransport, "grpc"),
-        (transports.ConversationProfilesGrpcAsyncIOTransport, "grpc_asyncio"),
+        (transports.ConversationDatasetsGrpcTransport, "grpc"),
+        (transports.ConversationDatasetsGrpcAsyncIOTransport, "grpc_asyncio"),
     ],
 )
-def test_conversation_profiles_client_service_account_always_use_jwt(
+def test_conversation_datasets_client_service_account_always_use_jwt(
     transport_class, transport_name
 ):
     with mock.patch.object(
@@ -144,9 +142,9 @@ def test_conversation_profiles_client_service_account_always_use_jwt(
 
 
 @pytest.mark.parametrize(
-    "client_class", [ConversationProfilesClient, ConversationProfilesAsyncClient,]
+    "client_class", [ConversationDatasetsClient, ConversationDatasetsAsyncClient,]
 )
-def test_conversation_profiles_client_from_service_account_file(client_class):
+def test_conversation_datasets_client_from_service_account_file(client_class):
     creds = ga_credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_file"
@@ -163,53 +161,53 @@ def test_conversation_profiles_client_from_service_account_file(client_class):
         assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
-def test_conversation_profiles_client_get_transport_class():
-    transport = ConversationProfilesClient.get_transport_class()
+def test_conversation_datasets_client_get_transport_class():
+    transport = ConversationDatasetsClient.get_transport_class()
     available_transports = [
-        transports.ConversationProfilesGrpcTransport,
+        transports.ConversationDatasetsGrpcTransport,
     ]
     assert transport in available_transports
 
-    transport = ConversationProfilesClient.get_transport_class("grpc")
-    assert transport == transports.ConversationProfilesGrpcTransport
+    transport = ConversationDatasetsClient.get_transport_class("grpc")
+    assert transport == transports.ConversationDatasetsGrpcTransport
 
 
 @pytest.mark.parametrize(
     "client_class,transport_class,transport_name",
     [
         (
-            ConversationProfilesClient,
-            transports.ConversationProfilesGrpcTransport,
+            ConversationDatasetsClient,
+            transports.ConversationDatasetsGrpcTransport,
             "grpc",
         ),
         (
-            ConversationProfilesAsyncClient,
-            transports.ConversationProfilesGrpcAsyncIOTransport,
+            ConversationDatasetsAsyncClient,
+            transports.ConversationDatasetsGrpcAsyncIOTransport,
             "grpc_asyncio",
         ),
     ],
 )
 @mock.patch.object(
-    ConversationProfilesClient,
+    ConversationDatasetsClient,
     "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ConversationProfilesClient),
+    modify_default_endpoint(ConversationDatasetsClient),
 )
 @mock.patch.object(
-    ConversationProfilesAsyncClient,
+    ConversationDatasetsAsyncClient,
     "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ConversationProfilesAsyncClient),
+    modify_default_endpoint(ConversationDatasetsAsyncClient),
 )
-def test_conversation_profiles_client_client_options(
+def test_conversation_datasets_client_client_options(
     client_class, transport_class, transport_name
 ):
     # Check that if channel is provided we won't create a new one.
-    with mock.patch.object(ConversationProfilesClient, "get_transport_class") as gtc:
+    with mock.patch.object(ConversationDatasetsClient, "get_transport_class") as gtc:
         transport = transport_class(credentials=ga_credentials.AnonymousCredentials())
         client = client_class(transport=transport)
         gtc.assert_not_called()
 
     # Check that if channel is provided via str we will create a new one.
-    with mock.patch.object(ConversationProfilesClient, "get_transport_class") as gtc:
+    with mock.patch.object(ConversationDatasetsClient, "get_transport_class") as gtc:
         client = client_class(transport=transport_name)
         gtc.assert_called()
 
@@ -297,43 +295,43 @@ def test_conversation_profiles_client_client_options(
     "client_class,transport_class,transport_name,use_client_cert_env",
     [
         (
-            ConversationProfilesClient,
-            transports.ConversationProfilesGrpcTransport,
+            ConversationDatasetsClient,
+            transports.ConversationDatasetsGrpcTransport,
             "grpc",
             "true",
         ),
         (
-            ConversationProfilesAsyncClient,
-            transports.ConversationProfilesGrpcAsyncIOTransport,
+            ConversationDatasetsAsyncClient,
+            transports.ConversationDatasetsGrpcAsyncIOTransport,
             "grpc_asyncio",
             "true",
         ),
         (
-            ConversationProfilesClient,
-            transports.ConversationProfilesGrpcTransport,
+            ConversationDatasetsClient,
+            transports.ConversationDatasetsGrpcTransport,
             "grpc",
             "false",
         ),
         (
-            ConversationProfilesAsyncClient,
-            transports.ConversationProfilesGrpcAsyncIOTransport,
+            ConversationDatasetsAsyncClient,
+            transports.ConversationDatasetsGrpcAsyncIOTransport,
             "grpc_asyncio",
             "false",
         ),
     ],
 )
 @mock.patch.object(
-    ConversationProfilesClient,
+    ConversationDatasetsClient,
     "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ConversationProfilesClient),
+    modify_default_endpoint(ConversationDatasetsClient),
 )
 @mock.patch.object(
-    ConversationProfilesAsyncClient,
+    ConversationDatasetsAsyncClient,
     "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ConversationProfilesAsyncClient),
+    modify_default_endpoint(ConversationDatasetsAsyncClient),
 )
 @mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "auto"})
-def test_conversation_profiles_client_mtls_env_auto(
+def test_conversation_datasets_client_mtls_env_auto(
     client_class, transport_class, transport_name, use_client_cert_env
 ):
     # This tests the endpoint autoswitch behavior. Endpoint is autoswitched to the default
@@ -427,19 +425,19 @@ def test_conversation_profiles_client_mtls_env_auto(
 
 
 @pytest.mark.parametrize(
-    "client_class", [ConversationProfilesClient, ConversationProfilesAsyncClient]
+    "client_class", [ConversationDatasetsClient, ConversationDatasetsAsyncClient]
 )
 @mock.patch.object(
-    ConversationProfilesClient,
+    ConversationDatasetsClient,
     "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ConversationProfilesClient),
+    modify_default_endpoint(ConversationDatasetsClient),
 )
 @mock.patch.object(
-    ConversationProfilesAsyncClient,
+    ConversationDatasetsAsyncClient,
     "DEFAULT_ENDPOINT",
-    modify_default_endpoint(ConversationProfilesAsyncClient),
+    modify_default_endpoint(ConversationDatasetsAsyncClient),
 )
-def test_conversation_profiles_client_get_mtls_endpoint_and_cert_source(client_class):
+def test_conversation_datasets_client_get_mtls_endpoint_and_cert_source(client_class):
     mock_client_cert_source = mock.Mock()
 
     # Test the case GOOGLE_API_USE_CLIENT_CERTIFICATE is "true".
@@ -511,18 +509,18 @@ def test_conversation_profiles_client_get_mtls_endpoint_and_cert_source(client_c
     "client_class,transport_class,transport_name",
     [
         (
-            ConversationProfilesClient,
-            transports.ConversationProfilesGrpcTransport,
+            ConversationDatasetsClient,
+            transports.ConversationDatasetsGrpcTransport,
             "grpc",
         ),
         (
-            ConversationProfilesAsyncClient,
-            transports.ConversationProfilesGrpcAsyncIOTransport,
+            ConversationDatasetsAsyncClient,
+            transports.ConversationDatasetsGrpcAsyncIOTransport,
             "grpc_asyncio",
         ),
     ],
 )
-def test_conversation_profiles_client_client_options_scopes(
+def test_conversation_datasets_client_client_options_scopes(
     client_class, transport_class, transport_name
 ):
     # Check the case scopes are provided.
@@ -546,20 +544,20 @@ def test_conversation_profiles_client_client_options_scopes(
     "client_class,transport_class,transport_name,grpc_helpers",
     [
         (
-            ConversationProfilesClient,
-            transports.ConversationProfilesGrpcTransport,
+            ConversationDatasetsClient,
+            transports.ConversationDatasetsGrpcTransport,
             "grpc",
             grpc_helpers,
         ),
         (
-            ConversationProfilesAsyncClient,
-            transports.ConversationProfilesGrpcAsyncIOTransport,
+            ConversationDatasetsAsyncClient,
+            transports.ConversationDatasetsGrpcAsyncIOTransport,
             "grpc_asyncio",
             grpc_helpers_async,
         ),
     ],
 )
-def test_conversation_profiles_client_client_options_credentials_file(
+def test_conversation_datasets_client_client_options_credentials_file(
     client_class, transport_class, transport_name, grpc_helpers
 ):
     # Check the case credentials file is provided.
@@ -580,12 +578,12 @@ def test_conversation_profiles_client_client_options_credentials_file(
         )
 
 
-def test_conversation_profiles_client_client_options_from_dict():
+def test_conversation_datasets_client_client_options_from_dict():
     with mock.patch(
-        "google.cloud.dialogflow_v2.services.conversation_profiles.transports.ConversationProfilesGrpcTransport.__init__"
+        "google.cloud.dialogflow_v2.services.conversation_datasets.transports.ConversationDatasetsGrpcTransport.__init__"
     ) as grpc_transport:
         grpc_transport.return_value = None
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             client_options={"api_endpoint": "squid.clam.whelk"}
         )
         grpc_transport.assert_called_once_with(
@@ -604,20 +602,20 @@ def test_conversation_profiles_client_client_options_from_dict():
     "client_class,transport_class,transport_name,grpc_helpers",
     [
         (
-            ConversationProfilesClient,
-            transports.ConversationProfilesGrpcTransport,
+            ConversationDatasetsClient,
+            transports.ConversationDatasetsGrpcTransport,
             "grpc",
             grpc_helpers,
         ),
         (
-            ConversationProfilesAsyncClient,
-            transports.ConversationProfilesGrpcAsyncIOTransport,
+            ConversationDatasetsAsyncClient,
+            transports.ConversationDatasetsGrpcAsyncIOTransport,
             "grpc_asyncio",
             grpc_helpers_async,
         ),
     ],
 )
-def test_conversation_profiles_client_create_channel_credentials_file(
+def test_conversation_datasets_client_create_channel_credentials_file(
     client_class, transport_class, transport_name, grpc_helpers
 ):
     # Check the case credentials file is provided.
@@ -670,10 +668,10 @@ def test_conversation_profiles_client_create_channel_credentials_file(
 
 
 @pytest.mark.parametrize(
-    "request_type", [conversation_profile.ListConversationProfilesRequest, dict,]
+    "request_type", [gcd_conversation_dataset.CreateConversationDatasetRequest, dict,]
 )
-def test_list_conversation_profiles(request_type, transport: str = "grpc"):
-    client = ConversationProfilesClient(
+def test_create_conversation_dataset(request_type, transport: str = "grpc"):
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -683,47 +681,44 @@ def test_list_conversation_profiles(request_type, transport: str = "grpc"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.create_conversation_dataset), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = conversation_profile.ListConversationProfilesResponse(
-            next_page_token="next_page_token_value",
-        )
-        response = client.list_conversation_profiles(request)
+        call.return_value = operations_pb2.Operation(name="operations/spam")
+        response = client.create_conversation_dataset(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.ListConversationProfilesRequest()
+        assert args[0] == gcd_conversation_dataset.CreateConversationDatasetRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, pagers.ListConversationProfilesPager)
-    assert response.next_page_token == "next_page_token_value"
+    assert isinstance(response, future.Future)
 
 
-def test_list_conversation_profiles_empty_call():
+def test_create_conversation_dataset_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
-    client = ConversationProfilesClient(
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.create_conversation_dataset), "__call__"
     ) as call:
-        client.list_conversation_profiles()
+        client.create_conversation_dataset()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.ListConversationProfilesRequest()
+        assert args[0] == gcd_conversation_dataset.CreateConversationDatasetRequest()
 
 
 @pytest.mark.asyncio
-async def test_list_conversation_profiles_async(
+async def test_create_conversation_dataset_async(
     transport: str = "grpc_asyncio",
-    request_type=conversation_profile.ListConversationProfilesRequest,
+    request_type=gcd_conversation_dataset.CreateConversationDatasetRequest,
 ):
-    client = ConversationProfilesAsyncClient(
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -733,48 +728,537 @@ async def test_list_conversation_profiles_async(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.create_conversation_dataset), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            conversation_profile.ListConversationProfilesResponse(
-                next_page_token="next_page_token_value",
-            )
+            operations_pb2.Operation(name="operations/spam")
         )
-        response = await client.list_conversation_profiles(request)
+        response = await client.create_conversation_dataset(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.ListConversationProfilesRequest()
+        assert args[0] == gcd_conversation_dataset.CreateConversationDatasetRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, pagers.ListConversationProfilesAsyncPager)
+    assert isinstance(response, future.Future)
+
+
+@pytest.mark.asyncio
+async def test_create_conversation_dataset_async_from_dict():
+    await test_create_conversation_dataset_async(request_type=dict)
+
+
+def test_create_conversation_dataset_field_headers():
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = gcd_conversation_dataset.CreateConversationDatasetRequest()
+
+    request.parent = "parent/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_conversation_dataset), "__call__"
+    ) as call:
+        call.return_value = operations_pb2.Operation(name="operations/op")
+        client.create_conversation_dataset(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+
+
+@pytest.mark.asyncio
+async def test_create_conversation_dataset_field_headers_async():
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = gcd_conversation_dataset.CreateConversationDatasetRequest()
+
+    request.parent = "parent/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_conversation_dataset), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            operations_pb2.Operation(name="operations/op")
+        )
+        await client.create_conversation_dataset(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+
+
+def test_create_conversation_dataset_flattened():
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_conversation_dataset), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = operations_pb2.Operation(name="operations/op")
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.create_conversation_dataset(
+            parent="parent_value",
+            conversation_dataset=gcd_conversation_dataset.ConversationDataset(
+                name="name_value"
+            ),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
+        arg = args[0].conversation_dataset
+        mock_val = gcd_conversation_dataset.ConversationDataset(name="name_value")
+        assert arg == mock_val
+
+
+def test_create_conversation_dataset_flattened_error():
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.create_conversation_dataset(
+            gcd_conversation_dataset.CreateConversationDatasetRequest(),
+            parent="parent_value",
+            conversation_dataset=gcd_conversation_dataset.ConversationDataset(
+                name="name_value"
+            ),
+        )
+
+
+@pytest.mark.asyncio
+async def test_create_conversation_dataset_flattened_async():
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_conversation_dataset), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = operations_pb2.Operation(name="operations/op")
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            operations_pb2.Operation(name="operations/spam")
+        )
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.create_conversation_dataset(
+            parent="parent_value",
+            conversation_dataset=gcd_conversation_dataset.ConversationDataset(
+                name="name_value"
+            ),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
+        arg = args[0].conversation_dataset
+        mock_val = gcd_conversation_dataset.ConversationDataset(name="name_value")
+        assert arg == mock_val
+
+
+@pytest.mark.asyncio
+async def test_create_conversation_dataset_flattened_error_async():
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.create_conversation_dataset(
+            gcd_conversation_dataset.CreateConversationDatasetRequest(),
+            parent="parent_value",
+            conversation_dataset=gcd_conversation_dataset.ConversationDataset(
+                name="name_value"
+            ),
+        )
+
+
+@pytest.mark.parametrize(
+    "request_type", [conversation_dataset.GetConversationDatasetRequest, dict,]
+)
+def test_get_conversation_dataset(request_type, transport: str = "grpc"):
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_conversation_dataset), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = conversation_dataset.ConversationDataset(
+            name="name_value",
+            display_name="display_name_value",
+            description="description_value",
+            conversation_count=1955,
+        )
+        response = client.get_conversation_dataset(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == conversation_dataset.GetConversationDatasetRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, conversation_dataset.ConversationDataset)
+    assert response.name == "name_value"
+    assert response.display_name == "display_name_value"
+    assert response.description == "description_value"
+    assert response.conversation_count == 1955
+
+
+def test_get_conversation_dataset_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_conversation_dataset), "__call__"
+    ) as call:
+        client.get_conversation_dataset()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == conversation_dataset.GetConversationDatasetRequest()
+
+
+@pytest.mark.asyncio
+async def test_get_conversation_dataset_async(
+    transport: str = "grpc_asyncio",
+    request_type=conversation_dataset.GetConversationDatasetRequest,
+):
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_conversation_dataset), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            conversation_dataset.ConversationDataset(
+                name="name_value",
+                display_name="display_name_value",
+                description="description_value",
+                conversation_count=1955,
+            )
+        )
+        response = await client.get_conversation_dataset(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == conversation_dataset.GetConversationDatasetRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, conversation_dataset.ConversationDataset)
+    assert response.name == "name_value"
+    assert response.display_name == "display_name_value"
+    assert response.description == "description_value"
+    assert response.conversation_count == 1955
+
+
+@pytest.mark.asyncio
+async def test_get_conversation_dataset_async_from_dict():
+    await test_get_conversation_dataset_async(request_type=dict)
+
+
+def test_get_conversation_dataset_field_headers():
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = conversation_dataset.GetConversationDatasetRequest()
+
+    request.name = "name/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_conversation_dataset), "__call__"
+    ) as call:
+        call.return_value = conversation_dataset.ConversationDataset()
+        client.get_conversation_dataset(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+
+
+@pytest.mark.asyncio
+async def test_get_conversation_dataset_field_headers_async():
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = conversation_dataset.GetConversationDatasetRequest()
+
+    request.name = "name/value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_conversation_dataset), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            conversation_dataset.ConversationDataset()
+        )
+        await client.get_conversation_dataset(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+
+
+def test_get_conversation_dataset_flattened():
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_conversation_dataset), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = conversation_dataset.ConversationDataset()
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.get_conversation_dataset(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
+
+
+def test_get_conversation_dataset_flattened_error():
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.get_conversation_dataset(
+            conversation_dataset.GetConversationDatasetRequest(), name="name_value",
+        )
+
+
+@pytest.mark.asyncio
+async def test_get_conversation_dataset_flattened_async():
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.get_conversation_dataset), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = conversation_dataset.ConversationDataset()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            conversation_dataset.ConversationDataset()
+        )
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.get_conversation_dataset(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
+
+
+@pytest.mark.asyncio
+async def test_get_conversation_dataset_flattened_error_async():
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.get_conversation_dataset(
+            conversation_dataset.GetConversationDatasetRequest(), name="name_value",
+        )
+
+
+@pytest.mark.parametrize(
+    "request_type", [conversation_dataset.ListConversationDatasetsRequest, dict,]
+)
+def test_list_conversation_datasets(request_type, transport: str = "grpc"):
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_conversation_datasets), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = conversation_dataset.ListConversationDatasetsResponse(
+            next_page_token="next_page_token_value",
+        )
+        response = client.list_conversation_datasets(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == conversation_dataset.ListConversationDatasetsRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, pagers.ListConversationDatasetsPager)
+    assert response.next_page_token == "next_page_token_value"
+
+
+def test_list_conversation_datasets_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = ConversationDatasetsClient(
+        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_conversation_datasets), "__call__"
+    ) as call:
+        client.list_conversation_datasets()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == conversation_dataset.ListConversationDatasetsRequest()
+
+
+@pytest.mark.asyncio
+async def test_list_conversation_datasets_async(
+    transport: str = "grpc_asyncio",
+    request_type=conversation_dataset.ListConversationDatasetsRequest,
+):
+    client = ConversationDatasetsAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_conversation_datasets), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            conversation_dataset.ListConversationDatasetsResponse(
+                next_page_token="next_page_token_value",
+            )
+        )
+        response = await client.list_conversation_datasets(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == conversation_dataset.ListConversationDatasetsRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, pagers.ListConversationDatasetsAsyncPager)
     assert response.next_page_token == "next_page_token_value"
 
 
 @pytest.mark.asyncio
-async def test_list_conversation_profiles_async_from_dict():
-    await test_list_conversation_profiles_async(request_type=dict)
+async def test_list_conversation_datasets_async_from_dict():
+    await test_list_conversation_datasets_async(request_type=dict)
 
 
-def test_list_conversation_profiles_field_headers():
-    client = ConversationProfilesClient(
+def test_list_conversation_datasets_field_headers():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = conversation_profile.ListConversationProfilesRequest()
+    request = conversation_dataset.ListConversationDatasetsRequest()
 
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.list_conversation_datasets), "__call__"
     ) as call:
-        call.return_value = conversation_profile.ListConversationProfilesResponse()
-        client.list_conversation_profiles(request)
+        call.return_value = conversation_dataset.ListConversationDatasetsResponse()
+        client.list_conversation_datasets(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -787,25 +1271,25 @@ def test_list_conversation_profiles_field_headers():
 
 
 @pytest.mark.asyncio
-async def test_list_conversation_profiles_field_headers_async():
-    client = ConversationProfilesAsyncClient(
+async def test_list_conversation_datasets_field_headers_async():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = conversation_profile.ListConversationProfilesRequest()
+    request = conversation_dataset.ListConversationDatasetsRequest()
 
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.list_conversation_datasets), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            conversation_profile.ListConversationProfilesResponse()
+            conversation_dataset.ListConversationDatasetsResponse()
         )
-        await client.list_conversation_profiles(request)
+        await client.list_conversation_datasets(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -817,20 +1301,20 @@ async def test_list_conversation_profiles_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
-def test_list_conversation_profiles_flattened():
-    client = ConversationProfilesClient(
+def test_list_conversation_datasets_flattened():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.list_conversation_datasets), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = conversation_profile.ListConversationProfilesResponse()
+        call.return_value = conversation_dataset.ListConversationDatasetsResponse()
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.list_conversation_profiles(parent="parent_value",)
+        client.list_conversation_datasets(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
@@ -841,39 +1325,39 @@ def test_list_conversation_profiles_flattened():
         assert arg == mock_val
 
 
-def test_list_conversation_profiles_flattened_error():
-    client = ConversationProfilesClient(
+def test_list_conversation_datasets_flattened_error():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        client.list_conversation_profiles(
-            conversation_profile.ListConversationProfilesRequest(),
+        client.list_conversation_datasets(
+            conversation_dataset.ListConversationDatasetsRequest(),
             parent="parent_value",
         )
 
 
 @pytest.mark.asyncio
-async def test_list_conversation_profiles_flattened_async():
-    client = ConversationProfilesAsyncClient(
+async def test_list_conversation_datasets_flattened_async():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.list_conversation_datasets), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value = conversation_profile.ListConversationProfilesResponse()
+        call.return_value = conversation_dataset.ListConversationDatasetsResponse()
 
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            conversation_profile.ListConversationProfilesResponse()
+            conversation_dataset.ListConversationDatasetsResponse()
         )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.list_conversation_profiles(parent="parent_value",)
+        response = await client.list_conversation_datasets(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
@@ -885,50 +1369,50 @@ async def test_list_conversation_profiles_flattened_async():
 
 
 @pytest.mark.asyncio
-async def test_list_conversation_profiles_flattened_error_async():
-    client = ConversationProfilesAsyncClient(
+async def test_list_conversation_datasets_flattened_error_async():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        await client.list_conversation_profiles(
-            conversation_profile.ListConversationProfilesRequest(),
+        await client.list_conversation_datasets(
+            conversation_dataset.ListConversationDatasetsRequest(),
             parent="parent_value",
         )
 
 
-def test_list_conversation_profiles_pager(transport_name: str = "grpc"):
-    client = ConversationProfilesClient(
+def test_list_conversation_datasets_pager(transport_name: str = "grpc"):
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials, transport=transport_name,
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.list_conversation_datasets), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
                 next_page_token="abc",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[], next_page_token="def",
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[], next_page_token="def",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[conversation_profile.ConversationProfile(),],
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[conversation_dataset.ConversationDataset(),],
                 next_page_token="ghi",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
             ),
             RuntimeError,
@@ -938,94 +1422,94 @@ def test_list_conversation_profiles_pager(transport_name: str = "grpc"):
         metadata = tuple(metadata) + (
             gapic_v1.routing_header.to_grpc_metadata((("parent", ""),)),
         )
-        pager = client.list_conversation_profiles(request={})
+        pager = client.list_conversation_datasets(request={})
 
         assert pager._metadata == metadata
 
         results = [i for i in pager]
         assert len(results) == 6
         assert all(
-            isinstance(i, conversation_profile.ConversationProfile) for i in results
+            isinstance(i, conversation_dataset.ConversationDataset) for i in results
         )
 
 
-def test_list_conversation_profiles_pages(transport_name: str = "grpc"):
-    client = ConversationProfilesClient(
+def test_list_conversation_datasets_pages(transport_name: str = "grpc"):
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials, transport=transport_name,
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles), "__call__"
+        type(client.transport.list_conversation_datasets), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
                 next_page_token="abc",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[], next_page_token="def",
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[], next_page_token="def",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[conversation_profile.ConversationProfile(),],
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[conversation_dataset.ConversationDataset(),],
                 next_page_token="ghi",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
             ),
             RuntimeError,
         )
-        pages = list(client.list_conversation_profiles(request={}).pages)
+        pages = list(client.list_conversation_datasets(request={}).pages)
         for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
             assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
-async def test_list_conversation_profiles_async_pager():
-    client = ConversationProfilesAsyncClient(
+async def test_list_conversation_datasets_async_pager():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials,
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles),
+        type(client.transport.list_conversation_datasets),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
                 next_page_token="abc",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[], next_page_token="def",
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[], next_page_token="def",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[conversation_profile.ConversationProfile(),],
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[conversation_dataset.ConversationDataset(),],
                 next_page_token="ghi",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
             ),
             RuntimeError,
         )
-        async_pager = await client.list_conversation_profiles(request={},)
+        async_pager = await client.list_conversation_datasets(request={},)
         assert async_pager.next_page_token == "abc"
         responses = []
         async for response in async_pager:
@@ -1033,59 +1517,59 @@ async def test_list_conversation_profiles_async_pager():
 
         assert len(responses) == 6
         assert all(
-            isinstance(i, conversation_profile.ConversationProfile) for i in responses
+            isinstance(i, conversation_dataset.ConversationDataset) for i in responses
         )
 
 
 @pytest.mark.asyncio
-async def test_list_conversation_profiles_async_pages():
-    client = ConversationProfilesAsyncClient(
+async def test_list_conversation_datasets_async_pages():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials,
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.list_conversation_profiles),
+        type(client.transport.list_conversation_datasets),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
                 next_page_token="abc",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[], next_page_token="def",
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[], next_page_token="def",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[conversation_profile.ConversationProfile(),],
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[conversation_dataset.ConversationDataset(),],
                 next_page_token="ghi",
             ),
-            conversation_profile.ListConversationProfilesResponse(
-                conversation_profiles=[
-                    conversation_profile.ConversationProfile(),
-                    conversation_profile.ConversationProfile(),
+            conversation_dataset.ListConversationDatasetsResponse(
+                conversation_datasets=[
+                    conversation_dataset.ConversationDataset(),
+                    conversation_dataset.ConversationDataset(),
                 ],
             ),
             RuntimeError,
         )
         pages = []
-        async for page_ in (await client.list_conversation_profiles(request={})).pages:
+        async for page_ in (await client.list_conversation_datasets(request={})).pages:
             pages.append(page_)
         for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
             assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.parametrize(
-    "request_type", [conversation_profile.GetConversationProfileRequest, dict,]
+    "request_type", [conversation_dataset.DeleteConversationDatasetRequest, dict,]
 )
-def test_get_conversation_profile(request_type, transport: str = "grpc"):
-    client = ConversationProfilesClient(
+def test_delete_conversation_dataset(request_type, transport: str = "grpc"):
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -1095,1046 +1579,44 @@ def test_get_conversation_profile(request_type, transport: str = "grpc"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.get_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = conversation_profile.ConversationProfile(
-            name="name_value",
-            display_name="display_name_value",
-            language_code="language_code_value",
-            time_zone="time_zone_value",
-            security_settings="security_settings_value",
-        )
-        response = client.get_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.GetConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, conversation_profile.ConversationProfile)
-    assert response.name == "name_value"
-    assert response.display_name == "display_name_value"
-    assert response.language_code == "language_code_value"
-    assert response.time_zone == "time_zone_value"
-    assert response.security_settings == "security_settings_value"
-
-
-def test_get_conversation_profile_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_conversation_profile), "__call__"
-    ) as call:
-        client.get_conversation_profile()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.GetConversationProfileRequest()
-
-
-@pytest.mark.asyncio
-async def test_get_conversation_profile_async(
-    transport: str = "grpc_asyncio",
-    request_type=conversation_profile.GetConversationProfileRequest,
-):
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            conversation_profile.ConversationProfile(
-                name="name_value",
-                display_name="display_name_value",
-                language_code="language_code_value",
-                time_zone="time_zone_value",
-                security_settings="security_settings_value",
-            )
-        )
-        response = await client.get_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.GetConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, conversation_profile.ConversationProfile)
-    assert response.name == "name_value"
-    assert response.display_name == "display_name_value"
-    assert response.language_code == "language_code_value"
-    assert response.time_zone == "time_zone_value"
-    assert response.security_settings == "security_settings_value"
-
-
-@pytest.mark.asyncio
-async def test_get_conversation_profile_async_from_dict():
-    await test_get_conversation_profile_async(request_type=dict)
-
-
-def test_get_conversation_profile_field_headers():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = conversation_profile.GetConversationProfileRequest()
-
-    request.name = "name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = conversation_profile.ConversationProfile()
-        client.get_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
-
-
-@pytest.mark.asyncio
-async def test_get_conversation_profile_field_headers_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = conversation_profile.GetConversationProfileRequest()
-
-    request.name = "name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            conversation_profile.ConversationProfile()
-        )
-        await client.get_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
-
-
-def test_get_conversation_profile_flattened():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = conversation_profile.ConversationProfile()
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.get_conversation_profile(name="name_value",)
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].name
-        mock_val = "name_value"
-        assert arg == mock_val
-
-
-def test_get_conversation_profile_flattened_error():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.get_conversation_profile(
-            conversation_profile.GetConversationProfileRequest(), name="name_value",
-        )
-
-
-@pytest.mark.asyncio
-async def test_get_conversation_profile_flattened_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = conversation_profile.ConversationProfile()
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            conversation_profile.ConversationProfile()
-        )
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.get_conversation_profile(name="name_value",)
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].name
-        mock_val = "name_value"
-        assert arg == mock_val
-
-
-@pytest.mark.asyncio
-async def test_get_conversation_profile_flattened_error_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.get_conversation_profile(
-            conversation_profile.GetConversationProfileRequest(), name="name_value",
-        )
-
-
-@pytest.mark.parametrize(
-    "request_type", [gcd_conversation_profile.CreateConversationProfileRequest, dict,]
-)
-def test_create_conversation_profile(request_type, transport: str = "grpc"):
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.create_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_conversation_profile.ConversationProfile(
-            name="name_value",
-            display_name="display_name_value",
-            language_code="language_code_value",
-            time_zone="time_zone_value",
-            security_settings="security_settings_value",
-        )
-        response = client.create_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.CreateConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, gcd_conversation_profile.ConversationProfile)
-    assert response.name == "name_value"
-    assert response.display_name == "display_name_value"
-    assert response.language_code == "language_code_value"
-    assert response.time_zone == "time_zone_value"
-    assert response.security_settings == "security_settings_value"
-
-
-def test_create_conversation_profile_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.create_conversation_profile), "__call__"
-    ) as call:
-        client.create_conversation_profile()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.CreateConversationProfileRequest()
-
-
-@pytest.mark.asyncio
-async def test_create_conversation_profile_async(
-    transport: str = "grpc_asyncio",
-    request_type=gcd_conversation_profile.CreateConversationProfileRequest,
-):
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.create_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_conversation_profile.ConversationProfile(
-                name="name_value",
-                display_name="display_name_value",
-                language_code="language_code_value",
-                time_zone="time_zone_value",
-                security_settings="security_settings_value",
-            )
-        )
-        response = await client.create_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.CreateConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, gcd_conversation_profile.ConversationProfile)
-    assert response.name == "name_value"
-    assert response.display_name == "display_name_value"
-    assert response.language_code == "language_code_value"
-    assert response.time_zone == "time_zone_value"
-    assert response.security_settings == "security_settings_value"
-
-
-@pytest.mark.asyncio
-async def test_create_conversation_profile_async_from_dict():
-    await test_create_conversation_profile_async(request_type=dict)
-
-
-def test_create_conversation_profile_field_headers():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.CreateConversationProfileRequest()
-
-    request.parent = "parent/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.create_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = gcd_conversation_profile.ConversationProfile()
-        client.create_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
-
-
-@pytest.mark.asyncio
-async def test_create_conversation_profile_field_headers_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.CreateConversationProfileRequest()
-
-    request.parent = "parent/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.create_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_conversation_profile.ConversationProfile()
-        )
-        await client.create_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
-
-
-def test_create_conversation_profile_flattened():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.create_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_conversation_profile.ConversationProfile()
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.create_conversation_profile(
-            parent="parent_value",
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].parent
-        mock_val = "parent_value"
-        assert arg == mock_val
-        arg = args[0].conversation_profile
-        mock_val = gcd_conversation_profile.ConversationProfile(name="name_value")
-        assert arg == mock_val
-
-
-def test_create_conversation_profile_flattened_error():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.create_conversation_profile(
-            gcd_conversation_profile.CreateConversationProfileRequest(),
-            parent="parent_value",
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-        )
-
-
-@pytest.mark.asyncio
-async def test_create_conversation_profile_flattened_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.create_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_conversation_profile.ConversationProfile()
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_conversation_profile.ConversationProfile()
-        )
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.create_conversation_profile(
-            parent="parent_value",
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].parent
-        mock_val = "parent_value"
-        assert arg == mock_val
-        arg = args[0].conversation_profile
-        mock_val = gcd_conversation_profile.ConversationProfile(name="name_value")
-        assert arg == mock_val
-
-
-@pytest.mark.asyncio
-async def test_create_conversation_profile_flattened_error_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.create_conversation_profile(
-            gcd_conversation_profile.CreateConversationProfileRequest(),
-            parent="parent_value",
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-        )
-
-
-@pytest.mark.parametrize(
-    "request_type", [gcd_conversation_profile.UpdateConversationProfileRequest, dict,]
-)
-def test_update_conversation_profile(request_type, transport: str = "grpc"):
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.update_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_conversation_profile.ConversationProfile(
-            name="name_value",
-            display_name="display_name_value",
-            language_code="language_code_value",
-            time_zone="time_zone_value",
-            security_settings="security_settings_value",
-        )
-        response = client.update_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.UpdateConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, gcd_conversation_profile.ConversationProfile)
-    assert response.name == "name_value"
-    assert response.display_name == "display_name_value"
-    assert response.language_code == "language_code_value"
-    assert response.time_zone == "time_zone_value"
-    assert response.security_settings == "security_settings_value"
-
-
-def test_update_conversation_profile_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.update_conversation_profile), "__call__"
-    ) as call:
-        client.update_conversation_profile()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.UpdateConversationProfileRequest()
-
-
-@pytest.mark.asyncio
-async def test_update_conversation_profile_async(
-    transport: str = "grpc_asyncio",
-    request_type=gcd_conversation_profile.UpdateConversationProfileRequest,
-):
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.update_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_conversation_profile.ConversationProfile(
-                name="name_value",
-                display_name="display_name_value",
-                language_code="language_code_value",
-                time_zone="time_zone_value",
-                security_settings="security_settings_value",
-            )
-        )
-        response = await client.update_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.UpdateConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, gcd_conversation_profile.ConversationProfile)
-    assert response.name == "name_value"
-    assert response.display_name == "display_name_value"
-    assert response.language_code == "language_code_value"
-    assert response.time_zone == "time_zone_value"
-    assert response.security_settings == "security_settings_value"
-
-
-@pytest.mark.asyncio
-async def test_update_conversation_profile_async_from_dict():
-    await test_update_conversation_profile_async(request_type=dict)
-
-
-def test_update_conversation_profile_field_headers():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.UpdateConversationProfileRequest()
-
-    request.conversation_profile.name = "conversation_profile.name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.update_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = gcd_conversation_profile.ConversationProfile()
-        client.update_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert (
-        "x-goog-request-params",
-        "conversation_profile.name=conversation_profile.name/value",
-    ) in kw["metadata"]
-
-
-@pytest.mark.asyncio
-async def test_update_conversation_profile_field_headers_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.UpdateConversationProfileRequest()
-
-    request.conversation_profile.name = "conversation_profile.name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.update_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_conversation_profile.ConversationProfile()
-        )
-        await client.update_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert (
-        "x-goog-request-params",
-        "conversation_profile.name=conversation_profile.name/value",
-    ) in kw["metadata"]
-
-
-def test_update_conversation_profile_flattened():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.update_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_conversation_profile.ConversationProfile()
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.update_conversation_profile(
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].conversation_profile
-        mock_val = gcd_conversation_profile.ConversationProfile(name="name_value")
-        assert arg == mock_val
-        arg = args[0].update_mask
-        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
-        assert arg == mock_val
-
-
-def test_update_conversation_profile_flattened_error():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.update_conversation_profile(
-            gcd_conversation_profile.UpdateConversationProfileRequest(),
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
-        )
-
-
-@pytest.mark.asyncio
-async def test_update_conversation_profile_flattened_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.update_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = gcd_conversation_profile.ConversationProfile()
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            gcd_conversation_profile.ConversationProfile()
-        )
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.update_conversation_profile(
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].conversation_profile
-        mock_val = gcd_conversation_profile.ConversationProfile(name="name_value")
-        assert arg == mock_val
-        arg = args[0].update_mask
-        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
-        assert arg == mock_val
-
-
-@pytest.mark.asyncio
-async def test_update_conversation_profile_flattened_error_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.update_conversation_profile(
-            gcd_conversation_profile.UpdateConversationProfileRequest(),
-            conversation_profile=gcd_conversation_profile.ConversationProfile(
-                name="name_value"
-            ),
-            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
-        )
-
-
-@pytest.mark.parametrize(
-    "request_type", [conversation_profile.DeleteConversationProfileRequest, dict,]
-)
-def test_delete_conversation_profile(request_type, transport: str = "grpc"):
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.delete_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = None
-        response = client.delete_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.DeleteConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert response is None
-
-
-def test_delete_conversation_profile_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.delete_conversation_profile), "__call__"
-    ) as call:
-        client.delete_conversation_profile()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.DeleteConversationProfileRequest()
-
-
-@pytest.mark.asyncio
-async def test_delete_conversation_profile_async(
-    transport: str = "grpc_asyncio",
-    request_type=conversation_profile.DeleteConversationProfileRequest,
-):
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.delete_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
-        response = await client.delete_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == conversation_profile.DeleteConversationProfileRequest()
-
-    # Establish that the response is the type that we expect.
-    assert response is None
-
-
-@pytest.mark.asyncio
-async def test_delete_conversation_profile_async_from_dict():
-    await test_delete_conversation_profile_async(request_type=dict)
-
-
-def test_delete_conversation_profile_field_headers():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = conversation_profile.DeleteConversationProfileRequest()
-
-    request.name = "name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.delete_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = None
-        client.delete_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
-
-
-@pytest.mark.asyncio
-async def test_delete_conversation_profile_field_headers_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = conversation_profile.DeleteConversationProfileRequest()
-
-    request.name = "name/value"
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.delete_conversation_profile), "__call__"
-    ) as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
-        await client.delete_conversation_profile(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
-
-
-def test_delete_conversation_profile_flattened():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.delete_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = None
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.delete_conversation_profile(name="name_value",)
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].name
-        mock_val = "name_value"
-        assert arg == mock_val
-
-
-def test_delete_conversation_profile_flattened_error():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.delete_conversation_profile(
-            conversation_profile.DeleteConversationProfileRequest(), name="name_value",
-        )
-
-
-@pytest.mark.asyncio
-async def test_delete_conversation_profile_flattened_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.delete_conversation_profile), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = None
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.delete_conversation_profile(name="name_value",)
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].name
-        mock_val = "name_value"
-        assert arg == mock_val
-
-
-@pytest.mark.asyncio
-async def test_delete_conversation_profile_flattened_error_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.delete_conversation_profile(
-            conversation_profile.DeleteConversationProfileRequest(), name="name_value",
-        )
-
-
-@pytest.mark.parametrize(
-    "request_type", [gcd_conversation_profile.SetSuggestionFeatureConfigRequest, dict,]
-)
-def test_set_suggestion_feature_config(request_type, transport: str = "grpc"):
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.set_suggestion_feature_config), "__call__"
+        type(client.transport.delete_conversation_dataset), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/spam")
-        response = client.set_suggestion_feature_config(request)
+        response = client.delete_conversation_dataset(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.SetSuggestionFeatureConfigRequest()
+        assert args[0] == conversation_dataset.DeleteConversationDatasetRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
 
 
-def test_set_suggestion_feature_config_empty_call():
+def test_delete_conversation_dataset_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
-    client = ConversationProfilesClient(
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.set_suggestion_feature_config), "__call__"
+        type(client.transport.delete_conversation_dataset), "__call__"
     ) as call:
-        client.set_suggestion_feature_config()
+        client.delete_conversation_dataset()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.SetSuggestionFeatureConfigRequest()
+        assert args[0] == conversation_dataset.DeleteConversationDatasetRequest()
 
 
 @pytest.mark.asyncio
-async def test_set_suggestion_feature_config_async(
+async def test_delete_conversation_dataset_async(
     transport: str = "grpc_asyncio",
-    request_type=gcd_conversation_profile.SetSuggestionFeatureConfigRequest,
+    request_type=conversation_dataset.DeleteConversationDatasetRequest,
 ):
-    client = ConversationProfilesAsyncClient(
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -2144,45 +1626,45 @@ async def test_set_suggestion_feature_config_async(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.set_suggestion_feature_config), "__call__"
+        type(client.transport.delete_conversation_dataset), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/spam")
         )
-        response = await client.set_suggestion_feature_config(request)
+        response = await client.delete_conversation_dataset(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.SetSuggestionFeatureConfigRequest()
+        assert args[0] == conversation_dataset.DeleteConversationDatasetRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
 
 
 @pytest.mark.asyncio
-async def test_set_suggestion_feature_config_async_from_dict():
-    await test_set_suggestion_feature_config_async(request_type=dict)
+async def test_delete_conversation_dataset_async_from_dict():
+    await test_delete_conversation_dataset_async(request_type=dict)
 
 
-def test_set_suggestion_feature_config_field_headers():
-    client = ConversationProfilesClient(
+def test_delete_conversation_dataset_field_headers():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.SetSuggestionFeatureConfigRequest()
+    request = conversation_dataset.DeleteConversationDatasetRequest()
 
-    request.conversation_profile = "conversation_profile/value"
+    request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.set_suggestion_feature_config), "__call__"
+        type(client.transport.delete_conversation_dataset), "__call__"
     ) as call:
         call.return_value = operations_pb2.Operation(name="operations/op")
-        client.set_suggestion_feature_config(request)
+        client.delete_conversation_dataset(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -2191,32 +1673,29 @@ def test_set_suggestion_feature_config_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        "x-goog-request-params",
-        "conversation_profile=conversation_profile/value",
-    ) in kw["metadata"]
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
 @pytest.mark.asyncio
-async def test_set_suggestion_feature_config_field_headers_async():
-    client = ConversationProfilesAsyncClient(
+async def test_delete_conversation_dataset_field_headers_async():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.SetSuggestionFeatureConfigRequest()
+    request = conversation_dataset.DeleteConversationDatasetRequest()
 
-    request.conversation_profile = "conversation_profile/value"
+    request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.set_suggestion_feature_config), "__call__"
+        type(client.transport.delete_conversation_dataset), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/op")
         )
-        await client.set_suggestion_feature_config(request)
+        await client.delete_conversation_dataset(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -2225,61 +1704,55 @@ async def test_set_suggestion_feature_config_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        "x-goog-request-params",
-        "conversation_profile=conversation_profile/value",
-    ) in kw["metadata"]
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_set_suggestion_feature_config_flattened():
-    client = ConversationProfilesClient(
+def test_delete_conversation_dataset_flattened():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.set_suggestion_feature_config), "__call__"
+        type(client.transport.delete_conversation_dataset), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/op")
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.set_suggestion_feature_config(
-            conversation_profile="conversation_profile_value",
-        )
+        client.delete_conversation_dataset(name="name_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        arg = args[0].conversation_profile
-        mock_val = "conversation_profile_value"
+        arg = args[0].name
+        mock_val = "name_value"
         assert arg == mock_val
 
 
-def test_set_suggestion_feature_config_flattened_error():
-    client = ConversationProfilesClient(
+def test_delete_conversation_dataset_flattened_error():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        client.set_suggestion_feature_config(
-            gcd_conversation_profile.SetSuggestionFeatureConfigRequest(),
-            conversation_profile="conversation_profile_value",
+        client.delete_conversation_dataset(
+            conversation_dataset.DeleteConversationDatasetRequest(), name="name_value",
         )
 
 
 @pytest.mark.asyncio
-async def test_set_suggestion_feature_config_flattened_async():
-    client = ConversationProfilesAsyncClient(
+async def test_delete_conversation_dataset_flattened_async():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.set_suggestion_feature_config), "__call__"
+        type(client.transport.delete_conversation_dataset), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/op")
@@ -2289,40 +1762,36 @@ async def test_set_suggestion_feature_config_flattened_async():
         )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.set_suggestion_feature_config(
-            conversation_profile="conversation_profile_value",
-        )
+        response = await client.delete_conversation_dataset(name="name_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        arg = args[0].conversation_profile
-        mock_val = "conversation_profile_value"
+        arg = args[0].name
+        mock_val = "name_value"
         assert arg == mock_val
 
 
 @pytest.mark.asyncio
-async def test_set_suggestion_feature_config_flattened_error_async():
-    client = ConversationProfilesAsyncClient(
+async def test_delete_conversation_dataset_flattened_error_async():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
-        await client.set_suggestion_feature_config(
-            gcd_conversation_profile.SetSuggestionFeatureConfigRequest(),
-            conversation_profile="conversation_profile_value",
+        await client.delete_conversation_dataset(
+            conversation_dataset.DeleteConversationDatasetRequest(), name="name_value",
         )
 
 
 @pytest.mark.parametrize(
-    "request_type",
-    [gcd_conversation_profile.ClearSuggestionFeatureConfigRequest, dict,],
+    "request_type", [conversation_dataset.ImportConversationDataRequest, dict,]
 )
-def test_clear_suggestion_feature_config(request_type, transport: str = "grpc"):
-    client = ConversationProfilesClient(
+def test_import_conversation_data(request_type, transport: str = "grpc"):
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -2332,44 +1801,44 @@ def test_clear_suggestion_feature_config(request_type, transport: str = "grpc"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.clear_suggestion_feature_config), "__call__"
+        type(client.transport.import_conversation_data), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = operations_pb2.Operation(name="operations/spam")
-        response = client.clear_suggestion_feature_config(request)
+        response = client.import_conversation_data(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.ClearSuggestionFeatureConfigRequest()
+        assert args[0] == conversation_dataset.ImportConversationDataRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
 
 
-def test_clear_suggestion_feature_config_empty_call():
+def test_import_conversation_data_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
-    client = ConversationProfilesClient(
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.clear_suggestion_feature_config), "__call__"
+        type(client.transport.import_conversation_data), "__call__"
     ) as call:
-        client.clear_suggestion_feature_config()
+        client.import_conversation_data()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.ClearSuggestionFeatureConfigRequest()
+        assert args[0] == conversation_dataset.ImportConversationDataRequest()
 
 
 @pytest.mark.asyncio
-async def test_clear_suggestion_feature_config_async(
+async def test_import_conversation_data_async(
     transport: str = "grpc_asyncio",
-    request_type=gcd_conversation_profile.ClearSuggestionFeatureConfigRequest,
+    request_type=conversation_dataset.ImportConversationDataRequest,
 ):
-    client = ConversationProfilesAsyncClient(
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
@@ -2379,45 +1848,45 @@ async def test_clear_suggestion_feature_config_async(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.clear_suggestion_feature_config), "__call__"
+        type(client.transport.import_conversation_data), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/spam")
         )
-        response = await client.clear_suggestion_feature_config(request)
+        response = await client.import_conversation_data(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == gcd_conversation_profile.ClearSuggestionFeatureConfigRequest()
+        assert args[0] == conversation_dataset.ImportConversationDataRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
 
 
 @pytest.mark.asyncio
-async def test_clear_suggestion_feature_config_async_from_dict():
-    await test_clear_suggestion_feature_config_async(request_type=dict)
+async def test_import_conversation_data_async_from_dict():
+    await test_import_conversation_data_async(request_type=dict)
 
 
-def test_clear_suggestion_feature_config_field_headers():
-    client = ConversationProfilesClient(
+def test_import_conversation_data_field_headers():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.ClearSuggestionFeatureConfigRequest()
+    request = conversation_dataset.ImportConversationDataRequest()
 
-    request.conversation_profile = "conversation_profile/value"
+    request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.clear_suggestion_feature_config), "__call__"
+        type(client.transport.import_conversation_data), "__call__"
     ) as call:
         call.return_value = operations_pb2.Operation(name="operations/op")
-        client.clear_suggestion_feature_config(request)
+        client.import_conversation_data(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -2426,32 +1895,29 @@ def test_clear_suggestion_feature_config_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        "x-goog-request-params",
-        "conversation_profile=conversation_profile/value",
-    ) in kw["metadata"]
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
 @pytest.mark.asyncio
-async def test_clear_suggestion_feature_config_field_headers_async():
-    client = ConversationProfilesAsyncClient(
+async def test_import_conversation_data_field_headers_async():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = gcd_conversation_profile.ClearSuggestionFeatureConfigRequest()
+    request = conversation_dataset.ImportConversationDataRequest()
 
-    request.conversation_profile = "conversation_profile/value"
+    request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client.transport.clear_suggestion_feature_config), "__call__"
+        type(client.transport.import_conversation_data), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             operations_pb2.Operation(name="operations/op")
         )
-        await client.clear_suggestion_feature_config(request)
+        await client.import_conversation_data(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -2460,126 +1926,37 @@ async def test_clear_suggestion_feature_config_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        "x-goog-request-params",
-        "conversation_profile=conversation_profile/value",
-    ) in kw["metadata"]
-
-
-def test_clear_suggestion_feature_config_flattened():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.clear_suggestion_feature_config), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/op")
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        client.clear_suggestion_feature_config(
-            conversation_profile="conversation_profile_value",
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].conversation_profile
-        mock_val = "conversation_profile_value"
-        assert arg == mock_val
-
-
-def test_clear_suggestion_feature_config_flattened_error():
-    client = ConversationProfilesClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        client.clear_suggestion_feature_config(
-            gcd_conversation_profile.ClearSuggestionFeatureConfigRequest(),
-            conversation_profile="conversation_profile_value",
-        )
-
-
-@pytest.mark.asyncio
-async def test_clear_suggestion_feature_config_flattened_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.clear_suggestion_feature_config), "__call__"
-    ) as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = operations_pb2.Operation(name="operations/op")
-
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            operations_pb2.Operation(name="operations/spam")
-        )
-        # Call the method with a truthy value for each flattened field,
-        # using the keyword arguments to the method.
-        response = await client.clear_suggestion_feature_config(
-            conversation_profile="conversation_profile_value",
-        )
-
-        # Establish that the underlying call was made with the expected
-        # request object values.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        arg = args[0].conversation_profile
-        mock_val = "conversation_profile_value"
-        assert arg == mock_val
-
-
-@pytest.mark.asyncio
-async def test_clear_suggestion_feature_config_flattened_error_async():
-    client = ConversationProfilesAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Attempting to call a method with both a request object and flattened
-    # fields is an error.
-    with pytest.raises(ValueError):
-        await client.clear_suggestion_feature_config(
-            gcd_conversation_profile.ClearSuggestionFeatureConfigRequest(),
-            conversation_profile="conversation_profile_value",
-        )
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
-    transport = transports.ConversationProfilesGrpcTransport(
+    transport = transports.ConversationDatasetsGrpcTransport(
         credentials=ga_credentials.AnonymousCredentials(),
     )
     with pytest.raises(ValueError):
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             credentials=ga_credentials.AnonymousCredentials(), transport=transport,
         )
 
     # It is an error to provide a credentials file and a transport instance.
-    transport = transports.ConversationProfilesGrpcTransport(
+    transport = transports.ConversationDatasetsGrpcTransport(
         credentials=ga_credentials.AnonymousCredentials(),
     )
     with pytest.raises(ValueError):
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             client_options={"credentials_file": "credentials.json"},
             transport=transport,
         )
 
     # It is an error to provide an api_key and a transport instance.
-    transport = transports.ConversationProfilesGrpcTransport(
+    transport = transports.ConversationDatasetsGrpcTransport(
         credentials=ga_credentials.AnonymousCredentials(),
     )
     options = client_options.ClientOptions()
     options.api_key = "api_key"
     with pytest.raises(ValueError):
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             client_options=options, transport=transport,
         )
 
@@ -2587,38 +1964,38 @@ def test_credentials_transport_error():
     options = mock.Mock()
     options.api_key = "api_key"
     with pytest.raises(ValueError):
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             client_options=options, credentials=ga_credentials.AnonymousCredentials()
         )
 
     # It is an error to provide scopes and a transport instance.
-    transport = transports.ConversationProfilesGrpcTransport(
+    transport = transports.ConversationDatasetsGrpcTransport(
         credentials=ga_credentials.AnonymousCredentials(),
     )
     with pytest.raises(ValueError):
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             client_options={"scopes": ["1", "2"]}, transport=transport,
         )
 
 
 def test_transport_instance():
     # A client may be instantiated with a custom transport instance.
-    transport = transports.ConversationProfilesGrpcTransport(
+    transport = transports.ConversationDatasetsGrpcTransport(
         credentials=ga_credentials.AnonymousCredentials(),
     )
-    client = ConversationProfilesClient(transport=transport)
+    client = ConversationDatasetsClient(transport=transport)
     assert client.transport is transport
 
 
 def test_transport_get_channel():
     # A client may be instantiated with a custom transport instance.
-    transport = transports.ConversationProfilesGrpcTransport(
+    transport = transports.ConversationDatasetsGrpcTransport(
         credentials=ga_credentials.AnonymousCredentials(),
     )
     channel = transport.grpc_channel
     assert channel
 
-    transport = transports.ConversationProfilesGrpcAsyncIOTransport(
+    transport = transports.ConversationDatasetsGrpcAsyncIOTransport(
         credentials=ga_credentials.AnonymousCredentials(),
     )
     channel = transport.grpc_channel
@@ -2628,8 +2005,8 @@ def test_transport_get_channel():
 @pytest.mark.parametrize(
     "transport_class",
     [
-        transports.ConversationProfilesGrpcTransport,
-        transports.ConversationProfilesGrpcAsyncIOTransport,
+        transports.ConversationDatasetsGrpcTransport,
+        transports.ConversationDatasetsGrpcAsyncIOTransport,
     ],
 )
 def test_transport_adc(transport_class):
@@ -2642,41 +2019,39 @@ def test_transport_adc(transport_class):
 
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
-    client = ConversationProfilesClient(
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
     )
-    assert isinstance(client.transport, transports.ConversationProfilesGrpcTransport,)
+    assert isinstance(client.transport, transports.ConversationDatasetsGrpcTransport,)
 
 
-def test_conversation_profiles_base_transport_error():
+def test_conversation_datasets_base_transport_error():
     # Passing both a credentials object and credentials_file should raise an error
     with pytest.raises(core_exceptions.DuplicateCredentialArgs):
-        transport = transports.ConversationProfilesTransport(
+        transport = transports.ConversationDatasetsTransport(
             credentials=ga_credentials.AnonymousCredentials(),
             credentials_file="credentials.json",
         )
 
 
-def test_conversation_profiles_base_transport():
+def test_conversation_datasets_base_transport():
     # Instantiate the base transport.
     with mock.patch(
-        "google.cloud.dialogflow_v2.services.conversation_profiles.transports.ConversationProfilesTransport.__init__"
+        "google.cloud.dialogflow_v2.services.conversation_datasets.transports.ConversationDatasetsTransport.__init__"
     ) as Transport:
         Transport.return_value = None
-        transport = transports.ConversationProfilesTransport(
+        transport = transports.ConversationDatasetsTransport(
             credentials=ga_credentials.AnonymousCredentials(),
         )
 
     # Every method on the transport should just blindly
     # raise NotImplementedError.
     methods = (
-        "list_conversation_profiles",
-        "get_conversation_profile",
-        "create_conversation_profile",
-        "update_conversation_profile",
-        "delete_conversation_profile",
-        "set_suggestion_feature_config",
-        "clear_suggestion_feature_config",
+        "create_conversation_dataset",
+        "get_conversation_dataset",
+        "list_conversation_datasets",
+        "delete_conversation_dataset",
+        "import_conversation_data",
     )
     for method in methods:
         with pytest.raises(NotImplementedError):
@@ -2691,16 +2066,16 @@ def test_conversation_profiles_base_transport():
         transport.operations_client
 
 
-def test_conversation_profiles_base_transport_with_credentials_file():
+def test_conversation_datasets_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
     with mock.patch.object(
         google.auth, "load_credentials_from_file", autospec=True
     ) as load_creds, mock.patch(
-        "google.cloud.dialogflow_v2.services.conversation_profiles.transports.ConversationProfilesTransport._prep_wrapped_messages"
+        "google.cloud.dialogflow_v2.services.conversation_datasets.transports.ConversationDatasetsTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
         load_creds.return_value = (ga_credentials.AnonymousCredentials(), None)
-        transport = transports.ConversationProfilesTransport(
+        transport = transports.ConversationDatasetsTransport(
             credentials_file="credentials.json", quota_project_id="octopus",
         )
         load_creds.assert_called_once_with(
@@ -2714,22 +2089,22 @@ def test_conversation_profiles_base_transport_with_credentials_file():
         )
 
 
-def test_conversation_profiles_base_transport_with_adc():
+def test_conversation_datasets_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
     with mock.patch.object(google.auth, "default", autospec=True) as adc, mock.patch(
-        "google.cloud.dialogflow_v2.services.conversation_profiles.transports.ConversationProfilesTransport._prep_wrapped_messages"
+        "google.cloud.dialogflow_v2.services.conversation_datasets.transports.ConversationDatasetsTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
         adc.return_value = (ga_credentials.AnonymousCredentials(), None)
-        transport = transports.ConversationProfilesTransport()
+        transport = transports.ConversationDatasetsTransport()
         adc.assert_called_once()
 
 
-def test_conversation_profiles_auth_adc():
+def test_conversation_datasets_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
     with mock.patch.object(google.auth, "default", autospec=True) as adc:
         adc.return_value = (ga_credentials.AnonymousCredentials(), None)
-        ConversationProfilesClient()
+        ConversationDatasetsClient()
         adc.assert_called_once_with(
             scopes=None,
             default_scopes=(
@@ -2743,11 +2118,11 @@ def test_conversation_profiles_auth_adc():
 @pytest.mark.parametrize(
     "transport_class",
     [
-        transports.ConversationProfilesGrpcTransport,
-        transports.ConversationProfilesGrpcAsyncIOTransport,
+        transports.ConversationDatasetsGrpcTransport,
+        transports.ConversationDatasetsGrpcAsyncIOTransport,
     ],
 )
-def test_conversation_profiles_transport_auth_adc(transport_class):
+def test_conversation_datasets_transport_auth_adc(transport_class):
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
     with mock.patch.object(google.auth, "default", autospec=True) as adc:
@@ -2766,11 +2141,11 @@ def test_conversation_profiles_transport_auth_adc(transport_class):
 @pytest.mark.parametrize(
     "transport_class,grpc_helpers",
     [
-        (transports.ConversationProfilesGrpcTransport, grpc_helpers),
-        (transports.ConversationProfilesGrpcAsyncIOTransport, grpc_helpers_async),
+        (transports.ConversationDatasetsGrpcTransport, grpc_helpers),
+        (transports.ConversationDatasetsGrpcAsyncIOTransport, grpc_helpers_async),
     ],
 )
-def test_conversation_profiles_transport_create_channel(transport_class, grpc_helpers):
+def test_conversation_datasets_transport_create_channel(transport_class, grpc_helpers):
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
     with mock.patch.object(
@@ -2804,11 +2179,11 @@ def test_conversation_profiles_transport_create_channel(transport_class, grpc_he
 @pytest.mark.parametrize(
     "transport_class",
     [
-        transports.ConversationProfilesGrpcTransport,
-        transports.ConversationProfilesGrpcAsyncIOTransport,
+        transports.ConversationDatasetsGrpcTransport,
+        transports.ConversationDatasetsGrpcAsyncIOTransport,
     ],
 )
-def test_conversation_profiles_grpc_transport_client_cert_source_for_mtls(
+def test_conversation_datasets_grpc_transport_client_cert_source_for_mtls(
     transport_class,
 ):
     cred = ga_credentials.AnonymousCredentials()
@@ -2848,8 +2223,8 @@ def test_conversation_profiles_grpc_transport_client_cert_source_for_mtls(
             )
 
 
-def test_conversation_profiles_host_no_port():
-    client = ConversationProfilesClient(
+def test_conversation_datasets_host_no_port():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(
             api_endpoint="dialogflow.googleapis.com"
@@ -2858,8 +2233,8 @@ def test_conversation_profiles_host_no_port():
     assert client.transport._host == "dialogflow.googleapis.com:443"
 
 
-def test_conversation_profiles_host_with_port():
-    client = ConversationProfilesClient(
+def test_conversation_datasets_host_with_port():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(
             api_endpoint="dialogflow.googleapis.com:8000"
@@ -2868,11 +2243,11 @@ def test_conversation_profiles_host_with_port():
     assert client.transport._host == "dialogflow.googleapis.com:8000"
 
 
-def test_conversation_profiles_grpc_transport_channel():
+def test_conversation_datasets_grpc_transport_channel():
     channel = grpc.secure_channel("http://localhost/", grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
-    transport = transports.ConversationProfilesGrpcTransport(
+    transport = transports.ConversationDatasetsGrpcTransport(
         host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
@@ -2880,11 +2255,11 @@ def test_conversation_profiles_grpc_transport_channel():
     assert transport._ssl_channel_credentials == None
 
 
-def test_conversation_profiles_grpc_asyncio_transport_channel():
+def test_conversation_datasets_grpc_asyncio_transport_channel():
     channel = aio.secure_channel("http://localhost/", grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
-    transport = transports.ConversationProfilesGrpcAsyncIOTransport(
+    transport = transports.ConversationDatasetsGrpcAsyncIOTransport(
         host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
@@ -2897,11 +2272,11 @@ def test_conversation_profiles_grpc_asyncio_transport_channel():
 @pytest.mark.parametrize(
     "transport_class",
     [
-        transports.ConversationProfilesGrpcTransport,
-        transports.ConversationProfilesGrpcAsyncIOTransport,
+        transports.ConversationDatasetsGrpcTransport,
+        transports.ConversationDatasetsGrpcAsyncIOTransport,
     ],
 )
-def test_conversation_profiles_transport_channel_mtls_with_client_cert_source(
+def test_conversation_datasets_transport_channel_mtls_with_client_cert_source(
     transport_class,
 ):
     with mock.patch(
@@ -2951,11 +2326,11 @@ def test_conversation_profiles_transport_channel_mtls_with_client_cert_source(
 @pytest.mark.parametrize(
     "transport_class",
     [
-        transports.ConversationProfilesGrpcTransport,
-        transports.ConversationProfilesGrpcAsyncIOTransport,
+        transports.ConversationDatasetsGrpcTransport,
+        transports.ConversationDatasetsGrpcAsyncIOTransport,
     ],
 )
-def test_conversation_profiles_transport_channel_mtls_with_adc(transport_class):
+def test_conversation_datasets_transport_channel_mtls_with_adc(transport_class):
     mock_ssl_cred = mock.Mock()
     with mock.patch.multiple(
         "google.auth.transport.grpc.SslCredentials",
@@ -2992,8 +2367,8 @@ def test_conversation_profiles_transport_channel_mtls_with_adc(transport_class):
             assert transport.grpc_channel == mock_grpc_channel
 
 
-def test_conversation_profiles_grpc_lro_client():
-    client = ConversationProfilesClient(
+def test_conversation_datasets_grpc_lro_client():
+    client = ConversationDatasetsClient(
         credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
     transport = client.transport
@@ -3005,8 +2380,8 @@ def test_conversation_profiles_grpc_lro_client():
     assert transport.operations_client is transport.operations_client
 
 
-def test_conversation_profiles_grpc_lro_async_client():
-    client = ConversationProfilesAsyncClient(
+def test_conversation_datasets_grpc_lro_async_client():
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(), transport="grpc_asyncio",
     )
     transport = client.transport
@@ -3018,237 +2393,125 @@ def test_conversation_profiles_grpc_lro_async_client():
     assert transport.operations_client is transport.operations_client
 
 
-def test_agent_path():
+def test_conversation_dataset_path():
     project = "squid"
-    expected = "projects/{project}/agent".format(project=project,)
-    actual = ConversationProfilesClient.agent_path(project)
+    location = "clam"
+    conversation_dataset = "whelk"
+    expected = "projects/{project}/locations/{location}/conversationDatasets/{conversation_dataset}".format(
+        project=project, location=location, conversation_dataset=conversation_dataset,
+    )
+    actual = ConversationDatasetsClient.conversation_dataset_path(
+        project, location, conversation_dataset
+    )
     assert expected == actual
 
 
-def test_parse_agent_path():
+def test_parse_conversation_dataset_path():
     expected = {
-        "project": "clam",
+        "project": "octopus",
+        "location": "oyster",
+        "conversation_dataset": "nudibranch",
     }
-    path = ConversationProfilesClient.agent_path(**expected)
+    path = ConversationDatasetsClient.conversation_dataset_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_agent_path(path)
-    assert expected == actual
-
-
-def test_conversation_model_path():
-    project = "whelk"
-    conversation_model = "octopus"
-    expected = "projects/{project}/conversationModels/{conversation_model}".format(
-        project=project, conversation_model=conversation_model,
-    )
-    actual = ConversationProfilesClient.conversation_model_path(
-        project, conversation_model
-    )
-    assert expected == actual
-
-
-def test_parse_conversation_model_path():
-    expected = {
-        "project": "oyster",
-        "conversation_model": "nudibranch",
-    }
-    path = ConversationProfilesClient.conversation_model_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_conversation_model_path(path)
-    assert expected == actual
-
-
-def test_conversation_profile_path():
-    project = "cuttlefish"
-    conversation_profile = "mussel"
-    expected = "projects/{project}/conversationProfiles/{conversation_profile}".format(
-        project=project, conversation_profile=conversation_profile,
-    )
-    actual = ConversationProfilesClient.conversation_profile_path(
-        project, conversation_profile
-    )
-    assert expected == actual
-
-
-def test_parse_conversation_profile_path():
-    expected = {
-        "project": "winkle",
-        "conversation_profile": "nautilus",
-    }
-    path = ConversationProfilesClient.conversation_profile_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_conversation_profile_path(path)
-    assert expected == actual
-
-
-def test_cx_security_settings_path():
-    project = "scallop"
-    location = "abalone"
-    security_settings = "squid"
-    expected = "projects/{project}/locations/{location}/securitySettings/{security_settings}".format(
-        project=project, location=location, security_settings=security_settings,
-    )
-    actual = ConversationProfilesClient.cx_security_settings_path(
-        project, location, security_settings
-    )
-    assert expected == actual
-
-
-def test_parse_cx_security_settings_path():
-    expected = {
-        "project": "clam",
-        "location": "whelk",
-        "security_settings": "octopus",
-    }
-    path = ConversationProfilesClient.cx_security_settings_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_cx_security_settings_path(path)
-    assert expected == actual
-
-
-def test_document_path():
-    project = "oyster"
-    knowledge_base = "nudibranch"
-    document = "cuttlefish"
-    expected = "projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}".format(
-        project=project, knowledge_base=knowledge_base, document=document,
-    )
-    actual = ConversationProfilesClient.document_path(project, knowledge_base, document)
-    assert expected == actual
-
-
-def test_parse_document_path():
-    expected = {
-        "project": "mussel",
-        "knowledge_base": "winkle",
-        "document": "nautilus",
-    }
-    path = ConversationProfilesClient.document_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_document_path(path)
-    assert expected == actual
-
-
-def test_knowledge_base_path():
-    project = "scallop"
-    knowledge_base = "abalone"
-    expected = "projects/{project}/knowledgeBases/{knowledge_base}".format(
-        project=project, knowledge_base=knowledge_base,
-    )
-    actual = ConversationProfilesClient.knowledge_base_path(project, knowledge_base)
-    assert expected == actual
-
-
-def test_parse_knowledge_base_path():
-    expected = {
-        "project": "squid",
-        "knowledge_base": "clam",
-    }
-    path = ConversationProfilesClient.knowledge_base_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_knowledge_base_path(path)
+    actual = ConversationDatasetsClient.parse_conversation_dataset_path(path)
     assert expected == actual
 
 
 def test_common_billing_account_path():
-    billing_account = "whelk"
+    billing_account = "cuttlefish"
     expected = "billingAccounts/{billing_account}".format(
         billing_account=billing_account,
     )
-    actual = ConversationProfilesClient.common_billing_account_path(billing_account)
+    actual = ConversationDatasetsClient.common_billing_account_path(billing_account)
     assert expected == actual
 
 
 def test_parse_common_billing_account_path():
     expected = {
-        "billing_account": "octopus",
+        "billing_account": "mussel",
     }
-    path = ConversationProfilesClient.common_billing_account_path(**expected)
+    path = ConversationDatasetsClient.common_billing_account_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_common_billing_account_path(path)
+    actual = ConversationDatasetsClient.parse_common_billing_account_path(path)
     assert expected == actual
 
 
 def test_common_folder_path():
-    folder = "oyster"
+    folder = "winkle"
     expected = "folders/{folder}".format(folder=folder,)
-    actual = ConversationProfilesClient.common_folder_path(folder)
+    actual = ConversationDatasetsClient.common_folder_path(folder)
     assert expected == actual
 
 
 def test_parse_common_folder_path():
     expected = {
-        "folder": "nudibranch",
+        "folder": "nautilus",
     }
-    path = ConversationProfilesClient.common_folder_path(**expected)
+    path = ConversationDatasetsClient.common_folder_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_common_folder_path(path)
+    actual = ConversationDatasetsClient.parse_common_folder_path(path)
     assert expected == actual
 
 
 def test_common_organization_path():
-    organization = "cuttlefish"
+    organization = "scallop"
     expected = "organizations/{organization}".format(organization=organization,)
-    actual = ConversationProfilesClient.common_organization_path(organization)
+    actual = ConversationDatasetsClient.common_organization_path(organization)
     assert expected == actual
 
 
 def test_parse_common_organization_path():
     expected = {
-        "organization": "mussel",
+        "organization": "abalone",
     }
-    path = ConversationProfilesClient.common_organization_path(**expected)
+    path = ConversationDatasetsClient.common_organization_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_common_organization_path(path)
+    actual = ConversationDatasetsClient.parse_common_organization_path(path)
     assert expected == actual
 
 
 def test_common_project_path():
-    project = "winkle"
+    project = "squid"
     expected = "projects/{project}".format(project=project,)
-    actual = ConversationProfilesClient.common_project_path(project)
+    actual = ConversationDatasetsClient.common_project_path(project)
     assert expected == actual
 
 
 def test_parse_common_project_path():
     expected = {
-        "project": "nautilus",
+        "project": "clam",
     }
-    path = ConversationProfilesClient.common_project_path(**expected)
+    path = ConversationDatasetsClient.common_project_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_common_project_path(path)
+    actual = ConversationDatasetsClient.parse_common_project_path(path)
     assert expected == actual
 
 
 def test_common_location_path():
-    project = "scallop"
-    location = "abalone"
+    project = "whelk"
+    location = "octopus"
     expected = "projects/{project}/locations/{location}".format(
         project=project, location=location,
     )
-    actual = ConversationProfilesClient.common_location_path(project, location)
+    actual = ConversationDatasetsClient.common_location_path(project, location)
     assert expected == actual
 
 
 def test_parse_common_location_path():
     expected = {
-        "project": "squid",
-        "location": "clam",
+        "project": "oyster",
+        "location": "nudibranch",
     }
-    path = ConversationProfilesClient.common_location_path(**expected)
+    path = ConversationDatasetsClient.common_location_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = ConversationProfilesClient.parse_common_location_path(path)
+    actual = ConversationDatasetsClient.parse_common_location_path(path)
     assert expected == actual
 
 
@@ -3256,17 +2519,17 @@ def test_client_with_default_client_info():
     client_info = gapic_v1.client_info.ClientInfo()
 
     with mock.patch.object(
-        transports.ConversationProfilesTransport, "_prep_wrapped_messages"
+        transports.ConversationDatasetsTransport, "_prep_wrapped_messages"
     ) as prep:
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             credentials=ga_credentials.AnonymousCredentials(), client_info=client_info,
         )
         prep.assert_called_once_with(client_info)
 
     with mock.patch.object(
-        transports.ConversationProfilesTransport, "_prep_wrapped_messages"
+        transports.ConversationDatasetsTransport, "_prep_wrapped_messages"
     ) as prep:
-        transport_class = ConversationProfilesClient.get_transport_class()
+        transport_class = ConversationDatasetsClient.get_transport_class()
         transport = transport_class(
             credentials=ga_credentials.AnonymousCredentials(), client_info=client_info,
         )
@@ -3275,7 +2538,7 @@ def test_client_with_default_client_info():
 
 @pytest.mark.asyncio
 async def test_transport_close_async():
-    client = ConversationProfilesAsyncClient(
+    client = ConversationDatasetsAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(), transport="grpc_asyncio",
     )
     with mock.patch.object(
@@ -3292,7 +2555,7 @@ def test_transport_close():
     }
 
     for transport, close_name in transports.items():
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             credentials=ga_credentials.AnonymousCredentials(), transport=transport
         )
         with mock.patch.object(
@@ -3308,7 +2571,7 @@ def test_client_ctx():
         "grpc",
     ]
     for transport in transports:
-        client = ConversationProfilesClient(
+        client = ConversationDatasetsClient(
             credentials=ga_credentials.AnonymousCredentials(), transport=transport
         )
         # Test client calls underlying transport.
@@ -3322,10 +2585,10 @@ def test_client_ctx():
 @pytest.mark.parametrize(
     "client_class,transport_class",
     [
-        (ConversationProfilesClient, transports.ConversationProfilesGrpcTransport),
+        (ConversationDatasetsClient, transports.ConversationDatasetsGrpcTransport),
         (
-            ConversationProfilesAsyncClient,
-            transports.ConversationProfilesGrpcAsyncIOTransport,
+            ConversationDatasetsAsyncClient,
+            transports.ConversationDatasetsGrpcAsyncIOTransport,
         ),
     ],
 )

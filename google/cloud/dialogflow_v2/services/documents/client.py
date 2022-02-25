@@ -639,7 +639,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 document.content_uri = "content_uri_value"
                 document.display_name = "display_name_value"
                 document.mime_type = "mime_type_value"
-                document.knowledge_types = "ARTICLE_SUGGESTION"
+                document.knowledge_types = "AGENT_FACING_SMART_REPLY"
 
                 request = dialogflow_v2.CreateDocumentRequest(
                     parent="parent_value",
@@ -780,7 +780,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
 
                 document_template = dialogflow_v2.ImportDocumentTemplate()
                 document_template.mime_type = "mime_type_value"
-                document_template.knowledge_types = "ARTICLE_SUGGESTION"
+                document_template.knowledge_types = "AGENT_FACING_SMART_REPLY"
 
                 request = dialogflow_v2.ImportDocumentsRequest(
                     gcs_source=gcs_source,
@@ -1011,7 +1011,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
                 document.content_uri = "content_uri_value"
                 document.display_name = "display_name_value"
                 document.mime_type = "mime_type_value"
-                document.knowledge_types = "ARTICLE_SUGGESTION"
+                document.knowledge_types = "AGENT_FACING_SMART_REPLY"
 
                 request = dialogflow_v2.UpdateDocumentRequest(
                     document=document,

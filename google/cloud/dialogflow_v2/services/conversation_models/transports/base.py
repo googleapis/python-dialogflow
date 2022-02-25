@@ -26,12 +26,11 @@ from google.api_core import operations_v1
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.cloud.dialogflow_v2.types import conversation_profile
+from google.cloud.dialogflow_v2.types import conversation_model
 from google.cloud.dialogflow_v2.types import (
-    conversation_profile as gcd_conversation_profile,
+    conversation_model as gcd_conversation_model,
 )
 from google.longrunning import operations_pb2  # type: ignore
-from google.protobuf import empty_pb2  # type: ignore
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
@@ -43,8 +42,8 @@ except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-class ConversationProfilesTransport(abc.ABC):
-    """Abstract transport class for ConversationProfiles."""
+class ConversationModelsTransport(abc.ABC):
+    """Abstract transport class for ConversationModels."""
 
     AUTH_SCOPES = (
         "https://www.googleapis.com/auth/cloud-platform",
@@ -129,38 +128,48 @@ class ConversationProfilesTransport(abc.ABC):
     def _prep_wrapped_messages(self, client_info):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
-            self.list_conversation_profiles: gapic_v1.method.wrap_method(
-                self.list_conversation_profiles,
+            self.create_conversation_model: gapic_v1.method.wrap_method(
+                self.create_conversation_model,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.get_conversation_profile: gapic_v1.method.wrap_method(
-                self.get_conversation_profile,
+            self.get_conversation_model: gapic_v1.method.wrap_method(
+                self.get_conversation_model,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.create_conversation_profile: gapic_v1.method.wrap_method(
-                self.create_conversation_profile,
+            self.list_conversation_models: gapic_v1.method.wrap_method(
+                self.list_conversation_models,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.update_conversation_profile: gapic_v1.method.wrap_method(
-                self.update_conversation_profile,
+            self.delete_conversation_model: gapic_v1.method.wrap_method(
+                self.delete_conversation_model,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.delete_conversation_profile: gapic_v1.method.wrap_method(
-                self.delete_conversation_profile,
+            self.deploy_conversation_model: gapic_v1.method.wrap_method(
+                self.deploy_conversation_model,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.set_suggestion_feature_config: gapic_v1.method.wrap_method(
-                self.set_suggestion_feature_config,
+            self.undeploy_conversation_model: gapic_v1.method.wrap_method(
+                self.undeploy_conversation_model,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.clear_suggestion_feature_config: gapic_v1.method.wrap_method(
-                self.clear_suggestion_feature_config,
+            self.get_conversation_model_evaluation: gapic_v1.method.wrap_method(
+                self.get_conversation_model_evaluation,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.list_conversation_model_evaluations: gapic_v1.method.wrap_method(
+                self.list_conversation_model_evaluations,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.create_conversation_model_evaluation: gapic_v1.method.wrap_method(
+                self.create_conversation_model_evaluation,
                 default_timeout=None,
                 client_info=client_info,
             ),
@@ -181,79 +190,97 @@ class ConversationProfilesTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def list_conversation_profiles(
+    def create_conversation_model(
         self,
     ) -> Callable[
-        [conversation_profile.ListConversationProfilesRequest],
-        Union[
-            conversation_profile.ListConversationProfilesResponse,
-            Awaitable[conversation_profile.ListConversationProfilesResponse],
-        ],
-    ]:
-        raise NotImplementedError()
-
-    @property
-    def get_conversation_profile(
-        self,
-    ) -> Callable[
-        [conversation_profile.GetConversationProfileRequest],
-        Union[
-            conversation_profile.ConversationProfile,
-            Awaitable[conversation_profile.ConversationProfile],
-        ],
-    ]:
-        raise NotImplementedError()
-
-    @property
-    def create_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.CreateConversationProfileRequest],
-        Union[
-            gcd_conversation_profile.ConversationProfile,
-            Awaitable[gcd_conversation_profile.ConversationProfile],
-        ],
-    ]:
-        raise NotImplementedError()
-
-    @property
-    def update_conversation_profile(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.UpdateConversationProfileRequest],
-        Union[
-            gcd_conversation_profile.ConversationProfile,
-            Awaitable[gcd_conversation_profile.ConversationProfile],
-        ],
-    ]:
-        raise NotImplementedError()
-
-    @property
-    def delete_conversation_profile(
-        self,
-    ) -> Callable[
-        [conversation_profile.DeleteConversationProfileRequest],
-        Union[empty_pb2.Empty, Awaitable[empty_pb2.Empty]],
-    ]:
-        raise NotImplementedError()
-
-    @property
-    def set_suggestion_feature_config(
-        self,
-    ) -> Callable[
-        [gcd_conversation_profile.SetSuggestionFeatureConfigRequest],
+        [gcd_conversation_model.CreateConversationModelRequest],
         Union[operations_pb2.Operation, Awaitable[operations_pb2.Operation]],
     ]:
         raise NotImplementedError()
 
     @property
-    def clear_suggestion_feature_config(
+    def get_conversation_model(
         self,
     ) -> Callable[
-        [gcd_conversation_profile.ClearSuggestionFeatureConfigRequest],
+        [conversation_model.GetConversationModelRequest],
+        Union[
+            conversation_model.ConversationModel,
+            Awaitable[conversation_model.ConversationModel],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def list_conversation_models(
+        self,
+    ) -> Callable[
+        [conversation_model.ListConversationModelsRequest],
+        Union[
+            conversation_model.ListConversationModelsResponse,
+            Awaitable[conversation_model.ListConversationModelsResponse],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def delete_conversation_model(
+        self,
+    ) -> Callable[
+        [conversation_model.DeleteConversationModelRequest],
+        Union[operations_pb2.Operation, Awaitable[operations_pb2.Operation]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def deploy_conversation_model(
+        self,
+    ) -> Callable[
+        [conversation_model.DeployConversationModelRequest],
+        Union[operations_pb2.Operation, Awaitable[operations_pb2.Operation]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def undeploy_conversation_model(
+        self,
+    ) -> Callable[
+        [conversation_model.UndeployConversationModelRequest],
+        Union[operations_pb2.Operation, Awaitable[operations_pb2.Operation]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def get_conversation_model_evaluation(
+        self,
+    ) -> Callable[
+        [conversation_model.GetConversationModelEvaluationRequest],
+        Union[
+            conversation_model.ConversationModelEvaluation,
+            Awaitable[conversation_model.ConversationModelEvaluation],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def list_conversation_model_evaluations(
+        self,
+    ) -> Callable[
+        [conversation_model.ListConversationModelEvaluationsRequest],
+        Union[
+            conversation_model.ListConversationModelEvaluationsResponse,
+            Awaitable[conversation_model.ListConversationModelEvaluationsResponse],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def create_conversation_model_evaluation(
+        self,
+    ) -> Callable[
+        [conversation_model.CreateConversationModelEvaluationRequest],
         Union[operations_pb2.Operation, Awaitable[operations_pb2.Operation]],
     ]:
         raise NotImplementedError()
 
 
-__all__ = ("ConversationProfilesTransport",)
+__all__ = ("ConversationModelsTransport",)
