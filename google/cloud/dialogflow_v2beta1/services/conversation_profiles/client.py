@@ -502,8 +502,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         specified project.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -608,8 +607,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
     ) -> conversation_profile.ConversationProfile:
         r"""Retrieves the specified conversation profile.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -710,8 +708,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         API.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -829,8 +826,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         API.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -940,8 +936,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
     ) -> None:
         r"""Deletes the specified conversation profile.
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

@@ -490,8 +490,7 @@ class SessionsClient(metaclass=SessionsClientMeta):
         environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -635,8 +634,7 @@ class SessionsClient(metaclass=SessionsClientMeta):
         environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

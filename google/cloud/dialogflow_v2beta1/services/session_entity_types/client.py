@@ -424,8 +424,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         use session entities with Google Assistant integration.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -541,8 +540,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         use session entities with Google Assistant integration.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -660,8 +658,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         use session entities with Google Assistant integration.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -789,8 +786,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         use session entities with Google Assistant integration.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -906,8 +902,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
         use session entities with Google Assistant integration.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

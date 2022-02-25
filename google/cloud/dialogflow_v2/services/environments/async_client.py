@@ -219,7 +219,7 @@ class EnvironmentsAsyncClient:
         the specified agent.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -321,7 +321,7 @@ class EnvironmentsAsyncClient:
     ) -> environment.Environment:
         r"""Retrieves the specified agent environment.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -408,7 +408,7 @@ class EnvironmentsAsyncClient:
     ) -> environment.Environment:
         r"""Creates an agent environment.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -510,7 +510,7 @@ class EnvironmentsAsyncClient:
         calling this method.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -598,7 +598,7 @@ class EnvironmentsAsyncClient:
     ) -> None:
         r"""Deletes the specified agent environment.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -656,7 +656,7 @@ class EnvironmentsAsyncClient:
     ) -> pagers.GetEnvironmentHistoryAsyncPager:
         r"""Gets the history of the specified environment.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 

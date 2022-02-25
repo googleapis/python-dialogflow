@@ -216,7 +216,7 @@ class DocumentsAsyncClient:
         base.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -317,7 +317,7 @@ class DocumentsAsyncClient:
     ) -> document.Document:
         r"""Retrieves the specified document.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -425,7 +425,7 @@ class DocumentsAsyncClient:
         -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -565,7 +565,7 @@ class DocumentsAsyncClient:
            [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -670,7 +670,7 @@ class DocumentsAsyncClient:
            message <https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty>`__
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -796,7 +796,7 @@ class DocumentsAsyncClient:
         -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -943,7 +943,7 @@ class DocumentsAsyncClient:
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 
@@ -1079,7 +1079,7 @@ class DocumentsAsyncClient:
         -  ``response``: [Document][google.cloud.dialogflow.v2.Document]
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2
 

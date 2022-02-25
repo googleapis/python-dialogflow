@@ -420,8 +420,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -526,8 +525,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -639,8 +637,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -780,8 +777,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
            [ImportDocumentsResponse][google.cloud.dialogflow.v2beta1.ImportDocumentsResponse]
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -890,8 +886,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -1021,8 +1016,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -1174,8 +1168,7 @@ class DocumentsClient(metaclass=DocumentsClientMeta):
         is deprecated; only use ``projects.knowledgeBases.documents``.
 
 
-
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

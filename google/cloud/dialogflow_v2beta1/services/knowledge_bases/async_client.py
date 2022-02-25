@@ -223,7 +223,7 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -328,7 +328,7 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -434,7 +434,7 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -552,7 +552,7 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -638,7 +638,7 @@ class KnowledgeBasesAsyncClient:
         deprecated; only use ``projects.knowledgeBases``.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 

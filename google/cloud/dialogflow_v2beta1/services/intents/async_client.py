@@ -219,7 +219,7 @@ class IntentsAsyncClient:
         agent.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -341,7 +341,7 @@ class IntentsAsyncClient:
     ) -> intent.Intent:
         r"""Retrieves the specified intent.
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -461,7 +461,7 @@ class IntentsAsyncClient:
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -593,7 +593,7 @@ class IntentsAsyncClient:
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -722,7 +722,7 @@ class IntentsAsyncClient:
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -825,7 +825,7 @@ class IntentsAsyncClient:
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
@@ -973,7 +973,7 @@ class IntentsAsyncClient:
         documentation <https://cloud.google.com/dialogflow/es/docs/training>`__.
 
 
-        .. code-block::
+        .. code-block:: python
 
             from google.cloud import dialogflow_v2beta1
 
