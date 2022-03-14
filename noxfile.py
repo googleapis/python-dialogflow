@@ -41,7 +41,7 @@ def lint(session):
     session.run("flake8", "dialogflow", "dialogflow_v2", "dialogflow_v2beta1")
 
 
-@nox.session(python="3.6")
+@nox.session(python="3.7")
 def blacken(session):
     """Run black.
     Format code to uniform standard.
