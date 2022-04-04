@@ -46,6 +46,8 @@ s.move(templated_files, excludes=[".coveragerc"])  # microgenerator has a good .
 
 python.py_samples(skip_readmes=True)
 
+python.configure_previous_major_version_branches()
+
 # Don't treat warnings as errors
 # Docstrings have unexpected idnentation and block quote formatting issues
 s.replace(
