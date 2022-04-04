@@ -53,10 +53,10 @@ package_deprecation_message = (
     "https://github.com/googleapis/python-dialogflow/issues."
 )
 
-raise RuntimeError(
-    package_deprecation_message
+warnings.warn(
+    package_deprecation_message,
+    DeprecationWarning
 )
-
 class EnvironmentsClient(environments_client.EnvironmentsClient):
     __doc__ = environments_client.EnvironmentsClient.__doc__
     enums = enums
