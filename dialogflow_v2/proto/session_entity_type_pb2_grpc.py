@@ -9,8 +9,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class SessionEntityTypesStub(object):
-    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
-    """
+    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -46,8 +45,7 @@ class SessionEntityTypesStub(object):
 
 
 class SessionEntityTypesServicer(object):
-    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
-    """
+    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType]."""
 
     def ListSessionEntityTypes(self, request, context):
         """Returns the list of all session entity types in the specified session.
@@ -144,8 +142,7 @@ def add_SessionEntityTypesServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class SessionEntityTypes(object):
-    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
-    """
+    """Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType]."""
 
     @staticmethod
     def ListSessionEntityTypes(

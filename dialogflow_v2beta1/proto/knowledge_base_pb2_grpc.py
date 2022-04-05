@@ -9,8 +9,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class KnowledgeBasesStub(object):
-    """Service for managing [KnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBase].
-    """
+    """Service for managing [KnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBase]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -46,8 +45,7 @@ class KnowledgeBasesStub(object):
 
 
 class KnowledgeBasesServicer(object):
-    """Service for managing [KnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBase].
-    """
+    """Service for managing [KnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBase]."""
 
     def ListKnowledgeBases(self, request, context):
         """Returns the list of all knowledge bases of the specified agent.
@@ -136,8 +134,7 @@ def add_KnowledgeBasesServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class KnowledgeBases(object):
-    """Service for managing [KnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBase].
-    """
+    """Service for managing [KnowledgeBases][google.cloud.dialogflow.v2beta1.KnowledgeBase]."""
 
     @staticmethod
     def ListKnowledgeBases(

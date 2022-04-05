@@ -8,8 +8,7 @@ from dialogflow_v2beta1.proto import (
 
 
 class EnvironmentsStub(object):
-    """Service for managing [Environments][google.cloud.dialogflow.v2beta1.Environment].
-    """
+    """Service for managing [Environments][google.cloud.dialogflow.v2beta1.Environment]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -25,12 +24,10 @@ class EnvironmentsStub(object):
 
 
 class EnvironmentsServicer(object):
-    """Service for managing [Environments][google.cloud.dialogflow.v2beta1.Environment].
-    """
+    """Service for managing [Environments][google.cloud.dialogflow.v2beta1.Environment]."""
 
     def ListEnvironments(self, request, context):
-        """Returns the list of all non-draft environments of the specified agent.
-        """
+        """Returns the list of all non-draft environments of the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -52,8 +49,7 @@ def add_EnvironmentsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Environments(object):
-    """Service for managing [Environments][google.cloud.dialogflow.v2beta1.Environment].
-    """
+    """Service for managing [Environments][google.cloud.dialogflow.v2beta1.Environment]."""
 
     @staticmethod
     def ListEnvironments(

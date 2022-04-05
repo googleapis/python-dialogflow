@@ -15,8 +15,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class AgentsStub(object):
-    """Service for managing [Agents][google.cloud.dialogflow.v2beta1.Agent].
-    """
+    """Service for managing [Agents][google.cloud.dialogflow.v2beta1.Agent]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -72,26 +71,22 @@ class AgentsStub(object):
 
 
 class AgentsServicer(object):
-    """Service for managing [Agents][google.cloud.dialogflow.v2beta1.Agent].
-    """
+    """Service for managing [Agents][google.cloud.dialogflow.v2beta1.Agent]."""
 
     def GetAgent(self, request, context):
-        """Retrieves the specified agent.
-        """
+        """Retrieves the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def SetAgent(self, request, context):
-        """Creates/updates the specified agent.
-        """
+        """Creates/updates the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def DeleteAgent(self, request, context):
-        """Deletes the specified agent.
-        """
+        """Deletes the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -232,8 +227,7 @@ def add_AgentsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Agents(object):
-    """Service for managing [Agents][google.cloud.dialogflow.v2beta1.Agent].
-    """
+    """Service for managing [Agents][google.cloud.dialogflow.v2beta1.Agent]."""
 
     @staticmethod
     def GetAgent(
