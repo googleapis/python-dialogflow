@@ -13,8 +13,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class IntentsStub(object):
-    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent].
-    """
+    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -60,40 +59,34 @@ class IntentsStub(object):
 
 
 class IntentsServicer(object):
-    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent].
-    """
+    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent]."""
 
     def ListIntents(self, request, context):
-        """Returns the list of all intents in the specified agent.
-        """
+        """Returns the list of all intents in the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def GetIntent(self, request, context):
-        """Retrieves the specified intent.
-        """
+        """Retrieves the specified intent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def CreateIntent(self, request, context):
-        """Creates an intent in the specified agent.
-        """
+        """Creates an intent in the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def UpdateIntent(self, request, context):
-        """Updates the specified intent.
-        """
+        """Updates the specified intent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def DeleteIntent(self, request, context):
-        """Deletes the specified intent and its direct or indirect followup intents.
-        """
+        """Deletes the specified intent and its direct or indirect followup intents."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -163,8 +156,7 @@ def add_IntentsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Intents(object):
-    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent].
-    """
+    """Service for managing [Intents][google.cloud.dialogflow.v2.Intent]."""
 
     @staticmethod
     def ListIntents(

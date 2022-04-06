@@ -191,8 +191,10 @@ class SessionEntityTypesClient(object):
                     )
                 self.transport = transport
         else:
-            self.transport = session_entity_types_grpc_transport.SessionEntityTypesGrpcTransport(
-                address=api_endpoint, channel=channel, credentials=credentials
+            self.transport = (
+                session_entity_types_grpc_transport.SessionEntityTypesGrpcTransport(
+                    address=api_endpoint, channel=channel, credentials=credentials
+                )
             )
 
         if client_info is None:

@@ -11,8 +11,7 @@ from google.longrunning import (
 
 
 class DocumentsStub(object):
-    """Service for managing knowledge [Documents][google.cloud.dialogflow.v2beta1.Document].
-    """
+    """Service for managing knowledge [Documents][google.cloud.dialogflow.v2beta1.Document]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -53,8 +52,7 @@ class DocumentsStub(object):
 
 
 class DocumentsServicer(object):
-    """Service for managing knowledge [Documents][google.cloud.dialogflow.v2beta1.Document].
-    """
+    """Service for managing knowledge [Documents][google.cloud.dialogflow.v2beta1.Document]."""
 
     def ListDocuments(self, request, context):
         """Returns the list of all documents of the knowledge base.
@@ -161,8 +159,7 @@ def add_DocumentsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Documents(object):
-    """Service for managing knowledge [Documents][google.cloud.dialogflow.v2beta1.Document].
-    """
+    """Service for managing knowledge [Documents][google.cloud.dialogflow.v2beta1.Document]."""
 
     @staticmethod
     def ListDocuments(

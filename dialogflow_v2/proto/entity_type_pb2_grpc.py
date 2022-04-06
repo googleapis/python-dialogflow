@@ -12,8 +12,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class EntityTypesStub(object):
-    """Service for managing [EntityTypes][google.cloud.dialogflow.v2.EntityType].
-    """
+    """Service for managing [EntityTypes][google.cloud.dialogflow.v2.EntityType]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -74,40 +73,34 @@ class EntityTypesStub(object):
 
 
 class EntityTypesServicer(object):
-    """Service for managing [EntityTypes][google.cloud.dialogflow.v2.EntityType].
-    """
+    """Service for managing [EntityTypes][google.cloud.dialogflow.v2.EntityType]."""
 
     def ListEntityTypes(self, request, context):
-        """Returns the list of all entity types in the specified agent.
-        """
+        """Returns the list of all entity types in the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def GetEntityType(self, request, context):
-        """Retrieves the specified entity type.
-        """
+        """Retrieves the specified entity type."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def CreateEntityType(self, request, context):
-        """Creates an entity type in the specified agent.
-        """
+        """Creates an entity type in the specified agent."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def UpdateEntityType(self, request, context):
-        """Updates the specified entity type.
-        """
+        """Updates the specified entity type."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def DeleteEntityType(self, request, context):
-        """Deletes the specified entity type.
-        """
+        """Deletes the specified entity type."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -223,8 +216,7 @@ def add_EntityTypesServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class EntityTypes(object):
-    """Service for managing [EntityTypes][google.cloud.dialogflow.v2.EntityType].
-    """
+    """Service for managing [EntityTypes][google.cloud.dialogflow.v2.EntityType]."""
 
     @staticmethod
     def ListEntityTypes(

@@ -9,8 +9,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class ContextsStub(object):
-    """Service for managing [Contexts][google.cloud.dialogflow.v2beta1.Context].
-    """
+    """Service for managing [Contexts][google.cloud.dialogflow.v2beta1.Context]."""
 
     def __init__(self, channel):
         """Constructor.
@@ -51,19 +50,16 @@ class ContextsStub(object):
 
 
 class ContextsServicer(object):
-    """Service for managing [Contexts][google.cloud.dialogflow.v2beta1.Context].
-    """
+    """Service for managing [Contexts][google.cloud.dialogflow.v2beta1.Context]."""
 
     def ListContexts(self, request, context):
-        """Returns the list of all contexts in the specified session.
-        """
+        """Returns the list of all contexts in the specified session."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def GetContext(self, request, context):
-        """Retrieves the specified context.
-        """
+        """Retrieves the specified context."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -78,22 +74,19 @@ class ContextsServicer(object):
         raise NotImplementedError("Method not implemented!")
 
     def UpdateContext(self, request, context):
-        """Updates the specified context.
-        """
+        """Updates the specified context."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def DeleteContext(self, request, context):
-        """Deletes the specified context.
-        """
+        """Deletes the specified context."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def DeleteAllContexts(self, request, context):
-        """Deletes all active contexts in the specified session.
-        """
+        """Deletes all active contexts in the specified session."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -140,8 +133,7 @@ def add_ContextsServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class Contexts(object):
-    """Service for managing [Contexts][google.cloud.dialogflow.v2beta1.Context].
-    """
+    """Service for managing [Contexts][google.cloud.dialogflow.v2beta1.Context]."""
 
     @staticmethod
     def ListContexts(
