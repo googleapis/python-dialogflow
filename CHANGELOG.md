@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/dialogflow/#history
 
+### [1.1.2](https://github.com/googleapis/python-dialogflow/compare/v1.1.1...v1.1.2) (2022-04-07)
+
+
+### Bug Fixes
+
+* **deps:** require google-api-core >= 1.31.5, >= 2.3.2 on v1 release ([#485](https://github.com/googleapis/python-dialogflow/issues/485)) ([0b1ca4c](https://github.com/googleapis/python-dialogflow/commit/0b1ca4c2a63945f9f9715d1d84414db20d297cf1))
+
 ## [1.1.0](https://www.github.com/googleapis/dialogflow-python-client-v2/compare/v1.0.0...v1.1.0) (2020-08-26)
 
 
