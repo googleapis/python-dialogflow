@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -505,7 +505,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_create_conversation():
                 # Create a client
@@ -619,7 +619,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_list_conversations():
                 # Create a client
@@ -728,7 +728,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_get_conversation():
                 # Create a client
@@ -831,7 +831,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_complete_conversation():
                 # Create a client
@@ -937,7 +937,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_list_messages():
                 # Create a client

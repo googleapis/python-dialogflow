@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -547,7 +547,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_create_participant():
                 # Create a client
@@ -650,7 +650,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_get_participant():
                 # Create a client
@@ -747,7 +747,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_list_participants():
                 # Create a client
@@ -857,7 +857,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_update_participant():
                 # Create a client
@@ -968,7 +968,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_analyze_content():
                 # Create a client
@@ -1089,7 +1089,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_suggest_articles():
                 # Create a client
@@ -1187,7 +1187,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_suggest_faq_answers():
                 # Create a client
@@ -1285,7 +1285,7 @@ class ParticipantsClient(metaclass=ParticipantsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_suggest_smart_replies():
                 # Create a client

@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 import warnings
 
@@ -440,7 +440,7 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_get_answer_record():
                 # Create a client
@@ -551,7 +551,7 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_list_answer_records():
                 # Create a client
@@ -660,7 +660,7 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_update_answer_record():
                 # Create a client

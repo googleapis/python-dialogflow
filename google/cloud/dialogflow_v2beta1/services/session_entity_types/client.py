@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -451,7 +451,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_list_session_entity_types():
                 # Create a client
@@ -575,7 +575,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_get_session_entity_type():
                 # Create a client
@@ -698,7 +698,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_create_session_entity_type():
                 # Create a client
@@ -831,7 +831,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_update_session_entity_type():
                 # Create a client
@@ -952,7 +952,7 @@ class SessionEntityTypesClient(metaclass=SessionEntityTypesClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_delete_session_entity_type():
                 # Create a client

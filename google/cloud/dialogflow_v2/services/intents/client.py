@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -464,7 +464,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_list_intents():
                 # Create a client
@@ -594,7 +594,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_get_intent():
                 # Create a client
@@ -717,7 +717,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_create_intent():
                 # Create a client
@@ -851,7 +851,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_update_intent():
                 # Create a client
@@ -985,7 +985,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_delete_intent():
                 # Create a client
@@ -1087,7 +1087,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_batch_update_intents():
                 # Create a client
@@ -1236,7 +1236,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2
+                    from google.cloud import dialogflow_v2
 
             def sample_batch_delete_intents():
                 # Create a client

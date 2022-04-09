@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -444,7 +444,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_list_contexts():
                 # Create a client
@@ -562,7 +562,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_get_context():
                 # Create a client
@@ -687,7 +687,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_create_context():
                 # Create a client
@@ -817,7 +817,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_update_context():
                 # Create a client
@@ -937,7 +937,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_delete_context():
                 # Create a client
@@ -1030,7 +1030,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import dialogflow_v2beta1
+                    from google.cloud import dialogflow_v2beta1
 
             def sample_delete_all_contexts():
                 # Create a client
