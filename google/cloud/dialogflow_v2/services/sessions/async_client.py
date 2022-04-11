@@ -18,6 +18,7 @@ import functools
 import re
 from typing import (
     Dict,
+    Mapping,
     Optional,
     AsyncIterable,
     Awaitable,
@@ -244,7 +245,6 @@ class SessionsAsyncClient:
         `Versions and
         environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
-
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
@@ -348,7 +348,7 @@ class SessionsAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=220.0,
             ),
@@ -397,7 +397,6 @@ class SessionsAsyncClient:
         Note: Always use agent versions for production traffic. See
         `Versions and
         environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
-
 
         .. code-block:: python
 

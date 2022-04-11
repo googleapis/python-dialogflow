@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -426,7 +426,6 @@ class ParticipantsAsyncClient:
         r"""Returns the list of all participants in the specified
         conversation.
 
-
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
@@ -647,7 +646,6 @@ class ParticipantsAsyncClient:
         virtual agents. See `Versions and
         environments <https://cloud.google.com/dialogflow/es/docs/agents-versions>`__.
 
-
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
@@ -738,7 +736,7 @@ class ParticipantsAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=220.0,
             ),
@@ -776,7 +774,6 @@ class ParticipantsAsyncClient:
     ) -> participant.SuggestArticlesResponse:
         r"""Gets suggested articles for a participant based on
         specific historical messages.
-
 
         .. code-block:: python
 
@@ -875,7 +872,6 @@ class ParticipantsAsyncClient:
         r"""Gets suggested faq answers for a participant based on
         specific historical messages.
 
-
         .. code-block:: python
 
             from google.cloud import dialogflow_v2
@@ -972,7 +968,6 @@ class ParticipantsAsyncClient:
     ) -> participant.SuggestSmartRepliesResponse:
         r"""Gets smart replies for a participant based on
         specific historical messages.
-
 
         .. code-block:: python
 
