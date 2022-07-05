@@ -2440,7 +2440,6 @@ def test_session_entity_types_transport_auth_adc(transport_class):
     [
         transports.SessionEntityTypesGrpcTransport,
         transports.SessionEntityTypesGrpcAsyncIOTransport,
-        transports.SessionEntityTypesRestTransport,
     ],
 )
 def test_session_entity_types_transport_auth_gdch_credentials(transport_class):

@@ -2275,7 +2275,6 @@ def test_versions_transport_auth_adc(transport_class):
     [
         transports.VersionsGrpcTransport,
         transports.VersionsGrpcAsyncIOTransport,
-        transports.VersionsRestTransport,
     ],
 )
 def test_versions_transport_auth_gdch_credentials(transport_class):

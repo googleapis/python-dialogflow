@@ -3116,7 +3116,6 @@ def test_participants_transport_auth_adc(transport_class):
     [
         transports.ParticipantsGrpcTransport,
         transports.ParticipantsGrpcAsyncIOTransport,
-        transports.ParticipantsRestTransport,
     ],
 )
 def test_participants_transport_auth_gdch_credentials(transport_class):

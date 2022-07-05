@@ -2486,7 +2486,6 @@ def test_contexts_transport_auth_adc(transport_class):
     [
         transports.ContextsGrpcTransport,
         transports.ContextsGrpcAsyncIOTransport,
-        transports.ContextsRestTransport,
     ],
 )
 def test_contexts_transport_auth_gdch_credentials(transport_class):

@@ -1423,7 +1423,6 @@ def test_fulfillments_transport_auth_adc(transport_class):
     [
         transports.FulfillmentsGrpcTransport,
         transports.FulfillmentsGrpcAsyncIOTransport,
-        transports.FulfillmentsRestTransport,
     ],
 )
 def test_fulfillments_transport_auth_gdch_credentials(transport_class):

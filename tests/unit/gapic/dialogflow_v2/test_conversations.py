@@ -2596,7 +2596,6 @@ def test_conversations_transport_auth_adc(transport_class):
     [
         transports.ConversationsGrpcTransport,
         transports.ConversationsGrpcAsyncIOTransport,
-        transports.ConversationsRestTransport,
     ],
 )
 def test_conversations_transport_auth_gdch_credentials(transport_class):

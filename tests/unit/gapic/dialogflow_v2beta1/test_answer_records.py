@@ -1789,7 +1789,6 @@ def test_answer_records_transport_auth_adc(transport_class):
     [
         transports.AnswerRecordsGrpcTransport,
         transports.AnswerRecordsGrpcAsyncIOTransport,
-        transports.AnswerRecordsRestTransport,
     ],
 )
 def test_answer_records_transport_auth_gdch_credentials(transport_class):

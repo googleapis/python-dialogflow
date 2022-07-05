@@ -1237,7 +1237,6 @@ def test_sessions_transport_auth_adc(transport_class):
     [
         transports.SessionsGrpcTransport,
         transports.SessionsGrpcAsyncIOTransport,
-        transports.SessionsRestTransport,
     ],
 )
 def test_sessions_transport_auth_gdch_credentials(transport_class):
