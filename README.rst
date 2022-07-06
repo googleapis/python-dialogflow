@@ -3,7 +3,7 @@ Python Client for Dialogflow API
 
 |stable| |pypi| |versions|
 
-`Dialogflow API`_: 
+`Dialogflow API`_: is an end-to-end, build-once deploy-everywhere development suite for creating conversational interfaces for websites, mobile applications, popular messaging platforms, and IoT devices. You can use it to build interfaces (such as chatbots and conversational IVR) that enable natural and rich interactions between your users and your business. Dialogflow Enterprise Edition users have access to Google Cloud Support and a service level agreement (SLA) for production deployments.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
