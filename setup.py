@@ -50,7 +50,6 @@ setuptools.setup(
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -65,7 +64,7 @@ setuptools.setup(
         "scripts/fixup_dialogflow_v2beta1_keywords.py",
     ],
     install_requires=dependencies,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     include_package_data=True,
     zip_safe=False,
 )
