@@ -121,8 +121,6 @@ def analyze_content_audio_stream(project_id, conversation_id, participant_id, au
         audio_file_path: audio file in wav/mp3 format contains utterances of END_USER.
         language_code: the locale for the audio files."""
     client = dialogflow.ParticipantsClient()
-    conversation_path = dialogflow.ConversationsClient.conversation_path(
-        project_id, conversation_id)
     participant_path = client.participant_path(
         project_id, conversation_id, participant_id
     )
