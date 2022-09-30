@@ -13,60 +13,62 @@
 # limitations under the License.
 
 import os
+import uuid
 
 import conversation_management
 import conversation_profile_management
 import participant_management
 
+import pytest
+
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
-CONVERSATION_PROFILE_DISPLAY_NAME = "fake_conversation_profile"
+CONVERSATION_PROFILE_DISPLAY_NAME = "sample_conversation_profile_{}".format(uuid.uuid4())
 AUDIO_FILE_PATH = "{0}/resources/book_a_room.wav".format(
     os.path.realpath(os.path.dirname(__file__)),
 )
 
-# Test live transcription with streaming_analyze_content.
 
-
-def test_analyze_content_audio_stream(capsys):
+@pytest.fixture(scope="function", autouse=True)
+def setup_teardown():
     # Create conversation profile.
-    conversation_profile_management.create_conversation_profile_article_faq(
+    response = conversation_profile_management.create_conversation_profile_article_faq(
         project_id=PROJECT_ID,
         display_name=CONVERSATION_PROFILE_DISPLAY_NAME
     )
-    out, _ = capsys.readouterr()
-    conversation_profile_id = out.split("conversationProfiles/")[1].rstrip()
+    conversation_profile_id = response.name.split("conversationProfiles/")[1].rstrip()
 
     # Create conversation.
-    conversation_management.create_conversation(
+    response = conversation_management.create_conversation(
         project_id=PROJECT_ID, conversation_profile_id=conversation_profile_id
     )
-
-    out, _ = capsys.readouterr()
-    conversation_id = out.split("conversations/")[1].rstrip()
+    pytest.CONVERSATION_ID = response.name.split("conversations/")[1].rstrip()
 
     # Create end user participant.
-    participant_management.create_participant(
-        project_id=PROJECT_ID, conversation_id=conversation_id, role="END_USER"
+    response = participant_management.create_participant(
+        project_id=PROJECT_ID, conversation_id=pytest.CONVERSATION_ID, role="END_USER"
     )
-    out, _ = capsys.readouterr()
-    end_user_id = out.split("participants/")[1].rstrip()
+    pytest.END_USER_ID = response.name.split("participants/")[1].rstrip()
 
-    # Call StreamingAnalyzeContent to transcribe the audio.
-    participant_management.analyze_content_audio_stream(
-        project_id=PROJECT_ID,
-        conversation_id=conversation_id,
-        participant_id=end_user_id,
-        audio_file_path=AUDIO_FILE_PATH,
-        language_code="en-US",
-    )
+    yield
 
     # Complete the conversation.
-    conversation_management.complete_conversation(project_id=PROJECT_ID, conversation_id=conversation_id)
+    conversation_management.complete_conversation(project_id=PROJECT_ID, conversation_id=pytest.CONVERSATION_ID)
 
     # Delete the conversation profile.
     conversation_profile_management.delete_conversation_profile(
         PROJECT_ID, conversation_profile_id
     )
 
+
+# Test live transcription with streaming_analyze_content.
+def test_analyze_content_audio_stream(capsys):
+    # Call StreamingAnalyzeContent to transcribe the audio.
+    participant_management.analyze_content_audio_stream(
+        project_id=PROJECT_ID,
+        conversation_id=pytest.CONVERSATION_ID,
+        participant_id=pytest.END_USER_ID ,
+        audio_file_path=AUDIO_FILE_PATH,
+        language_code="en-US",
+    )
     out, _ = capsys.readouterr()
     assert "Transcript" in out
