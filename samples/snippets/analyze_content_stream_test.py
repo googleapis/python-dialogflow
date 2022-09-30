@@ -34,7 +34,6 @@ def test_analyze_content_audio_stream(capsys):
         display_name=CONVERSATION_PROFILE_DISPLAY_NAME
     )
     out, _ = capsys.readouterr()
-    assert "Display Name: {}".format(CONVERSATION_PROFILE_DISPLAY_NAME) in out
     conversation_profile_id = out.split("conversationProfiles/")[1].rstrip()
 
     # Create conversation.
@@ -52,12 +51,21 @@ def test_analyze_content_audio_stream(capsys):
     out, _ = capsys.readouterr()
     end_user_id = out.split("participants/")[1].rstrip()
 
+    # Call StreamingAnalyzeContent to transcribe the audio.
     participant_management.analyze_content_audio_stream(
         project_id=PROJECT_ID,
         conversation_id=conversation_id,
         participant_id=end_user_id,
         audio_file_path=AUDIO_FILE_PATH,
         language_code="en-US",
+    )
+
+    # Complete the conversation.
+    conversation_management.complete_conversation(project_id=PROJECT_ID, conversation_id=conversation_id)
+
+    # Delete the conversation profile.
+    conversation_profile_management.delete_conversation_profile(
+        PROJECT_ID, conversation_profile_id
     )
 
     out, _ = capsys.readouterr()
