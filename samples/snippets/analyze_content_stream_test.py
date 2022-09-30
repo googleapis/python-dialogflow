@@ -71,4 +71,4 @@ def test_analyze_content_audio_stream(capsys):
         language_code="en-US",
     )
     out, _ = capsys.readouterr()
-    assert "Transcript" in out
+    assert "book a room" in out
