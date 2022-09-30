@@ -154,6 +154,7 @@ def analyze_content_audio_stream(project_id, conversation_id, participant_id, au
         sample_rate_hertz=sample_rate_hertz,
         single_utterance=True,
         model='phone_call',
+        # Make sure your project is Dialogflow ES ENTERPRISE_TIER in order to "USE_ENHANCED" model.
         model_variant='USE_ENHANCED'
     )
     requests = request_generator(audio_config, audio_file_path)
