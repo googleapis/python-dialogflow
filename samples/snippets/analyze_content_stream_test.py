@@ -15,11 +15,12 @@
 import os
 import uuid
 
+import pytest
+
 import conversation_management
 import conversation_profile_management
 import participant_management
 
-import pytest
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 CONVERSATION_PROFILE_DISPLAY_NAME = "sample_conversation_profile_{}".format(uuid.uuid4())
