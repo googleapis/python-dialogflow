@@ -111,15 +111,14 @@ def analyze_content_text(project_id, conversation_id, participant_id, text):
 # [END dialogflow_analyze_content_text]
 
 # [START dialogflow_analyze_content_audio_stream]
-def analyze_content_audio_stream(project_id, conversation_id, participant_id, audio_file_path, language_code):
+def analyze_content_audio_stream(project_id, conversation_id, participant_id, audio_file_path):
     """Analyze audio content for END_USER
 
     Args:
         project_id: The GCP project linked with the conversation profile.
         conversation_id: Id of the conversation.
         participant_id: Id of the participant.
-        audio_file_path: audio file in wav/mp3 format contains utterances of END_USER.
-        language_code: the locale for the audio files."""
+        audio_file_path: audio file in wav/mp3 format contains utterances of END_USER."""
 
     # Initialize client that will be used to send requests across threads. This
     # client only needs to be created once, and can be reused for multiple requests.
@@ -157,7 +156,7 @@ def analyze_content_audio_stream(project_id, conversation_id, participant_id, au
 
     audio_config = dialogflow.InputAudioConfig(
         audio_encoding=audio_encoding,
-        language_code=language_code,
+        language_code='en-US',
         sample_rate_hertz=sample_rate_hertz,
         single_utterance=True,
         model='phone_call',
