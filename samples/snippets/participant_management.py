@@ -120,7 +120,14 @@ def analyze_content_audio_stream(project_id, conversation_id, participant_id, au
         participant_id: Id of the participant.
         audio_file_path: audio file in wav/mp3 format contains utterances of END_USER.
         language_code: the locale for the audio files."""
+
+    # Initialize client that will be used to send requests across threads. This
+    # client only needs to be created once, and can be reused for multiple requests.
+    # After completing all of your requests, call the "__exit__()" method to safely
+    # clean up any remaining background resources. Alternatively, use the client as
+    # a context manager.
     client = dialogflow.ParticipantsClient()
+
     participant_path = client.participant_path(
         project_id, conversation_id, participant_id
     )
