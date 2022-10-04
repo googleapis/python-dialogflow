@@ -161,11 +161,7 @@ def analyze_content_audio_stream(project_id, conversation_id, participant_id, au
     responses = client.streaming_analyze_content(requests=requests)
     print("=" * 20)
     for response in responses:
-        print(
-            'Transcript: "{}".'.format(
-                response.message.content
-            )
-        )
+        print(f'Transcript: "{response.message.content}".')
 
     print("=" * 20)
 
