@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from google.cloud.dialogflow import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from google.cloud.dialogflow_v2.services.agents.client import AgentsClient
 from google.cloud.dialogflow_v2.services.agents.async_client import AgentsAsyncClient
