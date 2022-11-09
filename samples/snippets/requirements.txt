@@ -1,1 +1,2 @@
-dialogflow==1.1.0
+google-cloud-dialogflow==2.16.1
+Flask==2.2.2

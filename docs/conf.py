@@ -1,6 +1,19 @@
 # -*- coding: utf-8 -*-
+# Copyright 2021 Google LLC
 #
-# dialogflow documentation build configuration file
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# google-cloud-dialogflow documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -63,13 +76,13 @@ source_suffix = [".rst", ".md"]
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
 
-# The master toctree document.
-master_doc = "index"
+# The root toctree document.
+root_doc = "index"
 
 # General information about the project.
-project = u"dialogflow"
-copyright = u"2019, Google"
-author = u"Google APIs"
+project = "google-cloud-dialogflow"
+copyright = "2019, Google"
+author = "Google APIs"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -97,6 +110,7 @@ language = None
 # directories to ignore when looking for source files.
 exclude_patterns = [
     "_build",
+    "**/.nox/**/*",
     "samples/AUTHORING_GUIDE.md",
     "samples/CONTRIBUTING.md",
     "samples/snippets/README.rst",
@@ -140,9 +154,9 @@ html_theme = "alabaster"
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    "description": "Google Cloud Client Libraries for dialogflow",
+    "description": "Google Cloud Client Libraries for google-cloud-dialogflow",
     "github_user": "googleapis",
-    "github_repo": "dialogflow-python-client-v2",
+    "github_repo": "python-dialogflow",
     "github_banner": True,
     "font_family": "'Roboto', Georgia, sans",
     "head_font_family": "'Roboto', Georgia, serif",
@@ -234,7 +248,7 @@ html_static_path = ["_static"]
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "dialogflow-doc"
+htmlhelp_basename = "google-cloud-dialogflow-doc"
 
 # -- Options for warnings ------------------------------------------------------
 
@@ -265,7 +279,13 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "dialogflow.tex", u"dialogflow Documentation", author, "manual")
+    (
+        root_doc,
+        "google-cloud-dialogflow.tex",
+        "google-cloud-dialogflow Documentation",
+        author,
+        "manual",
+    )
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -293,7 +313,15 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "dialogflow", u"dialogflow Documentation", [author], 1)]
+man_pages = [
+    (
+        root_doc,
+        "google-cloud-dialogflow",
+        "google-cloud-dialogflow Documentation",
+        [author],
+        1,
+    )
+]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -306,12 +334,12 @@ man_pages = [(master_doc, "dialogflow", u"dialogflow Documentation", [author], 1
 #  dir menu entry, description, category)
 texinfo_documents = [
     (
-        master_doc,
-        "dialogflow",
-        u"dialogflow Documentation",
+        root_doc,
+        "google-cloud-dialogflow",
+        "google-cloud-dialogflow Documentation",
         author,
-        "dialogflow",
-        "dialogflow Library",
+        "google-cloud-dialogflow",
+        "google-cloud-dialogflow Library",
         "APIs",
     )
 ]
@@ -333,9 +361,13 @@ texinfo_documents = [
 intersphinx_mapping = {
     "python": ("https://python.readthedocs.org/en/latest/", None),
     "google-auth": ("https://googleapis.dev/python/google-auth/latest/", None),
-    "google.api_core": ("https://googleapis.dev/python/google-api-core/latest/", None),
+    "google.api_core": (
+        "https://googleapis.dev/python/google-api-core/latest/",
+        None,
+    ),
     "grpc": ("https://grpc.github.io/grpc/python/", None),
     "proto-plus": ("https://proto-plus-python.readthedocs.io/en/latest/", None),
+    "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
 }
 
 

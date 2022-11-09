@@ -19,9 +19,13 @@ import setuptools
 
 name = "dialogflow"
 description = "Client library for the Dialogflow API"
-version = "1.1.0"
+version = "2.16.1"
 release_status = "Development Status :: 5 - Production/Stable"
-dependencies = ["google-api-core[grpc] >= 1.14.0, < 2.0.0dev"]
+dependencies = [
+    "google-api-core[grpc] >= 1.32.0, <3.0.0dev,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*",
+    "proto-plus >= 1.22.0, <2.0.0dev",
+    "protobuf>=3.19.5,<5.0.0dev,!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5",
+]
 
 package_root = os.path.abspath(os.path.dirname(__file__))
 
@@ -29,10 +33,10 @@ readme_filename = os.path.join(package_root, "README.rst")
 with io.open(readme_filename, encoding="utf-8") as readme_file:
     readme = readme_file.read()
 
-packages = setuptools.find_packages()
+packages = setuptools.PEP420PackageFinder.find()
 
 setuptools.setup(
-    name="dialogflow",
+    name="google-cloud-dialogflow",
     description=description,
     long_description=readme,
     version=version,
@@ -45,18 +49,22 @@ setuptools.setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
     platforms="Posix; MacOS X; Windows",
     packages=packages,
+    extras={"libcst": "libcst >=0.2.5"},
+    scripts=[
+        "scripts/fixup_dialogflow_v2_keywords.py",
+        "scripts/fixup_dialogflow_v2beta1_keywords.py",
+    ],
     install_requires=dependencies,
-    python_requires=">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*",
+    python_requires=">=3.7",
     include_package_data=True,
     zip_safe=False,
 )

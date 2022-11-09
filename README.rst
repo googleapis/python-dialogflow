@@ -1,91 +1,107 @@
-Dialogflow: Python Client
-=========================
+Python Client for Dialogflow API
+================================
 
-|release level|
+|stable| |pypi| |versions|
 
-    Python idiomatic client for `Dialogflow`_
+`Dialogflow API`_: is an end-to-end, build-once deploy-everywhere development suite for creating conversational interfaces for websites, mobile applications, popular messaging platforms, and IoT devices. You can use it to build interfaces (such as chatbots and conversational IVR) that enable natural and rich interactions between your users and your business. Dialogflow Enterprise Edition users have access to Google Cloud Support and a service level agreement (SLA) for production deployments.
 
-`Dialogflow`_ is an enterprise-grade NLU platform that makes it easy for
-developers to design and integrate conversational user interfaces into
-mobile apps, web applications, devices, and bots.
+- `Client Library Documentation`_
+- `Product Documentation`_
 
-* `Dialogflow Python Client API Reference <https://googleapis.dev/python/dialogflow/latest/index.html>`_
-* `Dialogflow Standard Edition Documentation <https://www.dialogflow.com>`_
-* `Dialogflow Enterprise Edition Documentation <https://cloud.google.com/dialogflow-enterprise/docs>`_
+.. |stable| image:: https://img.shields.io/badge/support-stable-gold.svg
+   :target: https://github.com/googleapis/google-cloud-python/blob/main/README.rst#stability-levels
+.. |pypi| image:: https://img.shields.io/pypi/v/google-cloud-dialogflow.svg
+   :target: https://pypi.org/project/google-cloud-dialogflow/
+.. |versions| image:: https://img.shields.io/pypi/pyversions/google-cloud-dialogflow.svg
+   :target: https://pypi.org/project/google-cloud-dialogflow/
+.. _Dialogflow API: https://www.dialogflow.com/
+.. _Client Library Documentation: https://cloud.google.com/python/docs/reference/dialogflow/latest
+.. _Product Documentation:  https://www.dialogflow.com/
 
-Read more about the client libraries for Cloud APIs, including the older
-Google APIs Client Libraries, in
-`Client Libraries Explained <https://cloud.google.com/apis/docs/client-libraries-explained>`_.
+Quick Start
+-----------
 
-.. _Dialogflow: https://dialogflow.com/
+In order to use this library, you first need to go through the following steps:
 
+1. `Select or create a Cloud Platform project.`_
+2. `Enable billing for your project.`_
+3. `Enable the Dialogflow API.`_
+4. `Setup Authentication.`_
 
-Before you begin
-----------------
-
-#. Select or create a Cloud Platform `project`_.
-#. `Enable billing`_ for your project.
-#.  `Enable the Google Cloud Dialogflow API`_.
-#.  `Set up authentication`_ with a service account so you can access the
-    API from your local workstation.
-
-.. _project: https://console.cloud.google.com/project
-.. _Enable billing: https://support.google.com/cloud/answer/6293499#enable-billing
-.. _Enable the Google Cloud Dialogflow API: https://console.cloud.google.com/flows/enableapi?apiid=dialogflow.googleapis.com
-.. _Set up authentication: https://cloud.google.com/docs/authentication/getting-started
-
+.. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
+.. _Enable billing for your project.: https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project
+.. _Enable the Dialogflow API.:  https://www.dialogflow.com/
+.. _Setup Authentication.: https://googleapis.dev/python/google-api-core/latest/auth.html
 
 Installation
-------------
+~~~~~~~~~~~~
 
-.. code-block:: shell
+Install this library in a `virtualenv`_ using pip. `virtualenv`_ is a tool to
+create isolated Python environments. The basic problem it addresses is one of
+dependencies and versions, and indirectly permissions.
 
-    pip install dialogflow
+With `virtualenv`_, it's possible to install this library without needing system
+install permissions, and without clashing with the installed system
+dependencies.
 
-.. note::
+.. _`virtualenv`: https://virtualenv.pypa.io/en/latest/
 
-    We highly recommend that you install this library in a
-    `virtualenv <https://virtualenv.pypa.io/en/latest/>`_.
+
+Code samples and snippets
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Code samples and snippets live in the `samples/` folder.
 
 
 Supported Python Versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-Python >= 3.5
+Our client libraries are compatible with all current `active`_ and `maintenance`_ versions of
+Python.
 
-Deprecated Python Versions
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-Python == 2.7. Python 2.7 support will be removed on January 1, 2020.
+Python >= 3.7
 
+.. _active: https://devguide.python.org/devcycle/#in-development-main-branch
+.. _maintenance: https://devguide.python.org/devcycle/#maintenance-branches
 
-Usage
------
+Unsupported Python Versions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Python <= 3.6
 
-View `usage documentation <https://googleapis.dev/python/dialogflow/latest/index.html>`_.
+If you are using an `end-of-life`_
+version of Python, we recommend that you update as soon as possible to an actively supported version.
 
+.. _end-of-life: https://devguide.python.org/devcycle/#end-of-life-branches
 
-Versioning
-----------
+Mac/Linux
+^^^^^^^^^
 
-This library follows `Semantic Versioning <http://semver.org/>`_.
+.. code-block:: console
 
-This library is considered to be stable. This means and that the code surface will not change in backwards-incompatible
-ways unless either absolutely necessary (e.g. because of critical security issues) or with an extensive deprecation
-period. Issues and requests against GA libraries are addressed with the highest priority.
-
-More Information: `Google Cloud Python Library Support <https://github.com/googleapis/google-cloud-python/blob/master/README.rst#general-availability>`_
-
-Contributing
-------------
-
-Contributions welcome! See the `Contributing Guide <https://github.com/googleapis/python-dialogflow/blob/master/.github/CONTRIBUTING.md>`_.
-
-License
--------
-
-Apache Version 2.0
-
-See `the LICENSE file <https://github.com/googleapis/python-dialogflow/blob/master/LICENSE>`_ for more information.
+    pip install virtualenv
+    virtualenv <your-env>
+    source <your-env>/bin/activate
+    <your-env>/bin/pip install google-cloud-dialogflow
 
 
-.. |release level| image:: https://img.shields.io/badge/support-GA-gold.svg
-   :target: https://github.com/googleapis/google-cloud-python/blob/master/README.rst#general-availability
+Windows
+^^^^^^^
+
+.. code-block:: console
+
+    pip install virtualenv
+    virtualenv <your-env>
+    <your-env>\Scripts\activate
+    <your-env>\Scripts\pip.exe install google-cloud-dialogflow
+
+Next Steps
+~~~~~~~~~~
+
+-  Read the `Client Library Documentation`_ for Dialogflow API
+   to see other available methods on the client.
+-  Read the `Dialogflow API Product documentation`_ to learn
+   more about the product and see How-to Guides.
+-  View this `README`_ to see the full list of Cloud
+   APIs that we cover.
+
+.. _Dialogflow API Product documentation:  https://www.dialogflow.com/
+.. _README: https://github.com/googleapis/google-cloud-python/blob/main/README.rst
