@@ -16,7 +16,17 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -175,9 +185,9 @@ class ConversationDatasetsAsyncClient:
     def __init__(
         self,
         *,
-        credentials: ga_credentials.Credentials = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, ConversationDatasetsTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
+        client_options: Optional[ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiates the conversation datasets client.
@@ -221,14 +231,16 @@ class ConversationDatasetsAsyncClient:
 
     async def create_conversation_dataset(
         self,
-        request: Union[
-            gcd_conversation_dataset.CreateConversationDatasetRequest, dict
+        request: Optional[
+            Union[gcd_conversation_dataset.CreateConversationDatasetRequest, dict]
         ] = None,
         *,
-        parent: str = None,
-        conversation_dataset: gcd_conversation_dataset.ConversationDataset = None,
+        parent: Optional[str] = None,
+        conversation_dataset: Optional[
+            gcd_conversation_dataset.ConversationDataset
+        ] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates a new conversation dataset.
@@ -278,7 +290,7 @@ class ConversationDatasetsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.CreateConversationDatasetRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.CreateConversationDatasetRequest, dict]]):
                 The request object. The request message for
                 [ConversationDatasets.CreateConversationDataset][google.cloud.dialogflow.v2.ConversationDatasets.CreateConversationDataset].
             parent (:class:`str`):
@@ -367,11 +379,13 @@ class ConversationDatasetsAsyncClient:
 
     async def get_conversation_dataset(
         self,
-        request: Union[conversation_dataset.GetConversationDatasetRequest, dict] = None,
+        request: Optional[
+            Union[conversation_dataset.GetConversationDatasetRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation_dataset.ConversationDataset:
         r"""Retrieves the specified conversation dataset.
@@ -403,7 +417,7 @@ class ConversationDatasetsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.GetConversationDatasetRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.GetConversationDatasetRequest, dict]]):
                 The request object. The request message for
                 [ConversationDatasets.GetConversationDataset][google.cloud.dialogflow.v2.ConversationDatasets.GetConversationDataset].
             name (:class:`str`):
@@ -474,13 +488,13 @@ class ConversationDatasetsAsyncClient:
 
     async def list_conversation_datasets(
         self,
-        request: Union[
-            conversation_dataset.ListConversationDatasetsRequest, dict
+        request: Optional[
+            Union[conversation_dataset.ListConversationDatasetsRequest, dict]
         ] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationDatasetsAsyncPager:
         r"""Returns the list of all conversation datasets in the
@@ -514,7 +528,7 @@ class ConversationDatasetsAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.ListConversationDatasetsRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.ListConversationDatasetsRequest, dict]]):
                 The request object. The request message for
                 [ConversationDatasets.ListConversationDatasets][google.cloud.dialogflow.v2.ConversationDatasets.ListConversationDatasets].
             parent (:class:`str`):
@@ -593,13 +607,13 @@ class ConversationDatasetsAsyncClient:
 
     async def delete_conversation_dataset(
         self,
-        request: Union[
-            conversation_dataset.DeleteConversationDatasetRequest, dict
+        request: Optional[
+            Union[conversation_dataset.DeleteConversationDatasetRequest, dict]
         ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes the specified conversation dataset.
@@ -645,7 +659,7 @@ class ConversationDatasetsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.DeleteConversationDatasetRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.DeleteConversationDatasetRequest, dict]]):
                 The request object. The request message for
                 [ConversationDatasets.DeleteConversationDataset][google.cloud.dialogflow.v2.ConversationDatasets.DeleteConversationDataset].
             name (:class:`str`):
@@ -729,10 +743,12 @@ class ConversationDatasetsAsyncClient:
 
     async def import_conversation_data(
         self,
-        request: Union[conversation_dataset.ImportConversationDataRequest, dict] = None,
+        request: Optional[
+            Union[conversation_dataset.ImportConversationDataRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Import data into the specified conversation dataset. Note that
@@ -784,7 +800,7 @@ class ConversationDatasetsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.ImportConversationDataRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.ImportConversationDataRequest, dict]]):
                 The request object. The request message for
                 [ConversationDatasets.ImportConversationData][google.cloud.dialogflow.v2.ConversationDatasets.ImportConversationData].
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -839,10 +855,10 @@ class ConversationDatasetsAsyncClient:
 
     async def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -893,10 +909,10 @@ class ConversationDatasetsAsyncClient:
 
     async def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -947,10 +963,10 @@ class ConversationDatasetsAsyncClient:
 
     async def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1001,10 +1017,10 @@ class ConversationDatasetsAsyncClient:
 
     async def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1055,10 +1071,10 @@ class ConversationDatasetsAsyncClient:
 
     async def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

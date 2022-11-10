@@ -16,7 +16,17 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -164,9 +174,9 @@ class EntityTypesAsyncClient:
     def __init__(
         self,
         *,
-        credentials: ga_credentials.Credentials = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, EntityTypesTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
+        client_options: Optional[ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiates the entity types client.
@@ -210,12 +220,12 @@ class EntityTypesAsyncClient:
 
     async def list_entity_types(
         self,
-        request: Union[entity_type.ListEntityTypesRequest, dict] = None,
+        request: Optional[Union[entity_type.ListEntityTypesRequest, dict]] = None,
         *,
-        parent: str = None,
-        language_code: str = None,
+        parent: Optional[str] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListEntityTypesAsyncPager:
         r"""Returns the list of all entity types in the specified
@@ -249,7 +259,7 @@ class EntityTypesAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.ListEntityTypesRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.ListEntityTypesRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.ListEntityTypes].
             parent (:class:`str`):
@@ -342,12 +352,12 @@ class EntityTypesAsyncClient:
 
     async def get_entity_type(
         self,
-        request: Union[entity_type.GetEntityTypeRequest, dict] = None,
+        request: Optional[Union[entity_type.GetEntityTypeRequest, dict]] = None,
         *,
-        name: str = None,
-        language_code: str = None,
+        name: Optional[str] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> entity_type.EntityType:
         r"""Retrieves the specified entity type.
@@ -379,7 +389,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.GetEntityTypeRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.GetEntityTypeRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.GetEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.GetEntityType].
             name (:class:`str`):
@@ -473,13 +483,13 @@ class EntityTypesAsyncClient:
 
     async def create_entity_type(
         self,
-        request: Union[gcd_entity_type.CreateEntityTypeRequest, dict] = None,
+        request: Optional[Union[gcd_entity_type.CreateEntityTypeRequest, dict]] = None,
         *,
-        parent: str = None,
-        entity_type: gcd_entity_type.EntityType = None,
-        language_code: str = None,
+        parent: Optional[str] = None,
+        entity_type: Optional[gcd_entity_type.EntityType] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_entity_type.EntityType:
         r"""Creates an entity type in the specified agent.
@@ -520,7 +530,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.CreateEntityTypeRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.CreateEntityTypeRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.CreateEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.CreateEntityType].
             parent (:class:`str`):
@@ -621,13 +631,13 @@ class EntityTypesAsyncClient:
 
     async def update_entity_type(
         self,
-        request: Union[gcd_entity_type.UpdateEntityTypeRequest, dict] = None,
+        request: Optional[Union[gcd_entity_type.UpdateEntityTypeRequest, dict]] = None,
         *,
-        entity_type: gcd_entity_type.EntityType = None,
-        language_code: str = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        entity_type: Optional[gcd_entity_type.EntityType] = None,
+        language_code: Optional[str] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_entity_type.EntityType:
         r"""Updates the specified entity type.
@@ -667,7 +677,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.UpdateEntityTypeRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.UpdateEntityTypeRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.UpdateEntityType].
             entity_type (:class:`google.cloud.dialogflow_v2beta1.types.EntityType`):
@@ -767,11 +777,11 @@ class EntityTypesAsyncClient:
 
     async def delete_entity_type(
         self,
-        request: Union[entity_type.DeleteEntityTypeRequest, dict] = None,
+        request: Optional[Union[entity_type.DeleteEntityTypeRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes the specified entity type.
@@ -804,7 +814,7 @@ class EntityTypesAsyncClient:
                 await client.delete_entity_type(request=request)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.DeleteEntityTypeRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.DeleteEntityTypeRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.DeleteEntityType][google.cloud.dialogflow.v2beta1.EntityTypes.DeleteEntityType].
             name (:class:`str`):
@@ -864,10 +874,12 @@ class EntityTypesAsyncClient:
 
     async def batch_update_entity_types(
         self,
-        request: Union[entity_type.BatchUpdateEntityTypesRequest, dict] = None,
+        request: Optional[
+            Union[entity_type.BatchUpdateEntityTypesRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Updates/Creates multiple entity types in the specified agent.
@@ -918,7 +930,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.BatchUpdateEntityTypesRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.BatchUpdateEntityTypesRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -975,12 +987,14 @@ class EntityTypesAsyncClient:
 
     async def batch_delete_entity_types(
         self,
-        request: Union[entity_type.BatchDeleteEntityTypesRequest, dict] = None,
+        request: Optional[
+            Union[entity_type.BatchDeleteEntityTypesRequest, dict]
+        ] = None,
         *,
-        parent: str = None,
-        entity_type_names: Sequence[str] = None,
+        parent: Optional[str] = None,
+        entity_type_names: Optional[MutableSequence[str]] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes entity types in the specified agent.
@@ -1031,7 +1045,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.BatchDeleteEntityTypesRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.BatchDeleteEntityTypesRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.BatchDeleteEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchDeleteEntityTypes].
             parent (:class:`str`):
@@ -1044,7 +1058,7 @@ class EntityTypesAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            entity_type_names (:class:`Sequence[str]`):
+            entity_type_names (:class:`MutableSequence[str]`):
                 Required. The names entity types to delete. All names
                 must point to the same agent as ``parent``.
 
@@ -1127,13 +1141,13 @@ class EntityTypesAsyncClient:
 
     async def batch_create_entities(
         self,
-        request: Union[entity_type.BatchCreateEntitiesRequest, dict] = None,
+        request: Optional[Union[entity_type.BatchCreateEntitiesRequest, dict]] = None,
         *,
-        parent: str = None,
-        entities: Sequence[entity_type.EntityType.Entity] = None,
-        language_code: str = None,
+        parent: Optional[str] = None,
+        entities: Optional[MutableSequence[entity_type.EntityType.Entity]] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates multiple new entities in the specified entity type.
@@ -1187,7 +1201,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.BatchCreateEntitiesRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.BatchCreateEntitiesRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchCreateEntities].
             parent (:class:`str`):
@@ -1200,7 +1214,7 @@ class EntityTypesAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            entities (:class:`Sequence[google.cloud.dialogflow_v2beta1.types.EntityType.Entity]`):
+            entities (:class:`MutableSequence[google.cloud.dialogflow_v2beta1.types.EntityType.Entity]`):
                 Required. The entities to create.
                 This corresponds to the ``entities`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -1293,13 +1307,13 @@ class EntityTypesAsyncClient:
 
     async def batch_update_entities(
         self,
-        request: Union[entity_type.BatchUpdateEntitiesRequest, dict] = None,
+        request: Optional[Union[entity_type.BatchUpdateEntitiesRequest, dict]] = None,
         *,
-        parent: str = None,
-        entities: Sequence[entity_type.EntityType.Entity] = None,
-        language_code: str = None,
+        parent: Optional[str] = None,
+        entities: Optional[MutableSequence[entity_type.EntityType.Entity]] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Updates or creates multiple entities in the specified entity
@@ -1355,7 +1369,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.BatchUpdateEntitiesRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.BatchUpdateEntitiesRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.BatchUpdateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntities].
             parent (:class:`str`):
@@ -1368,7 +1382,7 @@ class EntityTypesAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            entities (:class:`Sequence[google.cloud.dialogflow_v2beta1.types.EntityType.Entity]`):
+            entities (:class:`MutableSequence[google.cloud.dialogflow_v2beta1.types.EntityType.Entity]`):
                 Required. The entities to update or
                 create.
 
@@ -1463,13 +1477,13 @@ class EntityTypesAsyncClient:
 
     async def batch_delete_entities(
         self,
-        request: Union[entity_type.BatchDeleteEntitiesRequest, dict] = None,
+        request: Optional[Union[entity_type.BatchDeleteEntitiesRequest, dict]] = None,
         *,
-        parent: str = None,
-        entity_values: Sequence[str] = None,
-        language_code: str = None,
+        parent: Optional[str] = None,
+        entity_values: Optional[MutableSequence[str]] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes entities in the specified entity type.
@@ -1520,7 +1534,7 @@ class EntityTypesAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2beta1.types.BatchDeleteEntitiesRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2beta1.types.BatchDeleteEntitiesRequest, dict]]):
                 The request object. The request message for
                 [EntityTypes.BatchDeleteEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchDeleteEntities].
             parent (:class:`str`):
@@ -1533,7 +1547,7 @@ class EntityTypesAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            entity_values (:class:`Sequence[str]`):
+            entity_values (:class:`MutableSequence[str]`):
                 Required. The reference ``values`` of the entities to
                 delete. Note that these are not fully-qualified names,
                 i.e. they don't start with ``projects/<Project ID>``.
@@ -1629,10 +1643,10 @@ class EntityTypesAsyncClient:
 
     async def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1683,10 +1697,10 @@ class EntityTypesAsyncClient:
 
     async def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1737,10 +1751,10 @@ class EntityTypesAsyncClient:
 
     async def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1791,10 +1805,10 @@ class EntityTypesAsyncClient:
 
     async def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1845,10 +1859,10 @@ class EntityTypesAsyncClient:
 
     async def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

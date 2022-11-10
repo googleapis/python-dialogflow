@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -60,7 +71,7 @@ class ContextsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[ContextsTransport]:
         """Returns an appropriate transport class.
 
@@ -337,7 +348,7 @@ class ContextsClient(metaclass=ContextsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, ContextsTransport, None] = None,
+        transport: Optional[Union[str, ContextsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -435,11 +446,11 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def list_contexts(
         self,
-        request: Union[context.ListContextsRequest, dict] = None,
+        request: Optional[Union[context.ListContextsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListContextsPager:
         r"""Returns the list of all contexts in the specified
@@ -561,11 +572,11 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def get_context(
         self,
-        request: Union[context.GetContextRequest, dict] = None,
+        request: Optional[Union[context.GetContextRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> context.Context:
         r"""Retrieves the specified context.
@@ -689,12 +700,12 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def create_context(
         self,
-        request: Union[gcd_context.CreateContextRequest, dict] = None,
+        request: Optional[Union[gcd_context.CreateContextRequest, dict]] = None,
         *,
-        parent: str = None,
-        context: gcd_context.Context = None,
+        parent: Optional[str] = None,
+        context: Optional[gcd_context.Context] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_context.Context:
         r"""Creates a context.
@@ -828,12 +839,12 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def update_context(
         self,
-        request: Union[gcd_context.UpdateContextRequest, dict] = None,
+        request: Optional[Union[gcd_context.UpdateContextRequest, dict]] = None,
         *,
-        context: gcd_context.Context = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        context: Optional[gcd_context.Context] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_context.Context:
         r"""Updates the specified context.
@@ -956,11 +967,11 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def delete_context(
         self,
-        request: Union[context.DeleteContextRequest, dict] = None,
+        request: Optional[Union[context.DeleteContextRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes the specified context.
@@ -1056,11 +1067,11 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def delete_all_contexts(
         self,
-        request: Union[context.DeleteAllContextsRequest, dict] = None,
+        request: Optional[Union[context.DeleteAllContextsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes all active contexts in the specified session.
@@ -1169,10 +1180,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1223,10 +1234,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1277,10 +1288,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1331,10 +1342,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1385,10 +1396,10 @@ class ContextsClient(metaclass=ContextsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

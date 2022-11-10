@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -60,7 +71,7 @@ class ConversationsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[ConversationsTransport]:
         """Returns an appropriate transport class.
 
@@ -397,7 +408,7 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, ConversationsTransport, None] = None,
+        transport: Optional[Union[str, ConversationsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -495,12 +506,14 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def create_conversation(
         self,
-        request: Union[gcd_conversation.CreateConversationRequest, dict] = None,
+        request: Optional[
+            Union[gcd_conversation.CreateConversationRequest, dict]
+        ] = None,
         *,
-        parent: str = None,
-        conversation: gcd_conversation.Conversation = None,
+        parent: Optional[str] = None,
+        conversation: Optional[gcd_conversation.Conversation] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_conversation.Conversation:
         r"""Creates a new conversation. Conversations are auto-completed
@@ -635,11 +648,11 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def list_conversations(
         self,
-        request: Union[conversation.ListConversationsRequest, dict] = None,
+        request: Optional[Union[conversation.ListConversationsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationsPager:
         r"""Returns the list of all conversations in the
@@ -752,11 +765,11 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def get_conversation(
         self,
-        request: Union[conversation.GetConversationRequest, dict] = None,
+        request: Optional[Union[conversation.GetConversationRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation.Conversation:
         r"""Retrieves the specific conversation.
@@ -859,11 +872,11 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def complete_conversation(
         self,
-        request: Union[conversation.CompleteConversationRequest, dict] = None,
+        request: Optional[Union[conversation.CompleteConversationRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation.Conversation:
         r"""Completes the specified conversation. Finished
@@ -969,11 +982,11 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def batch_create_messages(
         self,
-        request: Union[conversation.BatchCreateMessagesRequest, dict] = None,
+        request: Optional[Union[conversation.BatchCreateMessagesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation.BatchCreateMessagesResponse:
         r"""Batch ingests messages to conversation. Customers can
@@ -1079,11 +1092,11 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def list_messages(
         self,
-        request: Union[conversation.ListMessagesRequest, dict] = None,
+        request: Optional[Union[conversation.ListMessagesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListMessagesPager:
         r"""Lists messages that belong to a given conversation. ``messages``
@@ -1199,11 +1212,13 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def suggest_conversation_summary(
         self,
-        request: Union[gcd_conversation.SuggestConversationSummaryRequest, dict] = None,
+        request: Optional[
+            Union[gcd_conversation.SuggestConversationSummaryRequest, dict]
+        ] = None,
         *,
-        conversation: str = None,
+        conversation: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_conversation.SuggestConversationSummaryResponse:
         r"""Suggest summary for a conversation based on specific
@@ -1321,10 +1336,10 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1375,10 +1390,10 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1429,10 +1444,10 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1483,10 +1498,10 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1537,10 +1552,10 @@ class ConversationsClient(metaclass=ConversationsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

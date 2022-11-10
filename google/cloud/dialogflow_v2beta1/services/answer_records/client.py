@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 import warnings
 
@@ -60,7 +71,7 @@ class AnswerRecordsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[AnswerRecordsTransport]:
         """Returns an appropriate transport class.
 
@@ -334,7 +345,7 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, AnswerRecordsTransport, None] = None,
+        transport: Optional[Union[str, AnswerRecordsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -432,10 +443,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def get_answer_record(
         self,
-        request: Union[answer_record.GetAnswerRecordRequest, dict] = None,
+        request: Optional[Union[answer_record.GetAnswerRecordRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> answer_record.AnswerRecord:
         r"""Deprecated.
@@ -548,11 +559,11 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def list_answer_records(
         self,
-        request: Union[answer_record.ListAnswerRecordsRequest, dict] = None,
+        request: Optional[Union[answer_record.ListAnswerRecordsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListAnswerRecordsPager:
         r"""Returns the list of all answer records in the
@@ -664,12 +675,14 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def update_answer_record(
         self,
-        request: Union[gcd_answer_record.UpdateAnswerRecordRequest, dict] = None,
+        request: Optional[
+            Union[gcd_answer_record.UpdateAnswerRecordRequest, dict]
+        ] = None,
         *,
-        answer_record: gcd_answer_record.AnswerRecord = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        answer_record: Optional[gcd_answer_record.AnswerRecord] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_answer_record.AnswerRecord:
         r"""Updates the specified answer record.
@@ -819,10 +832,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -873,10 +886,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -927,10 +940,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -981,10 +994,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1035,10 +1048,10 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

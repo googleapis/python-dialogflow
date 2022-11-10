@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -63,7 +74,7 @@ class AgentsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[AgentsTransport]:
         """Returns an appropriate transport class.
 
@@ -331,7 +342,7 @@ class AgentsClient(metaclass=AgentsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, AgentsTransport, None] = None,
+        transport: Optional[Union[str, AgentsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -429,11 +440,11 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def get_agent(
         self,
-        request: Union[agent.GetAgentRequest, dict] = None,
+        request: Optional[Union[agent.GetAgentRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> agent.Agent:
         r"""Retrieves the specified agent.
@@ -540,11 +551,11 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def set_agent(
         self,
-        request: Union[gcd_agent.SetAgentRequest, dict] = None,
+        request: Optional[Union[gcd_agent.SetAgentRequest, dict]] = None,
         *,
-        agent: gcd_agent.Agent = None,
+        agent: Optional[gcd_agent.Agent] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_agent.Agent:
         r"""Creates/updates the specified agent.
@@ -661,11 +672,11 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def delete_agent(
         self,
-        request: Union[agent.DeleteAgentRequest, dict] = None,
+        request: Optional[Union[agent.DeleteAgentRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes the specified agent.
@@ -751,11 +762,11 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def search_agents(
         self,
-        request: Union[agent.SearchAgentsRequest, dict] = None,
+        request: Optional[Union[agent.SearchAgentsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.SearchAgentsPager:
         r"""Returns the list of agents.
@@ -872,11 +883,11 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def train_agent(
         self,
-        request: Union[agent.TrainAgentRequest, dict] = None,
+        request: Optional[Union[agent.TrainAgentRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Trains the specified agent.
@@ -1010,11 +1021,11 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def export_agent(
         self,
-        request: Union[agent.ExportAgentRequest, dict] = None,
+        request: Optional[Union[agent.ExportAgentRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Exports the specified agent to a ZIP file.
@@ -1139,10 +1150,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def import_agent(
         self,
-        request: Union[agent.ImportAgentRequest, dict] = None,
+        request: Optional[Union[agent.ImportAgentRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Imports the specified agent from a ZIP file.
@@ -1271,10 +1282,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def restore_agent(
         self,
-        request: Union[agent.RestoreAgentRequest, dict] = None,
+        request: Optional[Union[agent.RestoreAgentRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Restores the specified agent from a ZIP file.
@@ -1401,10 +1412,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def get_validation_result(
         self,
-        request: Union[agent.GetValidationResultRequest, dict] = None,
+        request: Optional[Union[agent.GetValidationResultRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> validation_result.ValidationResult:
         r"""Gets agent validation result. Agent validation is
@@ -1497,10 +1508,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1551,10 +1562,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1605,10 +1616,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1659,10 +1670,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1713,10 +1724,10 @@ class AgentsClient(metaclass=AgentsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

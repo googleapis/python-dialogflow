@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from google.cloud.dialogflow_v2.types import context
@@ -54,20 +56,20 @@ class WebhookRequest(proto.Message):
             passed to ``[Streaming]DetectIntent`` call.
     """
 
-    session = proto.Field(
+    session: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    response_id = proto.Field(
+    response_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    query_result = proto.Field(
+    query_result: gcd_session.QueryResult = proto.Field(
         proto.MESSAGE,
         number=2,
         message=gcd_session.QueryResult,
     )
-    original_detect_intent_request = proto.Field(
+    original_detect_intent_request: "OriginalDetectIntentRequest" = proto.Field(
         proto.MESSAGE,
         number=3,
         message="OriginalDetectIntentRequest",
@@ -98,7 +100,7 @@ class WebhookResponse(proto.Message):
             provided, Dialogflow uses this field to populate
             [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text]
             sent to the integration or API caller.
-        fulfillment_messages (Sequence[google.cloud.dialogflow_v2.types.Intent.Message]):
+        fulfillment_messages (MutableSequence[google.cloud.dialogflow_v2.types.Intent.Message]):
             Optional. The rich response messages intended for the
             end-user. When provided, Dialogflow uses this field to
             populate
@@ -122,7 +124,7 @@ class WebhookResponse(proto.Message):
             for rich response messages. See the format definition at
             `Google Assistant Dialogflow webhook
             format <https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json>`__
-        output_contexts (Sequence[google.cloud.dialogflow_v2.types.Context]):
+        output_contexts (MutableSequence[google.cloud.dialogflow_v2.types.Context]):
             Optional. The collection of output contexts that will
             overwrite currently active contexts for the session and
             reset their lifespans. When provided, Dialogflow uses this
@@ -133,7 +135,7 @@ class WebhookResponse(proto.Message):
             Optional. Invokes the supplied events. When this field is
             set, Dialogflow ignores the ``fulfillment_text``,
             ``fulfillment_messages``, and ``payload`` fields.
-        session_entity_types (Sequence[google.cloud.dialogflow_v2.types.SessionEntityType]):
+        session_entity_types (MutableSequence[google.cloud.dialogflow_v2.types.SessionEntityType]):
             Optional. Additional session entity types to replace or
             extend developer entity types with. The entity synonyms
             apply to all languages and persist for the session. Setting
@@ -144,35 +146,37 @@ class WebhookResponse(proto.Message):
             management methods.
     """
 
-    fulfillment_text = proto.Field(
+    fulfillment_text: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    fulfillment_messages = proto.RepeatedField(
+    fulfillment_messages: MutableSequence[intent.Intent.Message] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message=intent.Intent.Message,
     )
-    source = proto.Field(
+    source: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    payload = proto.Field(
+    payload: struct_pb2.Struct = proto.Field(
         proto.MESSAGE,
         number=4,
         message=struct_pb2.Struct,
     )
-    output_contexts = proto.RepeatedField(
+    output_contexts: MutableSequence[context.Context] = proto.RepeatedField(
         proto.MESSAGE,
         number=5,
         message=context.Context,
     )
-    followup_event_input = proto.Field(
+    followup_event_input: gcd_session.EventInput = proto.Field(
         proto.MESSAGE,
         number=6,
         message=gcd_session.EventInput,
     )
-    session_entity_types = proto.RepeatedField(
+    session_entity_types: MutableSequence[
+        session_entity_type.SessionEntityType
+    ] = proto.RepeatedField(
         proto.MESSAGE,
         number=10,
         message=session_entity_type.SessionEntityType,
@@ -213,15 +217,15 @@ class OriginalDetectIntentRequest(proto.Message):
             Essentials Edition agents.
     """
 
-    source = proto.Field(
+    source: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    version = proto.Field(
+    version: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    payload = proto.Field(
+    payload: struct_pb2.Struct = proto.Field(
         proto.MESSAGE,
         number=3,
         message=struct_pb2.Struct,

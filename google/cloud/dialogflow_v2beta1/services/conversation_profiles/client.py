@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -67,7 +78,7 @@ class ConversationProfilesClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[ConversationProfilesTransport]:
         """Returns an appropriate transport class.
 
@@ -442,7 +453,7 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, ConversationProfilesTransport, None] = None,
+        transport: Optional[Union[str, ConversationProfilesTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -540,13 +551,13 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def list_conversation_profiles(
         self,
-        request: Union[
-            conversation_profile.ListConversationProfilesRequest, dict
+        request: Optional[
+            Union[conversation_profile.ListConversationProfilesRequest, dict]
         ] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationProfilesPager:
         r"""Returns the list of all conversation profiles in the
@@ -663,11 +674,13 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def get_conversation_profile(
         self,
-        request: Union[conversation_profile.GetConversationProfileRequest, dict] = None,
+        request: Optional[
+            Union[conversation_profile.GetConversationProfileRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation_profile.ConversationProfile:
         r"""Retrieves the specified conversation profile.
@@ -766,14 +779,16 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def create_conversation_profile(
         self,
-        request: Union[
-            gcd_conversation_profile.CreateConversationProfileRequest, dict
+        request: Optional[
+            Union[gcd_conversation_profile.CreateConversationProfileRequest, dict]
         ] = None,
         *,
-        parent: str = None,
-        conversation_profile: gcd_conversation_profile.ConversationProfile = None,
+        parent: Optional[str] = None,
+        conversation_profile: Optional[
+            gcd_conversation_profile.ConversationProfile
+        ] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_conversation_profile.ConversationProfile:
         r"""Creates a conversation profile in the specified project.
@@ -895,14 +910,16 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def update_conversation_profile(
         self,
-        request: Union[
-            gcd_conversation_profile.UpdateConversationProfileRequest, dict
+        request: Optional[
+            Union[gcd_conversation_profile.UpdateConversationProfileRequest, dict]
         ] = None,
         *,
-        conversation_profile: gcd_conversation_profile.ConversationProfile = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        conversation_profile: Optional[
+            gcd_conversation_profile.ConversationProfile
+        ] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_conversation_profile.ConversationProfile:
         r"""Updates the specified conversation profile.
@@ -1024,13 +1041,13 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def delete_conversation_profile(
         self,
-        request: Union[
-            conversation_profile.DeleteConversationProfileRequest, dict
+        request: Optional[
+            Union[conversation_profile.DeleteConversationProfileRequest, dict]
         ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes the specified conversation profile.
@@ -1123,13 +1140,13 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def set_suggestion_feature_config(
         self,
-        request: Union[
-            gcd_conversation_profile.SetSuggestionFeatureConfigRequest, dict
+        request: Optional[
+            Union[gcd_conversation_profile.SetSuggestionFeatureConfigRequest, dict]
         ] = None,
         *,
-        conversation_profile: str = None,
+        conversation_profile: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Adds or updates a suggestion feature in a conversation profile.
@@ -1272,13 +1289,13 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def clear_suggestion_feature_config(
         self,
-        request: Union[
-            gcd_conversation_profile.ClearSuggestionFeatureConfigRequest, dict
+        request: Optional[
+            Union[gcd_conversation_profile.ClearSuggestionFeatureConfigRequest, dict]
         ] = None,
         *,
-        conversation_profile: str = None,
+        conversation_profile: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Clears a suggestion feature from a conversation profile for the
@@ -1427,10 +1444,10 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1481,10 +1498,10 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1535,10 +1552,10 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1589,10 +1606,10 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1643,10 +1660,10 @@ class ConversationProfilesClient(metaclass=ConversationProfilesClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -61,7 +72,7 @@ class KnowledgeBasesClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[KnowledgeBasesTransport]:
         """Returns an appropriate transport class.
 
@@ -335,7 +346,7 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, KnowledgeBasesTransport, None] = None,
+        transport: Optional[Union[str, KnowledgeBasesTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -433,11 +444,11 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def list_knowledge_bases(
         self,
-        request: Union[knowledge_base.ListKnowledgeBasesRequest, dict] = None,
+        request: Optional[Union[knowledge_base.ListKnowledgeBasesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListKnowledgeBasesPager:
         r"""Returns the list of all knowledge bases of the
@@ -550,11 +561,11 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def get_knowledge_base(
         self,
-        request: Union[knowledge_base.GetKnowledgeBaseRequest, dict] = None,
+        request: Optional[Union[knowledge_base.GetKnowledgeBaseRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> knowledge_base.KnowledgeBase:
         r"""Retrieves the specified knowledge base.
@@ -663,12 +674,14 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def create_knowledge_base(
         self,
-        request: Union[gcd_knowledge_base.CreateKnowledgeBaseRequest, dict] = None,
+        request: Optional[
+            Union[gcd_knowledge_base.CreateKnowledgeBaseRequest, dict]
+        ] = None,
         *,
-        parent: str = None,
-        knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
+        parent: Optional[str] = None,
+        knowledge_base: Optional[gcd_knowledge_base.KnowledgeBase] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_knowledge_base.KnowledgeBase:
         r"""Creates a knowledge base.
@@ -790,11 +803,13 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def delete_knowledge_base(
         self,
-        request: Union[knowledge_base.DeleteKnowledgeBaseRequest, dict] = None,
+        request: Optional[
+            Union[knowledge_base.DeleteKnowledgeBaseRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes the specified knowledge base.
@@ -881,12 +896,14 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def update_knowledge_base(
         self,
-        request: Union[gcd_knowledge_base.UpdateKnowledgeBaseRequest, dict] = None,
+        request: Optional[
+            Union[gcd_knowledge_base.UpdateKnowledgeBaseRequest, dict]
+        ] = None,
         *,
-        knowledge_base: gcd_knowledge_base.KnowledgeBase = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        knowledge_base: Optional[gcd_knowledge_base.KnowledgeBase] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_knowledge_base.KnowledgeBase:
         r"""Updates the specified knowledge base.
@@ -1022,10 +1039,10 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1076,10 +1093,10 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1130,10 +1147,10 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1184,10 +1201,10 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1238,10 +1255,10 @@ class KnowledgeBasesClient(metaclass=KnowledgeBasesClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -66,7 +77,7 @@ class ConversationModelsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[ConversationModelsTransport]:
         """Returns an appropriate transport class.
 
@@ -407,7 +418,7 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, ConversationModelsTransport, None] = None,
+        transport: Optional[Union[str, ConversationModelsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -505,14 +516,14 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def create_conversation_model(
         self,
-        request: Union[
-            gcd_conversation_model.CreateConversationModelRequest, dict
+        request: Optional[
+            Union[gcd_conversation_model.CreateConversationModelRequest, dict]
         ] = None,
         *,
-        parent: str = None,
-        conversation_model: gcd_conversation_model.ConversationModel = None,
+        parent: Optional[str] = None,
+        conversation_model: Optional[gcd_conversation_model.ConversationModel] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Creates a model.
@@ -652,11 +663,13 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def get_conversation_model(
         self,
-        request: Union[conversation_model.GetConversationModelRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.GetConversationModelRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation_model.ConversationModel:
         r"""Gets conversation model.
@@ -752,11 +765,13 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def list_conversation_models(
         self,
-        request: Union[conversation_model.ListConversationModelsRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.ListConversationModelsRequest, dict]
+        ] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationModelsPager:
         r"""Lists conversation models.
@@ -867,11 +882,13 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def delete_conversation_model(
         self,
-        request: Union[conversation_model.DeleteConversationModelRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.DeleteConversationModelRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Deletes a model.
@@ -1003,10 +1020,12 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def deploy_conversation_model(
         self,
-        request: Union[conversation_model.DeployConversationModelRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.DeployConversationModelRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Deploys a model. If a model is already deployed, deploying it
@@ -1121,12 +1140,12 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def undeploy_conversation_model(
         self,
-        request: Union[
-            conversation_model.UndeployConversationModelRequest, dict
+        request: Optional[
+            Union[conversation_model.UndeployConversationModelRequest, dict]
         ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Undeploys a model. If the model is not deployed this method has
@@ -1242,13 +1261,13 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def get_conversation_model_evaluation(
         self,
-        request: Union[
-            conversation_model.GetConversationModelEvaluationRequest, dict
+        request: Optional[
+            Union[conversation_model.GetConversationModelEvaluationRequest, dict]
         ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation_model.ConversationModelEvaluation:
         r"""Gets an evaluation of conversation model.
@@ -1351,13 +1370,13 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def list_conversation_model_evaluations(
         self,
-        request: Union[
-            conversation_model.ListConversationModelEvaluationsRequest, dict
+        request: Optional[
+            Union[conversation_model.ListConversationModelEvaluationsRequest, dict]
         ] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationModelEvaluationsPager:
         r"""Lists evaluations of a conversation model.
@@ -1474,14 +1493,16 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def create_conversation_model_evaluation(
         self,
-        request: Union[
-            conversation_model.CreateConversationModelEvaluationRequest, dict
+        request: Optional[
+            Union[conversation_model.CreateConversationModelEvaluationRequest, dict]
         ] = None,
         *,
-        parent: str = None,
-        conversation_model_evaluation: conversation_model.ConversationModelEvaluation = None,
+        parent: Optional[str] = None,
+        conversation_model_evaluation: Optional[
+            conversation_model.ConversationModelEvaluation
+        ] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Creates evaluation of a conversation model.
@@ -1622,10 +1643,10 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1676,10 +1697,10 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1730,10 +1751,10 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1784,10 +1805,10 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1838,10 +1859,10 @@ class ConversationModelsClient(metaclass=ConversationModelsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

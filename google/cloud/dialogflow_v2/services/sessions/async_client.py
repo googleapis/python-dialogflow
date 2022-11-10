@@ -19,6 +19,8 @@ import re
 from typing import (
     Dict,
     Mapping,
+    MutableMapping,
+    MutableSequence,
     Optional,
     AsyncIterable,
     Awaitable,
@@ -177,9 +179,9 @@ class SessionsAsyncClient:
     def __init__(
         self,
         *,
-        credentials: ga_credentials.Credentials = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, SessionsTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
+        client_options: Optional[ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiates the sessions client.
@@ -223,12 +225,12 @@ class SessionsAsyncClient:
 
     async def detect_intent(
         self,
-        request: Union[gcd_session.DetectIntentRequest, dict] = None,
+        request: Optional[Union[gcd_session.DetectIntentRequest, dict]] = None,
         *,
-        session: str = None,
-        query_input: gcd_session.QueryInput = None,
+        session: Optional[str] = None,
+        query_input: Optional[gcd_session.QueryInput] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_session.DetectIntentResponse:
         r"""Processes a natural language query and returns structured,
@@ -274,7 +276,7 @@ class SessionsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.DetectIntentRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.DetectIntentRequest, dict]]):
                 The request object. The request to detect user's intent.
             session (:class:`str`):
                 Required. The name of the session this query is sent to.
@@ -384,10 +386,10 @@ class SessionsAsyncClient:
 
     def streaming_detect_intent(
         self,
-        requests: AsyncIterator[session.StreamingDetectIntentRequest] = None,
+        requests: Optional[AsyncIterator[session.StreamingDetectIntentRequest]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> Awaitable[AsyncIterable[session.StreamingDetectIntentResponse]]:
         r"""Processes a natural language query in audio format in a
@@ -528,10 +530,10 @@ class SessionsAsyncClient:
 
     async def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -582,10 +584,10 @@ class SessionsAsyncClient:
 
     async def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -636,10 +638,10 @@ class SessionsAsyncClient:
 
     async def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -690,10 +692,10 @@ class SessionsAsyncClient:
 
     async def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -744,10 +746,10 @@ class SessionsAsyncClient:
 
     async def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

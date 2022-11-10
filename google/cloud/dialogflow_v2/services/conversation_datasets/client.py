@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -66,7 +77,7 @@ class ConversationDatasetsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[ConversationDatasetsTransport]:
         """Returns an appropriate transport class.
 
@@ -344,7 +355,7 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, ConversationDatasetsTransport, None] = None,
+        transport: Optional[Union[str, ConversationDatasetsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -442,14 +453,16 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def create_conversation_dataset(
         self,
-        request: Union[
-            gcd_conversation_dataset.CreateConversationDatasetRequest, dict
+        request: Optional[
+            Union[gcd_conversation_dataset.CreateConversationDatasetRequest, dict]
         ] = None,
         *,
-        parent: str = None,
-        conversation_dataset: gcd_conversation_dataset.ConversationDataset = None,
+        parent: Optional[str] = None,
+        conversation_dataset: Optional[
+            gcd_conversation_dataset.ConversationDataset
+        ] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Creates a new conversation dataset.
@@ -592,11 +605,13 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def get_conversation_dataset(
         self,
-        request: Union[conversation_dataset.GetConversationDatasetRequest, dict] = None,
+        request: Optional[
+            Union[conversation_dataset.GetConversationDatasetRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation_dataset.ConversationDataset:
         r"""Retrieves the specified conversation dataset.
@@ -699,13 +714,13 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def list_conversation_datasets(
         self,
-        request: Union[
-            conversation_dataset.ListConversationDatasetsRequest, dict
+        request: Optional[
+            Union[conversation_dataset.ListConversationDatasetsRequest, dict]
         ] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationDatasetsPager:
         r"""Returns the list of all conversation datasets in the
@@ -822,13 +837,13 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def delete_conversation_dataset(
         self,
-        request: Union[
-            conversation_dataset.DeleteConversationDatasetRequest, dict
+        request: Optional[
+            Union[conversation_dataset.DeleteConversationDatasetRequest, dict]
         ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Deletes the specified conversation dataset.
@@ -962,10 +977,12 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def import_conversation_data(
         self,
-        request: Union[conversation_dataset.ImportConversationDataRequest, dict] = None,
+        request: Optional[
+            Union[conversation_dataset.ImportConversationDataRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Import data into the specified conversation dataset. Note that
@@ -1086,10 +1103,10 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1140,10 +1157,10 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1194,10 +1211,10 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1248,10 +1265,10 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1302,10 +1319,10 @@ class ConversationDatasetsClient(metaclass=ConversationDatasetsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

@@ -19,6 +19,8 @@ import re
 from typing import (
     Dict,
     Mapping,
+    MutableMapping,
+    MutableSequence,
     Optional,
     Iterable,
     Iterator,
@@ -70,7 +72,7 @@ class SessionsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[SessionsTransport]:
         """Returns an appropriate transport class.
 
@@ -407,7 +409,7 @@ class SessionsClient(metaclass=SessionsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, SessionsTransport, None] = None,
+        transport: Optional[Union[str, SessionsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -505,12 +507,12 @@ class SessionsClient(metaclass=SessionsClientMeta):
 
     def detect_intent(
         self,
-        request: Union[gcd_session.DetectIntentRequest, dict] = None,
+        request: Optional[Union[gcd_session.DetectIntentRequest, dict]] = None,
         *,
-        session: str = None,
-        query_input: gcd_session.QueryInput = None,
+        session: Optional[str] = None,
+        query_input: Optional[gcd_session.QueryInput] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_session.DetectIntentResponse:
         r"""Processes a natural language query and returns structured,
@@ -657,10 +659,10 @@ class SessionsClient(metaclass=SessionsClientMeta):
 
     def streaming_detect_intent(
         self,
-        requests: Iterator[session.StreamingDetectIntentRequest] = None,
+        requests: Optional[Iterator[session.StreamingDetectIntentRequest]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> Iterable[session.StreamingDetectIntentResponse]:
         r"""Processes a natural language query in audio format in a
@@ -810,10 +812,10 @@ class SessionsClient(metaclass=SessionsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -864,10 +866,10 @@ class SessionsClient(metaclass=SessionsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -918,10 +920,10 @@ class SessionsClient(metaclass=SessionsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -972,10 +974,10 @@ class SessionsClient(metaclass=SessionsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1026,10 +1028,10 @@ class SessionsClient(metaclass=SessionsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

@@ -16,7 +16,17 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -186,9 +196,9 @@ class ConversationModelsAsyncClient:
     def __init__(
         self,
         *,
-        credentials: ga_credentials.Credentials = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, ConversationModelsTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
+        client_options: Optional[ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiates the conversation models client.
@@ -232,14 +242,14 @@ class ConversationModelsAsyncClient:
 
     async def create_conversation_model(
         self,
-        request: Union[
-            gcd_conversation_model.CreateConversationModelRequest, dict
+        request: Optional[
+            Union[gcd_conversation_model.CreateConversationModelRequest, dict]
         ] = None,
         *,
-        parent: str = None,
-        conversation_model: gcd_conversation_model.ConversationModel = None,
+        parent: Optional[str] = None,
+        conversation_model: Optional[gcd_conversation_model.ConversationModel] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates a model.
@@ -289,7 +299,7 @@ class ConversationModelsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.CreateConversationModelRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.CreateConversationModelRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.CreateConversationModel][google.cloud.dialogflow.v2.ConversationModels.CreateConversationModel]
             parent (:class:`str`):
@@ -375,11 +385,13 @@ class ConversationModelsAsyncClient:
 
     async def get_conversation_model(
         self,
-        request: Union[conversation_model.GetConversationModelRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.GetConversationModelRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation_model.ConversationModel:
         r"""Gets conversation model.
@@ -411,7 +423,7 @@ class ConversationModelsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.GetConversationModelRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.GetConversationModelRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.GetConversationModel][google.cloud.dialogflow.v2.ConversationModels.GetConversationModel]
             name (:class:`str`):
@@ -475,11 +487,13 @@ class ConversationModelsAsyncClient:
 
     async def list_conversation_models(
         self,
-        request: Union[conversation_model.ListConversationModelsRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.ListConversationModelsRequest, dict]
+        ] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationModelsAsyncPager:
         r"""Lists conversation models.
@@ -512,7 +526,7 @@ class ConversationModelsAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.ListConversationModelsRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.ListConversationModelsRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.ListConversationModels][google.cloud.dialogflow.v2.ConversationModels.ListConversationModels]
             parent (:class:`str`):
@@ -590,11 +604,13 @@ class ConversationModelsAsyncClient:
 
     async def delete_conversation_model(
         self,
-        request: Union[conversation_model.DeleteConversationModelRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.DeleteConversationModelRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes a model.
@@ -640,7 +656,7 @@ class ConversationModelsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.DeleteConversationModelRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.DeleteConversationModelRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.DeleteConversationModel][google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]
             name (:class:`str`):
@@ -724,10 +740,12 @@ class ConversationModelsAsyncClient:
 
     async def deploy_conversation_model(
         self,
-        request: Union[conversation_model.DeployConversationModelRequest, dict] = None,
+        request: Optional[
+            Union[conversation_model.DeployConversationModelRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deploys a model. If a model is already deployed, deploying it
@@ -776,7 +794,7 @@ class ConversationModelsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.DeployConversationModelRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.DeployConversationModelRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.DeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.DeployConversationModel]
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -839,12 +857,12 @@ class ConversationModelsAsyncClient:
 
     async def undeploy_conversation_model(
         self,
-        request: Union[
-            conversation_model.UndeployConversationModelRequest, dict
+        request: Optional[
+            Union[conversation_model.UndeployConversationModelRequest, dict]
         ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Undeploys a model. If the model is not deployed this method has
@@ -894,7 +912,7 @@ class ConversationModelsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.UndeployConversationModelRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.UndeployConversationModelRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.UndeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -957,13 +975,13 @@ class ConversationModelsAsyncClient:
 
     async def get_conversation_model_evaluation(
         self,
-        request: Union[
-            conversation_model.GetConversationModelEvaluationRequest, dict
+        request: Optional[
+            Union[conversation_model.GetConversationModelEvaluationRequest, dict]
         ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> conversation_model.ConversationModelEvaluation:
         r"""Gets an evaluation of conversation model.
@@ -995,7 +1013,7 @@ class ConversationModelsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.GetConversationModelEvaluationRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.GetConversationModelEvaluationRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.GetConversationModelEvaluation][google.cloud.dialogflow.v2.ConversationModels.GetConversationModelEvaluation]
             name (:class:`str`):
@@ -1062,13 +1080,13 @@ class ConversationModelsAsyncClient:
 
     async def list_conversation_model_evaluations(
         self,
-        request: Union[
-            conversation_model.ListConversationModelEvaluationsRequest, dict
+        request: Optional[
+            Union[conversation_model.ListConversationModelEvaluationsRequest, dict]
         ] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationModelEvaluationsAsyncPager:
         r"""Lists evaluations of a conversation model.
@@ -1101,7 +1119,7 @@ class ConversationModelsAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.ListConversationModelEvaluationsRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.ListConversationModelEvaluationsRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.ListConversationModelEvaluations][google.cloud.dialogflow.v2.ConversationModels.ListConversationModelEvaluations]
             parent (:class:`str`):
@@ -1179,14 +1197,16 @@ class ConversationModelsAsyncClient:
 
     async def create_conversation_model_evaluation(
         self,
-        request: Union[
-            conversation_model.CreateConversationModelEvaluationRequest, dict
+        request: Optional[
+            Union[conversation_model.CreateConversationModelEvaluationRequest, dict]
         ] = None,
         *,
-        parent: str = None,
-        conversation_model_evaluation: conversation_model.ConversationModelEvaluation = None,
+        parent: Optional[str] = None,
+        conversation_model_evaluation: Optional[
+            conversation_model.ConversationModelEvaluation
+        ] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates evaluation of a conversation model.
@@ -1222,7 +1242,7 @@ class ConversationModelsAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.dialogflow_v2.types.CreateConversationModelEvaluationRequest, dict]):
+            request (Optional[Union[google.cloud.dialogflow_v2.types.CreateConversationModelEvaluationRequest, dict]]):
                 The request object. The request message for
                 [ConversationModels.CreateConversationModelEvaluation][google.cloud.dialogflow.v2.ConversationModels.CreateConversationModelEvaluation]
             parent (:class:`str`):
@@ -1308,10 +1328,10 @@ class ConversationModelsAsyncClient:
 
     async def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1362,10 +1382,10 @@ class ConversationModelsAsyncClient:
 
     async def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1416,10 +1436,10 @@ class ConversationModelsAsyncClient:
 
     async def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1470,10 +1490,10 @@ class ConversationModelsAsyncClient:
 
     async def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1524,10 +1544,10 @@ class ConversationModelsAsyncClient:
 
     async def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.

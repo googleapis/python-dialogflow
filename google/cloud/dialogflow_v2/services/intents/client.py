@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -64,7 +75,7 @@ class IntentsClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[IntentsTransport]:
         """Returns an appropriate transport class.
 
@@ -356,7 +367,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, IntentsTransport, None] = None,
+        transport: Optional[Union[str, IntentsTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -454,12 +465,12 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def list_intents(
         self,
-        request: Union[intent.ListIntentsRequest, dict] = None,
+        request: Optional[Union[intent.ListIntentsRequest, dict]] = None,
         *,
-        parent: str = None,
-        language_code: str = None,
+        parent: Optional[str] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListIntentsPager:
         r"""Returns the list of all intents in the specified
@@ -592,12 +603,12 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def get_intent(
         self,
-        request: Union[intent.GetIntentRequest, dict] = None,
+        request: Optional[Union[intent.GetIntentRequest, dict]] = None,
         *,
-        name: str = None,
-        language_code: str = None,
+        name: Optional[str] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> intent.Intent:
         r"""Retrieves the specified intent.
@@ -716,13 +727,13 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def create_intent(
         self,
-        request: Union[gcd_intent.CreateIntentRequest, dict] = None,
+        request: Optional[Union[gcd_intent.CreateIntentRequest, dict]] = None,
         *,
-        parent: str = None,
-        intent: gcd_intent.Intent = None,
-        language_code: str = None,
+        parent: Optional[str] = None,
+        intent: Optional[gcd_intent.Intent] = None,
+        language_code: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_intent.Intent:
         r"""Creates an intent in the specified agent.
@@ -856,13 +867,13 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def update_intent(
         self,
-        request: Union[gcd_intent.UpdateIntentRequest, dict] = None,
+        request: Optional[Union[gcd_intent.UpdateIntentRequest, dict]] = None,
         *,
-        intent: gcd_intent.Intent = None,
-        language_code: str = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        intent: Optional[gcd_intent.Intent] = None,
+        language_code: Optional[str] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcd_intent.Intent:
         r"""Updates the specified intent.
@@ -997,11 +1008,11 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def delete_intent(
         self,
-        request: Union[intent.DeleteIntentRequest, dict] = None,
+        request: Optional[Union[intent.DeleteIntentRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes the specified intent and its direct or indirect followup
@@ -1094,13 +1105,13 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def batch_update_intents(
         self,
-        request: Union[intent.BatchUpdateIntentsRequest, dict] = None,
+        request: Optional[Union[intent.BatchUpdateIntentsRequest, dict]] = None,
         *,
-        parent: str = None,
-        intent_batch_uri: str = None,
-        intent_batch_inline: intent.IntentBatch = None,
+        parent: Optional[str] = None,
+        intent_batch_uri: Optional[str] = None,
+        intent_batch_inline: Optional[intent.IntentBatch] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Updates/Creates multiple intents in the specified agent.
@@ -1250,12 +1261,12 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def batch_delete_intents(
         self,
-        request: Union[intent.BatchDeleteIntentsRequest, dict] = None,
+        request: Optional[Union[intent.BatchDeleteIntentsRequest, dict]] = None,
         *,
-        parent: str = None,
-        intents: Sequence[intent.Intent] = None,
+        parent: Optional[str] = None,
+        intents: Optional[MutableSequence[intent.Intent]] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Deletes intents in the specified agent.
@@ -1319,7 +1330,7 @@ class IntentsClient(metaclass=IntentsClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            intents (Sequence[google.cloud.dialogflow_v2.types.Intent]):
+            intents (MutableSequence[google.cloud.dialogflow_v2.types.Intent]):
                 Required. The collection of intents to delete. Only
                 intent ``name`` must be filled in.
 
@@ -1415,10 +1426,10 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def list_operations(
         self,
-        request: operations_pb2.ListOperationsRequest = None,
+        request: Optional[operations_pb2.ListOperationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.ListOperationsResponse:
         r"""Lists operations that match the specified filter in the request.
@@ -1469,10 +1480,10 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def get_operation(
         self,
-        request: operations_pb2.GetOperationRequest = None,
+        request: Optional[operations_pb2.GetOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operations_pb2.Operation:
         r"""Gets the latest state of a long-running operation.
@@ -1523,10 +1534,10 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def cancel_operation(
         self,
-        request: operations_pb2.CancelOperationRequest = None,
+        request: Optional[operations_pb2.CancelOperationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Starts asynchronous cancellation on a long-running operation.
@@ -1577,10 +1588,10 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def get_location(
         self,
-        request: locations_pb2.GetLocationRequest = None,
+        request: Optional[locations_pb2.GetLocationRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.Location:
         r"""Gets information about a location.
@@ -1631,10 +1642,10 @@ class IntentsClient(metaclass=IntentsClientMeta):
 
     def list_locations(
         self,
-        request: locations_pb2.ListLocationsRequest = None,
+        request: Optional[locations_pb2.ListLocationsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> locations_pb2.ListLocationsResponse:
         r"""Lists information about the supported locations for this service.
