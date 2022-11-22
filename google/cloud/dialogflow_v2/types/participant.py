@@ -1149,6 +1149,10 @@ class AutomatedAgentReply(proto.Message):
             message arrives. e.g. if the agent specified
             some music as partial response, it can be
             cancelled.
+        cx_current_page (str):
+            The unique identifier of the current Dialogflow CX
+            conversation page. Format:
+            ``projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>/pages/<Page ID>``.
     """
 
     class AutomatedAgentReplyType(proto.Enum):
@@ -1170,6 +1174,10 @@ class AutomatedAgentReply(proto.Message):
     allow_cancellation: bool = proto.Field(
         proto.BOOL,
         number=8,
+    )
+    cx_current_page: str = proto.Field(
+        proto.STRING,
+        number=11,
     )
 
 
