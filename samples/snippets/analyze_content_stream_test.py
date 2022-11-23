@@ -37,8 +37,7 @@ def conversation_profile_display_name():
 def conversation_profile_id(conversation_profile_display_name):
     # Create conversation profile.
     response = conversation_profile_management.create_conversation_profile_article_faq(
-        project_id=PROJECT_ID,
-        display_name=conversation_profile_display_name
+        project_id=PROJECT_ID, display_name=conversation_profile_display_name
     )
     conversation_profile_id = response.name.split("conversationProfiles/")[1].rstrip()
 
@@ -61,7 +60,9 @@ def conversation_id(conversation_profile_id):
     yield conversation_id
 
     # Complete the conversation.
-    conversation_management.complete_conversation(project_id=PROJECT_ID, conversation_id=conversation_id)
+    conversation_management.complete_conversation(
+        project_id=PROJECT_ID, conversation_id=conversation_id
+    )
 
 
 @pytest.fixture
@@ -79,7 +80,7 @@ def test_analyze_content_audio_stream(capsys, conversation_id, participant_id):
     participant_management.analyze_content_audio_stream(
         project_id=PROJECT_ID,
         conversation_id=conversation_id,
-        participant_id=participant_id ,
+        participant_id=participant_id,
         audio_file_path=AUDIO_FILE_PATH,
     )
     out, _ = capsys.readouterr()

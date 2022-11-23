@@ -7,17 +7,7 @@
         "google/cloud/dialogflow/gapic_version.py",
         {
           "type": "json",
-          "path": "samples/generated_samples/snippet_metadata_dialogflow_v2beta1.json",
-          "jsonpath": "$.clientLibrary.version"
-        },
-        {
-          "type": "json",
           "path": "samples/generated_samples/snippet_metadata_google.cloud.dialogflow.v2beta1.json",
-          "jsonpath": "$.clientLibrary.version"
-        },
-        {
-          "type": "json",
-          "path": "samples/generated_samples/snippet_metadata_dialogflow_v2.json",
           "jsonpath": "$.clientLibrary.version"
         },
         {
