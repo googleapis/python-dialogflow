@@ -28,30 +28,31 @@ from typing import (
     Union,
     cast,
 )
-import pkg_resources
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
 from google.api_core import retry as retries
 from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.exceptions import MutualTLSChannelError  # type: ignore
 from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth.exceptions import MutualTLSChannelError  # type: ignore
 from google.oauth2 import service_account  # type: ignore
+import pkg_resources
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
 except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
-from google.cloud.dialogflow_v2beta1.services.environments import pagers
-from google.cloud.dialogflow_v2beta1.types import environment
-from google.cloud.dialogflow_v2beta1.types import fulfillment
 from google.cloud.location import locations_pb2  # type: ignore
 from google.longrunning import operations_pb2
 from google.protobuf import timestamp_pb2  # type: ignore
-from .transports.base import EnvironmentsTransport, DEFAULT_CLIENT_INFO
+
+from google.cloud.dialogflow_v2beta1.services.environments import pagers
+from google.cloud.dialogflow_v2beta1.types import environment, fulfillment
+
+from .transports.base import DEFAULT_CLIENT_INFO, EnvironmentsTransport
 from .transports.grpc import EnvironmentsGrpcTransport
 from .transports.grpc_asyncio import EnvironmentsGrpcAsyncIOTransport
 

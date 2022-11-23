@@ -21,7 +21,6 @@ import conversation_management
 import conversation_profile_management
 import participant_management
 
-
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT")
 AUDIO_FILE_PATH = "{0}/resources/book_a_room.wav".format(
     os.path.realpath(os.path.dirname(__file__)),

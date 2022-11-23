@@ -15,19 +15,18 @@
 #
 from typing import MutableMapping, MutableSequence
 
-import proto  # type: ignore
-
-from google.cloud.dialogflow_v2beta1.types import agent
-from google.cloud.dialogflow_v2beta1.types import audio_config as gcd_audio_config
-from google.cloud.dialogflow_v2beta1.types import context
-from google.cloud.dialogflow_v2beta1.types import intent as gcd_intent
-from google.cloud.dialogflow_v2beta1.types import session_entity_type
 from google.protobuf import duration_pb2  # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import struct_pb2  # type: ignore
 from google.rpc import status_pb2  # type: ignore
 from google.type import latlng_pb2  # type: ignore
+import proto  # type: ignore
 
+from google.cloud.dialogflow_v2beta1.types import audio_config as gcd_audio_config
+from google.cloud.dialogflow_v2beta1.types import agent
+from google.cloud.dialogflow_v2beta1.types import context
+from google.cloud.dialogflow_v2beta1.types import intent as gcd_intent
+from google.cloud.dialogflow_v2beta1.types import session_entity_type
 
 __protobuf__ = proto.module(
     package="google.cloud.dialogflow.v2beta1",

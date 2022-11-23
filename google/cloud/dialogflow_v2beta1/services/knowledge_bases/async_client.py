@@ -27,29 +27,31 @@ from typing import (
     Type,
     Union,
 )
-import pkg_resources
 
-from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
 from google.api_core import retry as retries
+from google.api_core.client_options import ClientOptions
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
+import pkg_resources
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
 except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
-from google.cloud.dialogflow_v2beta1.services.knowledge_bases import pagers
-from google.cloud.dialogflow_v2beta1.types import knowledge_base
-from google.cloud.dialogflow_v2beta1.types import knowledge_base as gcd_knowledge_base
 from google.cloud.location import locations_pb2  # type: ignore
 from google.longrunning import operations_pb2
 from google.protobuf import field_mask_pb2  # type: ignore
-from .transports.base import KnowledgeBasesTransport, DEFAULT_CLIENT_INFO
-from .transports.grpc_asyncio import KnowledgeBasesGrpcAsyncIOTransport
+
+from google.cloud.dialogflow_v2beta1.services.knowledge_bases import pagers
+from google.cloud.dialogflow_v2beta1.types import knowledge_base as gcd_knowledge_base
+from google.cloud.dialogflow_v2beta1.types import knowledge_base
+
 from .client import KnowledgeBasesClient
+from .transports.base import DEFAULT_CLIENT_INFO, KnowledgeBasesTransport
+from .transports.grpc_asyncio import KnowledgeBasesGrpcAsyncIOTransport
 
 
 class KnowledgeBasesAsyncClient:

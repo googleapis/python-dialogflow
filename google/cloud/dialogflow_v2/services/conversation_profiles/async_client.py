@@ -27,14 +27,14 @@ from typing import (
     Type,
     Union,
 )
-import pkg_resources
 
-from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
 from google.api_core import retry as retries
+from google.api_core.client_options import ClientOptions
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
+import pkg_resources
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -43,19 +43,21 @@ except AttributeError:  # pragma: NO COVER
 
 from google.api_core import operation  # type: ignore
 from google.api_core import operation_async  # type: ignore
-from google.cloud.dialogflow_v2.services.conversation_profiles import pagers
-from google.cloud.dialogflow_v2.types import audio_config
-from google.cloud.dialogflow_v2.types import conversation_profile
-from google.cloud.dialogflow_v2.types import (
-    conversation_profile as gcd_conversation_profile,
-)
 from google.cloud.location import locations_pb2  # type: ignore
 from google.longrunning import operations_pb2
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
-from .transports.base import ConversationProfilesTransport, DEFAULT_CLIENT_INFO
-from .transports.grpc_asyncio import ConversationProfilesGrpcAsyncIOTransport
+
+from google.cloud.dialogflow_v2.services.conversation_profiles import pagers
+from google.cloud.dialogflow_v2.types import (
+    conversation_profile as gcd_conversation_profile,
+)
+from google.cloud.dialogflow_v2.types import audio_config
+from google.cloud.dialogflow_v2.types import conversation_profile
+
 from .client import ConversationProfilesClient
+from .transports.base import DEFAULT_CLIENT_INFO, ConversationProfilesTransport
+from .transports.grpc_asyncio import ConversationProfilesGrpcAsyncIOTransport
 
 
 class ConversationProfilesAsyncClient:

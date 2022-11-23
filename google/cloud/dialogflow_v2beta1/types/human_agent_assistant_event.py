@@ -19,7 +19,6 @@ import proto  # type: ignore
 
 from google.cloud.dialogflow_v2beta1.types import participant as gcd_participant
 
-
 __protobuf__ = proto.module(
     package="google.cloud.dialogflow.v2beta1",
     manifest={

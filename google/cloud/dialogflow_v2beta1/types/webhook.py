@@ -15,14 +15,12 @@
 #
 from typing import MutableMapping, MutableSequence
 
+from google.protobuf import struct_pb2  # type: ignore
 import proto  # type: ignore
 
-from google.cloud.dialogflow_v2beta1.types import context
-from google.cloud.dialogflow_v2beta1.types import intent
+from google.cloud.dialogflow_v2beta1.types import context, intent
 from google.cloud.dialogflow_v2beta1.types import session as gcd_session
 from google.cloud.dialogflow_v2beta1.types import session_entity_type
-from google.protobuf import struct_pb2  # type: ignore
-
 
 __protobuf__ = proto.module(
     package="google.cloud.dialogflow.v2beta1",

@@ -18,7 +18,6 @@ import google.auth
 
 import list_training_phrases
 
-
 _, PROJECT_ID = google.auth.default()
 INTENT_ID = "7b5bd47e-6dd9-4b45-8624-565862bd2d85"
 
