@@ -4,7 +4,9 @@
     ".": {
       "release-type": "python",
       "extra-files": [
+        "google/cloud/dialogflow_v2beta1/gapic_version.py",
         "google/cloud/dialogflow/gapic_version.py",
+        "google/cloud/dialogflow_v2/gapic_version.py",
         {
           "type": "json",
           "path": "samples/generated_samples/snippet_metadata_google.cloud.dialogflow.v2beta1.json",
