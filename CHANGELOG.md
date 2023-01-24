@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/dialogflow/#history
 
+## [2.19.2](https://github.com/googleapis/python-dialogflow/compare/v2.19.1...v2.19.2) (2023-01-24)
+
+
+### Documentation
+
+* Reformat some comments and documentation ([#614](https://github.com/googleapis/python-dialogflow/issues/614)) ([8123d1b](https://github.com/googleapis/python-dialogflow/commit/8123d1b5c4ffea9d7c6da1958a8e662410073d04))
+
 ## [2.19.1](https://github.com/googleapis/python-dialogflow/compare/v2.19.0...v2.19.1) (2023-01-20)
 
 
