@@ -49,7 +49,6 @@ templated_files = gcp.CommonTemplates().py_library(
     versions=gcp.common.detect_versions(path="./google", default_first=True),
 )
 s.move(templated_files, excludes=[".coveragerc", ".github/release-please.yml"])
-
 python.py_samples(skip_readmes=True)
 
 # run format session for all directories which have a noxfile
