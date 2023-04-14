@@ -35,7 +35,6 @@ for library in s.get_staging_dirs(default_version):
     if clean_up_generated_samples:
         shutil.rmtree("samples/generated_samples", ignore_errors=True)
         clean_up_generated_samples = False
-
     s.move([library], excludes=["**/gapic_version.py"])
 s.remove_staging_dirs()
 
@@ -49,6 +48,7 @@ templated_files = gcp.CommonTemplates().py_library(
     versions=gcp.common.detect_versions(path="./google", default_first=True),
 )
 s.move(templated_files, excludes=[".coveragerc", ".github/release-please.yml"])
+
 python.py_samples(skip_readmes=True)
 
 # run format session for all directories which have a noxfile
