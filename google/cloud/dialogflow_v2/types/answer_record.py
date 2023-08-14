@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -222,6 +222,9 @@ class AnswerFeedback(proto.Message):
         clicked (bool):
             Indicates whether the answer/item was clicked
             by the human agent or not. Default to false.
+            For knowledge search and knowledge assist, the
+            answer record is considered to be clicked if the
+            answer was copied or any URI was clicked.
         click_time (google.protobuf.timestamp_pb2.Timestamp):
             Time when the answer/item was clicked.
         displayed (bool):

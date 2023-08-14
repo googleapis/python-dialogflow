@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -73,9 +73,11 @@ class Fulfillment(proto.Message):
     class GenericWebService(proto.Message):
         r"""Represents configuration for a generic web service.
         Dialogflow supports two mechanisms for authentications:
+
         - Basic authentication with username and password.
         - Authentication with additional authentication headers.
         More information could be found at:
+
         https://cloud.google.com/dialogflow/docs/fulfillment-configure.
 
         Attributes:

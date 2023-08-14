@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -423,8 +423,8 @@ class ImportDocumentsRequest(proto.Message):
             Format:
             ``projects/<Project ID>/locations/<Location ID>/knowledgeBases/<Knowledge Base ID>``.
         gcs_source (google.cloud.dialogflow_v2beta1.types.GcsSources):
-            The Google Cloud Storage location for the documents. The
-            path can include a wildcard.
+            Optional. The Google Cloud Storage location for the
+            documents. The path can include a wildcard.
 
             These URIs may have the forms
             ``gs://<bucket-name>/<object-name>``.

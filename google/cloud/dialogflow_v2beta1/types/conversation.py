@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@ from typing import MutableMapping, MutableSequence
 from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
+from google.cloud.dialogflow_v2beta1.types import (
+    conversation_profile as gcd_conversation_profile,
+)
 from google.cloud.dialogflow_v2beta1.types import participant
 
 __protobuf__ = proto.module(
@@ -39,6 +42,8 @@ __protobuf__ = proto.module(
         "ListMessagesResponse",
         "SuggestConversationSummaryRequest",
         "SuggestConversationSummaryResponse",
+        "GenerateStatelessSummaryRequest",
+        "GenerateStatelessSummaryResponse",
     },
 )
 
@@ -110,6 +115,7 @@ class Conversation(proto.Message):
     class ConversationStage(proto.Enum):
         r"""Enumeration of the different conversation stages a
         conversation can be in. Reference:
+
         https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages
 
         Values:
@@ -195,7 +201,7 @@ class CreateConversationRequest(proto.Message):
             the response to return a auto-generated one to you.
 
             The conversation ID must be compliant with the regression
-            fomula "[a-zA-Z][a-zA-Z0-9_-]*" with the characters length
+            fomula ``[a-zA-Z][a-zA-Z0-9_-]*`` with the characters length
             in range of [3,64]. If the field is provided, the caller is
             resposible for
 
@@ -375,7 +381,7 @@ class BatchCreateMessagesRequest(proto.Message):
             message. Format:
             ``projects/<Project ID>/locations/<Location ID>/conversations/<Conversation ID>``.
         requests (MutableSequence[google.cloud.dialogflow_v2beta1.types.CreateMessageRequest]):
-            Required. A maximum of 1000 Messages can be created in a
+            Required. A maximum of 300 messages can be created in a
             batch. [CreateMessageRequest.message.send_time][] is
             required. All created messages will have identical
             [Message.create_time][google.cloud.dialogflow.v2beta1.Message.create_time].
@@ -505,7 +511,8 @@ class SuggestConversationSummaryRequest(proto.Message):
             [latest_message] to use as context when compiling the
             suggestion. By default 500 and at most 1000.
         assist_query_params (google.cloud.dialogflow_v2beta1.types.AssistQueryParameters):
-            Parameters for a human assist query.
+            Parameters for a human assist query. Only
+            used for POC/demo purpose.
     """
 
     conversation: str = proto.Field(
@@ -562,6 +569,7 @@ class SuggestConversationSummaryResponse(proto.Message):
                 specific format for the key or value.
             answer_record (str):
                 The name of the answer record. Format:
+
                 "projects/<Project ID>/answerRecords/<Answer
                 Record ID>".
         """
@@ -578,6 +586,139 @@ class SuggestConversationSummaryResponse(proto.Message):
         answer_record: str = proto.Field(
             proto.STRING,
             number=3,
+        )
+
+    summary: Summary = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=Summary,
+    )
+    latest_message: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    context_size: int = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+
+
+class GenerateStatelessSummaryRequest(proto.Message):
+    r"""The request message for
+    [Conversations.GenerateStatelessSummary][google.cloud.dialogflow.v2beta1.Conversations.GenerateStatelessSummary].
+
+    Attributes:
+        stateless_conversation (google.cloud.dialogflow_v2beta1.types.GenerateStatelessSummaryRequest.MinimalConversation):
+            Required. The conversation to suggest a
+            summary for.
+        conversation_profile (google.cloud.dialogflow_v2beta1.types.ConversationProfile):
+            Required. A ConversationProfile containing information
+            required for Summary generation. Required fields:
+            {language_code, security_settings} Optional fields:
+            {agent_assistant_config}
+        latest_message (str):
+            The name of the latest conversation message
+            used as context for generating a Summary. If
+            empty, the latest message of the conversation
+            will be used. The format is specific to the user
+            and the names of the messages provided.
+        max_context_size (int):
+            Max number of messages prior to and including
+            [latest_message] to use as context when compiling the
+            suggestion. By default 500 and at most 1000.
+    """
+
+    class MinimalConversation(proto.Message):
+        r"""The minimum amount of information required to generate a
+        Summary without having a Conversation resource created.
+
+        Attributes:
+            messages (MutableSequence[google.cloud.dialogflow_v2beta1.types.Message]):
+                Required. The messages that the Summary will be generated
+                from. It is expected that this message content is already
+                redacted and does not contain any PII. Required fields:
+                {content, language_code, participant, participant_role}
+                Optional fields: {send_time} If send_time is not provided,
+                then the messages must be provided in chronological order.
+            parent (str):
+                Required. The parent resource to charge for the Summary's
+                generation. Format:
+                ``projects/<Project ID>/locations/<Location ID>``.
+        """
+
+        messages: MutableSequence[participant.Message] = proto.RepeatedField(
+            proto.MESSAGE,
+            number=1,
+            message=participant.Message,
+        )
+        parent: str = proto.Field(
+            proto.STRING,
+            number=2,
+        )
+
+    stateless_conversation: MinimalConversation = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=MinimalConversation,
+    )
+    conversation_profile: gcd_conversation_profile.ConversationProfile = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=gcd_conversation_profile.ConversationProfile,
+    )
+    latest_message: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    max_context_size: int = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+
+
+class GenerateStatelessSummaryResponse(proto.Message):
+    r"""The response message for
+    [Conversations.GenerateStatelessSummary][google.cloud.dialogflow.v2beta1.Conversations.GenerateStatelessSummary].
+
+    Attributes:
+        summary (google.cloud.dialogflow_v2beta1.types.GenerateStatelessSummaryResponse.Summary):
+            Generated summary.
+        latest_message (str):
+            The name of the latest conversation message
+            used as context for compiling suggestion. The
+            format is specific to the user and the names of
+            the messages provided.
+        context_size (int):
+            Number of messages prior to and including
+            [last_conversation_message][] used to compile the
+            suggestion. It may be smaller than the
+            [GenerateStatelessSummaryRequest.context_size][] field in
+            the request if there weren't that many messages in the
+            conversation.
+    """
+
+    class Summary(proto.Message):
+        r"""Generated summary for a conversation.
+
+        Attributes:
+            text (str):
+                The summary content that is concatenated into
+                one string.
+            text_sections (MutableMapping[str, str]):
+                The summary content that is divided into
+                sections. The key is the section's name and the
+                value is the section's content. There is no
+                specific format for the key or value.
+        """
+
+        text: str = proto.Field(
+            proto.STRING,
+            number=1,
+        )
+        text_sections: MutableMapping[str, str] = proto.MapField(
+            proto.STRING,
+            proto.STRING,
+            number=2,
         )
 
     summary: Summary = proto.Field(

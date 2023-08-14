@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ __protobuf__ = proto.module(
         "QueryInput",
         "QueryResult",
         "StreamingDetectIntentRequest",
+        "CloudConversationDebuggingInfo",
         "StreamingDetectIntentResponse",
         "StreamingRecognitionResult",
         "TextInput",
@@ -79,12 +80,13 @@ class DetectIntentRequest(proto.Message):
         query_input (google.cloud.dialogflow_v2.types.QueryInput):
             Required. The input specification. It can be
             set to:
-            1.  an audio config
-                which instructs the speech recognizer how to
-            process the speech audio,
-            2.  a conversational query in the form of text,
+
+            1. an audio config which instructs the speech
+            recognizer how to process the speech audio,
+
+            2. a conversational query in the form of text,
             or
-            3.  an event that specifies which intent to
+            3. an event that specifies which intent to
             trigger.
         output_audio_config (google.cloud.dialogflow_v2.types.OutputAudioConfig):
             Instructs the speech synthesizer how to
@@ -238,10 +240,17 @@ class QueryParameters(proto.Message):
             Dialogflow console if there is a conflict.
             Header names are case-insensitive. Google's
             specified headers are not allowed. Including:
+
             "Host", "Content-Length", "Connection", "From",
             "User-Agent", "Accept-Encoding",
             "If-Modified-Since", "If-None-Match",
             "X-Forwarded-For", etc.
+        platform (str):
+            The platform of the virtual agent response messages.
+
+            If not empty, only emits messages from this platform in the
+            response. Valid values are the enum names of
+            [platform][google.cloud.dialogflow.v2.Intent.Message.platform].
     """
 
     time_zone: str = proto.Field(
@@ -284,16 +293,21 @@ class QueryParameters(proto.Message):
         proto.STRING,
         number=14,
     )
+    platform: str = proto.Field(
+        proto.STRING,
+        number=18,
+    )
 
 
 class QueryInput(proto.Message):
     r"""Represents the query input. It can contain either:
-    1.  An audio config which
-        instructs the speech recognizer how to process the speech
-    audio.
-    2.  A conversational query in the form of text,.
 
-    3.  An event that specifies which intent to trigger.
+    1. An audio config which instructs the speech recognizer how to
+    process the speech audio.
+
+    2. A conversational query in the form of text.
+
+    3. An event that specifies which intent to trigger.
 
     This message has `oneof`_ fields (mutually exclusive fields).
     For each oneof, at most one member field can be set at the same time.
@@ -378,23 +392,21 @@ class QueryResult(proto.Message):
             The action name from the matched intent.
         parameters (google.protobuf.struct_pb2.Struct):
             The collection of extracted parameters.
-            Depending on your protocol or client library
-            language, this is a map, associative array,
-            symbol table, dictionary, or JSON object
-            composed of a collection of (MapKey, MapValue)
+
+            Depending on your protocol or client library language, this
+            is a map, associative array, symbol table, dictionary, or
+            JSON object composed of a collection of (MapKey, MapValue)
             pairs:
-            -   MapKey type: string
-            -   MapKey value: parameter name
-            -   MapValue type:
-                -   If parameter's entity type is a
-            composite entity: map     -   Else: depending on
-            parameter value type, could be one of string,
-            number, boolean, null, list or map
-            -   MapValue value:
-                -   If parameter's entity type is a
-            composite entity:         map from composite
-            entity property names to property values     -
-            Else: parameter value
+
+            -  MapKey type: string
+            -  MapKey value: parameter name
+            -  MapValue type: If parameter's entity type is a composite
+               entity then use map, otherwise, depending on the
+               parameter value type, it could be one of string, number,
+               boolean, null, list or map.
+            -  MapValue value: If parameter's entity type is a composite
+               entity then use map from composite entity property names
+               to property values, otherwise, use parameter value.
         all_required_params_present (bool):
             This field is set to:
 
@@ -600,12 +612,13 @@ class StreamingDetectIntentRequest(proto.Message):
         query_input (google.cloud.dialogflow_v2.types.QueryInput):
             Required. The input specification. It can be
             set to:
-            1.  an audio config which instructs the speech
-            recognizer how to process     the speech audio,
 
-            2.  a conversational query in the form of text,
+            1. an audio config which instructs the speech
+            recognizer how to process the speech audio,
+
+            2. a conversational query in the form of text,
             or
-            3.  an event that specifies which intent to
+            3. an event that specifies which intent to
             trigger.
         single_utterance (bool):
             Please use
@@ -638,6 +651,9 @@ class StreamingDetectIntentRequest(proto.Message):
             ``query_input`` was set to a streaming input audio config.
             The complete audio over all streaming messages must not
             exceed 1 minute.
+        enable_debugging_info (bool):
+            if true, ``StreamingDetectIntentResponse.debugging_info``
+            will get populated.
     """
 
     session: str = proto.Field(
@@ -671,6 +687,157 @@ class StreamingDetectIntentRequest(proto.Message):
     input_audio: bytes = proto.Field(
         proto.BYTES,
         number=6,
+    )
+    enable_debugging_info: bool = proto.Field(
+        proto.BOOL,
+        number=8,
+    )
+
+
+class CloudConversationDebuggingInfo(proto.Message):
+    r"""Cloud conversation info for easier debugging. It will get populated
+    in ``StreamingDetectIntentResponse`` or
+    ``StreamingAnalyzeContentResponse`` when the flag
+    ``enable_debugging_info`` is set to true in corresponding requests.
+
+    Attributes:
+        audio_data_chunks (int):
+            Number of input audio data chunks in
+            streaming requests.
+        result_end_time_offset (google.protobuf.duration_pb2.Duration):
+            Time offset of the end of speech utterance
+            relative to the beginning of the first audio
+            chunk.
+        first_audio_duration (google.protobuf.duration_pb2.Duration):
+            Duration of first audio chunk.
+        single_utterance (bool):
+            Whether client used single utterance mode.
+        speech_partial_results_end_times (MutableSequence[google.protobuf.duration_pb2.Duration]):
+            Time offsets of the speech partial results
+            relative to the beginning of the stream.
+        speech_final_results_end_times (MutableSequence[google.protobuf.duration_pb2.Duration]):
+            Time offsets of the speech final results (is_final=true)
+            relative to the beginning of the stream.
+        partial_responses (int):
+            Total number of partial responses.
+        speaker_id_passive_latency_ms_offset (int):
+            Time offset of Speaker ID stream close time
+            relative to the Speech stream close time in
+            milliseconds. Only meaningful for conversations
+            involving passive verification.
+        bargein_event_triggered (bool):
+            Whether a barge-in event is triggered in this
+            request.
+        speech_single_utterance (bool):
+            Whether speech uses single utterance mode.
+        dtmf_partial_results_times (MutableSequence[google.protobuf.duration_pb2.Duration]):
+            Time offsets of the DTMF partial results
+            relative to the beginning of the stream.
+        dtmf_final_results_times (MutableSequence[google.protobuf.duration_pb2.Duration]):
+            Time offsets of the DTMF final results
+            relative to the beginning of the stream.
+        single_utterance_end_time_offset (google.protobuf.duration_pb2.Duration):
+            Time offset of the end-of-single-utterance
+            signal relative to the beginning of the stream.
+        no_speech_timeout (google.protobuf.duration_pb2.Duration):
+            No speech timeout settings observed at
+            runtime.
+        is_input_text (bool):
+            Whether the streaming terminates with an
+            injected text query.
+        client_half_close_time_offset (google.protobuf.duration_pb2.Duration):
+            Client half close time in terms of input
+            audio duration.
+        client_half_close_streaming_time_offset (google.protobuf.duration_pb2.Duration):
+            Client half close time in terms of API
+            streaming duration.
+    """
+
+    audio_data_chunks: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    result_end_time_offset: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=duration_pb2.Duration,
+    )
+    first_audio_duration: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=duration_pb2.Duration,
+    )
+    single_utterance: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    speech_partial_results_end_times: MutableSequence[
+        duration_pb2.Duration
+    ] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=6,
+        message=duration_pb2.Duration,
+    )
+    speech_final_results_end_times: MutableSequence[
+        duration_pb2.Duration
+    ] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=7,
+        message=duration_pb2.Duration,
+    )
+    partial_responses: int = proto.Field(
+        proto.INT32,
+        number=8,
+    )
+    speaker_id_passive_latency_ms_offset: int = proto.Field(
+        proto.INT32,
+        number=9,
+    )
+    bargein_event_triggered: bool = proto.Field(
+        proto.BOOL,
+        number=10,
+    )
+    speech_single_utterance: bool = proto.Field(
+        proto.BOOL,
+        number=11,
+    )
+    dtmf_partial_results_times: MutableSequence[
+        duration_pb2.Duration
+    ] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=12,
+        message=duration_pb2.Duration,
+    )
+    dtmf_final_results_times: MutableSequence[
+        duration_pb2.Duration
+    ] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=13,
+        message=duration_pb2.Duration,
+    )
+    single_utterance_end_time_offset: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=14,
+        message=duration_pb2.Duration,
+    )
+    no_speech_timeout: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=15,
+        message=duration_pb2.Duration,
+    )
+    is_input_text: bool = proto.Field(
+        proto.BOOL,
+        number=16,
+    )
+    client_half_close_time_offset: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=17,
+        message=duration_pb2.Duration,
+    )
+    client_half_close_streaming_time_offset: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=18,
+        message=duration_pb2.Duration,
     )
 
 
@@ -716,6 +883,10 @@ class StreamingDetectIntentResponse(proto.Message):
         output_audio_config (google.cloud.dialogflow_v2.types.OutputAudioConfig):
             The config used by the speech synthesizer to
             generate the output audio.
+        debugging_info (google.cloud.dialogflow_v2.types.CloudConversationDebuggingInfo):
+            Debugging info that would get populated when
+            ``StreamingDetectIntentRequest.enable_debugging_info`` is
+            set to true.
     """
 
     response_id: str = proto.Field(
@@ -745,6 +916,11 @@ class StreamingDetectIntentResponse(proto.Message):
         proto.MESSAGE,
         number=6,
         message=gcd_audio_config.OutputAudioConfig,
+    )
+    debugging_info: "CloudConversationDebuggingInfo" = proto.Field(
+        proto.MESSAGE,
+        number=8,
+        message="CloudConversationDebuggingInfo",
     )
 
 
@@ -886,9 +1062,7 @@ class StreamingRecognitionResult(proto.Message):
 
 
 class TextInput(proto.Message):
-    r"""============================================================================
-    Auxiliary proto messages.
-
+    r"""Auxiliary proto messages.
     Represents the natural language text to be processed.
 
     Attributes:
@@ -928,25 +1102,22 @@ class EventInput(proto.Message):
         name (str):
             Required. The unique identifier of the event.
         parameters (google.protobuf.struct_pb2.Struct):
-            The collection of parameters associated with
-            the event.
-            Depending on your protocol or client library
-            language, this is a map, associative array,
-            symbol table, dictionary, or JSON object
-            composed of a collection of (MapKey, MapValue)
+            The collection of parameters associated with the event.
+
+            Depending on your protocol or client library language, this
+            is a map, associative array, symbol table, dictionary, or
+            JSON object composed of a collection of (MapKey, MapValue)
             pairs:
-            -   MapKey type: string
-            -   MapKey value: parameter name
-            -   MapValue type:
-                -   If parameter's entity type is a
-            composite entity: map     -   Else: depending on
-            parameter value type, could be one of string,
-            number, boolean, null, list or map
-            -   MapValue value:
-                -   If parameter's entity type is a
-            composite entity:         map from composite
-            entity property names to property values     -
-            Else: parameter value
+
+            -  MapKey type: string
+            -  MapKey value: parameter name
+            -  MapValue type: If parameter's entity type is a composite
+               entity then use map, otherwise, depending on the
+               parameter value type, it could be one of string, number,
+               boolean, null, list or map.
+            -  MapValue value: If parameter's entity type is a composite
+               entity then use map from composite entity property names
+               to property values, otherwise, use parameter value.
         language_code (str):
             Required. The language of this query. See `Language
             Support <https://cloud.google.com/dialogflow/docs/reference/language>`__

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -427,6 +427,36 @@ class ConversationsGrpcTransport(ConversationsTransport):
                 response_deserializer=gcd_conversation.SuggestConversationSummaryResponse.deserialize,
             )
         return self._stubs["suggest_conversation_summary"]
+
+    @property
+    def generate_stateless_summary(
+        self,
+    ) -> Callable[
+        [conversation.GenerateStatelessSummaryRequest],
+        conversation.GenerateStatelessSummaryResponse,
+    ]:
+        r"""Return a callable for the generate stateless summary method over gRPC.
+
+        Generates and returns a summary for a conversation
+        that does not have a resource created for it.
+
+        Returns:
+            Callable[[~.GenerateStatelessSummaryRequest],
+                    ~.GenerateStatelessSummaryResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "generate_stateless_summary" not in self._stubs:
+            self._stubs["generate_stateless_summary"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.Conversations/GenerateStatelessSummary",
+                request_serializer=conversation.GenerateStatelessSummaryRequest.serialize,
+                response_deserializer=conversation.GenerateStatelessSummaryResponse.deserialize,
+            )
+        return self._stubs["generate_stateless_summary"]
 
     def close(self):
         self.grpc_channel.close()

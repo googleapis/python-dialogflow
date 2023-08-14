@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,11 +23,11 @@ import proto  # type: ignore
 __protobuf__ = proto.module(
     package="google.cloud.dialogflow.v2",
     manifest={
+        "TelephonyDtmf",
         "AudioEncoding",
         "SpeechModelVariant",
         "SsmlVoiceGender",
         "OutputAudioEncoding",
-        "TelephonyDtmf",
         "SpeechContext",
         "SpeechWordInfo",
         "InputAudioConfig",
@@ -38,6 +38,67 @@ __protobuf__ = proto.module(
         "SpeechToTextConfig",
     },
 )
+
+
+class TelephonyDtmf(proto.Enum):
+    r"""`DTMF <https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling>`__
+    digit in Telephony Gateway.
+
+    Values:
+        TELEPHONY_DTMF_UNSPECIFIED (0):
+            Not specified. This value may be used to
+            indicate an absent digit.
+        DTMF_ONE (1):
+            Number: '1'.
+        DTMF_TWO (2):
+            Number: '2'.
+        DTMF_THREE (3):
+            Number: '3'.
+        DTMF_FOUR (4):
+            Number: '4'.
+        DTMF_FIVE (5):
+            Number: '5'.
+        DTMF_SIX (6):
+            Number: '6'.
+        DTMF_SEVEN (7):
+            Number: '7'.
+        DTMF_EIGHT (8):
+            Number: '8'.
+        DTMF_NINE (9):
+            Number: '9'.
+        DTMF_ZERO (10):
+            Number: '0'.
+        DTMF_A (11):
+            Letter: 'A'.
+        DTMF_B (12):
+            Letter: 'B'.
+        DTMF_C (13):
+            Letter: 'C'.
+        DTMF_D (14):
+            Letter: 'D'.
+        DTMF_STAR (15):
+            Asterisk/star: '*'.
+        DTMF_POUND (16):
+            Pound/diamond/hash/square/gate/octothorpe:
+            '#'.
+    """
+    TELEPHONY_DTMF_UNSPECIFIED = 0
+    DTMF_ONE = 1
+    DTMF_TWO = 2
+    DTMF_THREE = 3
+    DTMF_FOUR = 4
+    DTMF_FIVE = 5
+    DTMF_SIX = 6
+    DTMF_SEVEN = 7
+    DTMF_EIGHT = 8
+    DTMF_NINE = 9
+    DTMF_ZERO = 10
+    DTMF_A = 11
+    DTMF_B = 12
+    DTMF_C = 13
+    DTMF_D = 14
+    DTMF_STAR = 15
+    DTMF_POUND = 16
 
 
 class AudioEncoding(proto.Enum):
@@ -206,67 +267,6 @@ class OutputAudioEncoding(proto.Enum):
     OUTPUT_AUDIO_ENCODING_MULAW = 5
 
 
-class TelephonyDtmf(proto.Enum):
-    r"""`DTMF <https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling>`__
-    digit in Telephony Gateway.
-
-    Values:
-        TELEPHONY_DTMF_UNSPECIFIED (0):
-            Not specified. This value may be used to
-            indicate an absent digit.
-        DTMF_ONE (1):
-            Number: '1'.
-        DTMF_TWO (2):
-            Number: '2'.
-        DTMF_THREE (3):
-            Number: '3'.
-        DTMF_FOUR (4):
-            Number: '4'.
-        DTMF_FIVE (5):
-            Number: '5'.
-        DTMF_SIX (6):
-            Number: '6'.
-        DTMF_SEVEN (7):
-            Number: '7'.
-        DTMF_EIGHT (8):
-            Number: '8'.
-        DTMF_NINE (9):
-            Number: '9'.
-        DTMF_ZERO (10):
-            Number: '0'.
-        DTMF_A (11):
-            Letter: 'A'.
-        DTMF_B (12):
-            Letter: 'B'.
-        DTMF_C (13):
-            Letter: 'C'.
-        DTMF_D (14):
-            Letter: 'D'.
-        DTMF_STAR (15):
-            Asterisk/star: '*'.
-        DTMF_POUND (16):
-            Pound/diamond/hash/square/gate/octothorpe:
-            '#'.
-    """
-    TELEPHONY_DTMF_UNSPECIFIED = 0
-    DTMF_ONE = 1
-    DTMF_TWO = 2
-    DTMF_THREE = 3
-    DTMF_FOUR = 4
-    DTMF_FIVE = 5
-    DTMF_SIX = 6
-    DTMF_SEVEN = 7
-    DTMF_EIGHT = 8
-    DTMF_NINE = 9
-    DTMF_ZERO = 10
-    DTMF_A = 11
-    DTMF_B = 12
-    DTMF_C = 13
-    DTMF_D = 14
-    DTMF_STAR = 15
-    DTMF_POUND = 16
-
-
 class SpeechContext(proto.Message):
     r"""Hints for the speech recognizer to help with recognition in a
     specific conversation state.
@@ -397,11 +397,11 @@ class InputAudioConfig(proto.Message):
             documentation <https://cloud.google.com/speech-to-text/docs/basics#phrase-hints>`__
             for more details.
 
-            This field is deprecated. Please use `speech_contexts <>`__
-            instead. If you specify both `phrase_hints <>`__ and
-            `speech_contexts <>`__, Dialogflow will treat the
-            `phrase_hints <>`__ as a single additional
-            `SpeechContext <>`__.
+            This field is deprecated. Please use
+            ```speech_contexts`` <>`__ instead. If you specify both
+            ```phrase_hints`` <>`__ and ```speech_contexts`` <>`__,
+            Dialogflow will treat the ```phrase_hints`` <>`__ as a
+            single additional ```SpeechContext`` <>`__.
         speech_contexts (MutableSequence[google.cloud.dialogflow_v2.types.SpeechContext]):
             Context information to assist speech recognition.
 
@@ -419,7 +419,13 @@ class InputAudioConfig(proto.Message):
             standard version of the specified model. Refer to `Cloud
             Speech API
             documentation <https://cloud.google.com/speech-to-text/docs/basics#select-model>`__
-            for more details.
+            for more details. If you specify a model, the following
+            models typically have the best performance:
+
+            -  phone_call (best for Agent Assist and telephony)
+            -  latest_short (best for Dialogflow non-telephony)
+            -  command_and_search (best for very short utterances and
+               commands)
         model_variant (google.cloud.dialogflow_v2.types.SpeechModelVariant):
             Which variant of the [Speech
             model][google.cloud.dialogflow.v2.InputAudioConfig.model] to
@@ -442,6 +448,9 @@ class InputAudioConfig(proto.Message):
             [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
             If ``false`` and recognition doesn't return any result,
             trigger ``NO_SPEECH_RECOGNIZED`` event to Dialogflow agent.
+        enable_automatic_punctuation (bool):
+            Enable automatic punctuation option at the
+            speech backend.
     """
 
     audio_encoding: "AudioEncoding" = proto.Field(
@@ -486,6 +495,10 @@ class InputAudioConfig(proto.Message):
     disable_no_speech_recognized_event: bool = proto.Field(
         proto.BOOL,
         number=14,
+    )
+    enable_automatic_punctuation: bool = proto.Field(
+        proto.BOOL,
+        number=17,
     )
 
 

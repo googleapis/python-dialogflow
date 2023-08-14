@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,9 +33,8 @@ class GcsSources(proto.Message):
 
     Attributes:
         uris (MutableSequence[str]):
-            Required. Google Cloud Storage URIs for the
-            inputs. A URI is of the form:
-            gs://bucket/object-prefix-or-name Whether a
+            Required. Google Cloud Storage URIs for the inputs. A URI is
+            of the form: ``gs://bucket/object-prefix-or-name`` Whether a
             prefix or name is used depends on the use case.
     """
 
@@ -50,12 +49,10 @@ class GcsDestination(proto.Message):
 
     Attributes:
         uri (str):
-            The Google Cloud Storage URIs for the output.
-            A URI is of the form:
-              gs://bucket/object-prefix-or-name
-            Whether a prefix or name is used depends on the
-            use case. The requesting user must have
-            "write-permission" to the bucket.
+            The Google Cloud Storage URIs for the output. A URI is of
+            the form: ``gs://bucket/object-prefix-or-name`` Whether a
+            prefix or name is used depends on the use case. The
+            requesting user must have "write-permission" to the bucket.
     """
 
     uri: str = proto.Field(

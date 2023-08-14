@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -70,6 +70,12 @@ class AnswerRecordsAsyncClient:
     parse_answer_record_path = staticmethod(
         AnswerRecordsClient.parse_answer_record_path
     )
+    context_path = staticmethod(AnswerRecordsClient.context_path)
+    parse_context_path = staticmethod(AnswerRecordsClient.parse_context_path)
+    document_path = staticmethod(AnswerRecordsClient.document_path)
+    parse_document_path = staticmethod(AnswerRecordsClient.parse_document_path)
+    intent_path = staticmethod(AnswerRecordsClient.intent_path)
+    parse_intent_path = staticmethod(AnswerRecordsClient.parse_intent_path)
     common_billing_account_path = staticmethod(
         AnswerRecordsClient.common_billing_account_path
     )
@@ -872,7 +878,7 @@ class AnswerRecordsAsyncClient:
         # Done; return the response.
         return response
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "AnswerRecordsAsyncClient":
         return self
 
     async def __aexit__(self, exc_type, exc, tb):

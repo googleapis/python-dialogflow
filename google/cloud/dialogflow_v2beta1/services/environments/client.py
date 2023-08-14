@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -525,8 +525,8 @@ class EnvironmentsClient(metaclass=EnvironmentsClientMeta):
                 Required. The agent to list all environments from.
                 Format:
 
-                -  ``projects/<Project Number / ID>/agent``
-                -  ``projects/<Project Number / ID>/locations/<Location ID>/agent``
+                -  ``projects/<Project ID>/agent``
+                -  ``projects/<Project ID>/locations/<Location ID>/agent``
 
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this

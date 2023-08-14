@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -552,8 +552,14 @@ class SessionsClient(metaclass=SessionsClientMeta):
                 client = dialogflow_v2.SessionsClient()
 
                 # Initialize request argument(s)
+                query_input = dialogflow_v2.QueryInput()
+                query_input.audio_config.audio_encoding = "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+                query_input.audio_config.sample_rate_hertz = 1817
+                query_input.audio_config.language_code = "language_code_value"
+
                 request = dialogflow_v2.DetectIntentRequest(
                     session="session_value",
+                    query_input=query_input,
                 )
 
                 # Make the request
@@ -594,13 +600,14 @@ class SessionsClient(metaclass=SessionsClientMeta):
             query_input (google.cloud.dialogflow_v2.types.QueryInput):
                 Required. The input specification. It
                 can be set to:
-                1.  an audio config
-                    which instructs the speech
-                recognizer how to process the speech
-                audio,
-                2.  a conversational query in the form
-                of text, or
-                3.  an event that specifies which intent
+
+                1. an audio config which instructs the
+                speech recognizer how to process the
+                speech audio,
+
+                2. a conversational query in the form of
+                text, or
+                3. an event that specifies which intent
                 to trigger.
 
                 This corresponds to the ``query_input`` field
@@ -703,8 +710,14 @@ class SessionsClient(metaclass=SessionsClientMeta):
                 client = dialogflow_v2.SessionsClient()
 
                 # Initialize request argument(s)
+                query_input = dialogflow_v2.QueryInput()
+                query_input.audio_config.audio_encoding = "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+                query_input.audio_config.sample_rate_hertz = 1817
+                query_input.audio_config.language_code = "language_code_value"
+
                 request = dialogflow_v2.StreamingDetectIntentRequest(
                     session="session_value",
+                    query_input=query_input,
                 )
 
                 # This method expects an iterator which contains
