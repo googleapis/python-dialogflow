@@ -23,7 +23,7 @@ from google.api_core import retry as retries
 import google.auth  # type: ignore
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.cloud.location import locations_pb2  # type: ignore
-from google.longrunning import operations_pb2
+from google.longrunning import operations_pb2  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.dialogflow_v2beta1 import gapic_version as package_version
@@ -168,6 +168,11 @@ class ConversationsTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.search_knowledge: gapic_v1.method.wrap_method(
+                self.search_knowledge,
+                default_timeout=None,
+                client_info=client_info,
+            ),
         }
 
     def close(self):
@@ -262,6 +267,18 @@ class ConversationsTransport(abc.ABC):
         Union[
             conversation.GenerateStatelessSummaryResponse,
             Awaitable[conversation.GenerateStatelessSummaryResponse],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def search_knowledge(
+        self,
+    ) -> Callable[
+        [conversation.SearchKnowledgeRequest],
+        Union[
+            conversation.SearchKnowledgeResponse,
+            Awaitable[conversation.SearchKnowledgeResponse],
         ],
     ]:
         raise NotImplementedError()

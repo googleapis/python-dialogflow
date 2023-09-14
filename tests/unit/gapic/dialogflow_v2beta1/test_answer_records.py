@@ -33,7 +33,7 @@ import google.auth
 from google.auth import credentials as ga_credentials
 from google.auth.exceptions import MutualTLSChannelError
 from google.cloud.location import locations_pb2
-from google.longrunning import operations_pb2
+from google.longrunning import operations_pb2  # type: ignore
 from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import json_format
@@ -1965,6 +1965,10 @@ def test_update_answer_record_rest(request_type):
                     "submit_timestamp": {},
                     "summary_text": "summary_text_value",
                 },
+                "knowledge_search_feedback": {
+                    "answer_copied": True,
+                    "clicked_uris": ["clicked_uris_value1", "clicked_uris_value2"],
+                },
             },
             "clicked": True,
             "click_time": {},
@@ -2445,6 +2449,10 @@ def test_update_answer_record_rest_bad_request(
                     "start_timestamp": {"seconds": 751, "nanos": 543},
                     "submit_timestamp": {},
                     "summary_text": "summary_text_value",
+                },
+                "knowledge_search_feedback": {
+                    "answer_copied": True,
+                    "clicked_uris": ["clicked_uris_value1", "clicked_uris_value2"],
                 },
             },
             "clicked": True,
