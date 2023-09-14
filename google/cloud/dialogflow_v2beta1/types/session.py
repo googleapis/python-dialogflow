@@ -87,12 +87,13 @@ class DetectIntentRequest(proto.Message):
             set to:
 
             1. an audio config which instructs the speech
-            recognizer how to process the speech audio,
+                recognizer how to process the speech audio,
 
             2. a conversational query in the form of text,
-            or
+                or
+
             3. an event that specifies which intent to
-            trigger.
+                trigger.
         output_audio_config (google.cloud.dialogflow_v2beta1.types.OutputAudioConfig):
             Instructs the speech synthesizer how to
             generate the output audio. If this field is not
@@ -278,6 +279,12 @@ class QueryParameters(proto.Message):
             "User-Agent", "Accept-Encoding",
             "If-Modified-Since", "If-None-Match",
             "X-Forwarded-For", etc.
+        platform (str):
+            The platform of the virtual agent response messages.
+
+            If not empty, only emits messages from this platform in the
+            response. Valid values are the enum names of
+            [platform][google.cloud.dialogflow.v2beta1.Intent.Message.platform].
     """
 
     time_zone: str = proto.Field(
@@ -329,13 +336,17 @@ class QueryParameters(proto.Message):
         proto.STRING,
         number=14,
     )
+    platform: str = proto.Field(
+        proto.STRING,
+        number=18,
+    )
 
 
 class QueryInput(proto.Message):
     r"""Represents the query input. It can contain either:
 
     1. An audio config which instructs the speech recognizer how to
-    process the speech audio.
+        process the speech audio.
 
     2. A conversational query in the form of text.
 
@@ -761,12 +772,13 @@ class StreamingDetectIntentRequest(proto.Message):
             set to:
 
             1. an audio config which instructs the speech
-            recognizer how to process the speech audio,
+                recognizer how to process the speech audio,
 
             2. a conversational query in the form of text,
-            or
+                or
+
             3. an event that specifies which intent to
-            trigger.
+                trigger.
         single_utterance (bool):
             DEPRECATED. Please use
             [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2beta1.InputAudioConfig.single_utterance]
@@ -887,8 +899,10 @@ class CloudConversationDebuggingInfo(proto.Message):
             Time offset of the end-of-single-utterance
             signal relative to the beginning of the stream.
         no_speech_timeout (google.protobuf.duration_pb2.Duration):
-            No speech timeout settings observed at
-            runtime.
+            No speech timeout settings for the stream.
+        endpointing_timeout (google.protobuf.duration_pb2.Duration):
+            Speech endpointing timeout settings for the
+            stream.
         is_input_text (bool):
             Whether the streaming terminates with an
             injected text query.
@@ -970,6 +984,11 @@ class CloudConversationDebuggingInfo(proto.Message):
     no_speech_timeout: duration_pb2.Duration = proto.Field(
         proto.MESSAGE,
         number=15,
+        message=duration_pb2.Duration,
+    )
+    endpointing_timeout: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=19,
         message=duration_pb2.Duration,
     )
     is_input_text: bool = proto.Field(

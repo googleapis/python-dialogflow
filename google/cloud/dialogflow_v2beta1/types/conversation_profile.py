@@ -72,6 +72,7 @@ class ConversationProfile(proto.Message):
             with this profile.
         human_agent_handoff_config (google.cloud.dialogflow_v2beta1.types.HumanAgentHandoffConfig):
             Configuration for connecting to a live agent.
+
             Currently, this feature is not general
             available, please contact Google to get access.
         notification_config (google.cloud.dialogflow_v2beta1.types.NotificationConfig):
@@ -278,7 +279,13 @@ class HumanAgentAssistantConfig(proto.Message):
                 suggestions.
 
                 Supported features: ARTICLE_SUGGESTION, FAQ,
-                DIALOGFLOW_ASSIST, ENTITY_EXTRACTION.
+                DIALOGFLOW_ASSIST, ENTITY_EXTRACTION, KNOWLEDGE_ASSIST.
+            disable_agent_query_logging (bool):
+                Optional. Disable the logging of search queries sent by
+                human agents. It can prevent those queries from being stored
+                at answer records.
+
+                Supported features: KNOWLEDGE_SEARCH.
             suggestion_trigger_settings (google.cloud.dialogflow_v2beta1.types.HumanAgentAssistantConfig.SuggestionTriggerSettings):
                 Settings of suggestion trigger.
 
@@ -300,6 +307,10 @@ class HumanAgentAssistantConfig(proto.Message):
         enable_event_based_suggestion: bool = proto.Field(
             proto.BOOL,
             number=3,
+        )
+        disable_agent_query_logging: bool = proto.Field(
+            proto.BOOL,
+            number=14,
         )
         suggestion_trigger_settings: "HumanAgentAssistantConfig.SuggestionTriggerSettings" = proto.Field(
             proto.MESSAGE,
@@ -668,6 +679,7 @@ class HumanAgentAssistantConfig(proto.Message):
 class HumanAgentHandoffConfig(proto.Message):
     r"""Defines the hand off to a live agent, typically on which
     external agent service provider to connect to a conversation.
+
     Currently, this feature is not general available, please contact
     Google to get access.
 

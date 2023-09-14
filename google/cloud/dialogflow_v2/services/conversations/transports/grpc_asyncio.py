@@ -20,7 +20,7 @@ from google.api_core import gapic_v1, grpc_helpers_async
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.cloud.location import locations_pb2  # type: ignore
-from google.longrunning import operations_pb2
+from google.longrunning import operations_pb2  # type: ignore
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
@@ -464,6 +464,36 @@ class ConversationsGrpcAsyncIOTransport(ConversationsTransport):
                 response_deserializer=conversation.GenerateStatelessSummaryResponse.deserialize,
             )
         return self._stubs["generate_stateless_summary"]
+
+    @property
+    def search_knowledge(
+        self,
+    ) -> Callable[
+        [conversation.SearchKnowledgeRequest],
+        Awaitable[conversation.SearchKnowledgeResponse],
+    ]:
+        r"""Return a callable for the search knowledge method over gRPC.
+
+        Get answers for the given query based on knowledge
+        documents.
+
+        Returns:
+            Callable[[~.SearchKnowledgeRequest],
+                    Awaitable[~.SearchKnowledgeResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "search_knowledge" not in self._stubs:
+            self._stubs["search_knowledge"] = self.grpc_channel.unary_unary(
+                "/google.cloud.dialogflow.v2.Conversations/SearchKnowledge",
+                request_serializer=conversation.SearchKnowledgeRequest.serialize,
+                response_deserializer=conversation.SearchKnowledgeResponse.deserialize,
+            )
+        return self._stubs["search_knowledge"]
 
     def close(self):
         return self.grpc_channel.close()

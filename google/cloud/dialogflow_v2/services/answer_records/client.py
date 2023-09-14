@@ -47,7 +47,7 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 from google.cloud.location import locations_pb2  # type: ignore
-from google.longrunning import operations_pb2
+from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 
 from google.cloud.dialogflow_v2.services.answer_records import pagers
@@ -199,6 +199,45 @@ class AnswerRecordsClient(metaclass=AnswerRecordsClientMeta):
         m = re.match(
             r"^projects/(?P<project>.+?)/answerRecords/(?P<answer_record>.+?)$", path
         )
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def context_path(
+        project: str,
+        session: str,
+        context: str,
+    ) -> str:
+        """Returns a fully-qualified context string."""
+        return "projects/{project}/agent/sessions/{session}/contexts/{context}".format(
+            project=project,
+            session=session,
+            context=context,
+        )
+
+    @staticmethod
+    def parse_context_path(path: str) -> Dict[str, str]:
+        """Parses a context path into its component segments."""
+        m = re.match(
+            r"^projects/(?P<project>.+?)/agent/sessions/(?P<session>.+?)/contexts/(?P<context>.+?)$",
+            path,
+        )
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def intent_path(
+        project: str,
+        intent: str,
+    ) -> str:
+        """Returns a fully-qualified intent string."""
+        return "projects/{project}/agent/intents/{intent}".format(
+            project=project,
+            intent=intent,
+        )
+
+    @staticmethod
+    def parse_intent_path(path: str) -> Dict[str, str]:
+        """Parses a intent path into its component segments."""
+        m = re.match(r"^projects/(?P<project>.+?)/agent/intents/(?P<intent>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod

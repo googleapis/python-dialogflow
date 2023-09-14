@@ -43,7 +43,7 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 from google.cloud.location import locations_pb2  # type: ignore
-from google.longrunning import operations_pb2
+from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 
 from google.cloud.dialogflow_v2.services.answer_records import pagers
@@ -69,6 +69,10 @@ class AnswerRecordsAsyncClient:
     parse_answer_record_path = staticmethod(
         AnswerRecordsClient.parse_answer_record_path
     )
+    context_path = staticmethod(AnswerRecordsClient.context_path)
+    parse_context_path = staticmethod(AnswerRecordsClient.parse_context_path)
+    intent_path = staticmethod(AnswerRecordsClient.intent_path)
+    parse_intent_path = staticmethod(AnswerRecordsClient.parse_intent_path)
     common_billing_account_path = staticmethod(
         AnswerRecordsClient.common_billing_account_path
     )
